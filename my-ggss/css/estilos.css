@@ -35,8 +35,8 @@ main {
 .formulario {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 5px;
-	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	gap: 10px;
+	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
 }
 
 .formulario__label {
@@ -67,6 +67,15 @@ main {
 
 .formulario__grupo-input {
 	position: relative;
+}
+.formulario__grupo-imgProfile {
+	position: relative;
+	margin-left: 170px;
+	margin-top: 10px;
+	
+}
+.imgProfile {
+	border-radius: 105px;
 }
 
 .formulario__input {
