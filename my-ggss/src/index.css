@@ -4,12 +4,14 @@
 	padding: 0px;
 	margin: 0;
 	box-sizing: border-box;
+	
 }
 
 body {
-	background: #E8E8E8;
+	background-color: #77777740;
 	/* font-family: 'Open Sans', sans-serif; */
 	font-family: 'Poppins';
+	
 }
 
 .contenedor {
@@ -17,6 +19,7 @@ body {
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
+	/* box-shadow: 50px; */
 }
 
 /* .formulario__inputs,

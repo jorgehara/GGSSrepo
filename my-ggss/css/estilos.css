@@ -1,17 +1,34 @@
 * {
 	box-sizing: border-box;
 }
+/* color: #780F07; Bordo de GGMM
+color: #64686d; Letra Gris GGMM
+.gradiant{
+	background-image: -moz-linear-gradient(90deg, #a61f34 0%, #780F07 100%);
+	background-image: -webkit-linear-gradient(90deg, #a61f34 0%, #780F07 100%);
+	background-image: -ms-linear-gradient(90deg, #a61f34 0%, #780F07 100%);
+  }
+.gradiant-horizontal {
+	background-image: -moz-linear-gradient(4deg, #a61f34 0%, #780F07 100%);
+	background-image: -webkit-linear-gradient(4deg, #a61f34 0%, #780F07 100%);
+	background-image: -ms-linear-gradient(4deg, #a61f34 0%, #780F07 100%);
+  } */
+
+
 
 body {
 	/* font-family: 'Poppins'; */
 	font-family: 'Open Sans', sans-serif;
-	background: #E5E5E5;
+	/* background: #E5E5E5; */
+	background-color: #77777740;
+	
 }
 
 main {
-	max-width: 800px;
+	max-width: 1250px;
 	width: 90%;
 	margin: auto;
+	
 	/* padding: 40px; */
 }
 
