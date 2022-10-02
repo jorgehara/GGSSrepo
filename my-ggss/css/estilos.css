@@ -12,13 +12,14 @@ main {
 	max-width: 800px;
 	width: 90%;
 	margin: auto;
-	padding: 40px;
+	/* padding: 40px; */
 }
 
 .formulario {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 20px;
+	gap: 5px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .formulario__label {
@@ -27,15 +28,18 @@ main {
 	padding: 10px;
 	cursor: pointer;
 }
+
 .mainABMTitle {
 	margin-top: 20px;
-	width: 246px;
+	width: 350px;
 	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 36px;
 	line-height: 24px;
 	color: #003C70;
+	font-weight: bold;
+	
 
 	/* display: grid;
 	font-weight: 700;

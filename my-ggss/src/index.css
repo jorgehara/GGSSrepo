@@ -27,7 +27,7 @@ body {
 
 .formulario {
 	min-width: 600px;
-	margin-top: 50px;
+	margin-top: 25px;
 	background: #fff;
 	border-radius: 5px;
 	padding: 20px;
@@ -35,7 +35,7 @@ body {
 }
 
 .formulario > div {
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
 
 .formulario label {
@@ -83,7 +83,7 @@ body {
 	border: none;
 	cursor: pointer;
 	width: 100%;
-	padding: 10px;
+	/* padding: 10px; */
 	border-radius: 5px;
 	color: #fff;
 	font-size: 16px;
@@ -91,6 +91,25 @@ body {
 }
 
 .formulario button[type="submit"]:hover {
+	background: #0051ff;
+}
+
+.formularioCancelar button[type="submit"] {
+	display: block;
+	background: #0085FF;
+	font-weight: 600;
+	font-family: 'Open Sans', sans-serif;
+	border: none;
+	cursor: pointer;
+	width: 25%;
+	padding: 10px;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 16px;
+	transition: .3s ease all;
+}
+
+.formularioCancelar button[type="submit"]:hover {
 	background: #0051ff;
 }
 
@@ -127,4 +146,6 @@ body {
 	.formulario__btn {
 		width: 100%;
 	}
-}
+	/* .formularioCancelar__btn {
+		width: 25%;
+	} */
