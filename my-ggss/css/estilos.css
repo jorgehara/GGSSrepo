@@ -42,8 +42,8 @@ main {
 .formulario__label {
 	display: block;
 	font-weight: 700;
-	padding: 10px;
-	cursor: pointer;
+	/* padding: 10px;
+	cursor: pointer; */
 }
 
 .mainABMTitle {
@@ -56,6 +56,7 @@ main {
 	line-height: 24px;
 	color: #003C70;
 	font-weight: bold;
+	
 	
 
 	/* display: grid;

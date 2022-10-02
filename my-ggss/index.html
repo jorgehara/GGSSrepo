@@ -11,16 +11,16 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-	<main>	
+	<main class="masterheader">	
 		<div class="formulario__grupo">
-			<label for="usuario" class="mainABMTitle" >Datos Personales</label>
+			<label for="usuario" class="mainABMTitle">Datos Personales</label>
 		  </div>
 
 <!-- PrimerSectionUp		   -->
 		<form action="" class="formulario" id="formulario">
 			<!--Grupo: Legajo -->
 		<div class="formulario__grupo" id="grupo__telefono">
-			<label for="telefono" class="formulario__label">Legajo</label>
+			<label for="telefono" class="label label-info" class="formulario__label">Legajo</label>
 			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese el número">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -40,7 +40,7 @@
 		<div class="formulario__grupo" id="grupo__nombre">
 			<label for="nombre" class="formulario__label">Apellido</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese su Apellido">
+				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Apellidos">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
@@ -49,7 +49,7 @@
 			<div class="formulario__grupo" id="grupo__nombre">
 				<label for="nombre" class="formulario__label">Nombres</label>
 				<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese sus Nombres">
+					<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Nombres">
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 					<p class="formulario__input-error">Solo puede contener letras.</p>
@@ -66,15 +66,9 @@
 			  <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese el número">
 			  <i class="formulario__validacion-estado fas fa-times-circle"></i>
 		  </div>
-			  <p class="formulario__input-error">Solo puede contener números.</p>
+			  <p class="formulario__input-error">Solo puede contener números, sin puntos.</p>
 		  </div>
 		</div>
-
-<!-- SEGUIR DESDE Aca-------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------
------------------------------------------------------------------------- -->
-
-
 		<!-- Grupo: Masculino & Femenino -->
 		<div class="formulario__grupo" id="grupo__terminos">
 			<label for="nombre" class="formulario__label">Sexo</label>
@@ -92,14 +86,14 @@
 			</div>
 		</div>
 		<!--Grupo: C.U.I.L. -->
-		<div class="formulario__grupo" id="grupo__usuario">
-			<label for="usuario" class="formulario__label">C.U.I.L.</label>
+		<div class="formulario__grupo" id="grupo__telefono">
+			<label for="telefono" class="label label-info" class="formulario__label">C.U.I.L.</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="4491234567">
-			<i class="formulario__validacion-estado fas fa-times-circle"></i>
-		  </div>
-			  <p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
-		  </div>
+				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese el número">
+				<i class="formulario__validacion-estado fas fa-times-circle"></i>
+			</div>
+				<p class="formulario__input-error">Solo puede contener números, sin puntos.</p>
+			</div>
 		<!--Grupo: Nacimiento -->
 		<div class="formulario__grupo" id="grupo__usuario">
 			<label for="usuario" class="formulario__label">Nacimiento</label>
@@ -108,25 +102,25 @@
   				<input type="date" id="birthday" name="birthday">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<!-- <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p> -->
+				<p class="formulario__input-error">Elija la fecha de su Nacimiento</p>
 			</div> 
 		<!-- Grupo: Teléfono -->
 		<div class="formulario__grupo" id="grupo__telefono">
 			<label for="telefono" class="formulario__label">Teléfono</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="4491234567">
+				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="1151993165">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 			</div>
-				<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+				<p class="formulario__input-error">El teléfono solo puede contener números.</p>
 			</div>
 		<!-- Grupo: Móvil -->
 		<div class="formulario__grupo" id="grupo__telefono">
 			<label for="telefono" class="formulario__label">Móvil</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="4491234567">
+				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="1151993165">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 			</div>
-				<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+				<p class="formulario__input-error">El teléfono solo puede contener números.</p>
 			</div>
 		<!--Grupo: E-mail -->
 		<div class="formulario__grupo" id="grupo__correo">
@@ -138,40 +132,40 @@
 				<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
 			</div>
 		<!--Grupo: Estado Civil -->
-		<div class="formulario__grupo" id="grupo__usuario">
-			<label for="usuario" class="formulario__label">Estado Civil</label>
+		<div class="formulario__grupo" id="grupo__nombre">
+			<label for="nombre" class="formulario__label">Estado Civil</label>
 			<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="john123">
-					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Estado Civil">
+				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
 		<!--Grupo: País de Origen -->
-		<div class="formulario__grupo" id="grupo__usuario">
-			<label for="usuario" class="formulario__label">País de Origen</label>
+		<div class="formulario__grupo" id="grupo__nombre">
+			<label for="nombre" class="formulario__label">País de Origen</label>
 			<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="john123">
-					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese País de Origen">
+				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-			</div> 	
+				<p class="formulario__input-error">Solo puede contener letras.</p>
+			</div>
 		<!--Grupo: Nacionalidad -->
-		<div class="formulario__grupo" id="grupo__usuario">
-			<label for="usuario" class="formulario__label">Nacionalidad</label>
+		<div class="formulario__grupo" id="grupo__nombre">
+			<label for="nombre" class="formulario__label">Nacionalidad</label>
 			<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="john123">
-					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Nacionalidad">
+				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-			</div>		
+				<p class="formulario__input-error">Solo puede contener letras.</p>
+			</div>
 		<!--Grupo: Estudios -->
-		<div class="formulario__grupo" id="grupo__usuario">
-			<label for="usuario" class="formulario__label">Estudios</label>
+		<div class="formulario__grupo" id="grupo__nombre">
+			<label for="nombre" class="formulario__label">Estudios</label>
 			<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="john123">
-					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Estudios">
+				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
 		<!-- Grupo: Div Perfil -->
 		<div class="formulario__grupo" id="grupo__nombre">
@@ -261,62 +255,65 @@
 					<!-- <button type="submit" class="formulario__btn">Cancelar</button> -->
 					<!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
 				</div>
-					<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+					<!-- <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p> -->
 			</div>	
 		
 		<!-- Grupo: Calle -->
 		<div class="formulario__grupo" id="grupo__nombre">
 			<label for="nombre" class="formulario__label">Calle</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe">
+				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Calle">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
 		<!-- Grupo: Número -->	
-		<div class="formulario__grupo" id="grupo__nombre">
-			<label for="nombre" class="formulario__label">Número</label>
+		<div class="formulario__grupo" id="grupo__telefono">
+			<label for="telefono" class="label label-info" class="formulario__label">Número</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe">
+				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese Número">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
-				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 			</div>
-		<!-- Grupo: Barrio -->
+				<p class="formulario__input-error">Solo puede contener números.</p>
+			</div>
+		<!-- Grupo: Barrio   ----------
+			
+						-------------------VER VALIDACION REQUIERE STRING & NUMEROS
+		-.----------------------------------------------------------------------->
 		<div class="formulario__grupo" id="grupo__nombre">
 			<label for="nombre" class="formulario__label">Barrio</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe">
+				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Barrio">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+				<p class="formulario__input-error">Solo puede contener letras y números.</p>
 			</div>
 		<!-- Grupo: Piso/Dpto/Ofic/Torre -->
-		<div class="formulario__grupo" id="grupo__nombre">
-			<label for="nombre" class="formulario__label">Piso/Dpto/Ofic/Torre</label>
+		<div class="formulario__grupo" id="grupo__telefono">
+			<label for="telefono" class="label label-info" class="formulario__label">Piso/Dpto/Ofic/Torre</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe">
+				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese número">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
-				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+			</div>
+				<p class="formulario__input-error">Solo puede contener números.</p>
 			</div>
 		<!-- Grupo: Departamento -->
-		<div class="formulario__grupo" id="grupo__nombre">
-			<label for="nombre" class="formulario__label">Departamento</label>
+		<div class="formulario__grupo" id="grupo__telefono">
+			<label for="telefono" class="label label-info" class="formulario__label">Departamento</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe">
+				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese departamento">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
-				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+			</div>
+				<p class="formulario__input-error">Solo puede contener números.</p>
 			</div>
 		<!-- Grupo: Localidad/CP -->
 		<div class="formulario__grupo" id="grupo__nombre">
 			<label for="nombre" class="formulario__label">Localidad/CP</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe">
+				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Localidad/CP">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
 		<!-- Grupo: Provincia -->
 		<div class="formulario__grupo" id="grupo__nombre">
