@@ -39,6 +39,13 @@ main {
 	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
 }
 
+.span{
+	color: orangered;
+	border-radius: 50%;
+	border: 2px solid orangered;
+	padding: 5px;
+}
+
 .formulario__label {
 	display: block;
 	font-weight: 700;
