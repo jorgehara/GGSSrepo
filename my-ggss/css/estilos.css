@@ -21,14 +21,84 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	/* background: #E5E5E5; */
 	background-color: #77777740;
-	
+
 }
+
+#displayimage{
+	margin-top: 10px;
+	border-radius: 155px;
+    margin-left: -56px;
+    width: 300px;
+    height: 300px;
+	border: 1px solid #777777b1;
+ 	background-size: cover;
+	/* background-color: #F66060; */
+}
+#foto_perfil{
+	width: 114px;
+	height: 0px;
+	background-color: #77777740;
+    /* margin-right: 14px; */
+    margin-left: 37px;
+    position: absolute;
+    margin-top: 126px;
+   
+}
+.drop-area.active{
+	background-color: #b8d4fe;
+	color: black;
+	border: 2px dashed #618ac9;
+}
+
+.drop-area h2{
+	font-size: 30px;
+	font-weight: 500;
+	color: #000;
+}
+
+.drop-area button{
+	padding: 10px 25px;
+	font-size: 20px;
+	border: 0;
+	outline: none;
+	background-color: #5256ad;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 20px;
+}
+
+.file-container{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px;
+	border: solid 1px #ddd;
+}
+
+#preview{
+	padding: 0px;
+}
+
+.status-text{
+	padding: 0 10px;
+}
+
+.success{
+	color: #52ad5a;
+}
+
+.failure{
+	color: #ff0000;
+}
+
+
 
 main {
 	max-width: 1250px;
 	width: 90%;
 	margin: auto;
-	
+
 	/* padding: 40px; */
 }
 
@@ -63,8 +133,8 @@ main {
 	line-height: 24px;
 	color: #003C70;
 	font-weight: bold;
-	
-	
+
+
 
 	/* display: grid;
 	font-weight: 700;
@@ -80,7 +150,7 @@ main {
 	position: relative;
 	margin-left: 170px;
 	margin-top: 10px;
-	
+
 }
 .imgProfile {
 	border-radius: 105px;
@@ -126,7 +196,7 @@ main {
 	margin-right: 10px;
 }
 
-.formulario__grupo-terminos, 
+.formulario__grupo-terminos,
 .formulario__mensaje,
 .formulario__grupo-btn-enviar {
 	grid-column: span 2;
@@ -208,7 +278,7 @@ main {
 		grid-template-columns: 1fr;
 	}
 
-	.formulario__grupo-terminos, 
+	.formulario__grupo-terminos,
 	.formulario__mensaje,
 	.formulario__grupo-btn-enviar {
 		grid-column: 1;

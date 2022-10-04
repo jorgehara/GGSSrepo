@@ -201,9 +201,34 @@
 		<!-- Grupo: Div Perfil -->
 		<div class="formulario__grupo" id="grupo__nombre">
 			<div class="formulario__grupo-imgProfile">
-				<img src="./public/cinqueterre.jpg" class="imgProfile">
+				<!-- <div style="margin-right: 130px;
+							margin-left: -90px;">
+					 <input class="form-control form-control-sm" id="formFileSm" 
+					 type="file" 
+					 accept="image/png, image/jpg">
+					<input type="file" id="image_input" accept="image/png, image/jpg">
+				</div> -->
+				
+
+
+
+			<div>
+				<div class="drop-area"  id="foto_perfil" style="margin-top: -10px;">
+					<h2>Arrastra y suelta tu imagen</h2>
+					<span>0</span>
+					<button>Selecciona tus archivos</button>
+					<input type="file" name="" id="input-file" hidden multiple>
+				</div>
+			</div>
+			<div id="displayimage"></div>
+				<div id="preview"> aqui preview</div>
+			<!-- <img src="./public/cinqueterre.jpg" class="imgProfile"> -->
 			</div>
 		</div>
+
+
+
+
 		<!--Grupo: Observaciones -->		
 			<div class="mb-3">
 				<label for="exampleFormControlTextarea1" class="form-label">Observaciones</label>
@@ -214,7 +239,7 @@
 			<div class="d-inline-flex p-2 bd-highlight">
 				<button type="submit" class="formulario__btn" 
 				style="width: 150px; 
-						margin-left: 150px;
+						margin-left: 91px;
 						margin-top: 23px;
 						">Aceptar</button>				
 				<button type="submit" class="formulario__btn" 
@@ -571,6 +596,7 @@
 	<script src="https://unpkg.com/formik/dist/formik.umd.production.min.js"></script>
 	<script src="js/formulario.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<scripts src="index.js"></script>
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
 </html>
