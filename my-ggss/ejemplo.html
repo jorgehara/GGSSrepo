@@ -200,32 +200,22 @@
 		<!-- Grupo: Div Perfil -->
 		<div class="formulario__grupo" id="grupo__nombre">
 			<div class="formulario__grupo-imgProfile">
-				<div style="margin-right: 130px;
+				<!-- <div style="margin-right: 130px;
 							margin-left: -90px;">
-
-
-<input  class="form-control form-control-sm" id="FormOne" accept="image/png, image/jpg" type="file" name='file' onChange={handleFileChange}/>
-
-					 	<input  class="form-control form-control-sm" id="formFileSm" accept="image/png, image/jpg" type="file" name='file' onChange={handleFileChange}/>
-					 <!-- <input class="form-control form-control-sm" id="formFileSm" type="file" accept="image/png, image/jpg"> -->
-					<!-- <input type="file" id="image_input" accept="image/png, image/jpg"> -->
+					 <input class="form-control form-control-sm" id="formFileSm" 
+					 type="file" 
+					 accept="image/png, image/jpg">
+					<input type="file" id="image_input" accept="image/png, image/jpg">
+				</div> -->
+				
+			<div>
+				<div class="drop-area"  id="foto_perfil" style="margin-top: -10px;">
+					<h2>Arrastra y suelta tu imagen</h2>
+					<span>0</span>
+					<button>Selecciona tus archivos</button>
+					<input type="file" name="" id="input-file" hidden multiple>
 				</div>
-			
-			
-			<!-- <div>
-				<div>
-					<div class="drop-area" style="margin-top: -10px;">
-						<h2>Arrastra y suelta tu imagen</h2>
-						<span>0</span>
-						<button>Selecciona tus archivos</button>
-						<input type="file" name="" id="input-file" hidden multiple>
-					</div>
-				</div>
-			</div> -->
-
-			
-
-
+			</div>
 			<div id="displayimage"></div>
 				<div id="preview"> aqui preview</div>
 			<!-- <img src="./public/cinqueterre.jpg" class="imgProfile"> -->
@@ -435,7 +425,7 @@
 		<!-- Grupo: Div DataTable -->
 		
 		<div class="container">
-			<table class="table table-primary" 
+			<table class="table table-dark table-striped" 
 			style="width: 1200px;
 					position: absolute;
 					height: 220px;">
@@ -447,8 +437,6 @@
 					  <th scope="col">Handle</th>
 					</tr>
 				  </thead>
-
-				  
 				  <tbody class="table-group-divider">
 					<tr>
 					  <th scope="row">1</th>
@@ -602,6 +590,5 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="index.js"></script>
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-	<script src="/import React from 'react';.js"></script>
 </body>
 </html>
