@@ -118,6 +118,22 @@ main {
 	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
 }
 
+.formularioButton{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+.formularioTabla{
+	margin-top: 10px;
+	padding-top: 10px;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 10px;
+	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
+	border-radius: 5px;
+}
+
 .encabezadoFamilia {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
