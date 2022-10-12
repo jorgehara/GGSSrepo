@@ -13,8 +13,8 @@
 
 body {
 	background-color: #77777740;
-	/* font-family: 'Open Sans', sans-serif; */
-	font-family: 'Poppins';
+	font-family: 'Roboto', sans-serif;
+	/*font-family: 'Poppins';*/
 	
 }
 
@@ -24,22 +24,14 @@ body {
 	align-items: flex-start;
 	justify-content: center;
 	background-color: salmon;
-	/* box-shadow: 50px; */
+	
 }
 
-/* .formulario__inputs,
-.formulario__mensaje,
-.formulario__grupo-btn-enviar {
-	grid-column: span 2;
-} */
 
 .formulario {
 	min-width: 600px;
-	/* margin-top: 9px; */
-	/* background: #fff; */
-	/* background-color: rgb(255, 255, 255); */
 	border-radius: 5px;
-	padding: 20px;
+	padding: 30px 10px;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 	align-items: baseline;
 }
@@ -51,20 +43,18 @@ body {
 .formulario label {
 	font-style: normal;
 	font-weight: 400;
-	font-size: 24px;
+	font-size: 20px;
 	line-height: 29px;
-	color: #003C70;
-	font-size: 14px;
+	color:#64686d;
+	margin-top: 5px;
+	margin-right: 10px;
 	margin-bottom: 9px;
 	display: block;
-	/* font-weight: 600;
-	margin-bottom: 5px;
-	color: #1f1f1f; */
 }
 
 .formulario input,
 .formulario textarea {
-	font-family: 'Open Sans', sans-serif;
+	font-family: inherit;
 	width: 100%;
 	border-radius: 5px;
 	border: 2px solid #e2e2e2;
@@ -85,42 +75,6 @@ body {
 	font-size: 12px;
 }
 
-/*.formulario button[type="submit"] {
-	display: block;
-	background: #0085FF;
-	font-weight: 600;
-	font-family: 'Open Sans', sans-serif;
-	border: none;
-	cursor: pointer;
-	width: 100%;
-	border-radius: 5px;
-	color: #fff;
-	font-size: 16px;
-	transition: .3s ease all;
-}
-
-.formulario button[type="submit"]:hover {
-	background: #0051ff;
-}
-
-.formularioCancelar button[type="submit"] {
-	display: block;
-	background: #0085FF;
-	font-weight: 600;
-	font-family: 'Open Sans', sans-serif;
-	border: none;
-	cursor: pointer;
-	width: 25%;
-	padding: 10px;
-	border-radius: 5px;
-	color: #fff;
-	font-size: 16px;
-	transition: .3s ease all;
-}
-
-.formularioCancelar button[type="submit"]:hover {
-	background: #0051ff;
-}*/
 
 .formulario .exito {
 	text-align: center;
@@ -144,9 +98,6 @@ body {
 		grid-template-columns: 1fr;
 	}
 
-	/*.formulario__grupo-terminos, 
-	.formulario__mensaje,
-	.formulario__grupo-btn-enviar */
 
 	.formulario	{ 
 		grid-column: 1;
