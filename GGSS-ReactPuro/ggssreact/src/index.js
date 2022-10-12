@@ -5,6 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import FormularioUp from './FormularioUp';
 import Navbar from './Navbar';
+import SectionTabla from './SectionTabla';
+import FormularioDown from './FormularioDown';
+import SectionCRUD from './SectionCRUD';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,6 +15,10 @@ root.render(
     <App />
     <Navbar/>
     <FormularioUp/>
+    <FormularioDown/>
+    <SectionTabla/>
+    <SectionCRUD/>
+
 
   </React.StrictMode>
 );
