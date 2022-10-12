@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import DragArea from './DragArea';
 import FormularioUp from './FormularioUp';
 import Navbar from './Navbar';
 
@@ -13,8 +12,6 @@ root.render(
     <App />
     <Navbar/>
     <FormularioUp/>
-    <DragArea/>
-
 
   </React.StrictMode>
 );

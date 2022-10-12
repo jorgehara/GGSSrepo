@@ -50,32 +50,32 @@ body {
 	background-color: #77777740;
 }
 
-.imagePerfil{
+/* .imagePerfil{
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-radius: 155px;
     width: 150px;
     height: 150px;
 	border: 1px solid #777777b1;
-}
+} */
 
-#displayimage{
+/* #displayimage{
 	margin-top: 10px;
 	border-radius: 155px;
     margin-left: -56px;
     width: 300px;
     height: 300px;
 	border: 1px solid #777777b1;
- 	background-size: cover;
-}
-#foto_perfil{
+ 	background-size: cover; 
+}*/
+/* #foto_perfil{
 	width: 114px;
 	height: 0px;
 	background-color: #77777740;
     margin-left: 37px;
     position: absolute;
     margin-top: 126px;
-}
+} */
 .drop-area.active{
 	background-color: #b8d4fe;
 	color: black;
@@ -211,12 +211,21 @@ main {
 }
 .formulario__grupo-imgProfile {
 	position: relative;
-	margin-left: 170px;
-	margin-top: 10px;
+	margin-left: 72px;
+	margin-top: 0px;
 
 }
-.imgProfile {
+.divDragArea{
+width: 0px;
+border: none;
+margin-top: 10px;
+margin-right: 310px;
+}
+
+.perfilImage {
 	border-radius: 105px;
+	width: auto;
+	height: auto;
 }
 
 .formulario__input {
