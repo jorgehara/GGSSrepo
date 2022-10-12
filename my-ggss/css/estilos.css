@@ -1,27 +1,13 @@
 * {
 	box-sizing: border-box;
 }
-/* color: #780F07; Bordo de GGMM
-color: #64686d; Letra Gris GGMM
-.gradiant{
-	background-image: -moz-linear-gradient(90deg, #a61f34 0%, #780F07 100%);
-	background-image: -webkit-linear-gradient(90deg, #a61f34 0%, #780F07 100%);
-	background-image: -ms-linear-gradient(90deg, #a61f34 0%, #780F07 100%);
-  }
-.gradiant-horizontal {
-	background-image: -moz-linear-gradient(4deg, #a61f34 0%, #780F07 100%);
-	background-image: -webkit-linear-gradient(4deg, #a61f34 0%, #780F07 100%);
-	background-image: -ms-linear-gradient(4deg, #a61f34 0%, #780F07 100%);
-  } */
 
 
 
 body {
-	/* font-family: 'Poppins'; */
-	font-family: 'Open Sans', sans-serif;
-	/* background: #E5E5E5; */
+	font-family: 'Roboto', sans-serif;
+	color: #64686d;
 	background-color: #77777740;
-
 }
 
 .imagePerfil{
@@ -41,17 +27,14 @@ body {
     height: 300px;
 	border: 1px solid #777777b1;
  	background-size: cover;
-	/* background-color: #F66060; */
 }
 #foto_perfil{
 	width: 114px;
 	height: 0px;
 	background-color: #77777740;
-    /* margin-right: 14px; */
     margin-left: 37px;
     position: absolute;
     margin-top: 126px;
-   
 }
 .drop-area.active{
 	background-color: #b8d4fe;
@@ -107,8 +90,6 @@ main {
 	max-width: 1250px;
 	width: 90%;
 	margin: auto;
-
-	/* padding: 40px; */
 }
 
 .formulario {
@@ -151,14 +132,13 @@ main {
 .formulario__label {
 	display: block;
 	font-weight: 700;
-	/* padding: 10px;
-	cursor: pointer; */
 }
 
 .mainABMTitle {
 	margin-top: 20px;
+	margin-left: 10px;
 	width: 350px;
-	font-family: 'Poppins';
+	font-family: inherit;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 36px;
@@ -166,12 +146,6 @@ main {
 	color: #a61f34;
 	font-weight: bold;
 
-
-
-	/* display: grid;
-	font-weight: 700;
-	padding: 10px; */
-	/* cursor: pointer; */
 }
 
 
@@ -313,6 +287,17 @@ main {
 	margin-right: 50px; 
 	margin-bottom: 20px; 
 	justify-content: end;
+}
+
+.btn-validacion{
+	border-color: #bb2929;
+	color: #bb2929;
+}
+
+.btn-validacion:hover{
+	border-color: #780F07;
+	background-color: #bb2929;
+	color: #fff;
 }
 
 /* ----- -----  Mediaqueries ----- ----- */
