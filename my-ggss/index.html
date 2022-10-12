@@ -154,7 +154,7 @@
 		</div>
 		<!--Grupo: País de Origen -->
 		<div class="formulario__grupo" id="grupo__nombre">
-			<label class="formulario__label" style="width: 159px;">País de Origen</label>
+			<label class="formulario__label" >País de Origen</label>
 			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" placeholder="Ingrese País de Origen">
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
@@ -188,21 +188,11 @@
 		<!-- Grupo: Div Perfil -->
 		<div class="formulario__grupo" id="grupo__nombre">
 			<div class="formulario__grupo-imgProfile">
-				<div style="margin-right: 130px;
-							margin-left: -90px;">
+				<div class="perfilImage">
 					 <input type="file" id="image_input" class="form-control form-control-sm" id="formFileSm"type="file" accept="image/png, image/jpg">
 				</div>
-		<!-- <div>
-				<div class="drop-area"  id="foto_perfil" style="margin-top: -10px;">
-					<h2>Arrastra y suelta tu imagen</h2>
-					<span>0</span>
-					<button>Selecciona tus archivos</button>
-					<input type="file" name="" id="input-file" hidden multiple>
-				</div>
-			</div> -->
 			<div id="displayimage"></div>
 				<div id="preview"> aqui preview</div>
-			<!-- <img src="./public/cinqueterre.jpg" class="imgProfile"> -->
 			</div>
 		</div>
 
@@ -226,16 +216,16 @@
 		</div>
 
 		<!-- Grupo: Boton Cancelar -->
-		<div class="formulario__grupo aceptarCancelar" style="display: flex; margin-right: 80px; margin-bottom: 20px; justify-content: end;" >
+		<div class="formulario__grupo aceptarCancelar" >
 			<div class="formulario__grupo-input">
-				<button type="submit" class="formulario__btn" style="font-weight: bold; width: 200px; margin-right: 20px;">Cancelar</button>
+				<button type="submit" class="formulario__btn" >Cancelar</button>
 				
 			</div>
 			<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 
 			<!-- Grupo: Boton Aceptar -->
 			<div class="formulario__grupo-input">
-				<button type="submit" class="formulario__btn" style="font-weight: bold; width: 200px;">Aceptar</button>
+				<button type="submit" class="formulario__btn" >Aceptar</button>
 				
 			</div>
 			<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
@@ -265,13 +255,13 @@
 		<div class="formulario__grupo" id="grupo__nombre">
 			<label  class="formulario__label">Calle</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Calle">
+				<input type="text" class="formulario__input" placeholder="Ingrese Calle">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
 		<!-- Grupo: Número -->	
-		<div class="formulario__grupo" id="grupo__telefono">
+		<div class="formulario__grupo" >
 			<label for="telefono" class="label label-info formulario__label" >Número</label>
 			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" placeholder="Ingrese Número">
@@ -286,9 +276,9 @@
 						-------------------VER VALIDACION REQUIERE STRING & NUMEROS
 		-.----------------------------------------------------------------------->
 		<div class="formulario__grupo">
-			<label for="nombre" class="formulario__label">Barrio</label>
+			<label  class="formulario__label">Barrio</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Barrio">
+				<input type="text" class="formulario__input" placeholder="Ingrese Barrio">
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
 			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -296,10 +286,10 @@
 			</div>
 		</div>
 		<!-- Grupo: Piso/Dpto/Ofic/Torre -->
-		<div class="formulario__grupo" id="grupo__telefono">
+		<div class="formulario__grupo" >
 			<label for="telefono" class="label label-info" class="formulario__label">Piso/Dpto/Ofic/Torre</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese número">
+				<input type="text" class="formulario__input" placeholder="Ingrese número">
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
 			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -307,26 +297,26 @@
 			</div>
 		</div>
 		<!-- Grupo: Departamento -->
-		<div class="formulario__grupo" id="grupo__telefono">
-			<label for="telefono" class="label label-info" class="formulario__label">Departamento</label>
+		<div class="formulario__grupo" >
+			<label class="label label-info" class="formulario__label">Departamento</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese departamento">
+				<input type="text" class="formulario__input" placeholder="Ingrese departamento">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 			</div>
 				<p class="formulario__input-error">Solo puede contener números.</p>
 			</div>
 		<!-- Grupo: Localidad/CP -->
-		<div class="formulario__grupo" id="grupo__nombre">
-			<label for="nombre" class="formulario__label">Localidad/CP</label>
+		<div class="formulario__grupo">
+			<label class="formulario__label">Localidad/CP</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Localidad/CP">
+				<input type="text" class="formulario__input" placeholder="Ingrese Localidad/CP">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
 		<!-- Grupo: Provincia -->
-		<div class="formulario__grupo" id="grupo__nombre">
-			<label for="nombre" class="formulario__label">Provincia</label>
+		<div class="formulario__grupo" >
+			<label class="formulario__label">Provincia</label>
 			<div class="formulario__grupo-input">
 				<select id="t_provincia" class="form-control">
 					<option value="Selecccione su Provincia" selected="">Selecccione su Provincia</option>
@@ -362,7 +352,7 @@
 
 		<!--Grupo: Observaciones -->		
 		<div class="mb-3">
-			<label for="exampleFormControlTextarea1" class="form-label">Observaciones</label>
+			<label class="form-label">Observaciones</label>
 			<textarea class="form-control" placeholder="Ingrese sus observaciones" rows="3"></textarea>
 		</div>
 		

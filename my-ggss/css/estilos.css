@@ -350,6 +350,11 @@ padding-left: 80px;
 	margin-left: 25px;
 }
 
+.perfilImage{
+	margin-right: 130px;
+	margin-left: -90px;
+}
+
 /* ----- -----  Mediaqueries ----- ----- */
 @media screen and (max-width: 800px) {
 	.formulario {
