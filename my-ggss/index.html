@@ -24,27 +24,24 @@
 			<label for="usuario" class="mainABMTitle">Datos Personales</label>
 		</div>
 <!------PrimerSectionUp------->
-		<form action="" class="formulario" id="formulario">
+		<form action="" class="formulario">
 			<!--Grupo: Legajo -->
-		<div class="formulario__grupo" id="grupo__telefono">
+		<div class="formulario__grupo">
 			<label for="telefono" class="label label-info" class="formulario__label">Legajo</label>
 			<div class="formulario__grupo-input">
-				<input type="number" class="formulario__input" name="" placeholder="Ingrese el número">
+				<input type="number" class="formulario__input" placeholder="Ingrese el número">
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 			</div>
 				<p class="formulario__input-error">Solo puede contener números.</p>
 			</div>
-			<!-- Grupo: Estado -->
 
+		<!-- Grupo: Estado -->
 		<div class="formulario__grupo">
 			<label for="nombre" class="formulario__label">Estado</label>
-			<div class="row" class="formulario__grupo-input">
-				<div class="col-sm-11">
+			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" placeholder="Ingrese Estado">
-				</div>
-				<div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
-					<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
-				</div>
+				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
+				
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>			
 				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
@@ -69,14 +66,14 @@
 				</div>
 		<!-- Grupo: D.N.I. -->
 		<div class="formulario__grupo" >
-			<label for="telefono" class="formulario__label">DNI</label>
+			<label class="formulario__label">DNI</label>
 			<select class="form-select" aria-label="Default select example">
 				<option selected>Elija su opción</option>
 				<option value="1">DNI</option>
 				<option value="2">LC</option>
 				<option value="3">LE</option>
 			  </select>
-			  <input type="text" class="formulario__input" name="telefono" placeholder="Ingrese el número">
+			  <input type="text" class="formulario__input" placeholder="Ingrese el número">
 			  <i class="formulario__validacion-estado fas fa-times-circle"></i>
 		  </div>
 			  <p class="formulario__input-error">Solo puede contener números, sin puntos.</p>
@@ -99,15 +96,11 @@
 			</div>
 		</div>
 		<!--Grupo: C.U.I.L. -->
-		<div class="formulario__grupo" id="grupo__telefono">
-			<label for="telefono" class="label label-info" class="formulario__label">C.U.I.L.</label>
-			<div class="row" class="formulario__grupo-input">
-			<div class="col-sm-10">	
-				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese el número">
-			</div>
-			<div class="col-sm-2" style="margin-left: -15px; margin-top: 3px;">
+		<div class="formulario__grupo">
+			<label class="label label-info" class="formulario__label">C.U.I.L.</label>
+			<div class="formulario__grupo-input">
+				<input type="text" class="formulario__input" placeholder="Ingrese el número">
 				<button type="button" class="btn btn-validacion btn-outline-primary">Validar</button>
-			</div>
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				<p class="formulario__input-error">Solo puede contener números, sin puntos.</p>
 			</div>
@@ -151,27 +144,21 @@
 		<!--Grupo: Estado Civil -->
 		<div class="formulario__grupo" id="grupo__nombre">
 			<label for="nombre" class="formulario__label">Estado Civil</label>
-			<div class="row" class="formulario__grupo-input">
-			<div class="col-sm-11">
+			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Estado Civil">
-			</div>
-			<div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
-					<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
-			</div>
-			<i class="formulario__validacion-estado fas fa-times-circle"></i>	
-			<p class="formulario__input-error">Solo puede contener letras.</p>
+				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
+			
+				<i class="formulario__validacion-estado fas fa-times-circle"></i>	
+				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
 		</div>
 		<!--Grupo: País de Origen -->
 		<div class="formulario__grupo" id="grupo__nombre">
-			<label for="nombre" class="formulario__label">País de Origen</label>
-			<div class="row" class="formulario__grupo-input">
-			<div class="col-sm-11" >
-				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese País de Origen">
-			</div>
-			<div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
+			<label class="formulario__label" style="width: 159px;">País de Origen</label>
+			<div class="formulario__grupo-input">
+				<input type="text" class="formulario__input" placeholder="Ingrese País de Origen">
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
-			</div>
+			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
@@ -179,13 +166,10 @@
 		<!--Grupo: Nacionalidad -->
 		<div class="formulario__grupo" id="grupo__nombre">
 			<label for="nombre" class="formulario__label">Nacionalidad</label>
-			<div class="row" class="formulario__grupo-input">
-			<div class="col-sm-11">
+			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Nacionalidad">
-			</div>	
-			<div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
-			</div>
+			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
@@ -193,13 +177,10 @@
 		<!--Grupo: Estudios -->
 		<div class="formulario__grupo" id="grupo__nombre">
 			<label for="nombre" class="formulario__label">Estudios</label>
-			<div class="row" class="formulario__grupo-input">
-			<div class="col-sm-11">
+			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Estudios">
-			</div>
-			<div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
-			</div>
+			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
 			</div>
@@ -231,17 +212,10 @@
 				<textarea class="form-control" placeholder="Ingrese sus observaciones" rows="3"></textarea>
 			  </div>
 		<!--Grupo: Botones Cancelar Perfil -->		
-		<div class="d-inline-flex p-2 bd-highlight">
-			<div class="d-inline-flex p-2 bd-highlight">
-				<button type="submit" class="formulario__btn"style="width: 150px; 
-				margin-left: 91px;
-				margin-top: 23px;
-				">Aceptar</button>				
-				<button type="submit" class="formulario__btn" 
-				style="width: 150px;
-						margin-left:25px;
-						margin-top: 23px;
-						">Cancelar</button>
+		<div class="d-inline-flex p-2 bd-highlight ">
+			<div class="d-inline-flex p-2 bd-highlight ">
+				<button type="submit" class="formulario__btn btn-perfil btn-perfil-aceptar" >Aceptar</button>				
+				<button type="submit" class="formulario__btn btn-perfil btn-perfil-cancelar" >Cancelar</button>
 			</div>
 		</div>
 		
@@ -252,7 +226,7 @@
 		</div>
 
 		<!-- Grupo: Boton Cancelar -->
-		<div class="formulario__grupo" style="display: flex; margin-right: 80px; margin-bottom: 20px; justify-content: end;" >
+		<div class="formulario__grupo aceptarCancelar" style="display: flex; margin-right: 80px; margin-bottom: 20px; justify-content: end;" >
 			<div class="formulario__grupo-input">
 				<button type="submit" class="formulario__btn" style="font-weight: bold; width: 200px; margin-right: 20px;">Cancelar</button>
 				
@@ -299,13 +273,10 @@
 		<!-- Grupo: Número -->	
 		<div class="formulario__grupo" id="grupo__telefono">
 			<label for="telefono" class="label label-info" class="formulario__label">Número</label>
-			<div class="row" class="formulario__grupo-input">
-			<div class="col-sm-11">
+			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese Número">
-			</div>
-			<div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
-			</div>
+			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				<p class="formulario__input-error">Solo puede contener números.</p>
 			</div>
@@ -316,13 +287,10 @@
 		-.----------------------------------------------------------------------->
 		<div class="formulario__grupo">
 			<label for="nombre" class="formulario__label">Barrio</label>
-			<div class="row" class="formulario__grupo-input">
-				<div class="col-sm-11">
+			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Barrio">
-			</div>
-			<div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
-			</div>
+			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				<p class="formulario__input-error">Solo puede contener letras y números.</p>
 			</div>
@@ -330,13 +298,10 @@
 		<!-- Grupo: Piso/Dpto/Ofic/Torre -->
 		<div class="formulario__grupo" id="grupo__telefono">
 			<label for="telefono" class="label label-info" class="formulario__label">Piso/Dpto/Ofic/Torre</label>
-			<div class="row" class="formulario__grupo-input">
-			<div class="col-sm-11">
+			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Ingrese número">
-			</div>
-			<div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
-			</div>
+			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				<p class="formulario__input-error">Solo puede contener números.</p>
 			</div>
@@ -446,7 +411,7 @@
 		</table>
 	</div>
 
-	<div class="formularioButton">
+	<div class="formularioButton aceptarCancelar">
 
 		<!-- Grupo: Div Vacio-->
 		<div class="formulario__grupo" >
@@ -454,7 +419,7 @@
 		</div>
 
 		<!-- Grupo: Boton Cancelar -->
-		<div class="formulario__grupo div-buttons">
+		<div class="formulario__grupo aceptarCancelar div-buttons">
 			<div class="formulario__grupo-input">
 				<button type="submit" class="formulario__btn ">Quitar</button>
 			</div>
@@ -467,85 +432,84 @@
 			<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 		</div>
 		
-
-		
 	</div>
-
-
-
 
 		</form>
 <!-------CRUD BOTONES----->
 		<br/>
 		<div>
-				<form action="" class="formulario" >
+				<form action="" class="formulario crudBar" >
 					<!-- Grupo: Boton Imprimir Constancia de Asignaciones Familiares -->
-					<div class="formulario__grupo" >
+					<div class="formulario__grupo formulario_crud" >
 						<div class="formulario__grupo-input">
-							<button type="submit" class="formulario__btn">Imprimir Constancia de Asignaciones Familiares</button>
-							</div>
-							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-						</div>
-					<!-- Grupo: Boton Imprimir Certificado de Convenio/Oficio -->
-					<div class="formulario__grupo" id="grupo__nombre">
-						<div class="formulario__grupo-input">
-							<button type="submit" class="formulario__btn">Imprimir Certificado de Convenio/Oficio</button>
-							</div>
-							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-						</div>
-					<!-- Grupo: Boton Imprimir Resumen Legajo Empleado -->
-					<div class="formulario__grupo" id="grupo__nombre">
-						<div class="formulario__grupo-input">
-							<button type="submit" class="formulario__btn">Imprimir Resumen Legajo Empleado</button>
-							</div>
-							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-						</div>
-					<!-- Grupo: Boton Imprimir Ficha Empleado -->
-					<div class="formulario__grupo" id="grupo__nombre">
-						<div class="formulario__grupo-input">
-							<button type="submit" class="formulario__btn">Imprimir Ficha Empleado</button>
+							<button type="submit" class="formulario__btn btn-crud">Imprimir Constancia de Asignaciones Familiares</button>
 							</div>
 							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 						</div>
 					<!-- Grupo: Boton Licencias/Franquicias -->
-					<div class="formulario__grupo" id="grupo__nombre">
+					<div class="formulario__grupo formulario_crud">
 						<div class="formulario__grupo-input">
-							<button type="submit" class="formulario__btn">Licencias/Franquicias</button>
+							<button type="submit" class="formulario__btn btn-lic-fran">Licencias/Franquicias</button>
 							</div>
 							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 						</div>
-					<!-- Grupo: Boton  Agregar-->
-					<div class="formulario__grupo" id="grupo__nombre">
+					<!-- Grupo: Boton Salir -->
+					<div class="formulario__grupo formulario_crud" >
 						<div class="formulario__grupo-input">
-							<button type="submit" class="formulario__btn">Agregar</button>
+							<button type="submit" class="formulario__btn">Salir</button>
+							</div>
+							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+						</div>
+					
+					<!-- Grupo: Boton Imprimir Certificado de Convenio/Oficio -->
+					<div class="formulario__grupo formulario_crud">
+						<div class="formulario__grupo-input">
+							<button type="submit" class="formulario__btn btn-crud">Imprimir Certificado de Convenio/Oficio</button>
+							</div>
+							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+						</div>
+					
+					<!-- Grupo: Boton  Agregar-->
+					<div class="formulario__grupo formulario_crud" >
+						<div class="formulario__grupo-input">
+							<button type="submit" class="formulario__btn btn-lic-fran">Agregar</button>
 							</div>
 							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 						</div>
 					<!-- Grupo: Boton Modificar -->
-					<div class="formulario__grupo" id="grupo__nombre">
+					<div class="formulario__grupo formulario_crud" >
 						<div class="formulario__grupo-input">
 							<button type="submit" class="formulario__btn">Modificar</button>
 							</div>
 							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 						</div>
-					<!-- Grupo: Boton Eliminar -->
-					<div class="formulario__grupo" id="grupo__nombre">
+					
+					<!-- Grupo: Boton Imprimir Resumen Legajo Empleado -->
+					<div class="formulario__grupo formulario_crud">
 						<div class="formulario__grupo-input">
-							<button type="submit" class="formulario__btn">Eliminar</button>
+							<button type="submit" class="formulario__btn btn-crud">Imprimir Resumen Legajo Empleado</button>
+							</div>
+							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+						</div>
+					<!-- Grupo: Boton Eliminar -->
+					<div class="formulario__grupo formulario_crud" >
+						<div class="formulario__grupo-input">
+							<button type="submit" class="formulario__btn btn-lic-fran">Eliminar</button>
 							</div>
 							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 						</div>
 					<!-- Grupo: Boton Listar-->
-					<div class="formulario__grupo" id="grupo__nombre">
+					<div class="formulario__grupo formulario_crud" >
 						<div class="formulario__grupo-input">
 							<button type="submit" class="formulario__btn">Listar</button>
 							</div>
 							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 						</div>
-					<!-- Grupo: Boton Salir -->
-					<div class="formulario__grupo" id="grupo__nombre">
+					
+					<!-- Grupo: Boton Imprimir Ficha Empleado -->
+					<div class="formulario__grupo formulario_crud" >
 						<div class="formulario__grupo-input">
-							<button type="submit" class="formulario__btn">Salir</button>
+							<button type="submit" class="formulario__btn btn-crud">Imprimir Ficha Empleado</button>
 							</div>
 							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 						</div>

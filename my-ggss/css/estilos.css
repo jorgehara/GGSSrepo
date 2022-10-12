@@ -6,7 +6,6 @@
 
 body {
 	font-family: 'Roboto', sans-serif;
-	color: #64686d;
 	background-color: #77777740;
 }
 
@@ -93,10 +92,24 @@ main {
 }
 
 .formulario {
+	margin-top: 10px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 10px;
 	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
+}
+
+.formulario__grupo{
+	display: flex;
+	width: 568px;
+}
+
+.formulario_crud{
+	width: 400px;
+}
+
+.aceptarCancelar{
+	width: 484px;
 }
 
 .formularioButton{
@@ -116,6 +129,7 @@ main {
 }
 
 .encabezadoFamilia {
+	margin-top: 10px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 10px;
@@ -151,6 +165,8 @@ main {
 
 .formulario__grupo-input {
 	position: relative;
+	width: 500px;
+	display: flex;
 }
 .formulario__grupo-imgProfile {
 	position: relative;
@@ -163,7 +179,8 @@ main {
 }
 
 .formulario__input {
-	width: 100%;
+	width: 400px;
+	margin-right: 10px;
 	background: #fff;
 	border: 3px solid transparent;
 	border-radius: 3px;
@@ -284,7 +301,7 @@ main {
 
 .div-buttons{
 	display: flex; 
-	margin-right: 50px; 
+	margin-left: 146px; 
 	margin-bottom: 20px; 
 	justify-content: end;
 }
@@ -292,12 +309,40 @@ main {
 .btn-validacion{
 	border-color: #bb2929;
 	color: #bb2929;
+	height: 42px;
 }
 
 .btn-validacion:hover{
 	border-color: #780F07;
 	background-color: #bb2929;
 	color: #fff;
+}
+
+.crudBar{
+grid-template-columns: 1fr 1fr 1fr;
+padding-left: 80px;
+}
+
+.btn-crud{
+	width: 400px;
+}
+
+.btn-lic-fran{
+	width: 200px;
+	margin-left: 70px;
+}
+
+.btn-perfil {
+	width: 150px;
+	margin-top: 23px;
+}
+
+.btn-perfil-aceptar{
+	margin-left: 91px;
+}
+
+.btn-perfil-cancelar{
+	margin-left: 25px;
 }
 
 /* ----- -----  Mediaqueries ----- ----- */

@@ -31,7 +31,7 @@ body {
 .formulario {
 	min-width: 600px;
 	border-radius: 5px;
-	padding: 20px;
+	padding: 30px 10px;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 	align-items: baseline;
 }
@@ -43,10 +43,11 @@ body {
 .formulario label {
 	font-style: normal;
 	font-weight: 400;
-	font-size: 24px;
+	font-size: 20px;
 	line-height: 29px;
-	color: #003C70;
-	font-size: 14px;
+	color:#64686d;
+	margin-top: 5px;
+	margin-right: 10px;
 	margin-bottom: 9px;
 	display: block;
 }
