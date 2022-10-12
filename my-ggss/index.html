@@ -14,6 +14,12 @@
 </head>
 <body>
 	<main class="masterheader">	
+		<nav class="nav">
+			<a class="nav-link active" aria-current="page" href="#">Active</a>
+			<a class="nav-link" href="#">>Link</a>
+			<a class="nav-link" href="#">>Link</a>
+			<a class="nav-link disabled">>Disabled</a>
+		  </nav>
 		<div class="formulario__grupo">
 			<label for="usuario" class="mainABMTitle">Datos Personales</label>
 		</div>
@@ -222,17 +228,16 @@
 
 		<!--Grupo: Observaciones -->		
 			<div class="mb-3">
-				<label for="exampleFormControlTextarea1" class="form-label">Observaciones</label>
-				<textarea class="form-control" placeholder="Ingrese sus observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
+				<label class="form-label">Observaciones</label>
+				<textarea class="form-control" placeholder="Ingrese sus observaciones" rows="3"></textarea>
 			  </div>
 		<!--Grupo: Botones Cancelar Perfil -->		
 		<div class="d-inline-flex p-2 bd-highlight">
 			<div class="d-inline-flex p-2 bd-highlight">
-				<button type="submit" class="formulario__btn" 
-				style="width: 150px; 
-						margin-left: 91px;
-						margin-top: 23px;
-						">Aceptar</button>				
+				<button type="submit" class="formulario__btn"style="width: 150px; 
+				margin-left: 91px;
+				margin-top: 23px;
+				">Aceptar</button>				
 				<button type="submit" class="formulario__btn" 
 				style="width: 150px;
 						margin-left:25px;
@@ -240,25 +245,7 @@
 						">Cancelar</button>
 			</div>
 		</div>
-			<!-- Grupo: Contraseña -->
-		<!-- <div class="formulario__grupo" id="grupo__password">
-			<label for="password" class="formulario__label">Contraseña</label>
-			<div class="formulario__grupo-input">
-				<input type="password" class="formulario__input" placeholder="Ingrese su contraseña" name="password" id="password">
-				<i class="formulario__validacion-estado fas fa-times-circle"></i>
-			</div>
-				<p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
-			</div>  -->
-
-			<!-- Grupo: Contraseña 2 -->
-		<!-- <div class="formulario__grupo" id="grupo__password2">
-			<label for="password2" class="formulario__label">Repetir Contraseña</label>
-			<div class="formulario__grupo-input">
-				<input type="password" class="formulario__input" placeholder="Repita su contraseña" name="password2" id="password2">
-				<i class="formulario__validacion-estado fas fa-times-circle"></i>
-			</div>
-				<p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
-			</div> -->
+		
 						
 		<!-- Grupo: Div Vacio-->
 		<div class="formulario__grupo" >
@@ -268,14 +255,14 @@
 		<!-- Grupo: Boton Cancelar -->
 		<div class="formulario__grupo" style="display: flex; margin-right: 80px; margin-bottom: 20px; justify-content: end;" >
 			<div class="formulario__grupo-input">
-				<button type="submit" class="formulario__btn btn btn-primary" style="font-weight: bold; width: 200px; margin-right: 20px;">Cancelar</button>
+				<button type="submit" class="formulario__btn" style="font-weight: bold; width: 200px; margin-right: 20px;">Cancelar</button>
 				<!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
 			</div>
 			<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 
 			<!-- Grupo: Boton Aceptar -->
 			<div class="formulario__grupo-input">
-				<button type="submit" class="formulario__btn btn btn-primary" style="font-weight: bold; width: 200px;">Aceptar</button>
+				<button type="submit" class="formulario__btn" style="font-weight: bold; width: 200px;">Aceptar</button>
 				<!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
 			</div>
 			<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
@@ -334,7 +321,7 @@
 			
 						-------------------VER VALIDACION REQUIERE STRING & NUMEROS
 		-.----------------------------------------------------------------------->
-		<div class="formulario__grupo" id="grupo__nombre">
+		<div class="formulario__grupo">
 			<label for="nombre" class="formulario__label">Barrio</label>
 			<div class="row" class="formulario__grupo-input">
 				<div class="col-sm-11">
@@ -421,12 +408,12 @@
 		<!--Grupo: Observaciones -->		
 		<div class="mb-3">
 			<label for="exampleFormControlTextarea1" class="form-label">Observaciones</label>
-			<textarea class="form-control" placeholder="Ingrese sus observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
+			<textarea class="form-control" placeholder="Ingrese sus observaciones" rows="3"></textarea>
 		</div>
 		
 		<br/><br/>
 		<!-- Grupo: Div Vacío -->
-		<div class="formulario__grupo" id="grupo__nombre">
+		<div class="formulario__grupo">
 			<div class="formulario__grupo-input">
 				<!-- <button type="submit" class="formulario__btn">Cancelar</button> -->
 				<!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
@@ -479,16 +466,16 @@
 		</div>
 
 		<!-- Grupo: Boton Cancelar -->
-		<div class="formulario__grupo" style="display: flex; margin-right: 50px; margin-bottom: 20px; justify-content: end;" id="grupo__nombre">
+		<div class="formulario__grupo div-buttons">
 			<div class="formulario__grupo-input">
-				<button type="submit" class="formulario__btn btn btn-primary" style="font-weight: bold; width: 200px; margin-right: 20px;">Quitar</button>
+				<button type="submit" class="formulario__btn ">Quitar</button>
 				<!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
 			</div>
 			<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 
 			<!-- Grupo: Boton Aceptar -->
 			<div class="formulario__grupo-input">
-				<button type="submit" class="formulario__btn btn btn-primary" style="font-weight: bold; width: 200px;">Agregar</button>
+				<button type="submit" class="formulario__btn">Agregar</button>
 				<!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
 			</div>
 			<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
@@ -505,9 +492,9 @@
 <!-------CRUD BOTONES----->
 		<br/>
 		<div>
-				<form action="" class="formulario" id="formulario">
+				<form action="" class="formulario" >
 					<!-- Grupo: Boton Imprimir Constancia de Asignaciones Familiares -->
-					<div class="formulario__grupo" id="grupo__nombre">
+					<div class="formulario__grupo" >
 						<div class="formulario__grupo-input">
 							<button type="submit" class="formulario__btn">Imprimir Constancia de Asignaciones Familiares</button>
 							<!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
@@ -596,6 +583,20 @@
 
 
 		</div>
+		<footer>
+			<div class="card">
+				<div class="card-body">
+					<div class="row" class="formulario__grupo-input">
+						<div class="col-sm-11">
+							   <h5 class="card-title" styles="text align: center;"   >© 2019 INFT S.A.</h5>
+						</div>
+					<div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
+						<img src="images/ggmm_logo.png" alt="logo">	
+							<a href="#" class="">GGSS</a>
+					</div>
+				</div>
+			  </div>
+			</footer>
 </main>
 	<script src="https://unpkg.com/formik/dist/formik.umd.production.min.js"></script>
 	<script src="js/formulario.js"></script>

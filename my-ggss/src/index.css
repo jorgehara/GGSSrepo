@@ -85,7 +85,7 @@ body {
 	font-size: 12px;
 }
 
-.formulario button[type="submit"] {
+/*.formulario button[type="submit"] {
 	display: block;
 	background: #0085FF;
 	font-weight: 600;
@@ -93,7 +93,6 @@ body {
 	border: none;
 	cursor: pointer;
 	width: 100%;
-	/* padding: 10px; */
 	border-radius: 5px;
 	color: #fff;
 	font-size: 16px;
@@ -121,7 +120,7 @@ body {
 
 .formularioCancelar button[type="submit"]:hover {
 	background: #0051ff;
-}
+}*/
 
 .formulario .exito {
 	text-align: center;
