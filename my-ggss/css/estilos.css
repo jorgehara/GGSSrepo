@@ -21,9 +21,8 @@ body {
 #displayimage{
 	margin-top: 10px;
 	border-radius: 155px;
-    margin-left: -56px;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
 	border: 1px solid #777777b1;
  	background-size: cover;
 }
@@ -69,6 +68,7 @@ body {
 
 #preview{
 	padding: 0px;
+	margin-left: 58px;
 }
 
 .status-text{
@@ -118,6 +118,10 @@ main {
 	gap: 10px;
 }
 
+.form_select{
+	width: 25%;
+}
+
 .formularioTabla{
 	margin-top: 10px;
 	padding-top: 10px;
@@ -146,6 +150,7 @@ main {
 .formulario__label {
 	display: block;
 	font-weight: 700;
+	width: 30%;
 }
 
 .mainABMTitle {
@@ -329,7 +334,7 @@ padding-left: 80px;
 
 .btn-lic-fran{
 	width: 200px;
-	margin-left: 70px;
+	margin-left: 100px;
 }
 
 .btn-perfil {
@@ -343,6 +348,11 @@ padding-left: 80px;
 
 .btn-perfil-cancelar{
 	margin-left: 25px;
+}
+
+.perfilImage{
+	margin-right: 130px;
+	margin-left: -90px;
 }
 
 /* ----- -----  Mediaqueries ----- ----- */

@@ -264,99 +264,107 @@
                 </div>	
         </form>
                 
-        <!-- CRUD BOTONES		   -->
-        <br/>
-            <div>
-                <form action="" class="formulario" id="formulario">
-                    <!-- Grupo: Boton Imprimir Constancia de Asignaciones Familiares -->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Imprimir Constancia de Asignaciones Familiares</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-                    <!-- Grupo: Boton Imprimir Certificado de Convenio/Oficio -->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Imprimir Certificado de Convenio/Oficio</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-                    <!-- Grupo: Boton Imprimir Resumen Legajo Empleado -->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Imprimir Resumen Legajo Empleado</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-                    <!-- Grupo: Boton Imprimir Ficha Empleado -->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Imprimir Ficha Empleado</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-                    <!-- Grupo: Boton Licencias/Franquicias -->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Licencias/Franquicias</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-                    <!-- Grupo: Boton  Agregar-->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Agregar</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-                    <!-- Grupo: Boton Modificar -->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Modificar</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-                    <!-- Grupo: Boton Eliminar -->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Eliminar</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-                    <!-- Grupo: Boton Listar-->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Listar</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-                    <!-- Grupo: Boton Salir -->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <div class="formulario__grupo-input">
-                            <button type="submit" class="formulario__btn">Salir</button>
-                            <!-- <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p> -->
-                            </div>
-                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-                        </div>
-
-
-                <div class="formulario__mensaje" id="formulario__mensaje">
-                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+    <!-------CRUD BOTONES----->
+    <br/>
+    <div>
+        <form action="" class="formulario crudBar" >
+            <!-- Grupo: Boton Imprimir Constancia de Asignaciones Familiares -->
+            <div class="formulario__grupo formulario_crud" >
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn btn-crud">Imprimir Constancia de Asignaciones Familiares</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
                 </div>
-                </form>
-            <!-- FIN CRUD BOTONES		   -->
+            <!-- Grupo: Boton Licencias/Franquicias -->
+            <div class="formulario__grupo formulario_crud">
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn btn-lic-fran">Licencias/Franquicias</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                </div>
+            <!-- Grupo: Boton Salir -->
+            <div class="formulario__grupo formulario_crud" >
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn">Salir</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                </div>
+            
+            <!-- Grupo: Boton Imprimir Certificado de Convenio/Oficio -->
+            <div class="formulario__grupo formulario_crud">
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn btn-crud">Imprimir Certificado de Convenio/Oficio</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                </div>
+            
+            <!-- Grupo: Boton  Agregar-->
+            <div class="formulario__grupo formulario_crud" >
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn btn-lic-fran">Agregar</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                </div>
+            <!-- Grupo: Boton Modificar -->
+            <div class="formulario__grupo formulario_crud" >
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn">Modificar</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                </div>
+            
+            <!-- Grupo: Boton Imprimir Resumen Legajo Empleado -->
+            <div class="formulario__grupo formulario_crud">
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn btn-crud">Imprimir Resumen Legajo Empleado</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                </div>
+            <!-- Grupo: Boton Eliminar -->
+            <div class="formulario__grupo formulario_crud" >
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn btn-lic-fran">Eliminar</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                </div>
+            <!-- Grupo: Boton Listar-->
+            <div class="formulario__grupo formulario_crud" >
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn">Listar</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                </div>
+            
+            <!-- Grupo: Boton Imprimir Ficha Empleado -->
+            <div class="formulario__grupo formulario_crud" >
+                <div class="formulario__grupo-input">
+                    <button type="submit" class="formulario__btn btn-crud">Imprimir Ficha Empleado</button>
+                    </div>
+                    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                </div>
 
-            </div>
+
+        <div class="formulario__mensaje" id="formulario__mensaje">
+            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+        </div>
+        </form>
+        <!-- FIN CRUD BOTONES		   -->
+    </div>
+<footer>
+<div class="card">
+<div class="card-body">
+    <div class="row" class="formulario__grupo-input">
+        <div class="col-sm-11">
+               <h5 class="card-title" styles="text align: center;"   >© 2019 INFT S.A.</h5>
+        </div>
+    <div class="col-sm-1" style="margin-left: -15px; margin-top: 3px;">
+        <img src="images/ggmm_logo.png" alt="logo">	
+            <a href="#" class="">GGSS</a>
+    </div>
+</div>
+</div>
+</footer>
+
 	
 	</main>
 	<script src="https://unpkg.com/formik/dist/formik.umd.production.min.js"></script>
