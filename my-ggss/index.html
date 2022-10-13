@@ -191,6 +191,15 @@
 				<div class="perfilImage">
 					 <input type="file" id="image_input" class="form-control form-control-sm" id="formFileSm"type="file" accept="image/png, image/jpg">
 				</div>
+		
+		<!-- <div>
+				<div class="drop-area"  id="foto_perfil" style="margin-top: -10px;">
+					<h2>Arrastra y suelta tu imagen</h2>
+					<span>0</span>
+					<button>Selecciona tus archivos</button>
+					<input type="file" name="" id="input-file" hidden multiple>
+				</div>
+			</div> -->
 			<div id="displayimage"></div>
 				<div id="preview"> aqui preview</div>
 			</div>
@@ -235,6 +244,11 @@
 		<div class="formulario__grupo">
 			<label class="mainABMTitle">Domicilios</label>
 		</div>
+
+
+
+
+
 <!------SegundaSectionDown------>
 		<form action="" class="formulario" >
 			<!--Grupo: Predeterminado -->
@@ -366,9 +380,7 @@
 
 		</form>
 <!------Fin------- SegundaSectionDown-------->
-
-
-
+		
 <!------Section Tabla------->
 		<form action="" class="formularioTabla" >
 	<!----TABLA ----------------->
@@ -376,33 +388,53 @@
 		<table class="table table-dark table-striped">
 			<thead>
 				<tr>
-				<th scope="col">#</th>
-				<th scope="col">Firstttttttttttttttttttttttttttttt</th>
-				<th scope="col">Last</th>
-				<th scope="col">Handle</th>
+				<th scope="col">Opción 1</th>
+				<th scope="col">Opción 2</th>
+				<th scope="col">Opción 3</th>
+				<th scope="col">Opción 4</th>
+				<th scope="col">Modificar</th>
 				</tr>
 			</thead>
-			<tbody class="table-group-divider">
-				<tr>
-				<th scope="row">1</th>
-				<td>Martttttttttttttttttttttttttttttttttttttttttttttttttttk</td>
-				<td>Otto</td>
-				<td>@mdo</td>
-				</tr>
-				<tr>
-				<th scope="row">2</th>
-				<td>Jacottttttttttttttttttttttttttttttttttttttttttttttttttb</td>
-				<td>Thornton</td>
-				<td>@fat</td>
-				</tr>
-				<tr>
-				<th scope="row">3</th>
-				<td colspan="2">Larry the Btttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttird</td>
-				<td>@twitter</td>
-				</tr>
+			<tbody class="table-group-divider" id="cuerpodetabla" >
+				
 			</tbody>
 		</table>
 	</div>
+
+	<div class="formulariover">
+		<div class="inputsver">
+			<input type="text" id="capitulo" placeholder="Opción 1">
+			<input type="text" id="opcion1" placeholder="Opción 2">
+			<input type="text" id="opcion2" placeholder="Opción 3">
+			<input type="text" id="opcion3" placeholder="Opción 4">
+		</div>
+		<div class="botonesver">
+			<button type="submit" id="enviarver" class="botontabla">Agregar</button>
+			<button type="button" id="autocompletar" class="botontabla">Agregar primeros</button>
+
+		</div>
+	</div>
+
+	<div id="inputseditar" class="ocultareditar formularioeditar">
+		<div class="inputsver">
+			<!-- <h3>Editar</h3> -->
+			<input type="text" id="editaropcion1" placeholder="editaropcion1">
+			<input type="text" id="editaropcion2" placeholder="editaropcion2">
+			<input type="text" id="editaropcion3" placeholder="editaropcion3">
+			<input type="text" id="editaropcion4" placeholder="editaropcion4">
+			<input type="text" id="memoria">
+		</div>
+		<div class="botoneditar">
+			<button type="submit" id="enviaredicion" class="botonenviaredicion">Cambiar</button>
+		</div>
+	</div>
+	<!-- <div class="formularioeditar">
+		<input type=text id="filtro">
+		<button type="button" id="botonfiltro">Buscar</button>
+	</div> -->
+
+
+
 
 	<div class="formularioButton aceptarCancelar">
 
@@ -530,10 +562,11 @@
 	</footer>
 
 </main>
-	<script src="https://unpkg.com/formik/dist/formik.umd.production.min.js"></script>
-	<script src="js/formulario.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<scripts src="index.js"></script>
+	<!-- <script src="https://unpkg.com/formik/dist/formik.umd.production.min.js"></script> -->
+	<!-- <script src="js/formulario.js"></script> -->
+	<!-- <scripts src="index.js"></script> -->
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+	<script src="js/jsgeneral.js"></script>
+	<script src="js/tabladinamicajs.js"></script>
 </body>
 </html>

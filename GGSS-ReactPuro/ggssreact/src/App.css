@@ -1,0 +1,413 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 20vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+* {
+	box-sizing: border-box;
+}
+
+
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background-color: #77777740;
+}
+
+/* .imagePerfil{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 155px;
+    width: 150px;
+    height: 150px;
+	border: 1px solid #777777b1;
+} */
+
+/* #displayimage{
+	margin-top: 10px;
+	border-radius: 155px;
+    margin-left: -56px;
+    width: 300px;
+    height: 300px;
+	border: 1px solid #777777b1;
+ 	background-size: cover; 
+}*/
+/* #foto_perfil{
+	width: 114px;
+	height: 0px;
+	background-color: #77777740;
+    margin-left: 37px;
+    position: absolute;
+    margin-top: 126px;
+} */
+.drop-area.active{
+	background-color: #b8d4fe;
+	color: black;
+	border: 2px dashed #618ac9;
+}
+
+.drop-area h2{
+	font-size: 30px;
+	font-weight: 500;
+	color: #000;
+}
+
+.drop-area button{
+	padding: 10px 25px;
+	font-size: 20px;
+	border: 0;
+	outline: none;
+	background-color: #5256ad;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 20px;
+}
+
+.file-container{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px;
+	border: solid 1px #ddd;
+}
+
+#preview{
+	padding: 0px;
+}
+
+.status-text{
+	padding: 0 10px;
+}
+
+.success{
+	color: #52ad5a;
+}
+
+.failure{
+	color: #ff0000;
+}
+
+
+
+main {
+	max-width: 1250px;
+	width: 90%;
+	margin: auto;
+}
+
+.formulario {
+	margin-top: 10px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
+}
+
+.formulario__grupo{
+	display: flex;
+	width: 568px;
+}
+
+.formulario_crud{
+	width: 400px;
+}
+
+.aceptarCancelar{
+	width: 484px;
+}
+
+.formularioButton{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+.formularioTabla{
+	margin-top: 10px;
+	padding-top: 10px;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 10px;
+	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
+	border-radius: 5px;
+}
+
+.encabezadoFamilia {
+	margin-top: 10px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 10px;
+	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
+}
+
+.span{
+	color: orangered;
+	border-radius: 50%;
+	border: 2px solid orangered;
+	padding: 5px;
+}
+
+.formulario__label {
+	display: block;
+	font-weight: 700;
+}
+
+.mainABMTitle {
+	margin-top: 20px;
+	margin-left: 10px;
+	width: 350px;
+	font-family: inherit;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 24px;
+	color: #a61f34;
+	font-weight: bold;
+
+}
+
+
+.formulario__grupo-input {
+	position: relative;
+	width: 500px;
+	display: flex;
+}
+.formulario__grupo-imgProfile {
+	position: relative;
+	margin-left: 72px;
+	margin-top: 0px;
+
+}
+.divDragArea{
+width: 0px;
+border: none;
+margin-top: 10px;
+margin-right: 310px;
+}
+
+.perfilImage {
+	border-radius: 105px;
+	width: auto;
+	height: auto;
+}
+
+.formulario__input {
+	width: 400px;
+	margin-right: 10px;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 40px 0 10px;
+	transition: .3s ease all;
+}
+
+.formulario__input:focus {
+	border: 3px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+.formulario__input-error {
+	font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+}
+
+.formulario__input-error-activo {
+	display: block;
+}
+
+.formulario__validacion-estado {
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	z-index: 100;
+	font-size: 16px;
+	opacity: 0;
+}
+
+.formulario__checkbox {
+	margin-right: 10px;
+}
+
+.formulario__grupo-terminos,
+.formulario__mensaje,
+.formulario__grupo-btn-enviar {
+	grid-column: span 2;
+}
+
+.formulario__mensaje {
+	height: 45px;
+	line-height: 45px;
+	background: #F66060;
+	padding: 0 15px;
+	border-radius: 3px;
+	display: none;
+}
+
+.formulario__mensaje-activo {
+	display: block;
+}
+
+.formulario__mensaje p {
+	margin: 0;
+}
+
+.formulario__grupo-btn-enviar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.formulario__btn {
+	height: 45px;
+	line-height: 45px;
+	width: 30%;
+	background: #a61f34;
+    border-color: #780F07;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: .1s ease all;
+	font-weight: bold;
+	width: 200px; 
+	margin-right: 20px;
+}
+
+.formulario__btn:hover {
+	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+	background: #780F07;
+}
+
+
+.formulario__mensaje-exito {
+	font-size: 14px;
+	color: #119200;
+	display: none;
+}
+
+.formulario__mensaje-exito-activo {
+	display: block;
+}
+
+/* ----- -----  Estilos para Validacion ----- ----- */
+.formulario__grupo-correcto .formulario__validacion-estado {
+	color: #1ed12d;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__label {
+	color: #bb2929;
+}
+
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+	color: #bb2929;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__input {
+	border: 3px solid #bb2929;
+}
+
+.div-buttons{
+	display: flex; 
+	margin-left: 146px; 
+	margin-bottom: 20px; 
+	justify-content: flex-end;
+}
+
+.btn-validacion{
+	border-color: #bb2929;
+	color: #bb2929;
+	height: 42px;
+}
+
+.btn-validacion:hover{
+	border-color: #780F07;
+	background-color: #bb2929;
+	color: #fff;
+}
+
+.crudBar{
+grid-template-columns: 1fr 1fr 1fr;
+padding-left: 80px;
+}
+
+.btn-crud{
+	width: 400px;
+}
+
+.btn-lic-fran{
+	width: 200px;
+	margin-left: 70px;
+}
+
+.btn-perfil {
+	width: 150px;
+	margin-top: 23px;
+}
+
+.btn-perfil-aceptar{
+	margin-left: 91px;
+}
+
+.btn-perfil-cancelar{
+	margin-left: 25px;
+}
+
+/* ----- -----  Mediaqueries ----- ----- */
+@media screen and (max-width: 800px) {
+	.formulario {
+		grid-template-columns: 1fr;
+	}
+
+	.formulario__grupo-terminos,
+	.formulario__mensaje,
+	.formulario__grupo-btn-enviar {
+		grid-column: 1;
+	}
+
+	.formulario__btn {
+		width: 100%;
+	}
+}
