@@ -8,6 +8,7 @@ import Navbar from './Navbar';
 import SectionTabla from './SectionTabla';
 import FormularioDown from './FormularioDown';
 import SectionCRUD from './SectionCRUD';
+import Footer from './Footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +19,7 @@ root.render(
     <FormularioDown/>
     <SectionTabla/>
     <SectionCRUD/>
+    <Footer/>
 
 
   </React.StrictMode>

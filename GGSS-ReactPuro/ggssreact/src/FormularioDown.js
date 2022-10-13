@@ -124,15 +124,11 @@ const FormularioDown = () => {
 					</select>
 				</div>
 			</div>
-		
-		
-
 		{/* <!--Grupo: Observaciones -->		 */}
 		<div class="mb-3">
 			<label class="form-label">Observaciones</label>
 			<textarea class="form-control" placeholder="Ingrese sus observaciones" rows="3"></textarea>
 		</div>
-		
 		<br/><br/>
 		{/* <!-- Grupo: Div Vacío --> */}
 		<div class="formulario__grupo">
@@ -140,11 +136,9 @@ const FormularioDown = () => {
 			</div>
 				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 		    </div>	
-
 		</form>
         {/* <!--Fin-- SegundaSectionDown---> */}
     </div>
   )
 }
-
 export default FormularioDown
