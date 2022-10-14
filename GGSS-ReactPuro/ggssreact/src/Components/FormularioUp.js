@@ -79,7 +79,7 @@ const FormularioUp = () => {
 	{/* POR ACA CERRARIA  */}
 	{/*<!-- Grupo: Masculino & Femenino -->*/}
 	
-	<div class="formulario__grupo" id="grupo__terminos">
+	<div class="formulario__grupo" >
 		<label for="nombre" class="formulario__label">Sexo</label>
 		<div class="form-check">
 			<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
@@ -106,7 +106,7 @@ const FormularioUp = () => {
 		</div>
 	</div>
 	{/*<!--Grupo: Nacimiento -->*/}
-	<div class="formulario__grupo" id="grupo__usuario">
+	<div class="formulario__grupo" >
 		<label for="usuario" class="formulario__label">Nacimiento</label>
 		<div class="formulario__grupo-input">
 			<input type="date" id="birthday" name="birthday"></input>
@@ -115,7 +115,7 @@ const FormularioUp = () => {
 			<p class="formulario__input-error">Elija la fecha de su Nacimiento</p>
 		</div> 
 	{/*<!-- Grupo: Teléfono -->*/}
-	<div class="formulario__grupo" id="grupo__telefono">
+	<div class="formulario__grupo" >
 		<label for="telefono" class="formulario__label">Teléfono</label>
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="1151993165"></input>
@@ -124,7 +124,7 @@ const FormularioUp = () => {
 			<p class="formulario__input-error">El teléfono solo puede contener números.</p>
 		</div>
 	{/*<!-- Grupo: Móvil -->*/}
-	<div class="formulario__grupo" id="grupo__telefono">
+	<div class="formulario__grupo" >
 		<label for="telefono" class="formulario__label">Móvil</label>
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="1151993165"></input>
@@ -133,7 +133,7 @@ const FormularioUp = () => {
 			<p class="formulario__input-error">El teléfono solo puede contener números.</p>
 		</div>
 		{/* <!--Grupo: E-mail --> */}
-	<div class="formulario__grupo" id="grupo__correo">
+	<div class="formulario__grupo" >
 		<label for="correo" class="formulario__label">E-mail</label>
 		<div class="formulario__grupo-input">
 			<input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com"></input>
@@ -142,7 +142,7 @@ const FormularioUp = () => {
 			<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
 		</div>
 	{/* <!--Grupo: Estado Civil --> */}
-	<div class="formulario__grupo" id="grupo__nombre">
+	<div class="formulario__grupo" >
 		<label for="nombre" class="formulario__label">Estado Civil</label>
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Estado Civil"></input>
@@ -153,29 +153,19 @@ const FormularioUp = () => {
 		</div>
 	</div>
 	{/* <!--Grupo: País de Origen --> */}
-	<div class="formulario__grupo" id="grupo__nombre">
+	<div class="formulario__grupo" >
 	
-		{/* <label class="formulario__label" >País de Origen</label> */}
+		<label class="formulario__label" >País de Origen</label>
 		<div class="formulario__grupo-input">
-		<ContactForm/>
-			{/* <input type="text" class="formulario__input" placeholder="Ingrese País de Origen"></input>
-			<button type="button" class="btn btn-validacion btn-outline-primary" */}
-			{/* //aca se haria llamada 
-			//onClick={}
-			>... */}
-				{/* <Modals/>  */}
-			{/* </button> */}
-			
-				{/* <div>
-				<PoppusOk/>
-				</div> */}
-		
+		{/* <ContactForm/> */}
+			<input type="text" class="formulario__input" placeholder="Ingrese País de Origen"></input>
+			<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
 			<i class="formulario__validacion-estado fas fa-times-circle"></i>
 			<p class="formulario__input-error">Solo puede contener letras.</p>
 		</div>
 	</div>
 	{/* <!--Grupo: Nacionalidad --> */}
-	<div class="formulario__grupo" id="grupo__nombre">
+	<div class="formulario__grupo" >
 		<label for="nombre" class="formulario__label">Nacionalidad</label>
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Nacionalidad"></input>
@@ -186,7 +176,7 @@ const FormularioUp = () => {
 		</div>
 	</div>
 	{/* <!--Grupo: Estudios --> */}
-	<div class="formulario__grupo" id="grupo__nombre">
+	<div class="formulario__grupo" >
 		<label for="nombre" class="formulario__label">Estudios</label>
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Estudios"></input>
@@ -197,7 +187,7 @@ const FormularioUp = () => {
 		</div>
 	</div>
 	{/* <!-- Grupo: Div Perfil --> */}
-	<div class="formulario__grupo" id="grupo__nombre">
+	<div class="formulario__grupo" >
 		<div class="formulario__grupo-imgProfile">
 				<div class="perfilImage" >
 					<input type="file" id="image_input" 

@@ -23,7 +23,7 @@ const FormularioDown = () => {
 			</div>	
 		
 		{/* <!-- Grupo: Calle --> */}
-		<div class="formulario__grupo" id="grupo__nombre">
+		<div class="formulario__grupo" >
 			<label  class="formulario__label">Calle</label>
 			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input" placeholder="Ingrese Calle"></input>

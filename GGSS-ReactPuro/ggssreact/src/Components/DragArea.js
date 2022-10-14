@@ -17,7 +17,6 @@ function DragArea() {
   return (
     <div>
       <StyleDragArea>
-        <br />
         <div className="image-upload-wrap">
           <input
             className="file-upload-input"
@@ -28,18 +27,17 @@ function DragArea() {
               changeImage(e);
             }}
           />
-          <div className="text-information">
+          {/* <div className="text-information">
             {/* <h5>Arrastre su imagen aqui</h5> */}
-          </div>
+          {/* </div>  */}
         </div>
 
         <div className="center">
           <img
             src={ImageSelectedPrevious}
             alt=""
-            height="150px"
-            width="250px"
-            //border="1px solid black"
+            height="200px"
+            width="200px"
           />
         </div>
       </StyleDragArea>
@@ -54,9 +52,9 @@ const StyleDragArea = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -76px;
+    margin-top: -6px;
     // border-radius: 223px;
-    margin-left: 200px;
+    margin-left: -200px;
   }
   .file-upload-content {
     display: none;
@@ -65,6 +63,7 @@ const StyleDragArea = styled.div`
 
   .file-upload-input {
     position: absolute;
+    margin-right: 100px;
     margin: 0;
     padding: 0;
     width: 100%;
