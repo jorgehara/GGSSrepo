@@ -1,8 +1,14 @@
+
 import React from 'react';
+import ContactForm from './ContactForm';
 import DragArea from './DragArea';
+// import Modals from './Modals';
+// import PoppusOk from './PoppusOK';
+
 
 
 const FormularioUp = () => {
+
   return (
 	<div>
 		<div class="formulario__grupo">
@@ -25,7 +31,11 @@ const FormularioUp = () => {
 		<label for="nombre" class="formulario__label">Estado</label>
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input" placeholder="Ingrese Estado"></input>
-			<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
+			<button type="button" class="btn btn-validacion btn-outline-primary">...
+		
+			
+			
+			</button>
 			
 			<i class="formulario__validacion-estado fas fa-times-circle"></i>			
 			<p class="formulario__input-error">Solo puede contener letras.</p>
@@ -144,10 +154,21 @@ const FormularioUp = () => {
 	</div>
 	{/* <!--Grupo: País de Origen --> */}
 	<div class="formulario__grupo" id="grupo__nombre">
-		<label class="formulario__label" >País de Origen</label>
+	
+		{/* <label class="formulario__label" >País de Origen</label> */}
 		<div class="formulario__grupo-input">
-			<input type="text" class="formulario__input" placeholder="Ingrese País de Origen"></input>
-			<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
+		<ContactForm/>
+			{/* <input type="text" class="formulario__input" placeholder="Ingrese País de Origen"></input>
+			<button type="button" class="btn btn-validacion btn-outline-primary" */}
+			{/* //aca se haria llamada 
+			//onClick={}
+			>... */}
+				{/* <Modals/>  */}
+			{/* </button> */}
+			
+				{/* <div>
+				<PoppusOk/>
+				</div> */}
 		
 			<i class="formulario__validacion-estado fas fa-times-circle"></i>
 			<p class="formulario__input-error">Solo puede contener letras.</p>

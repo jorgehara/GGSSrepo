@@ -1,16 +1,59 @@
 // import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+
+  const url = 'https://localhost:44310/api/Localidades'
+  const [data, setData] = useState([]);
+
+  const fetchApi = async () => {
+    // const response = await fetch(url)
+    // console.log(response.status)
+    axios.get(url)
+      .then(response => {
+        setData(response.data);
+      }).catch(error => {
+        console.log(error);
+      })
+  }
+
+  useEffect(() => {
+    fetchApi()
+
+  }, [])
+
   return (
     <div className="App">
-      {/* <header className="App-header"> */}
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <p>  Edit <code>src/App.js</code> and save to reload. </p> */}
-        {/* <a  className="App-link"href="https://reactjs.org"   target="_blank"   rel="noopener noreferrer" >  Learn React  </a> */}
-      {/* </header> */}
+
+      <table className='table'>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Observaciones</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map(gestor => (
+            <tr>
+              <td>{gestor.idLocalidad}</td>
+              <td>{gestor.localidad}</td>
+              <td>{gestor.obs}</td>
+              <td>
+                <button className='btn btn-primary' type="button">Seleccionar</button>
+              </td>
+            </tr>
+          ))}
+
+        </tbody>
+      </table>
+
     </div>
   );
 }
 
 export default App;
+
