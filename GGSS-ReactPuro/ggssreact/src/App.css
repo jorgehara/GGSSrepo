@@ -68,10 +68,10 @@ main {
 }
 
 .formulario {
-	margin-top: 10px;
+	/* margin-top: 10px; */
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 10px;
+	/* gap: 0px; */
 	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
 }
 
@@ -79,7 +79,12 @@ main {
 	display: flex;
 	width: 568px;
 }
-
+.formulario__grupo_Nacimiento{
+	display: flex;
+    width: 576px;
+    margin-top: 50px;
+    margin-left: -304px;
+}
 .formulario_crud{
 	width: 400px;
 }
@@ -99,8 +104,8 @@ main {
 }
 
 .formularioTabla{
-	margin-top: 10px;
-	padding-top: 10px;
+	/* margin-top: 0px; */
+	/* padding-top: 10px; */
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 10px;
@@ -152,7 +157,7 @@ main {
 .formulario__grupo-imgProfile {
 	position: relative;
 	margin-left: 170px;
-	margin-top: 10px;
+	margin-top: -20px;
 
 }
 .imgProfile {
@@ -319,7 +324,7 @@ padding-left: 80px;
 }
 
 .btn-perfil-aceptar{
-	margin-left: 91px;
+	margin-left: -76px;
 }
 
 .btn-perfil-cancelar{
@@ -330,6 +335,30 @@ padding-left: 80px;
 	margin-top: 8px;
 	margin-right: 212px;
     margin-left: -2px;
+}
+
+.footerLabel{
+	background: #f5f5f5;
+   -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+    min-width: 220px;
+    /* background-image: -webkit-linear-gradient(50deg, #a61f34 80%, #780F07 80%); */
+    background-color: #a61f34;
+    color: #ffff;
+    text-align: center;
+	font-size: 400 normal;
+	height: 30px;
+
+
+}
+
+.logoFooter{
+	display: grid;
+	margin-top: -35px;
+	justify-content: flex-end;
+	align-items: flex-end;
+	text-align: right;
 }
 
 /* ----- -----  Mediaqueries ----- ----- */

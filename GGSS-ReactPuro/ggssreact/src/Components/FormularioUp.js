@@ -1,9 +1,9 @@
 
 import React from 'react';
-import ContactForm from './ContactForm';
 import DragArea from './DragArea';
 // import Modals from './Modals';
 // import PoppusOk from './PoppusOK';
+// import styled from 'styled-components';
 
 
 
@@ -32,11 +32,7 @@ const FormularioUp = () => {
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input" placeholder="Ingrese Estado"></input>
 			<button type="button" class="btn btn-validacion btn-outline-primary">...
-		
-			
-			
 			</button>
-			
 			<i class="formulario__validacion-estado fas fa-times-circle"></i>			
 			<p class="formulario__input-error">Solo puede contener letras.</p>
 		</div>
@@ -92,7 +88,17 @@ const FormularioUp = () => {
 			<label class="form-check-label" for="flexRadioDefault1">
 			Femenino
 			</label>
+			
 		</div>
+		{/*<!--Grupo: Nacimiento -->*/}
+		<div class="formulario__grupo_Nacimiento" >
+		<label for="usuario" class="formulario__label">Nacimiento</label>
+		<div class="formulario__grupo-input">
+			<input type="date" id="birthday" name="birthday"></input>
+			<i class="formulario__validacion-estado fas fa-times-circle"></i>
+			</div>
+			<p class="formulario__input-error">Elija la fecha de su Nacimiento</p>
+		</div> 
 	</div>
 
 	{/*<!--Grupo: C.U.I.L. -->*/}
@@ -105,15 +111,6 @@ const FormularioUp = () => {
 			<p class="formulario__input-error">Solo puede contener números, sin puntos.</p>
 		</div>
 	</div>
-	{/*<!--Grupo: Nacimiento -->*/}
-	<div class="formulario__grupo" >
-		<label for="usuario" class="formulario__label">Nacimiento</label>
-		<div class="formulario__grupo-input">
-			<input type="date" id="birthday" name="birthday"></input>
-			<i class="formulario__validacion-estado fas fa-times-circle"></i>
-			</div>
-			<p class="formulario__input-error">Elija la fecha de su Nacimiento</p>
-		</div> 
 	{/*<!-- Grupo: Teléfono -->*/}
 	<div class="formulario__grupo" >
 		<label for="telefono" class="formulario__label">Teléfono</label>
@@ -154,7 +151,6 @@ const FormularioUp = () => {
 	</div>
 	{/* <!--Grupo: País de Origen --> */}
 	<div class="formulario__grupo" >
-	
 		<label class="formulario__label" >País de Origen</label>
 		<div class="formulario__grupo-input">
 		{/* <ContactForm/> */}
@@ -177,6 +173,7 @@ const FormularioUp = () => {
 	</div>
 	{/* <!--Grupo: Estudios --> */}
 	<div class="formulario__grupo" >
+		
 		<label for="nombre" class="formulario__label">Estudios</label>
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese Estudios"></input>
@@ -186,36 +183,11 @@ const FormularioUp = () => {
 			<p class="formulario__input-error">Solo puede contener letras.</p>
 		</div>
 	</div>
-	{/* <!-- Grupo: Div Perfil --> */}
-	<div class="formulario__grupo" >
-		<div class="formulario__grupo-imgProfile">
-				<div class="perfilImage" >
-					<input type="file" id="image_input" 
-					// class="form-control form-control-sm" 
-					accept="image/png, image/jpg"></input>
-				</div>
-				<div class="divDragArea">		
-					<DragArea/>
-				</div>
-		</div>
-	</div>
-		
-	{/* <!--Grupo: Observaciones -->		 */}
+		{/* <!--Grupo: Observaciones -->		 */}
 		<div class="mb-3">
 			<label class="form-label">Observaciones</label>
 			<textarea class="form-control" placeholder="Ingrese sus observaciones" rows="3"></textarea>
-		</div>
-	{/* <!--Grupo: Botones Cancelar Perfil -->		 */}
-	<div class="d-inline-flex p-2 bd-highlight ">
-		<div class="d-inline-flex p-2 bd-highlight ">
-			<button type="submit" class="formulario__btn btn-perfil btn-perfil-aceptar" >Aceptar</button>				
-			<button type="submit" class="formulario__btn btn-perfil btn-perfil-cancelar" >Cancelar</button>
-		</div>
-	</div>					
-	{/* <!-- Grupo: Div Vacio--> */}
-	<div class="formulario__grupo" >
-	</div>
-	{/* <!-- Grupo: Boton Cancelar --> */}
+		{/* <!-- Grupo: Boton Cancelar --> */}
 	<div class="formulario__grupo aceptarCancelar" >
 		<div class="formulario__grupo-input">
 			<button type="submit" class="formulario__btn" >Cancelar</button>
@@ -227,10 +199,44 @@ const FormularioUp = () => {
 		</div>
 		<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 	</div>
+		</div>
+	{/* <!-- Grupo: Div Perfil --> */}
+	<div class="formulario__grupo" >
+		<div class="formulario__grupo-imgProfile">
+				<div class="perfilImage" >
+					
+					<input type="file" id="image_input" 
+					// class="form-control form-control-sm" 
+					accept="image/png, image/jpg"></input>
+				</div>
+				<div class="divDragArea">		
+					<DragArea/>
+				</div>
+						
+				<div class="d-inline-flex p-2 bd-highlight " >
+				
+			<button  type="submit" class="formulario__btn btn-perfil btn-perfil-aceptar " >Aceptar</button>				
+			<button type="submit" class="formulario__btn btn-perfil btn-perfil-cancelar" >Cancelar</button>
+		</div>
+		</div>
+	</div>
+	
+	{/* <!--Grupo: Botones Cancelar Perfil -->		 */}
+	{/* <div class="d-inline-flex p-2 bd-highlight "> */}
+	{/* </div>					 */}
+	
+	
 	{/* <!------Fin----PrimerSectionUp------> */}
 	</form>
 	</div>
   )
 }
 
-export default FormularioUp
+export default FormularioUp;
+
+
+// const StyleBoton = styled.div`
+//   .divBoton {
+//     margin-left: -200px;
+//   }
+// `;

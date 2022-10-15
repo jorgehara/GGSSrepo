@@ -9,11 +9,15 @@ const FormularioDown = () => {
 		</div>
 		<form action="" class="formulario" >
 			{/* <!--Grupo: Predeterminado --> */}
+			<div>
 			<div class="formulario__grupo" >
-				<label class="form-check-label" >
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+				<label class="form-check-label" for="flexRadioDefault1">
 					Predeterminado
-				  </label>
-				<input class="form-check-input" type="radio" ></input>
+				</label>
+				</div>
+			</div>
 			</div>
 			
 			{/* <!-- Grupo: Div Vacío --> */}
@@ -125,17 +129,10 @@ const FormularioDown = () => {
 				</div>
 			</div>
 		{/* <!--Grupo: Observaciones -->		 */}
-		<div class="mb-3">
+		<div class="mb-1">
 			<label class="form-label">Observaciones</label>
 			<textarea class="form-control" placeholder="Ingrese sus observaciones" rows="3"></textarea>
 		</div>
-		<br/><br/>
-		{/* <!-- Grupo: Div Vacío --> */}
-		<div class="formulario__grupo">
-			<div class="formulario__grupo-input">
-			</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-		    </div>	
 		</form>
         {/* <!--Fin-- SegundaSectionDown---> */}
     </div>

@@ -36,8 +36,8 @@ function DragArea() {
           <img
             src={ImageSelectedPrevious}
             alt=""
-            height="200px"
-            width="200px"
+            height="160px"
+            width="187px"
           />
         </div>
       </StyleDragArea>
@@ -54,7 +54,7 @@ const StyleDragArea = styled.div`
     align-items: center;
     margin-top: -6px;
     // border-radius: 223px;
-    margin-left: -200px;
+    margin-left: -210px;
   }
   .file-upload-content {
     display: none;
