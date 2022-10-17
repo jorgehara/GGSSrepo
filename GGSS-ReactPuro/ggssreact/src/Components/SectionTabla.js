@@ -7,7 +7,9 @@ const SectionTabla = () => {
         {/* <!------Section Tabla-------> */}
 		    <form action="" class="formularioTabla">
 	      {/* <!----TABLA -----------------> */}
-        <div class="container p-4 my-3" >
+
+        <div  class="tablaDomicilio">
+        <div class="container p-2 my-2 col-11">
           <table class="table-danger table-striped">
             <thead>
               <tr>
@@ -60,6 +62,8 @@ const SectionTabla = () => {
           </table>
         
         </div>
+        </div>
+       
            
 
           

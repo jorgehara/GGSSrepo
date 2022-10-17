@@ -30,7 +30,7 @@ const FormularioDown = () => {
 		<div class="formulario__grupo" >
 			<label  class="formulario__label">Calle</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" placeholder="Ingrese Calle"></input>
+				<input type="text" class="formulario__input col-6" placeholder="Ingrese Calle"></input>
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
@@ -40,7 +40,7 @@ const FormularioDown = () => {
 		<div class="formulario__grupo" >
 			<label for="telefono" class="label label-info formulario__label" >Número</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" placeholder="Ingrese Número"></input>
+				<input type="text" class="formulario__input col-6" placeholder="Ingrese Número"></input>
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
 			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -55,7 +55,7 @@ const FormularioDown = () => {
 		<div class="formulario__grupo">
 			<label  class="formulario__label">Barrio</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" placeholder="Ingrese Barrio"></input>
+				<input type="text" class="formulario__input col-6" placeholder="Ingrese Barrio"></input>
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
 			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -65,9 +65,9 @@ const FormularioDown = () => {
 
 		{/* <!-- Grupo: Piso/Dpto/Ofic/Torre --> */}
 		<div class="formulario__grupo" >
-			<label for="telefono"  class="formulario__label">Piso/Dpto/Ofic/Torre</label>
+			<label for="telefono"  class="formulario__label_Piso">Piso/Dpto/Ofic/Torre</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" placeholder="Ingrese número"></input>
+				<input type="text" class="formulario__input col-6" placeholder="Ingrese número"></input>
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
 			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -79,7 +79,7 @@ const FormularioDown = () => {
 		<div class="formulario__grupo" >
 			<label class="formulario__label">Departamento</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" placeholder="Ingrese departamento"></input>
+				<input type="text" class="formulario__input col-6" placeholder="Ingrese departamento"></input>
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 			</div>
 				<p class="formulario__input-error">Solo puede contener números.</p>
@@ -89,7 +89,7 @@ const FormularioDown = () => {
 		<div class="formulario__grupo">
 			<label class="formulario__label">Localidad/CP</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input" placeholder="Ingrese Localidad/CP"></input>
+				<input type="text" class="formulario__input col-6" placeholder="Ingrese Localidad/CP"></input>
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
@@ -98,9 +98,9 @@ const FormularioDown = () => {
 		{/* <!-- Grupo: Provincia --> */}
 		<div class="formulario__grupo" >
 			<label class="formulario__label">Provincia</label>
-			<div class="formulario__grupo-input">
+			<div class="formulario__grupo-input_SelecProvincia col-5">
 				<select id="t_provincia" class="form-control">
-					<option value="Selecccione su Provincia" selected="">Selecccione su Provincia</option>
+					<option value="Selecccione su Provincia" class="formulario__input" selected="">Selecccione su Provincia</option>
 					<option value="Capital Federal">Capital Federal</option>
 					<option value="Buenos Aires">Buenos Aires</option>
 					<option value="Catamarca">Catamarca</option>

@@ -33,37 +33,50 @@ body {
 .formulario {
 	min-width: 600px;
 	border-radius: 5px;
-	padding: 30px 10px;
+    padding: 9px 57px;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 	align-items: baseline;
 }
 
 .formulario > div {
-	margin-bottom: 5px;
+	margin-bottom: 0px;
 }
 
 .formulario label {
 	font-style: normal;
 	font-weight: 400;
-	font-size: 20px;
+	/* font-size: 20px; */
 	line-height: 29px;
 	/*color:#64686d;*/
 	color: black;
 	margin-top: 5px;
-	margin-right: 10px;
+	margin-right: 14px;
 	margin-bottom: 9px;
+	display: block;
+}
+.formulario-label-DNI {
+	font-style: normal;
+	font-weight: 400;
+	/* font-size: 20px; */
+	line-height: 29px;
+	/*color:#64686d;*/
+	color: black;
+	margin-top: 5px;
+	margin-right: 0px;
+	margin-left: -15px;
+	margin-bottom: 0px;
 	display: block;
 }
 
 .formulario input,
 .formulario textarea {
 	font-family: inherit;
-	width: 100%;
+	width: 60%;
 	border-radius: 5px;
 	border: 2px solid #e2e2e2;
 	font-size: 18px;
-	padding: 10px;
-	margin-bottom: 5px;
+	padding: 1px;
+	margin-bottom: 1px;
 	color: #1f1f1f;
 }
 
@@ -87,7 +100,8 @@ body {
 }
 
 .formulario input[type="radio"] {
-	width: auto;
+	margin-left: -20px;
+	width: 17px;
 }
 
 
