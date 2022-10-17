@@ -4,12 +4,15 @@ import React from 'react'
 const Footer = () => {
   return (
     <div className='footerLabel'>
+        <div>
         <label>       
             © 2019 INFT S.A. 
 
         </label>
+
+        </div>
         <div class="logoFooter" >
-            <img src='../img/323975757.svg' alt='logo'/>
+            <img src='../img/groku.png' alt='logo' />
            
         </div>
     </div>

@@ -22,7 +22,7 @@ const FormularioUp = () => {
 	<div class="formulario__grupo">
 	<label for="telefono" class="label label-info" className="formulario__label">Legajo N°</label>
 	<div class="formulario__grupo-input">
-	<input type="text" class="formulario-input-Legajo col-4 col-sm-3" placeholder="N° de Legajo"/>
+	<input type="text" class="formulario-input-Legajo col-4" placeholder="N° de Legajo"/>
 		<i class="formulario__validacion-estado fas fa-times-circle"></i>
 	</div>
 		<p class="formulario__input-error">Solo puede contener números.</p>
@@ -51,14 +51,14 @@ const FormularioUp = () => {
 			</div>
 		{/* <!-- Grupo: D.N.I. --> */}
 		<div class="formulario__grupo" >
-		<label class="formulario-label-DNI col-3">DNI</label>
-		<select class="form-select form_select" >
+		<label class="formulario-label-DNI col-3 ">DNI</label>
+		<select class="form-select form_select " >
 			<option selected>DNI</option>
 			<option value="1">DNI</option>
 			<option value="2">LC</option>
 			<option value="3">LE</option>
 		</select>
-		<input type="text" class="formulario-input-DNI col-2" placeholder="23456789"></input>
+		<input type="text" class="formulario-input-DNI col-2 ml-2" placeholder="23456789"></input>
 		<i class="formulario__validacion-estado fas fa-times-circle"></i>
 	</div>
 		<p class="formulario__input-error">Solo puede contener números, sin puntos.</p>
@@ -125,7 +125,7 @@ const FormularioUp = () => {
 	
 	{/*<!-- Grupo: Masculino & Femenino -->*/}
 	<div class="formulario__grupo" >
-		<label for="nombre" class="formulario__label">Sexo</label>
+		<label for="nombre" class="formulario__label_Sexo">Sexo</label>
 		<div class="form-check">
 			<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
 			<label class="form-check-label" for="flexRadioDefault1">
@@ -137,18 +137,18 @@ const FormularioUp = () => {
 			<label class="form-check-label" for="flexRadioDefault1">
 			Femenino
 			</label>
-			
 		</div>
+	</div>
+
 		{/*<!--Grupo: Nacimiento -->*/}
-		<div class="formulario__grupo_Nacimiento" >
+		<div class="formulario__grupo" >
 		<label for="usuario" class="formulario__label_Nacimiento">Nacimiento</label>
-		<div class="formulario__grupo-input col-8">
+		<div class="formulario__grupo-input col-6">
 			<input type="date" id="birthday" name="birthday"></input>
 			<i class="formulario__validacion-estado fas fa-times-circle"></i>
-			</div>
+		</div>
 			<p class="formulario__input-error">Elija la fecha de su Nacimiento</p>
 		</div> 
-	</div>
 
 	{/*<!-- Grupo: Móvil -->*/}
 	<div class="formulario__grupo" >
@@ -204,8 +204,8 @@ const FormularioUp = () => {
 		
 		{/* <!--Grupo: Observaciones -->		 */}
 		<div class="mb-3">
-			<label class="form-label">Observaciones</label>
-			<textarea class="form-control" placeholder="Ingrese sus observaciones" rows="3"></textarea>
+			<label class="form-label mb-0">Observaciones</label>
+			<textarea class="form-control mt-0" placeholder="Ingrese sus observaciones" rows="3"></textarea>
 		{/* <!-- Grupo: Boton Cancelar --> */}
 	<div class="formulario__grupo aceptarCancelar" >
 		<div class="formulario__grupo-input">

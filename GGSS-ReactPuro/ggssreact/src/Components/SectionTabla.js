@@ -79,7 +79,7 @@ const SectionTabla = () => {
             </div>
 
             {/* <!-- Grupo: Boton Cancelar --> */}
-            <div class="formulario__grupo aceptarCancelar div-buttons">
+            <div class="formulario__grupo aceptarCancelarDomicilio div-buttons">
               <div class="formulario__grupo-input">
                 <button type="submit" class="formulario__btn ">Quitar</button>
               </div>

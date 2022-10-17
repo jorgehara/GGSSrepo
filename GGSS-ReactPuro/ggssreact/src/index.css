@@ -67,6 +67,19 @@ body {
 	margin-bottom: 0px;
 	display: block;
 }
+/* .formulario-label-Observaciones {
+	font-style: normal;
+	font-weight: 400;
+	/* font-size: 20px; */
+	/* line-height: 29px; */
+	/*color:#64686d;*/
+	/* color: black;
+	margin-top: 5px;
+	margin-right: 0px;
+	margin-left: -15px;
+	margin-bottom: 0px;
+	display: block; */ 
+	
 
 .formulario input,
 .formulario textarea {
@@ -78,7 +91,22 @@ body {
 	padding: 1px;
 	margin-bottom: 1px;
 	color: #1f1f1f;
+	margin-top: 1px;
 }
+
+
+/* .formulario_textarea_Observaciones{
+	font-family: inherit;
+    width: 60%;
+    border-radius: 5px;
+    border: 2px solid #e2e2e2;
+    font-size: 18px;
+    padding: 1px;
+    margin-bottom: 1px;
+    color: #1f1f1f;
+    margin-top: -5px;
+} */
+
 
 .formulario input:focus {
 	outline: none;
@@ -102,6 +130,7 @@ body {
 .formulario input[type="radio"] {
 	margin-left: -20px;
 	width: 17px;
+	margin-top: 10px;
 }
 
 

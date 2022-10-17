@@ -38,7 +38,7 @@ const FormularioDown = () => {
 
 		{/* <!-- Grupo: Número -->	 */}
 		<div class="formulario__grupo" >
-			<label for="telefono" class="label label-info formulario__label" >Número</label>
+			<label for="telefono" class="formulario__label_Numero" >Número</label>
 			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input col-6" placeholder="Ingrese Número"></input>
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
@@ -87,7 +87,7 @@ const FormularioDown = () => {
 
 		{/* <!-- Grupo: Localidad/CP --> */}
 		<div class="formulario__grupo">
-			<label class="formulario__label">Localidad/CP</label>
+			<label class="formulario__label_Localidad">Localidad/CP</label>
 			<div class="formulario__grupo-input">
 				<input type="text" class="formulario__input col-6" placeholder="Ingrese Localidad/CP"></input>
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -98,9 +98,9 @@ const FormularioDown = () => {
 		{/* <!-- Grupo: Provincia --> */}
 		<div class="formulario__grupo" >
 			<label class="formulario__label">Provincia</label>
-			<div class="formulario__grupo-input_SelecProvincia col-5">
-				<select id="t_provincia" class="form-control">
-					<option value="Selecccione su Provincia" class="formulario__input" selected="">Selecccione su Provincia</option>
+			<div class="formulario__grupo-input_SelecProvincia col-6">
+				<select id="t_provincia" class="form-control_Provincia">
+					<option value="Selecccione su Provincia" class="formulario__input" selected="">Selecccione su provincia</option>
 					<option value="Capital Federal">Capital Federal</option>
 					<option value="Buenos Aires">Buenos Aires</option>
 					<option value="Catamarca">Catamarca</option>
@@ -130,8 +130,8 @@ const FormularioDown = () => {
 			</div>
 		{/* <!--Grupo: Observaciones -->		 */}
 		<div class="mb-1">
-			<label class="form-label">Observaciones</label>
-			<textarea class="form-control" placeholder="Ingrese sus observaciones" rows="3"></textarea>
+			<label class="form-label mb-0">Observaciones</label>
+			<textarea class="form-control mt-0" placeholder="Ingrese sus observaciones" rows="3"></textarea>
 		</div>
 		</form>
         {/* <!--Fin-- SegundaSectionDown---> */}
