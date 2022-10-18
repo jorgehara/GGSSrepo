@@ -27,8 +27,6 @@ const FormularioUp = () => {
 	</div>
 		<p class="formulario__input-error">Solo puede contener números.</p>
 	</div>
-	
-	
 	<div>  
 	<div>
 		{/* <!--Grupo: Apellido --> */}
@@ -116,8 +114,9 @@ const FormularioUp = () => {
 		<label for="nombre" class="formulario__label">Estado</label>
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input col-6" placeholder="Ingrese Estado"></input>
-			<button type="button" class="btn btn-validacion btn-outline-primary">...
+			<button type="button" class="btn btn-validacion btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">...
 			</button>
+				
 			<i class="formulario__validacion-estado fas fa-times-circle"></i>			
 			<p class="formulario__input-error">Solo puede contener letras.</p>
 		</div>
