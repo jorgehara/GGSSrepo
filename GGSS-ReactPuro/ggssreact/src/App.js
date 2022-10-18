@@ -1,14 +1,18 @@
 // import logo from './logo.svg';
 import './App.css';
-import ModalEstudios from './ComponentsModalEmpleado/ModalEstudios';
+import LlamadaBackend from './helpers/LlamadaBackend';
+// import ModalEstudios from '../ComponentsModalEmpleado/ModalEstudios';
+
 
 function App() {
   return (
-    <div className="App">
+    <div className='App' >
 
 {/* ACA LLAMO LAS VENTANAS MODAL */}
 
-<ModalEstudios/>
+{/* <ModalEstudios/> */}
+
+      <LlamadaBackend/>
 
 
 
@@ -17,7 +21,9 @@ function App() {
         {/* <p>  Edit <code>src/App.js</code> and save to reload. </p> */}
         {/* <a  className="App-link"href="https://reactjs.org"   target="_blank"   rel="noopener noreferrer" >  Learn React  </a> */}
       {/* </header> */}
+   
     </div>
+
   );
 }
 

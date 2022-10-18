@@ -51,7 +51,7 @@ const FormularioUp = () => {
 		<div class="formulario__grupo" >
 		<label class="formulario-label-DNI col-3 ">DNI</label>
 		<select class="form-select form_select " >
-			<option selected>DNI</option>
+			{/* <option selected>DNI</option> */}
 			<option value="1">DNI</option>
 			<option value="2">LC</option>
 			<option value="3">LE</option>
@@ -111,15 +111,22 @@ const FormularioUp = () => {
 	
 	{/* <!-- Grupo: Estado --> */}
 	<div class="formulario__grupo">
-		<label for="nombre" class="formulario__label">Estado</label>
+	<label for="nombre" class="formulario__label  pr-1 pl-0 ml-0 mr-1 col-2">Estado</label>
+			<select class="form-select col-3" aria-label="Default select example">
+					{/* <option selected>Open this select menu</option> */}
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+			</select>
+		{/* <label for="nombre" class="formulario__label">Estado</label>
 		<div class="formulario__grupo-input">
 			<input type="text" class="formulario__input col-6" placeholder="Ingrese Estado"></input>
-			<button type="button" class="btn btn-validacion btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">...
+			<button type="button" class="btn btn-validacion btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalEstado">...
 			</button>
 				
 			<i class="formulario__validacion-estado fas fa-times-circle"></i>			
 			<p class="formulario__input-error">Solo puede contener letras.</p>
-		</div>
+		</div> */}
 	</div>
 	
 	{/*<!-- Grupo: Masculino & Femenino -->*/}

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import './App.css';
+// import './App.css';
 import axios from 'axios';
 
 
 const LlamadaBackend = () => {
-  const url = 'https://localhost:7037/WeatherForecast'
+  const url = 'http://52.90.12.208/estadosunidades?page=1&take=10&order=false'
 
   const [data, setData] = useState([]);
 
@@ -24,9 +24,25 @@ const LlamadaBackend = () => {
   }, []);
   
     return (
-      <div className="App">
+      <div>
 
-     <table className="Table">
+     
+
+    </div>
+    );
+}
+
+
+export default LlamadaBackend;
+
+
+
+
+
+
+{/* <table className="Table">
+    
+     <table>
         <thead>
         <tr>
             <th>date</th>
@@ -34,21 +50,35 @@ const LlamadaBackend = () => {
             <th>sumary</th>
         </tr>
         </thead>
-
-    <tbody>
+        <tr>
         {data.map(gestor => (
         <tr>
+            <td>{gestor.idEstadoUnidad}</td>
+            <td>{gestor.estado}</td>
+            <td>{gestor.obs}</td>
+        </tr>    
+        ))};
+        </tr>
+
+
+    <tbody>
+   
+      
+       
+       
+       
+       
+        {/* {data.map(gestor => (
+       <tr>
             <td>{gestor.date}</td>
             <td>{gestor.temperatureC}</td>
             <td>{gestor.summary}</td>
         </tr>    
-        ))};
-
-       </tbody>
-     </table>
-    </div>
-    );
-}
+        ))}; */}
 
 
-export default LlamadaBackend;
+       {/* </tbody> */}
+    {/* //  </table> */}
+
+    //  </table> */}
+
