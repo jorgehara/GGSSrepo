@@ -11,6 +11,7 @@ import FormularioDown from './Components/FormularioDown';
 import SectionCRUD from './Components/SectionCRUD';
 import Footer from './Components/Footer';
 import ModalBoostrap from './Components/ModalBoostrap';
+// import ModalEstudios from './ComponentsModalEmpleado/ModalEstudios';
 // import PoppusOk from './Components/PoppusOK';
 // import ContactForm from './Components/ContactForm';
 // import Modals from './Components/Modals';
@@ -29,6 +30,9 @@ root.render(
     <SectionTabla/>
     <SectionCRUD/>
     <Footer/>
+
+
+    
 
 
   </React.StrictMode>

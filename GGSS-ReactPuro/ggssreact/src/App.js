@@ -1,9 +1,17 @@
 // import logo from './logo.svg';
 import './App.css';
+import ModalEstudios from './ComponentsModalEmpleado/ModalEstudios';
 
 function App() {
   return (
     <div className="App">
+
+{/* ACA LLAMO LAS VENTANAS MODAL */}
+
+<ModalEstudios/>
+
+
+
       {/* <header className="App-header"> */}
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <p>  Edit <code>src/App.js</code> and save to reload. </p> */}
