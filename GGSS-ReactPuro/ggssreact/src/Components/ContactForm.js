@@ -14,6 +14,7 @@ const validationsForm = (form) => {
   let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
 
   // let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
+ 
   // let regexComments = /^.{1,255}$/; //contar los caracteres de comments hastas 255 caracteres
 
   if (!form.name.trim()) { //sino tiene nombre escrito, es decir esta vacío, se ACTIVA el Error

@@ -503,3 +503,47 @@ padding-left: 80px;
 		width: 100%;
 	}
 }
+
+
+
+/* ESTILOS MODALES TABLA EMPLEADOS / LIQUIDACION */
+
+.btnAceptar{
+	margin-right: 20px;
+}
+
+.modal{
+	--bs-modal-width: 1000px;
+}
+
+.modal-body{
+	display: flex;
+	justify-content: space-between;
+}
+
+.llamadaApi{
+	border: solid 1px black;
+	width: 400px;
+	text-align: center;
+}
+
+.btnInputs{
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.modal-footer{
+	display: flex;
+	justify-content: space-between;
+}
+
+.crudBtn{
+	margin: 10px;
+}
+
+.pldbBtns{
+	display: flex;
+	gap: 40px;
+	margin-left: 25px;
+}

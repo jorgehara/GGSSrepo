@@ -6,7 +6,6 @@
 	padding: 0px;
 	margin: 0;
 	box-sizing: border-box;
-	
 }
 
 .masterheader{
@@ -54,6 +53,7 @@ body {
 	margin-bottom: 9px;
 	display: block;
 }
+
 .formulario-label-DNI {
 	font-style: normal;
 	font-weight: 400;
@@ -67,6 +67,7 @@ body {
 	margin-bottom: 0px;
 	display: block;
 }
+
 /* .formulario-label-Observaciones {
 	font-style: normal;
 	font-weight: 400;
