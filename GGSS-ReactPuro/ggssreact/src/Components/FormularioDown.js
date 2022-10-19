@@ -1,6 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const FormularioDown = () => {
+	
+	
+	const [error, setError] = useState("");
+	const [inputValue, setInputValue] = useState ();
+
+	const validateNumbers =(e)=>{		
+		if (!/[0-9]/.test(e.key)) {
+			setError("Ingrese sólo números");
+			e.preventDefault();
+		}
+	}
+	const validateTexts =(e)=>{		
+		if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(e.key)) {
+			setError("Ingrese sólo letras y espacios");
+			e.preventDefault();
+		}
+	}
+
+
   return (
     <div>
         {/* <!------SegundaSectionDown------> */}
@@ -12,14 +31,16 @@ const FormularioDown = () => {
 			<div>
 			<div class="formulario__grupo" >
 			<div class="form-check">
-				<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+				<input class="form-check-input"
+						type="radio" 
+						name="flexRadioDefault" 
+						id="flexRadioDefault1"></input>
 				<label class="form-check-label" for="flexRadioDefault1">
 					Predeterminado
 				</label>
 				</div>
 			</div>
 			</div>
-			
 			{/* <!-- Grupo: Div Vacío --> */}
 			<div class="formulario__grupo" >
 				<div class="formulario__grupo-input">
@@ -30,7 +51,14 @@ const FormularioDown = () => {
 		<div class="formulario__grupo" >
 			<label  class="formulario__label">Calle</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input col-6" placeholder="Ingrese Calle"></input>
+				<input type="text" class="formulario__input col-6" 
+						placeholder="Ingrese Calle"
+						onKeyPress={(e)=>validateTexts(e)} 
+						value={inputValue} 
+						onChange={(e)=> 
+						console.log(e.target.value)
+					}/>						
+						
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
@@ -38,9 +66,17 @@ const FormularioDown = () => {
 
 		{/* <!-- Grupo: Número -->	 */}
 		<div class="formulario__grupo" >
-			<label for="telefono" class="formulario__label_Numero" >Número</label>
+			<label for="telefono" class="formulario__label_Numero">Número</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input col-6" placeholder="Ingrese Número"></input>
+				<input type="text" class="formulario__input col-6" 
+						placeholder="12345"
+						maxlength="5"
+						onKeyPress={(e)=>validateNumbers(e)} 
+						value={inputValue} 
+						onChange={(e)=> 
+						console.log(e.target.value)
+					}/>
+				
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
 			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -55,7 +91,14 @@ const FormularioDown = () => {
 		<div class="formulario__grupo">
 			<label  class="formulario__label">Barrio</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input col-6" placeholder="Ingrese Barrio"></input>
+				<input type="text" 
+				class="formulario__input col-6" 
+				placeholder="Ingrese Barrio"
+				onKeyPress={(e)=>validateTexts(e)} 
+				value={inputValue} 
+				onChange={(e)=> 
+				console.log(e.target.value)
+			}/>		
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
 			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -67,7 +110,16 @@ const FormularioDown = () => {
 		<div class="formulario__grupo" >
 			<label for="telefono"  class="formulario__label_Piso">Piso/Dpto/Ofic/Torre</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input col-6" placeholder="Ingrese número"></input>
+				<input type="text" class="formulario__input col-6" 
+				placeholder="Ingrese número"
+				// placeholder="xxxx"
+					onKeyPress={(e)=>validateTexts(e)}
+					maxLength="100" 
+					value={inputValue} 
+					onChange={(e)=> 
+					console.log(e.target.value)
+				}/>
+				
 				<button type="button" class="btn btn-validacion btn-outline-primary">...</button>
 			
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -79,7 +131,14 @@ const FormularioDown = () => {
 		<div class="formulario__grupo" >
 			<label class="formulario__label">Departamento</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input col-6" placeholder="Ingrese departamento"></input>
+				<input type="text" 
+				class="formulario__input col-6" 
+				placeholder="Ingrese departamento"
+				onKeyPress={(e)=>validateTexts(e)} 
+				value={inputValue} 
+				onChange={(e)=> 
+				console.log(e.target.value)
+			}/>		
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 			</div>
 				<p class="formulario__input-error">Solo puede contener números.</p>
@@ -89,7 +148,15 @@ const FormularioDown = () => {
 		<div class="formulario__grupo">
 			<label class="formulario__label_Localidad">Localidad/CP</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input col-6" placeholder="Ingrese Localidad/CP"></input>
+				<input type="text" 
+						class="formulario__input col-6" 
+						placeholder="Ingrese Localidad/CP"
+						onKeyPress={(e)=>validateTexts(e)}
+						maxlength="100" 
+						value={inputValue} 
+						onChange={(e)=> 
+						console.log(e.target.value)
+					}/>		
 				<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">Solo puede contener letras.</p>
@@ -131,11 +198,20 @@ const FormularioDown = () => {
 		{/* <!--Grupo: Observaciones -->		 */}
 		<div class="mb-1">
 			<label class="form-label mb-0">Observaciones</label>
-			<textarea class="form-control mt-0" placeholder="Ingrese sus observaciones" rows="3"></textarea>
+			<textarea class="form-control mt-0" 
+						maxlength="255" 
+						placeholder="Ingrese sus observaciones" 
+						rows="3"
+						onKeyPress={(e)=>validateTexts(e)} 
+						maxLength="255" 
+						value={inputValue} 
+						onChange={(e)=> 
+						console.log(e.target.value)
+					}/>		
 		</div>
 		</form>
         {/* <!--Fin-- SegundaSectionDown---> */}
     </div>
-  )
-}
+  );
+};
 export default FormularioDown
