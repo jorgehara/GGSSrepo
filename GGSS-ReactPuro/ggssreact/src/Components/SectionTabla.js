@@ -8,37 +8,37 @@ const SectionTabla = () => {
 		    <form action="" class="formularioTabla">
 	      {/* <!----TABLA -----------------> */}
 
-        <div  class="tablaDomicilio">
-        <div class="container p-2 my-2 col-11">
+        <div  class="tablaDomicilio mx-0">
+        <div class="container m-2">
           <table class="table-danger table-striped">
             <thead>
               <tr>
-              <th scope="col">Predeterminado</th>
-              <th scope="col">Calle</th>
-              <th scope="col">Número</th>
-              <th scope="col">Barrio</th>
-              <th scope="col">Localidad</th>
-              <th scope="col">Piso/Of/Dpto</th>
+              <th scope="col" class="px-2">Predeterminado</th>
+              <th scope="col" class="px-2">Calle</th>
+              <th scope="col" class="px-2">Número</th>
+              <th scope="col" class="px-2">Barrio</th>
+              <th scope="col" class="px-2">Localidad</th>
+              <th scope="col" class="px-2">Piso/Of/Dpto</th>
               </tr>
             </thead>
            <tbody class="table-group-divider" id="cuerpodetabla" >
-           <th scope="row">
-           <input type="text" id="capitulo" placeholder="Predeterminado"></input> 
+           <th scope="row" class="px-2">
+           <input type="checkbox" class="border-0 px-2" id="capitulo" placeholder="Predeterminado"></input> 
            </th>
            <th scope="row">
-           <input type="text" id="opcion1" placeholder="Calle"></input>
+           <input type="text" class="border-0 px-2" id="opcion1" placeholder="Calle"></input>
            </th>
            <th scope="row">
-           <input type="text" id="opcion2" placeholder="Número"></input>
+           <input type="text" class="border-0 px-2" id="opcion2" placeholder="Número"></input>
            </th>
            <th scope="row">
-           <input type="text" id="opcion3" placeholder="Barrio"></input>
+           <input type="text" class="border-0 px-2" id="opcion3" placeholder="Barrio"></input>
            </th>
            <th scope="row">
-           <input type="text" id="opcion2" placeholder="Localidad"></input>
+           <input type="text" class="border-0 px-2" id="opcion2" placeholder="Localidad"></input>
            </th>
            <th scope="row">
-           <input type="text" id="opcion3" placeholder="Piso/Of/Dpto"></input>
+           <input type="text" class="border-0 px-2" id="opcion3" placeholder="Piso/Of/Dpto"></input>
            </th>
           
 
