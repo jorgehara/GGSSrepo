@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DragArea from './DragArea';
+import VetanaLateral from './VentanaLateral';
 
 
 const FormularioUp = () => {
@@ -74,18 +75,29 @@ const FormularioUp = () => {
 // }
 
 return (
+		<div>
 	<div>
 		<div class="formulario__grupo">
 			<label for="usuario" class="mainABMTitle">Datos Personales</label>
 		</div> 
-			<form action='' className='formulario'   
-			// onSubmit={sendData}
-			>
 
-	{/* <!------PrimerSectionUp-------> */}
-			<div>  
-	{/* DIv  Colunma Izquierda  */}
-	{/* <!--Grupo: Legajo --> */}
+<div class="container text-center">
+  <div class="row align-items-start">
+    <div class="col">
+			{/* div Barra Lateral   */}
+		<VetanaLateral/>
+    </div>
+    <div class="col">
+	<div
+	//div Central desde Legajo a Nacionalidad
+	>
+
+		<div action='' className='formulario'
+			// onSubmit={sendData}
+		>
+
+		{/* <!------PrimerSectionUp-------> */}
+		{/* <!--Grupo: Legajo --> */}
 	<div class="formulario__grupo">
 	<label for="telefono" class="label label-info" className="formulario__label">Legajo N°</label>
 	<div class="formulario__grupo-input">
@@ -237,11 +249,14 @@ return (
 	</div>
 	</div>
 	</div>
-	<div>
+	</div>
 
-		{/* Div Colunma Derecha */}
-		{/* <!-- Grupo: Estado --> */}
-
+    </div>
+    <div class="col">
+	<div
+	//div Derecha de Estado hasta Estudios
+	>
+					{/* <!-- Grupo: Estado --> */}
 	<div class="formulario__grupo">
 	<label for="nombre" class="formulario__label  pr-1 pl-0 ml-0 mr-1 col-2">Estado</label>
 			<select class="form-select col-3" aria-label="Default select example">
@@ -363,8 +378,16 @@ return (
 			<p class="formulario__input-error">Solo puede contener letras.</p>
 		</div>
 	</div>
-
 	</div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
 		{/* <!--Grupo: Observaciones -->*/}
 		<div class="mb-3">
 			<label class="form-label mb-0">Observaciones</label>
@@ -412,8 +435,10 @@ return (
 	{/* <div class="d-inline-flex p-2 bd-highlight "> */}
 	{/* </div>					 */}
 	{/* <!------Fin----PrimerSectionUp------> */}
-	</form>
+	
+
 	</div>
+		</div>
   )
 }
 

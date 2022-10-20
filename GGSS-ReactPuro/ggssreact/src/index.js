@@ -11,6 +11,7 @@ import FormularioDown from './Components/FormularioDown';
 import SectionCRUD from './Components/SectionCRUD';
 import Footer from './Components/Footer';
 import ModalBoostrap from './Components/ModalBoostrap';
+// import VetanaLateral from './Components/VentanaLateral';
 // import ModalEstudios from './ComponentsModalEmpleado/ModalEstudios';
 // import PoppusOk from './Components/PoppusOK';
 // import ContactForm from './Components/ContactForm';
@@ -19,21 +20,24 @@ import ModalBoostrap from './Components/ModalBoostrap';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/> 
+
+    <div >
+    <App/>
+    {/* <VetanaLateral/> */}
+    </div>
+    <div>
     {/* <Modals/> */}
     {/* <ContactForm/> */}
     {/* <PoppusOk/> */}
     <ModalBoostrap/>
     <Navbar/>
+    
     <FormularioUp/>
     <FormularioDown/>
     <SectionTabla/>
     <SectionCRUD/>
     <Footer/>
-
-
-    
-
+    </div>
 
   </React.StrictMode>
 );

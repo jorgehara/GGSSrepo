@@ -69,15 +69,15 @@ main {
 
 .formulario {
 	/* margin-top: 10px; */
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+	/* display: grid; */
+	/* grid-template-columns: 1fr 1fr; */
 	/* gap: 0px; */
 	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
 }
 
 .formulario__grupo{
-	display: flex;
-	width: 558px;
+	/* display: flex; */
+	/* width: 558px; */
 }
 .formulario__grupo_Nacimiento{
 	display: flex;

@@ -30,11 +30,11 @@ body {
 
 
 .formulario {
-	min-width: 600px;
+	/* min-width: 600px; */
 	border-radius: 5px;
-    padding: 9px 57px;
+    /* padding: 9px 57px; */
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-	align-items: baseline;
+	/* align-items: baseline; */
 }
 
 .formulario > div {
@@ -142,12 +142,12 @@ body {
 /* ----- -----  Mediaqueries ----- ----- */
 @media screen and (max-width: 800px) {
 	.formulario {
-		grid-template-columns: 1fr;
+		/* grid-template-columns: 1fr; */
 	}
 
 
 	.formulario	{ 
-		grid-column: 1;
+		/* grid-column: 1; */
 	}
 
 	.formulario__btn {
