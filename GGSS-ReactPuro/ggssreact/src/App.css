@@ -1,6 +1,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 * {
-	box-sizing: border-box;
+	/* box-sizing: border-box; */
 }
 
 
@@ -72,12 +72,12 @@ main {
 	/* display: grid; */
 	/* grid-template-columns: 1fr 1fr; */
 	/* gap: 0px; */
-	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
+	/* box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px; */
 }
 
 .formulario__grupo{
-	/* display: flex; */
-	/* width: 558px; */
+	display: flex; 
+	width: 558px;
 }
 .formulario__grupo_Nacimiento{
 	display: flex;
@@ -87,8 +87,8 @@ main {
 }
 
 .formulario__grupo_Telefono{
-	display: flex;
-	width: 567px;
+	display: flex; 
+	width: 567px; 
     margin-top: 50px;
     margin-left: -376px;
 }
@@ -116,7 +116,7 @@ main {
 
 .form_select{
 	width: 14%;
-	margin-left: -31px;
+	margin-left: 90px;
 	height: 45px;
 	margin-top: 1px;
 }
@@ -124,11 +124,11 @@ main {
 .formularioTabla{
 	/* margin-top: 0px; */
 	/* padding-top: 10px; */
-	display: grid;
+	/* display: grid;
 	grid-template-columns: 1fr;
 	gap: 10px;
 	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
-	border-radius: 5px;
+	border-radius: 5px; */
 }
 .tablaDomicilio{
 	width: 10%;
@@ -136,18 +136,18 @@ main {
 }
 
 .encabezadoFamilia {
-	margin-top: 10px;
+	/* margin-top: 10px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 10px;
-	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px;
+	box-shadow: rgba(0, 0, 0, 0.99) 1px 1.5px 4px; */
 }
 
 .span{
-	color: orangered;
+	/* color: orangered;
 	border-radius: 50%;
 	border: 2px solid orangered;
-	padding: 5px;
+	padding: 5px; */
 }
 
 .formulario__label {
@@ -155,14 +155,23 @@ main {
 	font-weight: 700;
 	width: 30%;
 }
+.formulario__label-Obs{
+	display: block;
+    font-weight: 700;
+    width: 0%;
+    margin-top: 0px;
+    margin-left: 20px;
+    margin-right: -5px;
+}
+
 
 .formulario__label_Nacimiento{
 	display: block;
 	font-weight: 700;
-	width: 24%;
+	width: 24%; 
 }
 
-/* .formulario__label_Observaciones{
+/* formulario__label_Observaciones{}
 	/* margin-inline: 10px; */
 	/* font-style: normal;
     font-weight: 400; */
@@ -231,6 +240,14 @@ main {
 	color: #21252999;
 	/* color: #1f1f1f; */
 }
+.form-control-TextArea{
+	margin-top: 30px;
+    margin-left: 5px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    width: 300px;
+    height: 100px;
+}
 .form-control_Provincia:hover{
 	border-color: #0d6efd;
 	box-sizing: border-box;
@@ -240,11 +257,19 @@ main {
 	box-sizing: border-box;
 }
 .formulario__grupo-input {
-	position: relative;
-	width: 500px;
 	display: flex;
-	margin-left: -58px;
+	position: relative;
+	width: 300px;
+	margin-left: -50px;
 }
+.formulario__grupo-input-Domicilios {
+	display: flex;
+	position: relative;
+	/* width: 300px; */
+	/* margin-left: -50px; */
+}
+
+
 
 .formulario__grupo-input_SelecProvincia {
 	position: relative;
@@ -254,28 +279,27 @@ main {
 
 }
 .formulario__grupo-imgProfile {
-	position: relative;
+	/* position: relative;
 	margin-left: 170px;
-	margin-top: -20px;
+	margin-top: -20px; */
 
 }
 .imgProfile {
-	border-radius: 105px;
+	/* border-radius: 105px; */
 }
 
 .formulario__input {
-	width: 400px;
-	margin-right: 10px;
+	width: 450px;
 	background: #fff;
 	border: 3px solid transparent;
 	border-radius: 3px;
 	height: 45px;
 	line-height: 45px;
-	padding: 0 40px 0 10px;
 	transition: .3s ease all;
 }
 .formulario-input-DNI {
-	width: 50px;
+	width: 107px;
+	text-align: start;
 	margin-left: 0px;
     margin-right: 0px;
 	background: #fff;
@@ -288,7 +312,7 @@ main {
 }
 
 .formulario-input-Legajo{
-	width: 50px;
+	width: 130px;
 	margin-left: 0px;
     margin-right: 0px;
 	background: #fff;
@@ -313,7 +337,7 @@ main {
 }
 
 .formulario__input-error-activo {
-	display: block;
+	/* display: block; */
 }
 
 .formulario__validacion-estado {
@@ -326,7 +350,7 @@ main {
 }
 
 .formulario__checkbox {
-	margin-right: 10px;
+	/* margin-right: 10px; */
 }
 
 .formulario__grupo-terminos,
@@ -336,20 +360,20 @@ main {
 }
 
 .formulario__mensaje {
-	height: 45px;
+	/* height: 45px;
 	line-height: 45px;
 	background: #F66060;
 	padding: 0 15px;
 	border-radius: 3px;
-	display: none;
+	display: none; */
 }
 
 .formulario__mensaje-activo {
-	display: block;
+	/* display: block; */
 }
 
 .formulario__mensaje p {
-	margin: 0;
+	/* margin: 0; */
 }
 
 .formulario__grupo-btn-enviar {
@@ -359,9 +383,9 @@ main {
 }
 
 .formulario__btn {
+	text-align: center;
 	height: 45px;
-	line-height: 45px;
-	width: 30%;
+	width: 200px;
 	background: #a61f34;
     border-color: #780F07;
 	color: #fff;
@@ -369,9 +393,7 @@ main {
 	border-radius: 5px;
 	cursor: pointer;
 	transition: .1s ease all;
-	font-weight: bold;
-	width: 200px; 
-	margin-right: 20px;
+	margin-right: 10px;
 }
 
 .formulario__btn:hover {
@@ -383,7 +405,7 @@ main {
 .formulario__mensaje-exito {
 	font-size: 14px;
 	color: #119200;
-	display: none;
+	display: none; 
 }
 
 .formulario__mensaje-exito-activo {
@@ -419,7 +441,7 @@ main {
 .btn-validacion{
 	border-color: #bb2929;
 	color: #bb2929;
-	height: 42px;
+	height: 40px;
     margin-top: 3px;
 }
 
@@ -440,21 +462,21 @@ padding-left: 80px;
 }
 
 .btn-lic-fran{
-	width: 200px;
-	margin-left: 100px;
+	/* width: 200px;
+	margin-left: 100px; */
 }
 
 .btn-perfil {
-	width: 80px;
-	margin-top: 5px;
+	/* width: 80px;
+	margin-top: 5px; */
 }
 
 .btn-perfil-aceptar{
-	margin-left: 0px;
+	/* margin-left: 0px; */
 }
 
 .btn-perfil-cancelar{
-	margin-left: 3px;
+	/* margin-left: 3px; */
 }
 
 .perfilImage{
@@ -490,13 +512,13 @@ padding-left: 80px;
 /* ----- -----  Mediaqueries ----- ----- */
 @media screen and (max-width: 800px) {
 	.formulario {
-		grid-template-columns: 1fr;
+		grid-template-columns: 4fr;
 	}
 
 	.formulario__grupo-terminos,
 	.formulario__mensaje,
 	.formulario__grupo-btn-enviar {
-		grid-column: 1;
+		grid-column: 4;
 	}
 
 	.formulario__btn {

@@ -18,27 +18,23 @@ function DragArea() {
     <div>
       <StyleDragArea>
         <div className="image-upload-wrap">
-        <p class="h5">Arrastre su imagen</p>
+        <p class="h5 ml-1">Arrastre su imagen</p>
           <input
-            className="file-upload-input"
+            className="file-upload-input ml-1"
             type="file"
-            accept="image/*"
+            accept="image/png, image/jpg"
             multiple
             onChange={(e) => {
               changeImage(e);
             }}
           />
-          {/* <div className="text-information">
-            {/* <h5>Arrastre su imagen aqui</h5> */}
-          {/* </div>  */}
         </div>
-
-        <div className="center">
+        <div className="center ml-1 mr-6">
           <img
             src={ImageSelectedPrevious}
             alt=""
-            height="160px"
-            width="187px"
+            width="220px" 
+            height="100px"
           />
         </div>
       </StyleDragArea>
@@ -50,31 +46,25 @@ export default DragArea;
 
 const StyleDragArea = styled.div`
   .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -6px;
-    // border-radius: 223px;
-    margin-left: -210px;
-    //border: 4px dashed #d0d7de;
-
+    display: block;
+    width: 230px;
+    border: 4px dashed #d0d7de;
   }
   .file-upload-content {
-    display: none;
-    text-align: center;
+    /* display: none;
+    text-align: center; */
 
   }
   
   .file-upload-input {
-    //background: green;
     position: absolute;
-    margin-right: 100px;
+    margin-right: 0px;
     margin: 0;
     padding: 0;
-    width: 192px;
-    height: 154px;
-    //outline: none;
+    width: 225px;
+    height: 105px;
     opacity: 0;
+    border: 4px dashed #d0d7de;
     cursor: pointer;
 
 
@@ -109,8 +99,8 @@ const StyleDragArea = styled.div`
   }
   
   .text-information {
-    margin-top: 45px;
-    text-align: center;
+    /* margin-top: 45px;
+    text-align: center; */
    
   }
   .text-information:focus {

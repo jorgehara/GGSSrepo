@@ -81,27 +81,30 @@ return (
 			<label for="usuario" class="mainABMTitle">Datos Personales</label>
 		</div> 
 
-<div class="container text-center">
-  <div class="row align-items-start">
-    <div class="col">
+<div class="container text-start">
+  <div class="row align-items-start border border-dark p-2 mb-0 border-opacity-25">
+    <div class="col-3 ">
 			{/* div Barra Lateral   */}
 		<VetanaLateral/>
     </div>
-    <div class="col">
+    <div class="col-4 ">
 	<div
 	//div Central desde Legajo a Nacionalidad
 	>
 
-		<div action='' className='formulario'
+		<div 
+		action='' 
+		class="container text-start"
+		// className='formulario'
 			// onSubmit={sendData}
 		>
-
 		{/* <!------PrimerSectionUp-------> */}
 		{/* <!--Grupo: Legajo --> */}
 	<div class="formulario__grupo">
-	<label for="telefono" class="label label-info" className="formulario__label">Legajo N°</label>
+	<label className="formulario__label">Legajo N°</label>
 	<div class="formulario__grupo-input">
-		<input type="text" class="formulario-input-Legajo col-4" 
+		<input type="text" 
+		class="formulario-input-Legajo col-5 px-1" 
 				placeholder="N° de Legajo" 
 				onKeyPress={(e)=>validateNumbers(e)} 
 				value={inputValue} 
@@ -121,7 +124,7 @@ return (
 		<div class="formulario__grupo" >
 		<label class="formulario__label">Apellido</label>
 		<div class="formulario__grupo-input">
-			<input type="text"  class="formulario__input col-6" 
+			<input type="text"  class="formulario__input col-6 px-1" 
 					name="nombre" 
 					placeholder="Ingrese Apellidos"
 					onKeyPress={(e)=>validateTexts(e)} 
@@ -138,7 +141,7 @@ return (
 		<div class="formulario__grupo" >
 			<label for="nombre" class="formulario__label">Nombres</label>
 			<div class="formulario__grupo-input">
-				<input type="text" class="formulario__input col-6" 
+				<input type="text" class="formulario__input col-6 px-1" 
 						name="nombre" 
 						placeholder="Ingrese Nombres"
 						onKeyPress={(e)=>validateTexts(e)} 
@@ -153,14 +156,14 @@ return (
 			</div>
 		{/* <!-- Grupo: D.N.I. --> */}
 		<div class="formulario__grupo" >
-		<label class="formulario-label-DNI col-3 ">DNI</label>
+		<label class="formulario-label-DNI">DNI</label>
 		<select class="form-select form_select " >
 			{/* <option selected>DNI</option> */}
 			<option value="1">DNI</option>
 			<option value="2">LC</option>
 			<option value="3">LE</option>
 		</select>
-		<input type="text" className="formulario-input-DNI col-2 ml-2" 
+		<input type="text" className="formulario-input-DNI col-3 ml-1 px-1" 
 				maxlength="8"
 				placeholder="23456789"
 				onKeyPress={(e)=>validateNumbersDNI(e)} 
@@ -176,7 +179,7 @@ return (
 	<div class="formulario__grupo">
 		<label class="label label-info formulario__label">C.U.I.L.</label>
 		<div class="formulario__grupo-input">
-			<input type="text" id="cuit" class="formulario__input col-4" 
+			<input type="text" id="cuit" class="formulario__input col-6 px-1" 
 			maxlength="11"
 			placeholder="##-########-#" 
 			onKeyPress={(e)=>validateNumbers(e)} 
@@ -194,8 +197,7 @@ return (
 		<div class="formulario__grupo" >
 		<label for="telefono" class="formulario__label">Teléfono</label>
 		<div class="formulario__grupo-input">
-			<input type="text" class="formulario_input col-4" 
-				name="telefono"
+			<input type="text" class="formulario-input-DNI col-5 px-1" 
 				maxlength="100" 
 				placeholder="1151993165"
 				onKeyPress={(e)=>validateNumbersTelefono(e)} 
@@ -212,9 +214,8 @@ return (
 		<div class="formulario__grupo" >
 		<label for="nombre" class="formulario__label">Estado Civil</label>
 		<div class="formulario__grupo-input">
-			<input type="text" class="formulario__input col-6" 
+			<input type="text" class="formulario__input col-7 px-1" 
 					name="nombre" 
-					
 					placeholder="Ingrese Estado Civil"
 					onKeyPress={(e)=>validateTexts(e)} 
 						value={inputValue} 
@@ -231,7 +232,7 @@ return (
 		<div class="formulario__grupo" >
 		<label for="nombre" class="formulario__label">Nacionalidad</label>
 		<div class="formulario__grupo-input">
-			<input type="text" class="formulario__input col-6" 
+			<input type="text" class="formulario__input col-7 px-1" 
 					name="nombre"
 					placeholder="Ingrese Nacionalidad"
 					onKeyPress={(e)=>validateTexts(e)} 
@@ -246,20 +247,21 @@ return (
 				<p class="formulario__input-error">Solo puede contener letras.</p>
 		</div>
 	</div>
-	</div>
-	</div>
-	</div>
-	</div>
 
-    </div>
-    <div class="col">
+	</div>
+</div>
+
+	</div>
+	</div>
+	</div>
+    <div class="col-4">
 	<div
 	//div Derecha de Estado hasta Estudios
 	>
 					{/* <!-- Grupo: Estado --> */}
 	<div class="formulario__grupo">
-	<label for="nombre" class="formulario__label  pr-1 pl-0 ml-0 mr-1 col-2">Estado</label>
-			<select class="form-select col-3" aria-label="Default select example">
+	<label for="nombre" class="formulario__label col-2 px-0 mr-4">Estado</label>
+			<select class="form-select col-3 px-1" aria-label="Default select example">
 					{/* <option selected>Open this select menu</option> */}
 					<option value="1">One</option>
 					<option value="2">Two</option>
@@ -278,8 +280,8 @@ return (
 	
 	{/*<!-- Grupo: Masculino & Femenino -->*/}
 	<div class="formulario__grupo" >
-		<label for="nombre" class="formulario__label_Sexo">Sexo</label>
-		<div class="form-check">
+		<label class="formulario__label_Sexo col-2 mt-2 mb-2 px-0 mr-4">Sexo</label>
+		<div class="form-check mt-2 mb-2">
 			<input class="form-check-input" type="radio" 
 					name="flexRadioDefault" 
 					id="flexRadioDefault1"/>
@@ -288,7 +290,7 @@ return (
 			Masculino
 			</label>
 		</div>
-		<div class="form-check">
+		<div class="form-check mt-2 mb-2 ml-1">
 			<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
 			<label class="form-check-label" for="flexRadioDefault1">
 			Femenino
@@ -298,8 +300,8 @@ return (
 
 		{/*<!--Grupo: Nacimiento -->*/}
 		<div class="formulario__grupo" >
-		<label for="usuario" class="formulario__label_Nacimiento">Nacimiento</label>
-		<div class="formulario__grupo-input col-6">
+		<label for="usuario" class="formulario__label_Nacimiento mt-3 col-2 px-0 mr-4">Nacimiento</label>
+		<div class="formulario-input-DNI px-0 mx-0 mb-2">
 			<input type="date" 
 					id="birthday" 
 					name="birthday"
@@ -314,9 +316,9 @@ return (
 
 	{/*<!-- Grupo: Móvil -->*/}
 	<div class="formulario__grupo" >
-		<label for="telefono" class="formulario__label">Móvil</label>
+		<label for="telefono" class="formulario__label mt-2">Móvil</label>
 		<div class="formulario__grupo-input">
-			<input type="text" class="formulario_input col-4" 
+			<input type="text" class="formulario-input-DNI col-4" 
 			name="telefono" 
 			placeholder="1151993165"
 				onKeyPress={(e)=>validateNumbers(e)} 
@@ -331,9 +333,9 @@ return (
 	</div>
 		{/* <!--Grupo: E-mail --> */}
 	<div class="formulario__grupo" >
-		<label for="correo" class="formulario__label">E-mail</label>
+		<label for="correo" class="formulario__label mt-2">E-mail</label>
 		<div class="formulario__grupo-input">
-			<input type="email" class="formulario__input col-6" 
+			<input type="email" class="formulario__input col-8" 
 					name="correo" 
 					placeholder="correo@correo.com"
 					onKeyPress={(e)=>validateEmails(e)} 
@@ -349,10 +351,10 @@ return (
 	
 	{/* <!--Grupo: País de Origen --> */}
 	<div class="formulario__grupo" >
-		<label class="formulario__label" >País de Origen</label>
+		<label class="formulario__label mt-2" >País de Origen</label>
 		<div class="formulario__grupo-input">
 			<input type="text" 
-					class="formulario__input col-6"
+					class="formulario__input col-8"
 					maxlength="100"  
 					placeholder="Ingrese País de Origen"
 					/>
@@ -365,10 +367,9 @@ return (
 	
 	{/* <!--Grupo: Estudios --> */}
 	<div class="formulario__grupo" >
-		
-		<label for="nombre" class="formulario__label">Estudios</label>
+		<label for="nombre" class="formulario__label mt-2">Estudios</label>
 		<div class="formulario__grupo-input">
-			<input type="text" class="formulario__input col-6" 
+			<input type="text" class="formulario__input col-8" 
 					name="nombre" 
 					placeholder="Ingrese Estudios"
 					/>
@@ -378,68 +379,72 @@ return (
 			<p class="formulario__input-error">Solo puede contener letras.</p>
 		</div>
 	</div>
+
+
 	</div>
+	</div>
+</div>
+</div>
+
+<div class="container text-start"> 
+<div class="row align-items-start border border-dark p-2 mb-2 border-opacity-25">
+
+<div class="col-3 ">
+			{/* Ghost-div   */}
     </div>
-  </div>
-  </div>
 
 
-
-
-
-
+<div class="col-4">
 		{/* <!--Grupo: Observaciones -->*/}
-		<div class="mb-3">
-			<label class="form-label mb-0">Observaciones</label>
-			<textarea class="form-control mt-0" 
-						maxlength="255" 
-						placeholder="Ingrese sus observaciones" 
-						rows="3">
-
-
-						</textarea>
-		{/* <!-- Grupo: Boton Cancelar --> */}
-	<div class="formulario__grupo aceptarCancelar" >
-		<div class="formulario__grupo-input">
-			<button type="submit" class="formulario__btn col-6" >Cancelar</button>
+		<div class="formulario__grupo ">
+		<label for="nombre" class="formulario__label-Obs">Observaciones</label>
+		<div class="form-floating ">
+  				<textarea class="form-control-TextArea"
+							maxlength="255" 
+							placeholder="Ingrese sus observaciones" 
+							id="floatingTextarea2">
+							</textarea>
+			{/* <!-- Grupo: Boton Cancelar & Aceptar --> */}
+		<div class="formulario__grupo">
+			<div class="formulario__grupo-input pl-2">
+				<button type="submit" class="formulario__btn ml-5">Cancelar</button>
+				<button type="submit" class="formulario__btn">Aceptar</button>
 		</div>
-		<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-	{/* <!-- Grupo: Boton Aceptar --> */}
-		<div class="formulario__grupo-input">
-			<button type="submit" class="formulario__btn col-6" >Aceptar</button>
+			<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 		</div>
-		<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+		</div>
 	</div>
-		</div>
-	{/* <!-- Grupo: Div Perfil --> */}
-	<div class="formulario__grupo" >
-		<div class="formulario__grupo-imgProfile">
-				<div class="perfilImage" >
-					
+</div>
+
+<div class="col-4">
+		{/* <!-- Grupo: Div Perfil --> */}
+		<div class="formulario__grupo mt-2 mr-1">
+		<div class="">
+				<div class="ml-1">
 					<input type="file" id="image_input" 
-					// class="form-control form-control-sm" 
-					accept="image/png, image/jpg"></input>
+						accept="image/png, image/jpg"/>
 				</div>
-				<div class="divDragArea">		
+				<div>		
 					<DragArea/>
 				</div>
-						
-				<div class="d-inline-flex bd-highlight " >
-				
-			<button  type="submit" class="formulario__btn btn-perfil btn-perfil-aceptar " >Cancelar</button>				
-			<button type="submit" class="formulario__btn btn-perfil btn-perfil-cancelar" > Aceptar</button>
-		</div>
+					{/* <!-- Grupo: Boton Cancelar & Aceptar --> */}
+		<div class="formulario__grupo">
+			<div class="formulario__grupo-input pl-2 mt-2">
+				<button type="submit" class="formulario__btn ml-5">Cancelar</button>
+				<button type="submit" class="formulario__btn">Aceptar</button>
+			</div>
+			<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
 		</div>
 	</div>
-	{/* <!--Grupo: Botones Cancelar Perfil -->		 */}
-	{/* <div class="d-inline-flex p-2 bd-highlight "> */}
-	{/* </div>					 */}
-	{/* <!------Fin----PrimerSectionUp------> */}
+	</div>
+</div>
+</div>
+</div>
+
+
+</div>
+	</div>
 	
-
-	</div>
-		</div>
-  )
-}
-
+  );
+};
 export default FormularioUp;

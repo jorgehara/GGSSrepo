@@ -1,4 +1,4 @@
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 // import Nav from 'react-bootstrap/Nav';
@@ -11,7 +11,7 @@ function VetanaLateral() {
     <>
     <Navbar 
         bg="light" 
-        className=""
+        className="shadow-sm p-0 mb-0 bg-light"
         
         >
           <Container fluid>
@@ -22,13 +22,14 @@ function VetanaLateral() {
                     className="me-2"
                     aria-label="Search"
                   />
-                  <Button variant="outline-success">Buscar</Button>
+                  {/* <Button variant="outline-success">Buscar</Button> */}
                 </Form>
           </Container>
         </Navbar>
       <Navbar 
         bg="light" 
-        className="">
+        className="shadow-sm p-0 mb-0 bg-light"
+        >
           <Container fluid>
                 <Form className="d-flex">
                   <Form.Control
@@ -37,10 +38,8 @@ function VetanaLateral() {
                     className="me-2"
                     aria-label="Search"
                   />
-                  <Button variant="outline-success">Buscar</Button>
+                  {/* <Button variant="outline-success">Buscar</Button> */}
                 </Form>
-
-
           </Container>
         </Navbar>
         <table class="table table-striped col-5">
