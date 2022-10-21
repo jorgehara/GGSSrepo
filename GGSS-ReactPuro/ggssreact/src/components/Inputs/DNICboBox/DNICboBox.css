@@ -1,0 +1,42 @@
+.formulario__grupo__inputs2{
+    display: grid;
+    grid-template-areas: "nombres primero segundo iconss errors";
+    grid-template-columns: 0.6fr 0.5fr 0.9fr 0.1fr 2.7fr;
+    grid-template-rows: 1fr;
+    margin-top: 2%;
+}
+.form__grupo__labels{
+    grid-area: nombres;   
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: flex-start; 
+}
+.form__grupo__label__label{
+    margin: 0;
+    margin-left: 5px;
+    height: 100%;
+}
+.form__grupo__input1{
+    grid-area: primero;
+    margin: 0;
+    margin-left: 5px;
+}
+.form__grupo__input2{
+    grid-area: segundo;
+    margin: 0;
+}
+.form__input{
+    width: 100%;
+    
+}
+.form__grupo__icons{
+    grid-area: icons;
+    margin: 0;
+    margin-left: 10px;
+}
+.form__grupo__errors{
+    grid-area: error;
+    margin: 0;
+    margin-left: 10px;
+}

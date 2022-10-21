@@ -1,0 +1,20 @@
+.img__drop{
+    display: block;
+    width: 230px;
+    border: 4px dashed #d0d7de;
+}
+.file-upload-input {
+position: absolute;
+margin-right: 0px;
+margin: 0;
+padding: 0;
+width: 225px;
+height: 105px;
+opacity: 0;
+border: 4px dashed #d0d7de;
+cursor: pointer;
+}
+.image-upload-wrap:hover {
+    background-color: transparent;
+   
+   }

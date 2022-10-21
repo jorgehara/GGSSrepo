@@ -1,0 +1,42 @@
+.formulario__grupo__inputs{
+    display: grid;
+    grid-template-areas: "nombre input icons error";
+    grid-template-columns: 0.4fr 1fr 0.1fr 1.5fr;
+    grid-template-rows: 1fr;
+    margin-top: 2%;
+}
+.form__grupo__label{
+    grid-area: nombre;   
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: flex-start; 
+}
+.form__grupo__label__label{
+    margin: 0;
+    margin-left: 5px;
+    height: 100%;
+}
+.form__grupo__input{
+    grid-area: input;
+    margin: 0;
+    margin-left: 5px;
+}
+.form__grupo__icon{
+    grid-area: icons;
+    margin: 0;
+    margin-left: 5px;
+
+    font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+}
+.form__grupo__error{
+    grid-area: errors;
+    margin: 0;
+    margin-left: 5px;
+
+    font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+}
