@@ -4,11 +4,15 @@ import "./InputForm.css"
 const InputForm = ({nameInput, messageError, placeHolder}) => {
   return (
     <div className="formulario__grupo__inputs">
-        <div className='form__grupo__label'>
-            <label className='form__grupo__label__label' for="legajo">{nameInput}</label>
+        <div className='formulario__grupo'>
+            <label className='formulario__label' for="legajo">{nameInput}</label>
         </div>
-        <div className='form__grupo__input'>
-            <input type="text" className='form__grupo__input' id="legajo" placeholder={placeHolder}/>
+        <div className='form__grupo-input'>
+            <input type="text" 
+                    className='formulario-input-Legajo' 
+                    id="legajo" 
+                    placeholder={placeHolder}
+                    />
         </div>
         <div className='form__grupo__icons'>
             <i className="fas fa-times-circle form__grupo__icon"></i>            

@@ -17,7 +17,8 @@ function App() {
     <Switch>
       <Route path="/datos-personales" exact element={<DatosPersonales />} />
       <Route path="/domicilios" exact element={<Domicilios />} />
-    </Switch></>
+    </Switch>
+    </>
   );
 }
 
