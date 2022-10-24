@@ -47,6 +47,19 @@ const Navbar = () => {
 				<a class="nav-link" href="/some/valid/uri">Extras</a>
 				</li>
 				<li class="nav-item">
+				<li class="nav-item">
+				<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Lista de Datos
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><Link class="dropdown-item" to="/lista-datos">Lista Tabla de Datos</Link></li>
+                    </ul>
+                </li>
+				</ul>
+				</li>
+				<li class="nav-item"></li>
 			</li>
       </ul>
     </div>

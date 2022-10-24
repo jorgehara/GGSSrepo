@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./InputForm.css"
 
-const InputForm = ({nameInput, messageError, placeHolder}) => {
+const InputForm = ({nameInput, messageError, placeHolder, validateNumbers}) => {
+
+    const [inputValue, setInputValue] = useState ();
+
+
+
+
   return (
     <div className="formulario__grupo__inputs">
         <div className='formulario__grupo'>
@@ -10,8 +16,16 @@ const InputForm = ({nameInput, messageError, placeHolder}) => {
         <div className='form__grupo-input'>
             <input type="text" 
                     className='formulario-input-Legajo' 
-                    id="legajo" 
+                    
+                                id="legajo" 
+                                
                     placeholder={placeHolder}
+                                onKeyPress={(e)=>validateNumbers(e)} 
+				                value={inputValue} 
+				                onChange={(e)=> 
+                                setInputValue(e.target.value) 
+                                }
+                                
                     />
         </div>
         <div className='form__grupo__icons'>

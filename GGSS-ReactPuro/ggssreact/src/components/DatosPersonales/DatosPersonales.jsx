@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 // import ButtonLarge from '../Buttons/ButtonLarge';
 import DNICboBox from '../Inputs/DNICboBox/DNICboBox';
@@ -17,6 +18,52 @@ const DatosPersonales = () => {
 
     const optionsDNI = [ "DNI", "LC", "LE"]
     const estados = ["Activo", "Baja", "Suspendido", "Anulado"]
+
+    
+    const [error, setError] = useState("");
+    const [inputValue, setInputValue] = useState ();
+
+
+
+
+    const validateNumbers =(e)=>{		
+        if (!/[0-9]/.test(e.key)) {
+            setError("Ingrese sólo números");
+            e.preventDefault();
+        }
+    }
+    const validateNumbersTelefono =(e)=>{		
+        if (!/[0-9]/.test(e.key)) {
+            setError("Ingrese sólo números");
+            e.preventDefault();
+        }
+    }
+    
+    const validateNumbersDNI =(e)=>{		
+        if (!/^([0-9]?){8}$/.test(e.key)) {
+            setError("Ingrese sólo números");
+            swal({
+                title: "¡Error!",
+                text: `${error}`,
+                icon: "error",
+              });
+            e.preventDefault();
+        }
+    }
+    const validateTexts =(e)=>{		
+        if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(e.key)) {
+            setError("Ingrese sólo letras y espacios");
+            e.preventDefault();
+        }
+    }
+    const validateEmails =(e)=>{		
+        if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(e.key)) {
+            setError("Ingrese sólo letras y espacios");
+            e.preventDefault();
+        }
+    }
+
+
 
   return (
         <div className='container'>
@@ -67,7 +114,7 @@ const DatosPersonales = () => {
             {/* <div class="container text-center"> */}
                 <div class="row row-cols-12">
                 {/* <div className='primera__columna col-3'>
-                    <InputForm nameInput=" "  messageError="Solo puede contener números." placeHolder="N° Legajo"/>
+                    <InputForm validations={validateNumbers} nameInput=" "  messageError="Solo puede contener números." placeHolder="N° Legajo"/>
                     <InputForm nameInput=" " messageError="Solo puede contener letras." placeHolder="Ingrese Nombres"/>
                 </div> */}
                 <div className='segunda__columna col-4'>
