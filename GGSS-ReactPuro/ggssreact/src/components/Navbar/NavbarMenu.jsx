@@ -25,25 +25,13 @@ const Navbar = () => {
                     </ul>
                 </li>
 				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">menu item</a>
+				<a class="nav-link" href="/some/valid/uri">Liquidación</a>
 				</li>
 				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">menu item</a>
+				<a class="nav-link" href="/some/valid/uri">Esquemas y Conceptos</a>
 				</li>
 				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">menu item</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">menu item</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">menu item</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">menu item</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">menu item</a>
+				<a class="nav-link" href="/some/valid/uri">Períodos</a>
 				</li>
 				<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,6 +46,15 @@ const Navbar = () => {
 						<li><Link class="dropdown-item" to="/lista-datos">etc</Link></li>
                     </ul>
                 </li>
+				<li class="nav-item">
+				<a class="nav-link" href="/some/valid/uri">Informes y Listados</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" href="/some/valid/uri">Parámetros</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" href="/some/valid/uri">Acerca de...</a>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/">Salir</a>
 				</li>

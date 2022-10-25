@@ -14,6 +14,7 @@ import Navbar from '../Navbar/Navbar';
 import printPannel from '../Navbar/printPannel';
 // import TableBasic from '../Tables/TableBasic';
 import "./DatosPersonales.css";
+import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
 
 
 const DatosPersonales = () => {
@@ -70,7 +71,7 @@ const DatosPersonales = () => {
         <div class="row">          
             <div className='Lateral-Izquierdo col-3'>
                 <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo"/>
-                <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres"/>
+                <InputForm nameInput="Apellido y Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres"/>
                 <div class="list-group h-75">
                     <a href="#" class="list-group-item list-group-item-action ">A simple default list group item</a>
                     <a href="#" class="list-group-item list-group-item-action ">A simple primary list group item</a>
@@ -80,7 +81,6 @@ const DatosPersonales = () => {
                     <a href="#" class="list-group-item list-group-item-action ">A simple warning list group item</a>
                     <a href="#" class="list-group-item list-group-item-action ">A simple info list group item</a>
                     <a href="#" class="list-group-item list-group-item-action ">A simple light list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple dark list group item</a>
                 </div>
                 <div class="d-inline-flex">
                 <ButtonLarge color="danger" tamaño="" justyfy="end m-1" nameButton="Agregar" />
@@ -188,13 +188,22 @@ const DatosPersonales = () => {
                     </div>  
                 </div>
             </div>
-            <div className= ''> Aca van los botones de aceptar y cancelar solo una vez para todas las solapas</div>
+            <div className= "d-flex justify-content-end"
+                > 
+            
+            <ButtonCancelarAceptar/>
+                
+            
+            </div>
             </div>
         </div>
             {/* 2do corte */}
+            <br />
+            <br />
             <div class="d-flex border row">
+
             <div className='col-2'>
-                <ButtonLarge color="danger" tamaño="" justyfy="cemter m-1" nameButton="Imprimir Constancia de Asignaciones Familiares" />
+            <ButtonLarge color="danger" tamaño="" justyfy="cemter m-1" nameButton="Imprimir Constancia de Asignaciones Familiares" />
             </div>
             <div className='col-2'>
             <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Certificado de Convenio/Oficio" />

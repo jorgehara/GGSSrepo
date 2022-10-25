@@ -19,8 +19,8 @@
 }
 .form__grupo__input1{
     grid-area: primero;
-    margin: 0;
-    margin-left: 5px;
+    /* margin: 0; */
+    /* margin-left: 5px; */
 }
 .form__grupo__input2{
     grid-area: segundo;
@@ -39,4 +39,37 @@
     grid-area: error;
     margin: 0;
     margin-left: 10px;
+}
+
+.formulario__grupo{
+	display: flex; 
+	width: 558px;
+}
+.formulario-label-DNI{
+	font-style: normal;
+	font-weight: 400;
+	color: black;
+	margin-top: 5px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	display: block;
+	border: none;
+}
+.form_select{
+	width: 61px;
+	margin-left: 60px;
+	height: 38px;
+	/* margin-top: 25px; */
+    margin-right: 5px;
+}
+.formulario-input-DNI{
+	width: 100px;
+	text-align: start;
+	margin-left: 0px;
+    margin-right: 0px;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 36px;
+	transition: .3s ease all;
 }
