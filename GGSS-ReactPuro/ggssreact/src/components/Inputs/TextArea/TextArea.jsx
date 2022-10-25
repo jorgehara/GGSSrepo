@@ -6,8 +6,14 @@ const TextArea = ({inputName}) => {
         <div className='form__grupo__label'>
             <label className='form__grupo__label__label' for="legajo">{inputName}</label>
         </div>
+        {/* ver el height en Boostrap */}
         <div className='form__grupo__inputs'>
-            <textarea name="" id="" cols="61" rows="2"></textarea>
+            <textarea name="" 
+                      maxLength="255"
+                      id="" 
+                      cols="61" 
+                      rows="2">
+                      </textarea>
         </div>
         <div className='form__grupo__icons'>
             <button className='btn btn-danger'>Cancelar</button>

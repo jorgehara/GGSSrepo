@@ -12,9 +12,9 @@ const InputCbo = ({nameLabel, array, nameButton}) => {
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{nameButton}</button>
                 <ul class="dropdown-menu">
                     {
-                        array.map(op=>{
+                        array.map((op, index)=>{
                             return(
-                                <li><a class="dropdown-item" href="#">{op}</a></li>
+                                <li key={index}><a class="dropdown-item" href="#">{op}</a></li>
                             )
                         })
                     }
