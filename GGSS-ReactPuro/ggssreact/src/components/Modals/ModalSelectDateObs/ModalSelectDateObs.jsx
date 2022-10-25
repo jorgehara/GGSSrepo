@@ -1,9 +1,9 @@
 import React from 'react'
-import InputCbo from '../../Inputs/InputCbo/InputCbo';
+import InputSelect from '../../Inputs/InputSelect/InputSelect';
+import TextArea from '../../Inputs/TextArea/TextArea';
+import InputDate from '../../Inputs/InputDate/InputDate'
 
-const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
-
-    console.log(nameOptionModal)
+const ModalSelectDateObs = ({idModal, nameModal, nameOptionModal,array}) => {
   return (
     <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
@@ -25,18 +25,21 @@ const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
                                 <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
                                 <input type="text" name={idModal} />
                                 <br />
+                                <label htmlFor="partida" style={{ marginRight: "15px" }}> Partida: </label>
+                                <InputSelect/>
+                                <br />
+                                <InputDate nameInput="Vencimiento: "/>
+                                <br />
                                 {/* ESTE TIENE QUE SER UN SELECTOR  */}
-                                <label htmlFor="data">Datos: </label>
+                                <label htmlFor="obs">Datos: </label>
                                 <br />
                                 <select class="form-select row mt-1" multiple aria-label="multiple select example">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                                
+                                <TextArea inputName="Observaciones" />
                                 <hr />
-
-
                                 <div className="btnInputs">
                                     <button type="button" className="btn btn-success btnAceptar">
                                         ACEPTAR
@@ -71,4 +74,4 @@ const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
   )
 }
 
-export default BasicModal;
+export default ModalSelectDateObs;

@@ -6,7 +6,7 @@ import { Routes as Switch,  Route,
 } from "react-router-dom";
 import DatosPersonales from './components/DatosPersonales/DatosPersonales';
 import Domicilios from './components/Domicilios/Domicilios';
-import ListasDeDatos from './components/ListasDatos/ListadeDatos';
+import ListaDeDatos from './components/ListasDatos/ListadeDatos';
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     <>
     <NavbarMenu />
     <Switch>
-      <Route path="/lista-datos" exact element={<ListasDeDatos/>} />
+      <Route path="/lista-datos/:idCategory" exact element={<ListaDeDatos/>} />
       <Route path="/datos-personales" exact element={<DatosPersonales />} />
       <Route path="/domicilios" exact element={<Domicilios />} />
     </Switch>

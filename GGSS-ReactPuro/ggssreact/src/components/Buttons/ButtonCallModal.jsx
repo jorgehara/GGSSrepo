@@ -11,8 +11,6 @@ const ButtonCallModal = ({idModal, nameButton}) => {
       {nameButton.toString()}
     </button>
 
-
-    <BasicModal idModal={idModal} nameModal={nameButton} nameOptionModal={nameButton} />
     </>
   )
 }
