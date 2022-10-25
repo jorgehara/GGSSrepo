@@ -1,9 +1,7 @@
 import React from 'react'
-import InputCbo from '../../Inputs/InputCbo/InputCbo';
 
-const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
+const ModalMascFem = ({idModal, nameModal, array}) => {
 
-    console.log(nameOptionModal)
   return (
     <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
@@ -22,9 +20,14 @@ const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
                                 }
                             </div>
                             <div className="bodyInputs">
-                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
+                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> Masculino: </label>
                                 <input type="text" name={idModal} />
                                 <br />
+                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> Femenino: </label>
+                                <input type="text" name={idModal} />
+                                <br />
+                                <hr />
+
                                 {/* ESTE TIENE QUE SER UN SELECTOR  */}
                                 <label htmlFor="data">Datos: </label>
                                 <br />
@@ -35,7 +38,6 @@ const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
                                 </select>
                                 
                                 <hr />
-
 
                                 <div className="btnInputs">
                                     <button type="button" className="btn btn-success btnAceptar">
@@ -71,4 +73,4 @@ const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
   )
 }
 
-export default BasicModal;
+export default ModalMascFem;
