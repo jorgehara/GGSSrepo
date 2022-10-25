@@ -161,9 +161,9 @@ const DatosPersonales = () => {
                         <div class="accordion-body">
                             <section className='container'>
                                 <div className='row'>
-                                    <div className="formulario__grupo">
+                                    {/* <div className="formulario__grupo">
                                         <label for="usuario" className="mainABMTitle">Domicilios</label>
-                                    </div> 
+                                    </div>  */}
                                     <div className='col-xl-6 '>
                                         <div className='mt-2'>
                                             <input type="checkbox" name="predeterminado" id="predeterminado" />
