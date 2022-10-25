@@ -122,7 +122,7 @@ const DatosPersonales = () => {
                                     <InputButton nameLabel="C.U.I.L" nameButton="Validar" placeholder="##-########-#" />
                                     <InputForm nameInput="Teléfono"  messageError="Solo puede contener números." placeHolder="11352458965"/>
                                     <InputButton nameLabel="Estado Civil" nameButton="..." placeholder="Ingrese Estado Civil" />
-                                    <InputButton nameLabel="Nacionalidad" nameButton="..." placeholder="Ingrese Nacionalidad" />
+                                    <InputButton nameLabel="Nacionalidad" maxLeght="11" nameButton="..." placeholder="Ingrese Nacionalidad" />
                                 </div>
                                 <div className='tercera_columna col-4'>
                                     <InputCbo nameButton="Estados" nameLabel="Estado" array={estados} />
@@ -138,7 +138,7 @@ const DatosPersonales = () => {
                             </form>
                             <div className='row'>
                                 <div className='col-xl-6'>
-                                    <TextArea inputName="Observaciones"/>
+                                    <TextArea inputName="Observaciones" maxLength="255"/>
                                 </div>
                                 <div className='col-xl-6'>
                                     <InputFile inputName="Arrastre su imagen"/>
