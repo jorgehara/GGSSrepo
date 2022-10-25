@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Navigate } from "react-router-dom";
+import {  } from "react-router-dom";
 import ButtonCallModal from '../Buttons/ButtonCallModal';
 import BasicModal from '../Modals/BasicModal/BasicModal';
 // import BasicModal from '../Modals/BasicModal/BasicModal';
