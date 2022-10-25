@@ -54,7 +54,13 @@
 	/* line-height: 45px; */
 	/* padding: 0 40px 0 10px; */
 	transition: .3s ease all;
+    border-bottom: 1px solid rgb(78, 6, 6);
 }
+
+.formulario-input-Legajo:focus{
+    background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+}
+
 
 .formulario-input-Legajo:hover{
     border-color:  #bb2929;
