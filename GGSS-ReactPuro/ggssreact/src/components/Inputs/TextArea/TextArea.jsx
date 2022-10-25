@@ -9,7 +9,7 @@ const TextArea = ({inputName, maxLength}) => {
         {/* ver el height en Boostrap */}
         <div className='form__grupo__inputs_Obs mt-2'>
         <textarea  class="form-control-obs" 
-                placeholder="Leave a comment here" 
+                placeholder="Ingrese Observaciones" 
                 id="" 
                 cols="61" 
                 rows="5"
