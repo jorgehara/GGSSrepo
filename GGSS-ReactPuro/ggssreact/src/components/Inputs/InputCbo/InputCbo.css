@@ -5,6 +5,7 @@
     grid-template-rows: 1fr;
     margin-top: 2%;
     width: 100%;
+    align-items: center;
 }
 .form__grupo__label__inp{
     grid-area: nombre;   
@@ -14,6 +15,7 @@
     grid-template-rows: 1fr;
     margin-top: 2%;
     width: 100%;
+    align-items: center;
 }
 .primero{
     grid-area: primer;

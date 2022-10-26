@@ -1,31 +1,22 @@
 import React, { useState } from 'react'
 import "./InputForm.css"
 
-const InputForm = ({nameInput, messageError, placeHolder, validateNumbers}) => {
+const InputForm = ({nameInput, messageError, placeHolder, value, inputId, onChange}) => {
 
-    const [inputValue, setInputValue] = useState ();
-
-
-
+    
 
   return (
     <div className="formulario__grupo__inputs">
         <div className='formulario__grupo'>
-            <label className='formulario__label' for="legajo">{nameInput}</label>
+            <label className='formulario__label' htmlFor={inputId}>{nameInput}</label>
         </div>
         <div className='form__grupo-input'>
             <input type="text" 
-                    className='formulario-input-Legajo' 
-                    
-                                id="legajo" 
-                                
+                    className='formulario-input-Legajo'                     
+                    id={inputId}                                 
                     placeholder={placeHolder}
-                                onKeyPress={(e)=>validateNumbers(e)} 
-				                value={inputValue} 
-				                onChange={(e)=> 
-                                setInputValue(e.target.value) 
-                                }
-                                
+				    value={value} 
+                    onChange={(e)=>onChange(e)}            
                     />
         </div>
         <div className='form__grupo__icons'>

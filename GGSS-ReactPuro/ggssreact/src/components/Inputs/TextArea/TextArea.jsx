@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TextArea = ({inputName}) => {
+const TextArea = ({inputName, value}) => {
   return (
     <div className='row'>
         <div className='form__grupo__label'>
@@ -11,6 +11,7 @@ const TextArea = ({inputName}) => {
             <textarea name="" 
                       maxLength="255"
                       id="" 
+                      value={value}
                       cols="61" 
                       rows="2">
                       </textarea>

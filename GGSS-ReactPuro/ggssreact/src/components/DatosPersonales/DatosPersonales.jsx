@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import ButtonLarge from '../Buttons/ButtonLarge';
@@ -14,6 +14,11 @@ import Navbar from '../Navbar/Navbar';
 import printPannel from '../Navbar/printPannel';
 // import TableBasic from '../Tables/TableBasic';
 import "./DatosPersonales.css";
+import Browser from '../Browser/Browser';
+import { employeContext } from '../../context/employeContext';
+import Domicilios from '../Domicilios/Domicilios';
+import Footer from '../Footer/Footer';
+import axios from 'axios';
 
 
 const DatosPersonales = () => {
@@ -21,12 +26,34 @@ const DatosPersonales = () => {
     const optionsDNI = [ "DNI", "LC", "LE"]
     const estados = ["Activo", "Baja", "Suspendido", "Anulado"]
 
-    
+    const {saveEmpl, saveEstados, saveEstado} = useContext(employeContext);
+
     const [error, setError] = useState("");
-    const [inputValue, setInputValue] = useState ();
+    const [inputValue, setInputValue] = useState ("");
+    const url = "http://54.243.192.82/api/Estados";
 
+    useEffect(()=>{
+        axios
+        .get(url)
+        .then(res=> saveEstados(res.data) )
+    },[])
 
+    const estadosCiviles = [{
+        "id" : 1,
+        "estado" : "Soltero"
+    },{
+        "id" : 2,
+        "estado" : "Casado" 
+    },{
+        "id" : 3,
+        "estado" : "Viudo"
+    },
+    {
+        "id" : 4,
+        "estado" : "Algo"
+    }];
 
+    
 
     const validateNumbers =(e)=>{		
         if (!/[0-9]/.test(e.key)) {
@@ -65,29 +92,10 @@ const DatosPersonales = () => {
         }
     }
 
+
   return (
-        <div className='containter grid px-5'>
-        <div class="row">          
-            <div className='Lateral-Izquierdo col-3'>
-                <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo"/>
-                <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres"/>
-                <div class="list-group h-75">
-                    <a href="#" class="list-group-item list-group-item-action ">A simple default list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple primary list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple secondary list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple success list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple danger list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple warning list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple info list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple light list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple dark list group item</a>
-                </div>
-                <div class="d-inline-flex">
-                <ButtonLarge color="danger" tamaño="" justyfy="end m-1" nameButton="Agregar" />
-                <ButtonLarge color="danger" tamaño="" justyfy="end m-1" nameButton="Modificar" />
-                <ButtonLarge color="danger" tamaño="" justyfy="end m-1" nameButton="Eliminar" />
-                </div>
-            </div>
+        <div className='containter '>
+        <div class="row">   
             <div className='Lateral-Derecho col-9'>   
             <div className='menuEmpleados'>
                 <Navbar />
@@ -115,23 +123,23 @@ const DatosPersonales = () => {
                                     <InputForm nameInput=" " messageError="Solo puede contener letras." placeHolder="Ingrese Nombres"/>
                                 </div> */}
                                 <div className='segunda__columna col-4'>
-                                    <InputForm nameInput="Legajo N°"  messageError="Solo puede contener números." placeHolder="N° Legajo"/>
-                                    <InputForm nameInput="Apellido" messageError="Solo puede contener letras." placeHolder="Ingrese Apellidos"/>
-                                    <InputForm nameInput="Nombres" messageError="Solo puede contener letras." placeHolder="Ingrese Nombres"/>
-                                    <DNICboBox nameInput="DNI" messageError="Solo puede contener números, sin puntos." placeHolder="23456789" array={optionsDNI}/>
-                                    <InputButton nameLabel="C.U.I.L" nameButton="Validar" placeholder="##-########-#" />
-                                    <InputForm nameInput="Teléfono"  messageError="Solo puede contener números." placeHolder="11352458965"/>
-                                    <InputButton nameLabel="Estado Civil" nameButton="..." placeholder="Ingrese Estado Civil" />
-                                    <InputButton nameLabel="Nacionalidad" nameButton="..." placeholder="Ingrese Nacionalidad" />
+                                <InputForm value={saveEmpl[0] !== undefined || saveEmpl[0] === null? saveEmpl[0].legajo : null} nameInput="Legajo N°"  messageError="Solo puede contener números." placeHolder="N° Legajo"/>
+                    <InputForm value={saveEmpl[0] !== undefined ? saveEmpl[0].apellido : null} nameInput="Apellido" messageError="Solo puede contener letras." placeHolder="Ingrese Apellidos"/>
+                    <InputForm value={saveEmpl[0] !== undefined ? saveEmpl[0].nombres : null} nameInput="Nombres" messageError="Solo puede contener letras." placeHolder="Ingrese Nombres"/>
+                    <DNICboBox value={saveEmpl[0] !== undefined ? saveEmpl[0].nrodocumento : null} nameInput="DNI" messageError="Solo puede contener números, sin puntos." placeHolder="23456789" array={optionsDNI}/>
+                    <InputButton value={saveEmpl[0] !== undefined ? saveEmpl[0].cuil : null} id="inputCuil" nameLabel="C.U.I.L" nameButton="Validar" placeholder="##-########-#" idModal="modalCuil" array={[]}/>
+                    <InputForm value={saveEmpl[0] !== undefined ? saveEmpl[0].telFijo : null} nameInput="Teléfono"  messageError="Solo puede contener números." placeHolder="11352458965"/>
+                    <InputButton value={saveEmpl[0] !== undefined ? saveEmpl[0].estadoCivil : null} id="inputEstadosCiviles" nameLabel="Estado Civil" nameButton="..." placeholder="Ingrese Estado Civil"  idModal="modalEstadosCiviles" array={estadosCiviles}/>
+                    <InputButton value={saveEmpl[0] !== undefined ? saveEmpl[0].nacionalidad : null} id="inputNacionalidad" nameLabel="Nacionalidad" nameButton="..." placeholder="Ingrese Nacionalidad" idModal="modalNacionalidades" array={[]}/>
                                 </div>
                                 <div className='tercera_columna col-4'>
-                                    <InputCbo nameButton="Estados" nameLabel="Estado" array={estados} />
-                                    <InputRadio nameFirst="Masculino" nameSecond="Femenino" nameInput="Sexo" />
-                                    <InputDate nameInput="Nacimiento" />
-                                    <InputForm nameInput="Móvil"  messageError="Solo puede contener números." placeHolder="Ingrese su celular"/>
-                                    <InputForm nameInput="E-mail"  messageError="Ingrese un email válido." placeHolder="correo@correo.com.ar"/>
-                                    <InputButton nameLabel="País de Origen" nameButton="..." placeholder="Ingrese su País de Origen" />
-                                    <InputButton nameLabel="Estudios" nameButton="..." placeholder="Ingrese sus Estudios" />
+                                <InputCbo value={saveEmpl[0] !== undefined ? saveEmpl[0].estado : null} nameButton="Estados" nameLabel="Estado" array={saveEstado} />
+                    <InputRadio value={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null} nameFirst="Masculino" nameSecond="Femenino" nameInput="Sexo" />
+                    <InputDate value={saveEmpl[0] !== undefined ? saveEmpl[0].fechaNacimiento : null} nameInput="Nacimiento" />
+                    <InputForm value={saveEmpl[0] !== undefined ? saveEmpl[0].telMovil : null} nameInput="Móvil"  messageError="Solo puede contener números." placeHolder="Ingrese su celular"/>
+                    <InputForm value={saveEmpl[0] !== undefined ? saveEmpl[0].mail : null} nameInput="E-mail"  messageError="Ingrese un email válido." placeHolder="correo@correo.com.ar"/>
+                    <InputButton value={saveEmpl[0] !== undefined ? saveEmpl[0].paisOrigen : null} id="inputPaisO" nameLabel="País de Origen" nameButton="..." placeholder="Ingrese su País de Origen" idModal="modalPasiO" array={[]}/>
+                    <InputButton value={saveEmpl[0] !== undefined ? saveEmpl[0].estudios : null} id="inputEstudios" nameLabel="Estudios" nameButton="..." placeholder="Ingrese sus Estudios" idModal="modalEstudios" array={[]}/>
                                 </div>
                                 </div>
                                 {/* </div> */}
@@ -151,67 +159,13 @@ const DatosPersonales = () => {
                     </div>
                   </div>
 {/*--- Sección de Domicilios ---*/}
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Domicilios
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <section className='container'>
-                                <div className='row'>
-                                    <div className="formulario__grupo">
-                                        <label for="usuario" className="mainABMTitle">Domicilios</label>
-                                    </div> 
-                                    <div className='col-xl-6 '>
-                                        <div className='mt-2'>
-                                            <input type="checkbox" name="predeterminado" id="predeterminado" />
-                                            <label className='ml-2' htmlFor="predeterminado">Predeterminado</label>
-                                        </div>
-
-                                        <InputForm nameInput="Calle"  messageError="Solo puede contener números." placeHolder="Ingrese Calle"/>
-                                        <InputButton nameLabel="Barrio" nameButton="..." placeholder="Ingrese Barrio" />
-                                        <InputForm nameInput="Provincia"  messageError="Solo puede contener letras." placeHolder="Ingrese Provincia"/>
-                                        <TextArea inputName="Observaciones" />
-                                    </div>
-                                    <div className='col-xl-6'>
-                                        <InputButton nameLabel="Número" nameButton="..." placeholder="123456" />
-                                        <InputButton nameLabel="Piso/Dpto/Ofic/Torre" nameButton="..." placeholder="Ingrese número" />
-                                        <InputForm nameInput="Departamento"  messageError="Solo puede contener letras." placeHolder="Ingrese Departamento"/>
-                                        <InputForm nameInput="Localidad/CP"  messageError="Solo puede contener letras." placeHolder="Ingrese Localidad/CP"/>
-                                    </div>
-                                </div>
-                        {/* "Panel de acceso directo" */}
-                            </section>
-                        </div>    
-                    </div>  
-                </div>
+                <Domicilios />
             </div>
             <div className= ''> Aca van los botones de aceptar y cancelar solo una vez para todas las solapas</div>
             </div>
         </div>
             {/* 2do corte */}
-            <div class="d-flex border row">
-            <div className='col-2'>
-                <ButtonLarge color="danger" tamaño="" justyfy="cemter m-1" nameButton="Imprimir Constancia de Asignaciones Familiares" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Certificado de Convenio/Oficio" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Resumen Legajo Empleado" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Ficha Empleado" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center mt-1" nameButton="Licencias Franquicias" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Salir" />
-            </div>
-            </div>
+            
     </div>
   )
 }
