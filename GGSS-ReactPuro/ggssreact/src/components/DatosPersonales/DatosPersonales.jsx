@@ -14,6 +14,7 @@ import { employeContext } from "../../context/employeContext";
 // import Domicilios from '../Domicilios/Domicilios';
 import axios from "axios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
+import Domicilios from "../Domicilios/Domicilios";
 
 const DatosPersonales = () => {
   const optionsDNI = ["DNI", "LC", "LE"];
@@ -108,78 +109,95 @@ const DatosPersonales = () => {
                                     <InputForm nameInput=" " messageError="Solo puede contener letras." placeHolder="Ingrese Nombres"/>
                                 </div> */}
                           <div className="segunda__columna col-4">
+                          <InputForm 
+                                value={saveEmpl[0] !== undefined || saveEmpl[0] === null? saveEmpl[0].legajo : null} 
+                                nameInput="Legajo N°"  
+                                messageError="Solo puede contener números." 
+                                placeHolder="N° Legajo"
+                                />
                             <InputForm
-                              nameInput="Legajo N°"
-                              messageError="Solo puede contener números."
-                              placeHolder="N° Legajo"
-                            />
-                            <InputForm
+                              value={saveEmpl[0] !== undefined ? saveEmpl[0].apellido : null}
                               nameInput="Apellido"
                               messageError="Solo puede contener letras."
                               placeHolder="Ingrese Apellidos"
                             />
                             <InputForm
-                              nameInput="Nombres"
+                             value={saveEmpl[0] !== undefined ? saveEmpl[0].nombres : null}
+                             nameInput="Nombres"
                               messageError="Solo puede contener letras."
                               placeHolder="Ingrese Nombres"
                             />
                             <DNICboBox
+                              value={saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null}
                               nameInput="DNI"
                               messageError="Solo puede contener números, sin puntos."
                               placeHolder="23456789"
                               array={optionsDNI}
                             />
                             <InputButton
+                              value={saveEmpl[0] !== undefined ? saveEmpl[0].cuil : null}
                               nameLabel="C.U.I.L"
                               nameButton="Validar"
                               placeholder="##-########-#"
                             />
                             <InputForm
-                              nameInput="Teléfono"
+                             value={saveEmpl[0] !== undefined ? saveEmpl[0].telFijo : null}
+                             nameInput="Teléfono"
                               messageError="Solo puede contener números."
                               placeHolder="11352458965"
                             />
                             <InputButton
-                              nameLabel="Estado Civil"
+                            value={saveEmpl[0] !== undefined ? saveEmpl[0].estadoCivil : null}
+                            nameLabel="Estado Civil"
                               nameButton="..."
                               placeholder="Ingrese Estado Civil"
                             />
                             <InputButton
-                              nameLabel="Nacionalidad"
+                             value={saveEmpl[0] !== undefined ? saveEmpl[0].nacionalidad : null}
+                             nameLabel="Nacionalidad"
                               maxLeght="11"
                               nameButton="..."
                               placeholder="Ingrese Nacionalidad"
                             />
                           </div>
+
                           <div className="tercera_columna col-4">
                             <InputCbo
-                              nameButton="Estados"
+                             value={saveEmpl[0] !== undefined ? saveEmpl[0].estado : null}
+                             nameButton="Estados"
                               nameLabel="Estado"
                               array={estados}
                             />
                             <InputRadio
-                              nameFirst="Masculino"
+                            value={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
+                            nameFirst="Masculino"
                               nameSecond="Femenino"
                               nameInput="Sexo"
                             />
-                            <InputDate nameInput="Nacimiento" />
+                            <InputDate 
+                            value={saveEmpl[0] !== undefined ? saveEmpl[0].fechaNacimiento : null}
+                            nameInput="Nacimiento" />
                             <InputForm
-                              nameInput="Móvil"
+                             value={saveEmpl[0] !== undefined ? saveEmpl[0].telMovil : null}
+                             nameInput="Móvil"
                               messageError="Solo puede contener números."
                               placeHolder="Ingrese su celular"
                             />
                             <InputForm
-                              nameInput="E-mail"
+                             value={saveEmpl[0] !== undefined ? saveEmpl[0].mail : null}
+                             nameInput="E-mail"
                               messageError="Ingrese un email válido."
                               placeHolder="correo@correo.com.ar"
                             />
                             <InputButton
-                              nameLabel="País de Origen"
+                             value={saveEmpl[0] !== undefined ? saveEmpl[0].paisOrigen : null}
+                             nameLabel="País de Origen"
                               nameButton="..."
                               placeholder="Ingrese su País de Origen"
                             />
                             <InputButton
-                              nameLabel="Estudios"
+                             value={saveEmpl[0] !== undefined ? saveEmpl[0].estudios : null}
+                             nameLabel="Estudios"
                               nameButton="..."
                               placeholder="Ingrese sus Estudios"
                             />
@@ -201,89 +219,10 @@ const DatosPersonales = () => {
               </div>
             </div>
             {/*--- Sección de Domicilios ---*/}
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo"
-                  aria-expanded="false"
-                  aria-controls="collapseTwo"
-                >
-                  Domicilios
-                </button>
-              </h2>
-              <div
-                id="collapseTwo"
-                class="accordion-collapse collapse"
-                aria-labelledby="headingTwo"
-                data-bs-parent="#accordionExample"
-              >
-                <div class="accordion-body">
-                  <section className="container">
-                    <div className="row">
-                      {/* <div className="formulario__grupo">
-                                        <label for="usuario" className="mainABMTitle">Domicilios</label>
-                                    </div>  */}
-                      <div className="col-xl-6 ">
-                        <div className="mt-2">
-                          <input
-                            type="checkbox"
-                            name="predeterminado"
-                            id="predeterminado"
-                          />
-                          <label className="ml-2" htmlFor="predeterminado">
-                            Predeterminado
-                          </label>
-                        </div>
 
-                        <InputForm
-                          nameInput="Calle"
-                          messageError="Solo puede contener números."
-                          placeHolder="Ingrese Calle"
-                        />
-                        <InputButton
-                          nameLabel="Barrio"
-                          nameButton="..."
-                          placeholder="Ingrese Barrio"
-                        />
-                        <InputForm
-                          nameInput="Provincia"
-                          messageError="Solo puede contener letras."
-                          placeHolder="Ingrese Provincia"
-                        />
-                        <TextArea inputName="Observaciones" />
-                      </div>
-                      <div className="col-xl-6">
-                        <InputButton
-                          nameLabel="Número"
-                          nameButton="..."
-                          placeholder="123456"
-                        />
-                        <InputButton
-                          nameLabel="Piso/Dpto/Ofic/Torre"
-                          nameButton="..."
-                          placeholder="Ingrese número"
-                        />
-                        <InputForm
-                          nameInput="Departamento"
-                          messageError="Solo puede contener letras."
-                          placeHolder="Ingrese Departamento"
-                        />
-                        <InputForm
-                          nameInput="Localidad/CP"
-                          messageError="Solo puede contener letras."
-                          placeHolder="Ingrese Localidad/CP"
-                        />
-                      </div>
-                    </div>
-                    {/* "Panel de acceso directo" */}
-                  </section>
-                </div>
-              </div>
+            <Domicilios/>
             </div>
-          </div>
+                    {/* "Panel de acceso directo" */}
           <div className="d-flex justify-content-end">
             <ButtonCancelarAceptar />
           </div>
