@@ -5,11 +5,11 @@ const BarriosFooter = () => {
     <div class="modal-footer">
 
             <div className="crudBtns">
-                <button type="button" class="btn btn-success crudBtn">
+                <button type="button" class="btn btn-danger crudBtn">
                     AGREGAR
                 </button>
 
-                <button type="button" class="btn btn-warning crudBtn">
+                <button type="button" class="btn btn-danger crudBtn">
                     MODIFICAR
                 </button>
 

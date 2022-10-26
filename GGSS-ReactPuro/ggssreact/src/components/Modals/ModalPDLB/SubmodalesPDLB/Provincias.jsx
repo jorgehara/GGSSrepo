@@ -4,10 +4,17 @@ const Provincias = () => {
     return (
         <>
             <div className="llamadaApi">
-                ACA IRIA LA LLAMADA
-                {/* <LlamadaBackend/> */}
+
+                <label htmlFor="data">Datos: </label>
+                <br />
+                <select class="form-select row mt-1" multiple aria-label="multiple select example">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+
             </div>
-            
+
             <div class="bodyInputs">
 
                 <label for="provincia" style={{ marginRight: "15px" }}> Provincia: </label>

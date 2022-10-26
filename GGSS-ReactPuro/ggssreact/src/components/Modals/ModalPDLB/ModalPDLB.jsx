@@ -56,13 +56,13 @@ const ModalPDLB = ({idModal, nameModal, array}) => {
         
             {/* <!-- Modal --> */}
             <div class="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id={`${idModal}Label`}>
                                 {nameModal}
                             </h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="pldbBtns">
                             <button onClick={handleProvincias}>PROVINCIAS</button>

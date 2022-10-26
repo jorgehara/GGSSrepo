@@ -20,8 +20,9 @@ const Home = () => {
             </div>
             <div className='col-xl-9'>
                 <Navbar />
+                <DatosPersonales /> 
                 {
-                    location.pathname === "/home/datos-personales" && <DatosPersonales />
+                    // location.pathname === "/home/datos-personales" && <DatosPersonales />
                 }
                 {
                     location.pathname === "/home/familia" && <Familia />
