@@ -17,12 +17,12 @@ const Navbar = () => {
 			<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li><Link class="dropdown-item" to="/datos-personales"></Link>
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link class="nav-link" to="/datos-personales">
 						Personales
-                    </a>
+                    </Link>
                 </li>
 				<li class="nav-item">
-					<a class="nav-link" href="/some/valid/uri">Familia</a>
+					<Link class="nav-link" to="/familia">Familia</Link>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/some/valid/uri">Liquidación</a>
