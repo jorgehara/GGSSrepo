@@ -18,7 +18,7 @@ const ListasDeDatos = () => {
 
   return (
     <div>
-      {/* Estado Civil */}
+      
       {idCategory == "estadoCivil" &&
         <>
           <ButtonCallModal idModal="EstadoCivil" nameButton="Estados Civiles" />
@@ -145,7 +145,7 @@ const ListasDeDatos = () => {
 
         <>
           <ButtonCallModal idModal="pdlb" nameButton="Provincias - Departamentos - Localidades - Barrios" />
-          <ModalPDLB idModal="pdlb" nameModal="Paises" />
+          <ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" />
 
         </>
 
@@ -170,12 +170,9 @@ const ListasDeDatos = () => {
           <ButtonCallModal idModal="empleadores" nameButton="Empleadores" />
           <ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
 
-
         </>
 
       }
-
-
 
 
     </div>

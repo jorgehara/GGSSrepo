@@ -15,10 +15,7 @@ const TextArea = ({inputName}) => {
                       rows="2">
                       </textarea>
         </div>
-        <div className='form__grupo__icons'>
-            <button className='btn btn-danger'>Cancelar</button>
-            <button className='btn btn-success ml-2'>Aceptar</button>
-        </div>
+        
     </div>
   )
 }
