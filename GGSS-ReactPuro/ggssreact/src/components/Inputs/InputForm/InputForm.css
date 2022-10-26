@@ -3,7 +3,7 @@
     grid-template-areas: "nombre input icons error";
     grid-template-columns: 0.4fr 1fr 0.1fr 1.5fr;
     grid-template-rows: 1fr;
-    margin-top: 2%;
+    align-items: center;
 }
 .form__grupo__label{
     grid-area: nombre;   
@@ -40,54 +40,43 @@
 	margin-bottom: 0;
 	display: none;
 }
-
 .formulario-input-Legajo{
     margin-top: -12px;
     margin-bottom: 3px;
-	width: 130px;
+	width: 150px;
 	margin-left: 0px;
     margin-right: 0px;
 	background: #fff;
 	border: 3px solid transparent;
 	border-radius: 3px;
 	height: 42px;
-	/* line-height: 45px; */
-	/* padding: 0 40px 0 10px; */
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
 }
-
 .formulario-input-Legajo:focus{
     background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
 }
-
-
 .formulario-input-Legajo:hover{
     border-color:  #bb2929;
 }
 :focus-visible {
     outline: 1px solid #bb2929 ;
-    border-radius: 3px;}
-
+    border-radius: 3px;
+}
 .formulario-input-Legajo:active ::after ::before{
     border-color:  #bb2929;
 }
-
-
-
 .formulario__grupo-input {
 	display: block;
 	position: relative;
 	width: 300px;
-	/* margin-left: -50px; */
 }
 .formulario__label {
 	display: block;
 	font-weight: 400;
-	/* width: 30%; */
     width: 85px;
+    margin-right: 20px;
 }
-
 .formulario__grupo{
 	display: flex; 
 	width: 558px;
