@@ -1,5 +1,5 @@
-import React from 'react'
-import TextArea from '../../Inputs/TextArea/TextArea';
+import React from "react";
+import TextArea from "../../Inputs/TextArea/TextArea";
 
 const BasicModalObs = ({ idModal, nameModal, nameOptionModal, array }) => {
     return (
@@ -65,5 +65,4 @@ const BasicModalObs = ({ idModal, nameModal, nameOptionModal, array }) => {
         </div>
     )
 }
-
 export default BasicModalObs;
