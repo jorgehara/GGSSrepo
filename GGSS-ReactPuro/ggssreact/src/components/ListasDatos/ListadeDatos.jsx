@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 import ButtonCallModal from '../Buttons/ButtonCallModal';
 import BasicModal from '../Modals/BasicModal/BasicModal';
 import { useParams } from 'react-router-dom'
@@ -174,19 +174,8 @@ const ListasDeDatos = () => {
         </>
 
       }
-
-
-
-
     </div>
-
-
-
-
-
-
-
   )
-}
+};
 
 export default ListasDeDatos;
