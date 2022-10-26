@@ -1,19 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
-import swal from "sweetalert";
-// import { Link } from 'react-router-dom';
-import ButtonLarge from "../Buttons/ButtonLarge";
-import DNICboBox from "../Inputs/DNICboBox/DNICboBox";
-import InputButton from "../Inputs/InputButton/InputButton";
-import InputCbo from "../Inputs/InputCbo/InputCbo";
-import InputDate from "../Inputs/InputDate/InputDate";
-import InputFile from "../Inputs/InputFile/InputFile";
-import InputForm from "../Inputs/InputForm/InputForm";
-import InputRadio from "../Inputs/InputRadio/InputRadio";
-import TextArea from "../Inputs/TextArea/TextArea";
-import Navbar from "../Navbar/Navbar";
-// import printPannel from '../Navbar/printPannel';
-// import TableBasic from '../Tables/TableBasic';
+import React, { useContext, useEffect, useState } from 'react'
+import swal from 'sweetalert';
+import DNICboBox from '../Inputs/DNICboBox/DNICboBox';
+import InputButton from '../Inputs/InputButton/InputButton';
+import InputCbo from '../Inputs/InputCbo/InputCbo';
+import InputDate from '../Inputs/InputDate/InputDate';
+import InputFile from '../Inputs/InputFile/InputFile';
+import InputForm from '../Inputs/InputForm/InputForm';
+import InputRadio from '../Inputs/InputRadio/InputRadio';
+import TextArea from '../Inputs/TextArea/TextArea';
+import Navbar from '../Navbar/Navbar';
 import "./DatosPersonales.css";
+import { employeContext } from '../../context/employeContext';
+import Domicilios from '../Domicilios/Domicilios';
+import axios from 'axios';
 import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
 
 
@@ -70,25 +69,6 @@ const DatosPersonales = () => {
   return (
         <div className='containter grid px-5'>
         <div class="row">          
-            <div className='Lateral-Izquierdo col-3'>
-                <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo"/>
-                <InputForm nameInput="Apellido y Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres"/>
-                <div class="list-group h-75">
-                    <a href="#" class="list-group-item list-group-item-action ">A simple default list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple primary list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple secondary list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple success list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple danger list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple warning list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple info list group item</a>
-                    <a href="#" class="list-group-item list-group-item-action ">A simple light list group item</a>
-                </div>
-                <div class="d-inline-flex">
-                <ButtonLarge color="danger" tamaño="" justyfy="end m-1" nameButton="Agregar" />
-                <ButtonLarge color="danger" tamaño="" justyfy="end m-1" nameButton="Modificar" />
-                <ButtonLarge color="danger" tamaño="" justyfy="end m-1" nameButton="Eliminar" />
-                </div>
-            </div>
             <div className='Lateral-Derecho col-9'>   
             <div className='menuEmpleados'>
                 <Navbar />
@@ -194,34 +174,9 @@ const DatosPersonales = () => {
             
             <ButtonCancelarAceptar/>
                 
-            
             </div>
             </div>
         </div>
-            {/* 2do corte */}
-            <br />
-            <br />
-            <div class="d-flex border row">
-
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="cemter m-1" nameButton="Imprimir Constancia de Asignaciones Familiares" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Certificado de Convenio/Oficio" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Resumen Legajo Empleado" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Ficha Empleado" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center mt-1" nameButton="Licencias Franquicias" />
-            </div>
-            <div className='col-2'>
-            <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Salir" />
-            </div>
-            </div>
     </div>
   );
 };

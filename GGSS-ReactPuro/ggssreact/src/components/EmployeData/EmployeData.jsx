@@ -11,20 +11,33 @@ const EmployeData = () => {
     
 
   useEffect(()=>{
-    axios
+    try{
+        axios
     .get(url)
-    .then(res=> setImage(res.data.archivo))
-  },[])
+    .then(res=> {
+        console.log(res)
+        if(res.status === 404){
+            setImage("");
+            return;
+        }
+        setImage(res.data.archivo)
+    })
+    }catch(err){
+        setImage("");
+    }
+    
+  },[url])
 
 
   console.log(image);
-
+  console.log(saveEmpl[0].iDempleado);
+  console.log(url)
   return (
     <div className='container-flex'>
         <div className='container mt-2 border border-3 p-3'>
             <div className='row'>
                 <div className="col-xl-2">
-                    <img className='border border-3 imgData' id="imagen" src={ `data:image/jpg;base64,${image}`} alt="" style={{width : "150px;", height : "150px;"}}/>
+                    <img className='border border-3 imgData' id="imagen" src={ `data:image/pdf;base64,${image}`} alt="" style={{width : "150px;", height : "150px;"}}/>
                 </div>
                 <div className='col-xl-6 ml-4'>
                     <InputEmpData idInput="legajoInfo" inputValue={saveEmpl[0] !== undefined || saveEmpl[0] === null ? saveEmpl[0].legajo : null} nameLabel="LEGAJO N°: " />
