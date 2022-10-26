@@ -14,7 +14,7 @@ const Familia = () => {
   return (
     <div className='container'>
         <div class="row">  
-            <div className='Lateral-Derecho col-9'>   
+            <div className='Lateral-Derecho '>   
                 <EmployeData />
                 <div className='container-flex'>
                   <div className='container mt-2 border border-3 p-3'>
