@@ -1,6 +1,6 @@
 import React from 'react'
-import TextArea from '../../Inputs/TextArea/TextArea';
-import "./BasicModal.css";
+import InputCbo from '../../Inputs/InputCbo/InputCbo';
+import './BasicModal.css'
 import '../Modales.css'
 
 const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
@@ -9,7 +9,7 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
     return (
         <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id={`${idModal}Label`}>
