@@ -16,13 +16,13 @@ const Navbar = () => {
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
-				<li><Link class="dropdown-item" to="/datos-personales"></Link>
-                    <Link class="nav-link" to="/datos-personales">
+				<li><Link class="dropdown-item" to="/home/datos-personales"></Link>
+                    <Link class="nav-link" to="/home/datos-personales">
 						Personales
                     </Link>
                 </li>
 				<li class="nav-item">
-					<Link class="nav-link" to="/familia">Familia</Link>
+					<Link class="nav-link" to="/home/familia">Familia</Link>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/some/valid/uri">Liquidación</a>

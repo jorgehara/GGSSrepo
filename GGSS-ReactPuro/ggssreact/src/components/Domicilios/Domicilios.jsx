@@ -8,15 +8,12 @@ import TableBasic from '../Tables/TableBasic'
 
 const Domicilios = () => {
 
-    const columns= ["Predeterminado", "Calle", "Número", "Barrio", "Localidad", "Piso/Of/Dpto"]
-    const {saveEmpl, saveDom} = useContext(employeContext);
+    
+    const { saveDom} = useContext(employeContext);
     const [inputValue, setInputValue] = useState ("");
 
     console.log(saveDom)
     
-    useEffect(()=>{
-
-    },[])
     
     useEffect(()=>{
         setInputValor();

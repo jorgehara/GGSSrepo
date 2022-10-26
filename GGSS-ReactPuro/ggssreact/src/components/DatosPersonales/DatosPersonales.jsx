@@ -88,13 +88,9 @@ const DatosPersonales = () => {
     }
 
 
-  return (
-        <div className='containter '>
-        <div class="row">   
-            <div className='Lateral-Derecho col-9'>   
-            <div className='menuEmpleados'>
-                <Navbar />
-            </div>
+  return (        
+            <div className='Lateral-Derecho'>   
+            
 {/*--- Sección de Datos Personales ---*/}
                 <div class="accordion" id="accordionExample">
                   <div class="accordion-item">
@@ -118,10 +114,15 @@ const DatosPersonales = () => {
                                     <InputForm nameInput=" " messageError="Solo puede contener letras." placeHolder="Ingrese Nombres"/>
                                 </div> */}
                                 <div className='segunda__columna col-4'>
-                                <InputForm value={saveEmpl[0] !== undefined || saveEmpl[0] === null? saveEmpl[0].legajo : null} nameInput="Legajo N°"  messageError="Solo puede contener números." placeHolder="N° Legajo"/>
+                                <InputForm 
+                                value={saveEmpl[0] !== undefined || saveEmpl[0] === null? saveEmpl[0].legajo : null} 
+                                nameInput="Legajo N°"  
+                                messageError="Solo puede contener números." 
+                                placeHolder="N° Legajo"
+                                />
                     <InputForm value={saveEmpl[0] !== undefined ? saveEmpl[0].apellido : null} nameInput="Apellido" messageError="Solo puede contener letras." placeHolder="Ingrese Apellidos"/>
                     <InputForm value={saveEmpl[0] !== undefined ? saveEmpl[0].nombres : null} nameInput="Nombres" messageError="Solo puede contener letras." placeHolder="Ingrese Nombres"/>
-                    <DNICboBox value={saveEmpl[0] !== undefined ? saveEmpl[0].nrodocumento : null} nameInput="DNI" messageError="Solo puede contener números, sin puntos." placeHolder="23456789" array={optionsDNI}/>
+                    <DNICboBox value={saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null} nameInput="DNI" messageError="Solo puede contener números, sin puntos." placeHolder="23456789" array={optionsDNI}/>
                     <InputButton value={saveEmpl[0] !== undefined ? saveEmpl[0].cuil : null} id="inputCuil" nameLabel="C.U.I.L" nameButton="Validar" placeholder="##-########-#" idModal="modalCuil" array={[]}/>
                     <InputForm value={saveEmpl[0] !== undefined ? saveEmpl[0].telFijo : null} nameInput="Teléfono"  messageError="Solo puede contener números." placeHolder="11352458965"/>
                     <InputButton value={saveEmpl[0] !== undefined ? saveEmpl[0].estadoCivil : null} id="inputEstadosCiviles" nameLabel="Estado Civil" nameButton="..." placeholder="Ingrese Estado Civil"  idModal="modalEstadosCiviles" array={estadosCiviles}/>
@@ -164,10 +165,6 @@ const DatosPersonales = () => {
             
             </div>
             </div>
-        </div>
-            {/* 2do corte */}
-            
-    </div>
   )
 }
 export default DatosPersonales
