@@ -3,12 +3,12 @@ import "./DNICboBox.css"
 const DNICboBox = ({nameInput, messageError, placeHolder, array}) => {
 
   return (
-    <div className="formulario__grupo__inputs2">
-        <div className="form__grupo__labels">
-            <label class="form__grupo__label__label">{nameInput}</label>
+    <div className="formulario__grupo mt-2">
+        <div className="">
+            <label class="formulario-label-DNI mt-2">{nameInput}</label>
         </div> 
-        <div className='form__grupo__input1'>
-            <select class=" " >
+        <div className=''>
+            <select class="form-select form_select px-0 mt-0 mb-0" >
                 {
                     array.map(op=>{
                         return (
@@ -19,7 +19,11 @@ const DNICboBox = ({nameInput, messageError, placeHolder, array}) => {
             </select>
         </div>                   
         <div className='form__grupo__input2'>
-            <input type="text" className='form__input' placeholder={placeHolder}></input>
+            <input type="text" 
+				    maxlength="8"
+                    // onKeyPress={(e)=>validateNumbersDNI(e)} 
+                    className='formulario-input-DNI px-0 mt-0 mb-0' 
+                    placeholder={placeHolder}></input>
         </div>
         <div className='form__grupo__icon'>
             <i class="fas fa-times-circle"></i>

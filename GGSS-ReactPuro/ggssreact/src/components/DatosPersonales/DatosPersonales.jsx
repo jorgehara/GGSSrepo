@@ -146,7 +146,7 @@ const DatosPersonales = () => {
                             </form>
                             <div className='row'>
                                 <div className='col-xl-6'>
-                                    <TextArea inputName="Observaciones"/>
+                                    <TextArea inputName="Observaciones" maxLength="255"/>
                                 </div>
                                 <div className='col-xl-6'>
                                     <InputFile inputName="Arrastre su imagen"/>
@@ -161,7 +161,13 @@ const DatosPersonales = () => {
 {/*--- Sección de Domicilios ---*/}
                 <Domicilios />
             </div>
-            <div className= ''> Aca van los botones de aceptar y cancelar solo una vez para todas las solapas</div>
+            <div className= "d-flex justify-content-end"
+                > 
+            
+            <ButtonCancelarAceptar/>
+                
+            
+            </div>
             </div>
         </div>
             {/* 2do corte */}

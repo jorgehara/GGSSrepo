@@ -1,13 +1,11 @@
 import React from 'react'
 import TextArea from '../../Inputs/TextArea/TextArea';
-import "./BasicModal.css";
-const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
 
-    console.log(nameOptionModal)
+const ModalParentescos = ({idModal, nameModal,array}) => {
   return (
     <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div className="modal-dialog modal-xl">
+                <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id={`${idModal}Label`}>
@@ -22,21 +20,30 @@ const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
                                 }
                             </div>
                             <div className="bodyInputs">
-                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
-                                <input type="text" name={idModal} />
+                                <label for="parentesco" style={{ marginRight: "15px" }}>Parentesco: </label>
+                                <input type="text" name="parentesco" />
+                                <br />
+                                <input type="checkbox" name="asignacion" style={{ marginRight: "5px" }} />
+                                <label for="asignacion">Genera asignacion</label>
+
+                                <br />
+
+                                <input type="checkbox" name="ganancias" style={{ marginRight: "5px" }} />
+                                <label for="ganancias" style={{ marginRight: "15px" }}>Deduce ganancias</label>
+
+                                <label for="importe" style={{ marginRight: "5px" }}>IMPORTE: </label>
+                                <input type="number" name="importe" />
                                 <br />
                                 {/* ESTE TIENE QUE SER UN SELECTOR  */}
-                                <label htmlFor="data">Datos: </label>
+                                <label htmlFor="obs">Datos: </label>
                                 <br />
                                 <select class="form-select row mt-1" multiple aria-label="multiple select example">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                                
+                                <TextArea inputName="Observaciones" />
                                 <hr />
-
-
                                 <div className="btnInputs">
                                     <button type="button" className="btn btn-success btnAceptar">
                                         ACEPTAR
@@ -71,4 +78,4 @@ const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
   )
 }
 
-export default BasicModal;
+export default ModalParentescos;

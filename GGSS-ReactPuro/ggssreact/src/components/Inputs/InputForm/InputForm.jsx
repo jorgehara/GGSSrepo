@@ -19,9 +19,11 @@ const InputForm = ({nameInput, messageError, placeHolder, value, inputId, onChan
                     onChange={(e)=>onChange(e)}            
                     />
         </div>
+        
         <div className='form__grupo__icons'>
             <i className="fas fa-times-circle form__grupo__icon"></i>            
         </div>  
+       
         <div className='form__grupo__errors'>
             <p className='form__grupo__error'>{messageError}</p>
         </div>    

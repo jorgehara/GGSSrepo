@@ -1,13 +1,11 @@
 import React from 'react'
-import TextArea from '../../Inputs/TextArea/TextArea';
-import "./BasicModal.css";
-const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
 
-    console.log(nameOptionModal)
+const ModalPaises = ({idModal, nameModal, nameOptionModal,array}) => {
+
   return (
     <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div className="modal-dialog modal-xl">
+                <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id={`${idModal}Label`}>
@@ -24,6 +22,12 @@ const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
                             <div className="bodyInputs">
                                 <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
                                 <input type="text" name={idModal} />
+                                <br />
+                                <label htmlFor="nacMasc" style={{ marginRight: "15px" }}> Nacionalidad Masc: </label>
+                                <input type="text" name="nacMasc" />
+                                <br />
+                                <label htmlFor="nacFem" style={{ marginRight: "15px" }}> Nacionalidad Fem: </label>
+                                <input type="text" name="nacFem" />
                                 <br />
                                 {/* ESTE TIENE QUE SER UN SELECTOR  */}
                                 <label htmlFor="data">Datos: </label>
@@ -71,4 +75,4 @@ const BasicModal = ({idModal, nameModal, nameOptionModal,array}) => {
   )
 }
 
-export default BasicModal;
+export default ModalPaises;
