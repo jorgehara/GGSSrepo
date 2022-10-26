@@ -34,7 +34,7 @@ const EmployeData = () => {
   console.log(url)
   return (
     <div className='container-flex'>
-        <div className=' mt-2 border border-3 p-3'>
+        <div className='container mt-2 border border-3 p-3'>
             <div className='row'>
                 <div className="col-xl-2">
                     <img className='border border-3 imgData' id="imagen" src={ `data:image/pdf;base64,${image}`} alt="" style={{width : "150px;", height : "150px;"}}/>
