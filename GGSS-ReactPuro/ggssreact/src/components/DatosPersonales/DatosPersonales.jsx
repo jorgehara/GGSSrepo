@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect} from "react";
 // import swal from "sweetalert";
 import DNICboBox from "../Inputs/DNICboBox/DNICboBox";
 import InputButton from "../Inputs/InputButton/InputButton";
