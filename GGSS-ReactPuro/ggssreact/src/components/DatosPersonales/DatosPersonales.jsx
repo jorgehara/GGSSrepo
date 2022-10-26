@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import swal from 'sweetalert';
-import { Link } from 'react-router-dom';
-import ButtonLarge from '../Buttons/ButtonLarge';
 import DNICboBox from '../Inputs/DNICboBox/DNICboBox';
 import InputButton from '../Inputs/InputButton/InputButton';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
@@ -11,14 +9,11 @@ import InputForm from '../Inputs/InputForm/InputForm';
 import InputRadio from '../Inputs/InputRadio/InputRadio';
 import TextArea from '../Inputs/TextArea/TextArea';
 import Navbar from '../Navbar/Navbar';
-import printPannel from '../Navbar/printPannel';
-// import TableBasic from '../Tables/TableBasic';
 import "./DatosPersonales.css";
-import Browser from '../Browser/Browser';
 import { employeContext } from '../../context/employeContext';
 import Domicilios from '../Domicilios/Domicilios';
-import Footer from '../Footer/Footer';
 import axios from 'axios';
+import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
 
 
 const DatosPersonales = () => {
