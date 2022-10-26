@@ -1,12 +1,9 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { employeContext } from "../../context/employeContext";
-import {
-  getEmployeByLegajo,
-  getEmployeByName,
-} from "../../services/fetchAPI";
-import { getDomicilioEmpleado } from "../../services/mockDataDomicilios";
-import ButtonLarge from "../Buttons/ButtonLarge";
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react'
+import { employeContext } from '../../context/employeContext';
+import {  getEmployeByLegajo, getEmployeByName } from '../../services/fetchAPI';
+import { getDomicilioEmpleado } from '../../services/mockDataDomicilios';
+import ButtonLarge from '../Buttons/ButtonLarge'
 import "./Browser.css";
 
 const Browser = () => {
@@ -57,8 +54,8 @@ const Browser = () => {
   }
 
   return (
-    <div className="Lateral-Izquierdo col-3">
-      {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
+    <div className='Lateral-Izquierdo'>
+        {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
       <div className="row mt-1 mr-2">
         <input

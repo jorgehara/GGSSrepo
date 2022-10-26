@@ -7,16 +7,18 @@ import TextArea from "../Inputs/TextArea/TextArea";
 // import TableBasic from '../Tables/TableBasic'
 
 const Domicilios = () => {
-  const { saveDom } = useContext(employeContext);
 
-  const [inputValue, setInputValue] = useState("");
+    
+    const { saveDom} = useContext(employeContext);
+    const [inputValue, setInputValue] = useState ("");
 
-//   console.log(saveDom[0].Barrio);
+    console.log(saveDom)
+    
+    
+    useEffect(()=>{
+        setInputValor();
+    },[(saveDom[0].predeterminado)])
 
-  useEffect(() => {
-
-    setInputValor();
-  }, [saveDom[0].predeterminado]);
 
   const setInputValor = () => {
     if (saveDom.length > 0 && saveDom[0].predeterminado === 1) {

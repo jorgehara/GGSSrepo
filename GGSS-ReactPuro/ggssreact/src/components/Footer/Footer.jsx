@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ButtonLarge from '../Buttons/ButtonLarge'
 
 const Footer = () => {
@@ -20,7 +21,7 @@ const Footer = () => {
                     <ButtonLarge color="danger" tamaño="" justyfy="center mt-1" nameButton="Licencias Franquicias" />
                 </div>
                 <div className='col-2'>
-                    <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Salir" />
+                    <Link className="btn btn-danger d-flex justify-content-center" to="/">Salir</Link>
                 </div>
             </div>
   )
