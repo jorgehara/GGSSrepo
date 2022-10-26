@@ -1,8 +1,7 @@
 import React from 'react';
 import "./InputButton.css";
 
-const InputButton = ({nameButton, placeholder, nameLabel, maxLeght}) => {
-const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, className, value}) => {
+const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value}) => {
   return (
     <div className="formulario__grupo__inputs">
         <div className='formulario__grupo'>
@@ -23,5 +22,4 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, className, v
     </div>
   )
 }
-
 export default InputButton;
