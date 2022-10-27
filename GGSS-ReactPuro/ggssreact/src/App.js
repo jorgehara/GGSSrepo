@@ -18,7 +18,7 @@ function App() {
             <Route path="/home" exact element={<Home />} /> 
             <Route path="/home/datos-personales" exact element={<Home />} />  
             <Route path="/home/familia" exact element={<Home />} />  
-            <Route path="/lista-datos" exact element={<ListasDeDatos/>} />
+            <Route path="/lista-datos/:category" exact element={<Home/>} />
           </Switch>        
     </EmpleadoContextProvider>
     </>
