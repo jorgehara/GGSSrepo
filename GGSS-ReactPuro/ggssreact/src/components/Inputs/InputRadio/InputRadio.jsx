@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./InputRadio.css";
 
-const InputRadio = ({nameInput, nameFirst, nameSecond, value}) => {
+
 
 const InputRadio = ({ nameInput, nameFirst, nameSecond, value }) => {
   const [valorRadioM, setValorRadioM] = useState(false);
@@ -37,4 +37,5 @@ const InputRadio = ({ nameInput, nameFirst, nameSecond, value }) => {
     </div>
   );
 };
+
 export default InputRadio;

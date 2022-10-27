@@ -127,7 +127,7 @@ return (
         <Domicilios />
     </div>
     <div className= "d-flex justify-content-end"> 
-        <ButtonCancelarAceptar/>
+        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar"/>
     </div>
     </div>
   )
