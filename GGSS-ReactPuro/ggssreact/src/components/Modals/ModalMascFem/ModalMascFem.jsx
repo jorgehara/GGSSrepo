@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Modales.css'
 
-const ModalMascFem = ({ idModal, nameModal, array }) => {
+const ModalMascFem = ({idModal, nameModal}) => {
 
     return (
         <div>
