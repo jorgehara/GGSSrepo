@@ -1,7 +1,7 @@
 import React from "react";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, nameButton, value}) => {
+const InputCbo = ({nameLabel, array, fieldName, value}) => {
     console.log(value)
   return (
     <div className='formulario__grupo__inputs__cbo'>
@@ -10,19 +10,20 @@ const InputCbo = ({nameLabel, array, nameButton, value}) => {
                 <label className='form__grupo__label__label' for="legajo">{nameLabel}</label>
             </div>
             <div className='segundo'>
-                <button class="btn btn-outline-secondary dropdown-toggle ml-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">{nameButton}</button>
-                <ul class="dropdown-menu">
+                <select class="form-select form-select-sm">{fieldName}
+                    <option selected>{value}</option>
                     {
                         array.map((op, index)=>{
                             return(
-                                value === op.nombreEstado ? <li key={index}><a class="dropdown-item active" href="#">{op.nombreEstado}</a></li> :
-                                <li key={index}><a class="dropdown-item" href="#">{op.nombreEstado}</a></li>
+                                
+                                value === op.nombreEstado ? <option value={index}>{op.nombreEstado }</option> :
+                                <option key={index}>{op.nombreEstado }</option>
                             )
                         })
                     }
-                </ul>
+                </select>
             </div>
-          </div>
+        </div>
      </div>
   );
 };
