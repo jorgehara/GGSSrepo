@@ -1,15 +1,15 @@
 import React from 'react'
 
-const ButtonCancelarAceptar = (cancelar, aceptar) => {
+const ButtonCancelarAceptar = ({cancelar, aceptar}) => {
   return (
     <div>
          <div className='form__grupo__icons'>
             <button className='btn btn-danger'
-                    >Cancelar</button>
+                    >{cancelar}</button>
                     
             <button className='btn btn-success ml-2'
                     // onClick={"LlamadaApi"}
-                    >Aceptar</button>
+                    >{aceptar}</button>
         </div>
     </div>
   )

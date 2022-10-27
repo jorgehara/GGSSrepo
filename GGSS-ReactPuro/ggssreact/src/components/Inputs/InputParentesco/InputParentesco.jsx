@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import "./InputParentesco.css";
+const InputParentesco = ({nameInput, array, placeHolder, nameButton, nameCheck, checked, display}) => {
+    const [mostrarComponente, setMostrarComponente] = useState(true);
 
-const InputParentesco = ({nameInput, array, placeHolder, nameButton, nameCheck, checked}) => {
+  useEffect(()=>{
+    setMostrarComponente(display)
+  },[display])
+
   return (
     <div className="formulario__grupo mt-2">
         <div className="">
@@ -23,7 +29,7 @@ const InputParentesco = ({nameInput, array, placeHolder, nameButton, nameCheck, 
               {nameButton}
             </button>
         </div>
-        <div className='d-flex align-items-center col-xl-3 ml-3'>
+        <div className={mostrarComponente? "d-flex align-items-center col-xl-3 ml-3" : "none"}>
             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked={checked} />
             <label class="form-check-label" for="flexCheckChecked">
                 {nameCheck}
