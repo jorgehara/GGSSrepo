@@ -8,7 +8,7 @@ const DNICboBox = ({nameInput, messageError, placeHolder, array}) => {
             <label class="formulario-label-DNI mt-2">{nameInput}</label>
         </div> 
         <div className=''>
-            <select class="form-select form_select px-0 mt-0 mb-0" >
+            <select class="formulario-input-DNI form-select form_select px-0 mt-0 mb-0" >
                 {
                     array.map(op=>{
                         return (

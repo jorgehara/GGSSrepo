@@ -13,7 +13,7 @@ const InputParentesco = ({nameInput, array, placeHolder, nameButton, nameCheck, 
             <label class="formulario-label-DNI mt-2">{nameInput}</label>
         </div> 
         <div className=''>
-            <select class="form-select form_select px-0 mt-0 mb-0" >
+            <select class="form-select form_select px-0 mt-0 mb-0 formulario-input-Legajo" >
                 {
                     array.map(op=>{
                         return (

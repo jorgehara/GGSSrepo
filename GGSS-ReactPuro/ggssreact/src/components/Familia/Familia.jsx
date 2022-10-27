@@ -33,9 +33,6 @@ const Familia = () => {
                         <InputDate value={saveEmpl[0] !== undefined ? saveEmpl[0].fechaNacimiento : null} display={true} checked={false} nameInput="Nacimiento"/>
                         <InputParentesco nameInput="Pais de Origen" array={paises} placeHolder="Paises" nameButton="..." nameCheck="Fijar" checked="" display={false}/>
                         <InputParentesco nameInput="Nacionalidad" array={paises} placeHolder="Nacionalidad" nameButton="..." nameCheck="Fijar" checked="" display={false}/>
-                       
-                        
-                        
                     </div>
               </div>              
             </div>
