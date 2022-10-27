@@ -34,21 +34,7 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton}) => 
               {nameButton}
             </button>
         </div>
-        <div className="segundo">
-          <select class="form-select form-select-sm ml-4">
-            {fieldName}
-            <option selected>{value}</option>
-            {array.map((op, index) => {
-              return value === op.nombreEstado ? (
-                <option value={index}>{op.nombreEstado}</option>
-              ) : (
-                <option key={index}>{op.nombreEstado}</option>
-              );
-            })}
-          </select>
-        </div>
       </div>
-    </div>
   );
 };
 export default InputCbo;
