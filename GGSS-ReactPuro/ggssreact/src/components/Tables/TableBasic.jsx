@@ -2,8 +2,8 @@ import React from 'react'
 
 const TableBasic = ({columns}) => {
   return (
-    <><div className='row mt-5'>
-          <table class="table-danger table-striped">
+    <><div className='row mt-5 overflow-scroll'>
+          <table class="table-danger table-striped ">
               <thead>
                   <tr>
                       {columns.map(col => {
@@ -24,10 +24,6 @@ const TableBasic = ({columns}) => {
               </tbody>
           </table>
       </div>
-        <div className='mt-2 d-md-flex justify-content-md-end'>
-            <button className='btn btn-danger btn-lg'>Quitar</button>
-            <button className='btn btn-success btn-lg ml-2'>Agregar</button>
-        </div>
     </>
     
   )

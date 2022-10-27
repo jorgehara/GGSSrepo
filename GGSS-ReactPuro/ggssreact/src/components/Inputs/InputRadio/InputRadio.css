@@ -1,16 +1,6 @@
-.formulario__grupo__inputs{
-    display: grid;
-    grid-template-areas: "nombre input icons error";
-    grid-template-columns: 0.4fr 1fr 0.1fr 1.5fr;
-    grid-template-rows: 1fr;
-    align-items: center;
-}
-
-.form__grupo__label{
-    grid-area: nombre;   
+.formulario__grupo__inputs__radio{
     display: flex;
-    flex-flow: column;
-    justify-content: flex-end;
-    /* align-items: flex-start;  */
-    /* margin: 0px 50px; */
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 }
