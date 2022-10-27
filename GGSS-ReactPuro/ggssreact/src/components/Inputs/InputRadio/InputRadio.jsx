@@ -3,25 +3,24 @@ import "./InputRadio.css";
 
 const InputRadio = ({nameInput, nameFirst, nameSecond, value}) => {
 
+const InputRadio = ({ nameInput, nameFirst, nameSecond, value }) => {
   const [valorRadioM, setValorRadioM] = useState(false);
   const [valorRadioF, setValorRadioF] = useState(false);
 
-  useEffect(()=>{
-    valueInput()
-  },[valorRadioM,valorRadioF, value])
+  useEffect(() => {
+    valueInput();
+  }, [valorRadioM, valorRadioF, value]);
 
-  const valueInput=()=>{
-    if(value === "M"){
+  const valueInput = () => {
+    if (value === "M") {
       setValorRadioM(true);
       setValorRadioF(false);
     }
-    if(value === "F"){
+    if (value === "F") {
       setValorRadioF(true);
       setValorRadioM(false);
     }
-    
-  }
-
+  };
   return (
     <div className="formulario__grupo__inputs__radio">
         <div className='form__grupo__label'>
@@ -36,7 +35,6 @@ const InputRadio = ({nameInput, nameFirst, nameSecond, value}) => {
         <label className="form-check-label" htmlFor="inlineCheckbox2">{nameSecond}</label>
         </div>
     </div>
-  )
-}
-
-export default InputRadio
+  );
+};
+export default InputRadio;

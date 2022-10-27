@@ -75,7 +75,7 @@
     margin-right: 5px;
 }
 .formulario-input-DNI{
-	width: 100px;
+	width: 89px;
 	text-align: start;
 	margin-left: 0px;
     margin-right: 0px;
@@ -85,5 +85,4 @@
 	height: 36px;
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
-
 }

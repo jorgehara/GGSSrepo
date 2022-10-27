@@ -3,9 +3,7 @@
     grid-template-areas: "nombre cbo";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    margin-top: 2%;
     width: 100%;
-    align-items: center;
 }
 .form__grupo__label__inp{
     grid-area: nombre;   
@@ -13,12 +11,15 @@
     grid-template-areas: "primer segun";
     grid-template-columns: 0.2fr 0.8fr;
     grid-template-rows: 1fr;
-    margin-top: 2%;
     width: 100%;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: space-between;
     align-items: center;
 }
 .primero{
     grid-area: primer;
+    padding-left: 0;
 }
 .segundo{
     grid-area: segun;

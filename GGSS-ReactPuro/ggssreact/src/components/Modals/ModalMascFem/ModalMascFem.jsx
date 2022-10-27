@@ -1,34 +1,22 @@
 import React from 'react'
+import '../Modales.css'
 
-const ModalMascFem = ({idModal, nameModal, array}) => {
+const ModalMascFem = ({ idModal, nameModal, array }) => {
 
-  return (
-    <div>
+    return (
+        <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id={`${idModal}Label`}>
                                 {nameModal}
                             </h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <div className="llamadaApi">
-                                {
-                                    
-                                }
-                            </div>
-                            <div className="bodyInputs">
-                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> Masculino: </label>
-                                <input type="text" name={idModal} />
-                                <br />
-                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> Femenino: </label>
-                                <input type="text" name={idModal} />
-                                <br />
-                                <hr />
 
-                                {/* ESTE TIENE QUE SER UN SELECTOR  */}
                                 <label htmlFor="data">Datos: </label>
                                 <br />
                                 <select class="form-select row mt-1" multiple aria-label="multiple select example">
@@ -36,11 +24,20 @@ const ModalMascFem = ({idModal, nameModal, array}) => {
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                                
+
+                            </div>
+                            <div className="bodyInputs">
+                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> Masculino: </label>
+                                <input type="text" name={idModal} />
+                                <br />
+                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> Femenino: </label>
+                                <input type="text" name={idModal} />
+
+                                <br />
                                 <hr />
 
                                 <div className="btnInputs">
-                                    <button type="button" className="btn btn-success btnAceptar">
+                                    <button type="button" className="btn btn-danger btnAceptar">
                                         ACEPTAR
                                     </button>
                                     <button type="button" className="btn btn-danger">
@@ -52,10 +49,10 @@ const ModalMascFem = ({idModal, nameModal, array}) => {
 
                         <div className="modal-footer">
                             <div className="crudBtns">
-                                <button type="button" className="btn btn-success crudBtn">
+                                <button type="button" className="btn btn-danger crudBtn">
                                     AGREGAR
                                 </button>
-                                <button type="button" className="btn btn-warning crudBtn">
+                                <button type="button" className="btn btn-danger crudBtn">
                                     MODIFICAR
                                 </button>
                                 <button type="button" className="btn btn-danger crudBtn">
@@ -69,8 +66,8 @@ const ModalMascFem = ({idModal, nameModal, array}) => {
                     </div>
                 </div>
             </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default ModalMascFem;

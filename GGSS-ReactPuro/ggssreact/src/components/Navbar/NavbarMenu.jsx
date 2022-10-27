@@ -2,6 +2,21 @@ import React from 'react'
 import { Link, Navigate } from "react-router-dom";
 
 const Navbar = () => {
+
+// const titleEmpleados = document.querySelector('.titleEmpleados')
+// const titleLiquidacion = document.querySelector('.titleLiquidacion')
+
+// const datosEmpleados = document.querySelector('.datosEmpleados')
+// const datosLiquidacion = document.querySelector('.datosLiquidacion')
+
+// const handleDatosEmpleados = () => {
+// 	datosEmpleados.className.add('.closeData')
+// }
+
+// const handleDatosLiquidacion = () => {
+// 	datosLiquidacion.className.add('.closeData')
+// }
+
   return (
 	    <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
@@ -38,26 +53,30 @@ const Navbar = () => {
                         Tabla de Datos
                     </a>
                     <ul class="dropdown-menu">
-						<h6>Para empleados</h6>
-                        <li><Link class="dropdown-item" to="/lista-datos/estadoCivil">Estado Civil</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/estudios">Estudios</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/tipoDocumento">Tipo de Documento Civil</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/parentescos">Parentescos</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/estadosEmpleados">Estados para empleados</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/calles">Calles</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/cargos">Cargos</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/formasDePago">Formas de Pago</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/modosDeContratacion">Modos de Contratación</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/modosDeLiquidacion">Modos de Liquidación</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/motivosEgreso">Motivos de Egreso</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/paises">Paises</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/pdlb">Provincias - Departamentos - Localidades - Barrios</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/tareasDesempeñadas">Tareas Desempeñadas</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/tiposDeDocumento">Tipos de Documento</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/empleadores">Empleadores</Link></li>
-						<li><Link class="dropdown-item" to="/lista-datos/alicuotas">Alicuotas</Link></li>
+						<h6 className="titleEmpleados">Para empleados: </h6>
+						<div className="datosEmpleados">
+							<li><Link class="dropdown-item" to="/lista-datos/estadoCivil">Estado Civil</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/estudios">Estudios</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/tipoDocumento">Tipo de Documento Civil</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/parentescos">Parentescos</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/estadosEmpleados">Estados para empleados</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/calles">Calles</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/cargos">Cargos</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/formasDePago">Formas de Pago</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/modosDeContratacion">Modos de Contratación</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/modosDeLiquidacion">Modos de Liquidación</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/motivosEgreso">Motivos de Egreso</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/paises">Paises</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/pdlb">Provincias - Departamentos - Localidades - Barrios</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/tareasDesempeñadas">Tareas Desempeñadas</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/empleadores">Empleadores</Link></li>
+							<li><Link class="dropdown-item" to="/lista-datos/alicuotas">Alicuotas</Link></li>
+						</div>
 						<hr />
-						<h6>Para liquidación</h6>
+						<h6 className="titleLiquidacion">Para liquidación: </h6>
+						<div className="datosLiquidacion">
+							...
+						</div>
 
                     </ul>
                 </li>

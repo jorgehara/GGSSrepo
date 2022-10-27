@@ -1,23 +1,29 @@
 import React from 'react'
 import TextArea from '../../Inputs/TextArea/TextArea';
 
-const ModalParentescos = ({idModal, nameModal,array}) => {
-  return (
-    <div>
+const ModalParentescos = ({ idModal, nameModal, array }) => {
+    return (
+        <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id={`${idModal}Label`}>
                                 {nameModal}
                             </h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <div className="llamadaApi">
-                                {
-                                    
-                                }
+
+                                <label htmlFor="data">Datos: </label>
+                                <br />
+                                <select class="form-select row mt-1" multiple aria-label="multiple select example">
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+
                             </div>
                             <div className="bodyInputs">
                                 <label for="parentesco" style={{ marginRight: "15px" }}>Parentesco: </label>
@@ -32,20 +38,13 @@ const ModalParentescos = ({idModal, nameModal,array}) => {
                                 <label for="ganancias" style={{ marginRight: "15px" }}>Deduce ganancias</label>
 
                                 <label for="importe" style={{ marginRight: "5px" }}>IMPORTE: </label>
-                                <input type="number" name="importe" />
+                                <input type="number" name="importe" min="0" />
                                 <br />
-                                {/* ESTE TIENE QUE SER UN SELECTOR  */}
-                                <label htmlFor="obs">Datos: </label>
-                                <br />
-                                <select class="form-select row mt-1" multiple aria-label="multiple select example">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+
                                 <TextArea inputName="Observaciones" />
                                 <hr />
                                 <div className="btnInputs">
-                                    <button type="button" className="btn btn-success btnAceptar">
+                                    <button type="button" className="btn btn-danger btnAceptar">
                                         ACEPTAR
                                     </button>
                                     <button type="button" className="btn btn-danger">
@@ -60,7 +59,7 @@ const ModalParentescos = ({idModal, nameModal,array}) => {
                                 <button type="button" className="btn btn-success crudBtn">
                                     AGREGAR
                                 </button>
-                                <button type="button" className="btn btn-warning crudBtn">
+                                <button type="button" className="btn btn-danger crudBtn">
                                     MODIFICAR
                                 </button>
                                 <button type="button" className="btn btn-danger crudBtn">
@@ -74,8 +73,8 @@ const ModalParentescos = ({idModal, nameModal,array}) => {
                     </div>
                 </div>
             </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default ModalParentescos;

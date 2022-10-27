@@ -1,13 +1,11 @@
-// import React, { useEffect } from 'react'
-import BasicModal from '../Modals/BasicModal/BasicModal'
+import React from 'react'
+
 
 const ButtonCallModal = ({idModal, nameButton}) => {
 
-//   console.log(nameButton);
-
   return (    
     <>
-    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#${idModal}`}>
+    <button type="button" className="btn btn-danger btnCallModal" data-bs-toggle="modal" data-bs-target={`#${idModal}`}>
       {nameButton.toString()}
     </button>
 

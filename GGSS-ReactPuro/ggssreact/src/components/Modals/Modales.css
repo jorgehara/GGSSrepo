@@ -1,0 +1,53 @@
+.modal-dialog{
+    font-size: 16px;
+}
+
+.modal-dialog input{
+    border: none;
+    border-bottom: solid 3px rgb(90, 7, 7);
+}
+
+.modal-dialog input:focus{
+    background-image: linear-gradient(to bottom, transparent, rgb(126, 25, 25, 0.3));
+    outline: none;
+}
+
+.modal-header{
+    background-image: linear-gradient(to right, rgb(148, 28, 28), rgb(99, 11, 11));
+    color: whitesmoke;
+}
+
+
+.modal-body{
+    display: flex;
+    justify-content: space-between;
+}
+
+.llamadaApi{
+    width: 300px;
+    padding: 20px;
+}
+
+.bodyInputs{
+    margin-right: 40px;
+}
+
+.fieldsetStyle{
+    border-radius: 10px;
+}
+
+
+
+.crudBtns{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.crudBtn{
+    background-color: rgb(121, 21, 21);
+    margin: 10px;
+}
+
+.btnAceptar{
+    margin-right: 15px;
+}

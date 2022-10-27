@@ -1,92 +1,72 @@
-import React, { useContext, useEffect, useState } from 'react'
-import swal from 'sweetalert';
-import DNICboBox from '../Inputs/DNICboBox/DNICboBox';
-import InputButton from '../Inputs/InputButton/InputButton';
-import InputCbo from '../Inputs/InputCbo/InputCbo';
-import InputDate from '../Inputs/InputDate/InputDate';
-import InputFile from '../Inputs/InputFile/InputFile';
-import InputForm from '../Inputs/InputForm/InputForm';
-import InputRadio from '../Inputs/InputRadio/InputRadio';
-import TextArea from '../Inputs/TextArea/TextArea';
-import Navbar from '../Navbar/Navbar';
+import React, { useContext, useEffect, useState } from "react";
+import swal from "sweetalert";
+import DNICboBox from "../Inputs/DNICboBox/DNICboBox";
+import InputButton from "../Inputs/InputButton/InputButton";
+import InputCbo from "../Inputs/InputCbo/InputCbo";
+import InputDate from "../Inputs/InputDate/InputDate";
+import InputFile from "../Inputs/InputFile/InputFile";
+import InputForm from "../Inputs/InputForm/InputForm";
+import InputRadio from "../Inputs/InputRadio/InputRadio";
+import TextArea from "../Inputs/TextArea/TextArea";
+import Navbar from "../Navbar/Navbar";
 import "./DatosPersonales.css";
-import { employeContext } from '../../context/employeContext';
-import Domicilios from '../Domicilios/Domicilios';
-import axios from 'axios';
-import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
-
+import { employeContext } from "../../context/employeContext";
+// import Domicilios from '../Domicilios/Domicilios';
+import axios from "axios";
+import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
+import Domicilios from "../Domicilios/Domicilios";
 
 const DatosPersonales = () => {
+  const optionsDNI = ["DNI", "LC", "LE"];
+  const estados = ["Activo", "Baja", "Suspendido", "Anulado"];
 
-    const optionsDNI = [ "DNI", "LC", "LE"]
-    const estados = ["Activo", "Baja", "Suspendido", "Anulado"]
+  const { saveEmpl, saveEstados, saveEstado } = useContext(employeContext);
 
-    const {saveEmpl, saveEstados, saveEstado} = useContext(employeContext);
+  const [error, setError] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const url = "http://54.243.192.82/api/Estados";
 
-    const [error, setError] = useState("");
-    const [inputValue, setInputValue] = useState ("");
-    const url = "http://54.243.192.82/api/Estados";
+  const estadosCiviles = ["Soltero" , "Casado", "Viudo", "Divorciado"];
+  useEffect(() => {
+    axios.get(url).then((res) => saveEstados(res.data));
+  }, []);
 
-    useEffect(()=>{
-        axios
-        .get(url)
-        .then(res=> saveEstados(res.data) )
-    },[])
-
-    const estadosCiviles = [{
-        "id" : 1,
-        "estado" : "Soltero"
-    },{
-        "id" : 2,
-        "estado" : "Casado" 
-    },{
-        "id" : 3,
-        "estado" : "Viudo"
-    },
-    {
-        "id" : 4,
-        "estado" : "Algo"
-    }];
-
-    
-
-    const validateNumbers =(e)=>{		
-        if (!/[0-9]/.test(e.key)) {
-            setError("Ingrese sólo números");
-            e.preventDefault();
-        }
+  const validateNumbers = (e) => {
+    if (!/[0-9]/.test(e.key)) {
+      setError("Ingrese sólo números");
+      e.preventDefault();
     }
-    const validateNumbersTelefono =(e)=>{		
-        if (!/[0-9]/.test(e.key)) {
-            setError("Ingrese sólo números");
-            e.preventDefault();
-        }
+  };
+  const validateNumbersTelefono = (e) => {
+    if (!/[0-9]/.test(e.key)) {
+      setError("Ingrese sólo números");
+      e.preventDefault();
     }
-    
-    const validateNumbersDNI =(e)=>{		
-        if (!/^([0-9]?){8}$/.test(e.key)) {
-            setError("Ingrese sólo números");
-            swal({
-                title: "¡Error!",
-                text: `${error}`,
-                icon: "error",
-              });
-            e.preventDefault();
-        }
-    }
-    const validateTexts =(e)=>{		
-        if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(e.key)) {
-            setError("Ingrese sólo letras y espacios");
-            e.preventDefault();
-        }
-    }
-    const validateEmails =(e)=>{		
-        if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(e.key)) {
-            setError("Ingrese sólo letras y espacios");
-            e.preventDefault();
-        }
-    }
+  };
 
+  const validateNumbersDNI = (e) => {
+    if (!/^([0-9]?){8}$/.test(e.key)) {
+      setError("Ingrese sólo números");
+      swal({
+        title: "¡Error!",
+        text: `${error}`,
+        icon: "error",
+      });
+      e.preventDefault();
+    }
+  };
+  const validateTexts = (e) => {
+    if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(e.key)) {
+      setError("Ingrese sólo letras y espacios");
+      e.preventDefault();
+    }
+  };
+  const validateEmails = (e) => {
+    if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(e.key)) {
+      setError("Ingrese sólo letras y espacios");
+      e.preventDefault();
+    }
+  };
 
 return (        
     <div className='Lateral-Derecho'> 
@@ -152,4 +132,4 @@ return (
     </div>
   )
 }
-export default DatosPersonales
+export default DatosPersonales;
