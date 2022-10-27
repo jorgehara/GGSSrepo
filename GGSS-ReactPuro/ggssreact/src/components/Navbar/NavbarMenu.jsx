@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link, Navigate } from "react-router-dom";
+import ButtonCallModal from '../Buttons/ButtonCallModal';
+import BasicModal from '../Modals/BasicModal/BasicModal';
 
 const Navbar = () => {
 
@@ -55,6 +57,8 @@ const Navbar = () => {
                     <ul class="dropdown-menu">
 						<h6 className="titleEmpleados">Para empleados: </h6>
 						<div className="datosEmpleados">
+							<ButtonCallModal idModal="Estudios" nameButton="Estudios" />
+          					<BasicModal idModal="Estudios" nameModal="Estudios" nameOptionModal="Nivel de Estudios" />
 							<li><Link class="dropdown-item" to="/lista-datos/estadoCivil">Estado Civil</Link></li>
 							<li><Link class="dropdown-item" to="/lista-datos/estudios">Estudios</Link></li>
 							<li><Link class="dropdown-item" to="/lista-datos/tipoDocumento">Tipo de Documento Civil</Link></li>

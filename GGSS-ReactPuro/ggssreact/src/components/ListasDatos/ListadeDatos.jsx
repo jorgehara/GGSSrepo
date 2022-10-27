@@ -2,7 +2,7 @@ import React from 'react'
 // import { Route } from "react-router-dom";
 import ButtonCallModal from '../Buttons/ButtonCallModal';
 import BasicModal from '../Modals/BasicModal/BasicModal';
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import ModalMascFem from '../Modals/ModalMascFem/ModalMascFem';
 import ModalParentescos from '../Modals/ModalParentescos/ModalParentescos';
 import BasicModalSelectObs from '../Modals/BasicModalSelectObs/BasicModalSelectObs';
@@ -15,18 +15,19 @@ import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores';
 const ListasDeDatos = () => {
 
   const { idCategory } = useParams()
-
+  const location = useLocation();
+  console.log(location.pathname)
   return (
     <div>
       
-      {idCategory == "estadoCivil" &&
+      {location.pathname == "/lista-datos/estadoCivil" &&
         <>
           <ButtonCallModal idModal="EstadoCivil" nameButton="Estados Civiles" />
           <ModalMascFem idModal="EstadoCivil" nameModal="Estados Civiles" />
         </>
       }
 
-      {idCategory == "estudios" &&
+      {location.pathname == "estudios" &&
 
         <>
           <ButtonCallModal idModal="Estudios" nameButton="Estudios" />
@@ -35,7 +36,7 @@ const ListasDeDatos = () => {
 
       }
 
-      {idCategory == "tipoDocumento" &&
+      {location.pathname == "tipoDocumento" &&
 
         <>
           <ButtonCallModal idModal="TipoDocumento" nameButton="Tipo de Documento" />

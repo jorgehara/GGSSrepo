@@ -8,8 +8,8 @@
 .form__grupo__label__inp{
     grid-area: nombre;   
     display: grid;
-    grid-template-areas: "primer segun";
-    grid-template-columns: 0.2fr 0.8fr;
+    grid-template-areas: "primer segun tercer";
+    grid-template-columns: 0.4fr 1.1fr 0.5fr;
     grid-template-rows: 1fr;
     width: 100%;
     flex-flow: column;
@@ -24,4 +24,10 @@
 .segundo{
     grid-area: segun;
     width: 100%;
+}
+.tercero{
+    grid-area: tercer;
+}
+.none{
+    display: none;
 }

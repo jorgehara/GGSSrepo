@@ -27,6 +27,10 @@ const DatosPersonales = () => {
   const url = "http://54.243.192.82/api/Estados";
 
   const estadosCiviles = ["Soltero" , "Casado", "Viudo", "Divorciado"];
+
+  
+  
+
   useEffect(() => {
     axios.get(url).then((res) => saveEstados(res.data));
   }, []);
@@ -101,7 +105,7 @@ return (
                                         <InputButton value={saveEmpl[0] !== undefined ? saveEmpl[0].nacionalidad : null} id="inputNacionalidad" nameLabel="Nacionalidad" nameButton="..." placeholder="Ingrese Nacionalidad" idModal="modalNacionalidades" array={[]}/>
                                         </div>
                                         <div className='tercera_columna col-5'>
-                                        <InputCbo value={saveEmpl[0] !== undefined ? saveEmpl[0].estado : null} nameButton="Estados" nameLabel="Estado" array={saveEstado} />
+                                        <InputCbo value={saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : null} nameButton="..." nameLabel="Estado" array={saveEstado} display={true}/>
                                         <InputRadio value={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null} nameFirst="Masculino" nameSecond="Femenino" nameInput="Sexo" />
                                         <InputDate value={saveEmpl[0] !== undefined ? saveEmpl[0].fechaNacimiento : null} nameInput="Nacimiento" />
                                         <InputForm value={saveEmpl[0] !== undefined ? saveEmpl[0].telMovil : null} nameInput="Móvil"  messageError="Solo puede contener números." placeHolder="Ingrese su celular"/>
