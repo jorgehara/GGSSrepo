@@ -25,19 +25,22 @@
     grid-area: segun;
     width: 100%;
 }
-.form-select{
-    
-}
 .form-select:focus{
     background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+    border: none;
 }
-.form-select:hover{
+
+/* .form-select:hover{
     color: var(--bs-btn-hover-color);
     background-color: var(--bs-btn-hover-bg);
     border-color: var(--bs-btn-hover-border-color);
     border-color:  #bb2929;
-}
+} */
+
 :focus-visible {
     outline: 1px solid #bb2929 ;
     border-radius: 3px;
+}
+.form-select:active ::after ::before{
+    border-color:  #bb2929;
 }
