@@ -1,5 +1,5 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
 import Browser from '../Browser/Browser'
 import DatosPersonales from '../DatosPersonales/DatosPersonales'
 import Familia from '../Familia/Familia';
@@ -10,7 +10,11 @@ const Home = () => {
 
     let location = useLocation();
 
-    console.log(location.pathname);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        navigate("/home/datos-personales")
+    },[])
 
   return (
     <div className='container-flex ml-4 mr-4'>
@@ -20,10 +24,9 @@ const Home = () => {
             </div>
             <div className='col-xl-9'>
                 <Navbar />
-                <DatosPersonales />
-                {/* {
+                {
                     location.pathname === "/home/datos-personales" && <DatosPersonales />
-                } */}
+                } 
                 {
                     location.pathname === "/home/familia" && <Familia />
                 }
