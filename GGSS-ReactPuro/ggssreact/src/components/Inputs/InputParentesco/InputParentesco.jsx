@@ -1,7 +1,6 @@
 import React from 'react'
-import "./DNICboBox.css"
-const DNICboBox = ({nameInput, messageError, placeHolder, array}) => {
 
+const InputParentesco = ({nameInput, array, placeHolder, nameButton, nameCheck, checked}) => {
   return (
     <div className="formulario__grupo mt-2">
         <div className="">
@@ -19,20 +18,19 @@ const DNICboBox = ({nameInput, messageError, placeHolder, array}) => {
             </select>
         </div>                   
         <div className='form__grupo__input2'>
-            <input type="text" 
-				    maxlength="8"
-                    className='formulario-input-DNI px-0 mt-0 mb-0' 
-                    placeholder={placeHolder}>                        
-            </input>
+            <button type="button" 
+              class="btn btn-validacion btn-outline-danger ml-2">
+              {nameButton}
+            </button>
         </div>
-        <div className='form__grupo__icon'>
-            <i class="fas fa-times-circle"></i>
-        </div>
-        <div className='form__grupo__error'>
-            <p>{messageError}</p>
-        </div>   
+        <div className='d-flex align-items-center col-xl-3 ml-3'>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked={checked} />
+            <label class="form-check-label" for="flexCheckChecked">
+                {nameCheck}
+            </label>           
+        </div>  
     </div>
   )
 }
 
-export default DNICboBox
+export default InputParentesco

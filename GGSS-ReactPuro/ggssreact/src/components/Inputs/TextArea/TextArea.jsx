@@ -12,7 +12,7 @@ const TextArea = ({inputName, maxLength, value}) => {
                 value={value}
                 placeholder="Ingrese Observaciones" 
                 id="" 
-                cols="61" 
+                cols="41" 
                 rows="5"
                 name="" 
                 maxLength={maxLength}
