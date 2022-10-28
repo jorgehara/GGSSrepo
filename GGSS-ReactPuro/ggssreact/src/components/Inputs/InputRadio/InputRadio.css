@@ -4,3 +4,37 @@
     justify-content: center;
     align-items: center;
 }
+.formulario-label-Sexo{
+	font-style: normal;
+	font-weight: 400;
+	color: black;
+	margin-top: 0px;
+	margin-right: 42px;
+    margin-left: 0px;
+	margin-bottom: 0px;
+	display: block;
+}
+.formulario-input-Sexo{
+	width: 89px;
+	text-align: start;
+	margin-left: 48px;
+    margin-right: 0px;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	/* height: 36px; */
+	transition: .3s ease all;
+    /* border-bottom: 1px solid rgb(78, 6, 6); */
+}
+.formulario-input-SexoF{
+	width: 89px;
+	text-align: start;
+	margin-left: 8px;
+    margin-right: 0px;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	/* height: 36px; */
+	transition: .3s ease all;
+    /* border-bottom: 1px solid rgb(78, 6, 6); */
+}

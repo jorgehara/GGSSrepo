@@ -17,7 +17,7 @@ const InputDate = ({nameInput,display, checked}) => {
           </label>
           <input className={mostrarComponente ? "form-check-input ml-4" : "none"} type="checkbox" value="" id="flexCheckChecked" checked={checked} />
         </div>
-        <div class="form-check ">
+        <div class="formulario-input-Date">
             <input id="datetime-local" type="datetime-local" />
         </div>
     </div>

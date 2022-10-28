@@ -39,8 +39,9 @@
 	display: none;
 }
 .formulario-input-Legajo{
+    /* margin-top: -12px; */
     margin-bottom: 3px;
-	width: 165px;
+	width: 156px;
 	margin-left: 0px;
     margin-right: 0px;
 	background: #fff;
@@ -79,17 +80,9 @@
 	width: 558px;
 }
 
-/* .formulario__label_2daColumn{
+.formulario__label_2daColumn{
 	display: block;
 	font-weight: 400;
     width: 85px;
     margin-right: 10px;
-} */
-
-.formulario__grupo__inputs{
-    display: grid;
-    grid-template-areas: "nombre input icons error";
-    grid-template-columns: 0.4fr 1fr 0.1fr 1.5fr;
-    grid-template-rows: 1fr;
-    align-items: center;
 }

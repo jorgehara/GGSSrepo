@@ -1,6 +1,6 @@
-import "./InputForm.css";
+import "./InputForm2daColumn.css";
 
-const InputForm = ({
+const InputForm2daColumn =({
   nameInput,
   messageError,
   placeHolder,
@@ -31,4 +31,4 @@ const InputForm = ({
     </div>
   )
 };
-export default InputForm;
+export default InputForm2daColumn;

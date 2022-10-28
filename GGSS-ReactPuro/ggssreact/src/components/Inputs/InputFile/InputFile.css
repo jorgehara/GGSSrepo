@@ -1,3 +1,6 @@
+.div_conteiner {
+    
+}
 .img__drop{
     display: block;
     width: 230px;
@@ -16,5 +19,4 @@ cursor: pointer;
 }
 .image-upload-wrap:hover {
     background-color: transparent;
-   
-   }
+}

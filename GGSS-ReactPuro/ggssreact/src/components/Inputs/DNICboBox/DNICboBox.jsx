@@ -3,12 +3,12 @@ import "./DNICboBox.css"
 const DNICboBox = ({nameInput, messageError, placeHolder, array}) => {
 
   return (
-    <div className="formulario__grupo mt-2">
+    <div className="formulario__grupo">
         <div className="">
             <label class="formulario-label-DNI mt-2">{nameInput}</label>
         </div> 
         <div className=''>
-            <select class="formulario-input-DNI form-select form_select px-0 mt-0 mb-0" >
+            <select class="formulario-input-DNI form-select ml-0 px-0">
                 {
                     array.map(op=>{
                         return (

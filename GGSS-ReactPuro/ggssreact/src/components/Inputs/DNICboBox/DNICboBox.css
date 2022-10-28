@@ -50,29 +50,33 @@
 	font-weight: 400;
 	color: black;
 	margin-top: 0px;
-	margin-right: 0px;
+	margin-right: 20px;
     margin-left: 0px;
 	margin-bottom: 0px;
 	display: block;
+    
 }
 .formulario-input-DNI:focus{
-    background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+    /* background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3)); */
 
 }
 
+
 :focus-visible {
-    outline: 1px solid #bb2929 ;
-    border-radius: 3px;}
-    
+    /* outline: 1px solid #bb2929 ;
+    border-radius: 3px;} */
+}    
 .formulario-input-DNI:hover{
     border-color:  #bb2929;
 }
-.form_select{
-	width: 61px;
-	margin-left: 78px;
-	height: 38px;
+.form-select:focus{
+    /* border-color:  #bb2929 !important; */
+	/* width: 61px; */
+	/* margin-left: 78px; */
+	/* height: 38px; */
 	/* margin-top: 25px; */
-    margin-right: 5px;
+    /* margin-right: 5px; */
+    /* outline: none !important; */
 }
 .formulario-input-DNI{
 	width: 89px;
@@ -86,3 +90,16 @@
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
 }
+/* input:focus, select:focus, select, .form-select, input.form-control:focus {
+
+    outline:none !important;
+
+    outline-width: 0 !important;
+
+    box-shadow: none;
+
+    -moz-box-shadow: none;
+
+    -webkit-box-shadow: none;
+
+} */

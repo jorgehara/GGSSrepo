@@ -10,10 +10,10 @@ const InputParentesco = ({nameInput, array, placeHolder, nameButton, nameCheck, 
   return (
     <div className="formulario__grupo mt-2">
         <div className="">
-            <label class="formulario-label-DNI mt-2">{nameInput}</label>
+            <label class="formulario-label-Parentesco mt-2">{nameInput}</label>
         </div> 
         <div className=''>
-            <select class="form-select form_select px-0 mt-0 mb-0 formulario-input-Legajo" >
+            <select class="form-select form_select ml-4 px-0 mt-0 mb-0 formulario-input-Legajo" >
                 {
                     array.map(op=>{
                         return (
@@ -23,13 +23,13 @@ const InputParentesco = ({nameInput, array, placeHolder, nameButton, nameCheck, 
                 }
             </select>
         </div>                   
-        <div className='form__grupo__input2'>
+        <div className='form__grupo__input2 pl-1'>
             <button type="button" 
-              class="btn btn-validacion btn-outline-danger ml-2">
+              class="tercero btn btn-validacion btn-outline-danger btn-sm ml-2 pl-2 mt-2">
               {nameButton}
             </button>
         </div>
-        <div className={mostrarComponente? "d-flex align-items-center col-xl-3 ml-3" : "none"}>
+        <div className={mostrarComponente? "d-flex align-items-center col-xl-3 ml-4" : "none"}>
             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked={checked} />
             <label class="form-check-label" for="flexCheckChecked">
                 {nameCheck}

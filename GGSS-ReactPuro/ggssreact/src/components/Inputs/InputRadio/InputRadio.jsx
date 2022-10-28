@@ -24,13 +24,13 @@ const InputRadio = ({ nameInput, nameFirst, nameSecond, value }) => {
   return (
     <div className="formulario__grupo__inputs__radio">
         <div className='form__grupo__label'>
-            <label className='form__grupo__label__label'  htmlFor="legajo">{nameInput}</label>
+            <label className='formulario-label-Sexo'  htmlFor="legajo">{nameInput}</label>
         </div>
-        <div className="form-check form-check-inline">
+        <div className="formulario-input-Sexo">
           <input className="form-check-input" type="radio" id="inlineCheckbox1" name={nameInput} checked={valorRadioM} onChange={(e)=> setValorRadioM(e.target.value)} value={valorRadioM}/>
         <label className="form-check-label" htmlFor="inlineCheckbox1">{nameFirst}</label>
         </div>
-        <div className="form-check form-check-inline">
+        <div className="formulario-input-SexoF">
           <input className="form-check-input" type="radio" id="inlineCheckbox2" name={nameInput} checked={valorRadioF} onChange={(e)=> setValorRadioF(e.target.value)} value={valorRadioF}/>
         <label className="form-check-label" htmlFor="inlineCheckbox2">{nameSecond}</label>
         </div>

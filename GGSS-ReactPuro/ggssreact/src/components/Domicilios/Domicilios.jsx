@@ -1,24 +1,55 @@
 import React, { useContext, useEffect, useState } from "react";
 import { employeContext } from "../../context/employeContext";
+import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 // import ButtonLarge from '../Buttons/ButtonLarge'
 import InputButton from "../Inputs/InputButton/InputButton";
+import InputCbo from "../Inputs/InputCbo/InputCbo";
 import InputForm from "../Inputs/InputForm/InputForm";
+import InputParentesco from "../Inputs/InputParentesco/InputParentesco";
 import TextArea from "../Inputs/TextArea/TextArea";
+import TableBasic from "../Tables/TableBasic";
+import TableBasic1 from "../Tables/TableBasic1";
 // import TableBasic from '../Tables/TableBasic'
 
 const Domicilios = () => {
+  const tipoDNI = ["D.N.I", "L.E", "L.C", "Pasaporte", "Visa"];
+  
+  const columns = [
+    "Nombre Apellido",
+    "Tipo/N° DNI",
+    "Parentesco",
+    "Nacimiento",
+    "Pais Origen",
+    "Nacionalidad",
+    "Estudios",
+    "Fecha Baja",
+    "Obs",
+  ];
+  
+  const parentesco = [
+    "Primo",
+    "Hijo",
+    "Padre",
+    "Madre",
+    "Tio",
+    "Sobrino",
+    "Nieto",
+  ];
+  const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
 
-    
-    const { saveDom} = useContext(employeContext);
-    const [inputValue, setInputValue] = useState ("");
+  const [error, setError] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const url = "http://54.243.192.82/api/Estados";
 
-    console.log(saveDom)
-    
-    
-    useEffect(()=>{
-        setInputValor();
-    },[(saveDom[0].predeterminado)])
+  const estadosCiviles = ["Soltero", "Casado", "Viudo", "Divorciado"];
 
+  const { saveDom, saveEmpl, saveEstados, saveEstado } =
+    useContext(employeContext);
+
+  // console.log(saveDom)
+  useEffect(() => {
+    setInputValor();
+  }, [saveDom[0].predeterminado]);
 
   const setInputValor = () => {
     if (saveDom.length > 0 && saveDom[0].predeterminado === 1) {
@@ -48,10 +79,10 @@ const Domicilios = () => {
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
-          <section className=
-          ""
-          
-        //   "container"
+          <section
+            className=""
+
+            //   "container"
           >
             <div className="row">
               {/* <div className="formulario__grupo">
@@ -63,7 +94,7 @@ const Domicilios = () => {
                 <div className="mt-2">
                   <input
                     checked={inputValue}
-                    type="checkbox"
+                    type="radio"
                     name="predeterminado"
                     id="predeterminado"
                   />
@@ -71,89 +102,84 @@ const Domicilios = () => {
                     Predeterminado
                   </label>
                 </div>
-                <InputForm
-                  value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].calle
-                      : null
-                  }
-                  nameInput="Calle"
-                  messageError="Solo puede contener números."
-                  placeHolder="Ingrese Calle"
-                />
-                <InputButton
-                  value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Barrio
-                      : null
-                  }
-                  nameLabel="Barrio"
+                <InputCbo
+                  value={saveEmpl[0] !== undefined ? saveEmpl[0].idCalle : null}
                   nameButton="..."
-                  placeholder="Ingrese Barrio"
+                  nameLabel="Calle"
+                  array={saveEstado}
+                  display={true}
                 />
-                <InputForm
+                <InputCbo
+                  value={
+                    saveEmpl[0] !== undefined ? saveEmpl[0].idProvincia : null
+                  }
+                  nameButton="..."
+                  nameLabel="Provincia"
+                  array={saveEstado}
+                  display={true}
+                />
+                <InputCbo
                   value={
                     saveDom[0] !== undefined || saveDom[0] === null
                       ? saveDom[0].Provincia
                       : null
                   }
-                  nameInput="Provincia"
-                  messageError="Solo puede contener letras."
-                  placeHolder="Ingrese Provincia"
+                  nameButton="..."
+                  nameLabel="Departamento"
+                  array={saveEstado}
+                  display={true}
                 />
-                <TextArea
-                  value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Obs
-                      : null
-                  }
-                  inputName="Observaciones"
-                />
+                
+        <TableBasic1 columns={columns} />
+        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
+      
               </div>
               <div className="col-xl-6">
-                <InputButton
-                  value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].numCalle
-                      : null
-                  }
-                  nameLabel="Número"
+                <InputParentesco
+                  nameInput="Número"
+                  array={paises}
+                  placeHolder="Estudios"
                   nameButton="..."
-                  placeholder="123456"
+                  nameCheck="Fijar"
+                  checked=""
+                  display={true}
                 />
-                <InputButton
+                <InputCbo
                   value={
                     saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].pisoDepto
+                      ? saveDom[0].Provincia
                       : null
                   }
-                  nameLabel="Piso/Dpto/Ofic/Torre"
                   nameButton="..."
-                  placeholder="Ingrese número"
+                  nameLabel="Piso/Dpto/
+                          Ofic/Torre"
+                  array={saveEstado}
+                  display={true}
                 />
-                <InputForm
+                <InputCbo
+                  value={
+                  saveDom[0] !== undefined || saveDom[0] === null
+                  ? saveDom[0].Provincia
+                  : null
+                  }
+                  nameButton="..."
+                  nameLabel="Localidad"
+                  array={saveEstado}
+                  display={true}
+                />
+                <InputCbo
                   value={
                     saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Departamento
+                      ? saveDom[0].Provincia
                       : null
                   }
-                  nameInput="Departamento"
-                  messageError="Solo puede contener letras."
-                  placeHolder="Ingrese Departamento"
-                />
-                <InputForm
-                  value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Localidad
-                      : null
-                  }
-                  nameInput="Localidad/CP"
-                  messageError="Solo puede contener letras."
-                  placeHolder="Ingrese Localidad/CP"
+                  nameButton="..."
+                  nameLabel="Barrio"
+                  array={saveEstado}
+                  display={true}
                 />
               </div>
             </div>
-            {/* "Panel de acceso directo" */}
           </section>
         </div>
       </div>
