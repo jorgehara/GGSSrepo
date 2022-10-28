@@ -5,6 +5,7 @@ import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import EmployeData from "../EmployeData/EmployeData";
 import InputChecked from "../Inputs/InputChecked/InputChecked";
 import InputDate from "../Inputs/InputDate/InputDate";
+import InputDateFlia from "../Inputs/InputDateFamilia/InputDateFlia";
 import InputMultiple from "../Inputs/InputMultiple/InputMultiple";
 import InputParentesco from "../Inputs/InputParentesco/InputParentesco";
 import TextArea from "../Inputs/TextArea/TextArea";
@@ -41,7 +42,7 @@ const Familia = () => {
     "Obs",
   ];
   return (
-    <div className="container">
+    <div className="container-sm">
       <div class="row border border-3 p-3">
         <EmployeData />
         <div className="col-xl-6">
@@ -81,7 +82,7 @@ const Familia = () => {
                   checked=""
                   display={true}
                 />
-                <InputDate
+                <InputDateFlia
                   value={
                     saveEmpl[0] !== undefined
                       ? saveEmpl[0].fechaNacimiento
@@ -123,7 +124,7 @@ const Familia = () => {
             checked=""
             display={true}
           />
-          <InputDate
+          <InputDateFlia
             value={
               saveEmpl[0] !== undefined ? saveEmpl[0].fechaNacimiento : null
             }

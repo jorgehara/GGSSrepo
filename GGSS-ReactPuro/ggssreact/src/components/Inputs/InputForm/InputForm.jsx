@@ -15,8 +15,7 @@ const InputForm = ({
         </div>
         <div className='form__grupo-input'>
             <input type="text" 
-                    className='formulario-input-Legajo'                     
-                    id={inputId}                                 
+                    className='formulario-input-Legajo'      id={inputId}                               
                     placeholder={placeHolder}
 				            value={value} 
                     onChange={(e)=>onChange(e)}            

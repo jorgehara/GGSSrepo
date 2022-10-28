@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 
-.formulario-input-Date{
+.formulario-input-DateFlia{
 	width: 89px;
 	text-align: start;
 	margin-left: 22px;
@@ -18,6 +18,17 @@
 	/* height: 36px; */
 	transition: .3s ease all;
     /* border-bottom: 1px solid rgb(78, 6, 6); */
+}
+.formulario__grupo__DateFlia{
+	display: grid;
+    grid-template-areas: "nombre input icons error";
+    grid-template-columns: 0.4fr 1fr 0.1fr 1.5fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+.form-check-inputDateFlia{
+	margin-left: 41px;
+	margin-top: 0px;
 }
 
 
