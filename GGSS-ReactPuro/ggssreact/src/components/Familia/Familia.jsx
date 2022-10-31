@@ -4,12 +4,15 @@ import { employeContext } from "../../context/employeContext";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import EmployeData from "../EmployeData/EmployeData";
 import InputChecked from "../Inputs/InputChecked/InputChecked";
-import InputDate from "../Inputs/InputDate/InputDate";
+// import InputDate from "../Inputs/InputDate/InputDate";
 import InputDateFlia from "../Inputs/InputDateFamilia/InputDateFlia";
 import InputMultiple from "../Inputs/InputMultiple/InputMultiple";
+import InputParentescoOpcions from "../Inputs/InputParentescoOpcions/InputParentescoOpcions";
 import InputParentesco from "../Inputs/InputParentesco/InputParentesco";
 import TextArea from "../Inputs/TextArea/TextArea";
 import TableBasic from "../Tables/TableBasic";
+import InputParentescoOpNac from "../Inputs/InputParentescoOpcions/InputParentescoOpNac";
+import InputParentescoOpEstudios from "../Inputs/InputParentescoOpcions/InputParentescoOpEstudios";
 
 const Familia = () => {
   const { saveEmpl } = useContext(employeContext);
@@ -92,7 +95,7 @@ const Familia = () => {
                   checked={false}
                   nameInput="Nacimiento"
                 />
-                <InputParentesco
+                <InputParentescoOpcions
                   nameInput="Pais de Origen"
                   array={paises}
                   placeHolder="Paises"
@@ -101,7 +104,7 @@ const Familia = () => {
                   checked=""
                   display={false}
                 />
-                <InputParentesco
+                <InputParentescoOpNac
                   nameInput="Nacionalidad"
                   array={paises}
                   placeHolder="Nacionalidad"
@@ -115,7 +118,7 @@ const Familia = () => {
           </div>
         </div>
         <div className="col-xl-6">
-          <InputParentesco
+          <InputParentescoOpEstudios
             nameInput="Estudios"
             array={paises}
             placeHolder="Estudios"
