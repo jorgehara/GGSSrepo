@@ -1,4 +1,5 @@
 import React from 'react'
+import './ModalFooter.css'
 
 const ProvinciasFooter = () => {
     return (
@@ -18,7 +19,7 @@ const ProvinciasFooter = () => {
                 </button>
             </div>
 
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 LISTAR
             </button>
 

@@ -8,6 +8,7 @@ import Localidades from './SubmodalesPDLB/Localidades'
 import LocalidadesFooter from './SubmodalesPDLB/LocalidadesFooter'
 import Provincias from './SubmodalesPDLB/Provincias'
 import ProvinciasFooter from './SubmodalesPDLB/ProvinciasFooter'
+import './ModalPDLB.css'
 
 const ModalPDLB = ({idModal, nameModal, array}) => {
 
@@ -64,11 +65,11 @@ const ModalPDLB = ({idModal, nameModal, array}) => {
                             </h1>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="pldbBtns">
-                            <button onClick={handleProvincias}>PROVINCIAS</button>
-                            <button onClick={handleDepartamentos}>DEPARTAMENTOS</button>
-                            <button onClick={handleLocalidades}>LOCALIDADES</button>
-                            <button onClick={handleBarrios}>BARRIOS</button>
+                        <div className="pdlbBtns">
+                            <button className="pdlbBtn" onClick={handleProvincias}>PROVINCIAS</button>
+                            <button className="pdlbBtn" onClick={handleDepartamentos}>DEPARTAMENTOS</button>
+                            <button className="pdlbBtn" onClick={handleLocalidades}>LOCALIDADES</button>
+                            <button className="pdlbBtn" onClick={handleBarrios}>BARRIOS</button>
                         </div>
 
 

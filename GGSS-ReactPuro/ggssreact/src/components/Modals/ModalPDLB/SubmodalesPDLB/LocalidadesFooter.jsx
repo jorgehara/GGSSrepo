@@ -1,8 +1,9 @@
 import React from 'react'
+import './ModalFooter.css'
 
 const LocalidadesFooter = () => {
-  return (
-    <div class="modal-footer">
+    return (
+        <div class="modal-footer">
 
             <div className="crudBtns">
                 <button type="button" class="btn btn-danger crudBtn">
@@ -18,24 +19,28 @@ const LocalidadesFooter = () => {
                 </button>
             </div>
 
-            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">
-                MOVER LOCALIDADES
-            </button>
+            <>
 
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                LISTAR
-            </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    MOVER LOCALIDADES
+                </button>
 
-            <button type="button" class="btn btn-info" data-bs-dismiss="modal">
-                AYUDA
-            </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    LISTAR
+                </button>
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    AYUDA
+                </button>
+
+            </>
 
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 SALIR
             </button>
 
         </div>
-  )
+    )
 }
 
 export default LocalidadesFooter

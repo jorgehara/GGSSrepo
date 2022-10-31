@@ -1,5 +1,6 @@
 import React from 'react'
 import '../Modales.css'
+import TableBootstrap from '../../Tables/TableBootstrap'
 
 const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
@@ -19,7 +20,7 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select style={{ height: "900px", width: "400px" }} class="form-select row mt-1" multiple aria-label="multiple select example">
+                                <select style={{ height: "1100px", width: "400px" }} class="form-select row mt-1" multiple aria-label="multiple select example">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
@@ -86,6 +87,7 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
                                 <fieldset className="fieldsetStyle" style={{ border: "0.1px solid gray" }}>
                                     <div style={{ padding: "10px" }} >
                                         <legend>Domicilios</legend>
+                                        <hr />
                                         Predeterminado: <input type="checkbox" />
                                         <br />
 
@@ -138,6 +140,13 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
                                         <label style={{ marginRight: "15px" }} htmlFor="provincia">Provincia: </label>
                                         <input type="text" name="provincia" />
+
+                                        <br />
+                                        <br />
+
+                                        <TableBootstrap />
+
+
                                     </div>
                                 </fieldset>
 
@@ -145,6 +154,12 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
                                 <hr />
 
                                 <div className="btnInputs">
+                                    <button type="button" className="btn btn-secondary btnAceptar">
+                                        NUEVO DOMICILIO
+                                    </button>
+                                    <button type="button" className="btn btn-secondary btnAceptar">
+                                        MODIFICAR DOMICILIO
+                                    </button>
                                     <button type="button" className="btn btn-danger btnAceptar">
                                         ACEPTAR
                                     </button>

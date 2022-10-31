@@ -11,6 +11,7 @@ import BasicModalObs from '../Modals/BasicModalObs/BasicModalObs';
 import ModalPaises from '../Modals/ModalPaises/ModalPaises';
 import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB';
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores';
+import ModalAlicuotas from '../Modals/ModalAlicuotas/ModalAlicuotas';
 
 const ListasDeDatos = () => {
 
@@ -18,7 +19,7 @@ const ListasDeDatos = () => {
 
   return (
     <div>
-      
+
       {idCategory == "estadoCivil" &&
         <>
           <ButtonCallModal idModal="EstadoCivil" nameButton="Estados Civiles" />
@@ -169,6 +170,17 @@ const ListasDeDatos = () => {
 
           <ButtonCallModal idModal="empleadores" nameButton="Empleadores" />
           <ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
+
+        </>
+
+      }
+
+      {idCategory == "alicuotas" &&
+
+        <>
+
+          <ButtonCallModal idModal="alicuotas" nameButton="Alicuotas" />
+          <ModalAlicuotas idModal="alicuotas" nameModal="Alicuotas" />
 
         </>
 
