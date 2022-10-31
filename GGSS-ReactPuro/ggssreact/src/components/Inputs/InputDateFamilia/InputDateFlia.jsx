@@ -15,15 +15,21 @@ const InputDateFlia = ({nameInput,display, checked}) => {
           <label class="form-check-label" for="flexCheckDefault">
             {nameInput}
           </label>
-         
         </div>
         <div class="formulario-input-DateFlia">
-            <input className='ml-2' id="date" type="date" />
-            
+            <input 
+            className='ml-2' 
+            id="date" 
+            type="date" 
+            />
         </div>
-        <input className={mostrarComponente ? "form-check-inputDateFlia" : "none"} type="checkbox" value="" id="flexCheckChecked" checked={checked} />
+        <input 
+        className={mostrarComponente ? "form-check-inputDateFlia" : "none"} type="checkbox" 
+        value="" 
+        id="flexCheckChecked" 
+        checked={checked}
+        />
     </div>
   )
 }
-
 export default InputDateFlia;

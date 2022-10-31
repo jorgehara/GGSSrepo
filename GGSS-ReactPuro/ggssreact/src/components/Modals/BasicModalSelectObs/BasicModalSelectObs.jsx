@@ -1,11 +1,9 @@
 import React from 'react'
-import InputCbo from '../../Inputs/InputCbo/InputCbo';
-import './BasicModal.css'
+import InputSelect from '../../Inputs/InputSelect/InputSelect';
+import TextArea from '../../Inputs/TextArea/TextArea';
 import '../Modales.css'
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
-
-    console.log(nameOptionModal)
+const BasicModalSelectObs = ({ idModal, nameModal, nameOptionModal, array }) => {
     return (
         <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
@@ -32,9 +30,22 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
                             <div className="bodyInputs">
                                 <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
                                 <input type="text" name={idModal} />
-                               
-                                <hr />
+                                <br />
+                                <label htmlFor="partida" style={{ marginRight: "15px" }}> Partida: </label>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Seleccionar...
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </div>
+                                <br />
 
+                                <TextArea inputName="Observaciones" />
+                                <hr />
                                 <div className="btnInputs">
                                     <button type="button" className="btn btn-danger btnAceptar">
                                         ACEPTAR
@@ -69,4 +80,4 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
     )
 }
 
-export default BasicModal;
+export default BasicModalSelectObs;

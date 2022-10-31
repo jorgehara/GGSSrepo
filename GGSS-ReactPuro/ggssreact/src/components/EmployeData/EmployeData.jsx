@@ -29,10 +29,10 @@ const EmployeData = () => {
   console.log(url);
   return (
     <div className="container-flex">
-      <div className="container mt-1 border border-2 p-3">
+      <div className="container border border-2 p-3">
         <div class="container text-start">
             <div class="row">
-          <div class="col">
+          <div class="col-2">
             <img
               className="border border-3 imgData"
               id="imagen"
@@ -53,7 +53,7 @@ const EmployeData = () => {
             ? saveEmpl[0].legajo
             : null
             }
-            nameLabel="LEGAJO N°: "
+            nameLabel="Legajo N°: "
             />
         <InputEmpData
             idInput="apellidoInfo"
@@ -65,15 +65,7 @@ const EmployeData = () => {
             }
             nameLabel="Apellido: "
             />
-        <InputEmpData
-              idInput="nombresInfo"
-              inputValue={
-                saveEmpl[0] !== undefined || saveEmpl[0] === null
-                  ? saveEmpl[0].nombres
-                  : null
-              }
-              nameLabel="Nombres: "
-            />
+       
         <InputEmpData
               idInput="tipoDNIInfo"
               inputValue={
@@ -81,7 +73,7 @@ const EmployeData = () => {
                   ? saveEmpl[0].nroDocumento
                   : null
               }
-              nameLabel="N° Documento: "
+              nameLabel="Documento N°:"
             />
           </div>
           </div>
@@ -94,6 +86,15 @@ const EmployeData = () => {
                   : "Sin Estado"
               }
               nameLabel="Estado: "
+            />
+             <InputEmpData
+              idInput="nombresInfo"
+              inputValue={
+                saveEmpl[0] !== undefined || saveEmpl[0] === null
+                  ? saveEmpl[0].nombres
+                  : null
+              }
+              nameLabel="Nombres: "
             />
           </div>
 

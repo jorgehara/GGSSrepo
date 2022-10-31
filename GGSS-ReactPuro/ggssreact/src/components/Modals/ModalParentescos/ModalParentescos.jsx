@@ -1,11 +1,7 @@
 import React from 'react'
-import InputCbo from '../../Inputs/InputCbo/InputCbo';
-import './BasicModal.css'
-import '../Modales.css'
+import TextArea from '../../Inputs/TextArea/TextArea';
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
-
-    console.log(nameOptionModal)
+const ModalParentescos = ({ idModal, nameModal, array }) => {
     return (
         <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
@@ -30,11 +26,23 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
 
                             </div>
                             <div className="bodyInputs">
-                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
-                                <input type="text" name={idModal} />
-                               
-                                <hr />
+                                <label for="parentesco" style={{ marginRight: "15px" }}>Parentesco: </label>
+                                <input type="text" name="parentesco" />
+                                <br />
+                                <input type="checkbox" name="asignacion" style={{ marginRight: "5px" }} />
+                                <label for="asignacion">Genera asignacion</label>
 
+                                <br />
+
+                                <input type="checkbox" name="ganancias" style={{ marginRight: "5px" }} />
+                                <label for="ganancias" style={{ marginRight: "15px" }}>Deduce ganancias</label>
+
+                                <label for="importe" style={{ marginRight: "5px" }}>IMPORTE: </label>
+                                <input type="number" name="importe" min="0" />
+                                <br />
+
+                                <TextArea inputName="Observaciones" />
+                                <hr />
                                 <div className="btnInputs">
                                     <button type="button" className="btn btn-danger btnAceptar">
                                         ACEPTAR
@@ -48,7 +56,7 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
 
                         <div className="modal-footer">
                             <div className="crudBtns">
-                                <button type="button" className="btn btn-danger crudBtn">
+                                <button type="button" className="btn btn-success crudBtn">
                                     AGREGAR
                                 </button>
                                 <button type="button" className="btn btn-danger crudBtn">
@@ -69,4 +77,4 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
     )
 }
 
-export default BasicModal;
+export default ModalParentescos;

@@ -36,16 +36,5 @@
     border-radius: 10px;
 }
 
-.crudBtns{
-    display: flex;
-    justify-content: space-evenly;
-}
 
-.crudBtn{
-    background-color: rgb(121, 21, 21);
-    margin: 10px;
-}
 
-.btnAceptar{
-    margin-right: 15px;
-}

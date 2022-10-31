@@ -1,11 +1,8 @@
 import React from 'react'
-import InputCbo from '../../Inputs/InputCbo/InputCbo';
-import './BasicModal.css'
 import '../Modales.css'
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
+const ModalPaises = ({ idModal, nameModal, nameOptionModal, array }) => {
 
-    console.log(nameOptionModal)
     return (
         <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
@@ -32,8 +29,16 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
                             <div className="bodyInputs">
                                 <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
                                 <input type="text" name={idModal} />
-                               
+                                <br />
+                                <label htmlFor="nacMasc" style={{ marginRight: "15px" }}> Nacionalidad Masc: </label>
+                                <input type="text" name="nacMasc" />
+                                <br />
+                                <label htmlFor="nacFem" style={{ marginRight: "15px" }}> Nacionalidad Fem: </label>
+                                <input type="text" name="nacFem" />
+                                <br />
+
                                 <hr />
+
 
                                 <div className="btnInputs">
                                     <button type="button" className="btn btn-danger btnAceptar">
@@ -69,4 +74,4 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
     )
 }
 
-export default BasicModal;
+export default ModalPaises;

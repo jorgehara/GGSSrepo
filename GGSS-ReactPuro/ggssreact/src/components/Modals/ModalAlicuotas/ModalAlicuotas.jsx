@@ -1,11 +1,6 @@
 import React from 'react'
-import InputCbo from '../../Inputs/InputCbo/InputCbo';
-import './BasicModal.css'
-import '../Modales.css'
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
-
-    console.log(nameOptionModal)
+const ModalAlicuotas = ({ idModal, nameModal, array }) => {
     return (
         <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
@@ -30,9 +25,16 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
 
                             </div>
                             <div className="bodyInputs">
-                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
-                                <input type="text" name={idModal} />
-                               
+                                <label for="detalle" style={{ marginRight: "15px" }}>Detalle: </label>
+                                <input type="text" name="detalle" />
+                                <br />
+                                <label for="alicuota" style={{ marginRight: "15px" }}>Alicuota: </label>
+                                <input type="number" name="alicuota" min={"0"} />
+                                <br />
+                                <input type="checkbox" name="nCuit" style={{ marginRight: "5px" }} />
+                                <label for="nCuit">Pide Nº CUIT</label>
+
+                                <br />
                                 <hr />
 
                                 <div className="btnInputs">
@@ -48,7 +50,7 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
 
                         <div className="modal-footer">
                             <div className="crudBtns">
-                                <button type="button" className="btn btn-danger crudBtn">
+                                <button type="button" className="btn btn-success crudBtn">
                                     AGREGAR
                                 </button>
                                 <button type="button" className="btn btn-danger crudBtn">
@@ -69,4 +71,4 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
     )
 }
 
-export default BasicModal;
+export default ModalAlicuotas;
