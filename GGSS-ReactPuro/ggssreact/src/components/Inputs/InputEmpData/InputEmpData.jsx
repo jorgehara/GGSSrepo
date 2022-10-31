@@ -8,7 +8,7 @@ const InputEmpData = ({ idInput, inputValue, nameLabel }) => {
   return (
     <div>
       <label htmlFor={idInput}>{nameLabel}</label>
-      <input
+      <input className="form-control"
         type="text"
         id={idInput}
         name={idInput}
