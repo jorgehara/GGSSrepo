@@ -130,8 +130,7 @@ const Domicilios = () => {
                   display={true}
                 />
                 
-        <TableBasic1 columns={columns} />
-        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
+        
       
               </div>
               <div className="col-xl-6">
@@ -179,6 +178,8 @@ const Domicilios = () => {
                   display={true}
                 />
               </div>
+              <TableBasic1 columns={columns} />
+              <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
             </div>
           </section>
         </div>
