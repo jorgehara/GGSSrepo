@@ -4,18 +4,27 @@ import './Navbar.css'
 
 const Navbar = () => {
 
-// const titleEmpleados = document.querySelector('.titleEmpleados')
-// const titleLiquidacion = document.querySelector('.titleLiquidacion')
+const titleEmpleados = document.querySelector('.titleEmpleados')
+const datosEmpleados = document.querySelector('.datosEmpleados')
 
-// const datosEmpleados = document.querySelector('.datosEmpleados')
+const handleDatosEmpleados = () => {
+	datosEmpleados.className.add('.closeList')
+}
+
+const handleTitleEmpleados = () => {
+	datosEmpleados.className.add('.openList')
+	datosEmpleados.className.remove('.closeList')
+}
+
+// NO ESTA FUNCIONANDO, ESTOY INTENTANDO HACER QUE CUANDO CLICKEO EL TITULO "PARA EMPLEADOS" ME DESPLIEGUE LA LISTA,
+// Y QUE CUANDO TOCO EL BOTON "OCULTAR LISTA" LA OCULTE.
+
+
+// const titleLiquidacion = document.querySelector('.titleLiquidacion')
 // const datosLiquidacion = document.querySelector('.datosLiquidacion')
 
-// const handleDatosEmpleados = () => {
-// 	datosEmpleados.className.add('.closeData')
-// }
-
 // const handleDatosLiquidacion = () => {
-// 	datosLiquidacion.className.add('.closeData')
+// 	datosLiquidacion.className.add('.closeList')
 // }
 
   return (
@@ -54,7 +63,7 @@ const Navbar = () => {
                         Tabla de Datos
                     </a>
                     <ul class="dropdown-menu">
-						<h6 className="titleEmpleados">Para empleados: </h6>
+						<h6 className="titleEmpleados" onClick={handleTitleEmpleados}>Para empleados: </h6>
 						<div className="datosEmpleados">
 							<li><Link class="dropdown-item" to="/lista-datos/estadoCivil">Estado Civil</Link></li>
 							<li><Link class="dropdown-item" to="/lista-datos/estudios">Estudios</Link></li>
@@ -72,7 +81,9 @@ const Navbar = () => {
 							<li><Link class="dropdown-item" to="/lista-datos/tareasDesempeñadas">Tareas Desempeñadas</Link></li>
 							<li><Link class="dropdown-item" to="/lista-datos/empleadores">Empleadores</Link></li>
 							<li><Link class="dropdown-item" to="/lista-datos/alicuotas">Alicuotas</Link></li>
+							
 						</div>
+						<button onClick={handleDatosEmpleados}>Ocultar lista</button>
 						<hr />
 						<h6 className="titleLiquidacion">Para liquidación: </h6>
 						<div className="datosLiquidacion">
