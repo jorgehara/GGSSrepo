@@ -21,6 +21,7 @@
 .modal-body{
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .llamadaApi{
@@ -30,6 +31,7 @@
 
 .bodyInputs{
     margin-right: 40px;
+    
 }
 
 .fieldsetStyle{

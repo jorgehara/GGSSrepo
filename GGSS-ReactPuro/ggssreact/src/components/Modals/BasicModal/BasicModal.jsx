@@ -3,7 +3,7 @@ import TextArea from '../../Inputs/TextArea/TextArea';
 import "./BasicModal.css";
 import '../Modales.css'
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea }) => {
+const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder }) => {
 
     console.log(nameOptionModal)
     return (
@@ -32,6 +32,8 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea }) =>
                             <div className="bodyInputs">
                                 <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
                                 <input type="text" name={idModal} />
+
+                                {/* <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} /> */}
 
                                 <br />
 

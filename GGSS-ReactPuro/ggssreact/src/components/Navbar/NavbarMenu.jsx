@@ -13,6 +13,18 @@ import ModalAlicuotas from '../Modals/ModalAlicuotas/ModalAlicuotas'
 
 const Navbar = () => {
 
+const objectInput = [
+	{
+		"label": "Masculino",
+		"placeholder": "Casado"
+	},
+	{
+		"label": "Femenino",
+		"placeholder": "Casada"
+	}
+]
+
+
 const titleEmpleados = document.querySelector('.titleEmpleados')
 const datosEmpleados = document.querySelector('.datosEmpleados')
 
@@ -112,7 +124,7 @@ const handleTitleEmpleados = () => {
 				</li>
 
 				{/* MODALES */}
-				<ModalMascFem idModal="EstadoCivil" nameModal="Estados Civiles" />
+				<ModalMascFem idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectInput} />
 				<BasicModal idModal="Estudios" nameModal="Estudios" nameOptionModal="Nivel de Estudios" />
 				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" nameOptionModal="Tipo de Documento" />
 				<ModalParentescos idModal="Parentescos" nameModal="Parentescos" />

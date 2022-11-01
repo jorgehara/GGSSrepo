@@ -15,3 +15,7 @@
 .txtArea:focus{
     background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
 }
+
+.txtArea::placeholder{
+    padding: 8px;
+}

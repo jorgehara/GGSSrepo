@@ -26,7 +26,6 @@
     grid-area: icons;
     margin: 0;
     margin-left: 5px;
-
     font-size: 12px;
 	margin-bottom: 0;
 	display: none;
@@ -35,7 +34,6 @@
     grid-area: errors;
     margin: 0;
     margin-left: 5px;
-
     font-size: 12px;
 	margin-bottom: 0;
 	display: none;
@@ -46,17 +44,17 @@
 	width: 156px;
 	margin-left: 0px;
     margin-right: 0px;
-	background: #fff;
-	border: 3px solid transparent;
+    border: none;
 	border-radius: 3px;
 	height: 42px;
 	transition: .3s ease all;
-    border-bottom: 1px solid rgb(78, 6, 6);
+    border-bottom: 2px solid rgb(78, 6, 6);
 }
 .formulario-input-Legajo:focus{
     background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+    outline: none;
 }
-.formulario-input-Legajo:hover{
+/* .formulario-input-Legajo:hover{
     border-color:  #bb2929;
 }
 :focus-visible {
@@ -65,7 +63,7 @@
 }
 .formulario-input-Legajo:active ::after ::before{
     border-color:  #bb2929;
-}
+} */
 .formulario__grupo-input {
 	display: block;
 	position: relative;

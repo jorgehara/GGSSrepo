@@ -1,7 +1,8 @@
 import React from 'react'
+import InputModal from '../../Inputs/InputModal/InputModal'
 import '../Modales.css'
 
-const ModalMascFem = ({ idModal, nameModal, array }) => {
+const ModalMascFem = ({ idModal, nameModal, array, placeholder }) => {
 
     return (
         <div>
@@ -27,13 +28,15 @@ const ModalMascFem = ({ idModal, nameModal, array }) => {
 
                             </div>
                             <div className="bodyInputs">
-                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> Masculino: </label>
-                                <input type="text" name={idModal} />
-                                <br />
-                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> Femenino: </label>
-                                <input type="text" name={idModal} />
 
-                                <br />
+                                {
+                                    placeholder.map((p, i) => {
+                                        return(
+                                            <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} />
+                                        )
+                                    })
+                                }
+
                                 <hr />
 
                                 <div className="btnInputs">
