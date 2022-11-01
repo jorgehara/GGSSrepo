@@ -3,7 +3,7 @@ import React from 'react'
 import TextArea from '../../Inputs/TextArea/TextArea';
 import '../Modales.css'
 
-const BasicModalSelectObs = ({ idModal, nameModal, nameOptionModal}) => {
+const BasicModalSelectObs = ({ idModal, nameModal, nameOptionModal, inputDate}) => {
     return (
         <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
@@ -43,6 +43,14 @@ const BasicModalSelectObs = ({ idModal, nameModal, nameOptionModal}) => {
                                     </ul>
                                 </div>
                                 <br />
+
+                                {inputDate && 
+                                <>
+                                    <label htmlFor="vencimiento" style={{ marginRight: "15px" }}>Vencimiento: </label>
+                                    <input id="datetime-local" type="datetime-local" name='vencimiento' />
+                                </>
+                                }
+                                
 
                                 <TextArea inputName="Observaciones" />
                                 <hr />

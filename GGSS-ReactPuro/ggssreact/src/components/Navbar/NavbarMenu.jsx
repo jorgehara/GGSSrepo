@@ -1,5 +1,15 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import './Navbar.css'
+import ButtonCallModal from '../Buttons/ButtonCallModal'
+import ModalMascFem from '../Modals/ModalMascFem/ModalMascFem'
+import BasicModal from '../Modals/BasicModal/BasicModal'
+import BasicModalSelectObs from '../Modals/BasicModalSelectObs/BasicModalSelectObs'
+import ModalParentescos from '../Modals/ModalParentescos/ModalParentescos'
+import ModalPaises from '../Modals/ModalPaises/ModalPaises'
+import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
+import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
+import ModalAlicuotas from '../Modals/ModalAlicuotas/ModalAlicuotas'
 
 const Navbar = () => {
 
@@ -64,25 +74,25 @@ const handleTitleEmpleados = () => {
                     <ul class="dropdown-menu">
 						<h6 className="titleEmpleados" onClick={handleTitleEmpleados}>Para empleados: </h6>
 						<div className="datosEmpleados">
-							<li><Link class="dropdown-item" to="/lista-datos/estadoCivil">Estado Civil</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/estudios">Estudios</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/tipoDocumento">Tipo de Documento Civil</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/parentescos">Parentescos</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/estadosEmpleados">Estados para empleados</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/calles">Calles</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/cargos">Cargos</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/formasDePago">Formas de Pago</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/modosDeContratacion">Modos de Contratación</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/modosDeLiquidacion">Modos de Liquidación</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/motivosEgreso">Motivos de Egreso</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/paises">Paises</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/pdlb">Provincias - Departamentos - Localidades - Barrios</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/tareasDesempeñadas">Tareas Desempeñadas</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/empleadores">Empleadores</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/alicuotas">Alicuotas</Link></li>
+							<ButtonCallModal idModal="EstadoCivil" nameButton="Estados Civiles" useNavbar={true} />
+							<ButtonCallModal idModal="Estudios" nameButton="Estudios" useNavbar={true} />
+							<ButtonCallModal idModal="TipoDocumento" nameButton="Tipo de Documento" useNavbar={true} />
+							<ButtonCallModal idModal="Parentescos" nameButton="Parentescos" useNavbar={true} />
+							<ButtonCallModal idModal="estadosEmpleados" nameButton="Estados para empleados" useNavbar={true} />
+							<ButtonCallModal idModal="cargos" nameButton="Cargos" useNavbar={true} />
+							<ButtonCallModal idModal="tareasDesempeñadas" nameButton="Tareas Desempeñadas" useNavbar={true} />
+							<ButtonCallModal idModal="formasDePago" nameButton="Formas de Pago" useNavbar={true} />
+							<ButtonCallModal idModal="modosDeContratacion" nameButton="Modos de Contratación" useNavbar={true} />
+							<ButtonCallModal idModal="modosDeLiquidacion" nameButton="Modos de Liquidacion" useNavbar={true} />
+							<ButtonCallModal idModal="motivosEgreso" nameButton="Motivos de Egreso" useNavbar={true}/>
+							<ButtonCallModal idModal="paises" nameButton="Paises" useNavbar={true} />
+							<ButtonCallModal idModal="pdlb" nameButton="Provincias - Departamentos - Localidades - Barrios" useNavbar={true} />
+							<ButtonCallModal idModal="calles" nameButton="Calles" useNavbar={true} />
+							<ButtonCallModal idModal="empleadores" nameButton="Empleadores" useNavbar={true} />
+							<ButtonCallModal idModal="alicuotas" nameButton="Alicuotas" useNavbar={true} />
 							
 						</div>
-						<button onClick={handleDatosEmpleados}>Ocultar lista</button>
+						{/* <button onClick={handleDatosEmpleados}>Ocultar lista</button> */}
 						<hr />
 						<h6 className="titleLiquidacion">Para liquidación: </h6>
 						<div className="datosLiquidacion">
@@ -100,6 +110,25 @@ const handleTitleEmpleados = () => {
 				<li class="nav-item">
 				<a class="nav-link" href="/some/valid/uri">Acerca de...</a>
 				</li>
+
+				{/* MODALES */}
+				<ModalMascFem idModal="EstadoCivil" nameModal="Estados Civiles" />
+				<BasicModal idModal="Estudios" nameModal="Estudios" nameOptionModal="Nivel de Estudios" />
+				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" nameOptionModal="Tipo de Documento" />
+				<ModalParentescos idModal="Parentescos" nameModal="Parentescos" />
+				<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" nameOptionModal="Estado" />
+				<BasicModalSelectObs idModal="cargos" nameModal="Cargos" nameOptionModal="Cargo" />
+				<BasicModalSelectObs idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" nameOptionModal="Tarea" />
+				<BasicModal idModal="formasDePago" nameModal="Formas de Pago" nameOptionModal="Forma de Pago" textArea={true} />
+				<BasicModalSelectObs idModal="modosDeContratacion" nameModal="Modos de Contratacion" nameOptionModal="Modos de Contratacion" inputDate={true}/>
+				<BasicModalSelectObs idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" nameOptionModal="Modos de Liquidacion" />
+				<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" nameOptionModal="Motivo de egreso" textArea={true} />
+				<ModalPaises idModal="paises" nameModal="Paises" nameOptionModal="Pais" />
+				<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" />
+				<BasicModal idModal="calles" nameModal="Calles" nameOptionModal="Calle" textArea={true}/>
+				<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
+				<ModalAlicuotas idModal="alicuotas" nameModal="Alicuotas" />
+
 				<li class="nav-item">
 					<a class="nav-link" href="/">Salir</a>
 				</li>

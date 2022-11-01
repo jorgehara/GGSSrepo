@@ -1,4 +1,5 @@
 import React from 'react'
+import './TextArea.css'
 
 const TextArea = ({inputName, maxLength, value}) => {
   return (
@@ -7,8 +8,8 @@ const TextArea = ({inputName, maxLength, value}) => {
             <label className='form__grupo__label__label' for="legajo">{inputName}</label>
         </div>
         {/* ver el height en Boostrap */}
-        <div className='form__grupo__inputs_Obs mt-2'>
-        <textarea  class="form-control-obs" 
+        <div className='form__grupo__inputs_Obs'>
+        <textarea className="form-control-obs txtArea" 
                 value={value}
                 placeholder="Ingrese Observaciones" 
                 id="" 

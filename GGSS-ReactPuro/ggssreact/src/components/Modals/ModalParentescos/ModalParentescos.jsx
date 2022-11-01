@@ -38,7 +38,7 @@ const ModalParentescos = ({ idModal, nameModal, array }) => {
                                 <label for="ganancias" style={{ marginRight: "15px" }}>Deduce ganancias</label>
 
                                 <label for="importe" style={{ marginRight: "5px" }}>IMPORTE: </label>
-                                <input type="number" name="importe" min="0" />
+                                <input type="number" name="importe" min="0" style={{ width: "50px" }} />
                                 <br />
 
                                 <TextArea inputName="Observaciones" />

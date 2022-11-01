@@ -1,4 +1,5 @@
 import React from 'react'
+import TextArea from '../../../Inputs/TextArea/TextArea'
 
 const Departamentos = () => {
     return (
@@ -27,9 +28,7 @@ const Departamentos = () => {
 
                 <br />
 
-                <label for="obs">Observaciones: </label>
-                <br />
-                <textarea name="obs" id="" cols="30" rows="10" style={{ maxHeight: "150px" }} placeholder='Observaciones...'> </textarea>
+                <TextArea inputName="Observaciones" />
 
                 <hr />
 

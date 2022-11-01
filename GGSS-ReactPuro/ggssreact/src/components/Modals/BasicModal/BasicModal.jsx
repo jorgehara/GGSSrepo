@@ -3,13 +3,13 @@ import TextArea from '../../Inputs/TextArea/TextArea';
 import "./BasicModal.css";
 import '../Modales.css'
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
+const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea }) => {
 
     console.log(nameOptionModal)
     return (
         <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id={`${idModal}Label`}>
@@ -32,7 +32,11 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array }) => {
                             <div className="bodyInputs">
                                 <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
                                 <input type="text" name={idModal} />
-                               
+
+                                <br />
+
+                                {TextArea && <TextArea inputName="Observaciones" /> }
+                                
                                 <hr />
 
                                 <div className="btnInputs">
