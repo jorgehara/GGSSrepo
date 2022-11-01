@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Navigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -16,13 +16,13 @@ const Navbar = () => {
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
-				<li><Link class="dropdown-item" to="/datos-personales"></Link>
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<li><Link class="dropdown-item" to="/home/datos-personales"></Link>
+                    <Link class="nav-link" to="/home/datos-personales">
 						Personales
-                    </a>
+                    </Link>
                 </li>
 				<li class="nav-item">
-					<a class="nav-link" href="/some/valid/uri">Familia</a>
+					<Link class="nav-link" to="/home/familia">Familia</Link>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/some/valid/uri">Liquidación</a>
@@ -50,4 +50,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Navbar;

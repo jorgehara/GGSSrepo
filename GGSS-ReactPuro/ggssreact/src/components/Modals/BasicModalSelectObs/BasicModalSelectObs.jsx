@@ -1,9 +1,9 @@
 import React from 'react'
-import InputSelect from '../../Inputs/InputSelect/InputSelect';
+// import InputSelect from '../../Inputs/InputSelect/InputSelect';
 import TextArea from '../../Inputs/TextArea/TextArea';
 import '../Modales.css'
 
-const BasicModalSelectObs = ({ idModal, nameModal, nameOptionModal, array }) => {
+const BasicModalSelectObs = ({ idModal, nameModal, nameOptionModal}) => {
     return (
         <div>
             <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">

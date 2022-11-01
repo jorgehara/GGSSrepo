@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link, Navigate } from "react-router-dom";
-import './Navbar.css'
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -45,7 +44,7 @@ const handleTitleEmpleados = () => {
                         Empleados
                     </a>
                     <ul class="dropdown-menu">
-                        <li><Link class="dropdown-item" to="/datos-personales">Ficha Empleados</Link></li>
+                        <li><Link class="dropdown-item" to="/home">Ficha Empleados</Link></li>
                         <li><Link class="dropdown-item" to="#">Busqueda de Datos</Link></li>
                     </ul>
                 </li>
