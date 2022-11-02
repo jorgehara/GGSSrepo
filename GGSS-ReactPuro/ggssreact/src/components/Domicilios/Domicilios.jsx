@@ -5,6 +5,7 @@ import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import InputButton from "../Inputs/InputButton/InputButton";
 import InputCbo from "../Inputs/InputCbo/InputCbo";
 import InputForm from "../Inputs/InputForm/InputForm";
+import InputNumero from "../Inputs/InputNumero/InputNumero";
 import InputParentesco from "../Inputs/InputParentesco/InputParentesco";
 import TextArea from "../Inputs/TextArea/TextArea";
 import TableBasic from "../Tables/TableBasic";
@@ -15,15 +16,12 @@ const Domicilios = () => {
   const tipoDNI = ["D.N.I", "L.E", "L.C", "Pasaporte", "Visa"];
   
   const columns = [
-    "Nombre Apellido",
-    "Tipo/N° DNI",
-    "Parentesco",
-    "Nacimiento",
-    "Pais Origen",
-    "Nacionalidad",
-    "Estudios",
-    "Fecha Baja",
-    "Obs",
+    "Predeterminado",
+    "Calle",
+    "Número",
+    "Barrio",
+    "Localidad",
+    "Piso/Of/Dpto",
   ];
   
   const parentesco = [
@@ -94,7 +92,7 @@ const Domicilios = () => {
                 <div className="mt-2">
                   <input
                     checked={inputValue}
-                    type="radio"
+                    type="checkbox"
                     name="predeterminado"
                     id="predeterminado"
                   />
@@ -109,41 +107,7 @@ const Domicilios = () => {
                   array={saveEstado}
                   display={true}
                 />
-                <InputCbo
-                  value={
-                    saveEmpl[0] !== undefined ? saveEmpl[0].idProvincia : null
-                  }
-                  nameButton="..."
-                  nameLabel="Provincia"
-                  array={saveEstado}
-                  display={true}
-                />
-                <InputCbo
-                  value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Provincia
-                      : null
-                  }
-                  nameButton="..."
-                  nameLabel="Departamento"
-                  array={saveEstado}
-                  display={true}
-                />
-                
-        
-      
-              </div>
-              <div className="col-xl-6">
-                <InputParentesco
-                  nameInput="Número"
-                  array={paises}
-                  placeHolder="Estudios"
-                  nameButton="..."
-                  nameCheck="Fijar"
-                  checked=""
-                  display={true}
-                />
-                <InputCbo
+                 <InputCbo
                   value={
                     saveDom[0] !== undefined || saveDom[0] === null
                       ? saveDom[0].Provincia
@@ -152,6 +116,37 @@ const Domicilios = () => {
                   nameButton="..."
                   nameLabel="Piso/Dpto/
                           Ofic/Torre"
+                  array={saveEstado}
+                  display={true}
+                />
+              </div>
+              <div className="col-xl-6">
+                <InputNumero
+                  nameInput="Número"
+                  array={paises}
+                  placeHolder="Estudios"
+                  // nameButton="..."
+                  nameCheck="Fijar"
+                  checked=""
+                  display={true}
+                />
+                  <InputCbo
+                  value={
+                    saveEmpl[0] !== undefined ? saveEmpl[0].idProvincia : null
+                  }
+                  nameButton="..."
+                  nameLabel="Provincia"
+                  array={saveEstado}
+                  display={true}
+                />
+                  <InputCbo
+                  value={
+                    saveDom[0] !== undefined || saveDom[0] === null
+                      ? saveDom[0].Provincia
+                      : null
+                  }
+                  nameButton="..."
+                  nameLabel="Departamento"
                   array={saveEstado}
                   display={true}
                 />
@@ -179,7 +174,7 @@ const Domicilios = () => {
                 />
               </div>
               <TableBasic1 columns={columns} />
-              <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
+              <ButtonCancelarAceptar cancelar="Quitar" aceptar="Agregar" />
             </div>
           </section>
         </div>

@@ -18,19 +18,25 @@ import Domicilios from "../Domicilios/Domicilios";
 // import InputForm2daColumn from "../Inputs/InputForm2daColumn/InputForm2daColumn";
 
 const DatosPersonales = () => {
-  const optionsDNI = ["DNI", "LC", "LE"];
+  const optionsDNI = ["D.N.I.", "L.C.", "L.E."];
   const estados = ["Activo", "Baja", "Suspendido", "Anulado"];
 
-  const { saveEmpl, saveEstados, saveEstado } = useContext(employeContext);
+  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil,  } = useContext(employeContext);
+
 
   const [error, setError] = useState("");
   const [inputValue, setInputValue] = useState("");
   const url = "http://54.243.192.82/api/Estados";
+  const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
 
   const estadosCiviles = ["Soltero", "Casado", "Viudo", "Divorciado"];
 
   useEffect(() => {
     axios.get(url).then((res) => saveEstados(res.data));
+  }, []);
+
+  useEffect(() => {
+    axios.get(urlEstadosCiviles).then((res) => saveEstadosCiviles(res.data));
   }, []);
 
   const validateNumbers = (e) => {
@@ -95,7 +101,9 @@ const DatosPersonales = () => {
             <div class="accordion-body">
               <section className="container">
                 <div className="row">
-                  <div className="formulario__grupo"></div>
+                  <div className="formulario__grupo">
+
+                  </div>
                   <form action="" className="form__datos__personales ">
                     <div class="row row-cols-12">
                       <div className="segunda__columna col-5">
@@ -163,13 +171,13 @@ const DatosPersonales = () => {
                         />
                        <InputCbo
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].idEstadoCivil
+                            saveEstadoCivil[0] !== undefined
+                              ? saveEstadoCivil[0].idEstadoCivil
                               : null
                           }
                           nameButton="..."
                           nameLabel="Estado Civil"
-                          array={saveEstado}
+                          array={saveEstadoCivil}
                           display={true}
                         />
                        <InputCbo

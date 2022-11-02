@@ -16,7 +16,7 @@ import InputParentescoOpEstudios from "../Inputs/InputParentescoOpcions/InputPar
 
 const Familia = () => {
   const { saveEmpl } = useContext(employeContext);
-  const tipoDNI = ["D.N.I", "L.E", "L.C", "Pasaporte", "Visa"];
+  const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
   const parentesco = [
     "Primo",
     "Hijo",
@@ -34,18 +34,22 @@ const Familia = () => {
     "Peru"
   ];
   const columns = [
-    "Nombre Apellido",
-    "Tipo/N° DNI",
+    "Apellido y Nombre",
+    "Tipo",
+    "N°Documento",
+    "Sexo",
     "Parentesco",
     "Nacimiento",
-    "Pais Origen",
+    "Pais de Origen",
     "Nacionalidad",
     "Estudios",
     "Fecha Baja",
     "Obs",
   ];
   return (
-    <div className="container-sm">
+    <div className="Lateral-Derecho">
+   
+   <div className="container-sm">
       <div class="row border border-3 p-3">
         <EmployeData />
         <div className="col-xl-6">
@@ -64,7 +68,7 @@ const Familia = () => {
                 />
                 <InputMultiple
                   optionsDNI={tipoDNI}
-                  nameInputDNI="Tipo y N° Documento"
+                  nameInputDNI="Documento"
                   valueRadio={
                     saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null
                   }
@@ -136,12 +140,23 @@ const Familia = () => {
             nameInput="Fecha Baja"
           />
           <TextArea inputName="Observaciones" maxLength="255" value="" />
-          <ButtonCancelarAceptar cancelar="Quitar" aceptar="Agregar" />
+          {/* <ButtonCancelarAceptar 
+          // cancelar="" 
+          // aceptar=""  /> */}
         </div>
         <TableBasic columns={columns} />
-        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
+        <ButtonCancelarAceptar cancelar="Quitar" aceptar="Agregar" />
       </div>
     </div>
+
+
+ <div className="d-flex justify-content-end">
+        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
+      </div>
+
+
+    </div>
+
   );
 };
 export default Familia;

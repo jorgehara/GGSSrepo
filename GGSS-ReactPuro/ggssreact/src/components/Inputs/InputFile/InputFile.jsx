@@ -39,6 +39,7 @@ const InputFile = ({inputName}) => {
                   </div>
               </div>
           </section></>
+          
     
   )
 }

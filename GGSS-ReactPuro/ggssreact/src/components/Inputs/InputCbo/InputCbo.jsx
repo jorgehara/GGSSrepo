@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./InputCbo.css";
 
 const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton}) => {
-    console.log(value)
+    console.log(array)
     
     const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -23,6 +23,9 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton}) => 
                             return(
                               value === (op.idEstado) ? <option selected value={index}>{op.nombreEstado }</option> :
                                 <option key={index}>{op.nombreEstado }</option> 
+
+
+                                // {`op.${propiedad}`}
                             )
                         })
                     }

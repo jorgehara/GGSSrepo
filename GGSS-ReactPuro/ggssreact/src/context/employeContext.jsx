@@ -7,7 +7,7 @@ const EmpleadoContextProvider = (props) => {
   const [saveEmpl, setSaveEmpl] = useState([{}]);
   const [saveDom, setSaveDom] = useState([{}]);
   const [saveEstado, setSaveEstado] = useState([{}]);
-
+  const [saveEstadoCivil, setSaveEstadoCiviles] = useState([{}]);
 
   console.log(saveDom);
 
@@ -22,6 +22,10 @@ const EmpleadoContextProvider = (props) => {
     setSaveDom(domicilio);
   }
 
+  function saveEstadosCiviles(estadoCiviles) {
+    setSaveEstadoCiviles(estadoCiviles);
+  }
+
   return (
     <employeContext.Provider
       value={{
@@ -32,6 +36,8 @@ const EmpleadoContextProvider = (props) => {
         saveDom,
         saveEstados,
         saveEstado,
+        saveEstadosCiviles,
+        saveEstadoCivil
       }}
     >
       {props.children}

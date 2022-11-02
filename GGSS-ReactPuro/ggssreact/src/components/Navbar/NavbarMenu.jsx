@@ -2,6 +2,8 @@ import React from 'react'
 import { Link, Navigate } from "react-router-dom";
 import ButtonCallModal from '../Buttons/ButtonCallModal';
 import BasicModal from '../Modals/BasicModal/BasicModal';
+// import ButtonCallModal from '../Buttons/ButtonCallModal';
+// import BasicModal from '../Modals/BasicModal/BasicModal';
 
 const Navbar = () => {
 
@@ -50,32 +52,16 @@ const Navbar = () => {
 				<li class="nav-item">
 				<a class="nav-link" href="/some/valid/uri">Períodos</a>
 				</li>
-				<li class="nav-item dropdown">
+				{/* <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Tabla de Datos
                     </a>
                     <ul class="dropdown-menu">
 						<h6 className="titleEmpleados">Para empleados: </h6>
 						<div className="datosEmpleados">
-							<ButtonCallModal idModal="Estudios" nameButton="Estudios" />
-          					<BasicModal idModal="Estudios" nameModal="Estudios" nameOptionModal="Nivel de Estudios" />
-							<li><Link class="dropdown-item" to="/lista-datos/estadoCivil">Estado Civil</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/estudios">Estudios</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/tipoDocumento">Tipo de Documento Civil</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/parentescos">Parentescos</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/estadosEmpleados">Estados para empleados</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/calles">Calles</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/cargos">Cargos</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/formasDePago">Formas de Pago</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/modosDeContratacion">Modos de Contratación</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/modosDeLiquidacion">Modos de Liquidación</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/motivosEgreso">Motivos de Egreso</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/paises">Paises</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/pdlb">Provincias - Departamentos - Localidades - Barrios</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/tareasDesempeñadas">Tareas Desempeñadas</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/empleadores">Empleadores</Link></li>
-							<li><Link class="dropdown-item" to="/lista-datos/alicuotas">Alicuotas</Link></li>
-						</div>
+							{/* <ButtonCallModal idModal="Estudios" nameButton="Estudios" />
+          					<BasicModal idModal="Estudios" nameModal="Estudios" nameOptionModal="Nivel de Estudios" /> */}
+						{/* </div>
 						<hr />
 						<h6 className="titleLiquidacion">Para liquidación: </h6>
 						<div className="datosLiquidacion">
@@ -83,7 +69,79 @@ const Navbar = () => {
 						</div>
 
                     </ul>
+                </li> */}
+
+
+
+{/* Miua */}
+				<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tabla de Datos
+                    </a>
+                   
+				   
+				    <ul class="dropdown-menu">
+					{/* <select class="form-select" aria-label="Default select example">
+							<option selected>Para empleados:</option>
+							<option value="1">One</option>
+							<option value="2">Two</option>
+							<option value="3">Three</option>
+							</select> */}
+
+{/* <!-- Split dropend button --> */}
+{/* <div class="btn-group dropend">
+  <button type="button" class="btn btn-primary">
+Boton va al costado
+  </button>
+  <button type="button" 
+  		class="btn btn-danger dropdown-toggle dropdown-toggle-split" 
+		data-bs-toggle="dropdown" 
+		aria-expanded="false"
+		>
+    {/* <span 
+	class="visually-hidden">
+		Toggle Dropend</span> */}
+  {/* </button> */} 
+
+  {/* <!-- Split dropend button --> */}
+<div class="btn-group dropend">
+  <button type="button" class="btn btn-secondary">
+    Split dropend
+  </button>
+  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropend</span>
+  </button>
+  <ul class="dropdown-menu">
+  <li>
+	<a class="dropdown-item" href="https://www.google.com/">Action</a>
+</li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    {/* <!-- Dropdown menu links --> */}
+  </ul>
+</div>
+					{/* <ul class="dropdown-menu">
+						<div className="datosEmpleados">
+							{/* <ButtonCallModal idModal="Estudios" nameButton="Estudios" />
+          					<BasicModal idModal="Estudios" nameModal="Estudios" nameOptionModal="Nivel de Estudios" /> */}
+						{/* </div> */}
+						{/* <hr />
+						<h6 className="titleLiquidacion">Para liquidación: </h6>
+						<div className="datosLiquidacion">
+							...
+						</div>
+				    </ul> */} 
+
+
+
+				    </ul>
+
+
+
                 </li>
+
+{/* miau */}
+
 				<li class="nav-item">
 				<a class="nav-link" href="/some/valid/uri">Informes y Listados</a>
 				</li>
