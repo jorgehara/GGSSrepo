@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import './Navbar.css'
 import ButtonCallModal from '../Buttons/ButtonCallModal'
 import BasicModal from '../Modals/BasicModal/BasicModal'
-import BasicModalSelectObs from '../Modals/BasicModalSelectObs/BasicModalSelectObs'
 import ModalParentescos from '../Modals/ModalParentescos/ModalParentescos'
 import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 import ModalAlicuotas from '../Modals/ModalAlicuotas/ModalAlicuotas'
-import { objectBancos, objectEmpresasTelefonia, objectSindicatos, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises  } from './Objects'
+import { objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion  } from './Objects'
 
 const Navbar = () => {
 
@@ -89,21 +88,21 @@ const Navbar = () => {
 							<ButtonCallModal idModal="calles" nameButton="Calles" useNavbar={true} />
 							<ButtonCallModal idModal="empleadores" nameButton="Empleadores" useNavbar={true} />
 							<ButtonCallModal idModal="alicuotas" nameButton="Alicuotas" useNavbar={true} />
-							
 						</div>
-						{/* {/ <button onClick={handleDatosEmpleados}>Ocultar lista</button> /} */}
+						
 						<hr />
+
 						<h6 className="titleLiquidacion">Para liquidación: </h6>
 						<div className="datosLiquidacion">
 							<ButtonCallModal idModal="Bancos" nameButton="Bancos" useNavbar={true} />
 							<ButtonCallModal idModal="Telefonia" nameButton="Empresas de telefonia celular" useNavbar={true} />
 							<ButtonCallModal idModal="Sindicatos" nameButton="Sindicatos" useNavbar={true} />
-							<ButtonCallModal idModal="Obras Sociales" nameButton="Obras Sociales" useNavbar={true} />
+							<ButtonCallModal idModal="ObrasSociales" nameButton="Obras Sociales" useNavbar={true} />
 							<ButtonCallModal idModal="AFJP" nameButton="A.F.J.P" useNavbar={true} />
-							<ButtonCallModal idModal="Centros de Costo" nameButton="Centros de Costo" useNavbar={true} />
-							<ButtonCallModal idModal="Sectores/Departamentos" nameButton="Sectores/Departamentos" useNavbar={true} />
+							<ButtonCallModal idModal="CentrosCosto" nameButton="Centros de Costo" useNavbar={true} />
+							<ButtonCallModal idModal="SectoresDeptos" nameButton="Sectores/Departamentos" useNavbar={true} />
 							<ButtonCallModal idModal="Direcciones" nameButton="Direcciones" useNavbar={true} />
-							<ButtonCallModal idModal="Lugares de Pago" nameButton="Lugares de Pago" useNavbar={true} />
+							<ButtonCallModal idModal="LugaresPago" nameButton="Lugares de Pago" useNavbar={true} />
 							<ButtonCallModal idModal="Documentacion" nameButton="Documentación que presentan los empleados" useNavbar={true} />
 							<ButtonCallModal idModal="Reducción" nameButton="Reducción de Deducciones de Ganancias" useNavbar={true} />
 							<ButtonCallModal idModal="Escala" nameButton="Escala de Ganancias" useNavbar={true} />
@@ -133,11 +132,11 @@ const Navbar = () => {
 				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} />
 				<ModalParentescos idModal="Parentescos" nameModal="Parentescos" />
 				<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} />
-				<BasicModalSelectObs idModal="cargos" nameModal="Cargos" nameOptionModal="Cargo" />
-				<BasicModalSelectObs idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" nameOptionModal="Tarea" />
+				<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} />
+				<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} />
 				<BasicModal idModal="formasDePago" nameModal="Formas de Pago" placeholder={objectFormasDePago} textArea={true} />
-				<BasicModalSelectObs idModal="modosDeContratacion" nameModal="Modos de Contratacion" nameOptionModal="Modos de Contratacion" inputDate={true}/>
-				<BasicModalSelectObs idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" nameOptionModal="Modos de Liquidacion" />
+				<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true}/>
+				<BasicModal idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" placeholder={objectModosLiquidacion} dropdown={true} textArea={true} />
 				<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
 				<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} />
 				<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" />
@@ -149,6 +148,18 @@ const Navbar = () => {
 
 				<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true} />
 				<BasicModal idModal="Telefonia" nameModal="Empresas de Telefonia" placeholder={objectEmpresasTelefonia} />
+				<BasicModal idModal="Sindicatos" nameModal="Sindicatos" placeholder={objectSindicatos} dropdown={true} />
+				<BasicModal idModal="ObrasSociales" nameModal="Obras Sociales" placeholder={objectObrasSociales} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true} />
+				<BasicModal idModal="AFJP" nameModal="A.F.J.P" placeholder={objectAFJP} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true} />
+				<BasicModal idModal="CentrosCosto" nameModal="Centros de Costo" placeholder={objectCentrosCosto} dropdown={true} textArea={true} />
+				<BasicModal idModal="SectoresDeptos" nameModal="Sectores/Departamentos" placeholder={objectSectoresDptos} dropdown={true} textArea={true} />
+				<BasicModal idModal="Direcciones" nameModal="Direcciones" placeholder={objectDirecciones} textArea={true} relacion={true} nameRelacion="Sector/Dpto" />
+				<BasicModal idModal="LugaresPago" nameModal="Lugares de Pago" placeholder={objectLugaresPago} textArea={true} />
+				<BasicModal idModal="Documentacion" nameModal="Documentacion" placeholder={objectDocumentacion} textArea={true} />
+
+
+
+
 
 
 

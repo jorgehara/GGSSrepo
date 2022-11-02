@@ -13,7 +13,7 @@ const InputDate = ({nameInput,display, checked}) => {
     <div className="formulario__grupo__inputs mt-2">
         <div class="form-check p-0">
           <label class="form-check-label" for="flexCheckDefault">
-            {nameInput}
+            {nameInput}:
           </label>
           <input className={mostrarComponente ? "form-check-input ml-4" : "none"} type="checkbox" value="" id="flexCheckChecked" checked={checked} />
         </div>

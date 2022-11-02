@@ -1,4 +1,4 @@
-// OBJECTS TABLA PARA EMPLEADOS
+// -----  OBJECTS TABLA PARA EMPLEADOS -----
 
 export const objectEstadosCiviles = [
 	{
@@ -49,7 +49,7 @@ export const objectMotivosEgreso = [
 export const objectCalles = [
   {
     "label": "Calle",
-    "placeholder": "Agustin Aguirre 207"
+    "placeholder": "Calle falsa 123"
   }
 ]
 
@@ -69,8 +69,36 @@ export const objectPaises = [
 
 ]
 
+export const objectCargos = [
+  {
+    "label": "Cargos",
+    "placeholder": "Administrativo"
+  }
+]
 
-// OBJECTS TABLA PARA LIQUIDACION
+export const objectTareas = [
+  {
+    "label": "Tarea",
+    "placeholder": "Tarea 1"
+  }
+]
+
+export const objectModosContratacion = [
+  {
+    "label": "Modo de contratación",
+    "placeholder": "Contratado"
+  }
+]
+
+export const objectModosLiquidacion = [
+  {
+    "label": "Modo de liquidación",
+    "placeholder": "Diario"
+  }
+]
+
+
+// ----- OBJECTS TABLA PARA LIQUIDACION -----
 
 export const objectBancos = [
   {
@@ -81,7 +109,7 @@ export const objectBancos = [
 
 export const objectEmpresasTelefonia = [
 	{
-		"label": "Nombre",
+		"label": "Empresa",
 		"placeholder": "Claro"
 	},
 	{
@@ -92,7 +120,7 @@ export const objectEmpresasTelefonia = [
 
 export const objectSindicatos = [
   {
-		"label": "Nombre",
+		"label": "Sindicato",
 		"placeholder": "Luz y Fuerza"
 	},
 	{
@@ -100,6 +128,60 @@ export const objectSindicatos = [
 		"placeholder": "LyFIV"
 	}
 ]
+
+export const objectObrasSociales = [
+  {
+		"label": "Obra social",
+		"placeholder": "ACARA"
+	},
+	{
+		"label": "Abreviatura",
+		"placeholder": "ACAA"
+	}
+]
+
+export const objectAFJP = [
+  {
+    "label": "AFJP",
+    "placeholder": "Caja Previsión Social"
+  }
+]
+
+export const objectCentrosCosto = [
+  {
+    "label": "Centro de costo",
+    "placeholder": "AAFF Gobierno"
+  }
+]
+
+export const objectSectoresDptos = [
+  {
+    "label": "Sector/Dpto",
+    "placeholder": "01"
+  }
+]
+
+export const objectDirecciones = [
+  {
+    "label": "Dirección",
+    "placeholder": "Direccion falsa"
+  }
+]
+
+export const objectLugaresPago = [
+  {
+    label: "Lugar de pago",
+    placeholder: "INFT S.A"
+  }
+]
+
+export const objectDocumentacion = [
+  {
+    label: "Documentacion",
+    placeholder: "Carta de presentación"
+  }
+]
+
 
 
 

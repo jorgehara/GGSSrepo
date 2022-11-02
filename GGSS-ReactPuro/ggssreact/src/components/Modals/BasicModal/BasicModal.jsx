@@ -2,9 +2,12 @@ import React from 'react'
 import TextArea from '../../Inputs/TextArea/TextArea';
 import "./BasicModal.css";
 import '../Modales.css'
-import InputModal from '../../Inputs/InputModal/InputModal';
+import InputModal from '../../Inputs/InputsModal/InputModal';
+import Dropdown from '../../Inputs/Dropdown/Dropdown';
+import InputDate from '../../Inputs/InputDate/InputDate'
+import InputNumModal from '../../Inputs/InputsModal/InputNumModal';
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder }) => {
+const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder, dropdown, inputDate, inputNum, inputNumName, relacion, nameRelacion }) => {
 
     console.log(nameOptionModal)
     return (
@@ -21,6 +24,10 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
                         <div className="modal-body">
                             <div className="llamadaApi">
 
+                                { relacion && <> <Dropdown nameDropdown={nameRelacion}/> <br/> </>  }
+
+                                
+                                
                                 <label htmlFor="data">Datos: </label>
                                 <br />
                                 <select class="form-select row mt-1" multiple aria-label="multiple select example">
@@ -31,15 +38,25 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
 
                             </div>
                             <div className="bodyInputs">
-                                {/* <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
-                                <input type="text" name={idModal} /> */}
-
+                              
                                 {
                                     placeholder.map((p, i) => {
                                         return(
                                             <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} />
                                         )
                                     })
+                                }
+
+                                {
+                                    inputNum && <InputNumModal nameInput={inputNumName}/>
+                                }   
+
+                                {
+                                    dropdown && <Dropdown nameDropdown="Partida"/>
+                                }
+
+                                {
+                                    inputDate && <InputDate nameInput="Vencimiento"/>
                                 }
 
                         
