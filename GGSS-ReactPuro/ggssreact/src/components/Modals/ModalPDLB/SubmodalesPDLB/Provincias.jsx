@@ -8,7 +8,7 @@ const Provincias = () => {
 
                 <label htmlFor="data">Datos: </label>
                 <br />
-                <select class="form-select row mt-1" multiple aria-label="multiple select example">
+                <select className="form-select row mt-1" multiple aria-label="multiple select example">
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -16,9 +16,9 @@ const Provincias = () => {
 
             </div>
 
-            <div class="bodyInputs">
+            <div className="bodyInputs">
 
-                <label for="provincia" style={{ marginRight: "15px" }}> Provincia: </label>
+                <label htmlFor="provincia" style={{ marginRight: "15px" }}> Provincia: </label>
                 <input type="text" name="provincia" />
 
                 <br />
@@ -28,11 +28,11 @@ const Provincias = () => {
                 <hr />
 
                 <div className="btnInputs">
-                    <button type="button" class="btn btn-success btnAceptar">
+                    <button type="button" className="btn btn-success btnAceptar">
                         ACEPTAR
                     </button>
 
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" className="btn btn-danger">
                         CANCELAR
                     </button>
                 </div>

@@ -34,26 +34,26 @@ const InputMultiple = ({
     // <div className="container-flex align-items-center">
       <div className="formulario__grupo">
         <div className="">
-          <label class="formulario-label-DNIFamilia mt-1">{nameInputDNI}</label>
+          <label className="formulario-label-DNIFamilia mt-1">{nameInputDNI}</label>
         </div>
         <div className="ml-1">
-          <select class=" form-control-sm ml-4 px-0 mt-1 mb-0">
-            {optionsDNI.map((op) => {
-              return <option>{op}</option>;
+          <select className=" form-control-sm ml-4 px-0 mt-1 mb-0">
+            {optionsDNI.map((op, i) => {
+              return <option key={i}>{op}</option>;
             })}
           </select>
         </div>
         <div className="form__grupo__input2">
           <input
             type="text"
-            maxlength="8"
+            maxLength="8"
             value={valueDNI}
             className="formulario-input-DNI px-0 mt-0 mb-0"
             placeholder={placeholder}
           ></input>
         </div>
         <div className="form__grupo__icon">
-          <i class="fas fa-times-circle"></i>
+          <i className="fas fa-times-circle"></i>
         </div>
         <div className="form__grupo__error">
           <p></p>

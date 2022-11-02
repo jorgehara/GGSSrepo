@@ -11,12 +11,12 @@ const InputDateFlia = ({nameInput,display, checked}) => {
 
   return (
     <div className="formulario__grupo__DateFlia mt-2">
-        <div class="form-check p-0">
-          <label class="form-check-label" for="flexCheckDefault">
+        <div className="form-check p-0">
+          <label className="form-check-label" htmlFor="flexCheckDefault">
             {nameInput}
           </label>
         </div>
-        <div class="formulario-input-DateFlia">
+        <div className="formulario-input-DateFlia">
             <input 
             className='ml-2' 
             id="date" 

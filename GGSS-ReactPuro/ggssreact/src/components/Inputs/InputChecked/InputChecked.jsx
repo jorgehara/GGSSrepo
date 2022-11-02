@@ -31,13 +31,13 @@ const InputChecked = ({
             />
           <div className="d-flex align-items-center col-xl-3">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="checkbox"
               value=""
               id="flexCheckChecked"
-              checked={checked}
+              defaultChecked={checked}
             />
-            <label class="form-check-label" for="flexCheckChecked">
+            <label className="form-check-label" htmlFor="flexCheckChecked">
               {nameCheck}
             </label>
           </div>

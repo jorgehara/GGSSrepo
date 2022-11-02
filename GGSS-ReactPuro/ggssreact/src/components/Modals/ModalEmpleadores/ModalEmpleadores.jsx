@@ -6,7 +6,7 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
     return (
         <div>
-            <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
+            <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
                 <div className="modal-dialog modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -20,7 +20,7 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select style={{ height: "1100px", width: "400px" }} class="form-select row mt-1" multiple aria-label="multiple select example">
+                                <select style={{ height: "1100px", width: "400px" }} className="form-select row mt-1" multiple aria-label="multiple select example">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
@@ -38,28 +38,28 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
                                 <br />
 
                                 <label style={{ marginRight: "15px" }} htmlFor="alicuota">Alicuota: </label>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div className="dropdown">
+                                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Seleccionar...
                                     </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
 
                                 <br />
 
                                 <label style={{ marginRight: "15px" }} htmlFor="banco">Banco: </label>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div className="dropdown">
+                                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Seleccionar...
                                     </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
 
@@ -71,14 +71,14 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
                                 <br />
 
                                 <label style={{ marginRight: "15px" }} htmlFor="partida">Partida: </label>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div className="dropdown">
+                                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Seleccionar...
                                     </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
 
@@ -93,14 +93,14 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
                                         <label style={{ marginRight: "15px" }} htmlFor="calle">Calle/Numero: </label>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
-                                            <div class="dropdown" style={{ marginRight: "15px" }}>
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <div className="dropdown" style={{ marginRight: "15px" }}>
+                                                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Seleccionar...
                                                 </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                <ul className="dropdown-menu">
+                                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
                                                 </ul>
                                             </div>
                                             <input type="number" name="numCalle" min="0" style={{ width: "50px" }} />
@@ -114,14 +114,14 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
                                         <br />
 
                                         <label style={{ marginRight: "15px" }} htmlFor="barrio">Barrio: </label>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <div className="dropdown">
+                                            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Seleccionar...
                                             </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            <ul className="dropdown-menu">
+                                                <li><a className="dropdown-item" href="#">Action</a></li>
+                                                <li><a className="dropdown-item" href="#">Another action</a></li>
+                                                <li><a className="dropdown-item" href="#">Something else here</a></li>
                                             </ul>
                                         </div>
 

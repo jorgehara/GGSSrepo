@@ -30,9 +30,9 @@ const EmployeData = () => {
   return (
     <div className="container-flex">
       <div className="container border border-2 p-3">
-        <div class="container text-start">
-            <div class="row">
-              <div class="col-2 d-flex align-items-center">
+        <div className="container text-start">
+            <div className="row">
+              <div className="col-2 d-flex align-items-center">
                 <img
                   className="border border-3 imgData"
                   id="imagen"
@@ -41,7 +41,7 @@ const EmployeData = () => {
                   style={{ width: "150px;", height: "150px;" }}
                 />
              </div>
-              <div class="col-3  d-flex align-items-center"> 
+              <div className="col-3  d-flex align-items-center"> 
               <div>
             <InputEmpData
                 idInput="legajoInfo"
@@ -77,7 +77,7 @@ const EmployeData = () => {
                 />
               </div>
              </div>
-              <div class="col-2  d-flex-column align-items-center">
+              <div className="col-2  d-flex-column align-items-center">
                 <InputEmpData
                   idInput="estadoInfo"
                   inputValue={

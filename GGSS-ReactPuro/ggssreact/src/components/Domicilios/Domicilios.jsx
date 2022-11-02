@@ -57,10 +57,10 @@ const Domicilios = () => {
     setInputValue("");
   };
   return (
-    <div to="/domicilios" class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
+    <div to="/domicilios" className="accordion-item">
+      <h2 className="accordion-header" id="headingTwo">
         <button
-          class="accordion-button collapsed"
+          className="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapseTwo"
@@ -72,11 +72,11 @@ const Domicilios = () => {
       </h2>
       <div
         id="collapseTwo"
-        class="accordion-collapse collapse"
+        className="accordion-collapse collapse"
         aria-labelledby="headingTwo"
         data-bs-parent="#accordionExample"
       >
-        <div class="accordion-body">
+        <div className="accordion-body">
           <section
             className=""
 
@@ -91,7 +91,7 @@ const Domicilios = () => {
               <div className="col-xl-6 ">
                 <div className="mt-2">
                   <input
-                    checked={inputValue}
+                    defaultChecked={inputValue}
                     type="checkbox"
                     name="predeterminado"
                     id="predeterminado"
@@ -127,7 +127,7 @@ const Domicilios = () => {
                   placeHolder="Estudios"
                   // nameButton="..."
                   nameCheck="Fijar"
-                  checked=""
+                  defaultChecked=""
                   display={true}
                 />
                   <InputCbo

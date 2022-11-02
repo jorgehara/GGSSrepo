@@ -3,8 +3,8 @@ import './TableBootstrap.css'
 
 const TableBootstrap = () => {
     return (
-        <div class="table-responsive">
-            <table class="table">
+        <div className="table-responsive">
+            <table className="table">
                 <thead className="tableHeader text-light">
                     <tr>
                         <th scope="col">#</th>

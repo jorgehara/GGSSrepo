@@ -9,7 +9,6 @@ const EmpleadoContextProvider = (props) => {
   const [saveEstado, setSaveEstado] = useState([{}]);
   const [saveEstadoCivil, setSaveEstadoCiviles] = useState([{}]);
 
-  console.log(saveDom);
 
   function saveEstados(estado) {
     setSaveEstado(estado);

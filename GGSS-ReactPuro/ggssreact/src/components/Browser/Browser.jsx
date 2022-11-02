@@ -84,16 +84,17 @@ const Browser = () => {
         multiple
         aria-label="multiple select example"
       >
-        {listEmpleados.map((emp) => {
+        {listEmpleados.map((emp, i) => {
           return (
             <option
+            key={i}
               onClick={(e) => onSelect(e, emp.apellido, emp.iDempleado)}
               value="1"
             >{`${emp.apellido}, ${emp.nombres}`}</option>
           );
         })}
       </select>
-      <div class="d-inline-flex">
+      <div className="d-inline-flex">
         <ButtonLarge
           color="danger"
           tamaño=""

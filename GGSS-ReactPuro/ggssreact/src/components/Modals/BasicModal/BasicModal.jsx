@@ -6,11 +6,10 @@ import InputModal from '../../Inputs/InputModal/InputModal';
 
 const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder }) => {
 
-    console.log(nameOptionModal)
     return (
         <div>
-            <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div className="modal-dialog modal-xl">
+            <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id={`${idModal}Label`}>
@@ -23,7 +22,7 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
 
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select class="form-select row mt-1" multiple aria-label="multiple select example">
+                                <select className="form-select row mt-1" multiple aria-label="multiple select example">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
@@ -31,9 +30,6 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
 
                             </div>
                             <div className="bodyInputs">
-                                {/* <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
-                                <input type="text" name={idModal} /> */}
-
                                 {
                                     placeholder.map((p, i) => {
                                         return(
@@ -41,8 +37,6 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
                                         )
                                     })
                                 }
-
-                        
                                 <br />
 
                                 {textArea && <TextArea inputName="Observaciones" /> }
