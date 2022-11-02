@@ -66,7 +66,7 @@ const Navbar = () => {
 				<li class="nav-item">
 				<a class="nav-link" href="/some/valid/uri">Períodos</a>
 				</li>
-				{/* <li class="nav-item dropdown">
+				<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Tabla de Datos
                     </a>
@@ -91,7 +91,7 @@ const Navbar = () => {
 							<ButtonCallModal idModal="alicuotas" nameButton="Alicuotas" useNavbar={true} />
 							
 						</div>
-						{/* <button onClick={handleDatosEmpleados}>Ocultar lista</button> */}
+						{/* {/ <button onClick={handleDatosEmpleados}>Ocultar lista</button> /} */}
 						<hr />
 						<h6 className="titleLiquidacion">Para liquidación: </h6>
 						<div className="datosLiquidacion">
@@ -116,79 +116,7 @@ const Navbar = () => {
 						</div>
 
                     </ul>
-                </li> */}
-
-
-
-{/* Miua */}
-				<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Tabla de Datos
-                    </a>
-                   
-				   
-				    <ul class="dropdown-menu">
-					{/* <select class="form-select" aria-label="Default select example">
-							<option selected>Para empleados:</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-							</select> */}
-
-{/* <!-- Split dropend button --> */}
-{/* <div class="btn-group dropend">
-  <button type="button" class="btn btn-primary">
-Boton va al costado
-  </button>
-  <button type="button" 
-  		class="btn btn-danger dropdown-toggle dropdown-toggle-split" 
-		data-bs-toggle="dropdown" 
-		aria-expanded="false"
-		>
-    {/* <span 
-	class="visually-hidden">
-		Toggle Dropend</span> */}
-  {/* </button> */} 
-
-  {/* <!-- Split dropend button --> */}
-<div class="btn-group dropend">
-  <button type="button" class="btn btn-secondary">
-    Split dropend
-  </button>
-  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="visually-hidden">Toggle Dropend</span>
-  </button>
-  <ul class="dropdown-menu">
-  <li>
-	<a class="dropdown-item" href="https://www.google.com/">Action</a>
-</li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    {/* <!-- Dropdown menu links --> */}
-  </ul>
-</div>
-					{/* <ul class="dropdown-menu">
-						<div className="datosEmpleados">
-							{/* <ButtonCallModal idModal="Estudios" nameButton="Estudios" />
-          					<BasicModal idModal="Estudios" nameModal="Estudios" nameOptionModal="Nivel de Estudios" /> */}
-						{/* </div> */}
-						{/* <hr />
-						<h6 className="titleLiquidacion">Para liquidación: </h6>
-						<div className="datosLiquidacion">
-							...
-						</div>
-				    </ul> */} 
-
-
-
-				    </ul>
-
-
-
                 </li>
-
-{/* miau */}
-
 				<li class="nav-item">
 				<a class="nav-link" href="/some/valid/uri">Informes y Listados</a>
 				</li>
@@ -199,7 +127,7 @@ Boton va al costado
 				<a class="nav-link" href="/some/valid/uri">Acerca de...</a>
 				</li>
 
-				{/* MODALES TABLA PARA EMPLEADOS */}
+				{/* {/ MODALES TABLA PARA EMPLEADOS /} */}
 				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} />
 				<BasicModal idModal="Estudios" nameModal="Estudios" placeholder={objectEstudios} />
 				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} />
@@ -217,7 +145,7 @@ Boton va al costado
 				<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
 				<ModalAlicuotas idModal="alicuotas" nameModal="Alicuotas" />
 
-				{/* MODALES TABLA PARA LIQUIDACIÓN */}
+				{/* {/ MODALES TABLA PARA LIQUIDACIÓN /} */}
 
 				<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true} />
 				<BasicModal idModal="Telefonia" nameModal="Empresas de Telefonia" placeholder={objectEmpresasTelefonia} />
