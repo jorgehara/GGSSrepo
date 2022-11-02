@@ -2,3 +2,10 @@ h6{
     padding: 10px;
 }
 
+.openList{
+    display: block;
+}
+
+.closeList{
+    display: none;
+}

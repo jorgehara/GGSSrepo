@@ -1,33 +1,46 @@
-import React from "react";
-import TextArea from "../../Inputs/TextArea/TextArea";
+import React from 'react'
+import TextArea from '../../Inputs/TextArea/TextArea';
+import "./BasicModal.css";
+import '../Modales.css'
+import InputModal from '../../Inputs/InputModal/InputModal';
 
-const BasicModal = ({ 
-    // idModal,
-    // nameModal,
-    // nameOptionModal
- }) => {
-  return (
-    <div>
+const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder }) => {
+
+    console.log(nameOptionModal)
+    return (
+        <div>
+            <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
+                <div className="modal-dialog modal-xl">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id={`${idModal}Label`}>
+                                {nameModal}
+                            </h1>
+                            <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="llamadaApi">
 
 
+                            </div>
+                            <div className="bodyInputs">
+                                {/* <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
+                                <input type="text" name={idModal} /> */}
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+                                {
+                                    placeholder.map((p, i) => {
+                                        return(
+                                            <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} />
+                                        )
+                                    })
+                                }
+
+                        
+                                <br />
+
+                                {textArea && <TextArea inputName="Observaciones" /> }
+                                
+                                <hr />
 
 
 
