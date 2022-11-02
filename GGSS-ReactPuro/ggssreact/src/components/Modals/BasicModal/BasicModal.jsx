@@ -2,6 +2,7 @@ import React from 'react'
 import TextArea from '../../Inputs/TextArea/TextArea';
 import "./BasicModal.css";
 import '../Modales.css'
+import InputModal from '../../Inputs/InputModal/InputModal';
 
 const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder }) => {
 
@@ -30,14 +31,21 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
 
                             </div>
                             <div className="bodyInputs">
-                                <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
-                                <input type="text" name={idModal} />
+                                {/* <label htmlFor={idModal} style={{ marginRight: "15px" }}> {nameOptionModal}: </label>
+                                <input type="text" name={idModal} /> */}
 
-                                {/* <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} /> */}
+                                {
+                                    placeholder.map((p, i) => {
+                                        return(
+                                            <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} />
+                                        )
+                                    })
+                                }
 
+                        
                                 <br />
 
-                                {TextArea && <TextArea inputName="Observaciones" /> }
+                                {textArea && <TextArea inputName="Observaciones" /> }
                                 
                                 <hr />
 
