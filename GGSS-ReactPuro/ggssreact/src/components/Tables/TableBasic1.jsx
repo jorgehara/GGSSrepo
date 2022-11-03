@@ -24,7 +24,7 @@ const TableBasic1 = ({ columns , value}) => {
   return (
     <>
       <div className="row mt-5 overflow-scroll">
-        <table className="table">
+        <table className="table table-danger">
           <thead>
             <tr>
               {columns.map((col, i) => {
