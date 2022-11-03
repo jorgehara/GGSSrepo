@@ -7,6 +7,7 @@ const InputNumero = ({
   nameCheck,
   defaultChecked,
   display,
+  value
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -23,7 +24,7 @@ const InputNumero = ({
       <input type="text" 
                   className='formulario-input-Legajo ml-4'                                   
                     placeholder={placeHolder}
-				                       
+				            value={value}           
                     />
       </div>
       <div className="form__grupo__input2">

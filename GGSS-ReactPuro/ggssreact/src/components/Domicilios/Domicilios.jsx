@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { employeContext } from "../../context/employeContext";
 import { getData } from "../../services/fetchAPI";
+import { getEmpleados } from "../../services/mockDataDomicilios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import InputCbo from "../Inputs/InputCbo/InputCbo";
 import InputNumero from "../Inputs/InputNumero/InputNumero";
@@ -20,6 +21,8 @@ const Domicilios = () => {
     "Barrio",
     "Localidad",
     "Piso/Of/Dpto",
+    "Provincia",
+    "Obs"
   ];
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
@@ -36,10 +39,24 @@ const Domicilios = () => {
   //#endregion
   
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom, saveEmpl, saveEstados, saveEstado, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio } =
-    useContext(employeContext);
+  const { saveDom,saveDomicilios, saveEmpl, saveEstados, saveEstado, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms } = useContext(employeContext);
   //#endregion
-
+  //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
+  const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
+  const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => {return res.pisoDepto}) : null;
+  const deptos = saveDetpo !== undefined ? saveDetpo.map(res => {return res.departamento}) : null;
+  const provincias = saveProvincia !== undefined ? saveProvincia.map(res => {return res.provincia}) : null;
+  const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => {return res.localidad}) : null;
+  const barrios = saveBarrio !== undefined ? saveBarrio.map(res => {return res.barrio}) : null;
+  const pisoSelected = saveDom !== undefined ?  saveDom.map(m=> {return (m.pisoDepto)}) : null;
+  const calleSelected = saveDom !== undefined ?  saveDom.map(m=> {return (m.calle)}) : null;
+  const numCalleSelected = saveDom !== undefined ?  saveDom.map(m=> {return (m.numCalle)}) : null;
+  const provinciaSelected = saveDom !== undefined ?  saveDom.map(m=> {return (m.Provincia)}) : null;
+  const provinciaDepartamento = saveDom !== undefined ?  saveDom.map(m=> {return (m.Departamento)}) : null;
+  const provinciaLocalidad = saveDom !== undefined ?  saveDom.map(m=> {return (m.Localidad)}) : null;
+  const provinciaBarrio = saveDom !== undefined ?  saveDom.map(m=> {return (m.Barrio)}) : null;
+  const predeterminado = saveDom !== undefined ?  saveDom.map(m => {return(m.predeterminado)}) : null;
+  //#endregion
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
   useEffect(()=>{
     getData(urlCalles, saveCalles);
@@ -56,27 +73,23 @@ const Domicilios = () => {
   useEffect(()=>{
     getData(urlBarrios, saveBarrios);
   },[])
+  useEffect(()=>{
+    getEmpleados().then(res=> saveDomicilios(res))
+  },[])
   useEffect(() => {
     setInputValor();
-  }, [saveDom[0].predeterminado]);
+  }, [predeterminado.toString()]);
   //#endregion
  
-   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
-  const deptos = saveDetpo !== undefined ? saveDetpo.map(res => {return res.departamento}) : null;
-  const provincias = saveProvincia !== undefined ? saveProvincia.map(res => {return res.provincia}) : null;
-  const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => {return res.localidad}) : null;
-  const barrios = saveBarrio !== undefined ? saveBarrio.map(res => {return res.barrio}) : null;
-  //#endregion
+  
 
   const setInputValor = () => {
-    if (saveDom.length > 0 && saveDom[0].predeterminado === 1) {
+    if (predeterminado.toString() === "1") {
       setInputValue("checked");
       return;
     }
     setInputValue("");
   };
-
   return (
     
       //#region Menú Principal
@@ -115,7 +128,8 @@ const Domicilios = () => {
               <div className="col-xl-6 ">
                 <div className="mt-2">
                   <input
-                    defaultChecked={inputValue}
+                    defaultChecked
+                    checked={inputValue}
                     type="checkbox"
                     name="predeterminado"
                     id="predeterminado"
@@ -132,7 +146,7 @@ const Domicilios = () => {
                   nameButton="..."
                   nameLabel="Calle"
                   array={calles}
-                  propArray="Casado"
+                  propArray={calleSelected !== undefined ? calleSelected.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}
@@ -140,15 +154,15 @@ const Domicilios = () => {
                  <InputCbo
                   value={
                     saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Provincia
+                      ? saveDom.pisoDepto
                       : null
                   }
                   sexo=""
                   nameButton="..."
                   nameLabel="Piso/Dpto/
                           Ofic/Torre"
-                          array={[]}
-                  propArray="Casado"
+                          array={pisoDepto}
+                  propArray={pisoSelected !== undefined ? pisoSelected.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}
@@ -162,6 +176,7 @@ const Domicilios = () => {
                   nameCheck="Fijar"
                   defaultChecked=""
                   display={true}
+                  value={numCalleSelected !== undefined ? numCalleSelected.toString() : null}
                 />
                   <InputCbo
                   value={
@@ -171,7 +186,7 @@ const Domicilios = () => {
                   nameButton="..."
                   nameLabel="Provincia"
                   array={provincias !== undefined ? provincias : null}
-                  propArray="Casado"
+                  propArray={provinciaSelected !== undefined ? provinciaSelected.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}
@@ -186,7 +201,7 @@ const Domicilios = () => {
                   nameButton="..."
                   nameLabel="Departamento"
                   array={deptos !== undefined ? deptos : null}
-                  propArray="Casado"
+                  propArray={provinciaDepartamento !== undefined ? provinciaDepartamento.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}
@@ -201,7 +216,7 @@ const Domicilios = () => {
                   nameButton="..."
                   nameLabel="Localidad"
                   array={localidades !== undefined ? localidades : null}
-                  propArray="Casado"
+                  propArray={provinciaLocalidad !== undefined ?  provinciaLocalidad.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}
@@ -216,13 +231,13 @@ const Domicilios = () => {
                   nameButton="..."
                   nameLabel="Barrio"
                   array={barrios !== undefined ? barrios : null}
-                  propArray="Casado"
+                  propArray={provinciaBarrio !== undefined ? provinciaBarrio.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}
                 />
               </div>
-              <TableBasic1 columns={columns} />
+              <TableBasic1 columns={columns} value={ saveDom !== undefined ? saveDom : null}/>
               <ButtonCancelarAceptar cancelar="Quitar" aceptar="Agregar" />
             </div>
           </section>

@@ -24,7 +24,7 @@ const DatosPersonales = () => {
   const optionsDNI = ["D.N.I.", "L.C.", "L.E."];
 
   //------------------------------------------------------------------------------CONTEXT
-  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio} = useContext(employeContext);
+  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI} = useContext(employeContext);
   //------------------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
 
@@ -33,6 +33,7 @@ const DatosPersonales = () => {
   const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
   const urlPaisesNac = "http://54.243.192.82/api/Paises";
   const urlEstudios = "http://54.243.192.82/api/Estudios";
+  const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
   //#endregion
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
@@ -52,6 +53,7 @@ const DatosPersonales = () => {
   const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => {return (est.nombreEstado)}) : null;
   const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
   const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
+  const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
   //#endregion
   
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
@@ -67,6 +69,9 @@ const DatosPersonales = () => {
   }, [ ]);
   useEffect(()=>{
     getData(urlEstudios, saveEstudios);
+  },[])
+  useEffect(()=>{
+    getData(urlTiposDNI, saveTiposDNI);
   },[])
   
   //#endregion
@@ -110,7 +115,6 @@ const DatosPersonales = () => {
     }
   };
   //#endregion
-  
   
   return (
     //#region Menú Principal
@@ -187,7 +191,7 @@ const DatosPersonales = () => {
                           nameInput="Documento"
                           messageError="Solo puede contener números, sin puntos."
                           placeHolder="23456789"
-                          array={optionsDNI}
+                          array={tiposDNI}
                         />
                         <InputButton
                           value={
