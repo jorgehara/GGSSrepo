@@ -6,6 +6,7 @@ const EmpleadoContextProvider = (props) => {
   const [emp, setEmp] = useState([]);
   const [saveEmpl, setSaveEmpl] = useState([{}]);
   const [saveDom, setSaveDom] = useState([{}]);
+  const [saveDoms, setSaveDoms] = useState([]);
   const [saveEstado, setSaveEstado] = useState([{}]);
   const [saveEstadoCivil, setSaveEstadoCiviles] = useState([{}]);
   const [saveNacionalidad, setSaveNacionalidad] = useState([]);
@@ -15,6 +16,7 @@ const EmpleadoContextProvider = (props) => {
   const [saveProvincia, setSaveProvincia] =  useState([])
   const [saveLocalidad, setSaveLocalidad] = useState([])
   const [saveBarrio, setSaveBarrio] = useState([])
+  const [saveTipoDNI, setSaveTiposDNI] = useState([]);
 
   function saveEstados(estado) {
     setSaveEstado(estado);
@@ -26,7 +28,9 @@ const EmpleadoContextProvider = (props) => {
   function saveDomicilio(domicilio) {
     setSaveDom(domicilio);
   }
-
+  function saveDomicilios(domicilios) {
+    setSaveDoms(domicilios);
+  }
   function saveEstadosCiviles(estadoCiviles) {
     setSaveEstadoCiviles(estadoCiviles);
   }
@@ -50,6 +54,9 @@ const EmpleadoContextProvider = (props) => {
   }
   function saveBarrios(barrios){
     setSaveBarrio(barrios);
+  }
+  function saveTiposDNI(tiposdni){
+    setSaveTiposDNI(tiposdni)
   }
   return (
     <employeContext.Provider
@@ -76,7 +83,11 @@ const EmpleadoContextProvider = (props) => {
         saveLocalidades,
         saveLocalidad,
         saveBarrios,
-        saveBarrio
+        saveBarrio,
+        saveTiposDNI,
+        saveTipoDNI,
+        saveDoms,
+        saveDomicilios
       }}
     >
       {props.children}
