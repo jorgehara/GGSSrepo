@@ -4,8 +4,8 @@ import './TextArea.css'
 const TextArea = ({inputName, maxLength, value}) => {
   return (
     <div className='row'>
-        <div className='form__grupo__label mt-2 pl-1'>
-            <label className='form__grupo__label__label' htmlFor="legajo">{inputName}</label>
+        <div className='form__grupo__label pl-1'>
+            <label className='form__grupo__label__label m-0' htmlFor="legajo">{inputName}</label>
         </div>
         {/* ver el height en Boostrap */}
         <div className='form__grupo__inputs_Obs'>
@@ -13,11 +13,12 @@ const TextArea = ({inputName, maxLength, value}) => {
                 value={value}
                 placeholder="Ingrese Observaciones" 
                 id="" 
-                cols="41" 
-                rows="5"
+                cols="21" 
+                rows="1"
                 name="" 
                 maxLength={maxLength}
-                ></textarea>
+                >
+        </textarea>
     </div>
     </div>
   )

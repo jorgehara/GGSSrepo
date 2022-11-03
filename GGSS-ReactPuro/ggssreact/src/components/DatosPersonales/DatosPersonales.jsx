@@ -321,14 +321,13 @@ const DatosPersonales = () => {
                           femeninos=""
                           display={true}
                         />
+                        <TextArea inputName="Obs. Estudios" maxLength="55" />
                       </div>
                     </div>
                   </form>
                   <div className="row">
-                    <div className="col-xl-5 mr-4">
-                      <TextArea inputName="Observaciones" maxLength="255" />
-                    </div>
-                    <div className="col-xl-6 mt-2">
+                    
+                    <div className="col-xl-5 mt-2">
                       <InputFile inputName="Arrastre su imagen" />
                     </div>
                   </div>

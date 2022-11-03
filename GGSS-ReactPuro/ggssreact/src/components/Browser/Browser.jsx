@@ -54,7 +54,7 @@ const Browser = () => {
   }
 
   return (
-    <div className='Lateral-Izquierdo'>
+    <div className='Lateral-Izquierdo '>
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
       <div className="row mt-1 mr-2">
@@ -80,7 +80,7 @@ const Browser = () => {
         />
       </div>
       <select
-        className="form-select row mt-1 selectMenu"
+        className="form-select row mt-1 selectMenu ml-4"
         multiple
         aria-label="multiple select example"
       >
