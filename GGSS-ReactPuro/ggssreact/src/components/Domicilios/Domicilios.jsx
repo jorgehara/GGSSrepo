@@ -150,6 +150,7 @@ const Domicilios = () => {
                   masculinos=""
                           femeninos=""
                   display={true}
+                  idModal="calles"
                 />
                  <InputCbo
                   value={
@@ -166,6 +167,7 @@ const Domicilios = () => {
                   masculinos=""
                           femeninos=""
                   display={true}
+                  idModal=""
                 />
               </div>
               <div className="col-xl-6">
@@ -190,6 +192,7 @@ const Domicilios = () => {
                   masculinos=""
                           femeninos=""
                   display={true}
+                  idModal="pdlb"
                 />
                   <InputCbo
                   value={
@@ -205,6 +208,7 @@ const Domicilios = () => {
                   masculinos=""
                           femeninos=""
                   display={true}
+                  idModal="pdlb"
                 />
                 <InputCbo
                   value={
@@ -220,6 +224,7 @@ const Domicilios = () => {
                   masculinos=""
                           femeninos=""
                   display={true}
+                  idModal="pdlb"
                 />
                 <InputCbo
                   value={
@@ -235,6 +240,7 @@ const Domicilios = () => {
                   masculinos=""
                           femeninos=""
                   display={true}
+                  idModal="pdlb"
                 />
               </div>
               <TableBasic1 columns={columns} value={ saveDom !== undefined ? saveDom : null}/>

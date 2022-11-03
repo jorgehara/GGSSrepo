@@ -35,9 +35,6 @@ function InputFile() {
             <div class="add-icon"></div>
             <div class="btn-txt"></div>
       </button>
-          
-          
-          
           <img
             src={ImageSelectedPrevious}
             alt=""

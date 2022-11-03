@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos}) => {
+const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal}) => {
   
     
     const [mostrarComponente, setMostrarComponente] = useState(true);
@@ -51,10 +52,13 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
                     }
                 </select>
             </div>
-            <button type="button" 
+            <ButtonCallModal className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} idModal={idModal} nameButton={nameButton} useNavbar={false} useButton={true}>
+              {nameButton}
+            </ButtonCallModal>
+            {/* <button type="button" 
               className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"}>
               {nameButton}
-            </button>
+            </button> */}
         </div>
       </div>
   );

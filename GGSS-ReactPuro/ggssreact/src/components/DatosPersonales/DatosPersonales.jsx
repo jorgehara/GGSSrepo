@@ -228,6 +228,7 @@ const DatosPersonales = () => {
                           masculinos={estadosCivilesMasculinos}
                           femeninos={estadosCivilesFemeninos}
                           display={true}
+                          idModal="EstadoCivil"
                         />
                        <InputCbo
                           value={
@@ -243,6 +244,7 @@ const DatosPersonales = () => {
                           masculinos={nacionalidadesMasculinas}
                           femeninos={nacionalidadesFemeninas}
                           display={true}
+                          idModal="paises"
                         />
                       </div>
                       <div className="tercera_columna col-5">
@@ -260,6 +262,7 @@ const DatosPersonales = () => {
                           masculinos=""
                           femeninos=""
                           display={true}
+                          idModal="estadosEmpleados"
                         />
                         <InputRadio
                           value={
@@ -309,6 +312,7 @@ const DatosPersonales = () => {
                           masculinos=""
                           femeninos=""
                           display={true}
+                          idModal="paises"
                         />
                        <InputCbo
                           value={
@@ -324,6 +328,7 @@ const DatosPersonales = () => {
                           masculinos=""
                           femeninos=""
                           display={true}
+                          idModal="Estudios"
                         />
                         <TextArea inputName="Obs. Estudios" maxLength="55" />
                       </div>
