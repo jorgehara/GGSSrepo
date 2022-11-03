@@ -50,7 +50,7 @@ const Familia = () => {
     <div className="Lateral-Derecho">
    
    <div className="container-sm">
-      <div class="row border border-3 p-3">
+      <div className="row border border-3 p-3">
         <EmployeData />
         <div className="col-xl-6">
           <div className="container-flex">

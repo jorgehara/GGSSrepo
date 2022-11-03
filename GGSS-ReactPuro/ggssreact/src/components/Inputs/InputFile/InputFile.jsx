@@ -14,14 +14,14 @@ const InputFile = ({inputName}) => {
     }
   };
   return (
-    <><section class="div_conteiner">   
+    <><section className="div_conteiner">   
               <div className="img__drop">
                   <div className="image-upload-wrap">
-                      {/* <p class="h7">{inputName}</p> */}
-                      <div class="file-upload-wrapper">
+                      {/* <p className="h7">{inputName}</p> */}
+                      <div className="file-upload-wrapper">
                         <input
                           id="input-file-now-custom-2"
-                          class="file-upload"
+                          className="file-upload"
                           type="file"
                           accept="image/png, image/jpg"
                           multiple

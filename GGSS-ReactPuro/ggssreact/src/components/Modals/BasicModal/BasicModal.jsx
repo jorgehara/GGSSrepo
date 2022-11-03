@@ -8,7 +8,7 @@ const BasicModal = ({ idModal, nameModal, array, textArea, placeholder }) => {
 
     return (
         <div>
-            <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
+            <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -21,7 +21,7 @@ const BasicModal = ({ idModal, nameModal, array, textArea, placeholder }) => {
                             <div className="llamadaApi">
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select class="form-select row mt-1" multiple aria-label="multiple select example">
+                                <select className="form-select row mt-1" multiple aria-label="multiple select example">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>

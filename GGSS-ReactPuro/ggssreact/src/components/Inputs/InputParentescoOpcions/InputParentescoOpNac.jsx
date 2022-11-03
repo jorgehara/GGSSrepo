@@ -18,19 +18,19 @@ const InputParentescoOpNac = ({
   return (
     <div className="formulario__grupo mt-1">
       <div className="">
-        <label class="formulario-label-ParentescoFliaOpNac mt-2">{nameInput}</label>
+        <label className="formulario-label-ParentescoFliaOpNac mt-2">{nameInput}</label>
       </div>
       <div className="">
-        <select class="form-select ml-2 mt-1">
-          {array.map((op) => {
-            return <option>{op}</option>;
+        <select className="form-select ml-2 mt-1">
+          {array.map((op, i) => {
+            return <option key={i}>{op}</option>;
           })}
         </select>
       </div>
       <div className="ml-2">
         <button
           type="button"
-          class="tercero btn btn-validacion btn-outline-danger btn-sm ml-2 pl-2 mt-2"
+          className="tercero btn btn-validacion btn-outline-danger btn-sm ml-2 pl-2 mt-2"
         >
           {nameButton}
         </button>
@@ -43,13 +43,13 @@ const InputParentescoOpNac = ({
         }
       >
         <input
-          class="form-check-input"
+          className="form-check-input"
           type="checkbox"
           value=""
           id="flexCheckChecked"
           checked={checked}
         />
-        <label class="form-check-label" for="flexCheckChecked">
+        <label className="form-check-label" htmlFor="flexCheckChecked">
           {nameCheck}
         </label>
       </div>

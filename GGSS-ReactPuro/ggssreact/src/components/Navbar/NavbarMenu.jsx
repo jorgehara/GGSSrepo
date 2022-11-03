@@ -36,41 +36,41 @@ const Navbar = () => {
 // }
 
   return (
-	    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button" 
+	    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+		<div className="container-fluid">
+			<button className="navbar-toggler" type="button" 
 			data-bs-toggle="collapse" 
 			data-bs-target="#navbarNav" 
 			aria-controls="navbarNav" 
 			aria-expanded="false" 
 			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+			<span className="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			<div className="collapse navbar-collapse" id="navbarNav">
+			<ul className="navbar-nav">
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Empleados
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><Link class="dropdown-item" to="/home">Ficha Empleados</Link></li>
-                        <li><Link class="dropdown-item" to="#">Busqueda de Datos</Link></li>
+                    <ul className="dropdown-menu">
+                        <li><Link className="dropdown-item" to="/home">Ficha Empleados</Link></li>
+                        <li><Link className="dropdown-item" to="#">Busqueda de Datos</Link></li>
                     </ul>
                 </li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">Liquidación</a>
+				<li className="nav-item">
+				<a className="nav-link" href="/some/valid/uri">Liquidación</a>
 				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">Esquemas y Conceptos</a>
+				<li className="nav-item">
+				<a className="nav-link" href="/some/valid/uri">Esquemas y Conceptos</a>
 				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">Períodos</a>
+				<li className="nav-item">
+				<a className="nav-link" href="/some/valid/uri">Períodos</a>
 				</li>
-				<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Tabla de Datos
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul className="dropdown-menu">
 						<h6 className="titleEmpleados">Para empleados: </h6>
 						<div className="datosEmpleados">
 							<ButtonCallModal idModal="EstadoCivil" nameButton="Estados Civiles" useNavbar={true} />
@@ -117,14 +117,14 @@ const Navbar = () => {
 
                     </ul>
                 </li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">Informes y Listados</a>
+				<li className="nav-item">
+				<a className="nav-link" href="/some/valid/uri">Informes y Listados</a>
 				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">Parámetros</a>
+				<li className="nav-item">
+				<a className="nav-link" href="/some/valid/uri">Parámetros</a>
 				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="/some/valid/uri">Acerca de...</a>
+				<li className="nav-item">
+				<a className="nav-link" href="/some/valid/uri">Acerca de...</a>
 				</li>
 
 				{/* {/ MODALES TABLA PARA EMPLEADOS /} */}
@@ -152,8 +152,8 @@ const Navbar = () => {
 
 
 
-				<li class="nav-item">
-					<a class="nav-link" href="/">Salir</a>
+				<li className="nav-item">
+					<a className="nav-link" href="/">Salir</a>
 				</li>
       		</ul>
     </div>

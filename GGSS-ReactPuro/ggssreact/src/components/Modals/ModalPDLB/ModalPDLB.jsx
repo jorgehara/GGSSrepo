@@ -56,14 +56,14 @@ const ModalPDLB = ({idModal, nameModal, array}) => {
     <div>
         
             {/* <!-- Modal --> */}
-            <div class="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id={`${idModal}Label`}>
+            <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
+                <div className="modal-dialog modal-xl">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id={`${idModal}Label`}>
                                 {nameModal}
                             </h1>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="pdlbBtns">
                             <button className="pdlbBtn" onClick={handleProvincias}>PROVINCIAS</button>
@@ -73,7 +73,7 @@ const ModalPDLB = ({idModal, nameModal, array}) => {
                         </div>
 
 
-                        <div class="modal-body">
+                        <div className="modal-body">
 
                             {
                                 provincias && 

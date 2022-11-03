@@ -1,3 +1,5 @@
+  //#region Imports
+
 import React, { useContext, useEffect, useState } from "react";
 import swal from "sweetalert";
 import DNICboBox from "../Inputs/DNICboBox/DNICboBox";
@@ -11,34 +13,67 @@ import TextArea from "../Inputs/TextArea/TextArea";
 import Navbar from "../Navbar/Navbar";
 import "./DatosPersonales.css";
 import { employeContext } from "../../context/employeContext";
-// import Domicilios from '../Domicilios/Domicilios';
 import axios from "axios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
-// import InputForm2daColumn from "../Inputs/InputForm2daColumn/InputForm2daColumn";
+import { getData } from "../../services/fetchAPI";
+
+  //#endregion
 
 const DatosPersonales = () => {
   const optionsDNI = ["D.N.I.", "L.C.", "L.E."];
-  const estados = ["Activo", "Baja", "Suspendido", "Anulado"];
 
-  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil,  } = useContext(employeContext);
-
-
+  //------------------------------------------------------------------------------CONTEXT
+  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio} = useContext(employeContext);
+  //------------------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
-  const [inputValue, setInputValue] = useState("");
+
+  //#region ------------------------------------------------------------------------------URLs (Luego cambiar a archivos Js)
   const url = "http://54.243.192.82/api/Estados";
   const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
+  const urlPaisesNac = "http://54.243.192.82/api/Paises";
+  const urlEstudios = "http://54.243.192.82/api/Estudios";
+  //#endregion
 
-  const estadosCiviles = ["Soltero", "Casado", "Viudo", "Divorciado"];
+  //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
+  const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
+  const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
+  const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];    
+  const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_masc); }) : []; 
+  const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_fem); }) : []; 
+  const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
+  const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nombrePais); }) : [];
+  const idPaisOrigen = saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
+  const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO"; 
+  const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i)=>{ return (nac.estudiosNivel); }) : [];
+  const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
+  const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
+  const estadosArray = saveEstado.map((m,i)=>{return (m.nombreEstado)});
+  const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => {return (est.nombreEstado)}) : null;
+  const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
+  const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
+  //#endregion
+  
+  //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
 
   useEffect(() => {
-    axios.get(url).then((res) => saveEstados(res.data));
-  }, []);
-
+    getData(url, saveEstados);
+    }, []);
   useEffect(() => {
-    axios.get(urlEstadosCiviles).then((res) => saveEstadosCiviles(res.data));
-  }, []);
+    getData(urlEstadosCiviles, saveEstadosCiviles);    
+  }, [ ]);
+  useEffect(() => {
+    getData(urlPaisesNac, saveNacionalidades);
+  }, [ ]);
+  useEffect(()=>{
+    getData(urlEstudios, saveEstudios);
+  },[])
+  
+  //#endregion
+  
+  //#region ------------------------------------------------------------------------------VALIDACIONES
 
+  
   const validateNumbers = (e) => {
     if (!/[0-9]/.test(e.key)) {
       setError("Ingrese sólo números");
@@ -51,7 +86,6 @@ const DatosPersonales = () => {
       e.preventDefault();
     }
   };
-
   const validateNumbersDNI = (e) => {
     if (!/^([0-9]?){8}$/.test(e.key)) {
       setError("Ingrese sólo números");
@@ -75,14 +109,17 @@ const DatosPersonales = () => {
       e.preventDefault();
     }
   };
-
+  //#endregion
+  
+  
   return (
+    //#region Menú Principal
     <div className="Lateral-Derecho">
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
+      <div className="accordion" id="accordionExample">
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingOne">
             <button
-              class="accordion-button"
+              className="accordion-button"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
@@ -94,19 +131,23 @@ const DatosPersonales = () => {
           </h2>
           <div
             id="collapseOne"
-            class="accordion-collapse collapse show"
+            className="accordion-collapse collapse show"
             aria-labelledby="headingOne"
             data-bs-parent="#accordionExample"
           >
-            <div class="accordion-body">
+            <div className="accordion-body">
               <section className="container">
                 <div className="row">
                   <div className="formulario__grupo">
 
                   </div>
                   <form action="" className="form__datos__personales ">
-                    <div class="row row-cols-12">
+                    <div className="row row-cols-12">
                       <div className="segunda__columna col-5">
+                        {
+                          //#endregion
+
+                        }
                         <InputForm
                           value={
                             saveEmpl[0] !== undefined || saveEmpl[0] === null
@@ -175,9 +216,13 @@ const DatosPersonales = () => {
                               ? saveEstadoCivil[0].idEstadoCivil
                               : null
                           }
+                          sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
                           nameButton="..."
                           nameLabel="Estado Civil"
-                          array={saveEstadoCivil}
+                          array={estadosCiviles}
+                          propArray="Casado"
+                          masculinos={estadosCivilesMasculinos}
+                          femeninos={estadosCivilesFemeninos}
                           display={true}
                         />
                        <InputCbo
@@ -186,9 +231,13 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idNacionalidad
                               : null
                           }
+                          sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
                           nameButton="..."
                           nameLabel="Nacionalidad"
-                          array={saveEstado}
+                          array={ nacionalidades !== undefined ? nacionalidades : ["Nacionalidad"]}
+                          propArray="Casado"
+                          masculinos={nacionalidadesMasculinas}
+                          femeninos={nacionalidadesFemeninas}
                           display={true}
                         />
                       </div>
@@ -199,9 +248,13 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idEstado
                               : null
                           }
+                          sexo=""
                           nameButton="..."
                           nameLabel="Estado"
-                          array={saveEstado}
+                          array={estadosArray !== undefined  ? estadosArray : ["Activo"]}
+                          propArray={estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : ""}
+                          masculinos=""
+                          femeninos=""
                           display={true}
                         />
                         <InputRadio
@@ -244,9 +297,13 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idPaisdeOrigen
                               : null
                           }
+                          sexo=""
                           nameButton="..."
                           nameLabel="País de Origen"
-                          array={saveEstado}
+                          array={paises}
+                          propArray={paisSelected !== undefined ? paisSelected.nombrePais : ""}
+                          masculinos=""
+                          femeninos=""
                           display={true}
                         />
                        <InputCbo
@@ -255,9 +312,13 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idEstudios
                               : null
                           }
+                          sexo=""
                           nameButton="..."
                           nameLabel="Estudios"
-                          array={saveEstado}
+                          array={estudios}
+                          propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
+                          masculinos=""
+                          femeninos=""
                           display={true}
                         />
                       </div>
