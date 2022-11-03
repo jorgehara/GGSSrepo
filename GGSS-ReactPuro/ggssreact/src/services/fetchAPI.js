@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export function getEmpleados(empleados){
     return new Promise((resolve)=>{
         setTimeout(()=> resolve(empleados), 2000);
@@ -20,4 +22,9 @@ export function getEmployeByName(empleados, name){
   return new Promise((resolve)=>{
     setTimeout(()=> resolve(empleados.filter(e=> e.apellido.includes(name) || e.nombres.includes(name))),0);
 }); 
+}
+
+export function getData(url, setStates){
+    axios.get(url)
+    .then(res=> setStates(res.data));
 }

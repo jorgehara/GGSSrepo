@@ -1,6 +1,6 @@
 import React from "react";
 import "./DNICboBox.css";
-const DNICboBox = ({ nameInput, messageError, placeHolder, array }) => {
+const DNICboBox = ({ nameInput, messageError, placeHolder, array, value }) => {
   return (
     <div className="formulario__grupo">
       <div className="">
@@ -19,6 +19,7 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array }) => {
           maxLength="8"
           className="formulario-input-DNI px-0 mt-0 mb-0"
           placeholder={placeHolder}
+          value={value}
         ></input>
       </div>
       <div className="form__grupo__icon">

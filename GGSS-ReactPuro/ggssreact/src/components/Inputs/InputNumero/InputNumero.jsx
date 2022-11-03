@@ -4,7 +4,6 @@ const InputNumero = ({
   nameInput,
   array,
   placeHolder,
-  // nameButton,
   nameCheck,
   defaultChecked,
   display,
@@ -22,23 +21,12 @@ const InputNumero = ({
       </div>
       <div className="">
       <input type="text" 
-                  className='formulario-input-Legajo ml-4'      
-                    // id={inputId}                               
+                  className='formulario-input-Legajo ml-4'                                   
                     placeholder={placeHolder}
-				            // value={value} 
-                    // onChange={(e)=>
-                    //   // onChange(e)
-                    // }            
+				                       
                     />
-        {/* <select className="form-select form_select-ParentescoFlia ml-3 px-0 formulario-input-ParentescoFlia">
-          {array.map((op) => {
-            return <option>{op}</option>;
-          })}
-        </select> */}
       </div>
       <div className="form__grupo__input2">
-        {/* <button type="button" className="tercero btn btn-validacion btn-outline-danger btn-sm ml-2 pl-2 mt-2"> 
-          {nameButton} </button> */}
       </div>
       <div
         className={

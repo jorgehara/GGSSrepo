@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton}) => {
+const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos}) => {
   
     
     const [mostrarComponente, setMostrarComponente] = useState(true);
+    const [returnBySexo, setReturnBySexo] = useState([]);
 
     useEffect(()=>{
       setMostrarComponente(display)
+      
     },[display])
+    useEffect(()=>{
+      setReturnBySexo(validateSexo(sexo,masculinos, femeninos));
+    },[sexo])
 
+    const validateSexo =(sexo, masculinos, femeninos)=>{
+      if(sexo === "M"){
+        console.log(masculinos)
+        return masculinos;
+      }
+      if(sexo === "F"){
+        console.log(femeninos)
+        return femeninos
+      }
+      console.log("nada")
+  }
   return (
     <div className='formulario__grupo__inputs__cbo '>
         <div className='form__grupo__label__inp '>
@@ -19,13 +35,17 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton}) => 
             <div className='segundo'>
                 <select className="formulario-input-Estado form-select ml-0 px-0">{fieldName}                    
                     {
-                        array.map((op, index)=>{
+                       sexo !== undefined && sexo.length > 0 && returnBySexo !== undefined ? returnBySexo.map((op, index)=>{
+                        return(
+                          propArray === op ? <option key={index} selected defaultValue value={index}>{op }</option> :
+                                <option key={index}>{op}</option> 
+                        )
+                      }) :
+                        array !== [{}] && array.map((op, index)=>{
+                        
                             return(
-                              value === (op.idEstado) ? <option key={index} defaultValue value={index}>{op.nombreEstado }</option> :
-                                <option key={index}>{op.nombreEstado }</option> 
-
-
-                                // {`op.${propiedad}`}
+                              propArray === op ? <option key={index} selected defaultValue value={index}>{op }</option> :
+                                <option key={index}>{op}</option> 
                             )
                         })
                     }
