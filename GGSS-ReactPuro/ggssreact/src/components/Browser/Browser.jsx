@@ -9,13 +9,10 @@ import "./Browser.css";
 const Browser = () => {
   const [listEmpleados, setListEmpleados] = useState([]);
   const { saveEmploye, saveDomicilio } = useContext(employeContext);
-
   const [empData, setEmpData] = useState({
     legajo: "",
     apellido: "",
   });
-
-
   const url = "http://54.243.192.82/api/Empleados";
   const {  saveDisable, disable} = useContext(employeContext);
   useEffect(() => {
@@ -62,28 +59,25 @@ const Browser = () => {
   }
 
   return (
-    <div className=
-    // 'Lateral-Izquierdo'
-    'container-fluid'
-    >
+    <div className='container-fluid '>
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
-      <div className="row w-100">
+      <div className="row mt-1 w-100">
         <input
           onChange={(e) => onInputChange(e)}
           value={empData.legajo}
-          className="form__grupo__input__browser"
-          type="text"
+          className="form__grupo__input__browser mr-2"
+          type="number"
           name="legajo"
           id="legajos"
           placeholder="Ingrese Legajo "
         />
       </div>
-      <div className="row w-100">
+      <div className="row mt-1 mr-2 w-100">
         <input
           onChange={(e) => onInputChange(e)}
           value={empData.apellido}
-          className="form__grupo__input__browser"
+          className="form__grupo__input__browser mr-2"
           type="text"
           name="apellido"
           id="nombres"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./AddPhoto.css";
 
@@ -21,6 +21,18 @@ function InputFile({disabled}) {
       };
     }
   };
+
+  useEffect(()=>{
+    disableBtn();
+  },[disabled])
+
+  function disableBtn(){
+    if(disabled){
+      setDisplayButton("none")
+      return;
+    }
+    setDisplayButton("")
+  }
   function acivatedInput(e){
     e.preventDefault();
     setImageSelectedPrevious(null);
@@ -43,9 +55,9 @@ function InputFile({disabled}) {
           
             </input>
             <div className="d-flex justify-content-center align-items-center center ml-1 mr-6 ">
-              <button class={`icon-btn add-btn position-absolute ${displayButton}`}>
-                <div class="add-icon"></div>
-                <div class="btn-txt"></div>
+              <button class={`icon-btn add-btn position-absolute ${displayButton}`} disabled={disabled}>
+                <div class="add-icon" disabled={disabled}></div>
+                <div class="btn-txt" disabled={disabled}></div>
               </button>
               <img
                 className="h-100 w-100 "
@@ -60,7 +72,7 @@ function InputFile({disabled}) {
       </StyleDragArea>
     </div>
     
-    <button className="btn btn-danger mt-2 btn-sm" onClick={(e)=>acivatedInput(e)}>Cancelar</button></>
+    <button className="btn btn-danger mt-2 btn-sm" onClick={(e)=>acivatedInput(e)} disabled={disabled}>Cancelar</button></>
   
     //#region -----------------------------------BotonX
             // <div>
