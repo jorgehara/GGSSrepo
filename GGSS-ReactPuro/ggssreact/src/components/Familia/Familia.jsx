@@ -107,6 +107,7 @@ const Familia = () => {
                   nameCheck="Fijar"
                   checked=""
                   display={true}
+                  idModal="Parentescos"
                 />
                 <InputDateFlia
                   value={
@@ -128,6 +129,7 @@ const Familia = () => {
                   checked=""
                   display={false}
                   propArray={paisSelected !== undefined ? paisSelected.nombrePais : ""}
+                  idModal="paises"
                 />
                 <InputParentescoOpNac
                   nameInput="Nacionalidad"
@@ -141,6 +143,7 @@ const Familia = () => {
                   femeninos={nacionalidadesFemeninas}
                   sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
                   propArray="ARGENTINO"
+                  idModal="nacionalidades"
                 />
               </div>
             </div>
@@ -156,6 +159,7 @@ const Familia = () => {
             nameCheck="Fijar"
             checked=""
             display={true}
+            idModal="Estudios"
           />
           <InputDateFlia
             value={

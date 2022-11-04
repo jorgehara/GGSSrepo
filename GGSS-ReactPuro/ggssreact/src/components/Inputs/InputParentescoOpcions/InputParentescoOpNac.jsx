@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputParentescoOpcions.css";
 const InputParentescoOpNac = ({
   nameInput,
@@ -11,7 +12,8 @@ const InputParentescoOpNac = ({
   sexo,
   masculinos, 
   femeninos,
-  propArray
+  propArray,
+  idModal
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [returnBySexo, setReturnBySexo] = useState([]);
@@ -50,13 +52,8 @@ const InputParentescoOpNac = ({
           })}
         </select>
       </div>
-      <div className="ml-2">
-        <button
-          type="button"
-          className="tercero btn btn-validacion btn-outline-danger btn-sm ml-2 pl-2 mt-2"
-        >
-          {nameButton}
-        </button>
+      <div className="ml-0 d-flex justify-content-cener align-items-center">
+        <ButtonCallModal idModal={idModal} className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} nameButton={nameButton} useNavbar={false} useButton={true}/> 
       </div>
       <div
         className={

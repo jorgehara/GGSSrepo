@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputParentescoOpcions.css";
 const InputParentescoOpEstudios = ({
   nameInput,
@@ -8,7 +9,8 @@ const InputParentescoOpEstudios = ({
   nameCheck,
   checked,
   display,
-  propArray
+  propArray,
+  idModal
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -30,13 +32,8 @@ const InputParentescoOpEstudios = ({
           }
         </select>
       </div>
-      <div className="ml-4 pl-1">
-        <button
-          type="button"
-          className="tercero btn btn-validacion btn-outline-danger btn-sm ml-2 pl-2 mt-2"
-        >
-          {nameButton}
-        </button>
+      <div className="ml-0 d-flex justify-content-cener align-items-center">
+        <ButtonCallModal idModal={idModal} className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} nameButton={nameButton} useNavbar={false} useButton={true}/> 
       </div>
       <div
         className={

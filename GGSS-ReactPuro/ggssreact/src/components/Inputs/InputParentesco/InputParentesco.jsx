@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputParentesco.css";
 const InputParentesco = ({
   nameInput,
@@ -8,6 +9,7 @@ const InputParentesco = ({
   nameCheck,
   checked,
   display,
+  idModal
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -27,13 +29,8 @@ const InputParentesco = ({
           })}
         </select>
       </div>
-      <div className="form__grupo__input2">
-        <button
-          type="button"
-          className="tercero btn btn-validacion btn-outline-danger btn-sm ml-2 pl-2 mt-2"
-        >
-          {nameButton}
-        </button>
+      <div className="form__grupo__input2 d-flex justify-content-center align-items-center">
+        <ButtonCallModal idModal={idModal} className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} nameButton={nameButton} useNavbar={false} useButton={true}/>   
       </div>
       <div
         className={
@@ -43,7 +40,7 @@ const InputParentesco = ({
         }
       >
         <input
-          className="form-check-input"
+          className="form-check-input "
           type="checkbox"
           value=""
           id="flexCheckChecked"

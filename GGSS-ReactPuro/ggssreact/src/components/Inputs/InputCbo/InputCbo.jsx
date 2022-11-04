@@ -18,14 +18,12 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
 
     const validateSexo =(sexo, masculinos, femeninos)=>{
       if(sexo === "M"){
-        console.log(masculinos)
         return masculinos;
       }
       if(sexo === "F"){
-        console.log(femeninos)
         return femeninos
       }
-      console.log("nada")
+     
   }
   return (
     <div className='formulario__grupo__inputs__cbo '>

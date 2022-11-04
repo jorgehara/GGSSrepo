@@ -142,7 +142,7 @@ const barrios = saveBarrio !== undefined ? saveBarrio.map(res => {return res.bar
 				<BasicModalSelectObs idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" nameOptionModal="Modos de Liquidacion" />
 				<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
 				<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} array={paises}/>
-				<BasicModal idModal="nacionalidades" nameModal="Paises" placeholder={objectPaises} array={nacionalidades}/>
+				<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} array={nacionalidades}/>
 				<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" aDepartamentos={deptos}aProvincias={provincias} aLocalidades={localidades} aBarrios={barrios} />
 				<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true} array={calles}/>
 				<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />

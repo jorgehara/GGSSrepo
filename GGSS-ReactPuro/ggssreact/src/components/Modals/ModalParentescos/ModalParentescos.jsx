@@ -5,7 +5,7 @@ const ModalParentescos = ({ idModal, nameModal, array }) => {
     return (
         <div>
             <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
-                <div className="modal-dialog modal-xl">
+                <div className="modal-dialog modal-dialog-centered modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id={`${idModal}Label`}>
