@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+import "./Buttons.css";
 
 const ButtonCallModal = ({ idModal, nameButton, useNavbar, useButton }) => {
   const [actualClass, setActualClass] = useState("");
@@ -13,9 +13,9 @@ const ButtonCallModal = ({ idModal, nameButton, useNavbar, useButton }) => {
       if(useNavbar){
         return setActualClass("dropdown-item btnCallModal");
       }else if(useButton){
-        return setActualClass("tercero btn btn-validacion btn-outline-danger btn-sm ml-2");
+        return setActualClass("tercero btn btn-validacion btn-outline-danger btn-sm ml-2 btnCallModal");
       }else{
-        return setActualClass("btn btn-danger");
+        return setActualClass("btn btn-danger btnCallModal");
       }
   }
 
