@@ -8,6 +8,7 @@ const InputParentescoOpEstudios = ({
   nameCheck,
   checked,
   display,
+  propArray
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -22,9 +23,11 @@ const InputParentescoOpEstudios = ({
       </div>
       <div className="">
         <select className="form-select ml-4 mt-1">
-          {array.map((op, i) => {
-            return <option key={i}>{op}</option>;
-          })}
+          {
+            array.map((op, i) => {
+              return propArray == op ? <option key={i} selected defaultValue>{op}</option> : <option key={i}  defaultValue>{op}</option>
+            })
+          }
         </select>
       </div>
       <div className="ml-4 pl-1">

@@ -15,7 +15,26 @@ import InputParentescoOpNac from "../Inputs/InputParentescoOpcions/InputParentes
 import InputParentescoOpEstudios from "../Inputs/InputParentescoOpcions/InputParentescoOpEstudios";
 
 const Familia = () => {
-  const { saveEmpl } = useContext(employeContext);
+  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI} = useContext(employeContext);
+    //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
+    const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
+    const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
+    const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];    
+    const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_masc); }) : []; 
+    const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_fem); }) : []; 
+    const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
+    const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nombrePais); }) : [];
+    const idPaisOrigen = saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
+    const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO"; 
+    const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i)=>{ return (nac.estudiosNivel); }) : [];
+    const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
+    const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
+    const estadosArray = saveEstado.map((m,i)=>{return (m.nombreEstado)});
+    const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => {return (est.nombreEstado)}) : null;
+    const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
+    const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
+    const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
+    //#endregion
   const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
   const parentesco = [
     "Primo",
@@ -26,7 +45,7 @@ const Familia = () => {
     "Sobrino",
     "Nieto",
   ];
-  const paises = [
+  const paisess = [
     "Argentina",
     "Uruguay",
     "Paraguay",
@@ -98,6 +117,7 @@ const Familia = () => {
                   display={true}
                   checked={false}
                   nameInput="Nacimiento"
+                  idInput="fechaNac"
                 />
                 <InputParentescoOpcions
                   nameInput="Pais de Origen"
@@ -107,15 +127,20 @@ const Familia = () => {
                   nameCheck="Fijar"
                   checked=""
                   display={false}
+                  propArray={paisSelected !== undefined ? paisSelected.nombrePais : ""}
                 />
                 <InputParentescoOpNac
                   nameInput="Nacionalidad"
-                  array={paises}
+                  array={nacionalidades !== undefined ? nacionalidades : "Nacionalidad"}
                   placeHolder="Nacionalidad"
                   nameButton="..."
                   nameCheck="Fijar"
                   checked=""
                   display={false}
+                  masculinos={nacionalidadesMasculinas}
+                  femeninos={nacionalidadesFemeninas}
+                  sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
+                  propArray="ARGENTINO"
                 />
               </div>
             </div>
@@ -124,7 +149,8 @@ const Familia = () => {
         <div className="col-xl-6">
           <InputParentescoOpEstudios
             nameInput="Estudios"
-            array={paises}
+            array={estudios}
+            propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
             placeHolder="Estudios"
             nameButton="..."
             nameCheck="Fijar"
@@ -133,11 +159,12 @@ const Familia = () => {
           />
           <InputDateFlia
             value={
-              saveEmpl[0] !== undefined ? saveEmpl[0].fechaNacimiento : null
+              saveEmpl[0] !== undefined ? saveEmpl[0].fechaEgreso : null
             }
             display={true}
             checked={false}
             nameInput="Fecha Baja"
+            idInput="fechaBaja"
           />
           <TextArea inputName="Observaciones" maxLength="255" value="" />
           {/* <ButtonCancelarAceptar 

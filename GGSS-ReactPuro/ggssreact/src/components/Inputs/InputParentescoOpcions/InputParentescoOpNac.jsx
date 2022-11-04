@@ -8,13 +8,29 @@ const InputParentescoOpNac = ({
   nameCheck,
   checked,
   display,
+  sexo,
+  masculinos, 
+  femeninos,
+  propArray
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
-
+  const [returnBySexo, setReturnBySexo] = useState([]);
   useEffect(() => {
     setMostrarComponente(display);
   }, [display]);
-
+  useEffect(()=>{
+    setReturnBySexo(validateSexo(sexo,masculinos, femeninos));
+  },[sexo])
+  const validateSexo =(sexo, masculinos, femeninos)=>{
+    if(sexo === "M"){
+      console.log(masculinos)
+      return masculinos;
+    }
+    if(sexo === "F"){
+      console.log(femeninos)
+      return femeninos
+    }
+  }
   return (
     <div className="formulario__grupo mt-1">
       <div className="">
@@ -22,7 +38,14 @@ const InputParentescoOpNac = ({
       </div>
       <div className="">
         <select className="form-select ml-2 mt-1">
-          {array.map((op, i) => {
+          {
+           sexo !== undefined && sexo.length > 0 && returnBySexo !== undefined ? returnBySexo.map((op, index)=>{
+            return(
+              propArray === op ? <option key={index} selected defaultValue value={index}>{op }</option> :
+                    <option key={index}>{op}</option> 
+            )
+          }) :
+          array.map((op, i) => {
             return <option key={i}>{op}</option>;
           })}
         </select>

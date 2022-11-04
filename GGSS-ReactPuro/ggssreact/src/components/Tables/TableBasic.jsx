@@ -14,13 +14,22 @@ const TableBasic = ({columns}) => {
                   </tr>
               </thead>
               <tbody className="table-group-divider" id="cuerpodetabla">
-                  {columns.map((col, i) => {
+                <tr scope="row" className="px-2">
+                    {columns.map((col, i) => {
                       return (
-                          <tr key={i} scope="row" className="px-2">
-                              {col.toString() === "Predeterminado" ? <td><input type="checkbox" className="border-0 px-2" id="capitulo" placeholder={col}></input></td> : <td><input type="text" className="border-0 px-2" id="opcion2" placeholder={col}></input></td> }
-                          </tr>
+                                col.toString() === "Predeterminado" ? 
+                                <td key={i} >
+                                    <input type="checkbox" className="border-0 px-2" id="capitulo" placeholder={col}>
+                                    </input>
+                                </td> 
+                                        : 
+                                <td>
+                                    <input type="text" className="border-0 px-2" id="opcion2" placeholder={col}>
+                                    </input>
+                                </td> 
                       )
-                  })}
+                    })}
+                  </tr>
               </tbody>
           </table>
       </div>

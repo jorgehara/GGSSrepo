@@ -5,9 +5,11 @@ import InputEmpData from "../Inputs/InputEmpData/InputEmpData";
 import "./EmployeData.css";
 
 const EmployeData = () => {
-  const { saveEmpl } = useContext(employeContext);
+  const { saveEmpl , saveEstado } = useContext(employeContext);
   const [image, setImage] = useState("");
   const [data, setData ] = useState("");
+  const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
+  const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
 
   useEffect(() => {
     setImageEmpleado()
@@ -16,7 +18,6 @@ const EmployeData = () => {
     function setImageEmpleado(){
       saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
     }
-  console.log(image);
   console.log(saveEmpl[0]);
   
   return (
@@ -73,9 +74,7 @@ const EmployeData = () => {
                 <InputEmpData
                   idInput="estadoInfo"
                   inputValue={
-                    saveEmpl[0] !== undefined || saveEmpl[0] === null
-                      ? saveEmpl[0].estado
-                      : "Sin Estado"
+                    estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : "Sin Estado"
                   }
                   nameLabel="Estado: "
                 />

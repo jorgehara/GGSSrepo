@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./InputDateFlia.css";
 
-const InputDateFlia = ({nameInput,display, checked}) => {
+const InputDateFlia = ({nameInput,display, checked, value, idInput}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   console.log(mostrarComponente)
 
@@ -9,6 +9,7 @@ const InputDateFlia = ({nameInput,display, checked}) => {
     setMostrarComponente(display)
   },[display])
 
+  const fecha = value !== undefined && value !== null ? value.substring(0, value.length -9) : null;
   return (
     <div className="formulario__grupo__DateFlia mt-2">
         <div className="form-check p-0">
@@ -19,13 +20,14 @@ const InputDateFlia = ({nameInput,display, checked}) => {
         <div className="formulario-input-DateFlia">
             <input 
             className='ml-2' 
-            id="date" 
+            id={idInput} 
             type="date" 
+            value={fecha} 
             />
         </div>
         <input 
         className={mostrarComponente ? "form-check-inputDateFlia" : "none"} type="checkbox" 
-        value="" 
+        
         id="flexCheckChecked" 
         checked={checked}
         />
