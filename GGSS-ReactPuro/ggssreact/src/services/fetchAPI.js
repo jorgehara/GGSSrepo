@@ -2,13 +2,13 @@ import axios from "axios";
 
 export function getEmpleados(empleados){
     return new Promise((resolve)=>{
-        setTimeout(()=> resolve(empleados), 2000);
+        setTimeout(()=> resolve(empleados), 0);
     });
 }
 
 export function getEmpleado(empleados, idEmpleado){
     return new Promise((resolve)=>{
-        setTimeout(()=> resolve(empleados.filter(d=> d.iDempleado === idEmpleado)), 1000);
+        setTimeout(()=> resolve(empleados.filter(d=> d.iDempleado === idEmpleado)), 0);
     });
 }
 
