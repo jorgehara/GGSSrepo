@@ -7,6 +7,7 @@ const InputForm = ({
   onChange,
   inputId,
   value,
+  disabled
 }) => {
   return (
     <div className="formulario__grupo__inputs">
@@ -15,11 +16,12 @@ const InputForm = ({
       </div>
       <div className='form__grupo-input'>
         <input type="text"
-          className='formulario-input-Legajo'
+          className='formulario-input-Legajo '
           id={inputId}
           placeholder={placeHolder}
           value={value}
           onChange={(e) => onChange(e)}
+          disabled={disabled}
         />
       </div>
       <div className='form__grupo__icons'>

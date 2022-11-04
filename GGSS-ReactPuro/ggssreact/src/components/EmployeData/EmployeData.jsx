@@ -18,7 +18,6 @@ const EmployeData = () => {
     function setImageEmpleado(){
       saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
     }
-  console.log(saveEmpl[0]);
   
   return (
     <div className="container-flex">

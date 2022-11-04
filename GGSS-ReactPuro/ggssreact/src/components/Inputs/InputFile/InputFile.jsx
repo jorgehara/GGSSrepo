@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import "./AddPhoto.css";
 
-function InputFile() {
+function InputFile({disabled}) {
   const [ImageSelectedPrevious, setImageSelectedPrevious] = useState(null);
   const [ displayButton, setDisplayButton] = useState("");
   const changeImage = (e) => {
@@ -32,9 +32,11 @@ function InputFile() {
             type="file"
             accept="image/png, image/jpg"
             multiple
+            disabled={disabled}
             onChange={(e) => {
               changeImage(e);
             } }>
+          
             </input>
             <div className="d-flex justify-content-center align-items-center center ml-1 mr-6 ">
               <button class={`icon-btn add-btn position-absolute ${displayButton}`}>
@@ -52,7 +54,7 @@ function InputFile() {
         </div>
         
       </StyleDragArea>
-    </div><button className="btn btn-danger mt-2 btn-sm" onClick={(e)=>acivatedInput(e)}>Cancelar</button></>
+    </div><button className="btn btn-danger mt-2 btn-sm" disabled={disabled} onClick={(e)=>acivatedInput(e)}>Cancelar</button></>
   );
 }
 

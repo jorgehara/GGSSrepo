@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./InputDate.css";
 
-const InputDate = ({nameInput,display, checked, value}) => {
+const InputDate = ({nameInput,display, checked, value, disabled}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   
 
@@ -21,10 +21,10 @@ const InputDate = ({nameInput,display, checked, value}) => {
           <label className="form-check-label" htmlFor="flexCheckDefault">
             {nameInput}
           </label>
-          <input className={mostrarComponente ? "form-check-input ml-4" : "none"} type="checkbox"  id="flexCheckChecked" checked={checked} />
+          <input className={mostrarComponente ? "form-check-input ml-4" : "none"} type="checkbox"  id="flexCheckChecked" checked={checked} disabled={disabled} />
         </div>
         <div className="formulario-input-Date">
-            <input id="date" type="date" value={fecha} />
+            <input id="date" type="date" value={fecha} disabled={disabled} />
         </div>
     </div>
   )
