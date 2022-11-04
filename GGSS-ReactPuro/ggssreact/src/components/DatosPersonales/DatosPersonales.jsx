@@ -24,7 +24,7 @@ const DatosPersonales = () => {
   const optionsDNI = ["D.N.I.", "L.C.", "L.E."];
 
   //------------------------------------------------------------------------------CONTEXT
-  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI} = useContext(employeContext);
+  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveDisable, disable} = useContext(employeContext);
   //------------------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
 
@@ -73,6 +73,9 @@ const DatosPersonales = () => {
   useEffect(()=>{
     getData(urlTiposDNI, saveTiposDNI);
   },[])
+  useEffect(()=>{
+
+  },[disable])
   
   //#endregion
   
@@ -161,6 +164,7 @@ const DatosPersonales = () => {
                           nameInput="Legajo N°"
                           messageError="Solo puede contener números."
                           placeHolder="N° Legajo"
+                          disabled={disable}
                         />
                         <InputForm
                           value={
@@ -171,6 +175,7 @@ const DatosPersonales = () => {
                           nameInput="Apellido"
                           messageError="Solo puede contener letras."
                           placeHolder="Ingrese Apellidos"
+                          disabled={disable}
                         />
                         <InputForm
                           value={
@@ -181,6 +186,7 @@ const DatosPersonales = () => {
                           nameInput="Nombres"
                           messageError="Solo puede contener letras."
                           placeHolder="Ingrese Nombres"
+                          disabled={disable}
                         />
                         <DNICboBox
                           value={
@@ -192,6 +198,7 @@ const DatosPersonales = () => {
                           messageError="Solo puede contener números, sin puntos."
                           placeHolder="23456789"
                           array={tiposDNI}
+                          disabled={disable}
                         />
                         <InputButton
                           value={
@@ -203,6 +210,7 @@ const DatosPersonales = () => {
                           placeholder="##-########-#"
                           idModal="modalCuil"
                           array={[]}
+                          disabled={disable}
                         />
                         <InputForm
                           value={
@@ -213,6 +221,7 @@ const DatosPersonales = () => {
                           nameInput="Teléfono"
                           messageError="Solo puede contener números."
                           placeHolder="11352458965"
+                          disabled={disable}
                         />
                        <InputCbo
                           value={
@@ -229,6 +238,7 @@ const DatosPersonales = () => {
                           femeninos={estadosCivilesFemeninos}
                           display={true}
                           idModal="EstadoCivil"
+                          disabled={disable}
                         />
                        <InputCbo
                           value={
@@ -245,6 +255,7 @@ const DatosPersonales = () => {
                           femeninos={nacionalidadesFemeninas}
                           display={true}
                           idModal="nacionalidades"
+                          disabled={disable}
                         />
                       </div>
                       <div className="tercera_columna col-5">
@@ -263,6 +274,7 @@ const DatosPersonales = () => {
                           femeninos=""
                           display={true}
                           idModal="estadosEmpleados"
+                          disabled={disable}
                         />
                         <InputRadio
                           value={
@@ -271,6 +283,7 @@ const DatosPersonales = () => {
                           nameFirst="Masculino"
                           nameSecond="Femenino"
                           nameInput="Sexo"
+                          disabled={disable}
                         />
                         <InputDate
                           value={
@@ -279,6 +292,7 @@ const DatosPersonales = () => {
                               : null
                           }
                           nameInput="Nacimiento"
+                          disabled={disable}
                         />
                         <InputForm
                           value={
@@ -289,6 +303,7 @@ const DatosPersonales = () => {
                           nameInput="Móvil"
                           messageError="Solo puede contener números."
                           placeHolder="Ingrese su celular"
+                          disabled={disable}
                         />
                         <InputForm
                           value={
@@ -297,6 +312,7 @@ const DatosPersonales = () => {
                           nameInput="E-mail"
                           messageError="Ingrese un email válido."
                           placeHolder="correo@correo.com.ar"
+                          disabled={disable}
                         />
                         <InputCbo
                           value={
@@ -313,6 +329,7 @@ const DatosPersonales = () => {
                           femeninos=""
                           display={true}
                           idModal="paises"
+                          disabled={disable}
                         />
                        <InputCbo
                           value={
@@ -329,15 +346,16 @@ const DatosPersonales = () => {
                           femeninos=""
                           display={true}
                           idModal="Estudios"
+                          disabled={disable}
                         />
-                        <TextArea inputName="Obs. Estudios" maxLength="55" />
+                        <TextArea inputName="Obs. Estudios" maxLength="55" disabled={disable} />
                       </div>
                     </div>
                   </form>
                   <div className="row">
                     
                     <div className="col-xl-5 mt-2">
-                      <InputFile inputName="Arrastre su imagen" />
+                      <InputFile inputName="Arrastre su imagen" disabled={disable}/>
                     </div>
                   </div>
                 </div>
@@ -345,10 +363,10 @@ const DatosPersonales = () => {
             </div>
           </div>
         </div>
-        <Domicilios />
+        <Domicilios disabled={disable} />
       </div>
       <div className="d-flex justify-content-end">
-        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
+        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable}/>
       </div>
     </div>
   );

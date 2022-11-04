@@ -1,13 +1,13 @@
 import React from "react";
 import "./DNICboBox.css";
-const DNICboBox = ({ nameInput, messageError, placeHolder, array, value }) => {
+const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabled}) => {
   return (
     <div className="formulario__grupo">
       <div className="">
         <label className="formulario-label-DNI mt-2">{nameInput}</label>
       </div>
       <div className="">
-        <select className="formulario-input-DNI form-select ml-0 px-0">
+        <select disabled={disabled} className="formulario-input-DNI form-select ml-0 px-0">
           {array.map((op, i) => {
             return <option key={i}>{op}</option>;
           })}
@@ -20,6 +20,7 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value }) => {
           className="formulario-input-DNI px-0 mt-0 mb-0"
           placeholder={placeHolder}
           value={value}
+          disabled={disabled}
         ></input>
       </div>
       <div className="form__grupo__icon">

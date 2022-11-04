@@ -17,7 +17,7 @@ const Browser = () => {
 
 
   const url = "http://54.243.192.82/api/Empleados";
-
+  const {  saveDisable, disable} = useContext(employeContext);
   useEffect(() => {
     axios.get(url).then((res) => {
       let data = res.data.records;
@@ -54,6 +54,11 @@ const Browser = () => {
     let newEmpData = { ...empData };
     newEmpData[name] = value;
     setEmpData(newEmpData);
+  }
+
+  function habilitaEdit(e){
+    e.preventDefault();
+    saveDisable(false)
   }
 
   return (
@@ -112,6 +117,7 @@ const Browser = () => {
           tamaño=""
           justyfy="end m-1"
           nameButton="Modificar"
+          onClick={habilitaEdit}
         />
         <ButtonLarge
           color="danger"

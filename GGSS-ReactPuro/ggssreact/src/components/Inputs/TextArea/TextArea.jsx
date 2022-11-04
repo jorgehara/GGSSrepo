@@ -1,7 +1,7 @@
 import React from 'react'
 import './TextArea.css'
 
-const TextArea = ({inputName, maxLength, value}) => {
+const TextArea = ({inputName, maxLength, value, disabled}) => {
   return (
     <div className='row'>
         <div className='form__grupo__label pl-1'>
@@ -17,6 +17,7 @@ const TextArea = ({inputName, maxLength, value}) => {
                 rows="1"
                 name="" 
                 maxLength={maxLength}
+                disabled={disabled}
                 >
         </textarea>
     </div>

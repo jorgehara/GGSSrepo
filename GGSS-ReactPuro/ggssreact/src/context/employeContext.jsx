@@ -18,6 +18,7 @@ const EmpleadoContextProvider = (props) => {
   const [saveBarrio, setSaveBarrio] = useState([])
   const [saveTipoDNI, setSaveTiposDNI] = useState([]);
   const [saveParen, setSaveParen] = useState([]);
+  const [disable, setDisable] = useState(true);
 
   function saveEstados(estado) {
     setSaveEstado(estado);
@@ -62,6 +63,9 @@ const EmpleadoContextProvider = (props) => {
   function saveParentescos(paren){
     setSaveParen(paren);
   }
+  function saveDisable(disable){
+    setDisable(disable)
+  }
   return (
     <employeContext.Provider
       value={{
@@ -93,7 +97,9 @@ const EmpleadoContextProvider = (props) => {
         saveDoms,
         saveDomicilios,
         saveParentescos,
-        saveParen
+        saveParen,
+        saveDisable,
+        disable
       }}
     >
       {props.children}

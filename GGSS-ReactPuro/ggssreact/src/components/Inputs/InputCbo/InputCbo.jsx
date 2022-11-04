@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal}) => {
+const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled}) => {
   
     
     const [mostrarComponente, setMostrarComponente] = useState(true);
@@ -32,7 +32,7 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
                 <label className='formulario__label mt-2 mb-0' htmlFor="legajo">{nameLabel}</label>
             </div>
             <div className='segundo'>
-                <select className="formulario-input-Estado form-select ml-0 px-0">{fieldName}                    
+                <select className="formulario-input-Estado form-select ml-0 px-0" disabled={disabled}>{fieldName}                    
                     {
                        sexo !== undefined && sexo.length > 0 && returnBySexo !== undefined ? returnBySexo.map((op, index)=>{
                         return(
@@ -50,7 +50,7 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
                     }
                 </select>
             </div>
-            <ButtonCallModal className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} idModal={idModal} nameButton={nameButton} useNavbar={false} useButton={true}>
+            <ButtonCallModal className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} idModal={idModal} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disabled}>
               {nameButton}
             </ButtonCallModal>
             {/* <button type="button" 

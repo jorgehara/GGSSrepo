@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import "./Buttons.css";
 
-const ButtonCallModal = ({ idModal, nameButton, useNavbar, useButton }) => {
+const ButtonCallModal = ({ idModal, nameButton, useNavbar, useButton ,disabled}) => {
   const [actualClass, setActualClass] = useState("");
   useEffect(()=>{
     usedClasses(useNavbar,useButton);
@@ -21,7 +21,7 @@ const ButtonCallModal = ({ idModal, nameButton, useNavbar, useButton }) => {
 
   return (
     <>
-      <button type="button" className={actualClass }  data-bs-toggle="modal" data-bs-target={`#${idModal}`}>
+      <button type="button" className={actualClass }  data-bs-toggle="modal" data-bs-target={`#${idModal}`} disabled={disabled}>
         {nameButton.toString()}
       </button>
     </>
