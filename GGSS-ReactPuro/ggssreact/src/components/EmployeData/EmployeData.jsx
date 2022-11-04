@@ -20,11 +20,11 @@ const EmployeData = ({disabled}) => {
     }
   
   return (
-    <div className="container-flex m-o p-0">
-      <div className="container border border-2 p-3">
-        <div className="container text-start">
+    <div className="container-fluid p-0">
+      <div className="container-fluid border-3 border-bottom ">
+        <div className="container text-start py-3">
             <div className="row">
-              <div className="col-2 d-flex align-items-center">
+              <div className="col-2 d-fluid align-items-center">
                 <img
                   className="border border-3 imgData"
                   id="imagen"
@@ -33,7 +33,7 @@ const EmployeData = ({disabled}) => {
                   style={{ width: "150px;", height: "150px;" }}
                 />
              </div>
-              <div className="col-3  d-flex align-items-center"> 
+              <div className="col-5  d-flex align-items-center"> 
               <div>
             <InputEmpData
                 idInput="legajoInfo"

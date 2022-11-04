@@ -71,12 +71,12 @@ const Familia = () => {
   return (
     <div className="Lateral-Derecho">
    
-   <div className="container-sm">
-      <div className="row border border-3 p-3">
+   <div className="container-fluid">
+      <div className="row border border-3">
         <EmployeData disabled={disable}/>
         <div className="col-xl-6">
-          <div className="container-flex m-0">
-            <div className="container ">
+          <div className="container-fluid m-0">
+            <div className="container-fluid">
               <div className="row">
                 <InputChecked
                   value={
