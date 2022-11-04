@@ -32,18 +32,18 @@ const InputMultiple = ({
   };
   return (
     // <div className="container-flex align-items-center">
-      <div className="formulario__grupo">
-        <div className="">
-          <label className="formulario-label-DNIFamilia mt-1">{nameInputDNI}</label>
+      <div className="formulario__grupo ">
+        <div className="d-flex justify-content-center align-items-center">
+          <label className="formulario-label-DNIFamilia mt-1 ">{nameInputDNI}</label>
         </div>
-        <div className="ml-1">
-          <select className=" form-control-sm ml-4 px-0 mt-1 mb-0">
+        <div className="ml-1 d-flex justify-content-center align-items-center">
+          <select className="formulario-input-DNI form-select  px-0">
             {optionsDNI.map((op, i) => {
               return <option key={i}>{op}</option>;
             })}
           </select>
         </div>
-        <div className="form__grupo__input2">
+        <div className="form__grupo__input2 d-flex justify-content-center align-items-center">
           <input
             type="text"
             maxLength="8"
@@ -64,7 +64,8 @@ const InputMultiple = ({
               {nameInputRadio}
             </label>
           </div>
-          <div className="form-check form-check-inline">
+          <div className="d-flex flex-row justify-content-center align-items-center pt-4 pb-4">
+          
             <input
               className="form-check-input"
               type="radio"
@@ -77,10 +78,8 @@ const InputMultiple = ({
             <label className="form-check-label" htmlFor="inlineCheckbox1">
               {nameFirst}
             </label>
-          </div>
-          <div className="form-check form-check-inline">
             <input
-              className="form-check-input"
+              className="form-check-input p-1"
               type="radio"
               id="inlineCheckbox2"
               name={nameInputRadio}
@@ -92,6 +91,7 @@ const InputMultiple = ({
               {nameSecond}
             </label>
           </div>
+          
         </div>
       </div>
     // </div>

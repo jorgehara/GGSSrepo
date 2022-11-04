@@ -175,8 +175,9 @@ const Familia = () => {
           // cancelar="" 
           // aceptar=""  /> */}
         </div>
+        <ButtonCancelarAceptar cancelar="-" aceptar="+" />
         <TableBasic columns={columns} />
-        <ButtonCancelarAceptar cancelar="Quitar" aceptar="Agregar" />
+        
       </div>
     </div>
 
