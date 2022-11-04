@@ -13,9 +13,13 @@ import TextArea from "../Inputs/TextArea/TextArea";
 import TableBasic from "../Tables/TableBasic";
 import InputParentescoOpNac from "../Inputs/InputParentescoOpcions/InputParentescoOpNac";
 import InputParentescoOpEstudios from "../Inputs/InputParentescoOpcions/InputParentescoOpEstudios";
+import { useEffect } from "react";
+import { getData } from "../../services/fetchAPI";
+import { useState } from "react";
 
 const Familia = () => {
-  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI} = useContext(employeContext);
+  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen} = useContext(employeContext);
+
     //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
     const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
     const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
@@ -36,15 +40,14 @@ const Familia = () => {
     const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
     //#endregion
   const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
-  const parentesco = [
-    "Primo",
-    "Hijo",
-    "Padre",
-    "Madre",
-    "Tio",
-    "Sobrino",
-    "Nieto",
-  ];
+  const urlParentesco = "http://54.243.192.82/api/Parentescos";
+
+  useEffect(()=>{
+    getData(urlParentesco, saveParentescos);
+  },[])
+  
+  const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
+  console.log(parentesco)
   const paisess = [
     "Argentina",
     "Uruguay",
@@ -101,7 +104,7 @@ const Familia = () => {
                 />
                 <InputParentesco
                   nameInput="Parentesco"
-                  array={parentesco}
+                  array={parentesco!== undefined ? parentesco : null}
                   placeHolder="Parentesco"
                   nameButton="..."
                   nameCheck="Fijar"

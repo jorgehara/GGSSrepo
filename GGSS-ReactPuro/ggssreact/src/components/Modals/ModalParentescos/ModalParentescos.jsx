@@ -1,7 +1,13 @@
 import React from 'react'
+import { useEffect } from 'react';
 import TextArea from '../../Inputs/TextArea/TextArea';
 
 const ModalParentescos = ({ idModal, nameModal, array }) => {
+
+    useEffect(()=>{
+
+    },[array])
+    console.log(array !== undefined ? array : null)
     return (
         <div>
             <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
@@ -19,9 +25,13 @@ const ModalParentescos = ({ idModal, nameModal, array }) => {
                                 <label htmlFor="data">Datos: </label>
                                 <br />
                                 <select className="form-select row mt-1" multiple aria-label="multiple select example">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    {
+                                        array !== undefined && array.map((op,i)=>{
+                                            return(
+                                                <option key={i} value="1">{op}</option>
+                                            )
+                                        })
+                                    }
                                 </select>
 
                             </div>

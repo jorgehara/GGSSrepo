@@ -17,6 +17,7 @@ const InputParentesco = ({
     setMostrarComponente(display);
   }, [display]);
 
+  console.log(array)
   return (
     <div className="formulario__grupo">
       <div className="">
@@ -24,7 +25,7 @@ const InputParentesco = ({
       </div>
       <div className="">
         <select className="form-select form_select-ParentescoFlia ml-3 px-0 formulario-input-ParentescoFlia">
-          {array.map((op, i) => {
+          {array !== undefined && array !== null && array.map((op, i) => {
             return <option key={i}>{op}</option>;
           })}
         </select>

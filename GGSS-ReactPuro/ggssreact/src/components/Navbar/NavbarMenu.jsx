@@ -19,7 +19,7 @@ const Navbar = () => {
 // const handleDatosEmpleados = () => {
 // 	datosEmpleados.className.add('.closeList')
 // }saveEstadoCivil
-const { saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio} = useContext(employeContext);
+const { saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio, saveParen} = useContext(employeContext);
 
 const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
 const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
@@ -36,7 +36,7 @@ const deptos = saveDetpo !== undefined ? saveDetpo.map(res => {return res.depart
 const provincias = saveProvincia !== undefined ? saveProvincia.map(res => {return res.provincia}) : null;
 const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => {return res.localidad}) : null;
 const barrios = saveBarrio !== undefined ? saveBarrio.map(res => {return res.barrio}) : null;
-
+const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
   return (
 	    <nav className="navbar navbar-expand-lg navbar-light bg-light">
 		<div className="container-fluid">
@@ -133,7 +133,7 @@ const barrios = saveBarrio !== undefined ? saveBarrio.map(res => {return res.bar
 				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} array={estadosCiviles}/>
 				<BasicModal idModal="Estudios" nameModal="Estudios" placeholder={objectEstudios} array={estudios}/>
 				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} />
-				<ModalParentescos idModal="Parentescos" nameModal="Parentescos" />
+				<ModalParentescos idModal="Parentescos" nameModal="Parentescos" array={parentesco!== undefined ? parentesco : null}/>
 				<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} array={estadosArray} />
 				<BasicModalSelectObs idModal="cargos" nameModal="Cargos" nameOptionModal="Cargo" />
 				<BasicModalSelectObs idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" nameOptionModal="Tarea" />
