@@ -49,7 +49,7 @@ function InputFile() {
             height="100px" />
         </div>
       </StyleDragArea>
-    </div><button className="btn btn-danger mt-2" onClick={(e)=>acivatedInput(e)}>Cancelar</button></>
+    </div><button className="btn btn-danger mt-2 btn-sm" onClick={(e)=>acivatedInput(e)}>Cancelar</button></>
   );
 }
 
