@@ -17,6 +17,11 @@ function InputFile() {
       };
     }
   };
+  function acivatedInput(e){
+    e.preventDefault();
+    setImageSelectedPrevious(null);
+    setDisplayButton("");
+  }
   return (
     <><div>
       <StyleDragArea>
@@ -44,7 +49,7 @@ function InputFile() {
             height="100px" />
         </div>
       </StyleDragArea>
-    </div><button className="btn btn-danger mt-2" onClick={()=>setImageSelectedPrevious(null)}>Cancelar</button></>
+    </div><button className="btn btn-danger mt-2" onClick={(e)=>acivatedInput(e)}>Cancelar</button></>
   );
 }
 
