@@ -4,6 +4,7 @@ import "./AddPhoto.css";
 
 function InputFile() {
   const [ImageSelectedPrevious, setImageSelectedPrevious] = useState(null);
+  const [ displayButton, setDisplayButton] = useState("");
   const changeImage = (e) => {
     console.log(e.target.files);
     if (e.target.files[0] !== undefined) {
@@ -12,14 +13,15 @@ function InputFile() {
       reader.onload = (e) => {
         e.preventDefault();
         setImageSelectedPrevious(e.target.result); // le damos el binario de la imagen para mostrarla en pantalla
+        setDisplayButton("none")
       };
     }
   };
   return (
-    <div>
+    <><div>
       <StyleDragArea>
         <div className="image-upload-wrap">
-          <label className='formulario__label mt-0 mb-0' htmlFor="legajo">Arrastre su imagen</label>
+          <label className='formulario__label mt-0 mb-1 w-100' htmlFor="legajo">Arrastre su imagen</label>
           <input
             className="file-upload-input ml-1"
             type="file"
@@ -27,29 +29,31 @@ function InputFile() {
             multiple
             onChange={(e) => {
               changeImage(e);
-            }}
-          />
+            } } />
         </div>
-        <div className="center ml-1 mr-6">
-        <button class="icon-btn add-btn">
+        <div className="d-flex justify-content-center align-items-center center ml-1 mr-6 ">
+          <button class={`icon-btn add-btn position-absolute ${displayButton}`}>
             <div class="add-icon"></div>
             <div class="btn-txt"></div>
-      </button>
+          </button>
           <img
+            className="h-100 w-100 "
             src={ImageSelectedPrevious}
             alt=""
-            width="220px" 
-            height="100px"
-          />
+            width="220px"
+            height="100px" />
         </div>
       </StyleDragArea>
-    </div>
+    </div><button className="btn btn-danger mt-2" onClick={()=>setImageSelectedPrevious(null)}>Cancelar</button></>
   );
 }
 
 export default InputFile;
 
 const StyleDragArea = styled.div`
+  .none{
+    display: none;
+  }
   .center {
     display: block;
     width: 230px;
