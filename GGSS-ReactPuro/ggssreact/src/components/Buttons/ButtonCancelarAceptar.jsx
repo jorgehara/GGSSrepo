@@ -10,8 +10,8 @@ const ButtonCancelarAceptar = ({cancelar, aceptar, disabled}) => {
     saveDisable(true);
   }
   return (
-    <div className="d-flex row-reverse">
-         <div className='form__grupo__icons d-flex flex-row-reverse w-100'>
+    <div className="d-flex flex-row">
+         <div className='form__grupo__icons d-flex flex-row-reverse w-100 '>
             <button className='btn btn-danger 'disabled={disabled}
                     onClick={(e)=>deshabilitaEdit(e)}>{cancelar}</button>
                     

@@ -4,7 +4,7 @@ import { employeContext } from "../../context/employeContext";
 import InputEmpData from "../Inputs/InputEmpData/InputEmpData";
 import "./EmployeData.css";
 
-const EmployeData = () => {
+const EmployeData = ({disabled}) => {
   const { saveEmpl , saveEstado } = useContext(employeContext);
   const [image, setImage] = useState("");
   const [data, setData ] = useState("");
@@ -20,7 +20,7 @@ const EmployeData = () => {
     }
   
   return (
-    <div className="container-flex">
+    <div className="container-flex m-o p-0">
       <div className="container border border-2 p-3">
         <div className="container text-start">
             <div className="row">
@@ -46,6 +46,7 @@ const EmployeData = () => {
                 : null
                 }
                 nameLabel="Legajo N°: "
+                disabled={disabled}
                 />
             <InputEmpData
                 idInput="apellidoInfo"
@@ -56,6 +57,7 @@ const EmployeData = () => {
                     : null
                 }
                 nameLabel="Apellido: "
+                disabled={disabled}
                 />
           
             <InputEmpData
@@ -66,6 +68,7 @@ const EmployeData = () => {
                       : null
                   }
                   nameLabel="Documento N°:"
+                  disabled={disabled}
                 />
               </div>
              </div>
@@ -76,6 +79,7 @@ const EmployeData = () => {
                     estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : "Sin Estado"
                   }
                   nameLabel="Estado: "
+                  disabled={disabled}
                 />
                 <InputEmpData
                   idInput="nombresInfo"
@@ -85,6 +89,7 @@ const EmployeData = () => {
                       : null
                   }
                   nameLabel="Nombres: "
+                  disabled={disabled}
                 />
              </div>
 

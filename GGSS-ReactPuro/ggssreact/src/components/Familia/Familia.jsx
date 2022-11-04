@@ -18,7 +18,7 @@ import { getData } from "../../services/fetchAPI";
 import { useState } from "react";
 
 const Familia = () => {
-  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen} = useContext(employeContext);
+  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable} = useContext(employeContext);
 
     //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
     const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
@@ -73,10 +73,10 @@ const Familia = () => {
    
    <div className="container-sm">
       <div className="row border border-3 p-3">
-        <EmployeData />
+        <EmployeData disabled={disable}/>
         <div className="col-xl-6">
-          <div className="container-flex">
-            <div className="container mt-2">
+          <div className="container-flex m-0">
+            <div className="container ">
               <div className="row">
                 <InputChecked
                   value={
@@ -87,6 +87,7 @@ const Familia = () => {
                   nameInput="Apellido y Nombres"
                   nameCheck="Fijar"
                   placeHolder="Apellido y Nombres"
+                  disabled={disable}
                 />
                 <InputMultiple
                   optionsDNI={tipoDNI}
@@ -101,6 +102,7 @@ const Familia = () => {
                   nameSecond="Femenino"
                   nameInputRadio=""
                   placeholder="17654987"
+                  disable={disable}
                 />
                 <InputParentesco
                   nameInput="Parentesco"
@@ -111,6 +113,7 @@ const Familia = () => {
                   checked=""
                   display={true}
                   idModal="Parentescos"
+                  disable={disable}
                 />
                 <InputDateFlia
                   value={
@@ -122,8 +125,27 @@ const Familia = () => {
                   checked={false}
                   nameInput="Nacimiento"
                   idInput="fechaNac"
+                  disable={disable}
                 />
-                <InputParentescoOpcions
+                <InputParentescoOpEstudios
+                  nameInput="Estudios"
+                  array={estudios}
+                  propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
+                  placeHolder="Estudios"
+                  nameButton="..."
+                  nameCheck="Fijar"
+                  checked=""
+                  display={true}
+                  idModal="Estudios"
+                  disable={disable}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-xl-6">
+          
+          <InputParentescoOpcions
                   nameInput="Pais de Origen"
                   array={paises}
                   placeHolder="Paises"
@@ -133,6 +155,7 @@ const Familia = () => {
                   display={false}
                   propArray={paisSelected !== undefined ? paisSelected.nombrePais : ""}
                   idModal="paises"
+                  disable={disable}
                 />
                 <InputParentescoOpNac
                   nameInput="Nacionalidad"
@@ -147,23 +170,8 @@ const Familia = () => {
                   sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
                   propArray="ARGENTINO"
                   idModal="nacionalidades"
+                  disable={disable}
                 />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-6">
-          <InputParentescoOpEstudios
-            nameInput="Estudios"
-            array={estudios}
-            propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
-            placeHolder="Estudios"
-            nameButton="..."
-            nameCheck="Fijar"
-            checked=""
-            display={true}
-            idModal="Estudios"
-          />
           <InputDateFlia
             value={
               saveEmpl[0] !== undefined ? saveEmpl[0].fechaEgreso : null
@@ -172,15 +180,19 @@ const Familia = () => {
             checked={false}
             nameInput="Fecha Baja"
             idInput="fechaBaja"
+            disable={disable}
           />
-          <TextArea inputName="Observaciones" maxLength="255" value="" />
+            <TextArea inputName="Observaciones" maxLength="255" value="" disabled={disable}/>
+          
+          
           {/* <ButtonCancelarAceptar 
           // cancelar="" 
           // aceptar=""  /> */}
         </div>
-        <ButtonCancelarAceptar cancelar="-" aceptar="+" />
-        <TableBasic columns={columns} />
-        
+        <div className="d-flex flex-row align-items-center">
+          <TableBasic columns={columns} disabled={disable}/>
+          <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable}/>            
+        </div>
       </div>
     </div>
 

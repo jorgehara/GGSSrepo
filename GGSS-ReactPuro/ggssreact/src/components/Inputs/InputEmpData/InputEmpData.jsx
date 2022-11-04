@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputEmpData = ({ idInput, inputValue, nameLabel }) => {
+const InputEmpData = ({ idInput, inputValue, nameLabel,disabled }) => {
   return (
     <div>
       <label className=" m-0" 
@@ -13,6 +13,7 @@ const InputEmpData = ({ idInput, inputValue, nameLabel }) => {
         id={idInput}
         name={idInput}
         value={inputValue}
+        disabled={disabled}
       />
     </div>
   );

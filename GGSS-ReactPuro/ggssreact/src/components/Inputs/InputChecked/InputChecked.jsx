@@ -9,6 +9,7 @@ const InputChecked = ({
   onChange,
   checked,
   nameCheck,
+  disabled
 }) => {
   return (
     <div className="row">
@@ -28,6 +29,7 @@ const InputChecked = ({
               value={value}
               onChange={(e) => 
                 onChange(e)}
+                disabled={disabled}
             />
           <div className="d-flex align-items-center col-xl-3">
             <input
@@ -36,6 +38,7 @@ const InputChecked = ({
               value=""
               id="flexCheckChecked"
               defaultChecked={checked}
+              disabled={disabled}
             />
             <label className="form-check-label" htmlFor="flexCheckChecked">
               {nameCheck}

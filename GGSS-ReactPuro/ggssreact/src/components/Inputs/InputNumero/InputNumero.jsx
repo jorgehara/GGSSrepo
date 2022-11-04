@@ -7,7 +7,8 @@ const InputNumero = ({
   nameCheck,
   defaultChecked,
   display,
-  value
+  value,
+  disabled
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -23,7 +24,8 @@ const InputNumero = ({
           <input type="text" 
                     className='formulario-input-Legajo '                                   
                       placeholder={placeHolder}
-                      value={value}           
+                      value={value}  
+                      disabled={disabled}         
                       />
         </div>
            
@@ -40,6 +42,7 @@ const InputNumero = ({
           value=""
           id="flexCheckChecked"
           defaultChecked={defaultChecked}
+          disabled={disabled}
         />
         <label className="form-check-label" htmlFor="flexCheckChecked">
           {nameCheck}

@@ -39,7 +39,7 @@ const Domicilios = () => {
   //#endregion
   
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl, saveEstados, saveEstado, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms } = useContext(employeContext);
+  const { saveDom,saveDomicilios, saveEmpl, saveEstados, saveEstado, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable } = useContext(employeContext);
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
@@ -153,6 +153,7 @@ const Domicilios = () => {
                             femeninos=""
                     display={true}
                     idModal="calles"
+                    disabled={disable}
                   />
                 </div>
                 <div className="col-xl-6">
@@ -164,6 +165,7 @@ const Domicilios = () => {
                     defaultChecked=""
                     display={true}
                     value={numCalleSelected !== undefined ? numCalleSelected.toString() : null}
+                    disabled={disable}
                   />
                 </div>
                 </div>
@@ -185,6 +187,7 @@ const Domicilios = () => {
                           femeninos=""
                   display={true}
                   idModal=""
+                  disabled={disable}
                 />
               </div>
               <div className="col-xl-6">
@@ -202,6 +205,7 @@ const Domicilios = () => {
                           femeninos=""
                   display={true}
                   idModal="pdlb"
+                  disabled={disable}
                 />
                   <InputCbo
                   value={
@@ -218,6 +222,7 @@ const Domicilios = () => {
                           femeninos=""
                   display={true}
                   idModal="pdlb"
+                  disabled={disable}
                 />
                 <InputCbo
                   value={
@@ -234,6 +239,7 @@ const Domicilios = () => {
                           femeninos=""
                   display={true}
                   idModal="pdlb"
+                  disabled={disable}
                 />
                 <InputCbo
                   value={
@@ -250,9 +256,10 @@ const Domicilios = () => {
                           femeninos=""
                   display={true}
                   idModal="pdlb"
+                  disabled={disable}
                 />
               </div>
-              <ButtonCancelarAceptar cancelar="-" aceptar="+" />
+              <ButtonCancelarAceptar cancelar="-" aceptar="+"disabled={disable} />
               <TableBasic1 columns={columns} value={ saveDom !== undefined ? saveDom : null}/>
               
             </div>

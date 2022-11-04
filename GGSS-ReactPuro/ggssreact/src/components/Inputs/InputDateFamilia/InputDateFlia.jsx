@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./InputDateFlia.css";
 
-const InputDateFlia = ({nameInput,display, checked, value, idInput}) => {
+const InputDateFlia = ({nameInput,display, checked, value, idInput, disable}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   console.log(mostrarComponente)
 
@@ -23,11 +23,12 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput}) => {
             id={idInput} 
             type="date" 
             value={fecha} 
+            disabled={disable}
             />
         </div>
         <input 
         className={mostrarComponente ? "form-check-inputDateFlia" : "none"} type="checkbox" 
-        
+        disabled={disable}
         id="flexCheckChecked" 
         checked={checked}
         />

@@ -10,6 +10,7 @@ const InputMultiple = ({
   nameSecond,
   nameInputRadio,
   placeholder,
+  disable
 }) => {
   const [valorRadioM, setValorRadioM] = useState(false);
   const [valorRadioF, setValorRadioF] = useState(false);
@@ -37,7 +38,7 @@ const InputMultiple = ({
           <label className="formulario-label-DNIFamilia mt-1 ">{nameInputDNI}</label>
         </div>
         <div className="ml-1 d-flex justify-content-center align-items-center">
-          <select className="formulario-input-DNI form-select  px-0">
+          <select className="formulario-input-DNI form-select  px-0" disabled={disable}>
             {optionsDNI.map((op, i) => {
               return <option key={i}>{op}</option>;
             })}
@@ -50,6 +51,7 @@ const InputMultiple = ({
             value={valueDNI}
             className="formulario-input-DNI px-0 mt-0 mb-0"
             placeholder={placeholder}
+            disabled={disable}
           ></input>
         </div>
         <div className="form__grupo__icon">
@@ -74,6 +76,7 @@ const InputMultiple = ({
               checked={valorRadioM}
               onChange={(e) => setValorRadioM(e.target.value)}
               value={valorRadioM}
+              disabled={disable}
             />
             <label className="form-check-label" htmlFor="inlineCheckbox1">
               {nameFirst}
@@ -86,6 +89,7 @@ const InputMultiple = ({
               checked={valorRadioF}
               onChange={(e) => setValorRadioF(e.target.value)}
               value={valorRadioF}
+              disabled={disable}
             />
             <label className="form-check-label" htmlFor="inlineCheckbox2">
               {nameSecond}

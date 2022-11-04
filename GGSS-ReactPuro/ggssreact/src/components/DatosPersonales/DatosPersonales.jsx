@@ -27,6 +27,7 @@ const DatosPersonales = () => {
   const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveDisable, disable} = useContext(employeContext);
   //------------------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
+  const [image, setImage] = useState("");
 
   //#region ------------------------------------------------------------------------------URLs (Luego cambiar a archivos Js)
   const url = "http://54.243.192.82/api/Estados";
@@ -76,6 +77,13 @@ const DatosPersonales = () => {
   useEffect(()=>{
 
   },[disable])
+  useEffect(() => {
+    setImageEmpleado()
+  }, [saveEmpl[0].obsFechaIngreso]);
+
+    function setImageEmpleado(){
+      saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
+    }
   
   //#endregion
   
@@ -150,7 +158,7 @@ const DatosPersonales = () => {
                   </div>
                   <form action="" className="form__datos__personales ">
                     <div className="row row-cols-12">
-                      <div className="segunda__columna col-5">
+                      <div className="segunda__columna col-xl-4">
                         {
                           //#endregion
 
@@ -258,7 +266,7 @@ const DatosPersonales = () => {
                           disabled={disable}
                         />
                       </div>
-                      <div className="tercera_columna col-5">
+                      <div className="tercera_columna col-xl-4">
                         <InputCbo
                           value={
                             saveEmpl[0] !== undefined
@@ -350,14 +358,18 @@ const DatosPersonales = () => {
                         />
                         <TextArea inputName="Obs. Estudios" maxLength="55" disabled={disable} />
                       </div>
+                      <div className="col-xl-3">
+                        <img
+                          className="border border-3 imgData"
+                          id="imagen"
+                          src={`data:image/jpeg;base64,${image}`}
+                          alt=""
+                          style={{ width: "150px;", height: "150px;" }}
+                        />
+                        <InputFile inputName="Arrastre su imagen" disabled={disable}/>
+                      </div>
                     </div>
                   </form>
-                  <div className="row">
-                    
-                    <div className="col-xl-5 mt-2">
-                      <InputFile inputName="Arrastre su imagen" disabled={disable}/>
-                    </div>
-                  </div>
                 </div>
               </section>
             </div>

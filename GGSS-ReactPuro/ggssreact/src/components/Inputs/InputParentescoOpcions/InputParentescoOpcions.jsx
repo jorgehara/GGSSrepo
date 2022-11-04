@@ -10,7 +10,8 @@ const InputParentescoOpcions = ({
   checked,
   display,
   propArray,
-  idModal
+  idModal,
+  disable
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -24,7 +25,7 @@ const InputParentescoOpcions = ({
         <label className="formulario-label-ParentescoFliaOpcions mt-2">{nameInput}</label>
       </div>
       <div className="">
-        <select className="form-select form-select-Opcions ml-0 mt-1">
+        <select className="form-select form-select-Opcions ml-0 mt-1" disabled={disable}>
           {
             array.map((op, i) => {
               return propArray === op ?<option selected defaultValue  key={i}>{op}</option> : <option key={i}>{op}</option>
@@ -33,7 +34,7 @@ const InputParentescoOpcions = ({
         </select>
       </div>
       <div className="ml-0 d-flex justify-content-cener align-items-center">
-        <ButtonCallModal idModal={idModal} className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} nameButton={nameButton} useNavbar={false} useButton={true}/> 
+        <ButtonCallModal idModal={idModal} className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disable}/> 
       </div>
       <div
         className={
@@ -48,6 +49,7 @@ const InputParentescoOpcions = ({
           value=""
           id="flexCheckChecked"
           checked={checked}
+          disabled={disable}
         />
         <label className="form-check-label" htmlFor="flexCheckChecked">
           {nameCheck}
