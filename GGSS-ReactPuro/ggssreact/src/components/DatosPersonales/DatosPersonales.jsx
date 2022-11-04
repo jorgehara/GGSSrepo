@@ -244,7 +244,7 @@ const DatosPersonales = () => {
                           masculinos={nacionalidadesMasculinas}
                           femeninos={nacionalidadesFemeninas}
                           display={true}
-                          idModal="paises"
+                          idModal="nacionalidades"
                         />
                       </div>
                       <div className="tercera_columna col-5">

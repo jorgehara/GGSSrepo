@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
 import './Navbar.css'
 import ButtonCallModal from '../Buttons/ButtonCallModal'
@@ -9,6 +9,7 @@ import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 import ModalAlicuotas from '../Modals/ModalAlicuotas/ModalAlicuotas'
 import { objectBancos, objectEmpresasTelefonia, objectSindicatos, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises  } from './Objects'
+import { employeContext } from '../../context/employeContext';
 
 const Navbar = () => {
 
@@ -17,23 +18,18 @@ const Navbar = () => {
 
 // const handleDatosEmpleados = () => {
 // 	datosEmpleados.className.add('.closeList')
-// }
+// }saveEstadoCivil
+const { saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI} = useContext(employeContext);
 
-// const handleTitleEmpleados = () => {
-// 	datosEmpleados.className.add('.openList')
-// 	datosEmpleados.className.remove('.closeList')
-// }
-
-// NO ESTA FUNCIONANDO, ESTOY INTENTANDO HACER QUE CUANDO CLICKEO EL TITULO "PARA EMPLEADOS" ME DESPLIEGUE LA LISTA,
-// Y QUE CUANDO TOCO EL BOTON "OCULTAR LISTA" LA OCULTE.
-
-
-// const titleLiquidacion = document.querySelector('.titleLiquidacion')
-// const datosLiquidacion = document.querySelector('.datosLiquidacion')
-
-// const handleDatosLiquidacion = () => {
-// 	datosLiquidacion.className.add('.closeList')
-// }
+const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
+const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
+const estadosCiviles =  estadosCivilesMasculinos.concat(estadosCivilesFemeninos); 
+const estadosArray = saveEstado.map((m,i)=>{return (m.nombreEstado)});
+const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nombrePais); }) : [];
+const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i)=>{ return (nac.estudiosNivel); }) : [];
+const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_masc); }) : []; 
+const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_fem); }) : []; 
+const nacionalidades = nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
 
   return (
 	    <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -128,18 +124,19 @@ const Navbar = () => {
 				</li>
 
 				{/* {/ MODALES TABLA PARA EMPLEADOS /} */}
-				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} />
-				<BasicModal idModal="Estudios" nameModal="Estudios" placeholder={objectEstudios} />
+				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} array={estadosCiviles}/>
+				<BasicModal idModal="Estudios" nameModal="Estudios" placeholder={objectEstudios} array={estudios}/>
 				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} />
 				<ModalParentescos idModal="Parentescos" nameModal="Parentescos" />
-				<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} />
+				<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} array={estadosArray} />
 				<BasicModalSelectObs idModal="cargos" nameModal="Cargos" nameOptionModal="Cargo" />
 				<BasicModalSelectObs idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" nameOptionModal="Tarea" />
 				<BasicModal idModal="formasDePago" nameModal="Formas de Pago" placeholder={objectFormasDePago} textArea={true} />
 				<BasicModalSelectObs idModal="modosDeContratacion" nameModal="Modos de Contratacion" nameOptionModal="Modos de Contratacion" inputDate={true}/>
 				<BasicModalSelectObs idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" nameOptionModal="Modos de Liquidacion" />
 				<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
-				<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} />
+				<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} array={paises}/>
+				<BasicModal idModal="nacionalidades" nameModal="Paises" placeholder={objectPaises} array={nacionalidades}/>
 				<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" />
 				<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true}/>
 				<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
