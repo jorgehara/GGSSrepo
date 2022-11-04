@@ -3,7 +3,7 @@ import React from 'react'
 const TableBasic = ({columns}) => {
   return (
     <><div className='row mt-5 overflow-scroll'>
-          <table className="table-danger table-striped ">
+          <table className="table table-danger table-striped ">
               <thead>
                   <tr>
                       {columns.map((col, i) => {
