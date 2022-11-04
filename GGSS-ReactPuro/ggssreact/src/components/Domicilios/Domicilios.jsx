@@ -140,18 +140,35 @@ const Domicilios = () => {
                 </div>{
                   //#endregion
                 }
-                <InputCbo
-                  value={saveDom[0] !== undefined ? saveDom[0].calle : null}
-                  sexo=""
-                  nameButton="..."
-                  nameLabel="Calle"
-                  array={calles}
-                  propArray={calleSelected !== undefined ? calleSelected.toString() : null}
-                  masculinos=""
-                          femeninos=""
-                  display={true}
-                  idModal="calles"
-                />
+                <div className="row">
+                <div className="col-xl-6">
+                  <InputCbo
+                    value={saveDom[0] !== undefined ? saveDom[0].calle : null}
+                    sexo=""
+                    nameButton="..."
+                    nameLabel="Calle"
+                    array={calles}
+                    propArray={calleSelected !== undefined ? calleSelected.toString() : null}
+                    masculinos=""
+                            femeninos=""
+                    display={true}
+                    idModal="calles"
+                  />
+                </div>
+                <div className="col-xl-6">
+                  <InputNumero
+                    nameInput="N°"
+                    array={paises}
+                    placeHolder="N° Calle"
+                    nameCheck="Fijar"
+                    defaultChecked=""
+                    display={true}
+                    value={numCalleSelected !== undefined ? numCalleSelected.toString() : null}
+                  />
+                </div>
+                </div>
+                
+                
                  <InputCbo
                   value={
                     saveDom[0] !== undefined || saveDom[0] === null
@@ -171,15 +188,7 @@ const Domicilios = () => {
                 />
               </div>
               <div className="col-xl-6">
-                <InputNumero
-                  nameInput="Número"
-                  array={paises}
-                  placeHolder="N° Calle"
-                  nameCheck="Fijar"
-                  defaultChecked=""
-                  display={true}
-                  value={numCalleSelected !== undefined ? numCalleSelected.toString() : null}
-                />
+                
                   <InputCbo
                   value={
                     saveEmpl[0] !== undefined ? saveEmpl[0].idProvincia : null
@@ -243,8 +252,9 @@ const Domicilios = () => {
                   idModal="pdlb"
                 />
               </div>
+              <ButtonCancelarAceptar cancelar="-" aceptar="+" />
               <TableBasic1 columns={columns} value={ saveDom !== undefined ? saveDom : null}/>
-              <ButtonCancelarAceptar cancelar="Quitar" aceptar="Agregar" />
+              
             </div>
           </section>
         </div>

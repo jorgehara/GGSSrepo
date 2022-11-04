@@ -17,18 +17,16 @@ const InputNumero = ({
 
   return (
     <div className="formulario__grupo">
-      <div className="">
-        <label className="formulario-label-ParentescoFlia mt-2 pr-1">{nameInput}</label>
-      </div>
-      <div className="">
-      <input type="text" 
-                  className='formulario-input-Legajo ml-4'                                   
-                    placeholder={placeHolder}
-				            value={value}           
-                    />
-      </div>
-      <div className="form__grupo__input2">
-      </div>
+      <div className="w-100 d-flex flex-row justify-content-flex-start align-items-center">
+        <label className="label_numeros">{nameInput}</label>
+        <div className="d-flex flex-row justify-content-flex-start align-items-center">
+          <input type="text" 
+                    className='formulario-input-Legajo '                                   
+                      placeholder={placeHolder}
+                      value={value}           
+                      />
+        </div>
+           
       <div
         className={
           mostrarComponente
@@ -46,7 +44,8 @@ const InputNumero = ({
         <label className="form-check-label" htmlFor="flexCheckChecked">
           {nameCheck}
         </label>
-      </div>
+      </div> 
+      </div> 
     </div>
   );
 };
