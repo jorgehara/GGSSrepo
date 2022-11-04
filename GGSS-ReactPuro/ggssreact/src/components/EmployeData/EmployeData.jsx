@@ -7,26 +7,18 @@ import "./EmployeData.css";
 const EmployeData = () => {
   const { saveEmpl } = useContext(employeContext);
   const [image, setImage] = useState("");
-  const url = `http://54.243.192.82/api/ArchivosDocumentacionEmpleados/${saveEmpl[0].iDempleado}`;
+  const [data, setData ] = useState("");
 
   useEffect(() => {
-    try {
-      axios.get(url).then((res) => {
-        console.log(res);
-        if (res.status === 404) {
-          setImage("");
-          return;
-        }
-        setImage(res.data.archivo);
-      });
-    } catch (err) {
-      setImage("");
-    }
-  }, [url]);
+    setImageEmpleado()
+  }, [saveEmpl[0].obsFechaIngreso]);
 
+    function setImageEmpleado(){
+      saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
+    }
   console.log(image);
-  console.log(saveEmpl[0].iDempleado);
-  console.log(url);
+  console.log(saveEmpl[0]);
+  
   return (
     <div className="container-flex">
       <div className="container border border-2 p-3">
@@ -36,7 +28,7 @@ const EmployeData = () => {
                 <img
                   className="border border-3 imgData"
                   id="imagen"
-                  src={`data:image/pdf;base64,${image}`}
+                  src={`data:image/jpeg;base64,${image}`}
                   alt=""
                   style={{ width: "150px;", height: "150px;" }}
                 />
