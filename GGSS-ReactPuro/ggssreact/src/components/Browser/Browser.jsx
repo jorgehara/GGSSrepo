@@ -49,7 +49,7 @@ const Browser = () => {
 
   function onInputChange(evt) {
     const name = evt.target.name;
-    const value = evt.target.value;
+    const value = (evt.target.value).toUpperCase();
 
     let newEmpData = { ...empData };
     newEmpData[name] = value;

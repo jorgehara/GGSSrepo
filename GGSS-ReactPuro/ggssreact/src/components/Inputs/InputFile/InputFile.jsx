@@ -38,20 +38,23 @@ function InputFile() {
             multiple
             onChange={(e) => {
               changeImage(e);
-            } } />
+            } }>
+            </input>
+            <div className="d-flex justify-content-center align-items-center center ml-1 mr-6 ">
+              <button class={`icon-btn add-btn position-absolute ${displayButton}`}>
+                <div class="add-icon"></div>
+                <div class="btn-txt"></div>
+              </button>
+              <img
+                className="h-100 w-100 "
+                src={ImageSelectedPrevious}
+                alt=""
+                width="220px"
+                height="100px" />
+            </div>
+            
         </div>
-        <div className="d-flex justify-content-center align-items-center center ml-1 mr-6 ">
-          <button class={`icon-btn add-btn position-absolute ${displayButton}`}>
-            <div class="add-icon"></div>
-            <div class="btn-txt"></div>
-          </button>
-          <img
-            className="h-100 w-100 "
-            src={ImageSelectedPrevious}
-            alt=""
-            width="220px"
-            height="100px" />
-        </div>
+        
       </StyleDragArea>
     </div>
     
