@@ -156,12 +156,8 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 				<ModalAlicuotas idModal="alicuotas" nameModal="Alicuotas" />
 
 				{/* {/ MODALES TABLA PARA LIQUIDACIÓN /} */}
-
 				<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true} />
 				<BasicModal idModal="Telefonia" nameModal="Empresas de Telefonia" placeholder={objectEmpresasTelefonia} />
-
-
-
 				<li className="nav-item">
 					<a className="nav-link" href="/">Salir</a>
 				</li>
@@ -172,4 +168,4 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
   )
 }
 
-export default Navbar
+export default Navbar;

@@ -9,10 +9,13 @@ import "./Browser.css";
 const Browser = () => {
   const [listEmpleados, setListEmpleados] = useState([]);
   const { saveEmploye, saveDomicilio } = useContext(employeContext);
+
   const [empData, setEmpData] = useState({
     legajo: "",
     apellido: "",
   });
+
+
   const url = "http://54.243.192.82/api/Empleados";
   const {  saveDisable, disable} = useContext(employeContext);
   useEffect(() => {
