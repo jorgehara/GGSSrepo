@@ -17,7 +17,7 @@ const Home = () => {
     },[])
 
   return (
-    <div className='container-flex ml-4 mr-4'>
+    <div className='container-fluid'>
         <div className='row'>
             <div className='col-xl-3'>
                 <Browser />

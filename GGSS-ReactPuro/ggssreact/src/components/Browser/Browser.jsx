@@ -57,25 +57,28 @@ const Browser = () => {
   }
 
   return (
-    <div className='Lateral-Izquierdo '>
+    <div className=
+    // 'Lateral-Izquierdo'
+    'container-fluid'
+    >
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
-      <div className="row mt-1 mr-2">
+      <div className="row w-100">
         <input
           onChange={(e) => onInputChange(e)}
           value={empData.legajo}
-          className="form__grupo__input__browser mr-2"
+          className="form__grupo__input__browser"
           type="text"
           name="legajo"
           id="legajos"
           placeholder="Ingrese Legajo "
         />
       </div>
-      <div className="row mt-1 mr-2">
+      <div className="row w-100">
         <input
           onChange={(e) => onInputChange(e)}
           value={empData.apellido}
-          className="form__grupo__input__browser mr-2"
+          className="form__grupo__input__browser"
           type="text"
           name="apellido"
           id="nombres"
