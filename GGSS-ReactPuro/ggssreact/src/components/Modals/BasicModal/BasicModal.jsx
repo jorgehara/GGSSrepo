@@ -25,7 +25,7 @@ const BasicModal = ({ idModal, nameModal, array, textArea, placeholder }) => {
                                     {
                                         array !== undefined ? array.map((op, i)=>{
                                             return(
-                                                <option value="1">{op}</option>
+                                                <option key={i} value="1">{op}</option>
                                             )
                                         }) : null
                                     }

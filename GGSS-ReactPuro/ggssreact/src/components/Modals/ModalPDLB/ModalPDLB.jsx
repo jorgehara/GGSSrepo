@@ -10,7 +10,7 @@ import Provincias from './SubmodalesPDLB/Provincias'
 import ProvinciasFooter from './SubmodalesPDLB/ProvinciasFooter'
 import './ModalPDLB.css'
 
-const ModalPDLB = ({idModal, nameModal, array}) => {
+const ModalPDLB = ({idModal, nameModal, array,aDepartamentos,aProvincias,aLocalidades,aBarrios}) => {
 
     const [provincias, setProvincias] = useState()
     const [localidades, setLocalidades] = useState()
@@ -77,22 +77,22 @@ const ModalPDLB = ({idModal, nameModal, array}) => {
 
                             {
                                 provincias && 
-                                <Provincias/>
+                                <Provincias aProvincias={aProvincias}/>
                             }
 
                             { 
                                 localidades &&
-                                <Localidades/>
+                                <Localidades aLocalidades={aLocalidades}/>
                             }
 
                             {
                                 departamentos &&
-                                <Departamentos/>
+                                <Departamentos aDepartamentos={aDepartamentos}/>
                             }
 
                             {
                                 barrios &&
-                                <Barrios/>
+                                <Barrios aBarrios={aBarrios}/>
                             }
 
                             

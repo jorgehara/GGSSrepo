@@ -1,7 +1,7 @@
 import React from 'react'
 import TextArea from '../../../Inputs/TextArea/TextArea'
 
-const Barrios = () => {
+const Barrios = ({aBarrios}) => {
   return (
     <>
       <div className="llamadaApi">
@@ -9,9 +9,13 @@ const Barrios = () => {
         <label htmlFor="data">Datos: </label>
         <br />
         <select className="form-select row mt-1" multiple aria-label="multiple select example">
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {
+            aBarrios !== undefined && aBarrios.map((op,i)=>{
+              return(
+                  <option key={i} value="1">{op}</option>
+              )
+          })
+          }
         </select>
 
       </div>

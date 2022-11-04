@@ -19,7 +19,7 @@ const Navbar = () => {
 // const handleDatosEmpleados = () => {
 // 	datosEmpleados.className.add('.closeList')
 // }saveEstadoCivil
-const { saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI} = useContext(employeContext);
+const { saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio} = useContext(employeContext);
 
 const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
 const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
@@ -30,6 +30,12 @@ const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i)=>{ return 
 const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_masc); }) : []; 
 const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_fem); }) : []; 
 const nacionalidades = nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
+const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
+const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => {return res.pisoDepto}) : null;
+const deptos = saveDetpo !== undefined ? saveDetpo.map(res => {return res.departamento}) : null;
+const provincias = saveProvincia !== undefined ? saveProvincia.map(res => {return res.provincia}) : null;
+const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => {return res.localidad}) : null;
+const barrios = saveBarrio !== undefined ? saveBarrio.map(res => {return res.barrio}) : null;
 
   return (
 	    <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -137,8 +143,8 @@ const nacionalidades = nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
 				<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
 				<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} array={paises}/>
 				<BasicModal idModal="nacionalidades" nameModal="Paises" placeholder={objectPaises} array={nacionalidades}/>
-				<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" />
-				<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true}/>
+				<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" aDepartamentos={deptos}aProvincias={provincias} aLocalidades={localidades} aBarrios={barrios} />
+				<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true} array={calles}/>
 				<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
 				<ModalAlicuotas idModal="alicuotas" nameModal="Alicuotas" />
 
