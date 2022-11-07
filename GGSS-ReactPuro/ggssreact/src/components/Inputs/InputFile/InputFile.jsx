@@ -14,10 +14,6 @@ function InputFile({disabled}) {
         e.preventDefault();
         setImageSelectedPrevious(e.target.result); // le damos el binario de la imagen para mostrarla en pantalla
         setDisplayButton("none")
-
-      
-
-
       };
     }
   };

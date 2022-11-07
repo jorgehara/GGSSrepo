@@ -10,7 +10,7 @@ const InputForm = ({
   disabled,
   onChange,
   nameLabel,
-  datosPersonalesValue
+  datosPersonalesValue,
 }) => {
 
   
@@ -26,7 +26,6 @@ const InputForm = ({
   },[value])
 
 
-  console.log(valor)
   return (
     <div className="formulario__grupo__inputs">
       <div className='formulario__grupo'>
