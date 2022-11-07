@@ -4,44 +4,36 @@ import { employeContext } from "../../context/employeContext";
 import InputEmpData from "../Inputs/InputEmpData/InputEmpData";
 import "./EmployeData.css";
 
-const EmployeData = () => {
-  const { saveEmpl } = useContext(employeContext);
+const EmployeData = ({disabled}) => {
+  const { saveEmpl , saveEstado } = useContext(employeContext);
   const [image, setImage] = useState("");
-  const url = `http://54.243.192.82/api/ArchivosDocumentacionEmpleados/${saveEmpl[0].iDempleado}`;
+  const [data, setData ] = useState("");
+  const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
+  const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
 
   useEffect(() => {
-    try {
-      axios.get(url).then((res) => {
-        console.log(res);
-        if (res.status === 404) {
-          setImage("");
-          return;
-        }
-        setImage(res.data.archivo);
-      });
-    } catch (err) {
-      setImage("");
-    }
-  }, [url]);
+    setImageEmpleado()
+  }, [saveEmpl[0].obsFechaIngreso]);
 
-  console.log(image);
-  console.log(saveEmpl[0].iDempleado);
-  console.log(url);
+    function setImageEmpleado(){
+      saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
+    }
+  
   return (
-    <div className="container-flex">
-      <div className="container border border-2 p-3">
-        <div class="container text-start">
-            <div class="row">
-              <div class="col-2 d-flex align-items-center">
+    <div className="container-fluid p-0">
+      <div className="container-fluid border-3 border-bottom ">
+        <div className="container text-start py-3">
+            <div className="row">
+              <div className="col-2 d-fluid align-items-center">
                 <img
                   className="border border-3 imgData"
                   id="imagen"
-                  src={`data:image/pdf;base64,${image}`}
+                  src={`data:image/jpeg;base64,${image}`}
                   alt=""
                   style={{ width: "150px;", height: "150px;" }}
                 />
              </div>
-              <div class="col-3  d-flex align-items-center"> 
+              <div className="col-5  d-flex align-items-center"> 
               <div>
             <InputEmpData
                 idInput="legajoInfo"
@@ -54,6 +46,7 @@ const EmployeData = () => {
                 : null
                 }
                 nameLabel="Legajo N°: "
+                disabled={disabled}
                 />
             <InputEmpData
                 idInput="apellidoInfo"
@@ -64,6 +57,7 @@ const EmployeData = () => {
                     : null
                 }
                 nameLabel="Apellido: "
+                disabled={disabled}
                 />
           
             <InputEmpData
@@ -74,18 +68,18 @@ const EmployeData = () => {
                       : null
                   }
                   nameLabel="Documento N°:"
+                  disabled={disabled}
                 />
               </div>
              </div>
-              <div class="col-2  d-flex-column align-items-center">
+              <div className="col-2  d-flex-column align-items-center">
                 <InputEmpData
                   idInput="estadoInfo"
                   inputValue={
-                    saveEmpl[0] !== undefined || saveEmpl[0] === null
-                      ? saveEmpl[0].estado
-                      : "Sin Estado"
+                    estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : "Sin Estado"
                   }
                   nameLabel="Estado: "
+                  disabled={disabled}
                 />
                 <InputEmpData
                   idInput="nombresInfo"
@@ -95,6 +89,7 @@ const EmployeData = () => {
                       : null
                   }
                   nameLabel="Nombres: "
+                  disabled={disabled}
                 />
              </div>
 

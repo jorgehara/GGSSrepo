@@ -26,7 +26,7 @@
     grid-area: icons;
     margin: 0;
     margin-left: 5px;
-    font-size: 12px;
+    font-size: 5rem;
 	margin-bottom: 0;
 	display: none;
 }
@@ -34,20 +34,24 @@
     grid-area: errors;
     margin: 0;
     margin-left: 5px;
-    font-size: 12px;
+    font-size: 2rem;
 	margin-bottom: 0;
 	display: none;
 }
 .formulario-input-Legajo{
-    margin-bottom: 3px;
+	margin-bottom: 3px;
 	width: 165px;
 	margin-left: 0px;
-    margin-right: 0px;
-    border: none;
+	margin-right: 0px;
+	border: none;
 	border-radius: 3px;
 	height: 42px;
 	transition: .3s ease all;
-    border-bottom: 2px solid rgb(78, 6, 6);
+	border-bottom: 2px solid rgb(78, 6, 6);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
 }
 .formulario-input-Legajo:focus{
     background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));

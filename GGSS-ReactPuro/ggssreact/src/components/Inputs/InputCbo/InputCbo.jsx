@@ -1,40 +1,62 @@
 import React, { useEffect, useState } from "react";
+import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton}) => {
-    console.log(array)
+const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled}) => {
+  
     
     const [mostrarComponente, setMostrarComponente] = useState(true);
+    const [returnBySexo, setReturnBySexo] = useState([]);
 
     useEffect(()=>{
       setMostrarComponente(display)
+      
     },[display])
+    useEffect(()=>{
+      setReturnBySexo(validateSexo(sexo,masculinos, femeninos));
+    },[sexo])
 
+    const validateSexo =(sexo, masculinos, femeninos)=>{
+      if(sexo === "M"){
+        return masculinos;
+      }
+      if(sexo === "F"){
+        return femeninos
+      }
+     
+  }
   return (
     <div className='formulario__grupo__inputs__cbo '>
         <div className='form__grupo__label__inp '>
             <div className='primero'>
-                <label className='formulario__label mt-2 mb-0' for="legajo">{nameLabel}</label>
+                <label className='formulario__label mt-2 mb-0' htmlFor="legajo">{nameLabel}</label>
             </div>
             <div className='segundo'>
-                <select class="formulario-input-Estado form-select ml-0 px-0">{fieldName}                    
+                <select className="formulario-input-Estado form-select ml-0 px-0" disabled={disabled}>{fieldName}                    
                     {
-                        array.map((op, index)=>{
+                       sexo !== undefined && sexo.length > 0 && returnBySexo !== undefined ? returnBySexo.map((op, index)=>{
+                        return(
+                          propArray === op ? <option key={index} selected defaultValue value={index}>{op }</option> :
+                                <option key={index}>{op}</option> 
+                        )
+                      }) :
+                        array !== [{}] && array.map((op, index)=>{
+                        
                             return(
-                              value === (op.idEstado) ? <option selected value={index}>{op.nombreEstado }</option> :
-                                <option key={index}>{op.nombreEstado }</option> 
-
-
-                                // {`op.${propiedad}`}
+                              propArray === op ? <option key={index} selected defaultValue value={index}>{op }</option> :
+                                <option key={index}>{op}</option> 
                             )
                         })
                     }
                 </select>
             </div>
-            <button type="button" 
-              class={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"}>
+            <ButtonCallModal className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} idModal={idModal} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disabled}>
               {nameButton}
-            </button>
+            </ButtonCallModal>
+            {/* <button type="button" 
+              className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"}>
+              {nameButton}
+            </button> */}
         </div>
       </div>
   );

@@ -6,10 +6,19 @@ const EmpleadoContextProvider = (props) => {
   const [emp, setEmp] = useState([]);
   const [saveEmpl, setSaveEmpl] = useState([{}]);
   const [saveDom, setSaveDom] = useState([{}]);
+  const [saveDoms, setSaveDoms] = useState([]);
   const [saveEstado, setSaveEstado] = useState([{}]);
   const [saveEstadoCivil, setSaveEstadoCiviles] = useState([{}]);
-
-  console.log(saveDom);
+  const [saveNacionalidad, setSaveNacionalidad] = useState([]);
+  const [saveEstudio, setSaveEstudio] = useState([]);
+  const [saveCalle, setSaveCalle] = useState([]);
+  const [saveDetpo, setSaveDepto] = useState([])
+  const [saveProvincia, setSaveProvincia] =  useState([])
+  const [saveLocalidad, setSaveLocalidad] = useState([])
+  const [saveBarrio, setSaveBarrio] = useState([])
+  const [saveTipoDNI, setSaveTiposDNI] = useState([]);
+  const [saveParen, setSaveParen] = useState([]);
+  const [disable, setDisable] = useState(true);
 
   function saveEstados(estado) {
     setSaveEstado(estado);
@@ -21,11 +30,42 @@ const EmpleadoContextProvider = (props) => {
   function saveDomicilio(domicilio) {
     setSaveDom(domicilio);
   }
-
+  function saveDomicilios(domicilios) {
+    setSaveDoms(domicilios);
+  }
   function saveEstadosCiviles(estadoCiviles) {
     setSaveEstadoCiviles(estadoCiviles);
   }
-
+  function saveNacionalidades(nacionalidad) {
+    setSaveNacionalidad(nacionalidad);
+  }
+  function saveEstudios(estudios){
+    setSaveEstudio(estudios);
+  }
+  function saveCalles(calles){
+    setSaveCalle(calles);
+  }
+  function saveDetpos(deptos){
+    setSaveDepto(deptos);
+  }
+  function saveProvincias(provincias){
+    setSaveProvincia(provincias);
+  }
+  function saveLocalidades(localidades){
+    setSaveLocalidad(localidades);
+  }
+  function saveBarrios(barrios){
+    setSaveBarrio(barrios);
+  }
+  function saveTiposDNI(tiposdni){
+    setSaveTiposDNI(tiposdni)
+  }
+  function saveParentescos(paren){
+    setSaveParen(paren);
+  }
+  function saveDisable(disable){
+    setDisable(disable)
+  }
   return (
     <employeContext.Provider
       value={{
@@ -37,7 +77,29 @@ const EmpleadoContextProvider = (props) => {
         saveEstados,
         saveEstado,
         saveEstadosCiviles,
-        saveEstadoCivil
+        saveEstadoCivil,
+        saveNacionalidades,
+        saveNacionalidad,
+        saveEstudio,
+        saveEstudios,
+        saveCalles,
+        saveCalle,
+        saveDetpos,
+        saveDetpo,
+        saveProvincias,
+        saveProvincia,
+        saveLocalidades,
+        saveLocalidad,
+        saveBarrios,
+        saveBarrio,
+        saveTiposDNI,
+        saveTipoDNI,
+        saveDoms,
+        saveDomicilios,
+        saveParentescos,
+        saveParen,
+        saveDisable,
+        disable
       }}
     >
       {props.children}

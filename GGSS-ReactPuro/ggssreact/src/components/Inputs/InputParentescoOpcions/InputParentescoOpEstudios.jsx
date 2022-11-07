@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputParentescoOpcions.css";
 const InputParentescoOpEstudios = ({
   nameInput,
@@ -8,6 +9,9 @@ const InputParentescoOpEstudios = ({
   nameCheck,
   checked,
   display,
+  propArray,
+  idModal,
+  disable
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -18,22 +22,19 @@ const InputParentescoOpEstudios = ({
   return (
     <div className="formulario__grupo mt-1">
       <div className="">
-        <label class="formulario-label-ParentescoFliaOpEstudios mt-2">{nameInput}</label>
+        <label className="formulario-label-ParentescoFliaOpEstudios mt-2">{nameInput}</label>
       </div>
       <div className="">
-        <select class="form-select ml-4 mt-1">
-          {array.map((op) => {
-            return <option>{op}</option>;
-          })}
+        <select className="form-select ml-4 mt-1" disabled={disable}>
+          {
+            array.map((op, i) => {
+              return propArray == op ? <option key={i} selected defaultValue>{op}</option> : <option key={i}  defaultValue>{op}</option>
+            })
+          }
         </select>
       </div>
-      <div className="ml-4 pl-1">
-        <button
-          type="button"
-          class="tercero btn btn-validacion btn-outline-danger btn-sm ml-2 pl-2 mt-2"
-        >
-          {nameButton}
-        </button>
+      <div className="ml-0 d-flex justify-content-cener align-items-center">
+        <ButtonCallModal idModal={idModal} className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disable}/> 
       </div>
       <div
         className={
@@ -43,13 +44,14 @@ const InputParentescoOpEstudios = ({
         }
       >
         <input
-          class="form-check-input"
+          className="form-check-input"
           type="checkbox"
           value=""
           id="flexCheckChecked"
           checked={checked}
+          disabled={disable}
         />
-        <label class="form-check-label" for="flexCheckChecked">
+        <label className="form-check-label" htmlFor="flexCheckChecked">
           {nameCheck}
         </label>
       </div>

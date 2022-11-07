@@ -4,10 +4,11 @@ const InputNumero = ({
   nameInput,
   array,
   placeHolder,
-  // nameButton,
   nameCheck,
-  checked,
+  defaultChecked,
   display,
+  value,
+  disabled
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -17,29 +18,17 @@ const InputNumero = ({
 
   return (
     <div className="formulario__grupo">
-      <div className="">
-        <label class="formulario-label-ParentescoFlia mt-2 pr-1">{nameInput}</label>
-      </div>
-      <div className="">
-      <input type="text" 
-                  className='formulario-input-Legajo ml-4'      
-                    // id={inputId}                               
-                    placeholder={placeHolder}
-				            // value={value} 
-                    // onChange={(e)=>
-                    //   // onChange(e)
-                    // }            
-                    />
-        {/* <select class="form-select form_select-ParentescoFlia ml-3 px-0 formulario-input-ParentescoFlia">
-          {array.map((op) => {
-            return <option>{op}</option>;
-          })}
-        </select> */}
-      </div>
-      <div className="form__grupo__input2">
-        {/* <button type="button" class="tercero btn btn-validacion btn-outline-danger btn-sm ml-2 pl-2 mt-2"> 
-          {nameButton} </button> */}
-      </div>
+      <div className="w-100 d-flex flex-row justify-content-flex-start align-items-center">
+        <label className="label_numeros">{nameInput}</label>
+        <div className="d-flex flex-row justify-content-flex-start align-items-center">
+          <input type="text" 
+                    className='formulario-input-Legajo '                                   
+                      placeholder={placeHolder}
+                      value={value}  
+                      disabled={disabled}         
+                      />
+        </div>
+           
       <div
         className={
           mostrarComponente
@@ -48,16 +37,18 @@ const InputNumero = ({
         }
       >
         <input
-          class="form-check-input"
+          className="form-check-input"
           type="checkbox"
           value=""
           id="flexCheckChecked"
-          checked={checked}
+          defaultChecked={defaultChecked}
+          disabled={disabled}
         />
-        <label class="form-check-label" for="flexCheckChecked">
+        <label className="form-check-label" htmlFor="flexCheckChecked">
           {nameCheck}
         </label>
-      </div>
+      </div> 
+      </div> 
     </div>
   );
 };

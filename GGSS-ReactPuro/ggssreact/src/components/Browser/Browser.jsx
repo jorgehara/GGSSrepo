@@ -14,7 +14,7 @@ const Browser = () => {
     apellido: "",
   });
   const url = "http://54.243.192.82/api/Empleados";
-
+  const {  saveDisable, disable} = useContext(employeContext);
   useEffect(() => {
     axios.get(url).then((res) => {
       let data = res.data.records;
@@ -46,18 +46,23 @@ const Browser = () => {
 
   function onInputChange(evt) {
     const name = evt.target.name;
-    const value = evt.target.value;
+    const value = (evt.target.value).toUpperCase();
 
     let newEmpData = { ...empData };
     newEmpData[name] = value;
     setEmpData(newEmpData);
   }
 
+  function habilitaEdit(e){
+    e.preventDefault();
+    saveDisable(false)
+  }
+
   return (
-    <div className='Lateral-Izquierdo'>
+    <div className='container-fluid '>
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
-      <div className="row mt-1 mr-2">
+      <div className="row mt-1 w-100">
         <input
           onChange={(e) => onInputChange(e)}
           value={empData.legajo}
@@ -68,7 +73,7 @@ const Browser = () => {
           placeholder="Ingrese Legajo "
         />
       </div>
-      <div className="row mt-1 mr-2">
+      <div className="row mt-1 mr-2 w-100">
         <input
           onChange={(e) => onInputChange(e)}
           value={empData.apellido}
@@ -80,20 +85,21 @@ const Browser = () => {
         />
       </div>
       <select
-        className="form-select row mt-1 selectMenu"
+        className="form-select row mt-1 selectMenu ml-4"
         multiple
         aria-label="multiple select example"
       >
-        {listEmpleados.map((emp) => {
+        {listEmpleados.map((emp, i) => {
           return (
             <option
+            key={i}
               onClick={(e) => onSelect(e, emp.apellido, emp.iDempleado)}
               value="1"
             >{`${emp.apellido}, ${emp.nombres}`}</option>
           );
         })}
       </select>
-      <div class="d-inline-flex">
+      <div className="d-inline-flex">
         <ButtonLarge
           color="danger"
           tamaño=""
@@ -105,6 +111,7 @@ const Browser = () => {
           tamaño=""
           justyfy="end m-1"
           nameButton="Modificar"
+          onClick={habilitaEdit}
         />
         <ButtonLarge
           color="danger"

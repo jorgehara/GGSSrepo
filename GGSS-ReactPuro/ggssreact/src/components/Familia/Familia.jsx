@@ -13,20 +13,42 @@ import TextArea from "../Inputs/TextArea/TextArea";
 import TableBasic from "../Tables/TableBasic";
 import InputParentescoOpNac from "../Inputs/InputParentescoOpcions/InputParentescoOpNac";
 import InputParentescoOpEstudios from "../Inputs/InputParentescoOpcions/InputParentescoOpEstudios";
+import { useEffect } from "react";
+import { getData } from "../../services/fetchAPI";
+import { useState } from "react";
 
 const Familia = () => {
-  const { saveEmpl } = useContext(employeContext);
+  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable} = useContext(employeContext);
+
+    //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
+    const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
+    const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
+    const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];    
+    const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_masc); }) : []; 
+    const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_fem); }) : []; 
+    const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
+    const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nombrePais); }) : [];
+    const idPaisOrigen = saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
+    const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO"; 
+    const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i)=>{ return (nac.estudiosNivel); }) : [];
+    const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
+    const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
+    const estadosArray = saveEstado.map((m,i)=>{return (m.nombreEstado)});
+    const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => {return (est.nombreEstado)}) : null;
+    const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
+    const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
+    const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
+    //#endregion
   const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
-  const parentesco = [
-    "Primo",
-    "Hijo",
-    "Padre",
-    "Madre",
-    "Tio",
-    "Sobrino",
-    "Nieto",
-  ];
-  const paises = [
+  const urlParentesco = "http://54.243.192.82/api/Parentescos";
+
+  useEffect(()=>{
+    getData(urlParentesco, saveParentescos);
+  },[])
+  
+  const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
+  console.log(parentesco)
+  const paisess = [
     "Argentina",
     "Uruguay",
     "Paraguay",
@@ -49,12 +71,12 @@ const Familia = () => {
   return (
     <div className="Lateral-Derecho">
    
-   <div className="container-sm">
-      <div class="row border border-3 p-3">
-        <EmployeData />
+   <div className="container-fluid">
+      <div className="row border border-3">
+        <EmployeData disabled={disable}/>
         <div className="col-xl-6">
-          <div className="container-flex">
-            <div className="container mt-2">
+          <div className="container-fluid m-0">
+            <div className="container-fluid">
               <div className="row">
                 <InputChecked
                   value={
@@ -65,6 +87,7 @@ const Familia = () => {
                   nameInput="Apellido y Nombres"
                   nameCheck="Fijar"
                   placeHolder="Apellido y Nombres"
+                  disabled={disable}
                 />
                 <InputMultiple
                   optionsDNI={tipoDNI}
@@ -79,15 +102,18 @@ const Familia = () => {
                   nameSecond="Femenino"
                   nameInputRadio=""
                   placeholder="17654987"
+                  disable={disable}
                 />
                 <InputParentesco
                   nameInput="Parentesco"
-                  array={parentesco}
+                  array={parentesco!== undefined ? parentesco : null}
                   placeHolder="Parentesco"
                   nameButton="..."
                   nameCheck="Fijar"
                   checked=""
                   display={true}
+                  idModal="Parentescos"
+                  disable={disable}
                 />
                 <InputDateFlia
                   value={
@@ -98,8 +124,28 @@ const Familia = () => {
                   display={true}
                   checked={false}
                   nameInput="Nacimiento"
+                  idInput="fechaNac"
+                  disable={disable}
                 />
-                <InputParentescoOpcions
+                <InputParentescoOpEstudios
+                  nameInput="Estudios"
+                  array={estudios}
+                  propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
+                  placeHolder="Estudios"
+                  nameButton="..."
+                  nameCheck="Fijar"
+                  checked=""
+                  display={true}
+                  idModal="Estudios"
+                  disable={disable}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-xl-6">
+          
+          <InputParentescoOpcions
                   nameInput="Pais de Origen"
                   array={paises}
                   placeHolder="Paises"
@@ -107,45 +153,46 @@ const Familia = () => {
                   nameCheck="Fijar"
                   checked=""
                   display={false}
+                  propArray={paisSelected !== undefined ? paisSelected.nombrePais : ""}
+                  idModal="paises"
+                  disable={disable}
                 />
                 <InputParentescoOpNac
                   nameInput="Nacionalidad"
-                  array={paises}
+                  array={nacionalidades !== undefined ? nacionalidades : "Nacionalidad"}
                   placeHolder="Nacionalidad"
                   nameButton="..."
                   nameCheck="Fijar"
                   checked=""
                   display={false}
+                  masculinos={nacionalidadesMasculinas}
+                  femeninos={nacionalidadesFemeninas}
+                  sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
+                  propArray="ARGENTINO"
+                  idModal="nacionalidades"
+                  disable={disable}
                 />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-6">
-          <InputParentescoOpEstudios
-            nameInput="Estudios"
-            array={paises}
-            placeHolder="Estudios"
-            nameButton="..."
-            nameCheck="Fijar"
-            checked=""
-            display={true}
-          />
           <InputDateFlia
             value={
-              saveEmpl[0] !== undefined ? saveEmpl[0].fechaNacimiento : null
+              saveEmpl[0] !== undefined ? saveEmpl[0].fechaEgreso : null
             }
             display={true}
             checked={false}
             nameInput="Fecha Baja"
+            idInput="fechaBaja"
+            disable={disable}
           />
-          <TextArea inputName="Observaciones" maxLength="255" value="" />
+            <TextArea inputName="Observaciones" maxLength="255" value="" disabled={disable}/>
+          
+          
           {/* <ButtonCancelarAceptar 
           // cancelar="" 
           // aceptar=""  /> */}
         </div>
-        <TableBasic columns={columns} />
-        <ButtonCancelarAceptar cancelar="Quitar" aceptar="Agregar" />
+        <div className="d-flex flex-row align-items-center">
+          <TableBasic columns={columns} disabled={disable}/>
+          <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable}/>            
+        </div>
       </div>
     </div>
 

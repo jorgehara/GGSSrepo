@@ -1,11 +1,11 @@
 import React from 'react'
 import './TextArea.css'
 
-const TextArea = ({inputName, maxLength, value}) => {
+const TextArea = ({inputName, maxLength, value, disabled}) => {
   return (
     <div className='row'>
-        <div className='form__grupo__label mt-2 pl-1'>
-            <label className='form__grupo__label__label' for="legajo">{inputName}</label>
+        <div className='form__grupo__label pl-1'>
+            <label className='form__grupo__label__label m-0' htmlFor="legajo">{inputName}</label>
         </div>
         {/* ver el height en Boostrap */}
         <div className='form__grupo__inputs_Obs'>
@@ -13,11 +13,13 @@ const TextArea = ({inputName, maxLength, value}) => {
                 value={value}
                 placeholder="Ingrese Observaciones" 
                 id="" 
-                cols="41" 
-                rows="5"
+                cols="21" 
+                rows="1"
                 name="" 
                 maxLength={maxLength}
-                ></textarea>
+                disabled={disabled}
+                >
+        </textarea>
     </div>
     </div>
   )

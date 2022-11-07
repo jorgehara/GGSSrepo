@@ -1,7 +1,7 @@
 import React from 'react'
 import TextArea from '../../../Inputs/TextArea/TextArea'
 
-const Departamentos = () => {
+const Departamentos = ({aDepartamentos}) => {
     return (
 
         <>
@@ -9,21 +9,25 @@ const Departamentos = () => {
 
                 <label htmlFor="data">Datos: </label>
                 <br />
-                <select class="form-select row mt-1" multiple aria-label="multiple select example">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select className="form-select row mt-1" multiple aria-label="multiple select example">
+                    {
+                        aDepartamentos !== undefined && aDepartamentos.map((op,i)=>{
+                            return(
+                                <option key={i} value="1">{op}</option>
+                            )
+                        })
+                    }
                 </select>
 
             </div>
-            <div class="bodyInputs">
+            <div className="bodyInputs">
 
-                <label for="provincia" style={{ marginRight: "15px" }}>Provincia:</label>
+                <label htmlFor="provincia" style={{ marginRight: "15px" }}>Provincia:</label>
                 <input type="text" name="provincia" id="" />
 
                 <br />
 
-                <label for="departamento" style={{ marginRight: "15px" }}> Departamento: </label>
+                <label hymlFor="departamento" style={{ marginRight: "15px" }}> Departamento: </label>
                 <input type="text" name="departamento" />
 
                 <br />
@@ -33,11 +37,11 @@ const Departamentos = () => {
                 <hr />
 
                 <div className="btnInputs">
-                    <button type="button" class="btn btn-success btnAceptar">
+                    <button type="button" className="btn btn-success btnAceptar">
                         ACEPTAR
                     </button>
 
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" className="btn btn-danger">
                         CANCELAR
                     </button>
                 </div>

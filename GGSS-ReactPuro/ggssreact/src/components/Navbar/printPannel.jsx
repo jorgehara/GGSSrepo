@@ -2,7 +2,7 @@ import React from 'react'
 
 const printPannel = () => {
   return (
-    <div class=""> 
+    <div className=""> 
       <p>aca van los botones de impresion de reportes</p>
     </div>
   )

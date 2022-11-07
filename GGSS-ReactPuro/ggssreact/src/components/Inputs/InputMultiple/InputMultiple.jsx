@@ -10,6 +10,7 @@ const InputMultiple = ({
   nameSecond,
   nameInputRadio,
   placeholder,
+  disable
 }) => {
   const [valorRadioM, setValorRadioM] = useState(false);
   const [valorRadioF, setValorRadioF] = useState(false);
@@ -32,28 +33,29 @@ const InputMultiple = ({
   };
   return (
     // <div className="container-flex align-items-center">
-      <div className="formulario__grupo">
-        <div className="">
-          <label class="formulario-label-DNIFamilia mt-1">{nameInputDNI}</label>
+      <div className="formulario__grupo ">
+        <div className="d-flex justify-content-center align-items-center">
+          <label className="formulario-label-DNIFamilia mt-1 ">{nameInputDNI}</label>
         </div>
-        <div className="ml-1">
-          <select class=" form-control-sm ml-4 px-0 mt-1 mb-0">
-            {optionsDNI.map((op) => {
-              return <option>{op}</option>;
+        <div className="ml-1 d-flex justify-content-center align-items-center">
+          <select className="formulario-input-DNI form-select  px-0" disabled={disable}>
+            {optionsDNI.map((op, i) => {
+              return <option key={i}>{op}</option>;
             })}
           </select>
         </div>
-        <div className="form__grupo__input2">
+        <div className="form__grupo__input2 d-flex justify-content-center align-items-center">
           <input
             type="text"
-            maxlength="8"
+            maxLength="8"
             value={valueDNI}
             className="formulario-input-DNI px-0 mt-0 mb-0"
             placeholder={placeholder}
+            disabled={disable}
           ></input>
         </div>
         <div className="form__grupo__icon">
-          <i class="fas fa-times-circle"></i>
+          <i className="fas fa-times-circle"></i>
         </div>
         <div className="form__grupo__error">
           <p></p>
@@ -64,7 +66,8 @@ const InputMultiple = ({
               {nameInputRadio}
             </label>
           </div>
-          <div className="form-check form-check-inline">
+          <div className="d-flex flex-row justify-content-center align-items-center pt-4 pb-4">
+          
             <input
               className="form-check-input"
               type="radio"
@@ -73,25 +76,26 @@ const InputMultiple = ({
               checked={valorRadioM}
               onChange={(e) => setValorRadioM(e.target.value)}
               value={valorRadioM}
+              disabled={disable}
             />
             <label className="form-check-label" htmlFor="inlineCheckbox1">
               {nameFirst}
             </label>
-          </div>
-          <div className="form-check form-check-inline">
             <input
-              className="form-check-input"
+              className="form-check-input p-1"
               type="radio"
               id="inlineCheckbox2"
               name={nameInputRadio}
               checked={valorRadioF}
               onChange={(e) => setValorRadioF(e.target.value)}
               value={valorRadioF}
+              disabled={disable}
             />
             <label className="form-check-label" htmlFor="inlineCheckbox2">
               {nameSecond}
             </label>
           </div>
+          
         </div>
       </div>
     // </div>

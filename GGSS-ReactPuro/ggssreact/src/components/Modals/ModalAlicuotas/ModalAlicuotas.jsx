@@ -3,7 +3,7 @@ import React from 'react'
 const ModalAlicuotas = ({ idModal, nameModal, array }) => {
     return (
         <div>
-            <div className="modal fade" id={idModal} tabindex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
+            <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
                 <div className="modal-dialog modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -17,7 +17,7 @@ const ModalAlicuotas = ({ idModal, nameModal, array }) => {
 
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select class="form-select row mt-1" multiple aria-label="multiple select example">
+                                <select className="form-select row mt-1" multiple aria-label="multiple select example">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
@@ -25,14 +25,14 @@ const ModalAlicuotas = ({ idModal, nameModal, array }) => {
 
                             </div>
                             <div className="bodyInputs">
-                                <label for="detalle" style={{ marginRight: "15px" }}>Detalle: </label>
+                                <label htmlFor="detalle" style={{ marginRight: "15px" }}>Detalle: </label>
                                 <input type="text" name="detalle" />
                                 <br />
-                                <label for="alicuota" style={{ marginRight: "15px" }}>Alicuota: </label>
+                                <label htmlFor="alicuota" style={{ marginRight: "15px" }}>Alicuota: </label>
                                 <input type="number" name="alicuota" min={"0"} />
                                 <br />
                                 <input type="checkbox" name="nCuit" style={{ marginRight: "5px" }} />
-                                <label for="nCuit">Pide Nº CUIT</label>
+                                <label htmlFor="nCuit">Pide Nº CUIT</label>
 
                                 <br />
                                 <hr />
