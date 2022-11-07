@@ -22,7 +22,40 @@ import { getData } from "../../services/fetchAPI";
 
 const DatosPersonales = () => {
   const optionsDNI = ["D.N.I.", "L.C.", "L.E."];
+  const [datosPersonales, setDatosPersonales] = useState({
+    numLegajo : "",
+    apellidoInput : "",
+    nombresInput : "",
+    documentoInput : "",
+    inputcuil : "",
+    telefonoInput : "",
+    estadoCivilInput : "",
+    nacionalidadesInput : "",
+    dniSelected : ""
+  })
+  console.log(datosPersonales.numLegajo);
+  console.log(datosPersonales.apellidoInput);
+  console.log(datosPersonales.nombresInput);
+  console.log(datosPersonales.documentoInput);
+  console.log(datosPersonales.inputcuil);
+  console.log(datosPersonales.telefonoInput);
+  console.log(datosPersonales.estadoCivilInput);
+  console.log(datosPersonales.nacionalidadesInput);
+  console.log(datosPersonales.dniSelected);
 
+  
+  
+
+  //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
+  function onChange(evt) {
+    const name = evt.target.name;
+    const value = (evt.target.value);
+
+    let newDatosPersonales = { ...datosPersonales };
+    newDatosPersonales[name] = value;
+    setDatosPersonales(newDatosPersonales);
+  }
+  //#endregion
   //------------------------------------------------------------------------------CONTEXT
   const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveDisable, disable} = useContext(employeContext);
   //------------------------------------------------------------------------------ESTADOS
@@ -55,6 +88,10 @@ const DatosPersonales = () => {
   const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
   const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
   const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
+  const idTipoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDtipoDocumento : 0;
+  const dniSelectedOption = saveTipoDNI !== undefined ? saveTipoDNI.find(tipo => tipo.iDtipoDocumento === idTipoSelected) : null;
+
+ 
   //#endregion
   
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
@@ -169,21 +206,30 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].legajo
                               : null
                           }
-                          nameInput="Legajo N°"
+                          nameInput="numLegajo"
+                          idInput="numLegajo"
                           messageError="Solo puede contener números."
                           placeHolder="N° Legajo"
                           disabled={disable}
+                          onChange={onChange}
+                          nameLabel="Legajo"
+                          datosPersonalesValue={datosPersonales.numLegajo !== undefined ? datosPersonales.numLegajo : "N° Legajo"}
                         />
                         <InputForm
                           value={
+
                             saveEmpl[0] !== undefined
                               ? saveEmpl[0].apellido
                               : null
                           }
-                          nameInput="Apellido"
+                          nameInput="apellidoInput"
+                          idInput="apellidoInput"
                           messageError="Solo puede contener letras."
                           placeHolder="Ingrese Apellidos"
                           disabled={disable}
+                          onChange={onChange}
+                          nameLabel="Apellidos"
+                          datosPersonalesValue={datosPersonales.apellidoInput !== undefined ? datosPersonales.apellidoInput : "Apellido"}
                         />
                         <InputForm
                           value={
@@ -191,10 +237,14 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].nombres
                               : null
                           }
-                          nameInput="Nombres"
+                          nameInput="nombresInput"
+                          idInput="nombresInput"
                           messageError="Solo puede contener letras."
                           placeHolder="Ingrese Nombres"
                           disabled={disable}
+                          onChange={onChange}
+                          nameLabel="Nombres"
+                          datosPersonalesValue={datosPersonales.nombresInput !== undefined ? datosPersonales.nombresInput : "Nombres"}
                         />
                         <DNICboBox
                           value={
@@ -202,23 +252,33 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].nroDocumento
                               : null
                           }
-                          nameInput="Documento"
+                          nameInput="documentoInput"
+                          idInput="documentoInput"
                           messageError="Solo puede contener números, sin puntos."
                           placeHolder="23456789"
                           array={tiposDNI}
                           disabled={disable}
+                          nameLabel="D.N.I"
+                          onChange={onChange}
+                          selectedId="dniSelected"
+                          propArray={dniSelectedOption !== undefined ? dniSelectedOption.tipoDocumento : null}
+                          datosPersonalesValue={datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : "N° Documento"}
+                          datosPersonalesValue2={datosPersonales.dniSelected !== undefined ? datosPersonales.dniSelected :"D.N.I"}
                         />
                         <InputButton
                           value={
                             saveEmpl[0] !== undefined ? saveEmpl[0].cuil : null
                           }
                           id="inputCuil"
+                          nameInput="inputCuil"
                           nameLabel="C.U.I.L"
                           nameButton="Generar"
                           placeholder="##-########-#"
                           idModal="modalCuil"
                           array={[]}
                           disabled={disable}
+                          onChange={onChange}
+                          datosPersonalesValue={datosPersonales.inputcuil !== undefined ? datosPersonales.inputcuil : "N° CUIL"}
                         />
                         <InputForm
                           value={
@@ -226,10 +286,14 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].telFijo
                               : null
                           }
-                          nameInput="Teléfono"
+                          nameInput="telefonoInput"
+                          idInput="telefonoInput"
                           messageError="Solo puede contener números."
                           placeHolder="11352458965"
                           disabled={disable}
+                          onChange={onChange}
+                          nameLabel="Telefono"
+                          datosPersonalesValue={datosPersonales.telefonoInput !== undefined ? datosPersonales.telefonoInput : "N° Teléfono"}
                         />
                        <InputCbo
                           value={
@@ -247,6 +311,9 @@ const DatosPersonales = () => {
                           display={true}
                           idModal="EstadoCivil"
                           disabled={disable}
+                          nameInput="estadoCivilInput"
+                          idInput="estadoCivilInput"
+                          onChange={onChange}
                         />
                        <InputCbo
                           value={
@@ -264,6 +331,8 @@ const DatosPersonales = () => {
                           display={true}
                           idModal="nacionalidades"
                           disabled={disable}
+                          idInput="nacionalidadesInput"
+                          onChange={onChange}
                         />
                       </div>
                       <div className="tercera_columna col-xl-4">
@@ -312,6 +381,7 @@ const DatosPersonales = () => {
                           messageError="Solo puede contener números."
                           placeHolder="Ingrese su celular"
                           disabled={disable}
+                          nameLabel="Celular"
                         />
                         <InputForm
                           value={
@@ -321,6 +391,7 @@ const DatosPersonales = () => {
                           messageError="Ingrese un email válido."
                           placeHolder="correo@correo.com.ar"
                           disabled={disable}
+                          nameLabel="Email"
                         />
                         <InputCbo
                           value={
