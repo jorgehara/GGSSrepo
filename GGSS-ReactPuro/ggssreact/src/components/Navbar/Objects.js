@@ -183,6 +183,13 @@ export const objectDocumentacion = [
 ]
 
 
+// --------------- DYNAMIC TABLES 
+
+export const tableReduccionHeadings = [
+  { heading: "Desde" },
+  { heading: "Hasta" },
+  { heading: "% Reduce" }
+]
 
 
 

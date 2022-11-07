@@ -7,8 +7,9 @@ import ModalParentescos from '../Modals/ModalParentescos/ModalParentescos'
 import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 import ModalAlicuotas from '../Modals/ModalAlicuotas/ModalAlicuotas'
-import { objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion  } from './Objects'
+import { objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings  } from './Objects'
 import { employeContext } from '../../context/employeContext';
+import ModalTable from '../Modals/ModalTable/ModalTable';
 
 const Navbar = () => {
 
@@ -71,11 +72,12 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 						<li class="dropdown-submenu">
 						<a className='dropdown-item' tabindex="-1" href="#">Para Empleados</a>
 							<ul class="dropdown-menu">
-								<div className="datosEmpleados">
+								<div className="datosEmpleados" style={{fontSize: "13px"}}>
 									<ButtonCallModal idModal="EstadoCivil" nameButton="Estados Civiles" useNavbar={true} />
 									<ButtonCallModal idModal="Estudios" nameButton="Estudios" useNavbar={true} />
 									<ButtonCallModal idModal="TipoDocumento" nameButton="Tipo de Documento" useNavbar={true} />
 									<ButtonCallModal idModal="Parentescos" nameButton="Parentescos" useNavbar={true} />
+									<hr />
 									<ButtonCallModal idModal="estadosEmpleados" nameButton="Estados para empleados" useNavbar={true} />
 									<ButtonCallModal idModal="cargos" nameButton="Cargos" useNavbar={true} />
 									<ButtonCallModal idModal="tareasDesempeñadas" nameButton="Tareas Desempeñadas" useNavbar={true} />
@@ -83,9 +85,11 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 									<ButtonCallModal idModal="modosDeContratacion" nameButton="Modos de Contratación" useNavbar={true} />
 									<ButtonCallModal idModal="modosDeLiquidacion" nameButton="Modos de Liquidacion" useNavbar={true} />
 									<ButtonCallModal idModal="motivosEgreso" nameButton="Motivos de Egreso" useNavbar={true}/>
+									<hr />
 									<ButtonCallModal idModal="paises" nameButton="Paises" useNavbar={true} />
 									<ButtonCallModal idModal="pdlb" nameButton="Provincias - Departamentos - Localidades - Barrios" useNavbar={true} />
 									<ButtonCallModal idModal="calles" nameButton="Calles" useNavbar={true} />
+									<hr />
 									<ButtonCallModal idModal="empleadores" nameButton="Empleadores" useNavbar={true} />
 									<ButtonCallModal idModal="alicuotas" nameButton="Alicuotas" useNavbar={true} />								
 								</div>
@@ -96,24 +100,31 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 						<li class="dropdown-submenu">
 						<a className='dropdown-item' tabindex="-1" href="#">Para Liquidación</a>
 							<ul class="dropdown-menu">
-								<div className="datosLiquidacion">
+								<div className="datosLiquidacion" style={{fontSize: "13px"}}>
 									<ButtonCallModal idModal="Bancos" nameButton="Bancos" useNavbar={true} />
 									<ButtonCallModal idModal="Telefonia" nameButton="Empresas de telefonia celular" useNavbar={true} />
+									<hr />
 									<ButtonCallModal idModal="Sindicatos" nameButton="Sindicatos" useNavbar={true} />
 									<ButtonCallModal idModal="ObrasSociales" nameButton="Obras Sociales" useNavbar={true} />
 									<ButtonCallModal idModal="AFJP" nameButton="A.F.J.P" useNavbar={true} />
+									<hr />
 									<ButtonCallModal idModal="CentrosCosto" nameButton="Centros de Costo" useNavbar={true} />
 									<ButtonCallModal idModal="SectoresDeptos" nameButton="Sectores/Departamentos" useNavbar={true} />
 									<ButtonCallModal idModal="Direcciones" nameButton="Direcciones" useNavbar={true} />
 									<ButtonCallModal idModal="LugaresPago" nameButton="Lugares de Pago" useNavbar={true} />
+									<hr />
 									<ButtonCallModal idModal="Documentacion" nameButton="Documentación que presentan los empleados" useNavbar={true} />
+									<hr />
 									<ButtonCallModal idModal="Reducción" nameButton="Reducción de Deducciones de Ganancias" useNavbar={true} />
 									<ButtonCallModal idModal="Escala" nameButton="Escala de Ganancias" useNavbar={true} />
 									<ButtonCallModal idModal="Deducciones" nameButton="Deducciones de Ganancias" useNavbar={true} />
+									<hr />
 									<ButtonCallModal idModal="Valores" nameButton="Valores Permanencia Categoría" useNavbar={true} />
+									<hr />
 									<ButtonCallModal idModal="Convenios" nameButton="Convenios, Categorías, Básicos y Antigüedad" useNavbar={true} />
 									<ButtonCallModal idModal="Jerarquía" nameButton="Jerarquía de Categorías" useNavbar={true} />
 									<ButtonCallModal idModal="Licencias" nameButton="Licencias por Antigüedad" useNavbar={true} />
+									<hr />
 									<ButtonCallModal idModal="Plan" nameButton="Plan de Cuentas" useNavbar={true} />
 								</div>
 							</ul>
@@ -160,6 +171,8 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 				<BasicModal idModal="Direcciones" nameModal="Direcciones" placeholder={objectDirecciones} textArea={true} relacion={true} nameRelacion="Sector/Dpto" />
 				<BasicModal idModal="LugaresPago" nameModal="Lugares de Pago" placeholder={objectLugaresPago} textArea={true} />
 				<BasicModal idModal="Documentacion" nameModal="Documentacion" placeholder={objectDocumentacion} textArea={true} />
+				<ModalTable idModal="Reduccion" nameModal="Reduccion" column={tableReduccionHeadings} />
+				
 
 				<li class="nav-item">
 					<a class="nav-link" href="/">Salir</a>

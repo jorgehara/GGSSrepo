@@ -9,7 +9,7 @@ const TextArea = ({inputName, maxLength, value, disabled}) => {
         </div>
         {/* ver el height en Boostrap */}
         <div className='form__grupo__inputs_Obs'>
-        <textarea className="form-control-obs txtArea" 
+        <input className="form-control-obs txtArea" 
                 value={value}
                 placeholder="Ingrese Observaciones" 
                 id="" 
@@ -19,7 +19,7 @@ const TextArea = ({inputName, maxLength, value, disabled}) => {
                 maxLength={maxLength}
                 disabled={disabled}
                 >
-        </textarea>
+        </input>
     </div>
     </div>
   )
