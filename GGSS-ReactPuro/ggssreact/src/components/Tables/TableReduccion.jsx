@@ -8,7 +8,8 @@ const TableReduccion = ({column, data}) => {
         <div className="table-responsive">
             <table className="table">
                 <thead className="tableHeader text-light">
-                    <tr>{column !== undefined ? column.map((item, index) => <TableHeadItem key={index} item={item}/> ) : null}</tr>
+
+                    <tr>{column !== undefined ? column.map((item, index) => {return (<TableHeadItem key={index} item={item}/>)}) : null}</tr>
                 </thead>
                 <tbody>
                     <tr>
