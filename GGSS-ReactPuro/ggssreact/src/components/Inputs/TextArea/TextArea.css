@@ -7,16 +7,13 @@
 }
 
 .txtArea{
-    max-width: 350px;
-    max-height: 250px;
-    width: 400px;
+    width: 320px;
+    height: 150px;
     resize: none;
+    padding: 7px;
 }
 
 .txtArea:focus{
     background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
 }
 
-.txtArea::placeholder{
-    padding: 8px;
-}

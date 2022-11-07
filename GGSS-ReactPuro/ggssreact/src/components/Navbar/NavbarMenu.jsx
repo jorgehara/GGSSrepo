@@ -100,12 +100,12 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 									<ButtonCallModal idModal="Bancos" nameButton="Bancos" useNavbar={true} />
 									<ButtonCallModal idModal="Telefonia" nameButton="Empresas de telefonia celular" useNavbar={true} />
 									<ButtonCallModal idModal="Sindicatos" nameButton="Sindicatos" useNavbar={true} />
-									<ButtonCallModal idModal="Obras Sociales" nameButton="Obras Sociales" useNavbar={true} />
+									<ButtonCallModal idModal="ObrasSociales" nameButton="Obras Sociales" useNavbar={true} />
 									<ButtonCallModal idModal="AFJP" nameButton="A.F.J.P" useNavbar={true} />
-									<ButtonCallModal idModal="Centros de Costo" nameButton="Centros de Costo" useNavbar={true} />
-									<ButtonCallModal idModal="Sectores/Departamentos" nameButton="Sectores/Departamentos" useNavbar={true} />
+									<ButtonCallModal idModal="CentrosCosto" nameButton="Centros de Costo" useNavbar={true} />
+									<ButtonCallModal idModal="SectoresDeptos" nameButton="Sectores/Departamentos" useNavbar={true} />
 									<ButtonCallModal idModal="Direcciones" nameButton="Direcciones" useNavbar={true} />
-									<ButtonCallModal idModal="Lugares de Pago" nameButton="Lugares de Pago" useNavbar={true} />
+									<ButtonCallModal idModal="LugaresPago" nameButton="Lugares de Pago" useNavbar={true} />
 									<ButtonCallModal idModal="Documentacion" nameButton="Documentación que presentan los empleados" useNavbar={true} />
 									<ButtonCallModal idModal="Reducción" nameButton="Reducción de Deducciones de Ganancias" useNavbar={true} />
 									<ButtonCallModal idModal="Escala" nameButton="Escala de Ganancias" useNavbar={true} />

@@ -8,7 +8,7 @@ const TextArea = ({inputName, maxLength, value, disabled}) => {
             <label className='form__grupo__label__label m-0' htmlFor="legajo">{inputName}</label>
         </div>
         {/* ver el height en Boostrap */}
-        <div className='form__grupo__inputs_Obs' style={{height: "150px;"}}>
+        <div className='form__grupo__inputs_Obs'>
         <textarea className="form-control-obs txtArea" 
                 value={value}
                 placeholder="Ingrese Observaciones" 
