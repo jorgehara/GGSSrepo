@@ -20,3 +20,12 @@ cursor: pointer;
 .image-upload-wrap:hover {
     background-color: transparent;
 }
+.inputImage {
+    width: 200px;
+    height: 200px;
+    background: url("../../images/plus.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid ;
+
+}
