@@ -55,7 +55,7 @@ function InputFile({disabled}) {
           
             </input>
             <div className="d-flex justify-content-center align-items-center center ml-1 mr-6 ">
-              <button class={`icon-btn add-btn position-absolute ${displayButton}`} disabled={disabled}>
+              <button type="file" class={`browse icon-btn add-btn position-absolute ${displayButton}`} disabled={disabled}>
                 <div class="add-icon" disabled={disabled}></div>
                 <div class="btn-txt" disabled={disabled}></div>
               </button>

@@ -20,7 +20,6 @@ const TableBasic1 = ({ columns , value}) => {
   
     
 
-  console.log(valor.toString())
   return (
     <>
       <div className="row mt-5 overflow-scroll">
