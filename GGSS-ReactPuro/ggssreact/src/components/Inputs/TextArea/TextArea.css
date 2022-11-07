@@ -10,6 +10,7 @@
     max-width: 350px;
     max-height: 250px;
     width: 400px;
+    resize: none;
 }
 
 .txtArea:focus{
