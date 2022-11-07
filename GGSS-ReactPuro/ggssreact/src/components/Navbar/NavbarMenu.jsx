@@ -115,7 +115,7 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 									<hr />
 									<ButtonCallModal idModal="Documentacion" nameButton="Documentación que presentan los empleados" useNavbar={true} />
 									<hr />
-									<ButtonCallModal idModal="Reducción" nameButton="Reducción de Deducciones de Ganancias" useNavbar={true} />
+									<ButtonCallModal idModal="Reduccion" nameButton="Reducción de Deducciones de Ganancias" useNavbar={true} />
 									<ButtonCallModal idModal="Escala" nameButton="Escala de Ganancias" useNavbar={true} />
 									<ButtonCallModal idModal="Deducciones" nameButton="Deducciones de Ganancias" useNavbar={true} />
 									<hr />

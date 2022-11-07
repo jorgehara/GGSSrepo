@@ -2,20 +2,29 @@ import React from 'react'
 import './TableBootstrap.css'
 
 const TableReduccion = ({column, data}) => {
-
-    console.log(column)
     return (
-        <div className="table-responsive">
-            <table className="table">
+        <div className="table-responsive" style={{margin: "0 auto"}}>
+            <table className="table" style={{width: "1000px", textAlign: "center"}}>
                 <thead className="tableHeader text-light">
-
-                    <tr>{column !== undefined ? column.map((item, index) => {return (<TableHeadItem key={index} item={item}/>)}) : null}</tr>
+                    <tr>
+                        {column.map((item, index) => <TableHeadItem key={index} item={item}/> )}
+                    </tr>
                 </thead>
                 <tbody>
+                    <tr>      
+                        <td>Cell</td>
+                        <td>Cell</td>
+                        <td>Cell</td>
+                    </tr>
+                    <tr>      
+                        <td>Cell</td>
+                        <td>Cell</td>
+                        <td>Cell</td>
+                    </tr>
                     <tr>
-                        <td>asdasd</td>
-                        <td>gsdghsd</td>
-                        <td>dfghtrtr</td>
+                        <td>Cell</td>
+                        <td>Cell</td>
+                        <td>Cell</td>
                     </tr>
                 </tbody>
             </table>
@@ -23,8 +32,7 @@ const TableReduccion = ({column, data}) => {
     )
 }
 
-const TableHeadItem = ({ item }) => <th>{console.log(item)}</th>
-
-// const TableRow = ({ item }) => 
+const TableHeadItem = ({ item }) => <th>{item.heading}</th>
 
 export default TableReduccion
+
