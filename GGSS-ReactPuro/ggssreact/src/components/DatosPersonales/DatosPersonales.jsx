@@ -467,12 +467,14 @@ const DatosPersonales = () => {
                         <TextArea inputName="Obs. Estudios" maxLength="55" disabled={disable} />
                       </div>
                       <div className="col-xl-3">
-                        <InputFile 
-                        imageActual={imgData}
-                        inputName="Arrastre su imagen" 
-                        disabled={disable}/>
-
-                        <Prueba/>
+                        <img
+                          className="border border-3 imgData"
+                          id="imagen"
+                          src={`data:image/jpeg;base64,${image}`}
+                          alt=""
+                          style={{ width: "150px;", height: "150px;" }}
+                        />
+                        <InputFile inputName="Arrastre su imagen" disabled={disable}/>
                       </div>
                     </div>
                   </form>
