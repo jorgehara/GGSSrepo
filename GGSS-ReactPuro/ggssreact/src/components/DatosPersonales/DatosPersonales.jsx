@@ -38,9 +38,14 @@ const DatosPersonales = () => {
     telefonoInput : "",
     estadoCivilInput : "",
     nacionalidadesInput : "",
-    dniSelected : ""
+    dniSelected : "",
+    inputSexo : "",
+    inputDateNac : "",
+    movil : "",
+    email : "",
+    estadosEmpleados : "",
+    estudiosInput : ""
   })
-  console.log(datosPersonales.numLegajo);
   console.log(datosPersonales.apellidoInput);
   console.log(datosPersonales.nombresInput);
   console.log(datosPersonales.documentoInput);
@@ -49,6 +54,7 @@ const DatosPersonales = () => {
   console.log(datosPersonales.estadoCivilInput);
   console.log(datosPersonales.nacionalidadesInput);
   console.log(datosPersonales.dniSelected);
+  console.log(datosPersonales.inputDateNac);
 
   //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
   function onChange(evt) {
@@ -94,8 +100,7 @@ const DatosPersonales = () => {
   const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
   const idTipoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDtipoDocumento : 0;
   const dniSelectedOption = saveTipoDNI !== undefined ? saveTipoDNI.find(tipo => tipo.iDtipoDocumento === idTipoSelected) : null;
-  const imgData = saveEmpl[0].obsFechaIngreso !== undefined ? saveEmpl[0].obsFechaIngreso :  "";
-
+  const numDoc = saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null;
  
   //#endregion
   
@@ -130,7 +135,8 @@ const DatosPersonales = () => {
   //#endregion
   
   //#region ------------------------------------------------------------------------------VALIDACIONES
-  
+
+
   const validateNumbers = (e) => {
     if (!/[0-9]/.test(e.key)) {
       setError("Ingrese sólo números");
@@ -167,6 +173,7 @@ const DatosPersonales = () => {
     }
   };
   //#endregion
+  console.log(saveEmpl[0] !== undefined ? saveEmpl[0] : null);
   
   return (
     //#region Menú Principal
@@ -266,7 +273,7 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           selectedId="dniSelected"
                           propArray={dniSelectedOption !== undefined ? dniSelectedOption.tipoDocumento : null}
-                          datosPersonalesValue={datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : "N° Documento"}
+                          datosPersonalesValue={datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : numDoc}
                           datosPersonalesValue2={datosPersonales.dniSelected !== undefined ? datosPersonales.dniSelected :"D.N.I"}
                         />
                         <InputButton
@@ -283,6 +290,12 @@ const DatosPersonales = () => {
                           disabled={disable}
                           onChange={onChange}
                           datosPersonalesValue={datosPersonales.inputcuil !== undefined ? datosPersonales.inputcuil : "N° CUIL"}
+                          funcionCuil={generateCuil}
+                          nroDocumento = {datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : numDoc}
+                          genre={saveEmpl[0] !== undefined || saveEmpl[0] === null
+                            ? saveEmpl[0].sexo
+                            : null}
+                            usaCuil = {true}
                         />
                         <InputForm
                           value={
@@ -353,7 +366,9 @@ const DatosPersonales = () => {
                           propArray={estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : ""}
                           masculinos=""
                           femeninos=""
+                          onChange={onChange}
                           display={true}
+                          idInput="estadosEmpleados"
                           idModal="estadosEmpleados"
                           disabled={disable}
                         />
@@ -363,8 +378,11 @@ const DatosPersonales = () => {
                           }
                           nameFirst="Masculino"
                           nameSecond="Femenino"
-                          nameInput="Sexo"
+                          nameLabel="Sexo"
+                          idInput="inputSexo"
                           disabled={disable}
+                          onChange={onChange}
+                          datosPersonalesValue={datosPersonales.inputSexo !== undefined ? datosPersonales.inputSexo : null}
                         />
                         <InputDate
                           value={
@@ -374,6 +392,9 @@ const DatosPersonales = () => {
                           }
                           nameInput="Nacimiento"
                           disabled={disable}
+                          idInput="inputDateNac"
+                          onChange={onChange}
+                          datosPersonalesValue={datosPersonales.inputDateNac !== undefined ? datosPersonales.inputDateNac : null}
                         />
                         <InputForm
                           value={
@@ -381,21 +402,27 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].telMovil
                               : null
                           }
-                          nameInput="Móvil"
+                          nameInput="movil"
+                          idInput="movil"
                           messageError="Solo puede contener números."
                           placeHolder="Ingrese su celular"
                           disabled={disable}
                           nameLabel="Celular"
+                          onChange={onChange}
+                          datosPersonalesValue={datosPersonales.movil !== undefined ? datosPersonales.movil : "Movil"}
                         />
                         <InputForm
                           value={
                             saveEmpl[0] !== undefined ? saveEmpl[0].mail : null
                           }
-                          nameInput="E-mail"
+                          nameInput="email"
+                          inputId="email"
                           messageError="Ingrese un email válido."
                           placeHolder="correo@correo.com.ar"
                           disabled={disable}
                           nameLabel="Email"
+                          onChange={onChange}
+                          datosPersonalesValue={datosPersonales.email !== undefined ? datosPersonales.email : "Email"}
                         />
                         <InputCbo
                           value={
@@ -411,8 +438,11 @@ const DatosPersonales = () => {
                           masculinos=""
                           femeninos=""
                           display={true}
-                          idModal="paises"
+                          idModal="estadosEmpleados"
                           disabled={disable}
+                          idInput="estadosEmpleados"
+                          onChange={onChange}
+                          datosPersonalesValue={datosPersonales.estadosEmpleados !== undefined ? datosPersonales.estadosEmpleados : "Email"}
                         />
                        <InputCbo
                           value={
@@ -430,6 +460,9 @@ const DatosPersonales = () => {
                           display={true}
                           idModal="Estudios"
                           disabled={disable}
+                          idInput="estudiosInput"
+                          onChange={onChange}
+                          datosPersonalesValue={datosPersonales.estudiosInput !== undefined ? datosPersonales.estudiosInput : "Email"}
                         />
                         <TextArea inputName="Obs. Estudios" maxLength="55" disabled={disable} />
                       </div>

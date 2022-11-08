@@ -3,20 +3,33 @@ import "./InputRadio.css";
 
 
 
-const InputRadio = ({ nameInput, nameFirst, nameSecond, value,disabled }) => {
+const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,nameLabel ,datosPersonalesValue}) => {
+
+  const [valor, setValor] = useState("");
   const [valorRadioM, setValorRadioM] = useState(false);
   const [valorRadioF, setValorRadioF] = useState(false);
 
   useEffect(() => {
     valueInput();
-  }, [valorRadioM, valorRadioF, value]);
+  }, [valorRadioM, valorRadioF, valor]);
+  useEffect(()=>{
+    setValor(datosPersonalesValue)
+  },[datosPersonalesValue])
+
+  useEffect(()=>{
+    setValor(value);
+  },[value])
+
+  console.log(valor) 
 
   const valueInput = () => {
-    if (value === "M") {
+    if (valor === "M") {
+      console.log("entro")
       setValorRadioM(true);
       setValorRadioF(false);
     }
-    if (value === "F") {
+    if (valor === "F") {
+      console.log("no entro")
       setValorRadioF(true);
       setValorRadioM(false);
     }
@@ -24,14 +37,14 @@ const InputRadio = ({ nameInput, nameFirst, nameSecond, value,disabled }) => {
   return (
     <div className="formulario__grupo__inputs__radio">
         <div className='form__grupo__label'>
-            <label className='formulario-label-Sexo'  htmlFor="legajo">{nameInput}</label>
+            <label className='formulario-label-Sexo'  htmlFor="legajo">{nameLabel}</label>
         </div>
         <div className="formulario-input-Sexo">
-          <input className="form-check-input" type="radio" id="inlineCheckbox1" name={nameInput} defaultChecked checked={valorRadioM} onChange={(e)=> setValorRadioM(e.target.value)} value={valorRadioM} disabled={disabled}/>
+          <input className="form-check-input" type="radio" id={idInput} name={idInput} defaultChecked checked={valorRadioM} onChange={(e)=> onChange(e)} value="M" disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox1">{nameFirst}</label>
         </div>
         <div className="formulario-input-SexoF">
-          <input className="form-check-input" type="radio" id="inlineCheckbox2" name={nameInput} defaultChecked checked={valorRadioF} onChange={(e)=> setValorRadioF(e.target.value)} value={valorRadioF} disabled={disabled}/>
+          <input className="form-check-input" type="radio" id="inlineCheckbox2" name={idInput} defaultChecked checked={valorRadioF} onChange={(e)=> onChange(e)} value="F" disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox2">{nameSecond}</label>
         </div>
     </div>
