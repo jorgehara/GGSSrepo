@@ -19,6 +19,9 @@ const EmpleadoContextProvider = (props) => {
   const [saveTipoDNI, setSaveTiposDNI] = useState([]);
   const [saveParen, setSaveParen] = useState([]);
   const [disable, setDisable] = useState(true);
+  const [saveFamiliar, setSaveFamiliar] = useState([]);
+  const [ saveFamiliarSelected ,setSaveFamiliarSelected] = useState([]);
+  const [ saveFamSelect ,setSaveFamSelect] = useState([]);
 
   function saveEstados(estado) {
     setSaveEstado(estado);
@@ -66,6 +69,15 @@ const EmpleadoContextProvider = (props) => {
   function saveDisable(disable){
     setDisable(disable)
   }
+  function saveFamiliares(familiar){
+    setSaveFamiliar(familiar)
+  }
+  function saveFamiliarPorEmpleado(param){
+    setSaveFamiliarSelected(param)
+  }
+  function saveFamiliarSelec(familiarSeleccionado){
+    setSaveFamSelect(familiarSeleccionado);
+  }
   return (
     <employeContext.Provider
       value={{
@@ -99,7 +111,13 @@ const EmpleadoContextProvider = (props) => {
         saveParentescos,
         saveParen,
         saveDisable,
-        disable
+        disable,
+        saveFamiliar,
+        saveFamiliares,
+        saveFamiliarSelected,
+        saveFamiliarPorEmpleado,
+        saveFamSelect,
+        saveFamiliarSelec
       }}
     >
       {props.children}

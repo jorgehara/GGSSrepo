@@ -14,12 +14,12 @@ import TableBasic from "../Tables/TableBasic";
 import InputParentescoOpNac from "../Inputs/InputParentescoOpcions/InputParentescoOpNac";
 import InputParentescoOpEstudios from "../Inputs/InputParentescoOpcions/InputParentescoOpEstudios";
 import { useEffect } from "react";
-import { getData } from "../../services/fetchAPI";
+import { getData, getFamiliarByIdEmpleado, getFamiliarByIdFamiliar } from "../../services/fetchAPI";
 import { useState } from "react";
 
 const Familia = () => {
-  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable} = useContext(employeContext);
-
+  const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec} = useContext(employeContext);
+  const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
     //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
     const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
     const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
@@ -41,13 +41,24 @@ const Familia = () => {
     //#endregion
   const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
   const urlParentesco = "http://54.243.192.82/api/Parentescos";
+  const urlFamiliares = "http://54.243.192.82/api/Familiares";
+  const idEmpleadoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDempleado  : 0;
 
   useEffect(()=>{
     getData(urlParentesco, saveParentescos);
   },[])
-  
+  useEffect(()=>{
+    getData(urlFamiliares, saveFamiliares);
+  },[])
+  useEffect(()=>{
+    getFamiliarByIdEmpleado(saveFamiliar, idEmpleadoSelected).then(res=> saveFamiliarPorEmpleado(res));
+
+  },[idEmpleadoSelected])
+
   const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
-  console.log(parentesco)
+  const parentSelected = familiarSeleccionado!== undefined ? familiarSeleccionado.iDparentesco : null;
+  const parenSeleccionado = saveParen !== undefined ? saveParen.find((par)=> par.iDparentesco === parentSelected) : null;
+  console.log(parenSeleccionado);
   const paisess = [
     "Argentina",
     "Uruguay",
@@ -57,17 +68,16 @@ const Familia = () => {
   ];
   const columns = [
     "Apellido y Nombre",
-    "Tipo",
     "N°Documento",
     "Sexo",
-    "Parentesco",
     "Nacimiento",
-    "Pais de Origen",
-    "Nacionalidad",
-    "Estudios",
-    "Fecha Baja",
-    "Obs",
+    "Parentesco",
   ];
+  function onSelect( saveFamiliar, idFamiliar) {
+    getFamiliarByIdFamiliar(saveFamiliar, idFamiliar).then((res) => {
+      setFamiliarSeleccionado(res);
+    });
+  }
   return (
     <div className="Lateral-Derecho">
    
@@ -79,10 +89,10 @@ const Familia = () => {
             <div className="container-fluid">
               <div className="row">
                 <InputChecked
-                  value={
-                    saveEmpl[0] !== undefined
+                  value={familiarSeleccionado === undefined ? 
+                    (saveEmpl[0] !== undefined
                       ? `${saveEmpl[0].apellido}, ${saveEmpl[0].nombres}`
-                      : null
+                      : null) : familiarSeleccionado.apellidoyNombres
                   }
                   nameInput="Apellido y Nombres"
                   nameCheck="Fijar"
@@ -93,10 +103,10 @@ const Familia = () => {
                   optionsDNI={tipoDNI}
                   nameInputDNI="Documento"
                   valueRadio={
-                    saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null
+                    familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null) : familiarSeleccionado.sexo
                   }
                   valueDNI={
-                    saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null
+                    familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null) : familiarSeleccionado.nroDocumento
                   }
                   nameFirst="Masculino"
                   nameSecond="Femenino"
@@ -113,13 +123,14 @@ const Familia = () => {
                   checked=""
                   display={true}
                   idModal="Parentescos"
+                  propArray={parenSeleccionado !== undefined ? parenSeleccionado.nombreParentesco : null}
                   disable={disable}
                 />
                 <InputDateFlia
                   value={
-                    saveEmpl[0] !== undefined
+                    familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined
                       ? saveEmpl[0].fechaNacimiento
-                      : null
+                      : null) : familiarSeleccionado.fechaNacimiento
                   }
                   display={true}
                   checked={false}
@@ -174,7 +185,7 @@ const Familia = () => {
                 />
           <InputDateFlia
             value={
-              saveEmpl[0] !== undefined ? saveEmpl[0].fechaEgreso : null
+              familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined ? saveEmpl[0].fechaEgreso : null) : familiarSeleccionado.fBaja
             }
             display={true}
             checked={false}
@@ -190,7 +201,7 @@ const Familia = () => {
           // aceptar=""  /> */}
         </div>
         <div className="d-flex flex-row align-items-center">
-          <TableBasic columns={columns} disabled={disable}/>
+          <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={saveFamiliarSelected !== undefined && saveFamiliarSelected !== null ? saveFamiliarSelected : []} parentescos={saveParen!== undefined ? saveParen : null} seleccionado={saveFamSelect}/>
           <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable}/>            
         </div>
       </div>

@@ -40,7 +40,6 @@ const DatosPersonales = () => {
     estadosEmpleados : "",
     estudiosInput : ""
   })
-  console.log(datosPersonales.numLegajo);
   console.log(datosPersonales.apellidoInput);
   console.log(datosPersonales.nombresInput);
   console.log(datosPersonales.documentoInput);
@@ -171,6 +170,7 @@ const DatosPersonales = () => {
     }
   };
   //#endregion
+  console.log(saveEmpl[0] !== undefined ? saveEmpl[0] : null);
   
   return (
     //#region Menú Principal
