@@ -492,14 +492,8 @@ const DatosPersonales = () => {
                       
                       
                       <div className="col-xl-3">
-                        <img
-                          className="border border-3 imgData"
-                          id="imagen"
-                          src={`data:image/jpeg;base64,${image}`}
-                          alt=""
-                          style={{ width: "150px;", height: "150px;" }}
-                        />
-                        <InputFile inputName="Arrastre su imagen" disabled={disable}/>
+                        
+                        <InputFile inputName="Arrastre su imagen" disabled={disable} imagen={`data:image/jpeg;base64,${image}`}/>
                       </div>
                     </div>
                   </form>
