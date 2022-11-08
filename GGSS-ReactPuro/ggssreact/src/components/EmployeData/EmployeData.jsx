@@ -63,13 +63,12 @@ const EmployeData = ({disabled}) => {
                   inputValue={
                     saveEmpl[0] !== undefined || saveEmpl[0] === null
                       ? saveEmpl[0].nroDocumento
-                      : null
-                  }
+                      : null}
                   nameLabel="NroDoc:"
                   disabled={disabled}
                 />
               </div>
-             </div>
+            </div>
               <div className="col-5  d-flex-column align-items-center">
                 <InputEmpData
                   idInput="estadoInfo"
