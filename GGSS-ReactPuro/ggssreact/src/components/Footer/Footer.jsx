@@ -5,7 +5,7 @@ import "./Footer.css"
 
 const Footer = () => {
   return (
-            <div className="d-flex border row">
+            <div className="d-flex border row fixed-bottom">
                 <div className='col-2'>
                     <ButtonLarge color="danger" tamaño="" justyfy="cemter m-1" nameButton="Imprimir Constancia de Asignaciones Familiares" />
                 </div>
@@ -22,7 +22,7 @@ const Footer = () => {
                     <ButtonLarge color="danger" tamaño="" justyfy="center mt-1" nameButton="Licencias Franquicias" />
                 </div>
                 <div className='col-2'>
-                    <Link className="btn btn-danger btn-lg d-flex justify-content-center newClass mt-1 w-75" to="/">Salir</Link>
+                    <Link className="btn btn-danger btn-lg d-flex justify-content-center newClass mt-1" to="/">Salir</Link>
                 </div>
             </div>
   )
