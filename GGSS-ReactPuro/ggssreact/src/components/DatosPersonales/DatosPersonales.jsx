@@ -17,7 +17,7 @@ import axios from "axios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
 import { getData } from "../../services/fetchAPI";
-import generateCuil from "./funcGenerarCuil";
+import generateCuil from "./funcGenerarCuil.js";
 
   //#endregion
 
