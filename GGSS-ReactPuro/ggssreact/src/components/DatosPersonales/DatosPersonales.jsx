@@ -17,10 +17,17 @@ import axios from "axios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
 import { getData } from "../../services/fetchAPI";
+import Prueba from "../Inputs/InputFile/Prueba";
 
   //#endregion
 
 const DatosPersonales = () => {
+
+
+
+
+
+
   const optionsDNI = ["D.N.I.", "L.C.", "L.E."];
   const [datosPersonales, setDatosPersonales] = useState({
     numLegajo : "",
@@ -42,9 +49,6 @@ const DatosPersonales = () => {
   console.log(datosPersonales.estadoCivilInput);
   console.log(datosPersonales.nacionalidadesInput);
   console.log(datosPersonales.dniSelected);
-
-  
-  
 
   //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
   function onChange(evt) {
@@ -90,6 +94,7 @@ const DatosPersonales = () => {
   const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
   const idTipoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDtipoDocumento : 0;
   const dniSelectedOption = saveTipoDNI !== undefined ? saveTipoDNI.find(tipo => tipo.iDtipoDocumento === idTipoSelected) : null;
+  const imgData = saveEmpl[0].obsFechaIngreso !== undefined ? saveEmpl[0].obsFechaIngreso :  "";
 
  
   //#endregion
@@ -125,7 +130,6 @@ const DatosPersonales = () => {
   //#endregion
   
   //#region ------------------------------------------------------------------------------VALIDACIONES
-
   
   const validateNumbers = (e) => {
     if (!/[0-9]/.test(e.key)) {
@@ -430,14 +434,12 @@ const DatosPersonales = () => {
                         <TextArea inputName="Obs. Estudios" maxLength="55" disabled={disable} />
                       </div>
                       <div className="col-xl-3">
-                        <img
-                          className="border border-3 imgData"
-                          id="imagen"
-                          src={`data:image/jpeg;base64,${image}`}
-                          alt=""
-                          style={{ width: "150px;", height: "150px;" }}
-                        />
-                        <InputFile inputName="Arrastre su imagen" disabled={disable}/>
+                        <InputFile 
+                        imageActual={imgData}
+                        inputName="Arrastre su imagen" 
+                        disabled={disable}/>
+
+                        <Prueba/>
                       </div>
                     </div>
                   </form>

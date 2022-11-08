@@ -1,5 +1,4 @@
 .div_conteiner {
-    
 }
 .img__drop{
     display: block;
@@ -21,11 +20,43 @@ cursor: pointer;
     background-color: transparent;
 }
 .inputImage {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     background: url("../../images/plus.png");
     background-size: cover;
     background-repeat: no-repeat;
     border: 2px solid ;
-
+}
+.icon-btn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #cdcdcd;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    transition: width 0.2s ease-in-out;
+    font-weight: 500;
+    font-family: inherit;
+    background: url("./plus.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .icon-btn:focus {
+    outline: none;
+  }
+  
+  .btn-txt {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .add-btn:hover .add-icon::before {
+    left: 15px;
+    height: 4px;
+    top: calc(50% - 2px);
+  }
+.add-btn:hover .add-icon::after {
+    right: 15px;
+    height: 4px;
+    top: calc(50% - 2px);
 }

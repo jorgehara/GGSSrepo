@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import "./AddPhoto.css";
 
-function InputFile({disabled}) {
+function InputFile({disabled, imageActual}) {
   const [ImageSelectedPrevious, setImageSelectedPrevious] = useState(null);
   const [ displayButton, setDisplayButton] = useState("");
   const changeImage = (e) => {
@@ -22,6 +21,10 @@ function InputFile({disabled}) {
     disableBtn();
   },[disabled])
 
+  useEffect(()=>{
+    setImageSelectedPrevious(imageActual);
+  },[ImageSelectedPrevious])
+
   function disableBtn(){
     if(disabled){
       setDisplayButton("none")
@@ -33,14 +36,15 @@ function InputFile({disabled}) {
     e.preventDefault();
     setImageSelectedPrevious(null);
     setDisplayButton("");
+    
   }
   return (
     <><div>
       <StyleDragArea>
-        <div className="image-upload-wrap">
-          <label className='formulario__label mt-0 mb-1 w-100' htmlFor="legajo">Arrastre su imagen</label>
+        <div className="">
+          <label className=' mt-0 mb-1 w-100' htmlFor="legajo">Cambiar su imagen</label>
           <input
-            className="file-upload-input ml-1"
+            className=""
             type="file"
             accept="image/png, image/jpg"
             multiple
@@ -50,17 +54,17 @@ function InputFile({disabled}) {
             } }>
           
             </input>
-            <div className="d-flex justify-content-center align-items-center center ml-1 mr-6 ">
-              <button class={`browse icon-btn add-btn position-absolute ${displayButton}`} disabled={disabled}>
+            <div className="d-flex justify-content-center align-items-center center">
+              {/* <button class={`browse icon-btn add-btn position-absolute ${displayButton}`} disabled={disabled}>
                 <div class="add-icon" disabled={disabled}></div>
                 <div class="btn-txt" disabled={disabled}></div>
-              </button>
+              </button> */}
               <img
-                className="h-100 w-100 "
-                src={ImageSelectedPrevious}
+                className="mh-100 mw-100 "
+                src={imageActual.length>0 ? `data:image/jpeg;base64,${imageActual}` : ImageSelectedPrevious}
                 alt=""
-                width="220px"
-                height="100px" />
+                width="150px"
+                height="150px" />
             </div>
             
         </div>
@@ -97,19 +101,6 @@ const StyleDragArea = styled.div`
     border: 4px dashed #d0d7de;
     cursor: pointer;
   }
-  .image-upload-wrap {
-    // margin-top: 14px;
-    // position: relative;
-    // height: 100px;
-    // border: 1px solid #d0d7de;
-    // margin-left: 50px;
-    // //margin-right: 10px;
-    // width: 150px;
-    .h5{
- 
-  }
-  }
-
   .image-upload-wrap:hover {
    background-color: transparent;
   
