@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const TableBasic = ({columns, array, parentescos,onSelect, seleccionado}) => {
   const [checked, setChecked] = useState(false);
   const [inputCheck, setInputCheck] = useState({});
   
+  useEffect(()=>{
+    setInputCheck({})
+  },[array])
+
   function parentescoFamiliar(idParentesco){
     let result = null;
     parentescos.map((par)=> {
@@ -14,6 +18,10 @@ const TableBasic = ({columns, array, parentescos,onSelect, seleccionado}) => {
     });
     return result.nombreParentesco;
   }
+  useEffect(()=>{
+    
+  },[inputCheck])
+
   function onChange(e){
     let name = e.target.name;
     let checked = e.target.checked;
@@ -44,7 +52,7 @@ const TableBasic = ({columns, array, parentescos,onSelect, seleccionado}) => {
                     {array.map((col, i) => {
                       return (
                         <tr scope="row" className="px-2" key={i}>
-                                <th scope="row"> <input type="checkbox" checked={inputCheck[`selected${i}`]} onChange={(e)=> onChange(e)} name={`selected${i}`} id={`selected${i}`} onClick={!checked ? ()=>onSelect(array, col.iDfamiliares) : null}/></th>
+                                <th scope="row"> <input type="radio" checked={inputCheck[`selected${i}`]} onChange={(e)=> onChange(e)} name="imputRadio" id={`selected${i}`} onClick={()=>onSelect(array, col.iDfamiliares)}/></th>
                                 <td key={col.iDfamiliares}>
                                     {col.apellidoyNombres}
                                 </td> 

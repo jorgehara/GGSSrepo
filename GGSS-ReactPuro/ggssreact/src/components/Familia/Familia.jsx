@@ -43,7 +43,9 @@ const Familia = () => {
   const urlParentesco = "http://54.243.192.82/api/Parentescos";
   const urlFamiliares = "http://54.243.192.82/api/Familiares";
   const idEmpleadoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDempleado  : 0;
-
+  const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
+  const parentSelected = familiarSeleccionado!== undefined ? familiarSeleccionado.iDparentesco : null;
+  const parenSeleccionado = saveParen !== undefined ? saveParen.find((par)=> par.iDparentesco === parentSelected) : null;
   useEffect(()=>{
     getData(urlParentesco, saveParentescos);
   },[])
@@ -54,11 +56,12 @@ const Familia = () => {
     getFamiliarByIdEmpleado(saveFamiliar, idEmpleadoSelected).then(res=> saveFamiliarPorEmpleado(res));
 
   },[idEmpleadoSelected])
+  useEffect(()=>{
 
-  const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
-  const parentSelected = familiarSeleccionado!== undefined ? familiarSeleccionado.iDparentesco : null;
-  const parenSeleccionado = saveParen !== undefined ? saveParen.find((par)=> par.iDparentesco === parentSelected) : null;
-  console.log(parenSeleccionado);
+  },[parenSeleccionado])
+
+  
+  console.log(familiarSeleccionado);
   const paisess = [
     "Argentina",
     "Uruguay",
