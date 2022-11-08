@@ -7,9 +7,10 @@ import ModalParentescos from '../Modals/ModalParentescos/ModalParentescos'
 import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 import ModalAlicuotas from '../Modals/ModalAlicuotas/ModalAlicuotas'
-import { objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings  } from './Objects'
+import { inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings  } from './Objects'
 import { employeContext } from '../../context/employeContext';
 import ModalTable from '../Modals/ModalTable/ModalTable';
+import ModalEscala from '../Modals/ModalEscala/ModalEscala';
 
 const Navbar = () => {
 
@@ -171,8 +172,11 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 				<BasicModal idModal="Direcciones" nameModal="Direcciones" placeholder={objectDirecciones} textArea={true} relacion={true} nameRelacion="Sector/Dpto" />
 				<BasicModal idModal="LugaresPago" nameModal="Lugares de Pago" placeholder={objectLugaresPago} textArea={true} />
 				<BasicModal idModal="Documentacion" nameModal="Documentacion" placeholder={objectDocumentacion} textArea={true} />
-				<ModalTable idModal="Reduccion" nameModal="Reduccion" column={tableReduccionHeadings} />
-				
+				<ModalTable idModal="Reduccion" nameModal="Tabla de Reducción de Deducciones" column={tableReduccionHeadings} />
+				<ModalEscala idModal="Escala" nameModal="Escala de Ganancias" inputNumData={inputNumDataEscala} hasInputDate={true} inputDateData={inputDateDataEscala} table={true} buttonNum={true} flex={true} />
+				<ModalEscala idModal="Deducciones" nameModal="Deducciones de Ganancias" inputNumData={inputNumDataDeducciones} hasInputDate={true} inputDateData={inputDateDataDeducciones} />
+				<ModalEscala idModal="Valores" nameModal="Valores Permanencia Categoría" inputNumData={inputNumDataValores} tableValores={true} column={tableValoresHeadings} flex={true} categorias={true} />
+
 
 				<li class="nav-item">
 					<a class="nav-link" href="/">Salir</a>

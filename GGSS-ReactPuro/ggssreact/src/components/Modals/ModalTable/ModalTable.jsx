@@ -1,6 +1,7 @@
 import React from 'react'
 import TableReduccion from '../../Tables/TableReduccion'
 import '../Modales.css'
+import './ModalTable.css'
 
 const ModalTable = ({ idModal, nameModal, column }) => {
 
@@ -22,7 +23,11 @@ const ModalTable = ({ idModal, nameModal, column }) => {
                             </>
                         </div>
 
-                        <div className="modal-footer">
+                        <div className="modal-footer modalTableFooter">
+
+                            <button type="button" className="btn btn-danger btnAceptar">
+                                ACEPTAR
+                            </button>
 
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                                 SALIR

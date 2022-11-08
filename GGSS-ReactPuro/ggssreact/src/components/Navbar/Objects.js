@@ -97,6 +97,46 @@ export const objectModosLiquidacion = [
   }
 ]
 
+export const objectProvincias = [
+  {
+    "label": "Provincia",
+    "placeholder": "Córdoba"
+  }
+]
+
+export const objectDeptos = [
+  {
+    "label": "Provincia",
+    "placeholder": "Córdoba"
+  },
+  {
+    "label": "Departamento",
+    "placeholder": "Santa María"
+  }
+]
+
+export const objectLocalidades = [
+  {
+    "label": "Departamento",
+    "placeholder": "Santa María"
+  },
+  {
+    "label": "Localidad",
+    "placeholder": "Alta Gracia"
+  }
+]
+
+export const objectBarrios = [
+  {
+    "label": "Localidad",
+    "placeholder": "Alta Gracia"
+  },
+  {
+    "label": "Barrio",
+    "placeholder": "Norte"
+  }
+]
+
 
 // ----- OBJECTS TABLA PARA LIQUIDACION -----
 
@@ -191,5 +231,45 @@ export const tableReduccionHeadings = [
   { heading: "% Reduce" }
 ]
 
+export const tableValoresHeadings = [
+  { heading: "Categoría" },
+  { heading: "Desde" },
+  { heading: "Hasta" },
+  { heading: "Porcentaje"}
+]
 
+// ----- ESCALA DE GANANCIAS
 
+export const inputDateDataEscala = [
+  { label: "Desde" },
+  { label: "Hasta" } 
+]
+
+export const inputNumDataEscala = [
+  { label: "De más de" },
+  { label: "a" },
+  { label: "Pagarán $" },
+  { label: "Más el %" },
+  { label: "Sobre exced." } 
+]
+
+// ----- DEDUCCIONES DE GANANCIAS
+
+export const inputDateDataDeducciones = [
+  { label: "Desde" },
+  { label: "Hasta" } 
+]
+
+export const inputNumDataDeducciones = [
+  { label: "Ganancia no Imponible" },
+  { label: "Deduccion Especial C" },
+  { label: "Deduccion Especial D" },
+]
+
+// ----- VALORES PERMANENCIA CATEGORÍA
+
+export const inputNumDataValores = [
+  { label: "Desde" },
+  { label: "Hasta" },
+  { label: "Porcentaje" } 
+]
