@@ -34,7 +34,7 @@ const TableBasic = ({columns, array, parentescos,onSelect, seleccionado}) => {
   return (
 
     <><div className='row mt-5 overflow-scroll'>
-          <table className="table table-danger table-striped ">
+          <table className="table table-danger table-striped">
               <thead>
                   <tr>
                   <th>Seleccionar</th>

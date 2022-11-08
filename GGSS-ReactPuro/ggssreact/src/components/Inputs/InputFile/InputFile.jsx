@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import "./AddPhoto.css";
+import "./InputFile.css";
 
-function InputFile({disabled}) {
+function InputFile({disabled, imagen}) {
   const [ImageSelectedPrevious, setImageSelectedPrevious] = useState(null);
   const [ displayButton, setDisplayButton] = useState("");
   const changeImage = (e) => {
@@ -21,6 +21,7 @@ function InputFile({disabled}) {
   useEffect(()=>{
     disableBtn();
   },[disabled])
+  
 
   function disableBtn(){
     if(disabled){
@@ -50,14 +51,14 @@ function InputFile({disabled}) {
             } }>
           
             </input>
-            <div className="d-flex justify-content-center align-items-center center ml-1 mr-6 ">
+            <div className="imageSelect d-flex justify-content-center align-items-center center ml-1 mr-6 ">
               <button type="file" class={`browse icon-btn add-btn position-absolute ${displayButton}`} disabled={disabled}>
                 <div class="add-icon" disabled={disabled}></div>
                 <div class="btn-txt" disabled={disabled}></div>
               </button>
               <img
-                className="h-100 w-100 "
-                src={ImageSelectedPrevious}
+                className="imageSelect "
+                src={ImageSelectedPrevious === null ||  ImageSelectedPrevious === undefined ? imagen : ImageSelectedPrevious}
                 alt=""
                 width="220px"
                 height="100px" />
