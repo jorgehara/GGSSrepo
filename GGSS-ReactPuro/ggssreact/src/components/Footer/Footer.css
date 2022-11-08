@@ -1,0 +1,7 @@
+.newClass{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-content: center;
+    height: 90%;
+}
