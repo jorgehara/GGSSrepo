@@ -1,20 +1,23 @@
 import React from "react";
+import './InputEmpData.css';
 
 const InputEmpData = ({ idInput, inputValue, nameLabel,disabled }) => {
   return (
-    <div>
-      <label className=" m-0" 
+    <div className="row">
+      <label className="col-sm-2 col-form-label " 
       htmlFor={idInput}>
         {nameLabel}
-        </label>
+      </label>
+      <div class="col-sm-10">
       <input
-        className="form-control-sm"
+        className="form-input-FliaCabecera"
         type="text"
         id={idInput}
         name={idInput}
         value={inputValue}
         disabled={disabled}
       />
+      </div>
     </div>
   );
 };

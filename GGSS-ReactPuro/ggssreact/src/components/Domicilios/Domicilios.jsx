@@ -114,17 +114,8 @@ const Domicilios = () => {
         data-bs-parent="#accordionExample"
       >
         <div className="accordion-body">
-          <section
-            className=""
-
-            //   "container"
-          >
+          <section className="">
             <div className="row">
-              {/* <div className="formulario__grupo">
-                <label for="usuario" className="mainABMTitle">
-                  Domicilios
-                </label>
-              </div> */}
               <div className="col-xl-6 ">
                 <div className="mt-2">
                   <input
@@ -150,7 +141,7 @@ const Domicilios = () => {
                     array={calles}
                     propArray={calleSelected !== undefined ? calleSelected.toString() : null}
                     masculinos=""
-                            femeninos=""
+                    femeninos=""
                     display={true}
                     idModal="calles"
                     disabled={disable}
@@ -169,9 +160,7 @@ const Domicilios = () => {
                   />
                 </div>
                 </div>
-                
-                
-                 <InputCbo
+                <InputCbo
                   value={
                     saveDom[0] !== undefined || saveDom[0] === null
                       ? saveDom.pisoDepto

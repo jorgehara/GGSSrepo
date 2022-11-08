@@ -49,10 +49,10 @@
 	font-style: normal;
 	font-weight: 400;
 	color: black;
-	margin-top: 0px;
-	margin-right: 20px;
+	/* margin-top: 0px;
+	margin-right: 0px;
     margin-left: 0px;
-	margin-bottom: 0px;
+	margin-bottom: 0px; */
 	display: block;
     
 }
@@ -81,8 +81,8 @@
 .formulario-input-DNI{
 	width: 89px;
 	text-align: start;
-	margin-left: 0px;
-    margin-right: 0px;
+	margin-left: 66px;
+    /* margin-right: 0px; */
 	background: #fff;
 	border: 3px solid transparent;
 	border-radius: 3px;

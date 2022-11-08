@@ -17,7 +17,6 @@ import axios from "axios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
 import { getData } from "../../services/fetchAPI";
-import Prueba from "../Inputs/InputFile/Prueba";
 
   //#endregion
 
@@ -262,7 +261,7 @@ const DatosPersonales = () => {
                           placeHolder="23456789"
                           array={tiposDNI}
                           disabled={disable}
-                          nameLabel="D.N.I"
+                          nameLabel="D.N.I."
                           onChange={onChange}
                           selectedId="dniSelected"
                           propArray={dniSelectedOption !== undefined ? dniSelectedOption.tipoDocumento : null}
@@ -414,7 +413,7 @@ const DatosPersonales = () => {
                           idModal="paises"
                           disabled={disable}
                         />
-                       <InputCbo
+                      <InputCbo
                           value={
                             saveEmpl[0] !== undefined
                               ? saveEmpl[0].idEstudios
@@ -431,15 +430,40 @@ const DatosPersonales = () => {
                           idModal="Estudios"
                           disabled={disable}
                         />
-                        <TextArea inputName="Obs. Estudios" maxLength="55" disabled={disable} />
+
+
+
+                        <InputForm
+                          // value={
+                          //   saveEmpl[0] !== undefined || saveEmpl[0] === null
+                          //     ? saveEmpl[0].legajo
+                          //     : null
+                          // }
+                          nameInput="nameObs"
+                          idInput="nameObs"
+                          messageError="Solo puede contener números."
+                          placeHolder="Ingrese Observaciones"
+                          disabled={disable}
+                          onChange={onChange}
+                          nameLabel="Observaciones"
+                          datosPersonalesValue={datosPersonales.obsEstudio !== undefined ? datosPersonales.obsEstudio : "Sin Observaciones"}
+                        />
+
+                        {/* <TextArea inputName="Obs. Estudios" maxLength="55" disabled={disable} /> */}
+
+
+
                       </div>
+                      
+                      
+                      
                       <div className="col-xl-3">
                         <InputFile 
                         imageActual={imgData}
                         inputName="Arrastre su imagen" 
                         disabled={disable}/>
 
-                        <Prueba/>
+                        
                       </div>
                     </div>
                   </form>

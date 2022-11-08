@@ -22,30 +22,28 @@ const EmployeData = ({disabled}) => {
   return (
     <div className="container-fluid p-0">
       <div className="container-fluid border-3 border-bottom ">
-        <div className="container text-start py-3">
+        <div className="container text-start py-2">
             <div className="row">
-              <div className="col-2 d-fluid align-items-center">
+              <div className="col-2 d-flex align-items-center">
                 <img
                   className="border border-3 imgData"
                   id="imagen"
                   src={`data:image/jpeg;base64,${image}`}
                   alt=""
-                  style={{ width: "150px;", height: "150px;" }}
+                  // style={{ width: "90px;", height: "90px;" }}
                 />
              </div>
-              <div className="col-5  d-flex align-items-center"> 
-              <div>
+              <div className="col-5  d-flex-column align-items-center"> 
+              <div className="row">
             <InputEmpData
-                idInput="legajoInfo"
-                // className="legajoNro"
-                // style={{ marginLeft: "50px;" }}
+                idInput=""
                 inputValue=
                 {
                 saveEmpl[0] !== undefined || saveEmpl[0] === null
                 ? saveEmpl[0].legajo
                 : null
                 }
-                nameLabel="Legajo N°: "
+                nameLabel="Legajo: "
                 disabled={disabled}
                 />
             <InputEmpData
@@ -67,12 +65,12 @@ const EmployeData = ({disabled}) => {
                       ? saveEmpl[0].nroDocumento
                       : null
                   }
-                  nameLabel="Documento N°:"
+                  nameLabel="NroDoc:"
                   disabled={disabled}
                 />
               </div>
              </div>
-              <div className="col-2  d-flex-column align-items-center">
+              <div className="col-5  d-flex-column align-items-center">
                 <InputEmpData
                   idInput="estadoInfo"
                   inputValue={

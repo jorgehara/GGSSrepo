@@ -22,7 +22,7 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabl
   return (
     <div className="formulario__grupo">
       <div className="">
-        <label className="formulario-label-DNI mt-2">{nameLabel}</label>
+        <label className="formulario-label-DNI mt-2 ml-4">{nameLabel}</label>
       </div>
       <div className="">
         <select disabled={disabled} className="formulario-input-DNI form-select ml-0 px-0" id={selectedId} value={datosPersonalesValue2} name={selectedId} onChange={(e)=> onChange(e)}>
@@ -31,13 +31,13 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabl
           })}
         </select>
       </div>
-      <div className="form__grupo__input2">
+      <div className="ml-3">
         <input
           type="text"
           id={idInput}
           name={nameInput}
           maxLength="8"
-          className="formulario-input-DNI px-0 mt-0 mb-0"
+          className="formulario-input-DNI  mx-1"
           placeholder={placeHolder}
           value={ valor}
           disabled={disabled}

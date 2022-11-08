@@ -9,7 +9,7 @@
 	font-weight: 400;
 	color: black;
 	margin-top: 0px;
-	margin-right: 42px;
+	margin-right: 68px;
     margin-left: 0px;
 	margin-bottom: 0px;
 	display: block;
@@ -17,8 +17,8 @@
 .formulario-input-Sexo{
 	width: 89px;
 	text-align: start;
-	margin-left: 48px;
-    margin-right: 0px;
+	/* margin-left: 48px; */
+    /* margin-right: 0px; */
 	background: #fff;
 	border: 3px solid transparent;
 	border-radius: 3px;
