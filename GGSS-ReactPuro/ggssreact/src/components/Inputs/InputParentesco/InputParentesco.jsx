@@ -10,7 +10,8 @@ const InputParentesco = ({
   checked,
   display,
   idModal,
-  disable
+  disable,
+  propArray
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -27,7 +28,7 @@ const InputParentesco = ({
       <div className="">
         <select className="form-select form_select-ParentescoFlia ml-3 px-0 formulario-input-ParentescoFlia" disabled={disable}>
           {array !== undefined && array !== null && array.map((op, i) => {
-            return <option key={i}>{op}</option>;
+            return ( propArray === op ?  <option selected key={i}>{op}</option> : <option key={i}>{op}</option>);
           })}
         </select>
       </div>

@@ -16,9 +16,6 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabl
   },[value])
 
 
-  console.log(valor)
-  console.log(datosPersonalesValue)
-
   return (
     <div className="formulario__grupo">
       <div className="">

@@ -28,3 +28,14 @@ export function getData(url, setStates){
     axios.get(url)
     .then(res=> setStates(res.data));
 }
+
+export function getFamiliarByIdEmpleado(familiares,idEmpleado){
+    return new Promise((resolve)=>{
+        setTimeout(()=> resolve(familiares.filter(fam=> fam.iDempleado === idEmpleado)),0);
+    })
+}
+export function getFamiliarByIdFamiliar(familiares,idFamiliar){
+    return new Promise((resolve)=>{
+        setTimeout(()=> resolve(familiares.find(f=> f.iDfamiliares === idFamiliar)),0);
+    })
+}
