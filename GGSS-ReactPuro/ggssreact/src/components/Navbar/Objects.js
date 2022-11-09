@@ -1,4 +1,4 @@
-// OBJECTS TABLA PARA EMPLEADOS
+// -----  OBJECTS TABLA PARA EMPLEADOS -----
 
 export const objectEstadosCiviles = [
 	{
@@ -49,7 +49,7 @@ export const objectMotivosEgreso = [
 export const objectCalles = [
   {
     "label": "Calle",
-    "placeholder": "Agustin Aguirre 207"
+    "placeholder": "Calle falsa 123"
   }
 ]
 
@@ -69,8 +69,76 @@ export const objectPaises = [
 
 ]
 
+export const objectCargos = [
+  {
+    "label": "Cargos",
+    "placeholder": "Administrativo"
+  }
+]
 
-// OBJECTS TABLA PARA LIQUIDACION
+export const objectTareas = [
+  {
+    "label": "Tarea",
+    "placeholder": "Tarea 1"
+  }
+]
+
+export const objectModosContratacion = [
+  {
+    "label": "Modo de contratación",
+    "placeholder": "Contratado"
+  }
+]
+
+export const objectModosLiquidacion = [
+  {
+    "label": "Modo de liquidación",
+    "placeholder": "Diario"
+  }
+]
+
+export const objectProvincias = [
+  {
+    "label": "Provincia",
+    "placeholder": "Córdoba"
+  }
+]
+
+export const objectDeptos = [
+  {
+    "label": "Provincia",
+    "placeholder": "Córdoba"
+  },
+  {
+    "label": "Departamento",
+    "placeholder": "Santa María"
+  }
+]
+
+export const objectLocalidades = [
+  {
+    "label": "Departamento",
+    "placeholder": "Santa María"
+  },
+  {
+    "label": "Localidad",
+    "placeholder": "Alta Gracia"
+  }
+]
+
+export const objectBarrios = [
+  {
+    "label": "Localidad",
+    "placeholder": "Alta Gracia"
+  },
+  {
+    "label": "Barrio",
+    "placeholder": "Norte"
+  }
+]
+
+
+// ----- OBJECTS TABLA PARA LIQUIDACION -----
 
 export const objectBancos = [
   {
@@ -81,7 +149,7 @@ export const objectBancos = [
 
 export const objectEmpresasTelefonia = [
 	{
-		"label": "Nombre",
+		"label": "Empresa",
 		"placeholder": "Claro"
 	},
 	{
@@ -92,7 +160,7 @@ export const objectEmpresasTelefonia = [
 
 export const objectSindicatos = [
   {
-		"label": "Nombre",
+		"label": "Sindicato",
 		"placeholder": "Luz y Fuerza"
 	},
 	{
@@ -101,6 +169,107 @@ export const objectSindicatos = [
 	}
 ]
 
+export const objectObrasSociales = [
+  {
+		"label": "Obra social",
+		"placeholder": "ACARA"
+	},
+	{
+		"label": "Abreviatura",
+		"placeholder": "ACAA"
+	}
+]
+
+export const objectAFJP = [
+  {
+    "label": "AFJP",
+    "placeholder": "Caja Previsión Social"
+  }
+]
+
+export const objectCentrosCosto = [
+  {
+    "label": "Centro de costo",
+    "placeholder": "AAFF Gobierno"
+  }
+]
+
+export const objectSectoresDptos = [
+  {
+    "label": "Sector/Dpto",
+    "placeholder": "01"
+  }
+]
+
+export const objectDirecciones = [
+  {
+    "label": "Dirección",
+    "placeholder": "Direccion falsa"
+  }
+]
+
+export const objectLugaresPago = [
+  {
+    label: "Lugar de pago",
+    placeholder: "INFT S.A"
+  }
+]
+
+export const objectDocumentacion = [
+  {
+    label: "Documentacion",
+    placeholder: "Carta de presentación"
+  }
+]
 
 
+// --------------- DYNAMIC TABLES 
 
+export const tableReduccionHeadings = [
+  { heading: "Desde" },
+  { heading: "Hasta" },
+  { heading: "% Reduce" }
+]
+
+export const tableValoresHeadings = [
+  { heading: "Categoría" },
+  { heading: "Desde" },
+  { heading: "Hasta" },
+  { heading: "Porcentaje"}
+]
+
+// ----- ESCALA DE GANANCIAS
+
+export const inputDateDataEscala = [
+  { label: "Desde" },
+  { label: "Hasta" } 
+]
+
+export const inputNumDataEscala = [
+  { label: "De más de" },
+  { label: "a" },
+  { label: "Pagarán $" },
+  { label: "Más el %" },
+  { label: "Sobre exced." } 
+]
+
+// ----- DEDUCCIONES DE GANANCIAS
+
+export const inputDateDataDeducciones = [
+  { label: "Desde" },
+  { label: "Hasta" } 
+]
+
+export const inputNumDataDeducciones = [
+  { label: "Ganancia no Imponible" },
+  { label: "Deduccion Especial C" },
+  { label: "Deduccion Especial D" },
+]
+
+// ----- VALORES PERMANENCIA CATEGORÍA
+
+export const inputNumDataValores = [
+  { label: "Desde" },
+  { label: "Hasta" },
+  { label: "Porcentaje" } 
+]

@@ -20,11 +20,23 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select style={{ height: "1100px", width: "400px" }} className="form-select row mt-1" multiple aria-label="multiple select example">
+                                <select style={{ height: "800px", width: "400px" }} className="form-select row mt-1" multiple aria-label="multiple select example">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
+
+                                <div className="crudBtns">
+                                    <button type="button" className="btn btn-danger crudBtn">
+                                        AGREGAR
+                                    </button>
+                                    <button type="button" className="btn btn-danger crudBtn">
+                                        MODIFICAR
+                                    </button>
+                                    <button type="button" className="btn btn-danger crudBtn">
+                                        ELIMINAR
+                                    </button>
+                                </div>
 
                             </div>
                             <div className="bodyInputs">
@@ -171,17 +183,6 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
                         </div>
 
                         <div className="modal-footer">
-                            <div className="crudBtns">
-                                <button type="button" className="btn btn-danger crudBtn">
-                                    AGREGAR
-                                </button>
-                                <button type="button" className="btn btn-danger crudBtn">
-                                    MODIFICAR
-                                </button>
-                                <button type="button" className="btn btn-danger crudBtn">
-                                    ELIMINAR
-                                </button>
-                            </div>
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                                 SALIR
                             </button>

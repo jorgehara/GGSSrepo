@@ -9,6 +9,7 @@ import LocalidadesFooter from './SubmodalesPDLB/LocalidadesFooter'
 import Provincias from './SubmodalesPDLB/Provincias'
 import ProvinciasFooter from './SubmodalesPDLB/ProvinciasFooter'
 import './ModalPDLB.css'
+import { objectProvincias, objectDeptos, objectLocalidades, objectBarrios } from '../../Navbar/Objects'
 
 const ModalPDLB = ({idModal, nameModal, array,aDepartamentos,aProvincias,aLocalidades,aBarrios}) => {
 
@@ -77,22 +78,23 @@ const ModalPDLB = ({idModal, nameModal, array,aDepartamentos,aProvincias,aLocali
 
                             {
                                 provincias && 
-                                <Provincias aProvincias={aProvincias}/>
-                            }
-
-                            { 
-                                localidades &&
-                                <Localidades aLocalidades={aLocalidades}/>
+                                <Provincias aProvincias={aProvincias} placeholder={objectProvincias}/>
                             }
 
                             {
                                 departamentos &&
-                                <Departamentos aDepartamentos={aDepartamentos}/>
+                                <Departamentos aDepartamentos={aDepartamentos} placeholder={objectDeptos}/>
                             }
 
+                            { 
+                                localidades &&
+                                <Localidades aLocalidades={aLocalidades} placeholder={objectLocalidades}/>
+                            }
+
+                            
                             {
                                 barrios &&
-                                <Barrios aBarrios={aBarrios}/>
+                                <Barrios aBarrios={aBarrios} placeholder={objectBarrios}/>
                             }
 
                             

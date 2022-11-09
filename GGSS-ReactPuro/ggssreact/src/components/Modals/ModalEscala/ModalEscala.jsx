@@ -1,14 +1,14 @@
 import React from 'react'
-import TextArea from '../../Inputs/TextArea/TextArea';
-import "./BasicModal.css";
+import "./ModalEscala.css";
 import '../Modales.css'
-import InputModal from '../../Inputs/InputsModal/InputModal';
-import Dropdown from '../../Inputs/Dropdown/Dropdown';
 import InputDate from '../../Inputs/InputDate/InputDate'
 import InputNumModal from '../../Inputs/InputsModal/InputNumModal/InputNumModal';
+import TableEscala from '../../Tables/TableEscala/TableEscala'
+import TableReduccion from '../../Tables/TableReduccion';
+import Dropdown from '../../Inputs/Dropdown/Dropdown';
 
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder, dropdown, inputDate, inputNum, inputNumName, relacion, nameRelacion }) => {
+const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, inputNumData, table, buttonNum, tableValores, column, flex, categorias }) => {
 
     return (
         <div>
@@ -23,21 +23,17 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
                         </div>
                         <div className="modal-body">
                             <div className="llamadaApi">
-
-                                { relacion && <> <Dropdown nameDropdown={nameRelacion}/> <br/> </>  }
-                                                    
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select className="form-select row mt-1 " multiple aria-label="multiple select example">
+                                <select style={{ height: "auto", minHeight: "230px", minWidth: "200px" }} className="form-select row mt-1 " multiple aria-label="multiple select example">
                                     {
-                                        array !== undefined ? array.map((op, i)=>{
-                                            return(
+                                        array !== undefined ? array.map((op, i) => {
+                                            return (
                                                 <option key={i} value="1">{op}</option>
                                             )
                                         }) : null
                                     }
                                 </select>
-
 
                                 <div className="crudBtns">
                                     <button type="button" className="btn btn-danger crudBtn">
@@ -50,35 +46,74 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
                                         ELIMINAR
                                     </button>
                                 </div>
-
                             </div>
                             <div className="bodyInputs">
 
-
                                 {
-                                    placeholder.map((p, i) => {
-                                        return(
-                                            <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} />
-                                        )
-                                    })
+                                    hasInputDate &&
+                                    <div className="inputDateContainerEscala">
+                                        {
+                                            inputDateData.map((p, i) => {
+                                                return (
+                                                    <InputDate key={i} nameInput={p.label} inputId={p.label} />
+                                                )
+                                            })
+                                        }
+                                    </div>
                                 }
 
-                                {
-                                    inputNum && <InputNumModal nameInput={inputNumName}/>
-                                }   
 
-                                {
-                                    dropdown && <Dropdown nameDropdown="Partida"/>
-                                }
-
-                                {
-                                    inputDate && <InputDate nameInput="Vencimiento"/>
-                                }
-
-                        
-                                <br />
-                                {textArea && <TextArea inputName="Observaciones" /> }
                                 <hr />
+
+
+                                <div className={flex ? "inputNumContainerEscala" : "inputNumContainerDeducciones"}>
+
+
+                                    {
+                                        inputNumData.map((p, i) => {
+                                            return (
+                                                <InputNumModal key={i} nameInput={p.label} inputId={p.label} />
+                                            )
+                                        })
+                                    }
+
+                                    {
+                                        buttonNum &&
+                                        <>
+                                            <button>+</button>
+                                            <button>-</button>
+                                        </>
+
+                                    }
+
+                                </div>
+
+                                {
+                                    categorias &&
+                                    <div className="categoriasContainer">
+                                        <>
+                                            <input type="checkbox" name="categoria" />
+                                            <label htmlFor="categoria">Especificar categoría</label>
+                                        </>
+                                        <>
+                                            <Dropdown nameDropdown="Categorias" />
+                                        </>
+                                    </div>
+                                }
+
+                                {
+                                    table && <TableEscala />
+                                }
+
+                                {
+                                    tableValores && <TableReduccion column={column} />
+                                }
+
+                                <hr />
+
+
+                                <br />
+
                                 <div className="btnInputs">
                                     <button type="button" className="btn btn-danger btnAceptar">
                                         ACEPTAR
@@ -102,4 +137,4 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
     )
 }
 
-export default BasicModal;
+export default ModalEscala;

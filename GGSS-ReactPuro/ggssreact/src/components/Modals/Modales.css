@@ -1,5 +1,5 @@
 .modal-dialog{
-    font-size: 2rem;
+    font-size: 16px;
 }
 
 .modal-dialog input{
@@ -25,18 +25,39 @@
 }
 
 .llamadaApi{
-    width: 300px;
+    width: 400px;
     padding: 20px;
+}
+
+.crudBtns{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.crudBtn{
+    width: 110px;
 }
 
 .bodyInputs{
     margin-right: 40px;
-    
 }
 
 .fieldsetStyle{
     border-radius: 10px;
 }
 
+.btnInputs{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-footer{
+    display: flex;
+    justify-content: flex-end !important;
+}
 
 
