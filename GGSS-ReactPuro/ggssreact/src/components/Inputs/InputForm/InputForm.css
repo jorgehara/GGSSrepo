@@ -44,14 +44,10 @@
 	margin-left: 0px;
 	margin-right: 0px;
 	border: none;
-	border-radius: 3px;
+	/* border-radius: 3px; */
 	height: 42px;
 	transition: .3s ease all;
-	border-bottom: 2px solid rgb(78, 6, 6);
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-ms-border-radius: 3px;
-	-o-border-radius: 3px;
+	border-bottom: 1px solid rgb(78, 6, 6);
 }
 .formulario-input-Legajo:focus{
     background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));

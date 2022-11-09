@@ -1,27 +1,45 @@
+import { useEffect, useState } from "react";
 import "./InputForm.css";
 
 const InputForm = ({
   nameInput,
   messageError,
   placeHolder,
-  onChange,
   inputId,
   value,
-  disabled
+  disabled,
+  onChange,
+  nameLabel,
+  datosPersonalesValue,
 }) => {
+
+  
+  const [valor, setValor] = useState("");
+
+  
+  useEffect(()=>{
+    setValor(datosPersonalesValue)
+  },[datosPersonalesValue])
+
+  useEffect(()=>{
+    setValor(value);
+  },[value])
+
+
   return (
     <div className="formulario__grupo__inputs">
       <div className='formulario__grupo'>
-        <label className='formulario__label' htmlFor={inputId}>{nameInput}</label>
+        <label className='formulario__label' htmlFor={inputId}>{nameLabel}</label>
       </div>
       <div className='form__grupo-input'>
         <input type="text"
           className='formulario-input-Legajo '
           id={inputId}
           placeholder={placeHolder}
-          value={value}
+          value={ valor  }
           onChange={(e) => onChange(e)}
           disabled={disabled}
+          name={nameInput}
         />
       </div>
       <div className='form__grupo__icons'>

@@ -7,7 +7,6 @@ const ModalParentescos = ({ idModal, nameModal, array }) => {
     useEffect(()=>{
 
     },[array])
-    console.log(array !== undefined ? array : null)
     return (
         <div>
             <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">

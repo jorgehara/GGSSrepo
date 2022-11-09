@@ -1,10 +1,23 @@
-.formulario-label-DNIFamilia{
+.form-label-DNIFamilia{
 	font-style: normal;
 	font-weight: 400;
 	color: black;
-	margin-top: 0px;
-	/* margin-right: -37px; */
-    margin-left: 0px;
-	margin-bottom: 0px;
 	display: block;
+}
+.form-select-FliaDNI{
+	margin-left: 5%;
+	width: 80px;
+}
+
+.form-input-DNIfamilia{
+	width: 89px;
+	text-align: start;
+	margin-left: 166px;
+    /* margin-right: 0px; */
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 36px;
+	transition: .3s ease all;
+    border-bottom: 1px solid rgb(78, 6, 6);
 }
