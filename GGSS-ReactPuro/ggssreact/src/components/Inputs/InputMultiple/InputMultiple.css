@@ -1,9 +1,42 @@
 .formulario-label-DNIFamilia{
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	align-items: center;
+	font-style: normal;
+	font-weight: 400;
+	color: black;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+.formulario-input-DNI-familia{
+	width: 89px;
+	text-align: start;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 36px;
+	transition: .3s ease all;
+    border-bottom: 1px solid rgb(78, 6, 6);
+}
+.formulario-input-DNI-input{
+	width: 89px;
+	text-align: start;
+    /* margin-right: 0px; */
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 36px;
+	transition: .3s ease all;
+    border-bottom: 1px solid rgb(78, 6, 6);
+}
+.formulario-label-ParentescoFlia-Dos{
 	font-style: normal;
 	font-weight: 400;
 	color: black;
 	margin-top: 0px;
-	/* margin-right: -37px; */
+	margin-right: 20px;
     margin-left: 0px;
 	margin-bottom: 0px;
 	display: block;

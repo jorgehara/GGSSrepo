@@ -2,34 +2,36 @@ import React from "react";
 import "./InputChecked.css";
 
 const InputChecked = ({
-  inputId,
-  nameInput,
+  nameLabel,
   placeHolder,
   value,
-  onChange,
   checked,
   nameCheck,
-  disabled
+  disabled,
+  idInput,
+  nameInput,
+  onChange
 }) => {
   return (
     <div className="row">
-      <div className="col-xl-12">
+      <div className="col-xl-12 mt-2">
         <div className="row">
-          <div className="d-flex align-items-center col-xl-3">
-            <label className="formulario__label" htmlFor={inputId}>
-              {nameInput}
+          <div className="d-flex align-items-center col-xl-5">
+            <label className="formulario__label w-100" htmlFor={idInput}>
+              {nameLabel}
             </label>
           </div>
-          <div className="d-flex align-items-center col-xl-6 px-0">
+          <div className="d-flex align-items-center col-xl-4 px-0">
             <input
               type="text"
               className="form-control formulario-input-Familia px-0"
-              id={inputId}
+              id={idInput}
               placeholder={placeHolder}
               value={value}
+              name={nameInput}
               onChange={(e) => 
                 onChange(e)}
-                disabled={disabled}
+              disabled={disabled}
             />
           <div className="d-flex align-items-center col-xl-3">
             <input

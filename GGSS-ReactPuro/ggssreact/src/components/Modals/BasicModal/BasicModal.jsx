@@ -22,13 +22,13 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
                             <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <div className="llamadaApi">
+                            <div className="llamadaApi border border-danger">
 
                                 { relacion && <> <Dropdown nameDropdown={nameRelacion}/> <br/> </>  }
                                                     
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select className="form-select row mt-1 " multiple aria-label="multiple select example">
+                                <select className="form-select row mt-1 selectOptions border border-danger" multiple aria-label="multiple select example">
                                     {
                                         array !== undefined ? array.map((op, i)=>{
                                             return(

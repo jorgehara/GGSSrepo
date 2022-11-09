@@ -8,16 +8,12 @@
 }
 
 .formulario-input-DateFlia{
-	width: 89px;
 	text-align: start;
-	margin-left: 22px;
     margin-right: 0px;
 	background: #fff;
 	border: 3px solid transparent;
 	border-radius: 3px;
-	/* height: 36px; */
 	transition: .3s ease all;
-    /* border-bottom: 1px solid rgb(78, 6, 6); */
 }
 .formulario__grupo__DateFlia{
 	display: grid;
@@ -27,8 +23,11 @@
     align-items: center;
 }
 .form-check-inputDateFlia{
-	margin-left: 35px;
 	margin-top: 0px;
 }
-
-
+.formularioDate{
+	margin-left: 0.1%;
+}
+.inputDate{
+	margin-left: 10%;
+}

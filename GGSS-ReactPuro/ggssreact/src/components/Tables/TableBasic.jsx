@@ -34,7 +34,7 @@ const TableBasic = ({columns, array, parentescos,onSelect, seleccionado}) => {
   return (
 
     <><div className='row mt-5 overflow-scroll'>
-          <table className="table table-danger table-striped">
+          <table className="table table-secondary table-striped">
               <thead>
                   <tr>
                   <th>Seleccionar</th>
@@ -50,12 +50,16 @@ const TableBasic = ({columns, array, parentescos,onSelect, seleccionado}) => {
               <tbody className="table-group-divider" id="cuerpodetabla">
                 
                     {array.map((col, i) => {
+                      console.log(col)
                       return (
                         <tr scope="row" className="px-2" key={i}>
                                 <th scope="row"> <input type="radio" checked={inputCheck[`selected${i}`]} onChange={(e)=> onChange(e)} name="imputRadio" id={`selected${i}`} onClick={()=>onSelect(array, col.iDfamiliares)}/></th>
                                 <td key={col.iDfamiliares}>
                                     {col.apellidoyNombres}
                                 </td> 
+                                <td>
+                                  {"D.N.I"}
+                                </td>
                                 <td>
                                   {col.nroDocumento}
                                 </td>
@@ -68,6 +72,13 @@ const TableBasic = ({columns, array, parentescos,onSelect, seleccionado}) => {
                                 <td>
                                   {parentescoFamiliar(col.iDparentesco)}
                                 </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{col.fBaja}</td>
+                                <td>{col.noDeducirGanancias}</td>
+                                <td>{col.inlcuirCuotaAlimentaria}</td>
+                                <td>{col.obs}</td>
                                 </tr>
                       )
                     })}

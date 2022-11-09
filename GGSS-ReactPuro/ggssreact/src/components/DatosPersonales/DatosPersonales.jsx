@@ -23,12 +23,6 @@ import generateCuil from "./funcGenerarCuil.js";
 
 const DatosPersonales = () => {
 
-
-
-
-
-
-  const optionsDNI = ["D.N.I.", "L.C.", "L.E."];
   const [datosPersonales, setDatosPersonales] = useState({
     numLegajo : "",
     apellidoInput : "",
@@ -46,15 +40,6 @@ const DatosPersonales = () => {
     estadosEmpleados : "",
     estudiosInput : ""
   })
-  console.log(datosPersonales.apellidoInput);
-  console.log(datosPersonales.nombresInput);
-  console.log(datosPersonales.documentoInput);
-  console.log(datosPersonales.inputcuil);
-  console.log(datosPersonales.telefonoInput);
-  console.log(datosPersonales.estadoCivilInput);
-  console.log(datosPersonales.nacionalidadesInput);
-  console.log(datosPersonales.dniSelected);
-  console.log(datosPersonales.inputDateNac);
 
   //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
   function onChange(evt) {

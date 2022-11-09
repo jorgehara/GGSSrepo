@@ -23,6 +23,7 @@
 	margin-bottom: 0px;
 	display: block;
 }
+
 .formulario-label-ParentescoFliaOpcions{
 	font-style: normal;
 	font-weight: 400;
@@ -72,4 +73,8 @@
 }
 .form-select-Opcions{
 	width: 127px;
+}
+.selectFormulario{
+	margin-left: 25%;
+	
 }
