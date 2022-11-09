@@ -83,8 +83,7 @@ const Familia = () => {
   }
   return (
     <div className="Lateral-Derecho">
-   
-   <div className="container-fluid">
+  <div className="container-fluid">
       <div className="row border border-3">
         <EmployeData disabled={disable}/>
         <div className="col-xl-6">
