@@ -5,31 +5,29 @@ import "./InputRadio.css";
 
 const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,nameLabel ,datosPersonalesValue}) => {
 
-  const [valor, setValor] = useState("");
-  const [valorRadioM, setValorRadioM] = useState(false);
-  const [valorRadioF, setValorRadioF] = useState(false);
+    const [valor, setValor] = useState("");
+    const [valorRadioM, setValorRadioM] = useState(false);
+    const [valorRadioF, setValorRadioF] = useState(false);
 
-  useEffect(() => {
-    valueInput();
-  }, [valorRadioM, valorRadioF, valor]);
-  useEffect(()=>{
-    setValor(datosPersonalesValue)
-  },[datosPersonalesValue])
+    useEffect(() => {
+      valueInput();
+    }, [valorRadioM, valorRadioF, valor]);
 
-  useEffect(()=>{
-    setValor(value);
-  },[value])
+    useEffect(()=>{
+      setValor(datosPersonalesValue)
+    },[datosPersonalesValue])
 
-  console.log(valor) 
+    useEffect(()=>{
+      setValor(value);
+    },[value])
+
 
   const valueInput = () => {
     if (valor === "M") {
-      console.log("entro")
       setValorRadioM(true);
       setValorRadioF(false);
     }
     if (valor === "F") {
-      console.log("no entro")
       setValorRadioF(true);
       setValorRadioM(false);
     }
@@ -44,7 +42,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
         <label className="form-check-label" htmlFor="inlineCheckbox1">{nameFirst}</label>
         </div>
         <div className="formulario-input-SexoF">
-          <input className="form-check-input" type="radio" id="inlineCheckbox2" name={idInput} defaultChecked checked={valorRadioF} onChange={(e)=> onChange(e)} value="F" disabled={disabled}/>
+          <input className="form-check-input" type="radio" id={idInput} name={idInput} defaultChecked checked={valorRadioF} onChange={(e)=> onChange(e)} value="F" disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox2">{nameSecond}</label>
         </div>
     </div>

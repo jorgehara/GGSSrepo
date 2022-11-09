@@ -20,7 +20,14 @@ import { useState } from "react";
 const Familia = () => {
   const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec} = useContext(employeContext);
   const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
-    //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
+  const [familia , setFamilia] = useState({
+    inputApellidoNombres : "",
+    inputCmbDni : "",
+    inputNroDni : "",
+    inputRadioBtnMasc : false,
+    inputRadioBtnFem : true
+  });
+  //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
     const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
     const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
     const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];    
@@ -38,14 +45,18 @@ const Familia = () => {
     const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
     const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
     const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
+    const idEmpleadoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDempleado  : 0;
+    const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
+    const parentSelected = familiarSeleccionado!== undefined ? familiarSeleccionado.iDparentesco : null;
+    const parenSeleccionado = saveParen !== undefined ? saveParen.find((par)=> par.iDparentesco === parentSelected) : null;
     //#endregion
-  const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
+ 
+  //#region ------------------------------------------------------------------------------URLs
+    const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
   const urlParentesco = "http://54.243.192.82/api/Parentescos";
   const urlFamiliares = "http://54.243.192.82/api/Familiares";
-  const idEmpleadoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDempleado  : 0;
-  const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
-  const parentSelected = familiarSeleccionado!== undefined ? familiarSeleccionado.iDparentesco : null;
-  const parenSeleccionado = saveParen !== undefined ? saveParen.find((par)=> par.iDparentesco === parentSelected) : null;
+  //#endregion
+  //#region ------------------------------------------------------------------------------USEEFFECTS
   useEffect(()=>{
     getData(urlParentesco, saveParentescos);
   },[])
@@ -59,9 +70,15 @@ const Familia = () => {
   useEffect(()=>{
 
   },[parenSeleccionado])
-
-  
-  console.log(familiarSeleccionado);
+  //#endregion
+  //#region ------------------------------------------------------------------------------Objetos de props
+  const propsRadioButton = {
+    idCboDni : "inputCmbDni",
+    idNroDni : "inputNroDni",
+    idRadioBtnMasc : "inputRadioBtnMasc",
+    idRadioBtnFem : "inputRadioBtnFem"
+  }
+  //#endregion
   const paisess = [
     "Argentina",
     "Uruguay",
@@ -71,16 +88,33 @@ const Familia = () => {
   ];
   const columns = [
     "Apellido y Nombre",
+    "Tipo",
     "N°Documento",
     "Sexo",
-    "Nacimiento",
     "Parentesco",
+    "Nacimiento",
+    "País Origen",
+    "Nacionalidad",
+    "Estudios",
+    "Fecha Baja",
+    "No Deducir",
+    "Incluir Cuota",
+    "Obs"
   ];
   function onSelect( saveFamiliar, idFamiliar) {
     getFamiliarByIdFamiliar(saveFamiliar, idFamiliar).then((res) => {
       setFamiliarSeleccionado(res);
     });
   }
+  function onChange(evt) {
+    const name = evt.target.name;
+    const value = (evt.target.value);
+    let newFamilia = { ...familia };
+    newFamilia[name] = value;
+    setFamilia(newFamilia);
+  }
+  console.log(familia.inputRadioBtnMasc)
+  console.log(familia.inputRadioBtnFem)
   return (
     <div className="Lateral-Derecho">
   <div className="container-fluid">
@@ -96,10 +130,13 @@ const Familia = () => {
                       ? `${saveEmpl[0].apellido}, ${saveEmpl[0].nombres}`
                       : null) : familiarSeleccionado.apellidoyNombres
                   }
-                  nameInput="Apellido y Nombres"
+                  nameLabel="Apellido y Nombres"
                   nameCheck="Fijar"
                   placeHolder="Apellido y Nombres"
                   disabled={disable}
+                  idInput="inputApellidoNombres"
+                  nameInput="inputApellidoNombres"
+                  onChange={onChange}
                 />
                 <InputMultiple
                   optionsDNI={tipoDNI}
@@ -115,6 +152,11 @@ const Familia = () => {
                   nameInputRadio=""
                   placeholder="17654987"
                   disable={disable}
+                  propsRadioButton={propsRadioButton}
+                  onChange={onChange}
+                  datosFamiliaValue1 = {familia.inputCmbDni !== undefined ? familia.inputCmbDni : null}
+                  datosFamiliaRadio1 = {familia.inputRadioBtnMasc !== undefined ? familia.inputRadioBtnMasc : null}
+                  datosFamiliaRadio2 = {familia.inputRadioBtnFem !== undefined ? familia.inputRadioBtnFem : null}
                 />
                 <InputParentesco
                   nameInput="Parentesco"

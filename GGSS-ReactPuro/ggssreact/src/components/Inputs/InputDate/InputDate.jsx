@@ -20,7 +20,6 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
   },[display])
 
   
-  console.log(datosPersonalesValue)
 
   return (
     <div className="formulario__grupo__inputs mt-2">

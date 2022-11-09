@@ -13,6 +13,17 @@ import TableBasic1 from "../Tables/TableBasic1";
 
 const Domicilios = () => {
 
+  const [domicilios, setDomicilios ] = useState({
+    inputCalleDomicilios : "",
+    inputNumCalle : "",
+    inputPisoCalle : "",
+    inputProvinciaDomicilios : "",
+    inputDepartamentosDomicilios : "",
+    inputLocalidadesDomicilios : "",
+    inputBarriosDomicilios : ""
+  })
+
+  const [inputValue, setInputValue] = useState("");
    
   const columns = [
     "Predeterminado",
@@ -27,8 +38,7 @@ const Domicilios = () => {
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
 
-  const [error, setError] = useState("");
-  const [inputValue, setInputValue] = useState("");
+  
 
   //#region ------------------------------------------------------------------------------URLs
   const urlCalles = "http://54.243.192.82/api/Calles";
@@ -37,9 +47,8 @@ const Domicilios = () => {
   const urlLocalidades = "http://54.243.192.82/api/Localidades";
   const urlBarrios = "http://54.243.192.82/api/Barrios";
   //#endregion
-  
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl, saveEstados, saveEstado, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable } = useContext(employeContext);
+  const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable } = useContext(employeContext);
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
@@ -81,8 +90,14 @@ const Domicilios = () => {
   }, [predeterminado.toString()]);
   //#endregion
  
-  
+  function onChange(evt) {
+    const name = evt.target.name;
+    const value = (evt.target.value);
 
+    let newDomicilios = { ...domicilios };
+    newDomicilios[name] = value; 
+    setDomicilios(newDomicilios);
+  }
   const setInputValor = () => {
     if (predeterminado.toString() === "1") {
       setInputValue("checked");
@@ -145,11 +160,14 @@ const Domicilios = () => {
                     display={true}
                     idModal="calles"
                     disabled={disable}
+                    nameInput="inputCalleDomicilios"
+                    idInput="inputCalleDomicilios"
+                    onChange={onChange}
                   />
                 </div>
                 <div className="col-xl-6">
                   <InputNumero
-                    nameInput="N°"
+                    nameInput="inputNumCalle"
                     array={paises}
                     placeHolder="N° Calle"
                     nameCheck="Fijar"
@@ -157,6 +175,9 @@ const Domicilios = () => {
                     display={true}
                     value={numCalleSelected !== undefined ? numCalleSelected.toString() : null}
                     disabled={disable}
+                    idInput="inputNumCalle"
+                    nameLabel="N°"
+                    onChange={onChange}
                   />
                 </div>
                 </div>
@@ -177,6 +198,9 @@ const Domicilios = () => {
                   display={true}
                   idModal=""
                   disabled={disable}
+                  nameInput="inputPisoCalle"
+                  idInput="inputPisoCalle"
+                  onChange={onChange}
                 />
               </div>
               <div className="col-xl-6">
@@ -195,6 +219,9 @@ const Domicilios = () => {
                   display={true}
                   idModal="pdlb"
                   disabled={disable}
+                  nameInput="inputProvinciaDomicilios"
+                  idInput="inputProvinciaDomicilios"
+                  onChange={onChange}
                 />
                   <InputCbo
                   value={
@@ -212,6 +239,9 @@ const Domicilios = () => {
                   display={true}
                   idModal="pdlb"
                   disabled={disable}
+                  nameInput="inputDepartamentosDomicilios"
+                  idInput="inputDepartamentosDomicilios"
+                  onChange={onChange}
                 />
                 <InputCbo
                   value={
@@ -229,6 +259,9 @@ const Domicilios = () => {
                   display={true}
                   idModal="pdlb"
                   disabled={disable}
+                  nameInput="inputLocalidadesDomicilios"
+                  idInput="inputLocalidadesDomicilios"
+                  onChange={onChange}
                 />
                 <InputCbo
                   value={
@@ -246,6 +279,9 @@ const Domicilios = () => {
                   display={true}
                   idModal="pdlb"
                   disabled={disable}
+                  nameInput="inputBarriosDomicilios"
+                  idInput="inputBarriosDomicilios"
+                  onChange={onChange}
                 />
               </div>
               <ButtonCancelarAceptar cancelar="-" aceptar="+"disabled={disable} />

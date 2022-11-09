@@ -10,7 +10,7 @@ const Footer = () => {
                     <ButtonLarge color="danger" tamaño="" justyfy="cemter m-1" nameButton="Imprimir Constancia de Asignaciones Familiares" />
                 </div>
                 <div className='col-2'>
-                        <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Certificado de Convenio/Oficio" />
+                    <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Certificado de Convenio/Oficio" />
                 </div>
                 <div className='col-2'>
                     <ButtonLarge color="danger" tamaño="" justyfy="center m-1" nameButton="Imprimir Resumen Legajo Empleado" />

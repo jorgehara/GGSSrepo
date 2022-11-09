@@ -23,6 +23,7 @@ const EmpleadoContextProvider = (props) => {
   const [ saveFamiliarSelected ,setSaveFamiliarSelected] = useState([]);
   const [ saveFamSelect ,setSaveFamSelect] = useState([]);
 
+    //#region FUNCIONES DE ESTADOS GENERALES
   function saveEstados(estado) {
     setSaveEstado(estado);
   }
@@ -78,6 +79,11 @@ const EmpleadoContextProvider = (props) => {
   function saveFamiliarSelec(familiarSeleccionado){
     setSaveFamSelect(familiarSeleccionado);
   }
+  //#endregion
+  
+  
+
+
   return (
     <employeContext.Provider
       value={{
