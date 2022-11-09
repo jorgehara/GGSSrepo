@@ -11,11 +11,11 @@ const InputNumModal = ({
     value
 }) => {
     return (
-        <div className="inputModalContainer grid-inputNum">
+        <div className="inputModalContainer">
 
-            <label style={{ marginRight: "15px" }} className='labelModal' htmlFor={inputId}>{nameInput}: </label>
+            <label style={{ marginLeft: "6px" }} className='labelModal' htmlFor={inputId}>{nameInput}: </label>
         
-            <input style={{ width: "50px", marginLeft: "15px" }} type="number" min={"0"} max={"100"}
+            <input style={{ width: "50px", marginLeft: "15px", marginRight: "7px", textAlign: "center" }} type="number" min={"0"} max={"100"}
                 className='inputModal'
                 id={inputId}
                 placeholder={placeHolder}

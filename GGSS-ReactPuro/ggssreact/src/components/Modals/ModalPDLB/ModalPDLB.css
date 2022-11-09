@@ -1,7 +1,7 @@
 .pdlbBtns{
     display: flex;
     justify-content: space-evenly;
-    margin-top: 15px;
+    margin-top: -5px;
     background-color:rgb(87, 30, 30);
     padding: 12px;
 }

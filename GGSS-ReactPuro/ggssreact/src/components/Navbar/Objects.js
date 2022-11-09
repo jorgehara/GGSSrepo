@@ -223,21 +223,6 @@ export const objectDocumentacion = [
 ]
 
 
-// --------------- DYNAMIC TABLES 
-
-export const tableReduccionHeadings = [
-  { heading: "Desde" },
-  { heading: "Hasta" },
-  { heading: "% Reduce" }
-]
-
-export const tableValoresHeadings = [
-  { heading: "Categoría" },
-  { heading: "Desde" },
-  { heading: "Hasta" },
-  { heading: "Porcentaje"}
-]
-
 // ----- ESCALA DE GANANCIAS
 
 export const inputDateDataEscala = [
@@ -272,4 +257,80 @@ export const inputNumDataValores = [
   { label: "Desde" },
   { label: "Hasta" },
   { label: "Porcentaje" } 
+]
+
+// ------- CONVENIOS CATEGORIAS BASICOS ANTIGÜEDAD
+
+export const objectConvenios = [
+  {
+    label: "Convenio",
+    placeholder: "Comercio"
+  }
+]
+
+export const inputsNumConvenios = [
+  { label: "Desde" },
+  { label: "a" }
+]
+
+export const objectCategorias = [
+  {
+    label: "Convenio",
+    placeholder: "Comercio"
+  },
+  {
+    label: "Categoría",
+    placeholder: "Administrativo 'A'"
+  }
+]
+
+export const inputsNumCategorias = [
+  { label: "Importe Básico" },
+  { label: "Nivel" },
+  { label: "Otro Básico" },
+  { label: "Cant. Horas Mes" }
+
+]
+
+export const inputsNumLicencias = [
+  { label: "De" },
+  { label: "a" },
+  { label: "años de ant. corresponde" }
+]
+
+
+// --------------- DYNAMIC TABLES 
+
+export const tableReduccionHeadings = [
+  { heading: "Desde" },
+  { heading: "Hasta" },
+  { heading: "% Reduce" }
+]
+
+export const tableValoresHeadings = [
+  { heading: "Categoría" },
+  { heading: "Desde" },
+  { heading: "Hasta" },
+  { heading: "Porcentaje"}
+]
+
+export const tableConvenios = [
+  { heading: "Desde" },
+  { heading: "Hasta" },
+  { heading: "Valor" },
+  { heading: "Tipo" }
+]
+
+// ----- JERARQUIA DE LAS CATEGORIAS
+export const tableJerarquia = [
+  { heading: "" },
+  { heading: "Orden" },
+  { heading: "Categoria" }
+]
+
+// ----- LICENCIAS POR ANTIGÜEDAD
+export const tableLicencias = [
+  { heading: "Desde" },
+  { heading: "Hasta" },
+  { heading: "Días de Licencia" }
 ]
