@@ -79,13 +79,7 @@ const Familia = () => {
     idRadioBtnFem : "inputRadioBtnFem"
   }
   //#endregion
-  const paisess = [
-    "Argentina",
-    "Uruguay",
-    "Paraguay",
-    "Bolivia",
-    "Peru"
-  ];
+  
   const columns = [
     "Apellido y Nombre",
     "Tipo",

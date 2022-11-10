@@ -11,7 +11,8 @@ const InputNumero = ({
   disabled,
   nameLabel,
   idInput,
-  onChange
+  onChange,
+  inputValueState
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -27,8 +28,11 @@ const InputNumero = ({
           <input type="text" 
                     className='formulario-input-Legajo'                                   
                       placeholder={placeHolder}
-                      value={value}  
-                      disabled={disabled}         
+                      disabled={disabled}   
+                      id={idInput}
+                      name={nameInput}
+                      value={inputValueState !== undefined || inputValueState !== null ? inputValueState : value }
+                      onChange={(e)=> onChange(e)}      
                       />
         </div>
            
@@ -45,9 +49,7 @@ const InputNumero = ({
           value=""          
           defaultChecked={defaultChecked}
           disabled={disabled}
-          id={idInput}
-          name={nameInput}
-          onChange={(e)=> onChange(e)}
+          
         />
         <label className="form-check-label" htmlFor="flexCheckChecked">
           {nameCheck}
