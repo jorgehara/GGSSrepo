@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import "./InputButton.css";
 
-const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue}) => {
+const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, generalState, setGeneralState}) => {
 
   const [cuil, setCuil] = useState("");
   const [valor, setValor] = useState(0);
@@ -24,7 +24,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
         </div>
         <div className='form__grupo-input'>
             <input type="text" 
-                    value={ valor }
+                    value={ datosPersonalesValue !== undefined && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
                     maxLength={maxLeght}
                     className="formulario-input-Legajo col ml-0 px-0 mt-0 mb-2 mr-1" 
                     placeholder={placeholder} 
@@ -32,12 +32,13 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     name={nameInput}
                     aria-describedby="inputGroupFileAddon04"
                     disabled={disabled}
-                    onChange={(e)=> onChange(e)}
+                    onChange={(e)=> onChange(e, generalState,setGeneralState )}
                     />
         </div>
 			  <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre))}
               className="btn btn-validacion btn-outline-danger ml-2" disabled={disabled}>
-              {nameButton}</button>
+              {nameButton}
+        </button>
     </div>
   )
 }

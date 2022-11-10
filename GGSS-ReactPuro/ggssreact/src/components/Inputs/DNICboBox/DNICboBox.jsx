@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./DNICboBox.css";
-const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabled, idInput, nameLabel, onChange, selectedId, datosPersonalesValue, propArray, datosPersonalesValue2}) => {
+const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabled, idInput, nameLabel, onChange, selectedId, datosPersonalesValue, propArray, datosPersonalesValue2, generalState, setGeneralState}) => {
 
 
   const [valor, setValor] = useState("");
@@ -22,7 +22,7 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabl
         <label className="formulario-label-DNI mt-2 ml-4">{nameLabel}</label>
       </div>
       <div className="">
-        <select disabled={disabled} className="formulario-input-DNI form-select ml-0 px-0" id={selectedId} value={datosPersonalesValue2} name={selectedId} onChange={(e)=> onChange(e)}>
+        <select disabled={disabled} className="formulario-input-DNI form-select ml-0 px-0" id={selectedId} value={datosPersonalesValue2} name={selectedId} onChange={(e)=> onChange(e, generalState, setGeneralState)}>
           {array.map((op, i) => {
             return (propArray === op ? <option selected key={i} value={op}>{op}</option> : <option key={i} value={op}>{op}</option>);
           })}
@@ -38,7 +38,7 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabl
           placeholder={placeHolder}
           value={ valor}
           disabled={disabled}
-          onChange={(e)=> onChange(e)}
+          onChange={(e)=> onChange(e,generalState, setGeneralState)}
         ></input>
       </div>
       <div className="form__grupo__icon">

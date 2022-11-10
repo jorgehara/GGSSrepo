@@ -12,7 +12,9 @@ const InputNumero = ({
   nameLabel,
   idInput,
   onChange,
-  inputValueState
+  inputValueState,
+  generalState,
+  setGeneralState
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -32,7 +34,7 @@ const InputNumero = ({
                       id={idInput}
                       name={nameInput}
                       value={inputValueState !== undefined || inputValueState !== null ? inputValueState : value }
-                      onChange={(e)=> onChange(e)}      
+                      onChange={(e)=> onChange(e,generalState,setGeneralState)}      
                       />
         </div>
            

@@ -13,15 +13,7 @@ import TableBasic1 from "../Tables/TableBasic1";
 
 const Domicilios = () => {
 
-  const [domicilios, setDomicilios ] = useState({
-    inputCalleDomicilios : "",
-    inputNumCalle : "",
-    inputPisoCalle : "",
-    inputProvinciaDomicilios : "",
-    inputDepartamentosDomicilios : "",
-    inputLocalidadesDomicilios : "",
-    inputBarriosDomicilios : ""
-  })
+  
 
   const [inputValue, setInputValue] = useState("");
    
@@ -37,13 +29,7 @@ const Domicilios = () => {
   ];
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
-  console.log(domicilios.inputCalleDomicilios)
-  console.log(domicilios.inputNumCalle)
-  console.log(domicilios.inputPisoCalle)
-  console.log(domicilios.inputProvinciaDomicilios)
-  console.log(domicilios.inputDepartamentosDomicilios)
-  console.log(domicilios.inputLocalidadesDomicilios)
-  console.log(domicilios.inputBarriosDomicilios)
+  
   
 
   //#region ------------------------------------------------------------------------------URLs
@@ -54,7 +40,7 @@ const Domicilios = () => {
   const urlBarrios = "http://54.243.192.82/api/Barrios";
   //#endregion
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable } = useContext(employeContext);
+  const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable, domicilios, setDomicilios, onChange } = useContext(employeContext);
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
@@ -96,14 +82,7 @@ const Domicilios = () => {
   }, [predeterminado.toString()]);
   //#endregion
  
-  function onChange(evt) {
-    const name = evt.target.name;
-    const value = (evt.target.value);
-
-    let newDomicilios = { ...domicilios };
-    newDomicilios[name] = value; 
-    setDomicilios(newDomicilios);
-  }
+  
   const setInputValor = () => {
     if (predeterminado.toString() === "1") {
       setInputValue("checked");
@@ -111,6 +90,7 @@ const Domicilios = () => {
     }
     setInputValue("");
   };
+  
   return (
     
       //#region Menú Principal
@@ -156,6 +136,8 @@ const Domicilios = () => {
                 <div className="col-xl-6">
                   <InputCbo
                     value={saveDom[0] !== undefined ? saveDom[0].calle : null}
+                    generalState = {domicilios}
+                    setGeneralState = {setDomicilios}
                     sexo=""
                     nameButton="..."
                     nameLabel="Calle"
@@ -175,6 +157,8 @@ const Domicilios = () => {
                   <InputNumero
                     nameInput="inputNumCalle"
                     array={paises}
+                    generalState = {domicilios}
+                    setGeneralState = {setDomicilios}
                     placeHolder="N° Calle"
                     nameCheck="Fijar"
                     defaultChecked=""
@@ -194,6 +178,8 @@ const Domicilios = () => {
                       ? saveDom.pisoDepto
                       : null
                   }
+                  generalState = {domicilios}
+                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Piso/Dpto/
@@ -216,6 +202,8 @@ const Domicilios = () => {
                   value={
                     saveEmpl[0] !== undefined ? saveEmpl[0].idProvincia : null
                   }
+                  generalState = {domicilios}
+                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Provincia"
@@ -236,6 +224,8 @@ const Domicilios = () => {
                       ? saveDom[0].Provincia
                       : null
                   }
+                  generalState = {domicilios}
+                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Departamento"
@@ -256,6 +246,8 @@ const Domicilios = () => {
                   ? saveDom[0].Provincia
                   : null
                   }
+                  generalState = {domicilios}
+                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Localidad"
@@ -276,6 +268,8 @@ const Domicilios = () => {
                       ? saveDom[0].Provincia
                       : null
                   }
+                  generalState = {domicilios}
+                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Barrio"
