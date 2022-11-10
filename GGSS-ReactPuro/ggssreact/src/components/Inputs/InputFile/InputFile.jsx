@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./InputFile.css";
+import imagenAlt from "./cambieImagen.png";
 
 function InputFile({ disabled, imagen }) {
   const [ImageSelectedPrevious, setImageSelectedPrevious] = useState(null);
@@ -50,6 +51,8 @@ function InputFile({ disabled, imagen }) {
               type="file"
               accept="image/png, image/jpg"
               multiple
+              width="220px"
+              height="100px"
               disabled={disabled}
               onChange={(e) => {
                 changeImage(e);
@@ -62,11 +65,9 @@ function InputFile({ disabled, imagen }) {
                   ImageSelectedPrevious === null ||
                   ImageSelectedPrevious === undefined
                     ? imagen
-                    : ImageSelectedPrevious
+                    : ImageSelectedPrevious ? imagenAlt : null
                 }
-                alt=""
-                width="220px"
-                height="100px"
+                alt="ImageNotFound"
               />
             </div>
           </div>
@@ -95,10 +96,7 @@ const StyleDragArea = styled.div`
     width: 230px;
     border: 4px dashed #d0d7de;
   }
-  .file-upload-content {
-    /* display: none;
-    text-align: center; */
-  }
+  
 
   .file-upload-input {
     position: absolute;
