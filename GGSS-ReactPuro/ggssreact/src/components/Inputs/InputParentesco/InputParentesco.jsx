@@ -60,7 +60,7 @@ const InputParentesco = ({
             disabled={disable}
           />
         </div>
-        <div className="col-xl-2 form-inputs-radioFijar">
+        <div className="col-xl-2 form-inputs-radioFijar mt-2">
         <div 
           className={
             mostrarComponente ? "d-flex align-items-center " : "none"

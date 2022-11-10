@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputOpcionsFlia.css";
-const ParentescoFlia = ({
+const EstudioFlia = ({
   nameInput,
   array,
   placeHolder,
@@ -20,7 +20,7 @@ const ParentescoFlia = ({
   }, [display]);
 
   return (
-    <div className="formulario__grupo mt-1">
+    <div className="formulario__grupo mt-2">
       <div className="row">
         <div className="col-xl-4 ">
           <label className="form-label-EstudiosFlia mt-2">
@@ -59,7 +59,7 @@ const ParentescoFlia = ({
             disabled={disable}
           />
         </div>
-        <div className="radio-Fijar-estu">
+        <div className="radio-Fijar-estu mt-2">
         <div
           className={
             mostrarComponente
@@ -85,4 +85,4 @@ const ParentescoFlia = ({
   );
 };
 
-export default ParentescoFlia;
+export default EstudioFlia;

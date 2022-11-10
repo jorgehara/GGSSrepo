@@ -67,7 +67,7 @@ const Browser = () => {
           onChange={(e) => onInputChange(e)}
           value={empData.legajo}
           className="form__grupo__input__browser mr-2"
-          type="text"
+          type="number"
           name="legajo"
           id="legajos"
           placeholder="Ingrese Legajo "

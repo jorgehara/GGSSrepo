@@ -12,7 +12,7 @@ import InputParentesco from "../Inputs/InputParentesco/InputParentesco";
 import TextArea from "../Inputs/TextArea/TextArea";
 import TableBasic from "../Tables/TableBasic";
 import NacionalidadFlia from "../Inputs/InputParentescoOpcions/NacionalidadFlia";
-import ParentescoFlia from "../Inputs/InputParentescoOpcions/ParentescoFlia";
+import EstudioFlia from "../Inputs/InputParentescoOpcions/EstudioFlia";
 import { useEffect } from "react";
 import { getData, getFamiliarByIdEmpleado, getFamiliarByIdFamiliar } from "../../services/fetchAPI";
 import { useState } from "react";
@@ -177,7 +177,7 @@ const Familia = () => {
                   idInput="fechaNac"
                   disable={disable}
                 />
-                <ParentescoFlia
+                <EstudioFlia
                   nameInput="Estudios"
                   array={estudios}
                   propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
@@ -207,7 +207,7 @@ const Familia = () => {
                   idModal="paises"
                   disable={disable}
                 />
-                <NacionalidadFlia
+          <NacionalidadFlia
                   nameInput="Nacionalidad"
                   array={nacionalidades !== undefined ? nacionalidades : "Nacionalidad"}
                   placeHolder="Nacionalidad"
@@ -233,11 +233,6 @@ const Familia = () => {
             disable={disable}
           />
             <TextArea inputName="Observaciones" maxLength="255" value="" disabled={disable}/>
-          
-          
-          {/* <ButtonCancelarAceptar 
-          // cancelar="" 
-          // aceptar=""  /> */}
         </div>
         <div className="d-flex flex-row align-items-center">
           <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={saveFamiliarSelected !== undefined && saveFamiliarSelected !== null ? saveFamiliarSelected : []} parentescos={saveParen!== undefined ? saveParen : null} seleccionado={saveFamSelect}/>
@@ -247,7 +242,7 @@ const Familia = () => {
     </div>
 
 
- <div className="d-flex justify-content-end">
+      <div className="d-flex justify-content-end">
         <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
       </div>
 

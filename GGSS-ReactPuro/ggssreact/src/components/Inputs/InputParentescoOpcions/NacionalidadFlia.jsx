@@ -35,7 +35,7 @@ const NacionalidadFlia = ({
     }
   };
   return (
-    <div className="formulario__grupo mt-1">
+    <div className="formulario__grupo mt-2">
       <div className="">
         <label className="formulario-label-ParentescoFliaOpcions mt-2 ">
           {nameInput}
