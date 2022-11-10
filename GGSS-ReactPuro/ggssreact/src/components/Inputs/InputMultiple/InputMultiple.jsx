@@ -70,7 +70,7 @@ const InputMultiple = ({
               })}
             </select>
           </div>
-          <div className="col-xl-2  form__grupo__input2 d-flex justify-content-center align-items-center">
+          <div className="col-xl-2 d-flex justify-content-center align-items-center">
             <input
               type="text"
               maxLength="8"
@@ -89,7 +89,7 @@ const InputMultiple = ({
           <div className="form__grupo__error">
             <p></p>
           </div>
-          <div className="col-xl-4  formulario__grupo__inputs__radio">
+          <div className="col-xl-4  form-inputs-radio">
             <div className="form__grupo__label">
               <label className="form__grupo__label__label" htmlFor="legajo">
                 {nameInputRadio}

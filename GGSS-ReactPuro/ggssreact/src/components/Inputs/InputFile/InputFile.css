@@ -1,9 +1,9 @@
 .div_conteiner {
 }
 .img__drop{
-    display: block;
+    /* display: block; */
     width: 230px;
-    border: 4px dashed #d0d7de;
+    /* border: 4px dashed #d0d7de; */
 }
 .file-upload-input {
 position: absolute;
@@ -13,7 +13,7 @@ padding: 0;
 width: 225px;
 height: 105px;
 opacity: 0;
-border: 4px dashed #d0d7de;
+/* border: 4px dashed #d0d7de; */
 cursor: pointer;
 }
 .image-upload-wrap:hover {

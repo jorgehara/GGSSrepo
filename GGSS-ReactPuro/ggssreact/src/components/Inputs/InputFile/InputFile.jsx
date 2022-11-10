@@ -46,7 +46,7 @@ function InputFile({ disabled, imagen }) {
               Cambiar su imagen
             </label>
             <input
-              className="file-upload-input ml-1"
+              className="file-upload-input"
               type="file"
               accept="image/png, image/jpg"
               multiple
@@ -107,19 +107,20 @@ const StyleDragArea = styled.div`
     padding: 0;
     width: 225px;
     height: 105px;
-    opacity: 0;
-    border: 4px dashed #d0d7de;
+    /* opacity: 0; */
+    /* border: 4px dashed #d0d7de; */
     cursor: pointer;
   }
 
   .image-upload-wrap {
+    /* background-color: red; */
     .h5 {
       font-weight: 395;
-      color: #64686d;
+      /* color: #64686d; */
       color: black;
     }
   }
   .image-upload-wrap:hover {
-    background-color: transparent;
+    /* background-color: transparent; */
   }
 `;

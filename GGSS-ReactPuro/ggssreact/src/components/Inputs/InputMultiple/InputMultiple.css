@@ -58,3 +58,6 @@
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
 }
+.form-inputs-radio{
+	margin-left: 12%;
+}

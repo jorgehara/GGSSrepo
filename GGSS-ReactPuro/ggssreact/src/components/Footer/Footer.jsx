@@ -5,7 +5,7 @@ import "./Footer.css"
 
 const Footer = () => {
   return (
-            <div className="d-flex border row fixed-bottom">
+            <div className="d-flex border row">
                 <div className='col-2'>
                     <ButtonLarge color="danger" tamaño="" justyfy="cemter m-1" nameButton="Imprimir Constancia de Asignaciones Familiares" />
                 </div>
