@@ -7,7 +7,7 @@ const TextArea = ({inputName, maxLength, value, disabled}) => {
         <div className='form__grupo__label pl-1 mt-2'>
             <label className='form__grupo__label__label m-0' htmlFor="legajo">{inputName}</label>
         </div>
-        {/* ver el height en Boostrap */}
+
         <div className='form__grupo__inputs_Obs mt-1'>
         <input className="form-control-obs txtArea" 
                 value={value}
@@ -20,7 +20,8 @@ const TextArea = ({inputName, maxLength, value, disabled}) => {
                 disabled={disabled}
                 >
         </input>
-    </div>
+        </div>
+        
     </div>
   )
 }

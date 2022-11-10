@@ -1,4 +1,4 @@
-  //#region Imports
+//#region Imports
 
 import React, { useContext, useEffect, useState } from "react";
 import swal from "sweetalert";
@@ -15,18 +15,32 @@ import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
 import { getData } from "../../services/fetchAPI";
 import generateCuil from "./funcGenerarCuil.js";
+import TextArea from "../Inputs/TextArea/TextArea";
 
-  //#endregion
+//#endregion
 
 const DatosPersonales = () => {
-
-  
-
   //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
-  
+
   //#endregion
   //------------------------------------------------------------------------------CONTEXT
-  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, disable, onChange, setDatosPersonales, datosPersonales} = useContext(employeContext);
+  const {
+    saveEmpl,
+    saveEstados,
+    saveEstado,
+    saveEstadosCiviles,
+    saveEstadoCivil,
+    saveNacionalidades,
+    saveNacionalidad,
+    saveEstudios,
+    saveEstudio,
+    saveTipoDNI,
+    saveTiposDNI,
+    disable,
+    onChange,
+    setDatosPersonales,
+    datosPersonales,
+  } = useContext(employeContext);
   //------------------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
   const [image, setImage] = useState("");
@@ -40,61 +54,126 @@ const DatosPersonales = () => {
   //#endregion
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
-  const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
-  const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];    
-  const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_masc); }) : []; 
-  const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_fem); }) : []; 
-  const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
-  const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nombrePais); }) : [];
-  const idPaisOrigen = saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
-  const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO"; 
-  const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i)=>{ return (nac.estudiosNivel); }) : [];
-  const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
-  const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
-  const estadosArray = saveEstado.map((m,i)=>{return (m.nombreEstado)});
-  const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => {return (est.nombreEstado)}) : null;
+  const estadosCivilesMasculinos =
+    saveEstadoCivil !== undefined
+      ? saveEstadoCivil.map((estado, i) => {
+          return estado.masculino;
+        })
+      : [];
+  const estadosCivilesFemeninos =
+    saveEstadoCivil !== undefined
+      ? saveEstadoCivil.map((estado, i) => {
+          return estado.femenino;
+        })
+      : [];
+  const estadosCiviles =
+    saveEstadoCivil !== undefined
+      ? saveEstadoCivil.map((estado, i) => {
+          return `Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`;
+        })
+      : [];
+  const nacionalidadesMasculinas =
+    saveNacionalidad !== undefined
+      ? saveNacionalidad.map((nac, i) => {
+          return nac.nacionalidad_masc;
+        })
+      : [];
+  const nacionalidadesFemeninas =
+    saveNacionalidad !== undefined
+      ? saveNacionalidad.map((nac, i) => {
+          return nac.nacionalidad_fem;
+        })
+      : [];
+  const nacionalidades =
+    saveNacionalidad !== undefined
+      ? saveNacionalidad.map((nac, i) => {
+          return `Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`;
+        })
+      : [];
+  const paises =
+    saveNacionalidad !== undefined
+      ? saveNacionalidad.map((nac, i) => {
+          return nac.nombrePais;
+        })
+      : [];
+  const idPaisOrigen =
+    saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
+  const paisSelected =
+    saveNacionalidad !== undefined
+      ? saveNacionalidad.find((pais) => pais.idPais === idPaisOrigen)
+      : "ARGENTINO";
+  const estudios =
+    saveEstudio !== undefined
+      ? saveEstudio.map((nac, i) => {
+          return nac.estudiosNivel;
+        })
+      : [];
+  const idSelected =
+    saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
+  const estudioSelect =
+    saveEstudio !== undefined
+      ? saveEstudio.find((estudio) => estudio.iDestudios === idSelected)
+      : "(Ninguno)";
+  const estadosArray = saveEstado.map((m, i) => {
+    return m.nombreEstado;
+  });
+  const estadosEmpleado =
+    saveEstado !== undefined
+      ? saveEstado.map((est) => {
+          return est.nombreEstado;
+        })
+      : null;
   const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
-  const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
-  const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
-  const idTipoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDtipoDocumento : 0;
-  const dniSelectedOption = saveTipoDNI !== undefined ? saveTipoDNI.find(tipo => tipo.iDtipoDocumento === idTipoSelected) : null;
+  const estadoSEleccionado =
+    saveEstado !== undefined
+      ? saveEstado.find((est) => est.idEstado === idEstadoSelec)
+      : "ARGENTINO";
+  const tiposDNI =
+    saveTipoDNI !== undefined
+      ? saveTipoDNI.map((tdni) => {
+          return tdni.tipoDocumento;
+        })
+      : null;
+  const idTipoSelected =
+    saveEmpl[0] !== undefined ? saveEmpl[0].iDtipoDocumento : 0;
+  const dniSelectedOption =
+    saveTipoDNI !== undefined
+      ? saveTipoDNI.find((tipo) => tipo.iDtipoDocumento === idTipoSelected)
+      : null;
   const numDoc = saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null;
- 
+
   //#endregion
-  
+
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
 
   useEffect(() => {
     getData(url, saveEstados);
-    }, []);
+  }, []);
   useEffect(() => {
-    getData(urlEstadosCiviles, saveEstadosCiviles);    
-  }, [ ]);
+    getData(urlEstadosCiviles, saveEstadosCiviles);
+  }, []);
   useEffect(() => {
     getData(urlPaisesNac, saveNacionalidades);
-  }, [ ]);
-  useEffect(()=>{
-    getData(urlEstudios, saveEstudios);
-  },[])
-  useEffect(()=>{
-    getData(urlTiposDNI, saveTiposDNI);
-  },[])
-  useEffect(()=>{
-
-  },[disable])
+  }, []);
   useEffect(() => {
-    setImageEmpleado()
+    getData(urlEstudios, saveEstudios);
+  }, []);
+  useEffect(() => {
+    getData(urlTiposDNI, saveTiposDNI);
+  }, []);
+  useEffect(() => {}, [disable]);
+  useEffect(() => {
+    setImageEmpleado();
   }, [saveEmpl[0].obsFechaIngreso]);
 
-    function setImageEmpleado(){
-      saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
-    }
-  
-  //#endregion
-  
-  //#region ------------------------------------------------------------------------------VALIDACIONES
+  function setImageEmpleado() {
+    saveEmpl[0].obsFechaIngreso !== undefined &&
+      setImage(saveEmpl[0].obsFechaIngreso);
+  }
 
+  //#endregion
+
+  //#region ------------------------------------------------------------------------------VALIDACIONES
 
   const validateNumbers = (e) => {
     if (!/[0-9]/.test(e.key)) {
@@ -132,7 +211,7 @@ const DatosPersonales = () => {
     }
   };
   //#endregion
- 
+
   return (
     //#region Menú Principal
     <div className="Lateral-Derecho">
@@ -159,15 +238,12 @@ const DatosPersonales = () => {
             <div className="accordion-body">
               <section className="container">
                 <div className="row">
-                  <div className="formulario__grupo">
-
-                  </div>
+                  <div className="formulario__grupo"></div>
                   <form action="" className="form__datos__personales ">
                     <div className="row row-cols-12">
                       <div className="segunda__columna col-xl-4">
                         {
                           //#endregion
-
                         }
                         <InputForm
                           value={
@@ -180,21 +256,24 @@ const DatosPersonales = () => {
                           messageError="Solo puede contener números."
                           placeHolder="N° Legajo"
                           disabled={disable}
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           onChange={onChange}
                           nameLabel="Legajo"
-                          datosPersonalesValue={datosPersonales.numLegajo !== undefined ? datosPersonales.numLegajo : "N° Legajo"}
+                          datosPersonalesValue={
+                            datosPersonales.numLegajo !== undefined
+                              ? datosPersonales.numLegajo
+                              : "N° Legajo"
+                          }
                         />
                         <InputForm
                           value={
-
                             saveEmpl[0] !== undefined
                               ? saveEmpl[0].apellido
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           nameInput="apellidoInput"
                           idInput="apellidoInput"
                           messageError="Solo puede contener letras."
@@ -202,7 +281,11 @@ const DatosPersonales = () => {
                           disabled={disable}
                           onChange={onChange}
                           nameLabel="Apellidos"
-                          datosPersonalesValue={datosPersonales.apellidoInput !== undefined ? datosPersonales.apellidoInput : "Apellido"}
+                          datosPersonalesValue={
+                            datosPersonales.apellidoInput !== undefined
+                              ? datosPersonales.apellidoInput
+                              : "Apellido"
+                          }
                         />
                         <InputForm
                           value={
@@ -210,8 +293,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].nombres
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           nameInput="nombresInput"
                           idInput="nombresInput"
                           messageError="Solo puede contener letras."
@@ -219,7 +302,11 @@ const DatosPersonales = () => {
                           disabled={disable}
                           onChange={onChange}
                           nameLabel="Nombres"
-                          datosPersonalesValue={datosPersonales.nombresInput !== undefined ? datosPersonales.nombresInput : "Nombres"}
+                          datosPersonalesValue={
+                            datosPersonales.nombresInput !== undefined
+                              ? datosPersonales.nombresInput
+                              : "Nombres"
+                          }
                         />
                         <DNICboBox
                           value={
@@ -227,8 +314,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].nroDocumento
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           nameInput="documentoInput"
                           idInput="documentoInput"
                           messageError="Solo puede contener números, sin puntos."
@@ -238,16 +325,28 @@ const DatosPersonales = () => {
                           nameLabel="D.N.I."
                           onChange={onChange}
                           selectedId="dniSelected"
-                          propArray={dniSelectedOption !== undefined ? dniSelectedOption.tipoDocumento : null}
-                          datosPersonalesValue={datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : numDoc}
-                          datosPersonalesValue2={datosPersonales.dniSelected !== undefined ? datosPersonales.dniSelected :"D.N.I"}
+                          propArray={
+                            dniSelectedOption !== undefined
+                              ? dniSelectedOption.tipoDocumento
+                              : null
+                          }
+                          datosPersonalesValue={
+                            datosPersonales.documentoInput !== undefined
+                              ? datosPersonales.documentoInput
+                              : numDoc
+                          }
+                          datosPersonalesValue2={
+                            datosPersonales.dniSelected !== undefined
+                              ? datosPersonales.dniSelected
+                              : "D.N.I"
+                          }
                         />
                         <InputButton
                           value={
                             saveEmpl[0] !== undefined ? saveEmpl[0].cuil : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           id="inputCuil"
                           nameInput="inputCuil"
                           nameLabel="C.U.I.L"
@@ -257,11 +356,23 @@ const DatosPersonales = () => {
                           array={[]}
                           disabled={disable}
                           onChange={onChange}
-                          datosPersonalesValue={datosPersonales.inputcuil !== undefined ? datosPersonales.inputcuil : "N° CUIL"}
+                          datosPersonalesValue={
+                            datosPersonales.inputcuil !== undefined
+                              ? datosPersonales.inputcuil
+                              : "N° CUIL"
+                          }
                           funcionCuil={generateCuil}
-                          nroDocumento = {datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : numDoc}
-                          genre={datosPersonales.inputSexo !== undefined ? datosPersonales.inputSexo : null}
-                          usaCuil = {true}
+                          nroDocumento={
+                            datosPersonales.documentoInput !== undefined
+                              ? datosPersonales.documentoInput
+                              : numDoc
+                          }
+                          genre={
+                            datosPersonales.inputSexo !== undefined
+                              ? datosPersonales.inputSexo
+                              : null
+                          }
+                          usaCuil={true}
                         />
                         <InputForm
                           value={
@@ -269,8 +380,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].telFijo
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           nameInput="telefonoInput"
                           idInput="telefonoInput"
                           messageError="Solo puede contener números."
@@ -278,17 +389,23 @@ const DatosPersonales = () => {
                           disabled={disable}
                           onChange={onChange}
                           nameLabel="Telefono"
-                          datosPersonalesValue={datosPersonales.telefonoInput !== undefined ? datosPersonales.telefonoInput : "N° Teléfono"}
+                          datosPersonalesValue={
+                            datosPersonales.telefonoInput !== undefined
+                              ? datosPersonales.telefonoInput
+                              : "N° Teléfono"
+                          }
                         />
-                       <InputCbo
+                        <InputCbo
                           value={
                             saveEstadoCivil[0] !== undefined
                               ? saveEstadoCivil[0].idEstadoCivil
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
-                          sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
+                          sexo={
+                            saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null
+                          }
                           nameButton="..."
                           nameLabel="Estado Civil"
                           array={estadosCiviles}
@@ -302,18 +419,24 @@ const DatosPersonales = () => {
                           idInput="estadoCivilInput"
                           onChange={onChange}
                         />
-                       <InputCbo
+                        <InputCbo
                           value={
                             saveEmpl[0] !== undefined
                               ? saveEmpl[0].idNacionalidad
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
-                          sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
+                          sexo={
+                            saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null
+                          }
                           nameButton="..."
                           nameLabel="Nacionalidad"
-                          array={ nacionalidades !== undefined ? nacionalidades : ["Nacionalidad"]}
+                          array={
+                            nacionalidades !== undefined
+                              ? nacionalidades
+                              : ["Nacionalidad"]
+                          }
                           propArray="Casado"
                           masculinos={nacionalidadesMasculinas}
                           femeninos={nacionalidadesFemeninas}
@@ -331,13 +454,21 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idEstado
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           sexo=""
                           nameButton="..."
                           nameLabel="Estado"
-                          array={estadosArray !== undefined  ? estadosArray : ["Activo"]}
-                          propArray={estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : ""}
+                          array={
+                            estadosArray !== undefined
+                              ? estadosArray
+                              : ["Activo"]
+                          }
+                          propArray={
+                            estadoSEleccionado !== undefined
+                              ? estadoSEleccionado.nombreEstado
+                              : ""
+                          }
                           masculinos=""
                           femeninos=""
                           onChange={onChange}
@@ -350,15 +481,19 @@ const DatosPersonales = () => {
                           value={
                             saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           nameFirst="Masculino"
                           nameSecond="Femenino"
                           nameLabel="Sexo"
                           idInput="inputSexo"
                           disabled={disable}
                           onChange={onChange}
-                          datosPersonalesValue={datosPersonales.inputSexo !== undefined ? datosPersonales.inputSexo : null}
+                          datosPersonalesValue={
+                            datosPersonales.inputSexo !== undefined
+                              ? datosPersonales.inputSexo
+                              : null
+                          }
                         />
                         <InputDate
                           value={
@@ -366,13 +501,17 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].fechaNacimiento
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           nameInput="Nacimiento"
                           disabled={disable}
                           idInput="inputDateNac"
                           onChange={onChange}
-                          datosPersonalesValue={datosPersonales.inputDateNac !== undefined ? datosPersonales.inputDateNac : null}
+                          datosPersonalesValue={
+                            datosPersonales.inputDateNac !== undefined
+                              ? datosPersonales.inputDateNac
+                              : null
+                          }
                         />
                         <InputForm
                           value={
@@ -380,8 +519,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].telMovil
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           nameInput="movil"
                           idInput="movil"
                           messageError="Solo puede contener números."
@@ -389,14 +528,18 @@ const DatosPersonales = () => {
                           disabled={disable}
                           nameLabel="Celular"
                           onChange={onChange}
-                          datosPersonalesValue={datosPersonales.movil !== undefined ? datosPersonales.movil : "Movil"}
+                          datosPersonalesValue={
+                            datosPersonales.movil !== undefined
+                              ? datosPersonales.movil
+                              : "Movil"
+                          }
                         />
                         <InputForm
                           value={
                             saveEmpl[0] !== undefined ? saveEmpl[0].mail : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           nameInput="email"
                           inputId="email"
                           messageError="Ingrese un email válido."
@@ -404,7 +547,11 @@ const DatosPersonales = () => {
                           disabled={disable}
                           nameLabel="Email"
                           onChange={onChange}
-                          datosPersonalesValue={datosPersonales.email !== undefined ? datosPersonales.email : "Email"}
+                          datosPersonalesValue={
+                            datosPersonales.email !== undefined
+                              ? datosPersonales.email
+                              : "Email"
+                          }
                         />
                         <InputCbo
                           value={
@@ -412,13 +559,17 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idPaisdeOrigen
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           sexo=""
                           nameButton="..."
                           nameLabel="País de Origen"
                           array={paises}
-                          propArray={paisSelected !== undefined ? paisSelected.nombrePais : ""}
+                          propArray={
+                            paisSelected !== undefined
+                              ? paisSelected.nombrePais
+                              : ""
+                          }
                           masculinos=""
                           femeninos=""
                           display={true}
@@ -426,21 +577,29 @@ const DatosPersonales = () => {
                           disabled={disable}
                           idInput="estadosEmpleados"
                           onChange={onChange}
-                          datosPersonalesValue={datosPersonales.estadosEmpleados !== undefined ? datosPersonales.estadosEmpleados : "Email"}
+                          datosPersonalesValue={
+                            datosPersonales.estadosEmpleados !== undefined
+                              ? datosPersonales.estadosEmpleados
+                              : "Email"
+                          }
                         />
-                      <InputCbo
+                        <InputCbo
                           value={
                             saveEmpl[0] !== undefined
                               ? saveEmpl[0].idEstudios
                               : null
                           }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
+                          generalState={datosPersonales}
+                          setGeneralState={setDatosPersonales}
                           sexo=""
                           nameButton="..."
                           nameLabel="Estudios"
                           array={estudios}
-                          propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
+                          propArray={
+                            estudioSelect !== undefined
+                              ? estudioSelect.estudiosNivel
+                              : "Cursos"
+                          }
                           masculinos=""
                           femeninos=""
                           display={true}
@@ -448,40 +607,25 @@ const DatosPersonales = () => {
                           disabled={disable}
                           idInput="estudiosInput"
                           onChange={onChange}
-                          datosPersonalesValue={datosPersonales.estudiosInput !== undefined ? datosPersonales.estudiosInput : "Email"}
+                          datosPersonalesValue={
+                            datosPersonales.estudiosInput !== undefined
+                              ? datosPersonales.estudiosInput
+                              : "Email"
+                          }
                         />
-
-
-
-                        <InputForm
-                          // value={
-                          //   saveEmpl[0] !== undefined || saveEmpl[0] === null
-                          //     ? saveEmpl[0].legajo
-                          //     : null
-                          // }
-                          generalState = {datosPersonales}
-                          setGeneralState = {setDatosPersonales}
-                          nameInput="nameObs"
-                          idInput="nameObs"
-                          messageError="Solo puede contener números."
-                          placeHolder="Ingrese Observaciones"
+                        <TextArea
+                          inputName="Observaciones"
+                          maxLength="255"
+                          value=""
                           disabled={disable}
-                          onChange={onChange}
-                          nameLabel="Observaciones"
-                          datosPersonalesValue={datosPersonales.obsEstudio !== undefined ? datosPersonales.obsEstudio : "Sin Observaciones"}
                         />
-
-                        {/* <TextArea inputName="Obs. Estudios" maxLength="55" disabled={disable} /> */}
-
-
-
                       </div>
-                      
-                      
-                      
                       <div className="col-xl-3">
-                        
-                        <InputFile inputName="Arrastre su imagen" disabled={disable} imagen={`data:image/jpeg;base64,${image}`}/>
+                        <InputFile
+                          inputName="Arrastre su imagen"
+                          disabled={disable}
+                          imagen={`data:image/jpeg;base64,${image}`}
+                        />
                       </div>
                     </div>
                   </form>
@@ -493,7 +637,11 @@ const DatosPersonales = () => {
         <Domicilios disabled={disable} />
       </div>
       <div className="d-flex justify-content-end">
-        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable}/>
+        <ButtonCancelarAceptar
+          cancelar="Cancelar"
+          aceptar="Aceptar"
+          disabled={disable}
+        />
       </div>
     </div>
   );
