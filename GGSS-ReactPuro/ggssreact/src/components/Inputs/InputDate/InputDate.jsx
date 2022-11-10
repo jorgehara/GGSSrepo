@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./InputDate.css";
 
-const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChange,datosPersonalesValue }) => {
+const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChange,datosPersonalesValue, generalState, setGeneralState }) => {
   
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [valor, setValor] = useState("");
@@ -31,7 +31,7 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
           <input className={mostrarComponente ? "form-check-input ml-4" : "none"} type="checkbox"  id="flexCheckChecked"  checked={checked} disabled={disabled} />
         </div>
         <div className="formulario-input-Date">
-            <input id={idInput} name={idInput} type="date" value={valor} disabled={disabled} onChange={(e)=>onChange(e)} />
+            <input id={idInput} name={idInput} type="date" value={valor} disabled={disabled} onChange={(e)=>onChange(e,generalState, setGeneralState)} />
         </div>
     </div>
   )

@@ -22,7 +22,48 @@ const EmpleadoContextProvider = (props) => {
   const [saveFamiliar, setSaveFamiliar] = useState([]);
   const [ saveFamiliarSelected ,setSaveFamiliarSelected] = useState([]);
   const [ saveFamSelect ,setSaveFamSelect] = useState([]);
+  //region ESTADOS GENERALES SOLAPAS
+  const [datosPersonales, setDatosPersonales] = useState({
+    numLegajo : "",
+    apellidoInput : "",
+    nombresInput : "",
+    documentoInput : "",
+    inputcuil : "",
+    telefonoInput : "",
+    estadoCivilInput : "",
+    nacionalidadesInput : "",
+    dniSelected : "",
+    inputSexo : "",
+    inputDateNac : "",
+    movil : "",
+    email : "",
+    estadosEmpleados : "",
+    estudiosInput : "",
+    nameObs : ""
+  })
 
+  const [domicilios, setDomicilios ] = useState({
+    inputCalleDomicilios : "",
+    inputNumCalle : "",
+    inputPisoCalle : "",
+    inputProvinciaDomicilios : "",
+    inputDepartamentosDomicilios : "",
+    inputLocalidadesDomicilios : "",
+    inputBarriosDomicilios : ""
+  })
+
+  //#endregion
+ 
+  //#region ONCHANGE
+  function onChange(evt, generalState, setGeneralState) {
+    const name = evt.target.name;
+    const value = (evt.target.value);
+
+    let newDatosPersonales = { ...generalState };
+    newDatosPersonales[name] = value;
+    setGeneralState(newDatosPersonales);
+  }
+  //#endregion
     //#region FUNCIONES DE ESTADOS GENERALES
   function saveEstados(estado) {
     setSaveEstado(estado);
@@ -123,7 +164,12 @@ const EmpleadoContextProvider = (props) => {
         saveFamiliarSelected,
         saveFamiliarPorEmpleado,
         saveFamSelect,
-        saveFamiliarSelec
+        saveFamiliarSelec,
+        onChange,
+        setDatosPersonales,
+        datosPersonales,
+        setDomicilios,
+        domicilios
       }}
     >
       {props.children}

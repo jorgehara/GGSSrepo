@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import "./InputButton.css";
 
-const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue}) => {
+const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, generalState, setGeneralState}) => {
 
   const [cuil, setCuil] = useState("");
   const [valor, setValor] = useState(0);
@@ -17,7 +17,6 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
     setValor(value);
   },[value])
 
-    console.log(datosPersonalesValue)
   return (
     <div className="formulario__grupo__inputs">
         <div className='formulario__grupo'>
@@ -33,12 +32,13 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     name={nameInput}
                     aria-describedby="inputGroupFileAddon04"
                     disabled={disabled}
-                    onChange={(e)=> onChange(e)}
+                    onChange={(e)=> onChange(e, generalState,setGeneralState )}
                     />
         </div>
 			  <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre))}
               className="btn btn-validacion btn-outline-danger ml-2" disabled={disabled}>
-              {nameButton}</button>
+              {nameButton}
+        </button>
     </div>
   )
 }

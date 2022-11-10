@@ -20,36 +20,13 @@ import generateCuil from "./funcGenerarCuil.js";
 
 const DatosPersonales = () => {
 
-  const [datosPersonales, setDatosPersonales] = useState({
-    numLegajo : "",
-    apellidoInput : "",
-    nombresInput : "",
-    documentoInput : "",
-    inputcuil : "",
-    telefonoInput : "",
-    estadoCivilInput : "",
-    nacionalidadesInput : "",
-    dniSelected : "",
-    inputSexo : "",
-    inputDateNac : "",
-    movil : "",
-    email : "",
-    estadosEmpleados : "",
-    estudiosInput : ""
-  })
+  
 
   //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
-  function onChange(evt) {
-    const name = evt.target.name;
-    const value = (evt.target.value);
-
-    let newDatosPersonales = { ...datosPersonales };
-    newDatosPersonales[name] = value;
-    setDatosPersonales(newDatosPersonales);
-  }
+  
   //#endregion
   //------------------------------------------------------------------------------CONTEXT
-  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveDisable, disable} = useContext(employeContext);
+  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, disable, onChange, setDatosPersonales, datosPersonales} = useContext(employeContext);
   //------------------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
   const [image, setImage] = useState("");
@@ -155,22 +132,7 @@ const DatosPersonales = () => {
     }
   };
   //#endregion
-  console.log(datosPersonales.numLegajo)
-  console.log(datosPersonales.apellidoInput)
-  console.log(datosPersonales.nombresInput)
-  console.log(datosPersonales.dniSelected)
-  console.log(datosPersonales.documentoInput)
-  console.log(datosPersonales.inputcuil)
-  console.log(datosPersonales.telefonoInput)
-  console.log(datosPersonales.estadoCivilInput)
-  console.log(datosPersonales.nacionalidadesInput)  
-  console.log(datosPersonales.inputSexo)
-  console.log(datosPersonales.inputDateNac)
-  console.log(datosPersonales.movil)
-  console.log(datosPersonales.email)
-  console.log(datosPersonales.estadosEmpleados)
-  console.log(datosPersonales.estudiosInput)
-  
+ 
   return (
     //#region Menú Principal
     <div className="Lateral-Derecho">
@@ -218,6 +180,8 @@ const DatosPersonales = () => {
                           messageError="Solo puede contener números."
                           placeHolder="N° Legajo"
                           disabled={disable}
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           onChange={onChange}
                           nameLabel="Legajo"
                           datosPersonalesValue={datosPersonales.numLegajo !== undefined ? datosPersonales.numLegajo : "N° Legajo"}
@@ -229,6 +193,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].apellido
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           nameInput="apellidoInput"
                           idInput="apellidoInput"
                           messageError="Solo puede contener letras."
@@ -244,6 +210,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].nombres
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           nameInput="nombresInput"
                           idInput="nombresInput"
                           messageError="Solo puede contener letras."
@@ -259,6 +227,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].nroDocumento
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           nameInput="documentoInput"
                           idInput="documentoInput"
                           messageError="Solo puede contener números, sin puntos."
@@ -276,6 +246,8 @@ const DatosPersonales = () => {
                           value={
                             saveEmpl[0] !== undefined ? saveEmpl[0].cuil : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           id="inputCuil"
                           nameInput="inputCuil"
                           nameLabel="C.U.I.L"
@@ -288,10 +260,8 @@ const DatosPersonales = () => {
                           datosPersonalesValue={datosPersonales.inputcuil !== undefined ? datosPersonales.inputcuil : "N° CUIL"}
                           funcionCuil={generateCuil}
                           nroDocumento = {datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : numDoc}
-                          genre={saveEmpl[0] !== undefined || saveEmpl[0] === null
-                            ? saveEmpl[0].sexo
-                            : null}
-                            usaCuil = {true}
+                          genre={datosPersonales.inputSexo !== undefined ? datosPersonales.inputSexo : null}
+                          usaCuil = {true}
                         />
                         <InputForm
                           value={
@@ -299,6 +269,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].telFijo
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           nameInput="telefonoInput"
                           idInput="telefonoInput"
                           messageError="Solo puede contener números."
@@ -314,6 +286,8 @@ const DatosPersonales = () => {
                               ? saveEstadoCivil[0].idEstadoCivil
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
                           nameButton="..."
                           nameLabel="Estado Civil"
@@ -334,6 +308,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idNacionalidad
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
                           nameButton="..."
                           nameLabel="Nacionalidad"
@@ -355,6 +331,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idEstado
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           sexo=""
                           nameButton="..."
                           nameLabel="Estado"
@@ -372,6 +350,8 @@ const DatosPersonales = () => {
                           value={
                             saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           nameFirst="Masculino"
                           nameSecond="Femenino"
                           nameLabel="Sexo"
@@ -386,6 +366,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].fechaNacimiento
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           nameInput="Nacimiento"
                           disabled={disable}
                           idInput="inputDateNac"
@@ -398,6 +380,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].telMovil
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           nameInput="movil"
                           idInput="movil"
                           messageError="Solo puede contener números."
@@ -411,6 +395,8 @@ const DatosPersonales = () => {
                           value={
                             saveEmpl[0] !== undefined ? saveEmpl[0].mail : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           nameInput="email"
                           inputId="email"
                           messageError="Ingrese un email válido."
@@ -426,6 +412,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idPaisdeOrigen
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           sexo=""
                           nameButton="..."
                           nameLabel="País de Origen"
@@ -446,6 +434,8 @@ const DatosPersonales = () => {
                               ? saveEmpl[0].idEstudios
                               : null
                           }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           sexo=""
                           nameButton="..."
                           nameLabel="Estudios"
@@ -469,6 +459,8 @@ const DatosPersonales = () => {
                           //     ? saveEmpl[0].legajo
                           //     : null
                           // }
+                          generalState = {datosPersonales}
+                          setGeneralState = {setDatosPersonales}
                           nameInput="nameObs"
                           idInput="nameObs"
                           messageError="Solo puede contener números."
