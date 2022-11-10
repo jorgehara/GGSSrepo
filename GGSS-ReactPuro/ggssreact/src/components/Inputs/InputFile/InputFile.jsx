@@ -67,8 +67,7 @@ function InputFile({ disabled, imagen }) {
                     ? imagen
                     : ImageSelectedPrevious ? imagenAlt : null
                 }
-                alt="ImageNotFound
-                (No tiene Pe para tu Imgen)"
+                alt="ImageNotFound"
               />
             </div>
           </div>

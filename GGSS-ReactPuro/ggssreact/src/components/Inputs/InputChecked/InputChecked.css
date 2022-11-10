@@ -13,3 +13,8 @@
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
 }
+
+.FijarNombFlia{
+	margin-top: 0px;
+    margin-left: 10%;
+}

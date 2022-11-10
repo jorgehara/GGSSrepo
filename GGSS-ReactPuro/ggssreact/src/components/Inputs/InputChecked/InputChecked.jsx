@@ -33,7 +33,8 @@ const InputChecked = ({
                 onChange(e)}
               disabled={disabled}
             />
-          <div className="d-flex align-items-center col-xl-3">
+
+          <div className="d-flex align-items-center">
             <input
               className="form-check-input"
               type="checkbox"

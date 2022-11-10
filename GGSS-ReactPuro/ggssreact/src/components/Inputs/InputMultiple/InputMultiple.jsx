@@ -56,7 +56,7 @@ const InputMultiple = ({
   return (
     // <div className="container-flex align-items-center">
       <div className="formulario__grupo ">
-        <div className=" d-flex flex-row justify-content-start align-items-cener">
+        <div className=" d-flex flex-row justify-content-start align-items-center">
           <div className="col-xl-6  d-flex justify-content-start align-items-center">
             <label className="formulario-label-DNIFamilia mt-1 ">{nameInputDNI}</label>
           </div>

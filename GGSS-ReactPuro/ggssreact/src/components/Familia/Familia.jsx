@@ -7,15 +7,16 @@ import InputChecked from "../Inputs/InputChecked/InputChecked";
 // import InputDate from "../Inputs/InputDate/InputDate";
 import InputDateFlia from "../Inputs/InputDateFamilia/InputDateFlia";
 import InputMultiple from "../Inputs/InputMultiple/InputMultiple";
-import InputParentescoOpcions from "../Inputs/InputParentescoOpcions/InputParentescoOpcions";
+import PaisOrigenFlia from "../Inputs/InputParentescoOpcions/PaisOrigenFlia";
 import InputParentesco from "../Inputs/InputParentesco/InputParentesco";
 import TextArea from "../Inputs/TextArea/TextArea";
 import TableBasic from "../Tables/TableBasic";
-import InputParentescoOpNac from "../Inputs/InputParentescoOpcions/InputParentescoOpNac";
-import InputParentescoOpEstudios from "../Inputs/InputParentescoOpcions/InputParentescoOpEstudios";
+import NacionalidadFlia from "../Inputs/InputParentescoOpcions/NacionalidadFlia";
+import ParentescoFlia from "../Inputs/InputParentescoOpcions/ParentescoFlia";
 import { useEffect } from "react";
 import { getData, getFamiliarByIdEmpleado, getFamiliarByIdFamiliar } from "../../services/fetchAPI";
 import { useState } from "react";
+import InputDateFliaBaja from "../Inputs/InputDateFamilia/InputDateFliaBaja";
 
 const Familia = () => {
   const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec} = useContext(employeContext);
@@ -176,7 +177,7 @@ const Familia = () => {
                   idInput="fechaNac"
                   disable={disable}
                 />
-                <InputParentescoOpEstudios
+                <ParentescoFlia
                   nameInput="Estudios"
                   array={estudios}
                   propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
@@ -194,7 +195,7 @@ const Familia = () => {
         </div>
         <div className="col-xl-6">
           
-          <InputParentescoOpcions
+          <PaisOrigenFlia
                   nameInput="Pais de Origen"
                   array={paises}
                   placeHolder="Paises"
@@ -206,7 +207,7 @@ const Familia = () => {
                   idModal="paises"
                   disable={disable}
                 />
-                <InputParentescoOpNac
+                <NacionalidadFlia
                   nameInput="Nacionalidad"
                   array={nacionalidades !== undefined ? nacionalidades : "Nacionalidad"}
                   placeHolder="Nacionalidad"
@@ -221,7 +222,7 @@ const Familia = () => {
                   idModal="nacionalidades"
                   disable={disable}
                 />
-          <InputDateFlia
+          <InputDateFliaBaja
             value={
               familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined ? saveEmpl[0].fechaEgreso : null) : familiarSeleccionado.fBaja
             }

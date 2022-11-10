@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./InputDateFlia.css";
 
-const InputDateFlia = ({nameInput,display, checked, value, idInput, disable}) => {
+const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   console.log(mostrarComponente)
 
@@ -13,14 +13,14 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable}) =>
   return (
     <div className=" mt-2">
       <div className='row d-flex flex-row justify-content-start formularioDate align-items-center'>
-          <div className="col-xl-4 form-check p-0">
-            <label className="form-check-label" htmlFor="flexCheckDefault">
+          <div className="col-xl-2 p-0">
+            <label className="" htmlFor="flexCheckDefault">
               {nameInput}
             </label>
           </div>
           <div className="col-xl-1 form-input-DateFlia">
               <input 
-              className='inputDate' 
+              className='inputDateBaja' 
               id={idInput} 
               type="date" 
               value={fecha} 
@@ -28,7 +28,7 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable}) =>
               />
           </div>
           <input 
-          className={mostrarComponente ? "col-xl-3 form-check-input-date dateFlia" : "none"} type="checkbox" 
+          className={mostrarComponente ? "col-xl-3 form-check-input-date bajaFlia" : "none"} type="checkbox" 
           disabled={disable}
           id="flexCheckChecked" 
           checked={checked}
@@ -38,4 +38,4 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable}) =>
     </div>
   )
 }
-export default InputDateFlia;
+export default InputDateFliaBaja;
