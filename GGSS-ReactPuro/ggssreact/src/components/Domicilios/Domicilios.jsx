@@ -8,6 +8,8 @@ import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import InputCbo from "../Inputs/InputCbo/InputCbo";
 import InputNumero from "../Inputs/InputNumero/InputNumero";
 import TableBasic1 from "../Tables/TableBasic1";
+import './Domicilios.css';
+
 //#endregion
 
 

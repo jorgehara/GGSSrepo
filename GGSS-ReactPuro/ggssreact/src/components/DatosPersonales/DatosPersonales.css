@@ -54,4 +54,6 @@
     margin-left: 20px;
     margin-right: 5px;
 }
-
+.accordion-button::after{
+    margin-left: 92%;
+}
