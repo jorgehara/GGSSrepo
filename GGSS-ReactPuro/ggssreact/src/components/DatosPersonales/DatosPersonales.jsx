@@ -9,11 +9,8 @@ import InputDate from "../Inputs/InputDate/InputDate";
 import InputFile from "../Inputs/InputFile/InputFile";
 import InputForm from "../Inputs/InputForm/InputForm";
 import InputRadio from "../Inputs/InputRadio/InputRadio";
-import TextArea from "../Inputs/TextArea/TextArea";
-import Navbar from "../Navbar/Navbar";
 import "./DatosPersonales.css";
 import { employeContext } from "../../context/employeContext";
-import axios from "axios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
 import { getData } from "../../services/fetchAPI";
@@ -158,7 +155,21 @@ const DatosPersonales = () => {
     }
   };
   //#endregion
-  console.log(saveEmpl[0] !== undefined ? saveEmpl[0] : null);
+  console.log(datosPersonales.numLegajo)
+  console.log(datosPersonales.apellidoInput)
+  console.log(datosPersonales.nombresInput)
+  console.log(datosPersonales.dniSelected)
+  console.log(datosPersonales.documentoInput)
+  console.log(datosPersonales.inputcuil)
+  console.log(datosPersonales.telefonoInput)
+  console.log(datosPersonales.estadoCivilInput)
+  console.log(datosPersonales.nacionalidadesInput)  
+  console.log(datosPersonales.inputSexo)
+  console.log(datosPersonales.inputDateNac)
+  console.log(datosPersonales.movil)
+  console.log(datosPersonales.email)
+  console.log(datosPersonales.estadosEmpleados)
+  console.log(datosPersonales.estudiosInput)
   
   return (
     //#region Menú Principal

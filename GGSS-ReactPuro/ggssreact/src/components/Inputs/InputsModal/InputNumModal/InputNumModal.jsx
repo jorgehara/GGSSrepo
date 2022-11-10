@@ -1,6 +1,5 @@
 import React from 'react'
 import '../InputModal.css'
-import './InputNumModal.css'
 
 const InputNumModal = ({
     nameInput,

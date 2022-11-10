@@ -17,6 +17,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
     setValor(value);
   },[value])
 
+    console.log(datosPersonalesValue)
   return (
     <div className="formulario__grupo__inputs">
         <div className='formulario__grupo'>
@@ -24,7 +25,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
         </div>
         <div className='form__grupo-input'>
             <input type="text" 
-                    value={ valor }
+                    value={ datosPersonalesValue !== undefined && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
                     maxLength={maxLeght}
                     className="formulario-input-Legajo col ml-0 px-0 mt-0 mb-2 mr-1" 
                     placeholder={placeholder} 

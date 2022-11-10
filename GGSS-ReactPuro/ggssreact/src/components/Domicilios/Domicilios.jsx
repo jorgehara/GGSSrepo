@@ -37,13 +37,7 @@ const Domicilios = () => {
   ];
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
-  console.log(domicilios.inputCalleDomicilios)
-  console.log(domicilios.inputNumCalle)
-  console.log(domicilios.inputPisoCalle)
-  console.log(domicilios.inputProvinciaDomicilios)
-  console.log(domicilios.inputDepartamentosDomicilios)
-  console.log(domicilios.inputLocalidadesDomicilios)
-  console.log(domicilios.inputBarriosDomicilios)
+  
   
 
   //#region ------------------------------------------------------------------------------URLs
