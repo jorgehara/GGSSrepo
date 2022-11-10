@@ -11,6 +11,8 @@ const InputForm = ({
   onChange,
   nameLabel,
   datosPersonalesValue,
+  generalState,
+  setGeneralState
 }) => {
 
   
@@ -37,7 +39,7 @@ const InputForm = ({
           id={inputId}
           placeholder={placeHolder}
           value={ valor  }
-          onChange={(e) => onChange(e)}
+          onChange={(e) => onChange(e,generalState, setGeneralState)}
           disabled={disabled}
           name={nameInput}
         />

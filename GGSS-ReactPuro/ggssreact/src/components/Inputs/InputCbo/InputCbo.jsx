@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled, nameInput, idInput,onChange, datosPersonalesValue}) => {
+const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled, nameInput, idInput,onChange, datosPersonalesValue, generalState, setGeneralState}) => {
   
     
     const [mostrarComponente, setMostrarComponente] = useState(true);
@@ -40,7 +40,7 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
                 <label className='formulario__label mt-2 mb-0' htmlFor="legajo">{nameLabel}</label>
             </div>
             <div className='segundo'>
-                <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>{fieldName}                    
+                <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e, generalState, setGeneralState)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>{fieldName}                    
                     {
                        sexo !== undefined && sexo.length > 0 && returnBySexo !== undefined ? returnBySexo.map((op, index)=>{
                         return(
