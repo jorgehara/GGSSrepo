@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import './ModalConvenios.css'
 import '../Modales.css'
-import { objectProvincias, objectDeptos, objectLocalidades, objectBarrios } from '../../Navbar/Objects'
 import BodyConvenios from './BodyConvenios'
 import BodyCategorias from './BodyCategorias'
 
