@@ -53,7 +53,7 @@ const Familia = () => {
     //#endregion
  
   //#region ------------------------------------------------------------------------------URLs
-    const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
+  const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
   const urlParentesco = "http://54.243.192.82/api/Parentescos";
   const urlFamiliares = "http://54.243.192.82/api/Familiares";
   //#endregion
