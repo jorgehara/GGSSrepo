@@ -1,13 +1,22 @@
+
+
 // -----  OBJECTS TABLA PARA EMPLEADOS -----
+
 
 export const objectEstadosCiviles = [
 	{
 		"label": "Masculino",
-		"placeholder": "Casado"
+		"placeholder": "Casado",
+    "idInput" : "inputEstadosCivilesModal",
+    "nameInput" : "inputEstadosCivilesModal",
+    "sexo" : "M"
 	},
 	{
 		"label": "Femenino",
-		"placeholder": "Casada"
+		"placeholder": "Casada",
+    "idInput" : "inputEstadosCivilesModalFem",
+    "nameInput" : "inputEstadosCivilesModalFem",
+    "sexo" : "F"
 	}
 ]
 
