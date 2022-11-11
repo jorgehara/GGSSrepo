@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Browser from '../Browser/Browser'
 import DatosPersonales from '../DatosPersonales/DatosPersonales'
+import Documentacion from '../Documentacion/Documentacion';
 import Familia from '../Familia/Familia';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
@@ -30,7 +31,9 @@ const Home = () => {
                 {
                     location.pathname === "/home/familia" && <Familia />
                 }
-                
+                {
+                    location.pathname === "/home/documentacion" && <Documentacion />
+                }
             </div>
         </div>
         <Footer /> 

@@ -32,7 +32,7 @@ const Navbar = () => {
 					<a className="nav-link" href="/some/valid/uri">Trabajos Anteriores</a>
 				</li>
 				<li className="nav-item">
-					<a className="nav-link" href="/some/valid/uri">Documentación</a>
+					<Link className="nav-link" to="/home/documentacion">Documentación</Link>
 				</li>
 				<li className="nav-item">
 					<a className="nav-link" href="/some/valid/uri">Licencias</a>
