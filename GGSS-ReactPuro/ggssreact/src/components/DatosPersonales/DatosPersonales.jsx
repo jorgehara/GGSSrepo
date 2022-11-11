@@ -20,10 +20,10 @@ import TextArea from "../Inputs/TextArea/TextArea";
 //#endregion
 
 const DatosPersonales = () => {
-  //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
+  //#region ---------------------------------------------------------ONCHANGE-HANDLER
 
   //#endregion
-  //------------------------------------------------------------------------------CONTEXT
+  //------------------------------------------------------CONTEXT
   const {
     saveEmpl,
     saveEstados,
@@ -41,11 +41,11 @@ const DatosPersonales = () => {
     setDatosPersonales,
     datosPersonales,
   } = useContext(employeContext);
-  //------------------------------------------------------------------------------ESTADOS
+  //--------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
   const [image, setImage] = useState("");
 
-  //#region ------------------------------------------------------------------------------URLs (Luego cambiar a archivos Js)
+  //#region -----------------------------------------------------------URLs (Luego cambiar a archivos Js)
   const url = "http://54.243.192.82/api/Estados";
   const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
   const urlPaisesNac = "http://54.243.192.82/api/Paises";
@@ -53,7 +53,7 @@ const DatosPersonales = () => {
   const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
   //#endregion
 
-  //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
+  //#region ---------------------------------------------------------CONSTANTES DE DATOS
   const estadosCivilesMasculinos =
     saveEstadoCivil !== undefined
       ? saveEstadoCivil.map((estado, i) => {

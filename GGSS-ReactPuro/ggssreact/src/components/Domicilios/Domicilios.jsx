@@ -11,14 +11,10 @@ import TableBasic1 from "../Tables/TableBasic1";
 import './Domicilios.css';
 
 //#endregion
-
-
 const Domicilios = () => {
 
-  
-
   const [inputValue, setInputValue] = useState("");
-   
+
   const columns = [
     "Predeterminado",
     "Calle",
