@@ -30,7 +30,6 @@ const TableBasic = ({columns, array, parentescos,onSelect, seleccionado}) => {
     setInputCheck(newInput);
     setChecked(checked);
   }
-  console.log(inputCheck)
   return (
 
     <><div className='row mt-5 overflow-scroll'>
@@ -50,7 +49,6 @@ const TableBasic = ({columns, array, parentescos,onSelect, seleccionado}) => {
               <tbody className="table-group-divider" id="cuerpodetabla">
                 
                     {array.map((col, i) => {
-                      console.log(col)
                       return (
                         <tr scope="row" className="px-2" key={i}>
                                 <th scope="row"> <input type="radio" checked={inputCheck[`selected${i}`]} onChange={(e)=> onChange(e)} name="imputRadio" id={`selected${i}`} onClick={()=>onSelect(array, col.iDfamiliares)}/></th>
