@@ -4,7 +4,6 @@ import "./InputParentesco.css";
 const InputParentesco = ({
   nameInput,
   array,
-  placeHolder,
   nameButton,
   nameCheck,
   checked,
@@ -12,6 +11,11 @@ const InputParentesco = ({
   idModal,
   disable,
   propArray,
+  idInput,
+  value,
+  generalState,
+  setGeneralState,
+  onChange
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -31,16 +35,20 @@ const InputParentesco = ({
           <select
             className="form-select px-0 form-input-ParentescoFlia"
             disabled={disable}
+            name={idInput}
+            id={idInput}
+            value={value}
+            onChange={(e)=> onChange(e, generalState, setGeneralState)}
           >
             {array !== undefined &&
               array !== null &&
               array.map((op, i) => {
                 return propArray === op ? (
-                  <option selected key={i}>
+                  <option selected key={i} value={op}>
                     {op}
                   </option>
                 ) : (
-                  <option key={i}>{op}</option>
+                  <option key={i} value={op}>{op}</option>
                 );
               })}
           </select>

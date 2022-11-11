@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import "./InputDateFlia.css";
 
-const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable}) => {
+const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,valueGeneral, onChange,generalState, setGeneralState, familiarSeleccionado}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
+  const [valor , setValor] = useState("");
+  const fecha = value !== undefined && value !== null ? value.substring(0, value.length -9) : null;
   
 
   useEffect(()=>{
     setMostrarComponente(display)
   },[display])
 
-  const fecha = value !== undefined && value !== null ? value.substring(0, value.length -9) : null;
+  function updateFecha(){
+    setGeneralState({ idInput : ""});
+    setValor(fecha);
+    return;
+  }
+  useEffect(()=>{
+    updateFecha();
+  },[familiarSeleccionado.iDfamiliares])
+
+
   return (
     <div className="mt-2">
       <div className='row d-flex flex-row justify-content-start formularioDate align-items-center'>
@@ -18,12 +29,14 @@ const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable}
               {nameInput}
             </label>
           </div>
-          <div className="col-xl-1 form-input-DateFlia">
+          <div className="col-xl-1 form-input-DateFlia">              
               <input 
               className='inputDateBaja' 
               id={idInput} 
+              name={idInput}
+              onChange={(e)=> onChange(e, generalState, setGeneralState)}
               type="date" 
-              value={fecha} 
+              value={valueGeneral !== null && valueGeneral.length > 0 ? valueGeneral : valor} 
               disabled={disable}
               />
           </div>

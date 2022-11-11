@@ -19,14 +19,21 @@ import { useState } from "react";
 import InputDateFliaBaja from "../Inputs/InputDateFamilia/InputDateFliaBaja";
 
 const Familia = () => {
-  const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec} = useContext(employeContext);
+  const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec, onChange} = useContext(employeContext);
   const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
+  
+  
   const [familia , setFamilia] = useState({
     inputApellidoNombres : "",
     inputCmbDni : "",
     inputNroDni : "",
     idRadioBtn : "",
+    inputParentesco : "",
+    inputDateNac : "",
+    inputDateBaja : ""
   });
+
+
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
     const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
     const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
@@ -82,6 +89,9 @@ const Familia = () => {
   console.log(familia.inputCmbDni);
   console.log(familia.inputNroDni);
   console.log(familia.idRadioBtn);
+  console.log(familia.inputParentesco);
+  console.log(familia.inputDateNac)
+  console.log(familia.inputDateBaja)
   const columns = [
     "Apellido y Nombre",
     "Tipo",
@@ -102,13 +112,7 @@ const Familia = () => {
       setFamiliarSeleccionado(res);
     });
   }
-  function onChange(evt) {
-    const name = evt.target.name;
-    const value = (evt.target.value);
-    let newFamilia = { ...familia };
-    newFamilia[name] = value;
-    setFamilia(newFamilia);
-  }
+  
   return (
     <div className="Lateral-Derecho">
   <div className="container-fluid">
@@ -164,6 +168,9 @@ const Familia = () => {
                   idModal="Parentescos"
                   propArray={parenSeleccionado !== undefined ? parenSeleccionado.nombreParentesco : null}
                   disable={disable}
+                  idInput="inputParentesco"
+                  value={familia.inputParentesco !== undefined ?  familia.inputParentesco : null}
+                  onChange={onChange}
                 />
                 <InputDateFlia
                   value={
@@ -174,8 +181,13 @@ const Familia = () => {
                   display={true}
                   checked={false}
                   nameInput="Nacimiento"
-                  idInput="fechaNac"
+                  idInput="inputDateNac"
+                  valueGeneral={familia.inputDateNac !== undefined ? familia.inputDateNac : null}
+                  onChange={onChange}
                   disable={disable}
+                  generalState={familia}
+                  setGeneralState={setFamilia}
+                  familiarSeleccionado={familiarSeleccionado !== undefined ? familiarSeleccionado : null}
                 />
                 <EstudioFlia
                   nameInput="Estudios"
@@ -229,8 +241,13 @@ const Familia = () => {
             display={true}
             checked={false}
             nameInput="Fecha Baja"
-            idInput="fechaBaja"
+            idInput="inputDateBaja"
             disable={disable}
+            generalState={familia}
+            setGeneralState={setFamilia}
+            familiarSeleccionado={familiarSeleccionado !== undefined ? familiarSeleccionado : null}
+            valueGeneral={familia.inputDateBaja !== undefined ? familia.inputDateBaja : null}
+            onChange={onChange}
           />
             <TextArea inputName="Observaciones" maxLength="255" value="" disabled={disable}/>
         </div>
