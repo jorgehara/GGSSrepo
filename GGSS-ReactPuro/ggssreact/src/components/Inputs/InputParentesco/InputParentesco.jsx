@@ -19,7 +19,6 @@ const InputParentesco = ({
     setMostrarComponente(display);
   }, [display]);
 
-  console.log(array);
   return (
     <div className="formulario__grupo">
       <div className="row">

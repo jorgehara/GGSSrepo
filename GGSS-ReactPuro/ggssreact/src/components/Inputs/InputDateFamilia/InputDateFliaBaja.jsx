@@ -3,7 +3,7 @@ import "./InputDateFlia.css";
 
 const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
-  console.log(mostrarComponente)
+  
 
   useEffect(()=>{
     setMostrarComponente(display)

@@ -15,44 +15,41 @@ const InputMultiple = ({
   propsRadioButton,
   onChange,
   datosFamiliaValue1,
-  datosFamiliaRadio1,
-  datosFamiliaRadio2
+  datosFamiliaRadio,
+  generalState,
+  setGeneralState
 }) => {
+  const [valor, setValor] = useState("");
   const [valorRadioM, setValorRadioM] = useState(false);
   const [valorRadioF, setValorRadioF] = useState(false); 
-
+  
+  useEffect(() => {
+    valueInput();
+  }, [valorRadioM, valorRadioF, valor]);
 
   useEffect(()=>{
-    initialValue(valueRadio);
+    setValor(valueRadio);
   },[valueRadio])
+
+  useEffect(()=>{
+    setValor(datosFamiliaRadio);
+  },[datosFamiliaRadio])
   
-  function initialValue(valueRadio){
-    if(valueRadio === "M"){
-      setValorRadioM(true);
-      setValorRadioF(false);
-      return;
-    }
-    if(valueRadio === "F"){
-      setValorRadioF(true);
-      setValorRadioM(false);
-      return;
-    }
-  }
-  const valueInput = (valor) => {
-    
+  
+
+
+  const valueInput = () => {    
       if(valor === "M"){
         setValorRadioM(true);
         setValorRadioF(false);
-        return;
       }
       if(valor === "F"){
         setValorRadioF(true);
         setValorRadioM(false);
-        return;
       } 
     }    
   
-  console.log(valueRadio)
+ 
   return (
     // <div className="container-flex align-items-center">
       <div className="formulario__grupo ">
@@ -64,7 +61,7 @@ const InputMultiple = ({
             
           </div>
           <div className="col-xl-4   d-flex justify-content-center align-items-center">
-            <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e)}>
+            <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,generalState, setGeneralState)}>
               {optionsDNI.map((op, i) => {
                 return <option key={i} value={op}>{op}</option>;
               })}
@@ -80,7 +77,7 @@ const InputMultiple = ({
               disabled={disable}
               id={propsRadioButton.idNroDni}
               name={propsRadioButton.idNroDni}
-              onChange={(e)=>onChange(e)}
+              onChange={(e)=>onChange(e,generalState, setGeneralState)}
             ></input>
           </div>
           <div className="form__grupo__icon">
@@ -100,11 +97,11 @@ const InputMultiple = ({
                 <input
                   className="form-check-input"
                   type="radio"
-                  id={propsRadioButton.idRadioBtnMasc}
-                  name={propsRadioButton.idRadioBtnMasc}
+                  id={propsRadioButton.idRadioBtn}
+                  name={propsRadioButton.idRadioBtn}
+                  defaultChecked
                   checked={valorRadioM}
-                  onChange={(e)=>onChange(e)}
-                  onClick={(e)=>valueInput(e.target.value)}
+                  onChange={(e)=>onChange(e, generalState, setGeneralState)}
                   value="M"
                   disabled={disable}
                 />
@@ -116,11 +113,11 @@ const InputMultiple = ({
                 <input
                   className="form-check-input p-1"
                   type="radio"
-                  id={propsRadioButton.idRadioBtnMasc}
-                  name={propsRadioButton.idRadioBtnFem}
+                  id={propsRadioButton.idRadioBtn}
+                  defaultChecked
+                  name={propsRadioButton.idRadioBtn}
                   checked={valorRadioF}
-                  onChange={(e)=>onChange(e)}
-                  onClick={(e)=>valueInput(e.target.value)}
+                  onChange={(e)=>onChange(e, generalState, setGeneralState)}
                   value="F"
                   disabled={disable}
                 />

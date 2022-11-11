@@ -8,7 +8,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
     const [valor, setValor] = useState("");
     const [valorRadioM, setValorRadioM] = useState(false);
     const [valorRadioF, setValorRadioF] = useState(false);
-
+  console.log(datosPersonalesValue)
     useEffect(() => {
       valueInput();
     }, [valorRadioM, valorRadioF, valor]);
@@ -38,11 +38,28 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
             <label className='formulario-label-Sexo'  htmlFor="legajo">{nameLabel}</label>
         </div>
         <div className="formulario-input-Sexo">
-          <input className="form-check-input" type="radio" id={idInput} name={idInput} defaultChecked checked={valorRadioM} onChange={(e)=> onChange(e, generalState, setGeneralState)} value="M" disabled={disabled}/>
+          <input className="form-check-input" 
+                 type="radio" 
+                 id={idInput} 
+                 name={idInput} 
+                 defaultChecked 
+                 checked={valorRadioM} 
+                 onChange={(e)=> onChange(e, generalState, setGeneralState)} 
+                 value="M" 
+                 disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox1">{nameFirst}</label>
         </div>
         <div className="formulario-input-SexoF">
-          <input className="form-check-input" type="radio" id={idInput} name={idInput} defaultChecked checked={valorRadioF} onChange={(e)=> onChange(e, generalState, setGeneralState)} value="F" disabled={disabled}/>
+          <input 
+                className="form-check-input" 
+                type="radio" 
+                id={idInput} 
+                name={idInput} 
+                defaultChecked 
+                checked={valorRadioF} 
+                onChange={(e)=> onChange(e, generalState, setGeneralState)} 
+                value="F" 
+                disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox2">{nameSecond}</label>
         </div>
     </div>

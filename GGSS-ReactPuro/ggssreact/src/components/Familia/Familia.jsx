@@ -25,8 +25,7 @@ const Familia = () => {
     inputApellidoNombres : "",
     inputCmbDni : "",
     inputNroDni : "",
-    inputRadioBtnMasc : false,
-    inputRadioBtnFem : true
+    idRadioBtn : "",
   });
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
     const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
@@ -76,11 +75,13 @@ const Familia = () => {
   const propsRadioButton = {
     idCboDni : "inputCmbDni",
     idNroDni : "inputNroDni",
-    idRadioBtnMasc : "inputRadioBtnMasc",
-    idRadioBtnFem : "inputRadioBtnFem"
+    idRadioBtn : "idRadioBtn"
   }
   //#endregion
-  
+  console.log(familia.inputApellidoNombres);
+  console.log(familia.inputCmbDni);
+  console.log(familia.inputNroDni);
+  console.log(familia.idRadioBtn);
   const columns = [
     "Apellido y Nombre",
     "Tipo",
@@ -108,8 +109,6 @@ const Familia = () => {
     newFamilia[name] = value;
     setFamilia(newFamilia);
   }
-  console.log(familia.inputRadioBtnMasc)
-  console.log(familia.inputRadioBtnFem)
   return (
     <div className="Lateral-Derecho">
   <div className="container-fluid">
@@ -137,10 +136,10 @@ const Familia = () => {
                   optionsDNI={tipoDNI}
                   nameInputDNI="Documento"
                   valueRadio={
-                    familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null) : familiarSeleccionado.sexo
+                    (familiarSeleccionado === undefined || Object.keys(familiarSeleccionado).length === 0 ) ? (saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null) :  familiarSeleccionado.sexo
                   }
                   valueDNI={
-                    familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null) : familiarSeleccionado.nroDocumento
+                    familiarSeleccionado === undefined || familiarSeleccionado === null ? (saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null) : familiarSeleccionado.nroDocumento
                   }
                   nameFirst="Masculino"
                   nameSecond="Femenino"
@@ -150,8 +149,9 @@ const Familia = () => {
                   propsRadioButton={propsRadioButton}
                   onChange={onChange}
                   datosFamiliaValue1 = {familia.inputCmbDni !== undefined ? familia.inputCmbDni : null}
-                  datosFamiliaRadio1 = {familia.inputRadioBtnMasc !== undefined ? familia.inputRadioBtnMasc : null}
-                  datosFamiliaRadio2 = {familia.inputRadioBtnFem !== undefined ? familia.inputRadioBtnFem : null}
+                  datosFamiliaRadio = {familia.idRadioBtn !== undefined ? familia.idRadioBtn : null}
+                  generalState={familia}
+                  setGeneralState={setFamilia}
                 />
                 <InputParentesco
                   nameInput="Parentesco"
