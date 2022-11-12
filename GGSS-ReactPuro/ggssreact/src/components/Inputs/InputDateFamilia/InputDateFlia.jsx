@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import "./InputDateFlia.css";
 
-const InputDateFlia = ({nameInput,display, checked, value, idInput, disable}) => {
+const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, valueGeneral, onChange,generalState, setGeneralState, familiarSeleccionado}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
-  
+  const [valor , setValor] = useState("");
+  const fecha = value !== undefined && value !== null ? value.substring(0, value.length -9) : null;
 
   useEffect(()=>{
     setMostrarComponente(display)
   },[display])
 
-  const fecha = value !== undefined && value !== null ? value.substring(0, value.length -9) : null;
+  function updateFecha(){
+    setGeneralState({ idInput : ""});
+    setValor(fecha);
+    return;
+  }
+  useEffect(()=>{
+    updateFecha();
+  },[familiarSeleccionado.iDfamiliares])
+
+  
+
   return (
     <div className=" mt-2">
       <div className='row d-flex flex-row justify-content-start formularioDate align-items-center'>
@@ -22,8 +33,10 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable}) =>
               <input 
               className='inputDate' 
               id={idInput} 
+              name={idInput}
+              onChange={(e)=> onChange(e, generalState, setGeneralState)}
               type="date" 
-              value={fecha} 
+              value={valueGeneral !== null && valueGeneral.length > 0 ? valueGeneral : valor} 
               disabled={disable}
               />
           </div>
