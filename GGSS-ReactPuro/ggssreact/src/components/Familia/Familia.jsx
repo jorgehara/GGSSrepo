@@ -20,13 +20,19 @@ import InputDateFliaBaja from "../Inputs/InputDateFamilia/InputDateFliaBaja";
 
 const Familia = () => {
   const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec} = useContext(employeContext);
+  
   const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
+  
+  //Estado General
   const [familia , setFamilia] = useState({
     inputApellidoNombres : "",
     inputCmbDni : "",
     inputNroDni : "",
     idRadioBtn : "",
+    idInputEstudios : "",
   });
+
+
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
     const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
     const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
@@ -82,6 +88,7 @@ const Familia = () => {
   console.log(familia.inputCmbDni);
   console.log(familia.inputNroDni);
   console.log(familia.idRadioBtn);
+  console.log(familia.idInputEstudios);
   const columns = [
     "Apellido y Nombre",
     "Tipo",
@@ -102,6 +109,8 @@ const Familia = () => {
       setFamiliarSeleccionado(res);
     });
   }
+
+  //busca en el input por nombre Modifica al Estado General, y lo actualiza
   function onChange(evt) {
     const name = evt.target.name;
     const value = (evt.target.value);
@@ -154,6 +163,10 @@ const Familia = () => {
                   setGeneralState={setFamilia}
                 />
                 <InputParentesco
+                //agrego el IdInput que agregue como props del Estado General
+                //idInput="inputParentesco"
+                //onChange={onChange}
+                //value={familia.inputParentesco !== undefined ? familia.inputParentesco : null}
                   nameInput="Parentesco"
                   array={parentesco!== undefined ? parentesco : null}
                   placeHolder="Parentesco"
@@ -188,6 +201,9 @@ const Familia = () => {
                   display={true}
                   idModal="Estudios"
                   disable={disable}
+                  idInput="idInputEstudios"
+                  onChange={onChange}
+                  valueInputEstudios={familia.idInputEstudios !== undefined ? familia.idInputEstudios : null}
                 />
               </div>
             </div>

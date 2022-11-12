@@ -12,6 +12,11 @@ const EstudioFlia = ({
   propArray,
   idModal,
   disable,
+  valueInputEstudios,
+  idInput,
+  onChange,
+  generalState,
+  setGeneralState,
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -31,14 +36,24 @@ const EstudioFlia = ({
           <select
             className="form-select ml-4 mt-1 selectFormFlia"
             disabled={disable}
+            name={idInput}
+            id={idInput}
+            value={valueInputEstudios}
+            onChange={
+            (e)=> onChange(e, generalState, setGeneralState)
+          }
           >
             {array.map((op, i) => {
               return propArray == op ? (
-                <option key={i} selected defaultValue>
+                <option key={i} 
+                value={op}
+                selected defaultValue>
                   {op}
                 </option>
               ) : (
-                <option key={i} defaultValue>
+                <option key={i} 
+                value={op}
+                defaultValue>
                   {op}
                 </option>
               );

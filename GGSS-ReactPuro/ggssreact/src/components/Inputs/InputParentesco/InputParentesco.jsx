@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputParentesco.css";
+
+//se agregan nuevas props idInput (que nosotros le seteamos), el value(el valor actualizado), el Estado General, y el Set del Estado General por último el onChange para que actualice en Estado General y así cambia la vista
 const InputParentesco = ({
   nameInput,
   array,
@@ -31,16 +33,25 @@ const InputParentesco = ({
           <select
             className="form-select px-0 form-input-ParentescoFlia"
             disabled={disable}
+            //name={idInput}
+            //id={idInput}
+            //value={valueFliaParentesco}
+            //onChange={
+            //(e)=> onChange(e, generalState, setGeneralState)}
           >
             {array !== undefined &&
               array !== null &&
               array.map((op, i) => {
                 return propArray === op ? (
-                  <option selected key={i}>
+                  <option selected key={i}
+                  //value={op}
+                  >
                     {op}
                   </option>
                 ) : (
-                  <option key={i}>{op}</option>
+                  <option key={i}
+                  //value={op}
+                  >{op}</option>
                 );
               })}
           </select>
