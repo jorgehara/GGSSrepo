@@ -6,6 +6,7 @@ import Documentacion from '../Documentacion/Documentacion';
 import Familia from '../Familia/Familia';
 import Footer from '../Footer/Footer';
 import Licencias from '../Licencias/Licencias';
+import Liquidacion from '../Liquidacion/Liquidacion';
 import Navbar from '../Navbar/Navbar';
 
 const Home = () => {
@@ -17,8 +18,7 @@ const Home = () => {
     useEffect(()=>{
         navigate("/home/datos-personales")
     },[])
-
-  return (
+return (
     <div className='container-fluid'>
         <div className='row'>
             <div className='col-xl-3'>
@@ -33,16 +33,20 @@ const Home = () => {
                     location.pathname === "/home/familia" && <Familia />
                 }
                 {
+                    location.pathname === "/home/liquidacion" && <Liquidacion />
+                }
+                {
                     location.pathname === "/home/documentacion" && <Documentacion />
                 }
                 {
                     location.pathname === "/home/licencias" && <Licencias />
+                    
                 }
             </div>
         </div>
         <Footer /> 
     </div>
-  )
+)
 }
 
 export default Home
