@@ -8,7 +8,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
     const [valor, setValor] = useState("");
     const [valorRadioM, setValorRadioM] = useState(false);
     const [valorRadioF, setValorRadioF] = useState(false);
-  console.log(datosPersonalesValue)
+
     useEffect(() => {
       valueInput();
     }, [valorRadioM, valorRadioF, valor]);

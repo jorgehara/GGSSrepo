@@ -6,7 +6,7 @@ import { getDomicilioEmpleado } from '../../services/mockDataDomicilios';
 import { useDispatch, useSelector } from "react-redux";
 import ButtonLarge from '../Buttons/ButtonLarge'
 import "./Browser.css";
-import { addEmploye } from '../../redux/actions/employeActions';
+import { addEmploye, addOneEmploye, selectedEmploye } from '../../redux/actions/employeActions';
 
 const Browser = () => {
   const [listEmpleados, setListEmpleados] = useState([]);
@@ -19,15 +19,16 @@ const Browser = () => {
 
   const dispatch = useDispatch();
   const empleados = useSelector((state)=> state.employeStates.employes)
+  const empleadoUno = useSelector((state)=> state.employeStates.employe)
 
-  console.log(empleados[0]);
+  
 
 
   const {  saveDisable, disable} = useContext(employeContext);
+
   useEffect(() => {
     axios.get(url).then((res) => {
       let data = res.data.records;
-
       if (empData.apellido.length > 0) {
         getEmployeByName(data, empData.apellido).then((res) =>
           setListEmpleados(res)
@@ -40,13 +41,16 @@ const Browser = () => {
         );
         return;
       }
-      dispatch(addEmploye(res.data.records));
-      console.log(res.data.records);
+      
+      dispatch(addEmploye(data));
+      setListEmpleados(data)
     });
   }, [empData.apellido, empData.legajo]);
-
+  
   function onSelect(e, name, idEmpleado) {
-    getEmployeByName(listEmpleados, name).then((res) => {
+    getEmployeByName(empleados[0], name).then((res) => {
+      console.log(res[0].iDempleado)
+      dispatch(addOneEmploye(res[0].iDempleado));
       saveEmploye(res);
     });
     getDomicilioEmpleado(idEmpleado).then((res) => {
@@ -67,7 +71,6 @@ const Browser = () => {
     e.preventDefault();
     saveDisable(false)
   }
-
   return (
     <div className='container-fluid '>
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
@@ -99,7 +102,7 @@ const Browser = () => {
         multiple
         aria-label="multiple select example"
       >
-        {empleados[0].map((emp, i) => {
+        { listEmpleados !== undefined && listEmpleados.map((emp, i) => {
           return (
             <option
             key={i}

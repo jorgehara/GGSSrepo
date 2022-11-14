@@ -1,8 +1,14 @@
-import { ADD_EMPLOYE, REMOVE_EMPLOYE, SELECTED_EMPLOYE,UPDATE_EMPLOYE } from "../types/employeTypes";
+import { ADD_EMPLOYE, REMOVE_EMPLOYE, SELECTED_EMPLOYE,UPDATE_EMPLOYE,ADD_ONE_EMPLOYE } from "../types/employeTypes";
 
 export const addEmploye = (payload) =>{
     return {
         type : ADD_EMPLOYE,
+        payload,
+    };
+}
+export const addOneEmploye = (payload) =>{
+    return {
+        type : ADD_ONE_EMPLOYE,
         payload,
     };
 }

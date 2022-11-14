@@ -16,12 +16,17 @@ import Domicilios from "../Domicilios/Domicilios";
 import { getData } from "../../services/fetchAPI";
 import generateCuil from "./funcGenerarCuil.js";
 import TextArea from "../Inputs/TextArea/TextArea";
+import { useSelector } from "react-redux";
 
 //#endregion
 
 const DatosPersonales = () => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
 
+  //#endregion
+  //#region ------------------------------------------------------REDUX
+  const empleadoUno = useSelector((state)=> state.employeStates.employe)
+  console.log(empleadoUno[0].iDempleado)
   //#endregion
   //------------------------------------------------------CONTEXT
   const {
@@ -247,8 +252,8 @@ const DatosPersonales = () => {
                         }
                         <InputForm
                           value={
-                            saveEmpl[0] !== undefined || saveEmpl[0] === null
-                              ? saveEmpl[0].legajo
+                            empleadoUno[0] !== undefined || empleadoUno[0] === null
+                              ? empleadoUno[0].legajo
                               : null
                           }
                           nameInput="numLegajo"
@@ -268,8 +273,8 @@ const DatosPersonales = () => {
                         />
                         <InputForm
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].apellido
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].apellido
                               : null
                           }
                           generalState={datosPersonales}
@@ -289,8 +294,8 @@ const DatosPersonales = () => {
                         />
                         <InputForm
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].nombres
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].nombres
                               : null
                           }
                           generalState={datosPersonales}
@@ -310,8 +315,8 @@ const DatosPersonales = () => {
                         />
                         <DNICboBox
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].nroDocumento
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].nroDocumento
                               : null
                           }
                           generalState={datosPersonales}
@@ -343,7 +348,7 @@ const DatosPersonales = () => {
                         />
                         <InputButton
                           value={
-                            saveEmpl[0] !== undefined ? saveEmpl[0].cuil : null
+                            empleadoUno[0] !== undefined ? empleadoUno[0].cuil : null
                           }
                           generalState={datosPersonales}
                           setGeneralState={setDatosPersonales}
@@ -376,8 +381,8 @@ const DatosPersonales = () => {
                         />
                         <InputForm
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].telFijo
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].telFijo
                               : null
                           }
                           generalState={datosPersonales}
@@ -404,7 +409,7 @@ const DatosPersonales = () => {
                           generalState={datosPersonales}
                           setGeneralState={setDatosPersonales}
                           sexo={
-                            saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null
+                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : null
                           }
                           nameButton="..."
                           nameLabel="Estado Civil"
@@ -421,14 +426,14 @@ const DatosPersonales = () => {
                         />
                         <InputCbo
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].idNacionalidad
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].idNacionalidad
                               : null
                           }
                           generalState={datosPersonales}
                           setGeneralState={setDatosPersonales}
                           sexo={
-                            saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null
+                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : null
                           }
                           nameButton="..."
                           nameLabel="Nacionalidad"
@@ -450,8 +455,8 @@ const DatosPersonales = () => {
                       <div className="tercera_columna col-xl-4">
                         <InputCbo
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].idEstado
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].idEstado
                               : null
                           }
                           generalState={datosPersonales}
@@ -479,7 +484,7 @@ const DatosPersonales = () => {
                         />
                         <InputRadio
                           value={
-                            saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null
+                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : null
                           }
                           generalState={datosPersonales}
                           setGeneralState={setDatosPersonales}
@@ -497,8 +502,8 @@ const DatosPersonales = () => {
                         />
                         <InputDate
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].fechaNacimiento
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].fechaNacimiento
                               : null
                           }
                           generalState={datosPersonales}
@@ -515,8 +520,8 @@ const DatosPersonales = () => {
                         />
                         <InputForm
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].telMovil
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].telMovil
                               : null
                           }
                           generalState={datosPersonales}
@@ -536,7 +541,7 @@ const DatosPersonales = () => {
                         />
                         <InputForm
                           value={
-                            saveEmpl[0] !== undefined ? saveEmpl[0].mail : null
+                            empleadoUno[0] !== undefined ? empleadoUno[0].mail : null
                           }
                           generalState={datosPersonales}
                           setGeneralState={setDatosPersonales}
@@ -555,8 +560,8 @@ const DatosPersonales = () => {
                         />
                         <InputCbo
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].idPaisdeOrigen
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].idPaisdeOrigen
                               : null
                           }
                           generalState={datosPersonales}
@@ -585,8 +590,8 @@ const DatosPersonales = () => {
                         />
                         <InputCbo
                           value={
-                            saveEmpl[0] !== undefined
-                              ? saveEmpl[0].idEstudios
+                            empleadoUno[0] !== undefined
+                              ? empleadoUno[0].idEstudios
                               : null
                           }
                           generalState={datosPersonales}
