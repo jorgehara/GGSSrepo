@@ -3,8 +3,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { employeContext } from '../../context/employeContext';
 import {  getEmployeByLegajo, getEmployeByName } from '../../services/fetchAPI';
 import { getDomicilioEmpleado } from '../../services/mockDataDomicilios';
+import { useDispatch, useSelector } from "react-redux";
 import ButtonLarge from '../Buttons/ButtonLarge'
 import "./Browser.css";
+import { addEmploye } from '../../redux/actions/employeActions';
 
 const Browser = () => {
   const [listEmpleados, setListEmpleados] = useState([]);
@@ -14,6 +16,13 @@ const Browser = () => {
     apellido: "",
   });
   const url = "http://54.243.192.82/api/Empleados";
+
+  const dispatch = useDispatch();
+  const empleados = useSelector((state)=> state.employeStates.employes)
+
+  console.log(empleados[0]);
+
+
   const {  saveDisable, disable} = useContext(employeContext);
   useEffect(() => {
     axios.get(url).then((res) => {
@@ -31,7 +40,8 @@ const Browser = () => {
         );
         return;
       }
-      setListEmpleados(res.data.records);
+      dispatch(addEmploye(res.data.records));
+      console.log(res.data.records);
     });
   }, [empData.apellido, empData.legajo]);
 
@@ -89,7 +99,7 @@ const Browser = () => {
         multiple
         aria-label="multiple select example"
       >
-        {listEmpleados.map((emp, i) => {
+        {empleados[0].map((emp, i) => {
           return (
             <option
             key={i}
