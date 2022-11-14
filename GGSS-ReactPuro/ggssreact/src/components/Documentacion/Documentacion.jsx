@@ -19,7 +19,7 @@ const Documentacion = () => {
                 <InputDate nameInput="Fecha Presentación" idInput="inputDatePresentacion" display={false}/>
             </div>
             <div className='col-xl-12'>
-                <InputDate nameInput="Fecha Presentación" idInput="inputDatePresentacion" display={true} />
+                <InputDate nameInput="Fecha Vencimiento" idInput="inputDatePresentacion" display={true} />
             </div>
             <div className='col-xl-12'>
                 <InputButton nameButton="..." nameLabel="Documentación" placeholder="Documentación"/>
