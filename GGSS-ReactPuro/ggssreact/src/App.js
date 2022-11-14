@@ -20,7 +20,7 @@ function App() {
             <Route path="/home/datos-personales" exact element={<Home />} />  
             <Route path="/home/familia" exact element={<Home />} />  
             <Route path="/home/documentacion" exact element={<Home />} /> 
-
+            <Route path="/home/licencias" exact element={<Home />} /> 
           </Switch>        
     </EmpleadoContextProvider>
     </>

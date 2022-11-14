@@ -58,13 +58,16 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
                     }
                 </select>
             </div>
-            <ButtonCallModal className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} idModal={idModal} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disabled}>
-              {nameButton}
-            </ButtonCallModal>
-            {/* <button type="button" 
-              className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"}>
-              {nameButton}
-            </button> */}
+            {mostrarComponente && <div>
+              <ButtonCallModal className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} idModal={idModal} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disabled}>
+                {nameButton}
+              </ButtonCallModal>
+              {/* <button type="button" 
+                className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"}>
+                {nameButton}
+              </button> */}
+            </div>}
+            
         </div>
       </div>
   );

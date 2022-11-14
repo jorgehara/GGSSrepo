@@ -5,6 +5,7 @@ import DatosPersonales from '../DatosPersonales/DatosPersonales'
 import Documentacion from '../Documentacion/Documentacion';
 import Familia from '../Familia/Familia';
 import Footer from '../Footer/Footer';
+import Licencias from '../Licencias/Licencias';
 import Navbar from '../Navbar/Navbar';
 
 const Home = () => {
@@ -33,6 +34,9 @@ const Home = () => {
                 }
                 {
                     location.pathname === "/home/documentacion" && <Documentacion />
+                }
+                {
+                    location.pathname === "/home/licencias" && <Licencias />
                 }
             </div>
         </div>
