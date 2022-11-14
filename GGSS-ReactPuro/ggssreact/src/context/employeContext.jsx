@@ -61,8 +61,13 @@ const EmpleadoContextProvider = (props) => {
   })
   //#endregion
 
-
   
+  useEffect(()=>{
+    let newObjet = {...modals};
+    newObjet.inputEstadosCivilesModal = estadoCivilSelected.masculino;
+    newObjet.inputEstadosCivilesModalFem = estadoCivilSelected.femenino;
+    setModals(newObjet)
+  },[estadoCivilSelected])
 
 
 

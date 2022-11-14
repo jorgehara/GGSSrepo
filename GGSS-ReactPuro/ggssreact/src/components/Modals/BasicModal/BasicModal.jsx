@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TextArea from '../../Inputs/TextArea/TextArea';
 import "./BasicModal.css";
 import '../Modales.css'
@@ -8,7 +8,7 @@ import InputDate from '../../Inputs/InputDate/InputDate'
 import InputNumModal from '../../Inputs/InputsModal/InputNumModal/InputNumModal';
 
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder, dropdown, inputDate, inputNum, inputNumName, relacion, nameRelacion }) => {
+const BasicModal = ({ idModal, nameModal, array, textArea, placeholder, dropdown, inputDate, inputNum, inputNumName, relacion, nameRelacion , onChange, generalState, setGeneralState, onSelect, functionModal, functionSaveSelected, selectedOption, arrayCompleto}) => {
 
     return (
         <div>
@@ -22,17 +22,17 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
                             <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <div className="llamadaApi border border-danger">
+                            <div className="llamadaApi ">
 
                                 { relacion && <> <Dropdown nameDropdown={nameRelacion}/> <br/> </>  }
                                                     
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select className="form-select row mt-1 selectOptions border border-danger" multiple aria-label="multiple select example">
+                                <select className="form-select row mt-1 selectOptions " multiple aria-label="multiple select example">
                                     {
                                         array !== undefined ? array.map((op, i)=>{
                                             return(
-                                                <option key={i} value="1">{op}</option>
+                                                <option key={i} onClick={(e)=>onSelect(e,functionModal,functionSaveSelected, arrayCompleto, op )} value="1">{op}</option>
                                             )
                                         }) : null
                                     }
@@ -56,9 +56,15 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
 
 
                                 {
+                                    selectedOption ?                                     
+                                        <>
+                                        <InputModal nameInput="inputEstadosCivilesModal" placeHolder="Casado" nameLabel="Masculino" inputId="inputEstadosCivilesModal" onChange={onChange} generalState={generalState} setGeneralState={setGeneralState} value={generalState !== undefined && generalState !== null ? selectedOption.masculino : generalState.inputEstadosCivilesModal}/>
+                                        <InputModal nameInput="inputEstadosCivilesModalFem" placeHolder="Casada" nameLabel="Femenino" inputId="inputEstadosCivilesModalFem" onChange={onChange} generalState={generalState} setGeneralState={setGeneralState} value={generalState !== undefined && generalState !== null ? selectedOption.femenino : generalState.inputEstadosCivilesModalFem} />
+                                        </>
+                                 :
                                     placeholder.map((p, i) => {
                                         return(
-                                            <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} />
+                                            <InputModal key={i} nameInput={p.nameInput} placeHolder={p.placeholder}nameLabel={p.label} inputId={p.idInput} onChange={onChange} generalState ={generalState} setGeneralState={setGeneralState} value={p} />
                                         )
                                     })
                                 }

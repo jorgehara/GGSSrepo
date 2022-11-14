@@ -39,3 +39,8 @@ export function getFamiliarByIdFamiliar(familiares,idFamiliar){
         setTimeout(()=> resolve(familiares.find(f=> f.iDfamiliares === idFamiliar)),0);
     })
 }
+export function getEstadosCivilesModal(listEstados, nameEstado){
+    return new Promise((resolve)=>{
+        setTimeout(()=> resolve(listEstados.find(f=> f.masculino === nameEstado || f.femenino === nameEstado)))
+    })
+}
