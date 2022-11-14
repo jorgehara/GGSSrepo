@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import './Navbar.css'
 import ButtonCallModal from '../Buttons/ButtonCallModal'
 import BasicModal from '../Modals/BasicModal/BasicModal'
-import ModalParentescos from '../Modals/ModalParentescos/ModalParentescos'
 import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
-import ModalAlicuotas from '../Modals/ModalAlicuotas/ModalAlicuotas'
-import { objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias  } from './Objects'
+import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas  } from './Objects'
 import { employeContext } from '../../context/employeContext';
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
@@ -147,7 +145,7 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} array={estadosCiviles}/>
 				<BasicModal idModal="Estudios" nameModal="Estudios" placeholder={objectEstudios} array={estudios}/>
 				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} />
-				<ModalParentescos idModal="Parentescos" nameModal="Parentescos" />
+				<BasicModal idModal="Parentescos" nameModal="Parentescos" placeholder={objectParentescos} hasCheckbox={true} checkboxName="Genera Asignación" hasCheckBoxNum={true} checkboxCheckName="Deduce Ganancias" checkboxNumName="Importe" textArea={true} />
 				<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} />
 				<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} />
 				<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} />
@@ -160,7 +158,7 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 				<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" aDepartamentos={deptos}aProvincias={provincias} aLocalidades={localidades} aBarrios={barrios} />
 				<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true} array={calles}/>
 				<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
-				<ModalAlicuotas idModal="alicuotas" nameModal="Alicuotas" />
+				<BasicModal idModal="alicuotas" nameModal="Alicuotas" placeholder={objectAlicuotas} inputNum={true} inputNumName="Alicuota" hasCheckbox={true} checkboxName="Pide N° CUIT"/>
 
 				{/* {/ MODALES TABLA PARA LIQUIDACIÓN /} */}
 				<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true} />
@@ -176,7 +174,7 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 				<ModalTable idModal="Reduccion" nameModal="Tabla de Reducción de Deducciones" column={tableReduccionHeadings} btnAceptar={true}/>
 				<ModalEscala idModal="Escala" nameModal="Escala de Ganancias" inputNumData={inputNumDataEscala} hasInputDate={true} inputDateData={inputDateDataEscala} table={true} buttonNum={true} flex={true} />
 				<ModalEscala idModal="Deducciones" nameModal="Deducciones de Ganancias" inputNumData={inputNumDataDeducciones} hasInputDate={true} inputDateData={inputDateDataDeducciones} />
-				<ModalEscala idModal="Valores" nameModal="Valores Permanencia Categoría" inputNumData={inputNumDataValores} tableValores={true} column={tableValoresHeadings} flex={true} categorias={true} />
+				<ModalEscala idModal="Valores" nameModal="Valores Permanencia Categoría" inputNumData={inputNumDataValores} tableValores={true} column={tableValoresHeadings} flex={true} categorias={true} buttonNumTable={true} />
 				<ModalConvenios idModal="Convenios" nameModal="Convenios, Categorías, Básicos y Antigüedad" placeholder={objectConvenios} inputsNumConvenios={inputsNumConvenios} column={tableConvenios} placeholderCategorias={objectCategorias} inputsNumCategorias={inputsNumCategorias} />
 				<ModalTable idModal="Jerarquia" nameModal="Jerarquía de las Categorías" column={tableJerarquia} dropdown={true} jerarquia={true}/>
 				<ModalTable idModal="Licencias" nameModal="Licencias por Antigüedad" licencias={true} column={tableLicencias} objectInputs={inputsNumLicencias}/>

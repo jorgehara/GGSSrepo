@@ -8,7 +8,7 @@ import TableReduccion from '../../Tables/TableReduccion';
 import Dropdown from '../../Inputs/Dropdown/Dropdown';
 
 
-const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, inputNumData, table, buttonNum, tableValores, column, flex, categorias }) => {
+const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, inputNumData, table, buttonNum, tableValores, column, flex, categorias, buttonNumTable }) => {
 
     return (
         <div>
@@ -25,7 +25,7 @@ const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, i
                             <div className="llamadaApi">
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select style={{ height: "auto", minHeight: "230px", minWidth: "200px" }} className="form-select row mt-1 " multiple aria-label="multiple select example">
+                                <select style={{ height: "auto", minHeight: "230px", minWidth: "300px" }} className="form-select row mt-1 " multiple aria-label="multiple select example">
                                     {
                                         array !== undefined ? array.map((op, i) => {
                                             return (
@@ -47,24 +47,26 @@ const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, i
                                     </button>
                                 </div>
                             </div>
-                            <div className="bodyInputs">
+                            <div className="bodyInputs bodyInputsEscala">
 
                                 {
                                     hasInputDate &&
-                                    <div className="inputDateContainerEscala">
-                                        {
-                                            inputDateData.map((p, i) => {
-                                                return (
-                                                    <InputDate key={i} nameInput={p.label} inputId={p.label} />
-                                                )
-                                            })
-                                        }
-                                    </div>
+
+                                    <>
+                                        <div className="inputDateContainerEscala">
+                                            {
+                                                inputDateData.map((p, i) => {
+                                                    return (
+                                                        <InputDate key={i} nameInput={p.label} inputId={p.label} />
+                                                    )
+                                                })
+                                            }
+
+                                        </div>
+
+                                        <hr />
+                                    </>
                                 }
-
-
-                                <hr />
-
 
                                 <div className={flex ? "inputNumContainerEscala" : "inputNumContainerDeducciones"}>
 
@@ -79,10 +81,10 @@ const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, i
 
                                     {
                                         buttonNum &&
-                                        <>
-                                            <button>+</button>
-                                            <button>-</button>
-                                        </>
+                                        <div className="escalaBtnContainer">
+                                            <button className='btnPlus'><b>+</b></button>
+                                            <button className='btnMin'><b>-</b></button>
+                                        </div>
 
                                     }
 
@@ -105,9 +107,21 @@ const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, i
                                     table && <TableEscala />
                                 }
 
-                                {
-                                    tableValores && <TableReduccion column={column} />
-                                }
+                                <div className="tableValoresContainer">
+
+
+                                    {
+                                        tableValores && <TableReduccion column={column} />
+                                    }
+
+                                    {
+                                        buttonNumTable &&
+                                        <div className="escalaBtnContainer">
+                                            <button className='btnPlus'><b>+</b></button>
+                                            <button className='btnMin'><b>-</b></button>
+                                        </div>
+                                    }
+                                </div>
 
                                 <hr />
 

@@ -3,7 +3,7 @@ import React from 'react'
 const Dropdown = ({nameDropdown}) => {
     return (
         <>
-            <label htmlFor="partida" style={{ marginRight: "15px" }}> {nameDropdown}: </label>
+            <label htmlFor="partida" style={{ marginRight: "15px"}}> {nameDropdown}: </label>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Seleccionar...

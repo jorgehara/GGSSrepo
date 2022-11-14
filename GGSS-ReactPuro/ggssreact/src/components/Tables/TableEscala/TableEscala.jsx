@@ -3,7 +3,7 @@ import './TableEscala.css'
 
 const TableEscala = () => {
     return (
-            <table className="table">
+            <table className="table tableEscala">
                 <thead className="tableHeader text-light">
                     <tr>
                         <th scope="col">Ganancia neta imponible acumulada</th>

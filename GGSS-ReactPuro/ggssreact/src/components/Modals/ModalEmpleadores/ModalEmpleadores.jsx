@@ -20,7 +20,7 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select style={{ height: "800px", width: "400px" }} className="form-select row mt-1" multiple aria-label="multiple select example">
+                                <select style={{ height: "750px"}} className="form-select row mt-1" multiple aria-label="multiple select example">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
@@ -96,7 +96,7 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
                                 <br />
 
-                                <fieldset className="fieldsetStyle" style={{ border: "0.1px solid gray" }}>
+                                <fieldset className="basicFieldset" style={{ border: "0.1px solid gray" }}>
                                     <div style={{ padding: "10px" }} >
                                         <legend>Domicilios</legend>
                                         <hr />

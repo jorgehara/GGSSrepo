@@ -11,7 +11,7 @@ const BodyCategorias = ({ aCategorias, inputsNumCategorias, placeholderCategoria
 
                 <label htmlFor="data">Datos: </label>
                 <br />
-                <select style={{ height: "auto", minHeight: "620px", minWidth: "200px" }} className="form-select row mt-1 " multiple aria-label="multiple select example">
+                <select style={{ height: "auto", minHeight: "270px", minWidth: "200px" }} className="form-select row mt-1 " multiple aria-label="multiple select example">
                     {
                         aCategorias !== undefined ? aCategorias.map((op, i) => {
                             return (

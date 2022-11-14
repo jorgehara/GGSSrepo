@@ -4,6 +4,8 @@ import InputModal from '../../Inputs/InputsModal/InputModal'
 import InputNumModal from '../../Inputs/InputsModal/InputNumModal/InputNumModal'
 import TextArea from '../../Inputs/TextArea/TextArea'
 import TableReduccion from '../../Tables/TableReduccion'
+import '../../Modals/Modales.css'
+import '../ModalEscala/ModalEscala.css'
 
 const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) => {
     return (
@@ -12,7 +14,7 @@ const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) 
 
                 <label htmlFor="data">Datos: </label>
                 <br />
-                <select style={{ height: "auto", minHeight: "620px", minWidth: "200px" }} className="form-select row mt-1 " multiple aria-label="multiple select example">
+                <select style={{ height: "auto", minHeight: "270px", minWidth: "200px" }} className="form-select row mt-1 " multiple aria-label="multiple select example">
                     {
                         aConvenios !== undefined ? aConvenios.map((op, i) => {
                             return (
@@ -71,10 +73,10 @@ const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) 
                         <label>años</label>
 
                         <div>
-                            <input type="num" style={{width: "60px", marginLeft: "30px", marginRight: "15px"}} />
-                            <input type="radio" name="cash" style={{marginRight: "4px"}} />
-                            <label style={{marginRight: "15px"}} htmlFor="importe">Importe ($)</label>
-                            <input type="radio" name="cash" style={{marginRight: "4px"}} />
+                            <input type="num" style={{ width: "60px", marginLeft: "30px", marginRight: "15px" }} />
+                            <input type="radio" name="cash" style={{ marginRight: "4px" }} />
+                            <label style={{ marginRight: "15px" }} htmlFor="importe">Importe ($)</label>
+                            <input type="radio" name="cash" style={{ marginRight: "4px" }} />
                             <label htmlFor="porcentaje">Porcentaje (%)</label>
                         </div>
 
@@ -83,9 +85,9 @@ const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) 
 
                     <div className='tableSectionConvenios'>
                         <TableReduccion column={column} />
-                        <div className='btnSection'>
-                            <button>+</button>
-                            <button>-</button>
+                        <div className="btnSection">
+                            <button className='btnPlus'><b>+</b></button>
+                            <button className='btnMin'><b>-</b></button>
                         </div>
                     </div>
 

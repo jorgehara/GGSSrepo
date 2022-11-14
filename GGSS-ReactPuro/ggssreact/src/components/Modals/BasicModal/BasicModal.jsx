@@ -6,9 +6,11 @@ import InputModal from '../../Inputs/InputsModal/InputModal';
 import Dropdown from '../../Inputs/Dropdown/Dropdown';
 import InputDate from '../../Inputs/InputDate/InputDate'
 import InputNumModal from '../../Inputs/InputsModal/InputNumModal/InputNumModal';
+import Checkbox from '../../Inputs/Checkbox/Checkbox';
+import CheckboxNum from '../../Inputs/CheckboxNum/CheckboxNum';
 
 
-const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder, dropdown, inputDate, inputNum, inputNumName, relacion, nameRelacion }) => {
+const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, placeholder, dropdown, inputDate, inputNum, inputNumName, relacion, nameRelacion, hasCheckbox, checkboxName, hasCheckBoxNum, checkboxCheckName, checkboxNumName  }) => {
 
     return (
         <div>
@@ -28,7 +30,7 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
                                                     
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select className="form-select row mt-1 selectOptions border border-danger" multiple aria-label="multiple select example">
+                                <select className="form-select row mt-1 selectOptions" multiple aria-label="multiple select example">
                                     {
                                         array !== undefined ? array.map((op, i)=>{
                                             return(
@@ -66,6 +68,14 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
                                 {
                                     inputNum && <InputNumModal nameInput={inputNumName}/>
                                 }   
+
+                                {
+                                    hasCheckbox && <Checkbox nameCheckbox={checkboxName}/>
+                                }
+
+                                {
+                                    hasCheckBoxNum && <CheckboxNum nameCheckbox={checkboxCheckName} nameInputNum={checkboxNumName}/>
+                                }
 
                                 {
                                     dropdown && <Dropdown nameDropdown="Partida"/>
