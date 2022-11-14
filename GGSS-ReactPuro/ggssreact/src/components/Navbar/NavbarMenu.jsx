@@ -1,3 +1,4 @@
+//#region -----------------------------------------------------------------------IMPORTS
 import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
 import './Navbar.css'
@@ -12,12 +13,19 @@ import { employeContext } from '../../context/employeContext';
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
 import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
+import { getEstadosCivilesModal } from '../../services/fetchAPI';
+import { useEffect } from 'react';
+//#endregion
+
+
 
 const Navbar = () => {
 
-// }saveEstadoCivil
-const { saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio, saveParen} = useContext(employeContext);
 
+//#region -----------------------------------------------------------------------CONSTANTES DE DATOS
+const { saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio, saveParen, onChange, setModals, modals, onSelect, estadoCivilSelected, saveEstadoCivilSelected} = useContext(employeContext);
+console.log(modals.inputEstadosCivilesModal)
+console.log(modals.inputEstadosCivilesModalFem)
 const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
 const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
 const estadosCiviles =  estadosCivilesMasculinos.concat(estadosCivilesFemeninos); 
@@ -34,6 +42,19 @@ const provincias = saveProvincia !== undefined ? saveProvincia.map(res => {retur
 const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => {return res.localidad}) : null;
 const barrios = saveBarrio !== undefined ? saveBarrio.map(res => {return res.barrio}) : null;
 const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
+
+
+useEffect(()=>{
+    let newObjet = {...modals};
+    newObjet.inputEstadosCivilesModal = estadoCivilSelected.masculino;
+    newObjet.inputEstadosCivilesModalFem = estadoCivilSelected.femenino;
+    setModals(newObjet)
+  },[estadoCivilSelected])
+
+
+console.log(saveEstadoCivil)
+//#endregion
+
   return (
 	    <nav className="navbar navbar-expand-lg navbar-light bg-light">
 		<div className="container-fluid">
@@ -144,7 +165,8 @@ const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par
 				</li>
 
 				{/* {/ MODALES TABLA PARA EMPLEADOS /} */}
-				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} array={estadosCiviles}/>
+				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} array={estadosCiviles} onChange={onChange} generalState={modals} setGeneralState={setModals} onSelect={onSelect} functionModal={getEstadosCivilesModal} functionSaveSelected={saveEstadoCivilSelected} selectedOption={estadoCivilSelected} arrayCompleto={saveEstadoCivil}/>
+				
 				<BasicModal idModal="Estudios" nameModal="Estudios" placeholder={objectEstudios} array={estudios}/>
 				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} />
 				<ModalParentescos idModal="Parentescos" nameModal="Parentescos" />
