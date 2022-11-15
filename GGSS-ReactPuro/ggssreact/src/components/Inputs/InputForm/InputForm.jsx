@@ -12,7 +12,12 @@ const InputForm = ({
   nameLabel,
   datosPersonalesValue,
   generalState,
-  setGeneralState
+  action,
+  validateNumbers,
+  validateLetters,
+  validateEmails,
+  numbers,
+  email
 }) => {
 
   
@@ -39,9 +44,10 @@ const InputForm = ({
           id={inputId}
           placeholder={placeHolder}
           value={ valor  }
-          onChange={(e) => onChange(e,generalState, setGeneralState)}
+          onChange={(e) => onChange(e,action)}
           disabled={disabled}
           name={nameInput}
+          onKeyPress={(numbers && validateNumbers) || (!numbers && validateLetters)}
         />
       </div>
       <div className='form__grupo__icons'>

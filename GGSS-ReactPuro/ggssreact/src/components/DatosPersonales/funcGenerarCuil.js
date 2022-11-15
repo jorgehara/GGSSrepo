@@ -1,7 +1,31 @@
-export default function generateCuil(document_number, gender){
+export default function generateCuil(document_number, gender, swal){
     
-    console.log(isNaN(document_number));
-    console.log(typeof(gender));
+    if((document_number === undefined || document_number === "" || document_number === null) && (gender === undefined || gender === "" || gender === null)){
+        swal({
+            title: "Error",
+            text: "Debe ingresar el Documento y el Sexo para generar el CUIL",
+            icon: "error",
+          });
+        return;
+    }
+
+    if(document_number === undefined || document_number === "" || document_number === null){
+        swal({
+            title: "Error",
+            text: "Debe ingresar el Documento para Generar el CUIL",
+            icon: "error",
+          });
+        return;
+    }
+
+    if(gender === undefined || gender === "" || gender === null){
+        swal({
+            title: "Error",
+            text: "Debe seleccionar el sexo para Generar el CUIL",
+            icon: "error",
+          });
+        return;
+    }
 
     const HOMBRE = ["HOMBRE", "M", "MALE"],
     MUJER = ["MUJER", "F", "FEMALE"],
@@ -14,7 +38,11 @@ export default function generateCuil(document_number, gender){
             document_number = `0${document_number}`;
         } else {
         // Muestro un error en caso de no serlo.
-            throw `El numero de ${document_number} ingresado no es correcto.`;
+            throw swal({
+                title: "Error",
+                text: `El número de Documento ${document_number} es inválido`,
+                icon: "error",
+              });
         }
     }
 

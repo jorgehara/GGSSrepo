@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./InputFile.css";
 import imagenAlt from "./cambieImagen.png";
+import { useDispatch } from "react-redux";
 
-function InputFile({ disabled, imagen }) {
+function InputFile({ disabled, imagen,onChange, idInput,action }) {
   const [ImageSelectedPrevious, setImageSelectedPrevious] = useState(null);
   const [displayButton, setDisplayButton] = useState("");
+  const dispatch = useDispatch();
+  
+  
   const changeImage = (e) => {
     console.log(e.target.files);
     if (e.target.files[0] !== undefined) {
@@ -13,6 +17,10 @@ function InputFile({ disabled, imagen }) {
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = (e) => {
         e.preventDefault();
+        dispatch({
+          type : action,
+          payload : {name : idInput, value : e.target.result}
+        })
         setImageSelectedPrevious(e.target.result); // le damos el binario de la imagen para mostrarla en pantalla
         setDisplayButton("none");
       };
@@ -49,6 +57,8 @@ function InputFile({ disabled, imagen }) {
             <input
               className="file-upload-input"
               type="file"
+              id={idInput}
+              name={idInput}
               accept="image/png, image/jpg"
               multiple
               width="220px"
@@ -64,8 +74,7 @@ function InputFile({ disabled, imagen }) {
                 src={
                   ImageSelectedPrevious === null ||
                   ImageSelectedPrevious === undefined
-                    ? imagen
-                    : ImageSelectedPrevious ? imagenAlt : null
+                    ? imagen : ImageSelectedPrevious
                 }
                 alt="ImageNotFound"
               />

@@ -1,13 +1,21 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import "./InputButton.css";
 
-const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, generalState, setGeneralState}) => {
+const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal}) => {
 
-  const [cuil, setCuil] = useState("");
   const [valor, setValor] = useState(0);
+  const dispatch = useDispatch();
   
+  useEffect(()=>{
+    dispatch({
+      type : action,
+      payload : { name : id, value : valor }
+    })
+  },[valor])
+
   useEffect(()=>{
     setValor(datosPersonalesValue)
   },[datosPersonalesValue])
@@ -16,7 +24,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
     
     setValor(value);
   },[value])
-
+  console.log(datosPersonalesValue)
   return (
     <div className="formulario__grupo__inputs">
         <div className='formulario__grupo'>
@@ -29,13 +37,12 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     className="formulario-input-Legajo col ml-0 px-0 mt-0 mb-2 mr-1" 
                     placeholder={placeholder} 
                     id={id} 
-                    name={nameInput}
-                    aria-describedby="inputGroupFileAddon04"
+                    name={id}
                     disabled={disabled}
-                    onChange={(e)=> onChange(e, generalState,setGeneralState )}
+                    onChange={(e)=> onChange(e,action )}
                     />
         </div>
-			  <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre))}
+			  <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
               className="btn btn-validacion btn-outline-danger ml-2" disabled={disabled}>
               {nameButton}
         </button>

@@ -17,7 +17,8 @@ const InputMultiple = ({
   datosFamiliaValue1,
   datosFamiliaRadio,
   generalState,
-  setGeneralState
+  setGeneralState,
+  action
 }) => {
   const [valor, setValor] = useState("");
   const [valorRadioM, setValorRadioM] = useState(false);
@@ -61,7 +62,7 @@ const InputMultiple = ({
             
           </div>
           <div className="col-xl-4   d-flex justify-content-center align-items-center">
-            <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,generalState, setGeneralState)}>
+            <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,action)}>
               {optionsDNI.map((op, i) => {
                 return <option key={i} value={op}>{op}</option>;
               })}
@@ -77,7 +78,7 @@ const InputMultiple = ({
               disabled={disable}
               id={propsRadioButton.idNroDni}
               name={propsRadioButton.idNroDni}
-              onChange={(e)=>onChange(e,generalState, setGeneralState)}
+              onChange={(e)=>onChange(e,action)}
             ></input>
           </div>
           <div className="form__grupo__icon">
@@ -101,7 +102,7 @@ const InputMultiple = ({
                   name={propsRadioButton.idRadioBtn}
                   defaultChecked
                   checked={valorRadioM}
-                  onChange={(e)=>onChange(e, generalState, setGeneralState)}
+                  onChange={(e)=>onChange(e, action)}
                   value="M"
                   disabled={disable}
                 />
@@ -117,7 +118,7 @@ const InputMultiple = ({
                   defaultChecked
                   name={propsRadioButton.idRadioBtn}
                   checked={valorRadioF}
-                  onChange={(e)=>onChange(e, generalState, setGeneralState)}
+                  onChange={(e)=>onChange(e, action)}
                   value="F"
                   disabled={disable}
                 />

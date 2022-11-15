@@ -14,7 +14,8 @@ const InputNumero = ({
   onChange,
   inputValueState,
   generalState,
-  setGeneralState
+  setGeneralState,
+  action
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -32,9 +33,9 @@ const InputNumero = ({
                       placeholder={placeHolder}
                       disabled={disabled}   
                       id={idInput}
-                      name={nameInput}
+                      name={idInput}
                       value={inputValueState !== undefined || inputValueState !== null ? inputValueState : value }
-                      onChange={(e)=> onChange(e,generalState,setGeneralState)}      
+                      onChange={(e)=> onChange(e,action)}      
                       />
         </div>
            

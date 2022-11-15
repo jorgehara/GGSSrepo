@@ -1,7 +1,9 @@
 //#region Imports
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { employeContext } from "../../context/employeContext";
+import { ADD_DOMICILIOS } from "../../redux/types/domiciliosTypes";
 import { getData } from "../../services/fetchAPI";
 import { getEmpleados } from "../../services/mockDataDomicilios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
@@ -27,7 +29,18 @@ const Domicilios = () => {
   ];
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
-  
+  //#region ------------------------------------------------------------------------------REDUX
+  const dispatch = useDispatch();
+  function onChange(e, action) {
+    dispatch(
+      {
+        type: action,
+        payload : {name : e.target.name, value : e.target.value}
+      });    
+  }
+  const domiciliosState = useSelector((state)=> state.domiciliosStates)
+  console.log(domiciliosState)
+  //#endregion
   
 
   //#region ------------------------------------------------------------------------------URLs
@@ -38,7 +51,7 @@ const Domicilios = () => {
   const urlBarrios = "http://54.243.192.82/api/Barrios";
   //#endregion
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable, domicilios, setDomicilios, onChange } = useContext(employeContext);
+  const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable, domicilios, setDomicilios } = useContext(employeContext);
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
@@ -136,6 +149,7 @@ const Domicilios = () => {
                     value={saveDom[0] !== undefined ? saveDom[0].calle : null}
                     generalState = {domicilios}
                     setGeneralState = {setDomicilios}
+                    action={ADD_DOMICILIOS}
                     sexo=""
                     nameButton="..."
                     nameLabel="Calle"
@@ -154,6 +168,7 @@ const Domicilios = () => {
                 <div className="col-xl-6">
                   <InputNumero
                     nameInput="inputNumCalle"
+                    action={ADD_DOMICILIOS}
                     array={paises}
                     generalState = {domicilios}
                     setGeneralState = {setDomicilios}
@@ -161,12 +176,12 @@ const Domicilios = () => {
                     nameCheck="Fijar"
                     defaultChecked=""
                     display={true}
-                    value={numCalleSelected !== undefined ? numCalleSelected.toString() : null}
+                    value={numCalleSelected !== undefined ? numCalleSelected.toString() : domiciliosState.inputNumCalle}
                     disabled={disable}
                     idInput="inputNumCalle"
                     nameLabel="N°"
                     onChange={onChange}
-                    inputValueState={domicilios !== undefined ?  domicilios.inputNumCalle : null}
+                    inputValueState={domiciliosState !== undefined ?  domiciliosState.inputNumCalle : null}
                   />
                 </div>
                 </div>
@@ -176,6 +191,7 @@ const Domicilios = () => {
                       ? saveDom.pisoDepto
                       : null
                   }
+                  action={ADD_DOMICILIOS}
                   generalState = {domicilios}
                   setGeneralState = {setDomicilios}
                   sexo=""
@@ -200,6 +216,7 @@ const Domicilios = () => {
                   value={
                     saveEmpl[0] !== undefined ? saveEmpl[0].idProvincia : null
                   }
+                  action={ADD_DOMICILIOS}
                   generalState = {domicilios}
                   setGeneralState = {setDomicilios}
                   sexo=""
@@ -222,6 +239,7 @@ const Domicilios = () => {
                       ? saveDom[0].Provincia
                       : null
                   }
+                  action={ADD_DOMICILIOS}
                   generalState = {domicilios}
                   setGeneralState = {setDomicilios}
                   sexo=""
@@ -244,6 +262,7 @@ const Domicilios = () => {
                   ? saveDom[0].Provincia
                   : null
                   }
+                  action={ADD_DOMICILIOS}
                   generalState = {domicilios}
                   setGeneralState = {setDomicilios}
                   sexo=""
@@ -266,6 +285,7 @@ const Domicilios = () => {
                       ? saveDom[0].Provincia
                       : null
                   }
+                  action={ADD_DOMICILIOS}
                   generalState = {domicilios}
                   setGeneralState = {setDomicilios}
                   sexo=""

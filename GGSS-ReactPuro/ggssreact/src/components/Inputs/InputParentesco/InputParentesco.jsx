@@ -17,7 +17,8 @@ const InputParentesco = ({
   value,
   generalState,
   setGeneralState,
-  onChange
+  onChange,
+  action
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -45,7 +46,7 @@ const InputParentesco = ({
             name={idInput}
             id={idInput}
             value={value}
-            onChange={(e)=> onChange(e, generalState, setGeneralState)}
+            onChange={(e)=> onChange(e, action)}
           >
             {array !== undefined &&
               array !== null &&

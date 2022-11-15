@@ -6,6 +6,7 @@ import EmployeData from '../EmployeData/EmployeData';
 import CheckLabel from '../Inputs/CheckLabel/CheckLabel';
 import TableBasic1 from '../Tables/TableBasic1';
 import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
+import { ADD_DATOS_PERSONALES } from '../../redux/types/datosPersonalesTypes';
 
 const Documentacion = () => {
     const columns = ["Fecha", "Vencimiento", "Documento", "Liq", "Observaciones", "Incluir Cuota"]
@@ -22,7 +23,7 @@ const Documentacion = () => {
                 <InputDate nameInput="Fecha Vencimiento" idInput="inputDatePresentacion" display={true} />
             </div>
             <div className='col-xl-12'>
-                <InputButton nameButton="..." nameLabel="Documentación" placeholder="Documentación"/>
+                <InputButton nameButton="..." nameLabel="Documentación" placeholder="Documentación" action={ADD_DATOS_PERSONALES}/>
             </div>
             <div className='col-xl-12'>
                 <TextArea inputName="Observaciones "/>

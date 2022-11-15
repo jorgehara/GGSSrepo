@@ -17,6 +17,7 @@ const EstudioFlia = ({
   onChange,
   generalState,
   setGeneralState,
+  action
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -40,7 +41,7 @@ const EstudioFlia = ({
             id={idInput}
             value={valueInputEstudios}
             onChange={
-            (e)=> onChange(e, generalState, setGeneralState)
+            (e)=> onChange(e, action)
           }
           >
             {array.map((op, i) => {

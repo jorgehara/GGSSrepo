@@ -17,9 +17,11 @@ import { useEffect } from "react";
 import { getData, getFamiliarByIdEmpleado, getFamiliarByIdFamiliar } from "../../services/fetchAPI";
 import { useState } from "react";
 import InputDateFliaBaja from "../Inputs/InputDateFamilia/InputDateFliaBaja";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD_DOMICILIOS } from "../../redux/types/domiciliosTypes";
 
 const Familia = () => {
-  const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec, onChange} = useContext(employeContext);
+  const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect} = useContext(employeContext);
   const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
   
   
@@ -32,7 +34,22 @@ const Familia = () => {
     inputDateNac : "",
     inputDateBaja : ""
   });
-
+  //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
+  const dispatch = useDispatch();
+  const empleadoUno = useSelector((state)=> state.employeStates.employe)
+  const familiarSel = useSelector((state)=> state.familiaStates.familiar)
+  function onChange(e, action) {
+    console.log("entro")
+    dispatch(
+      {
+        type: action,
+        payload : {name : e.target.name, value : e.target.value}
+      });    
+  }
+  const familiaRedux = useSelector((state)=> state.familiaStates);
+  console.log(familiarSel)
+  
+  //#endregion
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
     const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
@@ -85,13 +102,6 @@ const Familia = () => {
     idRadioBtn : "idRadioBtn"
   }
   //#endregion
-  console.log(familia.inputApellidoNombres);
-  console.log(familia.inputCmbDni);
-  console.log(familia.inputNroDni);
-  console.log(familia.idRadioBtn);
-  console.log(familia.inputParentesco);
-  console.log(familia.inputDateNac)
-  console.log(familia.inputDateBaja)
   const columns = [
     "Apellido y Nombre",
     "Tipo",
@@ -109,6 +119,7 @@ const Familia = () => {
   ];
   function onSelect( saveFamiliar, idFamiliar) {
     getFamiliarByIdFamiliar(saveFamiliar, idFamiliar).then((res) => {
+      dispatch({type: "ADD_FAMILIAR" , payload : res});
       setFamiliarSeleccionado(res);
     });
   }
@@ -124,7 +135,7 @@ const Familia = () => {
               <div className="row">
                 <InputChecked
                   value={familiarSeleccionado === undefined ? 
-                    (saveEmpl[0] !== undefined
+                    (empleadoUno[0] !== undefined
                       ? `${saveEmpl[0].apellido}, ${saveEmpl[0].nombres}`
                       : null) : familiarSeleccionado.apellidoyNombres
                   }
@@ -135,6 +146,7 @@ const Familia = () => {
                   idInput="inputApellidoNombres"
                   nameInput="inputApellidoNombres"
                   onChange={onChange}
+                  action={ADD_DOMICILIOS}
                 />
                 <InputMultiple
                   optionsDNI={tipoDNI}
@@ -156,12 +168,9 @@ const Familia = () => {
                   datosFamiliaRadio = {familia.idRadioBtn !== undefined ? familia.idRadioBtn : null}
                   generalState={familia}
                   setGeneralState={setFamilia}
+                  action={ADD_DOMICILIOS}
                 />
                 <InputParentesco
-                //agrego el IdInput que agregue como props del Estado General
-                //idInput="inputParentesco"
-                //onChange={onChange}
-                //value={familia.inputParentesco !== undefined ? familia.inputParentesco : null}
                   nameInput="Parentesco"
                   array={parentesco!== undefined ? parentesco : null}
                   placeHolder="Parentesco"
@@ -175,6 +184,7 @@ const Familia = () => {
                   idInput="inputParentesco"
                   value={familia.inputParentesco !== undefined ?  familia.inputParentesco : null}
                   onChange={onChange}
+                  action={ADD_DOMICILIOS}
                 />
                 <InputDateFlia
                   value={
@@ -192,6 +202,7 @@ const Familia = () => {
                   generalState={familia}
                   setGeneralState={setFamilia}
                   familiarSeleccionado={familiarSeleccionado !== undefined ? familiarSeleccionado : null}
+                  action={ADD_DOMICILIOS}
                 />
                 <EstudioFlia
                   nameInput="Estudios"
@@ -207,6 +218,7 @@ const Familia = () => {
                   idInput="idInputEstudios"
                   onChange={onChange}
                   valueInputEstudios={familia.idInputEstudios !== undefined ? familia.idInputEstudios : null}
+                  action={ADD_DOMICILIOS}
                 />
               </div>
             </div>
@@ -225,6 +237,8 @@ const Familia = () => {
                   propArray={paisSelected !== undefined ? paisSelected.nombrePais : ""}
                   idModal="paises"
                   disable={disable}
+                  onChange={onChange}
+                  action={ADD_DOMICILIOS}
                 />
           <NacionalidadFlia
                   nameInput="Nacionalidad"
@@ -240,6 +254,7 @@ const Familia = () => {
                   propArray="ARGENTINO"
                   idModal="nacionalidades"
                   disable={disable}
+                  action={ADD_DOMICILIOS}
                 />
           <InputDateFliaBaja
             value={
@@ -255,6 +270,7 @@ const Familia = () => {
             familiarSeleccionado={familiarSeleccionado !== undefined ? familiarSeleccionado : null}
             valueGeneral={familia.inputDateBaja !== undefined ? familia.inputDateBaja : null}
             onChange={onChange}
+            action={ADD_DOMICILIOS}
           />
             <TextArea inputName="Observaciones" maxLength="255" value="" disabled={disable}/>
         </div>

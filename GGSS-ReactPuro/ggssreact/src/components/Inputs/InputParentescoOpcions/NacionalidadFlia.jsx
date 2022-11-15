@@ -15,6 +15,7 @@ const NacionalidadFlia = ({
   propArray,
   idModal,
   disable,
+  action
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [returnBySexo, setReturnBySexo] = useState([]);

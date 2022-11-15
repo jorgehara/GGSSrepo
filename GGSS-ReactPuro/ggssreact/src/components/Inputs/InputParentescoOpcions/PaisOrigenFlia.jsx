@@ -11,7 +11,9 @@ const PaisOrigenFlia = ({
   display,
   propArray,
   idModal,
-  disable
+  disable,
+  action,
+  onChange
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -25,7 +27,7 @@ const PaisOrigenFlia = ({
         <label className="formulario-label-ParentescoFliaOpcions mt-2">{nameInput}</label>
       </div>
       <div className="SelectedFliaPais px-0">
-        <select className="form-select ml-0 mt-1" disabled={disable}>
+        <select className="form-select ml-0 mt-1" disabled={disable} onChange={(e)=> onChange(e,action)}>
           {
             array.map((op, i) => {
               return propArray === op ?<option selected defaultValue  key={i}>{op}</option> : <option key={i}>{op}</option>

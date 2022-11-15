@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./InputDateFlia.css";
 
-const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, valueGeneral, onChange,generalState, setGeneralState, familiarSeleccionado}) => {
+const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, valueGeneral, onChange,generalState, setGeneralState, familiarSeleccionado,action}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [valor , setValor] = useState("");
   const fecha = value !== undefined && value !== null ? value.substring(0, value.length -9) : null;
@@ -34,7 +34,7 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, val
               className='inputDate' 
               id={idInput} 
               name={idInput}
-              onChange={(e)=> onChange(e, generalState, setGeneralState)}
+              onChange={(e)=> onChange(e, action)}
               type="date" 
               value={valueGeneral !== null && valueGeneral.length > 0 ? valueGeneral : valor} 
               disabled={disable}

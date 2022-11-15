@@ -19,7 +19,6 @@ const Browser = () => {
 
   const dispatch = useDispatch();
   const empleados = useSelector((state)=> state.employeStates.employes)
-  const empleadoUno = useSelector((state)=> state.employeStates.employe)
 
   
 

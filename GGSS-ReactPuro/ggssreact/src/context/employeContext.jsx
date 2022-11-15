@@ -1,5 +1,9 @@
 import React, { createContext, useState } from "react";
+import { useReducer } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addDatosPersonales } from "../redux/actions/datosPersonalesActions";
+import datosPersonalesReducer, { initialState } from "../redux/reducers/datosPersonalesReducer";
 
 const employeContext = createContext();
 
@@ -24,6 +28,7 @@ const EmpleadoContextProvider = (props) => {
   const [ saveFamiliarSelected ,setSaveFamiliarSelected] = useState([]);
   const [ saveFamSelect ,setSaveFamSelect] = useState([]);
   const [estadoCivilSelected, setEstadoCivilSelected] = useState([]);
+
   //region ESTADOS GENERALES SOLAPAS
   const [datosPersonales, setDatosPersonales] = useState({
     numLegajo : "",
@@ -67,14 +72,6 @@ const EmpleadoContextProvider = (props) => {
 
 
   //#region ONCHANGE
-  function onChange(evt, generalState, setGeneralState) {
-    const name = evt.target.name;
-    const value = (evt.target.value);
-
-    let newDatosPersonales = { ...generalState };
-    newDatosPersonales[name] = value;
-    setGeneralState(newDatosPersonales);
-  }
   
   function onSelect(e, functionFinded, saveGeneralState, listState, idFindedOrName) {
     
@@ -188,7 +185,6 @@ const EmpleadoContextProvider = (props) => {
         saveFamiliarPorEmpleado,
         saveFamSelect,
         saveFamiliarSelec,
-        onChange,
         setDatosPersonales,
         datosPersonales,
         setDomicilios,

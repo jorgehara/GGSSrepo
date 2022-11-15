@@ -4,12 +4,13 @@ import './InputEmpData.css';
 const InputEmpData = ({ idInput, inputValue, nameLabel,disabled }) => {
   return (
     <div className="row">
-      <label className="col-sm-2 col-form-label " 
+      <label className="col-sm-2 form__label-Cabecera " 
       htmlFor={idInput}>
         {nameLabel}
       </label>
       <div class="col-sm-10">
       <input
+        readonly="readonly"
         className="form-input-FliaCabecera"
         type="text"
         id={idInput}

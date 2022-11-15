@@ -1,6 +1,6 @@
 //#region Imports
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import swal from "sweetalert";
 import DNICboBox from "../Inputs/DNICboBox/DNICboBox";
 import InputButton from "../Inputs/InputButton/InputButton";
@@ -16,7 +16,10 @@ import Domicilios from "../Domicilios/Domicilios";
 import { getData } from "../../services/fetchAPI";
 import generateCuil from "./funcGenerarCuil.js";
 import TextArea from "../Inputs/TextArea/TextArea";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addDatosPersonales } from "../../redux/actions/datosPersonalesActions";
+import datosPersonalesReducer, { initialState } from "../../redux/reducers/datosPersonalesReducer";
+import { ADD_DATOS_PERSONALES } from "../../redux/types/datosPersonalesTypes";
 
 //#endregion
 
@@ -24,9 +27,22 @@ const DatosPersonales = () => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
 
   //#endregion
+  //const [state, dispatch] = useReducer(datosPersonalesReducer, initialState);
+  const dispatch = useDispatch();
+  function onChange(e, action) {
+    dispatch(
+      {
+        type: action,
+        payload : {name : e.target.name, value : e.target.value}
+      });    
+  }
   //#region ------------------------------------------------------REDUX
-  const empleadoUno = useSelector((state)=> state.employeStates.employe)
-  console.log(empleadoUno[0].iDempleado)
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
+  const datosPersonales = useSelector((state)=> state.datosPersonalesStates)
+ 
+    useEffect(()=>{
+      console.log(datosPersonales)
+    },[datosPersonales])
   //#endregion
   //------------------------------------------------------CONTEXT
   const {
@@ -41,10 +57,7 @@ const DatosPersonales = () => {
     saveEstudio,
     saveTipoDNI,
     saveTiposDNI,
-    disable,
-    onChange,
-    setDatosPersonales,
-    datosPersonales,
+    disable,   
   } = useContext(employeContext);
   //--------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
@@ -182,22 +195,19 @@ const DatosPersonales = () => {
 
   const validateNumbers = (e) => {
     if (!/[0-9]/.test(e.key)) {
-      setError("Ingrese sólo números");
-      e.preventDefault();
-    }
-  };
-  const validateNumbersTelefono = (e) => {
-    if (!/[0-9]/.test(e.key)) {
-      setError("Ingrese sólo números");
+      swal({
+        title: "Error",
+        text: "Debe ingresar sólo números",
+        icon: "error",
+      });
       e.preventDefault();
     }
   };
   const validateNumbersDNI = (e) => {
     if (!/^([0-9]?){8}$/.test(e.key)) {
-      setError("Ingrese sólo números");
       swal({
         title: "¡Error!",
-        text: `${error}`,
+        text: `Ingrese número de DNI válido`,
         icon: "error",
       });
       e.preventDefault();
@@ -205,13 +215,21 @@ const DatosPersonales = () => {
   };
   const validateTexts = (e) => {
     if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(e.key)) {
-      setError("Ingrese sólo letras y espacios");
+      swal({
+        title: "Error",
+        text: "Debe ingresar sólo letras",
+        icon: "error",
+      });
       e.preventDefault();
     }
   };
   const validateEmails = (e) => {
-    if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(e.key)) {
-      setError("Ingrese sólo letras y espacios");
+    if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(e.key)) {
+      swal({
+        title: "Error",
+        text: "Debe ingresar un email válido",
+        icon: "error",
+      });
       e.preventDefault();
     }
   };
@@ -262,14 +280,16 @@ const DatosPersonales = () => {
                           placeHolder="N° Legajo"
                           disabled={disable}
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           onChange={onChange}
                           nameLabel="Legajo"
                           datosPersonalesValue={
-                            datosPersonales.numLegajo !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.numLegajo
                               : "N° Legajo"
                           }
+                          validateNumbers={validateNumbers}
+                          numbers={true}
                         />
                         <InputForm
                           value={
@@ -278,7 +298,7 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           nameInput="apellidoInput"
                           idInput="apellidoInput"
                           messageError="Solo puede contener letras."
@@ -287,10 +307,12 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           nameLabel="Apellidos"
                           datosPersonalesValue={
-                            datosPersonales.apellidoInput !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.apellidoInput
                               : "Apellido"
                           }
+                          validateLetters={validateTexts}
+                          numbers={false}
                         />
                         <InputForm
                           value={
@@ -299,7 +321,7 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           nameInput="nombresInput"
                           idInput="nombresInput"
                           messageError="Solo puede contener letras."
@@ -308,10 +330,12 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           nameLabel="Nombres"
                           datosPersonalesValue={
-                            datosPersonales.nombresInput !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.nombresInput
                               : "Nombres"
                           }
+                          validateLetters={validateTexts}
+                          numbers={false}
                         />
                         <DNICboBox
                           value={
@@ -320,7 +344,7 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           nameInput="documentoInput"
                           idInput="documentoInput"
                           messageError="Solo puede contener números, sin puntos."
@@ -336,22 +360,23 @@ const DatosPersonales = () => {
                               : null
                           }
                           datosPersonalesValue={
-                            datosPersonales.documentoInput !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.documentoInput
                               : numDoc
                           }
                           datosPersonalesValue2={
-                            datosPersonales.dniSelected !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.dniSelected
                               : "D.N.I"
                           }
+                          validateNumbersDNI={validateNumbersDNI}
                         />
                         <InputButton
                           value={
                             empleadoUno[0] !== undefined ? empleadoUno[0].cuil : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           id="inputCuil"
                           nameInput="inputCuil"
                           nameLabel="C.U.I.L"
@@ -362,22 +387,23 @@ const DatosPersonales = () => {
                           disabled={disable}
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales.inputcuil !== undefined
-                              ? datosPersonales.inputcuil
+                            datosPersonales !== undefined
+                              ? datosPersonales.inputCuil
                               : "N° CUIL"
                           }
                           funcionCuil={generateCuil}
                           nroDocumento={
-                            datosPersonales.documentoInput !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.documentoInput
                               : numDoc
                           }
                           genre={
-                            datosPersonales.inputSexo !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.inputSexo
                               : null
                           }
                           usaCuil={true}
+                          swal={swal}
                         />
                         <InputForm
                           value={
@@ -386,7 +412,7 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           nameInput="telefonoInput"
                           idInput="telefonoInput"
                           messageError="Solo puede contener números."
@@ -395,10 +421,12 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           nameLabel="Telefono"
                           datosPersonalesValue={
-                            datosPersonales.telefonoInput !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.telefonoInput
                               : "N° Teléfono"
                           }
+                          validateNumbers={validateNumbers}
+                          numbers={true}
                         />
                         <InputCbo
                           value={
@@ -407,9 +435,9 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           sexo={
-                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : null
+                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : datosPersonales !== undefined && datosPersonales.inputSexo
                           }
                           nameButton="..."
                           nameLabel="Estado Civil"
@@ -431,9 +459,9 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           sexo={
-                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : null
+                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : datosPersonales !== undefined && datosPersonales.inputSexo
                           }
                           nameButton="..."
                           nameLabel="Nacionalidad"
@@ -460,7 +488,7 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           sexo=""
                           nameButton="..."
                           nameLabel="Estado"
@@ -487,7 +515,7 @@ const DatosPersonales = () => {
                             empleadoUno[0] !== undefined ? empleadoUno[0].sexo : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           nameFirst="Masculino"
                           nameSecond="Femenino"
                           nameLabel="Sexo"
@@ -495,7 +523,7 @@ const DatosPersonales = () => {
                           disabled={disable}
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales.inputSexo !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.inputSexo
                               : null
                           }
@@ -507,13 +535,13 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           nameInput="Nacimiento"
                           disabled={disable}
                           idInput="inputDateNac"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales.inputDateNac !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.inputDateNac
                               : null
                           }
@@ -525,7 +553,7 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           nameInput="movil"
                           idInput="movil"
                           messageError="Solo puede contener números."
@@ -534,17 +562,19 @@ const DatosPersonales = () => {
                           nameLabel="Celular"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales.movil !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.movil
                               : "Movil"
                           }
+                          validateNumbers={validateNumbers}
+                          numbers={true}
                         />
                         <InputForm
                           value={
                             empleadoUno[0] !== undefined ? empleadoUno[0].mail : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           nameInput="email"
                           inputId="email"
                           messageError="Ingrese un email válido."
@@ -553,10 +583,13 @@ const DatosPersonales = () => {
                           nameLabel="Email"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales.email !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.email
                               : "Email"
                           }
+                          validateEmails={validateEmails}
+                          numbers={false}
+                          email={true}
                         />
                         <InputCbo
                           value={
@@ -565,7 +598,7 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           sexo=""
                           nameButton="..."
                           nameLabel="País de Origen"
@@ -583,7 +616,7 @@ const DatosPersonales = () => {
                           idInput="estadosEmpleados"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales.estadosEmpleados !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.estadosEmpleados
                               : "Email"
                           }
@@ -595,7 +628,7 @@ const DatosPersonales = () => {
                               : null
                           }
                           generalState={datosPersonales}
-                          setGeneralState={setDatosPersonales}
+                          action={ADD_DATOS_PERSONALES}
                           sexo=""
                           nameButton="..."
                           nameLabel="Estudios"
@@ -613,16 +646,19 @@ const DatosPersonales = () => {
                           idInput="estudiosInput"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales.estudiosInput !== undefined
+                            datosPersonales !== undefined
                               ? datosPersonales.estudiosInput
                               : "Email"
                           }
                         />
                         <TextArea
                           inputName="Observaciones"
+                          idInput="observacionesEstudios"
                           maxLength="255"
-                          value=""
+                          value={datosPersonales !== undefined && datosPersonales.observacionesEstudios}
                           disabled={disable}
+                          action={ADD_DATOS_PERSONALES}
+                          onChange={onChange}
                         />
                       </div>
                       <div className="col-xl-3">
@@ -630,6 +666,9 @@ const DatosPersonales = () => {
                           inputName="Arrastre su imagen"
                           disabled={disable}
                           imagen={`data:image/jpeg;base64,${image}`}
+                          onChange={onChange}
+                          idInput="inputImage"
+                          action={ADD_DATOS_PERSONALES}
                         />
                       </div>
                     </div>

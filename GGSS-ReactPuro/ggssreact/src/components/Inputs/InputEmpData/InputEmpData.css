@@ -1,15 +1,23 @@
 .form-input-FliaCabecera{
+	
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
 	border: none;
 	height: 30px;
-	border-bottom: 1px solid rgb(78, 6, 6);
 }
 .form-input-FliaCabecera:focus{
-    background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+    
     outline: none;
 }
 
 .form__label-Cabecera{
+	
 	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
 	font-weight: 400;
-    width: 100%;
+    width: 16%;
 }

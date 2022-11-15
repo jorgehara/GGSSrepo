@@ -10,7 +10,8 @@ const InputChecked = ({
   disabled,
   idInput,
   nameInput,
-  onChange
+  onChange,
+  action
 }) => {
   return (
     <div className="row">
@@ -30,7 +31,7 @@ const InputChecked = ({
               value={value}
               name={nameInput}
               onChange={(e) => 
-                onChange(e)}
+                onChange(e,action)}
               disabled={disabled}
             />
 
