@@ -22,8 +22,11 @@ const IngresoContrato = () => {
     <InputDate nameInput="Efectivo" display={true}/>
         </div>
     <div className='col-xl-6'>
+    
     <InputForm 
-    nameLabel="Asignar Esquema de Liquidacion"/>
+    className="formulario__label w-100"
+    nameLabel="Asignar Esquema de Liquidacion"
+    />
     </div>
     </div>
 
