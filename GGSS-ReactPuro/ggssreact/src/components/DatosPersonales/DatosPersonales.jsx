@@ -1,4 +1,4 @@
-  //#region Imports
+//#region Imports
 
 import React, { useContext, useEffect, useState } from "react";
 import swal from "sweetalert";
@@ -19,26 +19,26 @@ import Domicilios from "../Domicilios/Domicilios";
 import { getData } from "../../services/fetchAPI";
 import generateCuil from "./funcGenerarCuil.js";
 
-  //#endregion
+//#endregion
 
 const DatosPersonales = () => {
 
   const [datosPersonales, setDatosPersonales] = useState({
-    numLegajo : "",
-    apellidoInput : "",
-    nombresInput : "",
-    documentoInput : "",
-    inputcuil : "",
-    telefonoInput : "",
-    estadoCivilInput : "",
-    nacionalidadesInput : "",
-    dniSelected : "",
-    inputSexo : "",
-    inputDateNac : "",
-    movil : "",
-    email : "",
-    estadosEmpleados : "",
-    estudiosInput : ""
+    numLegajo: "",
+    apellidoInput: "",
+    nombresInput: "",
+    documentoInput: "",
+    inputcuil: "",
+    telefonoInput: "",
+    estadoCivilInput: "",
+    nacionalidadesInput: "",
+    dniSelected: "",
+    inputSexo: "",
+    inputDateNac: "",
+    movil: "",
+    email: "",
+    estadosEmpleados: "",
+    estudiosInput: ""
   })
 
   //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
@@ -52,73 +52,136 @@ const DatosPersonales = () => {
   }
   //#endregion
   //------------------------------------------------------------------------------CONTEXT
-  const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveDisable, disable} = useContext(employeContext);
+  const { empleadores, saveEmpleadores, modosLiquidacion, saveModosLiquidacion, modosContratacion, saveModosContratacion, saveFormasDePago, formasDePago, saveParentescos, parentescos, saveTareas, tareasDesempeñadas, saveCargos, cargos, saveEmpl, saveEstados, saveEstado, saveEstadosCiviles, saveEstadoCivil, saveNacionalidades, saveNacionalidad, saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveDisable, disable } = useContext(employeContext);
   //------------------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
   const [image, setImage] = useState("");
 
   //#region ------------------------------------------------------------------------------URLs (Luego cambiar a archivos Js)
-  const url = "http://54.243.192.82/api/Estados";
+  
+  // URLS EMPLEADOS
+  const urlEstados = "http://54.243.192.82/api/Estados";
   const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
   const urlPaisesNac = "http://54.243.192.82/api/Paises";
   const urlEstudios = "http://54.243.192.82/api/Estudios";
   const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
+  const urlCargos = "http://54.243.192.82/api/Cargos"
+  const urlTareasDesempeñadas = "http://54.243.192.82/api/TareasDesempeñadas"
+  const urlParentescos = "http://54.243.192.82/api/Parentescos"
+  const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos"
+  const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
+  const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
+  // const urlMotivosEgreso = "no esta la url :("
+ const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
+ // const urlAlicuotas = "no esta la url :("
+
+ // URLS LIQUIDACION
+ const urlBancos = "http://54.243.192.82/api/Bancos"
+
   //#endregion
 
+
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
-  const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
-  const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];    
-  const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_masc); }) : []; 
-  const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_fem); }) : []; 
-  const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
-  const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nombrePais); }) : [];
+  const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
+  const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
+  const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];
+  const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
+  const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
+  const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
+  const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nombrePais); }) : [];
   const idPaisOrigen = saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
-  const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO"; 
-  const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i)=>{ return (nac.estudiosNivel); }) : [];
+  const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO";
+  const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i) => { return (nac.estudiosNivel); }) : [];
   const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
   const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
-  const estadosArray = saveEstado.map((m,i)=>{return (m.nombreEstado)});
-  const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => {return (est.nombreEstado)}) : null;
+  const estadosArray = saveEstado.map((m, i) => { return (m.nombreEstado) });
+  const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => { return (est.nombreEstado) }) : null;
   const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
-  const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
-  const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
+  const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO";
+  const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map((tdni, i) => { return tdni.tipoDocumento }) : [];
   const idTipoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDtipoDocumento : 0;
   const dniSelectedOption = saveTipoDNI !== undefined ? saveTipoDNI.find(tipo => tipo.iDtipoDocumento === idTipoSelected) : null;
   const numDoc = saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null;
- 
+
+  const cargosMap = cargos !== undefined ? cargos.map((cargo, i) => { return (cargo.nombreCargo); }) : [];
+  const tareasMap = tareasDesempeñadas !== undefined ? tareasDesempeñadas.map((tarea, i) => { return (tarea.tareaDesempeñada) }) : [];
+  const parentescosMap = parentescos !== undefined ? parentescos.map((parent, i) => { return parent.nombreParentesco }) : [];
+  const formasDePagoMap = formasDePago !== undefined ? formasDePago.map(forma => forma.nombreFormaDePago) : []
+  const modosContratacionMap = modosContratacion !== undefined ? modosContratacion.map((modo, i) => { return modo.modoContratacion }) : [];
+  const modosLiquidacionMap = modosLiquidacion !== undefined ? modosLiquidacion.map((modo, i) => { return modo.modoLiquidacion }) : [];
+  const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
   //#endregion
-  
+
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
 
+
+
+  /// --- IGNORAR --- EN EL PRIMER RENDER, SE BUSCAN LOS DATOS DE LA API PASANDOLE LA URL Y LOS SETEA CON LA FN "saveEstadosCiviles" EN "saveEstadoCivil". ARRIBA SE MAPEAN
+  
+  //GET DATA EMPLEADOS
   useEffect(() => {
-    getData(url, saveEstados);
-    }, []);
+    getData(urlEstados, saveEstados);
+  }, []);
   useEffect(() => {
-    getData(urlEstadosCiviles, saveEstadosCiviles);    
-  }, [ ]);
+    getData(urlEstadosCiviles, saveEstadosCiviles);
+  }, []);
   useEffect(() => {
     getData(urlPaisesNac, saveNacionalidades);
-  }, [ ]);
-  useEffect(()=>{
+  }, []);
+  useEffect(() => {
     getData(urlEstudios, saveEstudios);
-  },[])
-  useEffect(()=>{
+  }, [])
+  useEffect(() => {
     getData(urlTiposDNI, saveTiposDNI);
-  },[])
-  useEffect(()=>{
+  }, [])
+  useEffect(() => {
+    getData(urlCargos, saveCargos)
+  }, [])
+  useEffect(() => {
+    getData(urlTareasDesempeñadas, saveTareas)
+  }, [])
+  useEffect(() => {
+    getData(urlParentescos, saveParentescos)
+  }, [])
+  useEffect(() => {
+    getData(urlFormasDePago, saveFormasDePago)
+  }, [])
+  useEffect(() => {
+    getData(urlModosContratacion, saveModosContratacion)
+  }, [])
+  useEffect(() => {
+    getData(urlModosLiquidacion, saveModosLiquidacion)
+  }, [])
+  // useEffect(() => {
+  //   getData(urlMotivosEgreso, saveMotivosEgreso)
+  // }, [])
+  useEffect(() => {
+    getData(urlEmpleadores, saveEmpleadores)
+  }, [])
+  // useEffect(() => {
+  //   getData(urlAlicuotas, saveAlicuotas)
+  // }, [])
 
-  },[disable])
+  //GET DATA LIQUIDACION
+  
+  // useEffect(() => {
+  //   getData(urlBancos, saveBancos)  -------> ARMAR CONTEXT PARA LIQUIDACION
+  // }, [])
+
+
+  useEffect(() => {
+
+  }, [disable])
   useEffect(() => {
     setImageEmpleado()
   }, [saveEmpl[0].obsFechaIngreso]);
 
-    function setImageEmpleado(){
-      saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
-    }
-  
+  function setImageEmpleado() {
+    saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
+  }
+
   //#endregion
-  
+
   //#region ------------------------------------------------------------------------------VALIDACIONES
 
 
@@ -159,7 +222,7 @@ const DatosPersonales = () => {
   };
   //#endregion
   console.log(saveEmpl[0] !== undefined ? saveEmpl[0] : null);
-  
+
   return (
     //#region Menú Principal
     <div className="Lateral-Derecho">
@@ -259,7 +322,7 @@ const DatosPersonales = () => {
                           selectedId="dniSelected"
                           propArray={dniSelectedOption !== undefined ? dniSelectedOption.tipoDocumento : null}
                           datosPersonalesValue={datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : numDoc}
-                          datosPersonalesValue2={datosPersonales.dniSelected !== undefined ? datosPersonales.dniSelected :"D.N.I"}
+                          datosPersonalesValue2={datosPersonales.dniSelected !== undefined ? datosPersonales.dniSelected : "D.N.I"}
                         />
                         <InputButton
                           value={
@@ -276,11 +339,11 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           datosPersonalesValue={datosPersonales.inputcuil !== undefined ? datosPersonales.inputcuil : "N° CUIL"}
                           funcionCuil={generateCuil}
-                          nroDocumento = {datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : numDoc}
+                          nroDocumento={datosPersonales.documentoInput !== undefined ? datosPersonales.documentoInput : numDoc}
                           genre={saveEmpl[0] !== undefined || saveEmpl[0] === null
                             ? saveEmpl[0].sexo
                             : null}
-                            usaCuil = {true}
+                          usaCuil={true}
                         />
                         <InputForm
                           value={
@@ -297,7 +360,7 @@ const DatosPersonales = () => {
                           nameLabel="Telefono"
                           datosPersonalesValue={datosPersonales.telefonoInput !== undefined ? datosPersonales.telefonoInput : "N° Teléfono"}
                         />
-                       <InputCbo
+                        <InputCbo
                           value={
                             saveEstadoCivil[0] !== undefined
                               ? saveEstadoCivil[0].idEstadoCivil
@@ -317,7 +380,7 @@ const DatosPersonales = () => {
                           idInput="estadoCivilInput"
                           onChange={onChange}
                         />
-                       <InputCbo
+                        <InputCbo
                           value={
                             saveEmpl[0] !== undefined
                               ? saveEmpl[0].idNacionalidad
@@ -326,7 +389,7 @@ const DatosPersonales = () => {
                           sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
                           nameButton="..."
                           nameLabel="Nacionalidad"
-                          array={ nacionalidades !== undefined ? nacionalidades : ["Nacionalidad"]}
+                          array={nacionalidades !== undefined ? nacionalidades : ["Nacionalidad"]}
                           propArray="Casado"
                           masculinos={nacionalidadesMasculinas}
                           femeninos={nacionalidadesFemeninas}
@@ -347,7 +410,7 @@ const DatosPersonales = () => {
                           sexo=""
                           nameButton="..."
                           nameLabel="Estado"
-                          array={estadosArray !== undefined  ? estadosArray : ["Activo"]}
+                          array={estadosArray !== undefined ? estadosArray : ["Activo"]}
                           propArray={estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : ""}
                           masculinos=""
                           femeninos=""
@@ -429,7 +492,7 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           datosPersonalesValue={datosPersonales.estadosEmpleados !== undefined ? datosPersonales.estadosEmpleados : "Email"}
                         />
-                      <InputCbo
+                        <InputCbo
                           value={
                             saveEmpl[0] !== undefined
                               ? saveEmpl[0].idEstudios
@@ -473,12 +536,12 @@ const DatosPersonales = () => {
 
 
                       </div>
-                      
-                      
-                      
+
+
+
                       <div className="col-xl-3">
-                        
-                        <InputFile inputName="Arrastre su imagen" disabled={disable} imagen={`data:image/jpeg;base64,${image}`}/>
+
+                        <InputFile inputName="Arrastre su imagen" disabled={disable} imagen={`data:image/jpeg;base64,${image}`} />
                       </div>
                     </div>
                   </form>
@@ -490,7 +553,7 @@ const DatosPersonales = () => {
         <Domicilios disabled={disable} />
       </div>
       <div className="d-flex justify-content-end">
-        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable}/>
+        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} />
       </div>
     </div>
   );

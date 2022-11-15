@@ -24,7 +24,7 @@ const BasicModal = ({ idModal, nameModal, nameOptionModal, array, textArea, plac
                             <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <div className="llamadaApi border border-danger">
+                            <div className="llamadaApi">
 
                                 { relacion && <> <Dropdown nameDropdown={nameRelacion}/> <br/> </>  }
                                                     

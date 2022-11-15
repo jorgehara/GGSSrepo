@@ -6,7 +6,7 @@ const Departamentos = ({ aDepartamentos, placeholder }) => {
     return (
 
         <>
-            <div className="llamadaApi">
+            <div className="llamadaApi" style={{height: "300px"}}>
 
                 <label htmlFor="data">Datos: </label>
                 <br />

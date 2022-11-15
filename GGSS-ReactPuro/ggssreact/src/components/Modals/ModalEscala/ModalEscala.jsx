@@ -8,7 +8,7 @@ import TableReduccion from '../../Tables/TableReduccion';
 import Dropdown from '../../Inputs/Dropdown/Dropdown';
 
 
-const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, inputNumData, table, buttonNum, tableValores, column, flex, categorias, buttonNumTable }) => {
+const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, inputNumData, table, buttonNum, tableValores, column, flex, categorias, buttonNumTable, styleContainer, styleData}) => {
 
     return (
         <div>
@@ -22,10 +22,10 @@ const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, i
                             <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <div className="llamadaApi">
+                            <div className="llamadaApi" style={styleContainer}>
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select style={{ height: "auto", minHeight: "230px", minWidth: "300px" }} className="form-select row mt-1 " multiple aria-label="multiple select example">
+                                <select style={styleData} className="form-select row mt-1 " multiple aria-label="multiple select example">
                                     {
                                         array !== undefined ? array.map((op, i) => {
                                             return (

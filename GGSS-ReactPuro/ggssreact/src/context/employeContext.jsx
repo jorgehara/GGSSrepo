@@ -23,6 +23,56 @@ const EmpleadoContextProvider = (props) => {
   const [ saveFamiliarSelected ,setSaveFamiliarSelected] = useState([]);
   const [ saveFamSelect ,setSaveFamSelect] = useState([]);
 
+  //LAUTI
+  const [ cargos, setCargos] = useState([])
+  const [ tareasDesempeñadas, setTareasDesempeñadas ] = useState([])
+  const [ parentescos, setParentescos ] = useState([])
+  const [ formasDePago, setFormasDePago] = useState([])
+  const [ modosContratacion, setModosContratacion] = useState([])
+  const [ modosLiquidacion, setModosLiquidacion] = useState([])
+  // const [ motivosEgreso, setMotivosEgreso ] = useState([])
+  const [ empleadores, setEmpleadores ] = useState([])
+   // const [ alicuotas, setAlicuotas ] = useState([])
+
+  // GETS LAUTI
+  function saveCargos(cargos) {
+    setCargos(cargos)
+  }
+
+  function saveTareas(tareas) {
+    setTareasDesempeñadas(tareas)
+  }
+
+  function saveParentescos(parentescos) {
+    setParentescos(parentescos)
+  }
+
+  function saveFormasDePago(formas) {
+    setFormasDePago(formas)
+  }
+
+  function saveModosContratacion(modos) {
+    setModosContratacion(modos)
+  }
+
+  function saveModosLiquidacion(modos) {
+    setModosLiquidacion(modos)
+  }
+
+  // function saveMotivosEgreso(motivos) {
+  //   setMotivosEgreso(motivos)
+  // }
+
+  function saveEmpleadores(emplead) {
+    setEmpleadores(emplead)
+  }
+
+  // function saveAlicuotas(alicuotas) {
+  //   setAlicuotas(alicuotas)
+  // }
+
+  // ---------------
+
     //#region FUNCIONES DE ESTADOS GENERALES
   function saveEstados(estado) {
     setSaveEstado(estado);
@@ -64,9 +114,9 @@ const EmpleadoContextProvider = (props) => {
   function saveTiposDNI(tiposdni){
     setSaveTiposDNI(tiposdni)
   }
-  function saveParentescos(paren){
-    setSaveParen(paren);
-  }
+  // function saveParentescos(paren){
+  //   setSaveParen(paren);
+  // }
   function saveDisable(disable){
     setDisable(disable)
   }
@@ -114,8 +164,6 @@ const EmpleadoContextProvider = (props) => {
         saveTipoDNI,
         saveDoms,
         saveDomicilios,
-        saveParentescos,
-        saveParen,
         saveDisable,
         disable,
         saveFamiliar,
@@ -123,7 +171,26 @@ const EmpleadoContextProvider = (props) => {
         saveFamiliarSelected,
         saveFamiliarPorEmpleado,
         saveFamSelect,
-        saveFamiliarSelec
+        saveFamiliarSelec,
+        saveCargos,
+        cargos,
+        saveTareas,
+        tareasDesempeñadas,
+        parentescos,
+        saveParentescos,
+        formasDePago,
+        saveFormasDePago,
+        modosContratacion,
+        saveModosContratacion,
+        modosLiquidacion,
+        saveModosLiquidacion,
+        // motivosEgreso,
+        // saveMotivosEgreso,
+        empleadores,
+        saveEmpleadores,
+        // alicuotas,
+        // saveAlicuotas
+
       }}
     >
       {props.children}

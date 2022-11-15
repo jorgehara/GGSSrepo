@@ -46,7 +46,6 @@
 
 .crudBtns{
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
@@ -54,7 +53,9 @@
 }
 
 .crudBtn{
-    width: 110px;
+    width: 90px;
+    font-size: 13px;
+    text-align: center;
 }
 
 .bodyInputs{
