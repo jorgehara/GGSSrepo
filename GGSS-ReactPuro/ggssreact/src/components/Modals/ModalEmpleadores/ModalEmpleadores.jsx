@@ -104,7 +104,8 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
                                     <div style={{ padding: "10px" }} >
                                         <legend>Domicilios</legend>
                                         <hr />
-                                        Predeterminado: <input type="checkbox" />
+                                        <label htmlFor="" style={{marginRight: "10px"}}>Predeterminado: </label> 
+                                        <input type="checkbox" />
                                         <br />
 
                                         <label style={{ marginRight: "15px" }} htmlFor="calle">Calle/Numero: </label>
