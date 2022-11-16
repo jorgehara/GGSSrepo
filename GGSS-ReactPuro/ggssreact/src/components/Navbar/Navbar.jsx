@@ -32,7 +32,7 @@ const Navbar = () => {
 					<Link className="nav-link" to="/home/adic-liquidacion">Adic. Liquidación</Link>
 				</li>
 				<li className="nav-item">
-					<a className="nav-link" href="/some/valid/uri">Trabajos Anteriores</a>
+					<Link className="nav-link" to="/home/trabajos-anteriores">Trabajos Anteriores</Link>
 				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/home/documentacion">Documentación</Link>
