@@ -5,6 +5,8 @@
 }
 .form-input-FliaCabecera:focus{
     /* background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3)); */
+}
+.form-input-FliaCabecera:focus{
     outline: none;
 }
 

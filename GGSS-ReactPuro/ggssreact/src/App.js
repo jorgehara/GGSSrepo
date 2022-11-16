@@ -22,6 +22,7 @@ function App() {
             <Route path="/home/liquidacion" exact element={<Home />} /> 
             <Route path="/home/documentacion" exact element={<Home />} /> 
             <Route path="/home/licencias" exact element={<Home />} /> 
+            <Route path="/home/adic-liquidacion" exact element={<Home />} /> 
           </Switch>        
     </EmpleadoContextProvider>
     </>

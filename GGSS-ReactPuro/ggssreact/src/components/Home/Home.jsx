@@ -7,6 +7,7 @@ import Familia from '../Familia/Familia';
 import Footer from '../Footer/Footer';
 import Licencias from '../Licencias/Licencias';
 import Liquidacion from '../Liquidacion/Liquidacion';
+import AdicLiquidacion from "../AdicLiquidacion/AdicLiquidacion";
 import Navbar from '../Navbar/Navbar';
 
 const Home = () => {
@@ -40,6 +41,10 @@ return (
                 }
                 {
                     location.pathname === "/home/licencias" && <Licencias />
+                    
+                }
+                {
+                    location.pathname === "/home/adic-liquidacion" && <AdicLiquidacion />
                     
                 }
             </div>

@@ -7,7 +7,6 @@ import "./EmployeData.css";
 const EmployeData = ({disabled}) => {
   const { saveEmpl , saveEstado } = useContext(employeContext);
   const [image, setImage] = useState("");
-  const [data, setData ] = useState("");
   const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
   const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
 
