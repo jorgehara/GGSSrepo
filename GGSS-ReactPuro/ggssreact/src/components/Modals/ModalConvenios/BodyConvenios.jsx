@@ -72,6 +72,8 @@ const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) 
 
                         <label>años</label>
 
+                        
+
                         <div>
                             <input type="num" style={{ width: "60px", marginLeft: "30px", marginRight: "15px" }} />
                             <input type="radio" name="cash" style={{ marginRight: "4px" }} />

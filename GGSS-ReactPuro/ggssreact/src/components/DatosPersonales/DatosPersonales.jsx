@@ -153,19 +153,19 @@ const DatosPersonales = () => {
     getData(urlModosLiquidacion, saveModosLiquidacion)
   }, [])
   // useEffect(() => {
-  //   getData(urlMotivosEgreso, saveMotivosEgreso)
+  //   getData(urlMotivosEgreso, saveMotivosEgreso) --> falta url
   // }, [])
   useEffect(() => {
     getData(urlEmpleadores, saveEmpleadores)
   }, [])
   // useEffect(() => {
-  //   getData(urlAlicuotas, saveAlicuotas)
+  //   getData(urlAlicuotas, saveAlicuotas) --> falta url
   // }, [])
 
-  //GET DATA LIQUIDACION
+  //GET DATA LIQUIDACION -------> ARMAR CONTEXT PARA LIQUIDACION
   
   // useEffect(() => {
-  //   getData(urlBancos, saveBancos)  -------> ARMAR CONTEXT PARA LIQUIDACION
+  //   getData(urlBancos, saveBancos)  
   // }, [])
 
 
