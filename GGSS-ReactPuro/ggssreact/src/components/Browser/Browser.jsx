@@ -17,7 +17,7 @@ const Browser = () => {
   const {  saveDisable, disable} = useContext(employeContext);
   useEffect(() => {
     axios.get(url).then((res) => {
-      let data = res.data.records;
+      let data = res.data.result;
 
       if (empData.apellido.length > 0) {
         getEmployeByName(data, empData.apellido).then((res) =>
@@ -31,7 +31,7 @@ const Browser = () => {
         );
         return;
       }
-      setListEmpleados(res.data.records);
+      setListEmpleados(res.data.result);
     });
   }, [empData.apellido, empData.legajo]);
 

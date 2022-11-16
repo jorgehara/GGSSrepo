@@ -73,7 +73,7 @@ const InputButton = ({
             : valor
           }
           maxLength={maxLeght}
-          className="formulario-input-Legajo col ml-0 px-0 mt-0 mb-2 mr-1"
+          className="formulario-input-Legajo-Button col ml-0 px-0 mt-0 mb-2 mr-1"
           placeholder={placeholder}
           id={id}
           name={nameInput}
