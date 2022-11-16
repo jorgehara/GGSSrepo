@@ -9,7 +9,7 @@
 
 .form-input-DateFlia{
 	text-align: start;
-    margin-left: 1.5%;
+    /* margin-left: 1.5%; */
     /* margin-right: 0px; */
 	background: #fff;
 	border: 3px solid transparent;
@@ -31,7 +31,7 @@
 	margin-left: 0.1%;
 }
 .inputDate{
-	margin-left: 10%;
+	/* margin-left: 10%; */
 }
 .inputDateBaja{
 	/* margin-left: 0%; */

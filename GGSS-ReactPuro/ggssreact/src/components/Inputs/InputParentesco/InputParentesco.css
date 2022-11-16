@@ -18,7 +18,7 @@
 	font-weight: 400;
 	color: black;
 	margin-top: 0px;
-	margin-right: 20px;
+	margin-right: 20%;
     margin-left: 0px;
 	margin-bottom: 0px;
 	display: block;
@@ -26,8 +26,8 @@
 
 .form-input-ParentescoFlia{
     margin-bottom: 3px;
-	width: 100%;
-	margin-left: 140%;
+	width: 200%;
+	margin-left: 260%;
     margin-right: 0px;
 	background: #fff;
 	border: 3px solid transparent;
@@ -35,14 +35,15 @@
 	height: 42px;
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
-	margin-top: -5px;
+	/* margin-top: -5px; */
 }
 
 .form-inputs-radioFijar{
 	position: absolute;
-	margin-left: 26.7%;
+	margin-left: 24%;
 }
 
 .btn-modal-miau{
+	position: absolute;
 	margin-left: 9%;
 }
