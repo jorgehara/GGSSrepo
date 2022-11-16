@@ -28,7 +28,7 @@ const EmpleadoContextProvider = (props) => {
   const [ saveFamiliarSelected ,setSaveFamiliarSelected] = useState([]);
   const [ saveFamSelect ,setSaveFamSelect] = useState([]);
   const [estadoCivilSelected, setEstadoCivilSelected] = useState([]);
-
+  const [modals, setModals] = useState({});
   //region ESTADOS GENERALES SOLAPAS
   const [datosPersonales, setDatosPersonales] = useState({
     numLegajo : "",
@@ -49,25 +49,17 @@ const EmpleadoContextProvider = (props) => {
     nameObs : ""
   })
 
-  const [domicilios, setDomicilios ] = useState({
-    inputCalleDomicilios : "",
-    inputNumCalle : "",
-    inputPisoCalle : "",
-    inputProvinciaDomicilios : "",
-    inputDepartamentosDomicilios : "",
-    inputLocalidadesDomicilios : "",
-    inputBarriosDomicilios : ""
-  })
-  
-  const [modals, setModals] = useState({
-    inputEstadosCivilesModal : "",
-    inputEstadosCivilesModalFem : ""
-
-  })
-  //#endregion
-
-  
-  useEffect(()=>{
+  //LAUTI
+  const [ cargos, setCargos] = useState([])
+  const [ tareasDesempeñadas, setTareasDesempeñadas ] = useState([])
+  const [ parentescos, setParentescos ] = useState([])
+  const [ formasDePago, setFormasDePago] = useState([])
+  const [ modosContratacion, setModosContratacion] = useState([])
+  const [ modosLiquidacion, setModosLiquidacion] = useState([])
+  // const [ motivosEgreso, setMotivosEgreso ] = useState([])
+  const [ empleadores, setEmpleadores ] = useState([])
+   // const [ alicuotas, setAlicuotas ] = useState([])
+   useEffect(()=>{
     let newObjet = {...modals};
     newObjet.inputEstadosCivilesModal = estadoCivilSelected.masculino;
     newObjet.inputEstadosCivilesModalFem = estadoCivilSelected.femenino;
@@ -83,9 +75,46 @@ const EmpleadoContextProvider = (props) => {
     functionFinded(listState,idFindedOrName).then((res)=>{
       saveGeneralState(res);
     });
-    
   }
-  //#endregion
+  // GETS LAUTI
+  function saveCargos(cargos) {
+    setCargos(cargos)
+  }
+
+  function saveTareas(tareas) {
+    setTareasDesempeñadas(tareas)
+  }
+
+  function saveParentescos(parentescos) {
+    setParentescos(parentescos)
+  }
+
+  function saveFormasDePago(formas) {
+    setFormasDePago(formas)
+  }
+
+  function saveModosContratacion(modos) {
+    setModosContratacion(modos)
+  }
+
+  function saveModosLiquidacion(modos) {
+    setModosLiquidacion(modos)
+  }
+
+  // function saveMotivosEgreso(motivos) {
+  //   setMotivosEgreso(motivos)
+  // }
+
+  function saveEmpleadores(emplead) {
+    setEmpleadores(emplead)
+  }
+
+  // function saveAlicuotas(alicuotas) {
+  //   setAlicuotas(alicuotas)
+  // }
+
+  // ---------------
+
     //#region FUNCIONES DE ESTADOS GENERALES
     function saveEstadoCivilSelected(estado){
       setEstadoCivilSelected(estado);
@@ -130,9 +159,9 @@ const EmpleadoContextProvider = (props) => {
   function saveTiposDNI(tiposdni){
     setSaveTiposDNI(tiposdni)
   }
-  function saveParentescos(paren){
-    setSaveParen(paren);
-  }
+  // function saveParentescos(paren){
+  //   setSaveParen(paren);
+  // }
   function saveDisable(disable){
     setDisable(disable)
   }
@@ -180,8 +209,6 @@ const EmpleadoContextProvider = (props) => {
         saveTipoDNI,
         saveDoms,
         saveDomicilios,
-        saveParentescos,
-        saveParen,
         saveDisable,
         disable,
         saveFamiliar,
@@ -190,15 +217,32 @@ const EmpleadoContextProvider = (props) => {
         saveFamiliarPorEmpleado,
         saveFamSelect,
         saveFamiliarSelec,
+        saveCargos,
+        cargos,
+        saveTareas,
+        tareasDesempeñadas,
+        parentescos,
+        saveParentescos,
+        formasDePago,
+        saveFormasDePago,
+        modosContratacion,
+        saveModosContratacion,
+        modosLiquidacion,
+        saveModosLiquidacion,
         setDatosPersonales,
         datosPersonales,
-        setDomicilios,
-        domicilios,
         modals,
         setModals,
         onSelect,
         estadoCivilSelected,
-        saveEstadoCivilSelected
+        saveEstadoCivilSelected,
+        // motivosEgreso,
+        // saveMotivosEgreso,
+        empleadores,
+        saveEmpleadores,
+        // alicuotas,
+        // saveAlicuotas
+
       }}
     >
       {props.children}

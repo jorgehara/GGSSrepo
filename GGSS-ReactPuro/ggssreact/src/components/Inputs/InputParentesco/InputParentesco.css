@@ -47,3 +47,11 @@
 	position: absolute;
 	margin-left: 9%;
 }
+.input__parentesco{
+	position: relative;
+	left: 30%;
+}
+.input-parentesco{
+	position: absolute;
+	left: 25%;
+}

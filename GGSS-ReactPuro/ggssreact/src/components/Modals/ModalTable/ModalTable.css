@@ -24,20 +24,20 @@
 .btnSection{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 8px;
 }
 
 .tableSectionLicencias button{
     text-align: center;
-    width: 65px;
-    height: 50px;
     font-size: 30px;
-    background-color: rgb(196, 67, 67);
-    color: whitesmoke;
-    border-radius: 30px;
+    background-color: rgb(211, 174, 174);
+    border-radius: 8px;
     border: none;
+    padding: 8px;
 }
 
+
 .tableSectionLicencias button:hover{
-    background-color: rgb(97, 20, 37);
+    background-color: rgb(134, 55, 72);
+    color: whitesmoke;
 }

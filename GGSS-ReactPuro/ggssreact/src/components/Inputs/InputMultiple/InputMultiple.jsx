@@ -93,8 +93,8 @@ const InputMultiple = ({
                 {nameInputRadio}
               </label>
             </div>
-            <div className="d-flex flex-column justify-content-center align-items-center pt-4 pb-4">
-              <div className="d-flex flex-row justify-content-center align-items-center">
+            <div className="d-flex flex-column justify-content-center align-items-center pt-4 pb-4 inputsSexo">
+              <div className="d-flex flex-row justify-content-center align-items-center inputSexo">
                 <input
                   className="form-check-input"
                   type="radio"

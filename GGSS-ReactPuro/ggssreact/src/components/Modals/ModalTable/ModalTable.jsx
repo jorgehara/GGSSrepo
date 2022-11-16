@@ -43,13 +43,15 @@ const ModalTable = ({ idModal, nameModal, column, dropdown, jerarquia, btnAcepta
                                 {dropdown && <Dropdown nameDropdown="Convenio" />}
                             </>
 
-                            {jerarquia && <h4>Categorías (la más baja primero) </h4>}
+                            <br />
+
+                            {jerarquia && <h5>Categorías (la más baja primero) </h5>}
 
                             <div className='tableSectionLicencias'>
                                 <TableReduccion column={column} />
-                                <div className='btnSection'>
-                                    <button>+</button>
-                                    <button>-</button>
+                                <div className="btnSection">
+                                    <button className='btnPlus'><b>+</b></button>
+                                    <button className='btnMin'><b>-</b></button>
                                 </div>
                             </div>
 

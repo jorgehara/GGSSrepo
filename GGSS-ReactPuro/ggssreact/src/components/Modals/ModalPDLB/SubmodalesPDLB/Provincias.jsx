@@ -5,7 +5,7 @@ import TextArea from '../../../Inputs/TextArea/TextArea'
 const Provincias = ({ aProvincias, placeholder }) => {
     return (
         <>
-            <div className="llamadaApi">
+            <div className="llamadaApi" style={{height: "300px"}}>
 
                 <label htmlFor="data">Datos: </label>
                 <br />
@@ -40,7 +40,7 @@ const Provincias = ({ aProvincias, placeholder }) => {
                 {
                     placeholder.map((p, i) => {
                         return (
-                            <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} />
+                            <InputModal key={i} nameLabel={p.label} placeHolder={p.placeholder} inputId={p.label} />
                         )
                     })
                 }

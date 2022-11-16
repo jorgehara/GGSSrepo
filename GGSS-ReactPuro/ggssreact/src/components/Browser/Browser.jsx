@@ -15,7 +15,7 @@ const Browser = () => {
     legajo: "",
     apellido: "",
   });
-  const url = "http://54.243.192.82/api/Empleados";
+  const url = "http://54.243.192.82/api/Empleados?records=25";
 
   const dispatch = useDispatch();
   const empleados = useSelector((state)=> state.employeStates.employes)
@@ -27,7 +27,8 @@ const Browser = () => {
 
   useEffect(() => {
     axios.get(url).then((res) => {
-      let data = res.data.records;
+      let data = res.data.result;
+
       if (empData.apellido.length > 0) {
         getEmployeByName(data, empData.apellido).then((res) =>
           setListEmpleados(res)
@@ -40,9 +41,7 @@ const Browser = () => {
         );
         return;
       }
-      
-      dispatch(addEmploye(data));
-      setListEmpleados(data)
+      setListEmpleados(res.data.result);
     });
   }, [empData.apellido, empData.legajo]);
   

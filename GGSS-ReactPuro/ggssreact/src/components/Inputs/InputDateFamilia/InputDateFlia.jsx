@@ -18,7 +18,7 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, val
               {nameInput}
             </label>
           </div>
-          <div className="col-xl-1 form-input-DateFlia">
+          <div className="col-xl-1 form-input-DateFlia2">
               <input 
               className='inputDate2' 
               id={idInput} 

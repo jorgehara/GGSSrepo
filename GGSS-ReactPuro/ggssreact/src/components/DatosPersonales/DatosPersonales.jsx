@@ -26,6 +26,17 @@ import { ADD_DATOS_PERSONALES } from "../../redux/types/datosPersonalesTypes";
 const DatosPersonales = () => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
 
+ 
+
+  //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
+  function onChange(evt) {
+    const name = evt.target.name;
+    const value = (evt.target.value);
+
+    let newDatosPersonales = { ...datosPersonales };
+    newDatosPersonales[name] = value;
+    setDatosPersonales(newDatosPersonales);
+  }
   //#endregion
   //const [state, dispatch] = useReducer(datosPersonalesReducer, initialState);
   const dispatch = useDispatch();
@@ -63,109 +74,70 @@ const DatosPersonales = () => {
   const [error, setError] = useState("");
   const [image, setImage] = useState("");
 
-  //#region -----------------------------------------------------------URLs (Luego cambiar a archivos Js)
-  const url = "http://54.243.192.82/api/Estados";
+  //#region ------------------------------------------------------------------------------URLs (Luego cambiar a archivos Js)
+  
+  // URLS EMPLEADOS
+  const urlEstados = "http://54.243.192.82/api/Estados";
   const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
   const urlPaisesNac = "http://54.243.192.82/api/Paises";
   const urlEstudios = "http://54.243.192.82/api/Estudios";
   const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
+  const urlCargos = "http://54.243.192.82/api/Cargos"
+  const urlTareasDesempeñadas = "http://54.243.192.82/api/TareasDesempeñadas"
+  const urlParentescos = "http://54.243.192.82/api/Parentescos"
+  const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos"
+  const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
+  const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
+  // const urlMotivosEgreso = "no esta la url :("
+ const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
+ // const urlAlicuotas = "no esta la url :("
+
+ // URLS LIQUIDACION
+ const urlBancos = "http://54.243.192.82/api/Bancos"
+
   //#endregion
 
-  //#region ---------------------------------------------------------CONSTANTES DE DATOS
-  const estadosCivilesMasculinos =
-    saveEstadoCivil !== undefined
-      ? saveEstadoCivil.map((estado, i) => {
-          return estado.masculino;
-        })
-      : [];
-  const estadosCivilesFemeninos =
-    saveEstadoCivil !== undefined
-      ? saveEstadoCivil.map((estado, i) => {
-          return estado.femenino;
-        })
-      : [];
-  const estadosCiviles =
-    saveEstadoCivil !== undefined
-      ? saveEstadoCivil.map((estado, i) => {
-          return `Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`;
-        })
-      : [];
-  const nacionalidadesMasculinas =
-    saveNacionalidad !== undefined
-      ? saveNacionalidad.map((nac, i) => {
-          return nac.nacionalidad_masc;
-        })
-      : [];
-  const nacionalidadesFemeninas =
-    saveNacionalidad !== undefined
-      ? saveNacionalidad.map((nac, i) => {
-          return nac.nacionalidad_fem;
-        })
-      : [];
-  const nacionalidades =
-    saveNacionalidad !== undefined
-      ? saveNacionalidad.map((nac, i) => {
-          return `Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`;
-        })
-      : [];
-  const paises =
-    saveNacionalidad !== undefined
-      ? saveNacionalidad.map((nac, i) => {
-          return nac.nombrePais;
-        })
-      : [];
-  const idPaisOrigen =
-    saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
-  const paisSelected =
-    saveNacionalidad !== undefined
-      ? saveNacionalidad.find((pais) => pais.idPais === idPaisOrigen)
-      : "ARGENTINO";
-  const estudios =
-    saveEstudio !== undefined
-      ? saveEstudio.map((nac, i) => {
-          return nac.estudiosNivel;
-        })
-      : [];
-  const idSelected =
-    saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
-  const estudioSelect =
-    saveEstudio !== undefined
-      ? saveEstudio.find((estudio) => estudio.iDestudios === idSelected)
-      : "(Ninguno)";
-  const estadosArray = saveEstado.map((m, i) => {
-    return m.nombreEstado;
-  });
-  const estadosEmpleado =
-    saveEstado !== undefined
-      ? saveEstado.map((est) => {
-          return est.nombreEstado;
-        })
-      : null;
+
+  //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
+  const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
+  const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
+  const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];
+  const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
+  const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
+  const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
+  const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nombrePais); }) : [];
+  const idPaisOrigen = saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
+  const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO";
+  const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i) => { return (nac.estudiosNivel); }) : [];
+  const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
+  const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
+  const estadosArray = saveEstado.map((m, i) => { return (m.nombreEstado) });
+  const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => { return (est.nombreEstado) }) : null;
   const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
-  const estadoSEleccionado =
-    saveEstado !== undefined
-      ? saveEstado.find((est) => est.idEstado === idEstadoSelec)
-      : "ARGENTINO";
-  const tiposDNI =
-    saveTipoDNI !== undefined
-      ? saveTipoDNI.map((tdni) => {
-          return tdni.tipoDocumento;
-        })
-      : null;
-  const idTipoSelected =
-    saveEmpl[0] !== undefined ? saveEmpl[0].iDtipoDocumento : 0;
-  const dniSelectedOption =
-    saveTipoDNI !== undefined
-      ? saveTipoDNI.find((tipo) => tipo.iDtipoDocumento === idTipoSelected)
-      : null;
+  const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO";
+  const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map((tdni, i) => { return tdni.tipoDocumento }) : [];
+  const idTipoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDtipoDocumento : 0;
+  const dniSelectedOption = saveTipoDNI !== undefined ? saveTipoDNI.find(tipo => tipo.iDtipoDocumento === idTipoSelected) : null;
   const numDoc = saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null;
 
+  const cargosMap = cargos !== undefined ? cargos.map((cargo, i) => { return (cargo.nombreCargo); }) : [];
+  const tareasMap = tareasDesempeñadas !== undefined ? tareasDesempeñadas.map((tarea, i) => { return (tarea.tareaDesempeñada) }) : [];
+  const parentescosMap = parentescos !== undefined ? parentescos.map((parent, i) => { return parent.nombreParentesco }) : [];
+  const formasDePagoMap = formasDePago !== undefined ? formasDePago.map(forma => forma.nombreFormaDePago) : []
+  const modosContratacionMap = modosContratacion !== undefined ? modosContratacion.map((modo, i) => { return modo.modoContratacion }) : [];
+  const modosLiquidacionMap = modosLiquidacion !== undefined ? modosLiquidacion.map((modo, i) => { return modo.modoLiquidacion }) : [];
+  const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
   //#endregion
 
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
 
+
+
+  /// --- IGNORAR --- EN EL PRIMER RENDER, SE BUSCAN LOS DATOS DE LA API PASANDOLE LA URL Y LOS SETEA CON LA FN "saveEstadosCiviles" EN "saveEstadoCivil". ARRIBA SE MAPEAN
+  
+  //GET DATA EMPLEADOS
   useEffect(() => {
-    getData(url, saveEstados);
+    getData(urlEstados, saveEstados);
   }, []);
   useEffect(() => {
     getData(urlEstadosCiviles, saveEstadosCiviles);
@@ -173,6 +145,50 @@ const DatosPersonales = () => {
   useEffect(() => {
     getData(urlPaisesNac, saveNacionalidades);
   }, []);
+  useEffect(() => {
+    getData(urlEstudios, saveEstudios);
+  }, [])
+  useEffect(() => {
+    getData(urlTiposDNI, saveTiposDNI);
+  }, [])
+  useEffect(() => {
+    getData(urlCargos, saveCargos)
+  }, [])
+  useEffect(() => {
+    getData(urlTareasDesempeñadas, saveTareas)
+  }, [])
+  useEffect(() => {
+    getData(urlParentescos, saveParentescos)
+  }, [])
+  useEffect(() => {
+    getData(urlFormasDePago, saveFormasDePago)
+  }, [])
+  useEffect(() => {
+    getData(urlModosContratacion, saveModosContratacion)
+  }, [])
+  useEffect(() => {
+    getData(urlModosLiquidacion, saveModosLiquidacion)
+  }, [])
+  // useEffect(() => {
+  //   getData(urlMotivosEgreso, saveMotivosEgreso) --> falta url
+  // }, [])
+  useEffect(() => {
+    getData(urlEmpleadores, saveEmpleadores)
+  }, [])
+  // useEffect(() => {
+  //   getData(urlAlicuotas, saveAlicuotas) --> falta url
+  // }, [])
+
+  //GET DATA LIQUIDACION -------> ARMAR CONTEXT PARA LIQUIDACION
+  
+  // useEffect(() => {
+  //   getData(urlBancos, saveBancos)  
+  // }, [])
+
+
+  useEffect(() => {
+
+  }, [disable])
   useEffect(() => {
     getData(urlEstudios, saveEstudios);
   }, []);
@@ -185,9 +201,12 @@ const DatosPersonales = () => {
   }, [saveEmpl[0].obsFechaIngreso]);
 
   function setImageEmpleado() {
-    saveEmpl[0].obsFechaIngreso !== undefined &&
-      setImage(saveEmpl[0].obsFechaIngreso);
+    saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
   }
+
+  //#endregion
+
+  //#region ------------------------------------------------------------------------------VALIDACIONES
 
   //#endregion
 
@@ -234,6 +253,7 @@ const DatosPersonales = () => {
     }
   };
   //#endregion
+  // console.log(saveEmpl[0] !== undefined ? saveEmpl[0] : null);
 
   return (
     //#region Menú Principal
@@ -465,11 +485,7 @@ const DatosPersonales = () => {
                           }
                           nameButton="..."
                           nameLabel="Nacionalidad"
-                          array={
-                            nacionalidades !== undefined
-                              ? nacionalidades
-                              : ["Nacionalidad"]
-                          }
+                          array={nacionalidades !== undefined ? nacionalidades : ["Nacionalidad"]}
                           propArray="Casado"
                           masculinos={nacionalidadesMasculinas}
                           femeninos={nacionalidadesFemeninas}
@@ -492,16 +508,8 @@ const DatosPersonales = () => {
                           sexo=""
                           nameButton="..."
                           nameLabel="Estado"
-                          array={
-                            estadosArray !== undefined
-                              ? estadosArray
-                              : ["Activo"]
-                          }
-                          propArray={
-                            estadoSEleccionado !== undefined
-                              ? estadoSEleccionado.nombreEstado
-                              : ""
-                          }
+                          array={estadosArray !== undefined ? estadosArray : ["Activo"]}
+                          propArray={estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : ""}
                           masculinos=""
                           femeninos=""
                           onChange={onChange}
@@ -661,6 +669,9 @@ const DatosPersonales = () => {
                           onChange={onChange}
                         />
                       </div>
+
+
+
                       <div className="col-xl-3">
                         <InputFile
                           inputName="Arrastre su imagen"
@@ -681,11 +692,7 @@ const DatosPersonales = () => {
         <Domicilios disabled={disable} />
       </div>
       <div className="d-flex justify-content-end">
-        <ButtonCancelarAceptar
-          cancelar="Cancelar"
-          aceptar="Aceptar"
-          disabled={disable}
-        />
+        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} />
       </div>
     </div>
   );

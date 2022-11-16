@@ -16,14 +16,18 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
                             <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <div className="llamadaApi">
+                            <div className="llamadaApi" style={{ height: "1100px"}}>
 
                                 <label htmlFor="data">Datos: </label>
                                 <br />
-                                <select style={{ height: "800px", width: "400px" }} className="form-select row mt-1" multiple aria-label="multiple select example">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select style={{height: "1000px"}} className="form-select row mt-1 selectOptions" multiple aria-label="multiple select example">
+                                    {
+                                        array !== undefined ? array.map((op, i)=>{
+                                            return(
+                                                <option key={i} value="1">{op}</option>
+                                            )
+                                        }) : null
+                                    }
                                 </select>
 
                                 <div className="crudBtns">
@@ -96,11 +100,12 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
 
                                 <br />
 
-                                <fieldset className="fieldsetStyle" style={{ border: "0.1px solid gray" }}>
+                                <fieldset className="basicFieldset" style={{ border: "0.1px solid gray" }}>
                                     <div style={{ padding: "10px" }} >
                                         <legend>Domicilios</legend>
                                         <hr />
-                                        Predeterminado: <input type="checkbox" />
+                                        <label htmlFor="" style={{marginRight: "10px"}}>Predeterminado: </label> 
+                                        <input type="checkbox" />
                                         <br />
 
                                         <label style={{ marginRight: "15px" }} htmlFor="calle">Calle/Numero: </label>

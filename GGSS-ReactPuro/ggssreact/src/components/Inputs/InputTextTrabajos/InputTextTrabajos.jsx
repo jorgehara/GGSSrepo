@@ -9,8 +9,8 @@ const InputTextTrabajos = ({nameLabel,inputId}) => {
             <input type="text" name={inputId} id={inputId} className="textTrabajos formulario-input-Legajo"/>        
         </div>
         <div className='col-xl-4 d-flex flex-row justify-content-start align-items-center mt-2'>
-            <button className='btn btn-success btn-sm buttonAceptarCancelar'>+</button>
-            <button className='btn btn-danger btn-sm buttonAceptarCancelar' >-</button>
+            <button className='btn btn-outline-success btn-sm buttonAceptarCancelar'>+</button>
+            <button className='btn btn-outline-danger btn-sm buttonAceptarCancelar' >-</button>
         </div>
     </>
     

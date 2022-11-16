@@ -84,14 +84,14 @@ const EstudioFlia = ({
           }
         >
           <input
-            className="form-check-input"
+            className="form-check-input inputCheckEstudio"
             type="checkbox"
             value=""
             id="flexCheckChecked"
             checked={checked}
             disabled={disable}
           />
-          <label className="form-check-label" htmlFor="flexCheckChecked">
+          <label className="form-check-label labelEstudiosFamilia" htmlFor="flexCheckChecked">
             {nameCheck}
           </label>
         </div>
