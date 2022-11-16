@@ -5,25 +5,29 @@ export const initialState = {
     familiar : {
 
     },
-    inputApellidoNombres : "",
-    inputCmbDni : "",
-    inputNroDni : "",
-    idRadioBtn : "",
-    inputParentesco : "",
-    inputDateNac : "",
-    inputDateBaja : ""
+    formulario: {
+        inputApellidoNombres : "",
+        inputCmbDni : "",
+        inputNroDni : "",
+        idRadioBtn : "",
+        inputParentesco : "",
+        inputDateNac : "",
+        inputDateBaja : "",
+        nacionalidadFamilia : "",
+        textAreaObservacionesFamilia : ""
+    }
 };
 
 const familiaReducer = (state = initialState, action) =>{
 
     const { type, payload }  = action;
-
+    console.log(payload)
     switch(type) {
         case ADD_FAMILIA : {
-            
+            console.log("entro al case")
             return {
                 ...state,
-                [payload.name]:payload.value
+                formulario : {...state.formulario,[payload.name]:payload.value}
                 
             };
         }

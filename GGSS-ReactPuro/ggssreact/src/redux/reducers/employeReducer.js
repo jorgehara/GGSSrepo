@@ -9,7 +9,7 @@ const initialState = {
 const employeReducer = (state = initialState, action) =>{
 
     const { type, payload }  = action;
-    console.log(payload)
+    
     switch(type) {
         case ADD_EMPLOYE : {
             const newListEmployes = [...state.employes];

@@ -18,12 +18,12 @@ import { getData, getFamiliarByIdEmpleado, getFamiliarByIdFamiliar } from "../..
 import { useState } from "react";
 import InputDateFliaBaja from "../Inputs/InputDateFamilia/InputDateFliaBaja";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_DOMICILIOS } from "../../redux/types/domiciliosTypes";
+import { ADD_FAMILIA } from "../../redux/types/familiaTypes";
 
 const Familia = () => {
   const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect} = useContext(employeContext);
   const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
-  
+  const dispatch = useDispatch();
   
   const [familia , setFamilia] = useState({
     inputApellidoNombres : "",
@@ -35,9 +35,6 @@ const Familia = () => {
     inputDateBaja : ""
   });
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const dispatch = useDispatch();
-  const empleadoUno = useSelector((state)=> state.employeStates.employe)
-  const familiarSel = useSelector((state)=> state.familiaStates.familiar)
   function onChange(e, action) {
     console.log("entro")
     dispatch(
@@ -46,8 +43,16 @@ const Familia = () => {
         payload : {name : e.target.name, value : e.target.value}
       });    
   }
-  const familiaRedux = useSelector((state)=> state.familiaStates);
+  
+  const empleadoUno = useSelector((state)=> state.employeStates.employe)
+  const familiarSel = useSelector((state)=> state.familiaStates.familiar)
+ 
+  const familiaRedux = useSelector((state)=> state.familiaStates.formulario);
   console.log(familiarSel)
+  console.log(familiaRedux)
+  useEffect(()=>{
+    console.log(familiaRedux)
+  },[familiaRedux])
   
   //#endregion
 
@@ -146,10 +151,10 @@ const Familia = () => {
                   idInput="inputApellidoNombres"
                   nameInput="inputApellidoNombres"
                   onChange={onChange}
-                  action={ADD_DOMICILIOS}
+                  action={ADD_FAMILIA}
                 />
                 <InputMultiple
-                  optionsDNI={tipoDNI}
+                  optionsDNI={tiposDNI}
                   nameInputDNI="Documento"
                   valueRadio={
                     (familiarSeleccionado === undefined || Object.keys(familiarSeleccionado).length === 0 ) ? (saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null) :  familiarSeleccionado.sexo
@@ -168,7 +173,7 @@ const Familia = () => {
                   datosFamiliaRadio = {familia.idRadioBtn !== undefined ? familia.idRadioBtn : null}
                   generalState={familia}
                   setGeneralState={setFamilia}
-                  action={ADD_DOMICILIOS}
+                  action={ADD_FAMILIA}
                 />
                 <InputParentesco
                   nameInput="Parentesco"
@@ -184,7 +189,7 @@ const Familia = () => {
                   idInput="inputParentesco"
                   value={familia.inputParentesco !== undefined ?  familia.inputParentesco : null}
                   onChange={onChange}
-                  action={ADD_DOMICILIOS}
+                  action={ADD_FAMILIA}
                 />
                 <InputDateFlia
                   value={
@@ -202,7 +207,7 @@ const Familia = () => {
                   generalState={familia}
                   setGeneralState={setFamilia}
                   familiarSeleccionado={familiarSeleccionado !== undefined ? familiarSeleccionado : null}
-                  action={ADD_DOMICILIOS}
+                  action={ADD_FAMILIA}
                 />
                 <EstudioFlia
                   nameInput="Estudios"
@@ -218,7 +223,7 @@ const Familia = () => {
                   idInput="idInputEstudios"
                   onChange={onChange}
                   valueInputEstudios={familia.idInputEstudios !== undefined ? familia.idInputEstudios : null}
-                  action={ADD_DOMICILIOS}
+                  action={ADD_FAMILIA}
                 />
               </div>
             </div>
@@ -238,7 +243,7 @@ const Familia = () => {
                   idModal="paises"
                   disable={disable}
                   onChange={onChange}
-                  action={ADD_DOMICILIOS}
+                  action={ADD_FAMILIA}
                 />
           <NacionalidadFlia
                   nameInput="Nacionalidad"
@@ -254,7 +259,9 @@ const Familia = () => {
                   propArray="ARGENTINO"
                   idModal="nacionalidades"
                   disable={disable}
-                  action={ADD_DOMICILIOS}
+                  action={ADD_FAMILIA}
+                  onChange={onChange}
+                  idInput="nacionalidadFamilia"
                 />
           <InputDateFliaBaja
             value={
@@ -270,9 +277,9 @@ const Familia = () => {
             familiarSeleccionado={familiarSeleccionado !== undefined ? familiarSeleccionado : null}
             valueGeneral={familia.inputDateBaja !== undefined ? familia.inputDateBaja : null}
             onChange={onChange}
-            action={ADD_DOMICILIOS}
+            action={ADD_FAMILIA}
           />
-            <TextArea inputName="Observaciones" maxLength="255" value="" disabled={disable}/>
+            <TextArea inputName="Observaciones" maxLength="255" disabled={disable} onChange={onChange} idInput="textAreaObservacionesFamilia" action={ADD_FAMILIA} value= {familiaRedux !== undefined && familiaRedux.textAreaObservacionesFamilia}/>
         </div>
         <div className="d-flex flex-row align-items-center">
           <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={saveFamiliarSelected !== undefined && saveFamiliarSelected !== null ? saveFamiliarSelected : []} parentescos={saveParen!== undefined ? saveParen : null} seleccionado={saveFamSelect}/>

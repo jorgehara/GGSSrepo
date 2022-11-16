@@ -25,13 +25,15 @@
 }
 .dateFlia{
 	margin-top: 0px;
-    margin-left: 13%;
+    margin-left: 16%;
+    position: absolute;
+    left: 14.5%;
 }
 .formularioDate{
 	margin-left: 0.1%;
 }
-.inputDate{
-	/* margin-left: 10%; */
+.inputDate2{
+	 margin-left: 3rem; 
 }
 .inputDateBaja{
 	/* margin-left: 0%; */

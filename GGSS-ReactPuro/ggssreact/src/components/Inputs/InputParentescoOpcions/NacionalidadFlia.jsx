@@ -15,7 +15,9 @@ const NacionalidadFlia = ({
   propArray,
   idModal,
   disable,
-  action
+  action,
+  onChange,
+  idInput
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [returnBySexo, setReturnBySexo] = useState([]);
@@ -46,6 +48,9 @@ const NacionalidadFlia = ({
         <select
           className="form-select mt-1 "
           disabled={disable}
+          id={idInput}
+          name={idInput}
+          onChange={(e)=> onChange(e, action)}
         >
             {/* {
             array.map((op, i) => {
