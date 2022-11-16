@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import TextArea from "../../Inputs/TextArea/TextArea";
 import "./BasicModal.css";
 import "../Modales.css";

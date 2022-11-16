@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { employeContext } from "../../context/employeContext";
 import InputEmpData from "../Inputs/InputEmpData/InputEmpData";
@@ -31,7 +31,7 @@ const EmployeData = ({disabled}) => {
                   alt=""
                   // style={{ width: "90px;", height: "90px;" }}
                 />
-             </div>
+            </div>
               <div className="col-5  d-flex-column align-items-center"> 
               <div className="row">
             <InputEmpData
@@ -87,7 +87,7 @@ const EmployeData = ({disabled}) => {
                   nameLabel="Nombres: "
                   disabled={disabled}
                 />
-             </div>
+            </div>
 
           </div>
           </div>

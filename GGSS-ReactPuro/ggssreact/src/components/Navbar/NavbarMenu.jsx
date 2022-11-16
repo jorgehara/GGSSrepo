@@ -11,8 +11,8 @@ import { employeContext } from '../../context/employeContext';
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
 import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
-import { getEstadosCivilesModal } from '../../services/fetchAPI';
-import { useEffect } from 'react';
+// import { getEstadosCivilesModal } from '../../services/fetchAPI';
+// import { useEffect } from 'react';
 //#endregion
 
 
@@ -23,12 +23,12 @@ const Navbar = () => {
 const { empleadores, modosLiquidacion, modosContratacion, formasDePago, parentescos, tareasDesempeñadas, cargos, saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio, saveParen} = useContext(employeContext);
 
 //#region -----------------------------------------------------------------------CONSTANTES DE DATOS
-const {saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio, saveParen, onChange, setModals, modals, onSelect, estadoCivilSelected, saveEstadoCivilSelected} = useContext(employeContext);
+// const {saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio, saveParen, onChange, setModals, modals, onSelect, estadoCivilSelected, saveEstadoCivilSelected} = useContext(employeContext);
 
 
 
-console.log(modals.inputEstadosCivilesModal)
-console.log(modals.inputEstadosCivilesModalFem)
+// console.log(modals.inputEstadosCivilesModal)
+// console.log(modals.inputEstadosCivilesModalFem)
 const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
 const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
 const estadosCiviles =  estadosCivilesMasculinos.concat(estadosCivilesFemeninos); 
@@ -55,7 +55,7 @@ const modosLiquidacionMap = modosLiquidacion !== undefined ? modosLiquidacion.ma
 const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
 
 
-  return (
+return (
 	    <nav className="navbar navbar-expand-lg navbar-light bg-light">
 		<div className="container-fluid">
 			<button className="navbar-toggler" type="button" 
@@ -165,7 +165,15 @@ const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => 
 				</li>
 
 				{/* {/ MODALES TABLA PARA EMPLEADOS /} */}
-				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} array={estadosCiviles} onChange={onChange} generalState={modals} setGeneralState={setModals} onSelect={onSelect} functionModal={getEstadosCivilesModal} functionSaveSelected={saveEstadoCivilSelected} selectedOption={estadoCivilSelected} arrayCompleto={saveEstadoCivil}/>
+				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} array={estadosCiviles} 
+				// onChange={onChange} 
+				// generalState={modals} 
+				// setGeneralState={setModals} 
+				// onSelect={onSelect} 
+				// functionModal={getEstadosCivilesModal} 
+				// functionSaveSelected={saveEstadoCivilSelected} 
+				// selectedOption={estadoCivilSelected} 
+				arrayCompleto={saveEstadoCivil}/>
 				
 				<BasicModal idModal="Estudios" nameModal="Estudios" placeholder={objectEstudios} array={estudios}/>
 				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} array={tiposDNIMap} />

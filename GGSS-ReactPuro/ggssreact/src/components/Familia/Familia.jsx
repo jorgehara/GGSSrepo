@@ -19,7 +19,7 @@ import { useState } from "react";
 import InputDateFliaBaja from "../Inputs/InputDateFamilia/InputDateFliaBaja";
 
 const Familia = () => {
-  const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos,saveParen,disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec, onChange} = useContext(employeContext);
+  const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos, parentescos, disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec, onChange} = useContext(employeContext);
   const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
   
   
@@ -30,7 +30,8 @@ const Familia = () => {
     idRadioBtn : "",
     inputParentesco : "",
     inputDateNac : "",
-    inputDateBaja : ""
+    inputDateBaja : "",
+    // inputEstadosCivilesModalFem:""
   });
 
 
@@ -53,9 +54,9 @@ const Familia = () => {
     const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
     const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
     const idEmpleadoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDempleado  : 0;
-    const parentesco = saveParen !== undefined ? saveParen.map((par,i)=> {return(par.nombreParentesco)}) : null;
+    const parentesco = parentescos !== undefined ? parentescos.map((par,i)=> {return(par.nombreParentesco)}) : null;
     const parentSelected = familiarSeleccionado!== undefined ? familiarSeleccionado.iDparentesco : null;
-    const parenSeleccionado = saveParen !== undefined ? saveParen.find((par)=> par.iDparentesco === parentSelected) : null;
+    const parenSeleccionado = parentescos !== undefined ? parentescos.find((par)=> par.iDparentesco === parentSelected) : null;
     //#endregion
  
   //#region ------------------------------------------------------------------------------URLs
@@ -259,7 +260,7 @@ const Familia = () => {
             <TextArea inputName="Observaciones" maxLength="255" value="" disabled={disable}/>
         </div>
         <div className="d-flex flex-row align-items-center">
-          <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={saveFamiliarSelected !== undefined && saveFamiliarSelected !== null ? saveFamiliarSelected : []} parentescos={saveParen!== undefined ? saveParen : null} seleccionado={saveFamSelect}/>
+          <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={saveFamiliarSelected !== undefined && saveFamiliarSelected !== null ? saveFamiliarSelected : []} parentescos={parentescos!== undefined ? parentescos : null} seleccionado={saveFamSelect}/>
           <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable}/>            
         </div>
       </div>
