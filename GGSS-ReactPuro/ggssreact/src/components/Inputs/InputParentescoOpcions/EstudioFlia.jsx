@@ -60,7 +60,7 @@ const EstudioFlia = ({
             })}
           </select>
         </div>
-        <div className="col-xl-3 d-flex justify-content-cener align-items-center btn-modal-estu">
+        <div className="col-xl-3 d-flex justify-content-end align-items-center btn-modal-estu">
           <ButtonCallModal
             idModal={idModal}
             className={
@@ -74,7 +74,7 @@ const EstudioFlia = ({
             disabled={disable}
           />
         </div>
-        <div className="radio-Fijar-estu mt-2">
+        <div className="col-xl-2 radio-Fijar-estu mt-2">
         <div
           className={
             mostrarComponente
