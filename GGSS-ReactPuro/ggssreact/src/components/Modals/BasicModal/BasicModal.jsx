@@ -148,12 +148,11 @@ const BasicModal = ({
                         // onChange={onChange}
                         // generalState={generalState}
                         // setGeneralState={setGeneralState}
-                        value={p}
+                        // value={p}
                       />
                     );
                   })
-                },
-
+                }
 
                 {inputNum && <InputNumModal nameInput={inputNumName} />}
 

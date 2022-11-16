@@ -6,7 +6,10 @@ import ButtonCallModal from '../Buttons/ButtonCallModal'
 import BasicModal from '../Modals/BasicModal/BasicModal'
 import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
+
+// ------------------------ OBJECTS ------------------------
 import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas  } from './Objects'
+// -----------------------------------------------------------
 import { employeContext } from '../../context/employeContext';
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
@@ -19,11 +22,11 @@ import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
 
 const Navbar = () => {
 
-// }saveEstadoCivil
-const { empleadores, modosLiquidacion, modosContratacion, formasDePago, parentescos, tareasDesempeñadas, cargos, saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio, saveParen} = useContext(employeContext);
+//#region --------------------------------- CONSTANTES DE DATOS -------------------------------
+const { empleadores, modosLiquidacion, modosContratacion, formasDePago, parentescos, tareasDesempeñadas, cargos, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio} = useContext(employeContext);
 
-//#region -----------------------------------------------------------------------CONSTANTES DE DATOS
-// const {saveEmpl, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio, saveParen, onChange, setModals, modals, onSelect, estadoCivilSelected, saveEstadoCivilSelected} = useContext(employeContext);
+//#endregion
+
 
 
 
@@ -44,7 +47,6 @@ const deptos = saveDetpo !== undefined ? saveDetpo.map(res => {return res.depart
 const provincias = saveProvincia !== undefined ? saveProvincia.map(res => {return res.provincia}) : null;
 const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => {return res.localidad}) : null;
 const barrios = saveBarrio !== undefined ? saveBarrio.map(res => {return res.barrio}) : null;
-//LAUTI
 const cargosMap = cargos !== undefined ? cargos.map((cargo, i) => { return (cargo.nombreCargo); } ) : [];
 const tareasMap = tareasDesempeñadas !== undefined ? tareasDesempeñadas.map((tarea, i) => { return (tarea.tareaDesempeñada) }) : [];
 const tiposDNIMap = saveTipoDNI !== undefined ? saveTipoDNI.map((tdni, i) => { return tdni.tipoDocumento }) : [];

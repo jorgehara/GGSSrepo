@@ -34,7 +34,6 @@ export const objectTipoDocumento = [
   }
 ]
 
-// PARENTESCOS
 
 export const objectParentescos = [
   {

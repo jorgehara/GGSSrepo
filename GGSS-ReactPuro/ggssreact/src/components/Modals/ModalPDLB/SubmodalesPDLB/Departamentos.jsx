@@ -40,7 +40,7 @@ const Departamentos = ({ aDepartamentos, placeholder }) => {
                 {
                     placeholder.map((p, i) => {
                         return (
-                            <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} />
+                            <InputModal key={i} nameLabel={p.label} placeHolder={p.placeholder} inputId={p.label} />
                         )
                     })
                 }
