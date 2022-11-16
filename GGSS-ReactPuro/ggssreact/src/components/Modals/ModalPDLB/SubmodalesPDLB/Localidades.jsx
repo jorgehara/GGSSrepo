@@ -7,7 +7,7 @@ const Localidades = ({ aLocalidades, placeholder }) => {
 
 
         <>
-            <div className="llamadaApi">
+            <div className="llamadaApi" style={{height: "300px"}}>
 
                 <label htmlFor="data">Datos: </label>
                 <br />

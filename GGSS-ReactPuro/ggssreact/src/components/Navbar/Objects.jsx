@@ -34,6 +34,18 @@ export const objectTipoDocumento = [
   }
 ]
 
+// PARENTESCOS
+
+export const objectParentescos = [
+  {
+    label: "Parentesco",
+    placeholder: "Abuelo"
+  }
+]
+
+
+// -------------
+
 export const objectEstado = [
   {
     "label": "Estado",
@@ -143,6 +155,13 @@ export const objectBarrios = [
   {
     "label": "Barrio",
     "placeholder": "Norte"
+  }
+]
+
+export const objectAlicuotas = [
+  {
+    "label": "Detalle",
+    "placeholder": "Detalle 1234"
   }
 ]
 

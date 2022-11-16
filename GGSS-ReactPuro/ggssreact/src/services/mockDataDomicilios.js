@@ -66,26 +66,26 @@ const domicilios = [
     }
 ]
 
-export function getEmpleados(){
-    return new Promise((resolve)=>{
+export function getEmpleados() {
+    return new Promise((resolve) => {
         setTimeout(()=> resolve(domicilios), 2000);
     });
 }
 
-export function getDomicilioEmpleado(idEmpleado){
-    return new Promise((resolve)=>{
-        setTimeout(()=> resolve(domicilios.filter(d=> d.iDempleado === idEmpleado)),0);
+export function getDomicilioEmpleado(idEmpleado) {
+    return new Promise((resolve) => {
+        setTimeout(()=> resolve(domicilios.filter(d => d.iDempleado === idEmpleado)), 0);
     });
 }
 
-export function getEmployeByLegajo( legajo){
-  return new Promise((resolve)=>{
-    setTimeout(()=> resolve(domicilios.filter(e=> e.legajo.includes(legajo))),0);
+export function getEmployeByLegajo(legajo) {
+  return new Promise((resolve) => {
+    setTimeout(()=> resolve(domicilios.filter(e => e.legajo.includes(legajo))), 0);
 }); 
 }
 
-export function getEmployeByName( name){
-  return new Promise((resolve)=>{
-    setTimeout(()=> resolve(domicilios.filter(e=> e.apellido.includes(name) || e.nombres.includes(name))),0);
+export function getEmployeByName(name) {
+  return new Promise((resolve) => {
+    setTimeout(()=> resolve(domicilios.filter(e => e.apellido.includes(name) || e.nombres.includes(name))), 0);
 }); 
 }

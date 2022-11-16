@@ -1,8 +1,8 @@
 import React from 'react'
-import '../InputModal.css'
+import './Checkbox.css'
 
-const InputNumModal = ({
-    nameInput,
+const Checkbox = ({
+    nameCheckbox,
     messageError,
     placeHolder,
     onChange,
@@ -12,15 +12,15 @@ const InputNumModal = ({
     return (
         <div className="inputModalContainer">
 
-            <label style={{ marginRight: "6px", marginBottom: "8px" }} className='labelModal' htmlFor={inputId}>{nameInput}: </label>
-        
-            <input style={{ width: "50px", marginRight: "7px", textAlign: "center" }} type="number" min={"0"} max={"100"}
+            <input type="checkbox"
                 className='inputModal'
                 id={inputId}
                 placeholder={placeHolder}
                 value={value}
                 onChange={(e) => onChange(e)}>
             </input>
+
+            <label style={{ marginLeft: "15px" }} className='labelModal' htmlFor={inputId}>{nameCheckbox}: </label>
 
             <br />
             <br />
@@ -29,4 +29,4 @@ const InputNumModal = ({
     )
 }
 
-export default InputNumModal
+export default Checkbox

@@ -5,7 +5,7 @@ import TextArea from '../../../Inputs/TextArea/TextArea'
 const Provincias = ({ aProvincias, placeholder }) => {
     return (
         <>
-            <div className="llamadaApi">
+            <div className="llamadaApi" style={{height: "300px"}}>
 
                 <label htmlFor="data">Datos: </label>
                 <br />

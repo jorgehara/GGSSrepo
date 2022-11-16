@@ -25,13 +25,27 @@
 }
 
 .llamadaApi{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 400px;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 10px 20px 2px rgb(95, 8, 8);
+    padding: 30px;
+    margin: 15px;
+}
+
+.llamadaApi label{
+    align-self: flex-start;
+}
+
+.llamadaApi select{
+    box-shadow: 0px 0px 6px 0px rgb(95, 8, 8);
 }
 
 .crudBtns{
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
@@ -39,15 +53,20 @@
 }
 
 .crudBtn{
-    width: 110px;
+    width: 90px;
+    font-size: 13px;
+    text-align: center;
 }
 
 .bodyInputs{
     margin-right: 40px;
+    margin-top: 20px;
 }
 
-.fieldsetStyle{
-    border-radius: 10px;
+.basicFieldset{
+    box-shadow: 2px 2px 4px 3px rgb(95, 8, 8);
+    padding: 8px;
+    
 }
 
 .btnInputs{
@@ -59,6 +78,15 @@
     display: flex;
     justify-content: flex-end !important;
 }
+
+.btnPlus{
+    color: green;
+}
+
+.btnMin{
+    color: red;
+}
+
 
 
 
