@@ -1,5 +1,5 @@
 import React from "react";
-import InputButton from "../Inputs/InputButton/InputButton";
+import InputButton from "../../Inputs/InputButton/InputButton";
 
 const ColumnaInputs = () => {
   return (

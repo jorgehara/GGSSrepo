@@ -1,6 +1,7 @@
 import React from 'react'
-import InputButton from '../Inputs/InputButton/InputButton'
-import InputRadio from '../Inputs/InputRadio/InputRadio'
+import InputButton from '../../Inputs/InputButton/InputButton'
+import InputRadio from '../../Inputs/InputRadio/InputRadio'
+
 
 const AsidePago = () => {
   return (

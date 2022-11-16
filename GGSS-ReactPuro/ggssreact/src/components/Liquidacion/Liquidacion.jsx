@@ -1,14 +1,23 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import EmployeData from "../EmployeData/EmployeData";
 import InputButton from "../Inputs/InputButton/InputButton";
-import AsidePago from "./AsidePago";
-import ColumnaInputs from "./ColumnaInputs";
-import ColumnaInputs2da from "./ColumnaInputs2da";
-import DatosCertificado from "./DatosCertificadoOficio";
-import IngresoContrato from "./IngresoContrato";
+import SindicatoLiquidacion from "../SindicatoLiquidacion/SindicatoLiquidacion";
+import AsidePago from "./ChildrenComponents/AsidePago";
+import ColumnaInputs2da from "./ChildrenComponents/ColumnaInputs2da";
+import DatosCertificado from "./ChildrenComponents/DatosCertificadoOficio";
+import IngresoContrato from "./ChildrenComponents/IngresoContrato";
+
 
 const Liquidacion = () => {
- 
+    const [sindicatos, setSindicatos] = useState([]);
+    useEffect(()=>{
+        axios.get("http://54.243.192.82/api/Sindicatos")
+        .then(res=> setSindicatos(res.data.result))
+    },[])
+ const sindicatosNAme = sindicatos.map((s)=> {return(s.nombreSindicato)})
 return (
     <div className="container">
     <div className="row">
@@ -30,7 +39,7 @@ return (
 <div className="container">
     <div className="row align-items-start">
         <div className="col-xl-4">
-        <ColumnaInputs />
+        <ColumnaInputs2da />
 
         <IngresoContrato />
 
@@ -44,11 +53,12 @@ return (
             nameLabel="Dirección"
             placeholder="Dirección"
         />
-        <InputButton
+        <SindicatoLiquidacion idInput="sindicatoInput" nameLabel="Sindicato:" nameButton="..." array={sindicatosNAme} />
+        {/* <InputButton
             nameButton="..."
             nameLabel="Sindicato"
             placeholder="Sindicato"
-        />
+        /> */}
         </div>
         </div>
         </div>

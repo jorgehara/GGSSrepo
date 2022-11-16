@@ -1,0 +1,10 @@
+.selectMenuSindicatos{
+    height: 50%;
+    width: 12rem;
+}
+.checkList{
+    position: absolute;
+    left: 0;
+    top : 7px;
+    z-index: 15000;
+}

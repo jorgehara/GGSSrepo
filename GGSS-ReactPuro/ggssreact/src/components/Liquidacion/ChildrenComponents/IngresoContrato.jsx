@@ -1,7 +1,7 @@
 import React from 'react'
-import InputButton from '../Inputs/InputButton/InputButton'
-import InputDate from '../Inputs/InputDate/InputDate'
-import InputForm from '../Inputs/InputForm/InputForm'
+import InputDate from '../../Inputs/InputDate/InputDate'
+import InputForm from '../../Inputs/InputForm/InputForm'
+
 
 const IngresoContrato = () => {
 return (
