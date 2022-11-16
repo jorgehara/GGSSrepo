@@ -3,6 +3,7 @@ import EmployeData from "../EmployeData/EmployeData";
 import InputButton from "../Inputs/InputButton/InputButton";
 import AsidePago from "./AsidePago";
 import ColumnaInputs from "./ColumnaInputs";
+import ColumnaInputs2da from "./ColumnaInputs2da";
 import DatosCertificado from "./DatosCertificadoOficio";
 import IngresoContrato from "./IngresoContrato";
 
@@ -14,6 +15,7 @@ return (
         <EmployeData />
     </div>
 
+<div className="container">
     <div className="row">
         <div className="col-xl-12">
         <InputButton
@@ -22,14 +24,21 @@ return (
             placeholder="Empleador"
         />
         </div>
-        <div className="row">
-        <div className="col-xl-6">
-        <ColumnaInputs />
-        </div>
+</div>
+</div>
 
-        <div className="row col-xl-6">
-        <AsidePago />
-        <div className="col-xl-6">
+<div className="container">
+    <div className="row align-items-start">
+        <div className="col-xl-4">
+        <ColumnaInputs />
+
+        <IngresoContrato />
+
+        </div>
+        <div className="col-xl-4">
+        <ColumnaInputs2da />
+        <div className='row col mt-5'>
+        <div className="border p-2 col">
         <InputButton
             nameButton="..."
             nameLabel="Dirección"
@@ -42,16 +51,20 @@ return (
         />
         </div>
         </div>
-        <div className="row col-xl-12">
-        <IngresoContrato />
         </div>
+        <div className="row col-xl-4">
+        <AsidePago />
+        
+        </div>
+    </div>
+</div>
+
 
         <div className="row col-xl-12">
         <DatosCertificado />
         </div>
-        </div>
-    </div>
-    </div>
+</div>
+    
 );
 };
 
