@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import "./InputButton.css";
 
-const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal}) => {
+const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal , clasess}) => {
 
   const [valor, setValor] = useState(0);
   const dispatch = useDispatch();
@@ -26,7 +26,29 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
   },[value])
   console.log(datosPersonalesValue)
   return (
-    <div className="formulario__grupo__inputs">
+    clasess ? <div className={clasess.classOne}>
+    <div className={clasess.classTwo}>
+        <label className={clasess.classThree} htmlFor={nameInput}>{nameLabel}</label>
+    </div>
+    <div className={clasess.classFour}>
+        <input type="text" 
+                value={ datosPersonalesValue !== undefined && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
+                maxLength={maxLeght}
+                className={clasess.classFive} 
+                placeholder={placeholder} 
+                id={id} 
+                name={id}
+                disabled={disabled}
+                onChange={(e)=> onChange(e,action )}
+                />
+    </div>
+    <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
+          className={clasess.classSix} disabled={disabled}>
+          {nameButton}
+    </button>
+</div> 
+        : 
+<div className="formulario__grupo__inputs">
         <div className='formulario__grupo'>
             <label className='formulario__label mt-2' htmlFor={nameInput}>{nameLabel}</label>
         </div>

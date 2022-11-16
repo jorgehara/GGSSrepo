@@ -20,23 +20,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { addDatosPersonales } from "../../redux/actions/datosPersonalesActions";
 import datosPersonalesReducer, { initialState } from "../../redux/reducers/datosPersonalesReducer";
 import { ADD_DATOS_PERSONALES } from "../../redux/types/datosPersonalesTypes";
+import axios from "axios";
 
 //#endregion
 
 const DatosPersonales = () => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
-
- 
+  const [datosPersonales, setDatosPersonales] = useState({});
+  const [disableEstado, setDisableEstado] = useState(false);
 
   //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
-  function onChange(evt) {
-    const name = evt.target.name;
-    const value = (evt.target.value);
-
-    let newDatosPersonales = { ...datosPersonales };
-    newDatosPersonales[name] = value;
-    setDatosPersonales(newDatosPersonales);
-  }
+  
   //#endregion
   //const [state, dispatch] = useReducer(datosPersonalesReducer, initialState);
   const dispatch = useDispatch();
@@ -49,11 +43,9 @@ const DatosPersonales = () => {
   }
   //#region ------------------------------------------------------REDUX
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
-  const datosPersonales = useSelector((state)=> state.datosPersonalesStates)
+  const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
  
-    useEffect(()=>{
-      console.log(datosPersonales)
-    },[datosPersonales])
+    console.log(datosPersonalesRedux)
   //#endregion
   //------------------------------------------------------CONTEXT
   const {
@@ -69,6 +61,20 @@ const DatosPersonales = () => {
     saveTipoDNI,
     saveTiposDNI,
     disable,   
+    cargos,
+    tareasDesempeñadas,
+    parentescos,
+    formasDePago,
+    modosContratacion,
+    modosLiquidacion,
+    empleadores,
+    saveCargos,
+    saveTareas,
+    saveParentescos, 
+    saveFormasDePago,
+    saveModosContratacion,
+    saveModosLiquidacion,
+    saveEmpleadores
   } = useContext(employeContext);
   //--------------------------------------------------------------------ESTADOS
   const [error, setError] = useState("");
@@ -102,6 +108,12 @@ const DatosPersonales = () => {
   const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
   const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
   const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];
+
+  const estadoCivilId = empleadoUno[0] !== undefined ? empleadoUno[0].iDestadoCivil : null;
+  console.log(empleadoUno[0] !== undefined ? empleadoUno[0] : null)
+  const estadoCivilSelectedId = saveEstadoCivil !== undefined && saveEstadoCivil.map((estado)=> estado.iDestadoCivil === estadoCivilId);
+
+
   const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
   const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
   const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
@@ -130,7 +142,7 @@ const DatosPersonales = () => {
   //#endregion
 
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
-
+  
 
 
   /// --- IGNORAR --- EN EL PRIMER RENDER, SE BUSCAN LOS DATOS DE LA API PASANDOLE LA URL Y LOS SETEA CON LA FN "saveEstadosCiviles" EN "saveEstadoCivil". ARRIBA SE MAPEAN
@@ -200,10 +212,76 @@ const DatosPersonales = () => {
     setImageEmpleado();
   }, [saveEmpl[0].obsFechaIngreso]);
 
+  useEffect(()=>{
+    setDisableEstado(false);
+  },[datosPersonalesRedux.inputSexo])
+
   function setImageEmpleado() {
     saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
   }
-
+  console.log(estadoCivilSelectedId);
+  const bodyPostEmploye = {
+    "legajo": datosPersonalesRedux.numLegajo,
+    "apellido": datosPersonalesRedux.apellidoInput,
+    "iDtipoDocumento": idTipoSelected,
+    "nroDocumento": datosPersonalesRedux.documentoInput,
+    "cuil": datosPersonalesRedux.inputCuil,
+    "sexo": datosPersonalesRedux.inputSexo,
+    "iDestadoCivil": 0,
+    "iDnacionalidad": 0,
+    "fechaNacimiento": "2022-11-16T18:04:19.597Z",
+    "iDestudios": 0,
+    "fechaIngreso": "2022-11-16T18:04:19.597Z",
+    "fechaEfectiva": "2022-11-16T18:04:19.597Z",
+    "iDcategoria": 0,
+    "iDcargo": 0,
+    "iDtareaDesempeñada": 0,
+    "idCentrodeCosto": 0,
+    "iDsectorDpto": 0,
+    "iDmodoContratacion": 0,
+    "iDmodoLiquidacion": 0,
+    "iDformadePago": 0,
+    "idbanco": 0,
+    "nroCtaBanco": "string",
+    "cbu": "string",
+    "iDlugardePago": 0,
+    "iDobraSocial": 0,
+    "iDsindicato": 0,
+    "fechaEgreso": "2022-11-16T18:04:19.597Z",
+    "iDesquema": 0,
+    "iDempleador": 0,
+    "nombres": "string",
+    "idEstado": 0,
+    "rutaFoto": "string",
+    "telFijo": "string",
+    "acuerdo": 0,
+    "neto": true,
+    "idPaisOrigen": 0,
+    "mail": "string",
+    "telMovil": "string",
+    "adicObraSocial": true,
+    "idConceptoAdicObraSocial": 0,
+    "adicAfjp": true,
+    "idConceptoAdicAfjp": 0,
+    "adicSindicato": true,
+    "idConceptoAdicSindicato": 0,
+    "tipoCuenta": 0,
+    "legajoAnterior": "string",
+    "imagen": "string",
+    "totalRemuneracion": 0,
+    "totalNeto": 0,
+    "tieneEmbargos": true,
+    "tieneSumarioAdministrativo": true,
+    "tieneLicenciaSinGoceHaberes": true,
+    "obsEstudios": "string",
+    "obsFechaIngreso": "string",
+    "idAgrupamiento": 0,
+    "idDireccion": 0,
+    "observacionesAdscripto": "string",
+    "idSectorAfectacion": 0,
+    "idDireccionAfectacion": 0,
+    "obsAfectacion": "string"
+  };
   //#endregion
 
   //#region ------------------------------------------------------------------------------VALIDACIONES
@@ -254,7 +332,11 @@ const DatosPersonales = () => {
   };
   //#endregion
   // console.log(saveEmpl[0] !== undefined ? saveEmpl[0] : null);
-
+  function sendDataEmploye(){
+    axios
+    .post('http://54.243.192.82/api/Empleados', bodyPostEmploye)
+    .then((res)=> console.log(res));
+  }
   return (
     //#region Menú Principal
     <div className="Lateral-Derecho">
@@ -457,7 +539,7 @@ const DatosPersonales = () => {
                           generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           sexo={
-                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : datosPersonales !== undefined && datosPersonales.inputSexo
+                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : datosPersonalesRedux !== undefined && datosPersonalesRedux.inputSexo
                           }
                           nameButton="..."
                           nameLabel="Estado Civil"
@@ -467,7 +549,7 @@ const DatosPersonales = () => {
                           femeninos={estadosCivilesFemeninos}
                           display={true}
                           idModal="EstadoCivil"
-                          disabled={disable}
+                          disabled={((datosPersonalesRedux !== undefined || datosPersonalesRedux.inputSexo === undefined) ||datosPersonalesRedux.inputSexo === null || datosPersonalesRedux.inputSexo === "") ? disableEstado : !disable}
                           nameInput="estadoCivilInput"
                           idInput="estadoCivilInput"
                           onChange={onChange}
@@ -520,7 +602,7 @@ const DatosPersonales = () => {
                         />
                         <InputRadio
                           value={
-                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : null
+                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : datosPersonalesRedux.inputSexo
                           }
                           generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
@@ -692,7 +774,7 @@ const DatosPersonales = () => {
         <Domicilios disabled={disable} />
       </div>
       <div className="d-flex justify-content-end">
-        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} />
+        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} functionSend={sendDataEmploye}/>
       </div>
     </div>
   );

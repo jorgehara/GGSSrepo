@@ -15,12 +15,12 @@ const Browser = () => {
     legajo: "",
     apellido: "",
   });
-  const url = "http://54.243.192.82/api/Empleados?records=25";
+  const url = "http://54.243.192.82/api/Empleados?records=1005";
 
   const dispatch = useDispatch();
   const empleados = useSelector((state)=> state.employeStates.employes)
 
-  
+  console.log(empleados)
 
 
   const {  saveDisable, disable} = useContext(employeContext);
@@ -41,6 +41,7 @@ const Browser = () => {
         );
         return;
       }
+      dispatch(addEmploye(res.data.result))
       setListEmpleados(res.data.result);
     });
   }, [empData.apellido, empData.legajo]);
@@ -69,6 +70,7 @@ const Browser = () => {
     e.preventDefault();
     saveDisable(false)
   }
+  
   return (
     <div className='container-fluid '>
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
@@ -116,6 +118,7 @@ const Browser = () => {
           tamaño=""
           justyfy="end m-1"
           nameButton="Agregar"
+          onClick={habilitaEdit}
         />
         <ButtonLarge
           color="danger"

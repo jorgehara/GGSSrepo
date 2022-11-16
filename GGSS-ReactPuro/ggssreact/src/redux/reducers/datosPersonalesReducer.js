@@ -2,24 +2,25 @@ import { ADD_DATOS_PERSONALES, REMOVE_DATOS_PERSONALES, UPDATE_DATOS_PERSONALES 
 
 export const initialState = {
     //Este estado inicial lo llamamos en el Browser a partir de nuestro estado General (que era employeStates).
-    
-        numLegajo : "",
-        apellidoInput : "",
-        nombresInput : "",
-        documentoInput : "",
-        inputCuil : "",
-        telefonoInput : "",
-        estadoCivilInput : "",
-        nacionalidadesInput : "",
-        dniSelected : "",
-        inputSexo : "",
-        inputDateNac : "",
-        movil : "",
-        email : "",
-        estadosEmpleados : "",
-        estudiosInput : "",
-        observacionesEstudios : "",
-        inputImage : ""
+        formulario : {
+            numLegajo : "",
+            apellidoInput : "",
+            nombresInput : "",
+            documentoInput : "",
+            inputCuil : "",
+            telefonoInput : "",
+            estadoCivilInput : "",
+            nacionalidadesInput : "",
+            dniSelected : "",
+            inputSexo : "",
+            inputDateNac : "",
+            movil : "",
+            email : "",
+            estadosEmpleados : "",
+            estudiosInput : "",
+            observacionesEstudios : "",
+            inputImage : ""
+        }
     
 };
 
@@ -33,7 +34,7 @@ const datosPersonalesReducer = (state = initialState, action) =>{
             console.log("entro al case")
             return {
                 ...state,
-                [payload.name]:payload.value
+                formulario : {...state.formulario, [payload.name]:payload.value}
                 
             };
         }

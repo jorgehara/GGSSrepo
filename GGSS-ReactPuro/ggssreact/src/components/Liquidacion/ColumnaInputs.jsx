@@ -1,4 +1,5 @@
 import React from "react";
+import { inputButtonClassConvenioLiquidacion } from "../../classes/classes";
 import InputButton from "../Inputs/InputButton/InputButton";
 
 const ColumnaInputs = () => {
@@ -10,6 +11,7 @@ const ColumnaInputs = () => {
           nameLabel="Convenio"
           placeholder="Convenio"
           action=""
+          //clasess={inputButtonClassConvenioLiquidacion}
         />
       </div>
       <div className="col-xl-6">
