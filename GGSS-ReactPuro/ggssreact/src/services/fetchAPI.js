@@ -26,7 +26,7 @@ export function getEmployeByName(empleados, name){
 
 export function getData(url, setStates){
     axios.get(url)
-    .then(res=> setStates(res.data));
+    .then(res=> setStates(res.data.result));
 }
 
 export function getFamiliarByIdEmpleado(familiares,idEmpleado){
