@@ -7,17 +7,18 @@ import CheckLabel from '../Inputs/CheckLabel/CheckLabel';
 import TableBasic1 from '../Tables/TableBasic1';
 import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
 import { ADD_DATOS_PERSONALES } from '../../redux/types/datosPersonalesTypes';
+import InputDateDocs from '../Inputs/InputDateDocs/InputDateDocs';
 
 const Documentacion = () => {
     const columns = ["Fecha", "Vencimiento", "Documento", "Liq", "Observaciones", "Incluir Cuota"]
-  return (
+return (
     <div className='container'>
         <div className='row'>
             <EmployeData />
         </div>
         <div className='row'>
             <div className='col-xl-12'>
-                <InputDate nameInput="Fecha Presentación" idInput="inputDatePresentacion" display={false}/>
+                <InputDateDocs nameInput="Fecha Presentación" idInput="inputDatePresentacion" display={false}/>
             </div>
             <div className='col-xl-12'>
                 <InputDate nameInput="Fecha Vencimiento" idInput="inputDatePresentacion" display={true} />
@@ -40,7 +41,7 @@ const Documentacion = () => {
             </div>
         </div>
     </div>
-  )
+)
 }
 
 export default Documentacion

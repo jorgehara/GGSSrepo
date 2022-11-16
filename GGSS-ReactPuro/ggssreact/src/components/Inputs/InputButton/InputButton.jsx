@@ -47,6 +47,6 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
               {nameButton}
         </button>
     </div>
-  )
-}
+  );
+};
 export default InputButton;

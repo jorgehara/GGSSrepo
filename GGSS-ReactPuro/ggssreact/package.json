@@ -9,6 +9,7 @@
     "axios": "^1.1.2",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
+    "nodemon": "^2.0.20",
     "primeicons": "^6.0.1",
     "primereact": "^8.7.1",
     "react": "^18.2.0",
@@ -47,5 +48,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^4.5.2",
+    "webpack-cli": "^4.10.0"
   }
 }

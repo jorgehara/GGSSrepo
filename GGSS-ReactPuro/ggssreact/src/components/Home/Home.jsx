@@ -6,7 +6,10 @@ import Documentacion from '../Documentacion/Documentacion';
 import Familia from '../Familia/Familia';
 import Footer from '../Footer/Footer';
 import Licencias from '../Licencias/Licencias';
+import Liquidacion from '../Liquidacion/Liquidacion';
+import AdicLiquidacion from "../AdicLiquidacion/AdicLiquidacion";
 import Navbar from '../Navbar/Navbar';
+import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
 
 const Home = () => {
 
@@ -17,8 +20,7 @@ const Home = () => {
     useEffect(()=>{
         navigate("/home/datos-personales")
     },[])
-
-  return (
+return (
     <div className='container-fluid'>
         <div className='row'>
             <div className='col-xl-3'>
@@ -33,16 +35,28 @@ const Home = () => {
                     location.pathname === "/home/familia" && <Familia />
                 }
                 {
+                    location.pathname === "/home/liquidacion" && <Liquidacion />
+                }
+                {
                     location.pathname === "/home/documentacion" && <Documentacion />
                 }
                 {
                     location.pathname === "/home/licencias" && <Licencias />
+                    
+                }
+                {
+                    location.pathname === "/home/adic-liquidacion" && <AdicLiquidacion />
+                    
+                }
+                {
+                    location.pathname === "/home/trabajos-anteriores" && <TrabajosAnteriores />
+                    
                 }
             </div>
         </div>
         <Footer /> 
     </div>
-  )
+)
 }
 
 export default Home

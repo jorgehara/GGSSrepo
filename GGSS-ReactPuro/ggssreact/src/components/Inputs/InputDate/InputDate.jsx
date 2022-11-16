@@ -17,17 +17,7 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
   },[fecha])
 
   useEffect(()=>{
-    if(display){
-      if(mostrarComponente2 !== mostrarComponente){
-        setMostrarComponente2(display)
-        return;
-      }
-      setMostrarComponente(!display)
-      setMostrarComponente2(display)
-      return;
-    }
     setMostrarComponente(display)
-    setMostrarComponente2(display)
   },[display])
 
   
@@ -36,7 +26,8 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
     <div className="formulario__grupo__inputs mt-2">
         <div class="form-check p-0">
           <label class="form-check-label" for="flexCheckDefault">
-            {nameInput}:
+            {nameInput}
+
           </label>
           <input className={mostrarComponente ? "form-check-input ml-4" : "none"} type="checkbox"  id="flexCheckChecked"  checked={checked} disabled={disabled} />
         </div>

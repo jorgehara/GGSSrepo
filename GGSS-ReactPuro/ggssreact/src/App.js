@@ -17,10 +17,13 @@ function App() {
       <NavbarMenu />
           <Switch>
             <Route path="/home" exact element={<Home />} /> 
-            <Route path="/home/datos-personales" exact element={<Home />} />  
+            <Route path="/home/datos-personales" exact element={<Home />}/>  
             <Route path="/home/familia" exact element={<Home />} />  
+            <Route path="/home/liquidacion" exact element={<Home />} /> 
             <Route path="/home/documentacion" exact element={<Home />} /> 
             <Route path="/home/licencias" exact element={<Home />} /> 
+            <Route path="/home/adic-liquidacion" exact element={<Home />} /> 
+            <Route path="/home/trabajos-anteriores" exact element={<Home />} /> 
           </Switch>        
     </EmpleadoContextProvider>
     </>
