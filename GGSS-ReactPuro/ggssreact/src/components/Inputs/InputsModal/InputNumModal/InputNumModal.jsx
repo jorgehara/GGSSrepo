@@ -12,18 +12,18 @@ const InputNumModal = ({
     return (
         <div className="inputModalContainer">
 
-            <label style={{ marginRight: "6px", marginBottom: "8px" }} className='labelModal' htmlFor={inputId}>{nameInput}: </label>
-        
-            <input style={{ width: "50px", marginRight: "7px", textAlign: "center" }} type="number" min={"0"} max={"100"}
-                className='inputModal'
-                id={inputId}
-                placeholder={placeHolder}
-                value={value}
-                onChange={(e) => onChange(e)}>
-            </input>
-
-            <br />
-            <br />
+            <div className="row mb-3 inputLabelContainer">
+                <label className="col-sm-4 col-form-label">{nameInput}:</label>
+                <div className="col-sm-8">
+                    <input style={{ width: "50px", textAlign: "center"}} type="number" min={"0"} max={"100"}
+                        className='inputModal'
+                        id={inputId}
+                        placeholder={placeHolder}
+                        value={value}
+                        onChange={(e) => onChange(e)}>
+                    </input>                
+                </div>
+            </div>
 
         </div>
     )
