@@ -17,7 +17,17 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
   },[fecha])
 
   useEffect(()=>{
+    if(display){
+      if(mostrarComponente2 !== mostrarComponente){
+        setMostrarComponente2(display)
+        return;
+      }
+      setMostrarComponente(!display)
+      setMostrarComponente2(display)
+      return;
+    }
     setMostrarComponente(display)
+    setMostrarComponente2(display)
   },[display])
 
   
