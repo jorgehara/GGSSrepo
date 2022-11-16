@@ -20,8 +20,8 @@ const AdicLiquidacion = () => {
                     <button className='btn btn-danger btn-sm'>Datos adicionales...</button>
                 </div>
                 <div className='col-xl-4 '>
-                    <button className='btn btn-success btn-sm buttonAceptarCancelar'>+</button>
-                    <button className='btn btn-danger btn-sm buttonAceptarCancelar' >-</button>
+                    <button className='btn btn-outline-success btn-sm buttonAceptarCancelar'>+</button>
+                    <button className='btn btn-outline-danger btn-sm buttonAceptarCancelar' >-</button>
                 </div>
         </div>
         <div className='row'>

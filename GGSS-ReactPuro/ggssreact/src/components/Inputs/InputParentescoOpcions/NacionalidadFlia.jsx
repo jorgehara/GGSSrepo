@@ -93,7 +93,7 @@ const NacionalidadFlia = ({
         }
       >
         <input
-          className="form-check-input"
+          className="form-check-input "
           type="checkbox"
           value=""
           id="flexCheckChecked"

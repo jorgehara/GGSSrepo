@@ -95,14 +95,14 @@ const InputParentesco = ({
           }
         >
           <input
-            className="form-check-input "
+            className="form-check-input input-parentesco"
             type="checkbox"
             value=""
             id="flexCheckChecked"
             checked={checked}
             disabled={disable}
           />
-          <label className="form-check-label" htmlFor="flexCheckChecked">
+          <label className="form-check-label input__parentesco" htmlFor="flexCheckChecked">
             {nameCheck}
           </label>
         </div>
