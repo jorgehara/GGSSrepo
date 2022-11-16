@@ -10,6 +10,7 @@ const InputEmpData = ({ idInput, inputValue, nameLabel,disabled }) => {
       </label>
       <div class="col-sm-10">
       <input
+      readOnly="readonly"
         className="form-input-FliaCabecera"
         type="text"
         id={idInput}
