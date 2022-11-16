@@ -13,7 +13,7 @@ const Browser = () => {
     legajo: "",
     apellido: "",
   });
-  const url = "http://54.243.192.82/api/Empleados";
+  const url = "http://54.243.192.82/api/Empleados?records=25";
   const {  saveDisable, disable} = useContext(employeContext);
   useEffect(() => {
     axios.get(url).then((res) => {
