@@ -20,6 +20,7 @@ return (
             nameButton="..."
             nameLabel="Empleadores"
             placeholder="Empleador"
+            action=""
         />
         </div>
         <div className="row">
@@ -34,11 +35,13 @@ return (
             nameButton="..."
             nameLabel="Dirección"
             placeholder="Dirección"
+            action=""
         />
         <InputButton
             nameButton="..."
             nameLabel="Sindicato"
             placeholder="Sindicato"
+            action=""
         />
         </div>
         </div>

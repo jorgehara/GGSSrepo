@@ -9,6 +9,7 @@ const ColumnaInputs = () => {
           nameButton="..."
           nameLabel="Convenio"
           placeholder="Convenio"
+          action=""
         />
       </div>
       <div className="col-xl-6">
@@ -16,6 +17,7 @@ const ColumnaInputs = () => {
           nameButton="..."
           nameLabel="Categoría"
           placeholder="Categoría"
+          action=""
         />
       </div>
       <div className="col-xl-6">
@@ -23,16 +25,18 @@ const ColumnaInputs = () => {
           nameButton="..."
           nameLabel="Agrupamiento"
           placeholder="Agrupamiento"
+          action=""
         />
       </div>
       <div className="col-xl-6">
-        <InputButton nameButton="..." nameLabel="Cargo" placeholder="Cargo" />
+        <InputButton nameButton="..." nameLabel="Cargo" placeholder="Cargo" action=""/>
       </div>
       <div className="col-xl-6">
         <InputButton
           nameButton="..."
           nameLabel="Tarea desempeñada"
           placeholder="Tarea desempeñada"
+          action=""
         />
       </div>
       <div className="col-xl-6">
@@ -40,6 +44,7 @@ const ColumnaInputs = () => {
           nameButton="..."
           nameLabel="Modo de Contratación"
           placeholder="Modo de Contratación"
+          action=""
         />
       </div>
       <div className="col-xl-6">
@@ -47,6 +52,7 @@ const ColumnaInputs = () => {
           nameButton="..."
           nameLabel="Modo de Liquidación"
           placeholder="Modo de Liquidación"
+          action=""
         />
       </div>
       <div className="col-xl-6">
@@ -54,6 +60,7 @@ const ColumnaInputs = () => {
           nameButton="..."
           nameLabel="Centro de Costo"
           placeholder="Centro de Costo"
+          action=""
         />
       </div>
       <div className="col-xl-6">
@@ -61,6 +68,7 @@ const ColumnaInputs = () => {
           nameButton="..."
           nameLabel="Secretaria/Sector/Dpto"
           placeholder="Secretaria/Sector/Dpto"
+          action=""
         />
       </div>
       <div className="col-xl-6">
@@ -68,6 +76,7 @@ const ColumnaInputs = () => {
           nameButton="..."
           nameLabel="Obra Social"
           placeholder="Obra Social"
+          action=""
         />
       </div>
     </>

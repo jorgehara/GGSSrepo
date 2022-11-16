@@ -12,6 +12,7 @@ const AsidePago = () => {
                   nameButton="..."
                   nameLabel="Forma de Pago"
                   placeholder="Forma de Pago"
+                  action=""
                 />
               </div>
               <div>
@@ -19,6 +20,7 @@ const AsidePago = () => {
                   nameButton="..."
                   nameLabel="Lugar de Pago"
                   placeholder="Lugar de Pago"
+                  action=""
                 />
               </div>
               <div>
@@ -27,12 +29,14 @@ const AsidePago = () => {
                   nameLabel="Banco"
                   placeholder=""
                   display={true}
+                  action=""
                 />
               </div>
                 <div>
                 <InputButton
                   nameLabel="N° Cuenta"
                   placeholder="N° Cuenta"
+                  action=""
                 />
               </div>
               <div >
@@ -46,6 +50,7 @@ const AsidePago = () => {
                 <InputButton
                   nameLabel="C.B.U."
                   placeholder="N° Cuenta"
+                  action=""
                 />
               </div>
 
