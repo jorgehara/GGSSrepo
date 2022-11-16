@@ -7,9 +7,18 @@
     box-sizing: border-box;
 }
 
-.form-input-DateFlia{
+.form-input-DateFlia2{
 	text-align: start;
-    /* margin-left: 1.5%; */
+     margin-left: 1.5%; 
+    /* margin-right: 0px; */
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	transition: .3s ease all;
+}
+.form-input-DateFlia2{
+	text-align: start;
+     margin-left: 3%; 
     /* margin-right: 0px; */
 	background: #fff;
 	border: 3px solid transparent;
@@ -24,14 +33,14 @@
     align-items: center;
 }
 .dateFlia{
-	margin-top: 0px;
-    margin-left: 13%;
+	position: absolute;
+    left: 43.7%;
 }
 .formularioDate{
 	margin-left: 0.1%;
 }
-.inputDate{
-	/* margin-left: 10%; */
+.inputDate2{
+	 margin-left: 2.4rem; 
 }
 .inputDateBaja{
 	/* margin-left: 0%; */

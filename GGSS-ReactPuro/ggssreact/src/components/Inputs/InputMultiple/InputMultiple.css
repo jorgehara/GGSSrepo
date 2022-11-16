@@ -19,6 +19,7 @@
 	height: 36px;
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
+	margin-left: 7%;
 }
 .formulario-input-DNI-input{
 	width: 89px;
@@ -60,4 +61,10 @@
 }
 .form-inputs-radio{
 	margin-left: 12%;
+}
+.inputsSexo{
+	margin-left: 26%;
+}
+.inputSexo{
+	margin-left: 2%;
 }

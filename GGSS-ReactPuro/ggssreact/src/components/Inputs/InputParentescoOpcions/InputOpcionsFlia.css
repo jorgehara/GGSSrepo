@@ -72,7 +72,7 @@
 	width: 100%;
 }
 .selectFormFlia{
-	margin-left: 89%;
+	margin-left: 95%;
 	width: 227%;
 }
 
@@ -108,4 +108,12 @@
 	width: 28%;
 	margin-right: 0px;
 	margin-left: 0.3%;
+}
+.inputCheckEstudio{
+	position: absolute;
+	left: 9%;
+}
+.labelEstudiosFamilia{
+	position: relative;
+	left: 75%;
 }
