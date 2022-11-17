@@ -13,18 +13,17 @@ const InputChecked = ({
   onChange
 }) => {
   return (
-    <div className="row">
-      <div className="col-xl-12 mt-2">
-        <div className="row">
-          <div className="d-flex align-items-center col-xl-5">
-            <label className="formulario__label w-100" htmlFor={idInput}>
+    <>
+    <div className="formulario__grupo__inputs">
+    <div className="formulario__grupo">
+            <label className="form__labelFlia w-100 mt-2" htmlFor={idInput}>
               {nameLabel}
             </label>
-          </div>
+        
           <div className="d-flex align-items-center col-xl-4 px-0">
             <input
               type="text"
-              className="form-control formulario-input-Familia px-0"
+              className="formulario-input-Familia"
               id={idInput}
               placeholder={placeHolder}
               value={value}
@@ -49,9 +48,9 @@ const InputChecked = ({
           </div>
           </div>
 
-        </div>
-      </div>
     </div>
+    </div>
+    </>
   );
 };
 

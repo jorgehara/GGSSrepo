@@ -13,21 +13,21 @@
 	display: block;
 }
 
-.formulario-label-ParentescoFlia{
+.form-label-ParentsFlia{
 	font-style: normal;
 	font-weight: 400;
 	color: black;
 	margin-top: 0px;
-	margin-right: 20%;
+	/* margin-right: 20%; */
     margin-left: 0px;
 	margin-bottom: 0px;
 	display: block;
 }
 
-.form-input-ParentescoFlia{
+.form-input-ParentsFlia{
     margin-bottom: 3px;
-	width: 200%;
-	margin-left: 260%;
+	/* width: 200%; */
+	margin-left: 239%;
     margin-right: 0px;
 	background: #fff;
 	border: 3px solid transparent;
@@ -45,13 +45,13 @@
 
 .btn-modal-miau{
 	position: absolute;
-	margin-left: 9%;
+	margin-left: 15%;
 }
 .input__parentesco{
 	position: relative;
-	left: 30%;
+	left: 8%;
 }
 .input-parentesco{
 	position: absolute;
-	left: 25%;
+	right: 107%;
 }

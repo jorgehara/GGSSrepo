@@ -60,7 +60,7 @@ const InputMultiple = ({
           <div>
             
           </div>
-          <div className="col-xl-4   d-flex justify-content-center align-items-center">
+          <div className="col-xl-4   d-flex justify-content-center align-items-center ">
             <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,generalState, setGeneralState)}>
               {optionsDNI.map((op, i) => {
                 return <option key={i} value={op}>{op}</option>;
@@ -86,7 +86,7 @@ const InputMultiple = ({
           <div className="form__grupo__error">
             <p></p>
           </div>
-          <div className="col-xl-4  form-inputs-radio">
+          <div className="col-xl-4  form-inputs-radioFlia">
             <div className="form__grupo__label">
               <label className="form__grupo__label__label" htmlFor="legajo">
                 {nameInputRadio}

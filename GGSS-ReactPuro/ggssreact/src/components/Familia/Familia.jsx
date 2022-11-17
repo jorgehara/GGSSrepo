@@ -116,13 +116,15 @@ const Familia = () => {
   
   return (
     <div className="Lateral-Derecho">
-  <div className="container-fluid">
+        <div className="container-fluid">
+      
       <div className="row border border-3">
         <EmployeData disabled={disable}/>
-        <div className="col-xl-6">
-          <div className="container-fluid m-0">
-            <div className="container-fluid">
-              <div className="row">
+      </div>
+      
+      <div className="container">
+            <div className="row">
+              <div className="col-xl-6 border p-2">
                 <InputChecked
                   value={familiarSeleccionado === undefined ? 
                     (saveEmpl[0] !== undefined
@@ -209,11 +211,8 @@ const Familia = () => {
                   onChange={onChange}
                   valueInputEstudios={familia.idInputEstudios !== undefined ? familia.idInputEstudios : null}
                 />
-              </div>
             </div>
-          </div>
-        </div>
-        <div className="col-xl-6">
+        <div className="col-xl-6 border p-2">
           
           <PaisOrigenFlia
                   nameInput="Pais de Origen"
@@ -259,20 +258,22 @@ const Familia = () => {
           />
             <TextArea inputName="Observaciones" maxLength="255" value="" disabled={disable}/>
         </div>
+            </div>
+          </div>
+   
+
         <div className="d-flex flex-row align-items-center">
           <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={saveFamiliarSelected !== undefined && saveFamiliarSelected !== null ? saveFamiliarSelected : []} parentescos={parentescos!== undefined ? parentescos : null} seleccionado={saveFamSelect}/>
           <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable}/>            
         </div>
-      </div>
-    </div>
-
-
       <div className="d-flex justify-content-end">
         <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
       </div>
 
 
     </div>
+    </div>
+
 
   );
 };
