@@ -8,24 +8,24 @@ const SindicatoLiquidacion = ({idInput,nameLabel, array, nameButton}) => {
             <label htmlFor={idInput}>{nameLabel}</label>
         </div>
         <div className='col-xl-6'>
-            <select className="form-select row mt-1 selectMenuSindicatos ml-4"
-            multiple
-            aria-label="multiple select example" 
-            name={idInput} id={idInput}>
+            <div className='selectMenuSindicatos border border-1'>
                 {
                     array !== undefined && array.map((op, i)=>{
                         return(
-                            <>
-                            
-                            <option key={i} id="optionSindicato" value={op}><input type="checkbox" name="optionSindicato" id="optionSindicato" className='checkList'/>{op}</option>  
+                            <>    
+                                
+                                <div class="d-flex flex-row justify-conent-center align-items-center" key={i} value={op}>
+                                    <input type="checkbox" name="optionSindicato" id="checkOption" className='form-check-input checkList'/>
+                                    <label class="form-check-label " htmlFor="checkOption">{op}</label>
+                                </div>
                             </>                          
                         )
                     })
                 }
-            </select>
+            </div>
         </div>
         <div className='col-xl-2'>
-            <button className='btn btn-danger btn-sm'>{nameButton}</button>
+            <button className='btn btn-danger btn-sm buttonSpace'>{nameButton}</button>
         </div>
     </div>
   )

@@ -1,10 +1,12 @@
 .selectMenuSindicatos{
-    height: 50%;
+    height: 30%;
     width: 12rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .checkList{
-    position: absolute;
-    left: 0;
-    top : 7px;
-    z-index: 15000;
+    margin-right: 2%;
+}
+.buttonSpace{
+    margin-left: 1rem;
 }
