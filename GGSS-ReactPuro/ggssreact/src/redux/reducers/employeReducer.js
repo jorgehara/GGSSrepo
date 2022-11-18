@@ -27,7 +27,7 @@ const employeReducer = (state = initialState, action) =>{
             const newEmploye = state.employes[0].filter((employe)=> employe.iDempleado === payload);
             return {
                 ...state,
-                employe : {...newEmploye},
+                employe : {...newEmploye[0]},
             }
         }
         case UPDATE_EMPLOYE :

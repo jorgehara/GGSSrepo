@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { employeContext } from "../../context/employeContext";
-import { ADD_DOMICILIOS } from "../../redux/types/domiciliosTypes";
+import { ADD_DOMICILIOS, ADD_ONEDOMICILIO } from "../../redux/types/domiciliosTypes";
 import { getEmpleados } from "../../services/mockDataDomicilios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import InputCbo from "../Inputs/InputCbo/InputCbo";
@@ -13,6 +13,7 @@ import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
 import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades, addProvincias } from "../../redux/actions/fetchActions";
 import InputForm from "../Inputs/InputForm/InputForm";
+import { addOneDomicilio } from "../../redux/actions/domiciliosActions";
 
 //#endregion
 const Domicilios = () => {
@@ -20,6 +21,7 @@ const Domicilios = () => {
   const [inputValue, setInputValue] = useState("");
   const [domicilios, setDomicilios] = useState([]);
   const [domiciliosDelEmpleado, setDomiciliosDelEmpleado] = useState([]);
+  const [ idEmpleado, setIdEmpleado] = useState(0);
   const columns = [
     "Predeterminado",
     "Calle",
@@ -75,21 +77,19 @@ const Domicilios = () => {
   },[])
   const generalStateData = useSelector((state)=> state.generalState)
 
-
+ 
 
   //#region ------------------------------------------------------------------------------CONTEXT
   const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable } = useContext(employeContext);
 
 
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
+  useEffect(()=>{
+    setIdEmpleado(empleadoUno.iDempleado)
+  },[empleadoUno])
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const calles = generalStateData.calles !== "" && generalStateData.calles !== undefined? generalStateData.calles.map((res) => {return (res.calle)}) : [];
-  const pisoDepto = generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined ? generalStateData.domicilios.map(res => {return res.dpto}) : null;
-  const deptos = generalStateData.departamentos !== "" && generalStateData.departamentos !== undefined ? generalStateData.departamentos.map(res => {return res.departamento}) : null;
-  const provincias = generalStateData.provincias !== "" && generalStateData.provincias !== undefined ? generalStateData.provincias.map(res => {return res.provincia}) : null;
-  const localidades = generalStateData.localidades !== "" && generalStateData.localidades !== undefined ? generalStateData.localidades.map(res => {return res.localidad}) : null;
-  const barrios = generalStateData.barrios !== "" && generalStateData.barrios !== undefined ? generalStateData.barrios.map(res => {return res.barrio}) : null;  
+  
   const predeterminado = generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined ?  generalStateData.domicilios.map(m => {return(m.predeterminado)}) : null;
 
 
@@ -108,7 +108,6 @@ const Domicilios = () => {
     setInputValor();
   }, [predeterminadoValue]);
   
-  const idEmpleado = empleadoUno[0] !== undefined && empleadoUno.iDempleado;
   
   useEffect(()=>{
     setDomiciliosDelEmpleado(domicilios.filter((dom)=> dom.idEmpleado === empleadoUno[0].iDempleado));
@@ -130,6 +129,33 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
   //para CAlles:
   let calleEmpleado = saveCalle!== undefined && domiciliosDelEmpleado[0] !== undefined &&  saveCalle.filter(((item)=>{ return(item.idCalle === domiciliosDelEmpleado[0].idCalle)}));
 
+  // -----------------------------------------------------LLENAR CAMPOS 
+
+ /*  const idEmpleadoPrueba = empleadoUno[0].iDempleado;
+
+  generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleadoPrueba ) 
+ */
+
+  function getDomicilioEmpleado(){
+    if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
+      let domicilioDelEmpleado = generalStateData.domicilios !== undefined && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === empleadoUno.iDempleado ) 
+
+      console.log(domicilioDelEmpleado)
+
+      return dispatch(addOneDomicilio(domicilioDelEmpleado));     
+    }
+  }
+  useEffect(()=>{
+    getDomicilioEmpleado()
+  },[empleadoUno])
+
+  const empleadoDomicilio = useSelector((state)=> state.domiciliosStates);
+
+    //Con este domicilio de los empleados, hay que mandarlo a la TableDomicilios y mapearlo para que muestre los datos por la tabla
+    //el problema es que el domicilio solo trae los id, por lo que habria que hacer un filter en la lsita de Provincias con el id que nos trae
+    // el domicilio (idBarrio) pegar en el getby id de localidades, con ese pegar en el getbyid de departamentos y con ese id pegar en el get by id
+    //de provincias para ver que provincias pertenecen a ese domicilio
+  console.log(empleadoDomicilio);
 
   return (
     
@@ -181,9 +207,10 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                     action={ADD_DOMICILIOS}
                     sexo=""
                     nameButton="..."
-                    nameLabel="Calle"
+                    nameLabel="Calle"                    
                     array={generalStateData.calles !== null && generalStateData.calles !== "" ? generalStateData.calles : ["calle", "calle"]}
                     propArrayOp="calle"
+                    propArrayOpFem="calle"
                     //propArray={calleSelected !== undefined && calleSelected !== null ? calleSelected.toString() : null}
                     masculinos=""
                     femeninos=""
@@ -217,7 +244,7 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                 </div>
                   <InputForm
                     value={
-                      pisoDepto !== null ?pisoDepto : []
+                      domiciliosState !== null ? domiciliosState.inputPisoCalle : []
                     }
                     nameInput="inputPisoCalle"
                     idInput="inputPisoCalle"
@@ -250,6 +277,7 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   nameLabel="Provincia"
                   array={generalStateData.provincias !== undefined && generalStateData.provincias !== ""  ? generalStateData.provincias : []}
                   propArrayOp="provincia"
+                  propArrayOpFem="provincia"
                   //propArray={provinciaSelected !== undefined && provinciaSelected !== null ? provinciaSelected.toString() : null}
                   masculinos=""
                           femeninos=""
@@ -273,7 +301,8 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   nameButton="..."
                   nameLabel="Departamento"
                   array={generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos : []}
-                  propArrayop="departamento"
+                  propArrayOp="departamento"
+                  propArrayOpFem="departamento"
                   //propArray={provinciaDepartamento !== undefined && provinciaDepartamento !== null ? provinciaDepartamento.toString() : null}
                   masculinos=""
                           femeninos=""
@@ -298,6 +327,7 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   nameLabel="Localidad"
                   array={generalStateData.localidades !== undefined && generalStateData.localidades !== "" ? generalStateData.localidades : []}
                   propArrayOp="localidad"
+                  propArrayOpFem="localidad"
                   //propArray={provinciaLocalidad !== undefined && provinciaLocalidad !== null ?  provinciaLocalidad.toString() : null}
                   masculinos=""
                           femeninos=""
@@ -322,6 +352,7 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   nameLabel="Barrio"
                   array={generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios : []}
                   propArrayOp="barrio"
+                  propArrayOpFem="barrio"
                   //propArray={provinciaBarrio !== undefined && provinciaBarrio !== null ? provinciaBarrio.toString() : null}
                   masculinos=""
                           femeninos=""

@@ -6,91 +6,7 @@ import { getData } from "../../services/fetchAPI";
 
 const TablaDomicilios = ({ columns , value}) => {
   //const valor = value !== undefined && value !== null ? value.map((valor, i)=>{return (valor.predeterminado)}) : "";
-  const empleadoUno = useSelector((state)=> state.employeStates.employe);
-  const [ checkPredeterminado, setCheckPredeterminado ] = useState("");
-  const [ barrio, setBarrio] = useState([]);
-  const [ calle, setCalle] = useState([]);
-  const [ localidad, setLocalidad] = useState([]);
-  const [departamento, setDepartamento ] = useState([]);
-  const [ provincia, setProvincia] = useState([]);
-
-  const urlBarrios = `http://54.243.192.82/api/Barrios/${value !== undefined && value !== null && value.idBarrio}`;
-  const urlCalles = `http://54.243.192.82/api/Calles/${value !== undefined && value !== null && value.idCalle}`;
-  const urlLocalidades = `http://54.243.192.82/api/Localidades/${barrio.idLocalidad}`;
-
-  let calleSelec = null;
-  let barrioSelec = null;
-  let localidadSelec = null;
-  let provinciaSelec = null;
-
-
-  const empleado = (empleadoUno[0] !== undefined && empleadoUno[0].iDempleado)
-  //useEffect(() => {
-  //  setInputValor();
-  //}, [valor.toString()])
-  const valueSinNull = value !== undefined && value !== null && value;
-  let barrios = [];
-  let calles = [];
-  let localidades = [];
-  let departamentos = [];
-  let provincias = [];
   
-  
-  useEffect(()=>{
-    
-
-    value.map(async (item, index)=>{
-      return (await axios.get(`http://54.243.192.82/api/Barrios/${item.idBarrio}`)
-      .then((res)=> barrios.push(res.data.result)));
-    });
-    setBarrio(barrios);
-    value.map(async (item, index)=>{
-      return (await axios.get(`http://54.243.192.82/api/Calles/${item.idCalle}`)
-      .then((res)=> calles.push(res.data.result)))
-    });    
-    setCalle(calles);
-    barrio.map(async (item, index)=>{ 
-      return( await axios.get(`http://54.243.192.82/api/Localidades/${item.idLocalidad}`)
-      .then((res)=> localidades.push(res.data.result)))
-    })
-    setLocalidad(localidades);
-
-    Object.prototype.toString.call(localidad) === '[object Array]' ? localidad.map(async (item, index)=>{ 
-      return(await axios.get(`http://54.243.192.82/api/Departamentos/${item.idDepartamento}`)
-      .then((res)=> departamentos.push(res.data.result)))
-    }) : axios.get(`http://54.243.192.82/api/Departamentos/${localidad.idDepartamento}`)
-    .then((res)=> departamentos.push(res.data.result));
-
-    setDepartamento(departamentos);
-
-    Object.prototype.toString.call(departamento) === '[object Array]' ? departamento.map(async (item, index)=>{ 
-      return(await axios.get(`http://54.243.192.82/api/Provincias/${item.idProvincia}`)
-      .then((res)=> provincias.push(res.data.result)))
-    }) : axios.get(`http://54.243.192.82/api/Provincias/${departamento.idProvincia}`)
-    .then((res)=> provincias.push(res.data.result))
-    setProvincia(provincias);
-    getValues();
-
-  },[empleado])
-
- 
-
-  function getValues(){
-    value.map((item,index)=>{
-      calleSelec = Object.prototype.toString.call(calle) === '[object Array]' ? calle.filter((calle)=> {return(calle.idCalle === item.idCalle)}) : calle.calle;
-      barrioSelec = Object.prototype.toString.call(barrio) === '[object Array]' ? barrio.filter((barrio)=> {return(barrio.idBarrio === item.idBarrio)}) : barrio.barrio;
-      
-     barrio.map((items,index)=>{
-       localidadSelec = Object.prototype.toString.call(localidad) === '[object Array]' ? localidad.filter((localidad)=> {return(localidad.idLocalidad === items.idLocalidad)}) : localidad.localidad;
-       provinciaSelec = Object.prototype.toString.call(provincia) === '[object Array]' ? provincia.filter((provincia)=> {return(provincia.idProvincia === items.idProvincia)}) : provincia.provincia;
-      console.log(calleSelec)
-      return (calleSelec, barrioSelec, localidadSelec, provinciaSelec);
-     })
-     return (calleSelec, barrioSelec,localidadSelec,provinciaSelec)
-   })
-   return;
-  }
- 
 
 
 
@@ -122,7 +38,7 @@ const TablaDomicilios = ({ columns , value}) => {
           </thead>
           <tbody>
           
-              {
+              {/* {
                 value.map((item, index)=>{
                   
                   return(
@@ -138,7 +54,7 @@ const TablaDomicilios = ({ columns , value}) => {
                     </tr>
                   )
                 })
-              }
+              } */}
            {/*  {
               value.map((valor, i)=>{
                 console.log()

@@ -1,4 +1,4 @@
-import { ADD_DOMICILIOS } from "../types/domiciliosTypes";
+import { ADD_DOMICILIOS,ADD_ONEDOMICILIO } from "../types/domiciliosTypes";
 
 
 export const initialState = {
@@ -9,7 +9,8 @@ export const initialState = {
     inputProvinciaDomicilios : "",
     inputDepartamentosDomicilios : "",
     inputLocalidadesDomicilios : "",
-    inputBarriosDomicilios : ""
+    inputBarriosDomicilios : "",
+    domicilioEmpleado : []
 };
 
 const domicilioReducer = (state = initialState, action) =>{
@@ -24,6 +25,13 @@ const domicilioReducer = (state = initialState, action) =>{
                 [payload.name]:payload.value
                 
             };
+        }
+        case ADD_ONEDOMICILIO : {
+            console.log(payload)
+            return{
+                ...state,
+                domicilioEmpleado : [...payload]
+            }
         }
         default :
         return state;
