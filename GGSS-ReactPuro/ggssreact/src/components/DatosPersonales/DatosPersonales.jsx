@@ -21,6 +21,8 @@ import { addDatosPersonales } from "../../redux/actions/datosPersonalesActions";
 import datosPersonalesReducer, { initialState } from "../../redux/reducers/datosPersonalesReducer";
 import { ADD_DATOS_PERSONALES } from "../../redux/types/datosPersonalesTypes";
 import axios from "axios";
+import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
+import { addCargos, addEmpleadores, addEstados, addEstadosCiviles, addEstudios, addFormasPago, addModosContratacion, addModosLiquidacion, addPaises, addParentescos, addTareasDesempeñadas, addTiposDocumento } from "../../redux/actions/fetchActions";
 
 //#endregion
 
@@ -51,39 +53,19 @@ const DatosPersonales = () => {
   //------------------------------------------------------CONTEXT
   const {
     saveEmpl,
-    saveEstados,
     saveEstado,
-    saveEstadosCiviles,
     saveEstadoCivil,
-    saveNacionalidades,
     saveNacionalidad,
-    saveEstudios,
     saveEstudio,
     saveTipoDNI,
-    saveTiposDNI,
-    disable,   
-    cargos,
-    tareasDesempeñadas,
-    parentescos,
-    formasDePago,
-    modosContratacion,
-    modosLiquidacion,
-    empleadores,
-    saveCargos,
-    saveTareas,
-    saveParentescos, 
-    saveFormasDePago,
-    saveModosContratacion,
-    saveModosLiquidacion,
-    saveEmpleadores
+    disable, 
   } = useContext(employeContext);
   //--------------------------------------------------------------------ESTADOS
-  const [error, setError] = useState("");
   const [image, setImage] = useState("");
 
   //#region ------------------------------------------------------------------------------URLs (Luego cambiar a archivos Js)
   
-  // URLS EMPLEADOS
+  //#region URLS EMPLEADOS
   const urlEstados = "http://54.243.192.82/api/Estados";
   const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
   const urlPaisesNac = "http://54.243.192.82/api/Paises";
@@ -95,20 +77,43 @@ const DatosPersonales = () => {
   const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos"
   const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
   const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
-  // const urlMotivosEgreso = "no esta la url :("
- const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
- // const urlAlicuotas = "no esta la url :("
+  const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
+  const urlBancos = "http://54.243.192.82/api/Bancos"
 
- // URLS LIQUIDACION
- const urlBancos = "http://54.243.192.82/api/Bancos"
+  //#endregion
+ 
 
+
+ const handleFetch=(url, action )=>{
+   dispatch({type: SET_LOADING});
+     axios.get(url)
+     .then((res)=>{
+       dispatch( action(res.data.result));
+     })
+     .catch((err)=>{
+       dispatch({type:AXIOS_ERROR});
+     })
+  }
+  useEffect(()=>{
+    handleFetch( urlEstados, addEstados);
+    handleFetch( urlEstadosCiviles,addEstadosCiviles);
+    handleFetch( urlPaisesNac,addPaises);
+    handleFetch( urlEstudios,addEstudios);
+    handleFetch( urlTiposDNI,addTiposDocumento);
+    handleFetch( urlCargos,addCargos);
+    handleFetch( urlTareasDesempeñadas,addTareasDesempeñadas);
+    handleFetch( urlParentescos,addParentescos);
+    handleFetch( urlFormasDePago,addFormasPago);
+    handleFetch( urlModosContratacion,addModosContratacion);
+    handleFetch( urlModosLiquidacion,addModosLiquidacion);
+    handleFetch( urlEmpleadores,addEmpleadores);
+  },[])
+ const datosPersonalesState = useSelector((state)=> state.generalState);
   //#endregion
 
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
-  const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
-  const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];
+  
   //Para Estado Civil
   const idEstadoCivil= saveEstadoCivil!== undefined ? saveEstadoCivil.filter((ec)=> {return( ec.masculino === datosPersonalesRedux.estadoCivilInput || ec.femenino === datosPersonalesRedux.estadoCivilInput)}) : null;
   const idSeleccionadoEC = idEstadoCivil.map((ec)=> {return(ec.idEstadoCivil)})
@@ -131,31 +136,17 @@ const DatosPersonales = () => {
   const idTiposDNI = idTipoDNI.map((ec)=> {return(ec.iDtipoDocumento)})
   
 
-  const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
-  const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
-  const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
-  const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nombrePais); }) : [];
+  
   const idPaisOrigen = saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
   const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO";
-  const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i) => { return (nac.estudiosNivel); }) : [];
   const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
   const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
-  const estadosArray = saveEstado.map((m, i) => { return (m.nombreEstado) });
-  const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => { return (est.nombreEstado) }) : null;
   const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
   const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO";
-  const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map((tdni, i) => { return tdni.tipoDocumento }) : [];
   const idTipoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDtipoDocumento : 0;
   const dniSelectedOption = saveTipoDNI !== undefined ? saveTipoDNI.find(tipo => tipo.iDtipoDocumento === idTipoSelected) : null;
   const numDoc = saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null;
 
-  const cargosMap = cargos !== undefined ? cargos.map((cargo, i) => { return (cargo.nombreCargo); }) : [];
-  const tareasMap = tareasDesempeñadas !== undefined ? tareasDesempeñadas.map((tarea, i) => { return (tarea.tareaDesempeñada) }) : [];
-  const parentescosMap = parentescos !== undefined ? parentescos.map((parent, i) => { return parent.nombreParentesco }) : [];
-  const formasDePagoMap = formasDePago !== undefined ? formasDePago.map(forma => forma.nombreFormaDePago) : []
-  const modosContratacionMap = modosContratacion !== undefined ? modosContratacion.map((modo, i) => { return modo.modoContratacion }) : [];
-  const modosLiquidacionMap = modosLiquidacion !== undefined ? modosLiquidacion.map((modo, i) => { return modo.modoLiquidacion }) : [];
-  const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
   //#endregion
 
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
@@ -165,66 +156,10 @@ const DatosPersonales = () => {
   //#region --- IGNORAR --- EN EL PRIMER RENDER, SE BUSCAN LOS DATOS DE LA API PASANDOLE LA URL Y LOS SETEA CON LA FN "saveEstadosCiviles" EN "saveEstadoCivil". ARRIBA SE MAPEAN
   
   //GET DATA EMPLEADOS
-  useEffect(() => {
-    getData(urlEstados, saveEstados);
-  }, []);
-  useEffect(() => {
-    getData(urlEstadosCiviles, saveEstadosCiviles);
-  }, []);
-  useEffect(() => {
-    getData(urlPaisesNac, saveNacionalidades);
-  }, []);
-  useEffect(() => {
-    getData(urlEstudios, saveEstudios);
-  }, [])
-  useEffect(() => {
-    getData(urlTiposDNI, saveTiposDNI);
-  }, [])
-  useEffect(() => {
-    getData(urlCargos, saveCargos)
-  }, [])
-  useEffect(() => {
-    getData(urlTareasDesempeñadas, saveTareas)
-  }, [])
-  useEffect(() => {
-    getData(urlParentescos, saveParentescos)
-  }, [])
-  useEffect(() => {
-    getData(urlFormasDePago, saveFormasDePago)
-  }, [])
-  useEffect(() => {
-    getData(urlModosContratacion, saveModosContratacion)
-  }, [])
-  useEffect(() => {
-    getData(urlModosLiquidacion, saveModosLiquidacion)
-  }, [])
-  // useEffect(() => {
-  //   getData(urlMotivosEgreso, saveMotivosEgreso) --> falta url
-  // }, [])
-  useEffect(() => {
-    getData(urlEmpleadores, saveEmpleadores)
-  }, [])
-  // useEffect(() => {
-  //   getData(urlAlicuotas, saveAlicuotas) --> falta url
-  // }, [])
-
-  //GET DATA LIQUIDACION -------> ARMAR CONTEXT PARA LIQUIDACION
-  
-  // useEffect(() => {
-  //   getData(urlBancos, saveBancos)  
-  // }, [])
+ 
 
   //#endregion
-  useEffect(() => {
 
-  }, [disable])
-  useEffect(() => {
-    getData(urlEstudios, saveEstudios);
-  }, []);
-  useEffect(() => {
-    getData(urlTiposDNI, saveTiposDNI);
-  }, []);
-  useEffect(() => {}, [disable]);
   useEffect(() => {
     setImageEmpleado();
   }, [saveEmpl[0].obsFechaIngreso]);
@@ -328,7 +263,7 @@ const DatosPersonales = () => {
     axios.get("http://54.243.192.82/api/Empleados?records=10000")
   .then((res) =>  setEmpleados(res.data.result));
   
-  },[empleados.length])
+  },[])
   //#region ------------------------------------------------------------------------------VALIDACIONES
 
   const validateNumbers = (e) => {
@@ -518,7 +453,8 @@ const DatosPersonales = () => {
                           idInput="documentoInput"
                           messageError="Solo puede contener números, sin puntos."
                           placeHolder="23456789"
-                          array={tiposDNI}
+                          array={datosPersonalesState.tiposDocumento !== undefined && datosPersonalesState.tiposDocumento !== "" ? datosPersonalesState.tiposDocumento : ["no entro"]}
+                          propArrayOp="tipoDocumento"
                           disabled={disable}
                           nameLabel="D.N.I."
                           onChange={onChange}
@@ -542,9 +478,9 @@ const DatosPersonales = () => {
                         />
                         <InputButton
                           value={
-                            empleadoUno[0] !== undefined ? empleadoUno[0].cuil : null
+                            empleadoUno[0] !== undefined ? empleadoUno[0].cuil : datosPersonales.inputCuil
                           }
-                          generalState={datosPersonales}
+                          generalState={datosPersonalesRedux !== undefined && datosPersonalesRedux}
                           action={ADD_DATOS_PERSONALES}
                           id="inputCuil"
                           nameInput="inputCuil"
@@ -556,19 +492,19 @@ const DatosPersonales = () => {
                           disabled={disable}
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.inputCuil
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.inputCuil
                               : "N° CUIL"
                           }
                           funcionCuil={generateCuil}
                           nroDocumento={
-                            datosPersonales !== undefined
-                              ? datosPersonales.documentoInput
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.documentoInput
                               : numDoc
                           }
                           genre={
-                            datosPersonales !== undefined
-                              ? datosPersonales.inputSexo
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.inputSexo
                               : null
                           }
                           usaCuil={true}
@@ -608,12 +544,12 @@ const DatosPersonales = () => {
                           sexo={
                             empleadoUno[0] !== undefined ? empleadoUno[0].sexo : datosPersonalesRedux !== undefined && datosPersonalesRedux.inputSexo
                           }
-                          nameButton="..."
+                          nameButton="..." 
                           nameLabel="Estado Civil"
-                          array={estadosCiviles}
+                          array={datosPersonalesState.estadosCiviles !== undefined && datosPersonalesState.estadosCiviles !== "" ? datosPersonalesState.estadosCiviles : ["no entro"]}
+                          propArrayOp="masculino"
+                          propArrayOpFem="femenino"
                           propArray="Casado"
-                          masculinos={estadosCivilesMasculinos}
-                          femeninos={estadosCivilesFemeninos}
                           display={true}
                           idModal="EstadoCivil"
                           disabled={((datosPersonalesRedux !== undefined || datosPersonalesRedux.inputSexo === undefined) ||datosPersonalesRedux.inputSexo === null || datosPersonalesRedux.inputSexo === "") ? disableEstado : !disable}
@@ -634,10 +570,10 @@ const DatosPersonales = () => {
                           }
                           nameButton="..."
                           nameLabel="Nacionalidad"
-                          array={nacionalidades !== undefined ? nacionalidades : ["Nacionalidad"]}
+                          array={datosPersonalesState.paises !== undefined && datosPersonalesState.paises !== "" ? datosPersonalesState.paises : ["Nacionalidad"]}
+                          propArrayOp="nacionalidad_masc"
+                          propArrayOpFem="nacionalidad_fem"
                           propArray="Casado"
-                          masculinos={nacionalidadesMasculinas}
-                          femeninos={nacionalidadesFemeninas}
                           display={true}
                           idModal="nacionalidades"
                           disabled={disable}
@@ -657,7 +593,8 @@ const DatosPersonales = () => {
                           sexo=""
                           nameButton="..."
                           nameLabel="Estado"
-                          array={estadosArray !== undefined ? estadosArray : ["Activo"]}
+                          array={datosPersonalesState.estados !== undefined && datosPersonalesState.estados !== "" ? datosPersonalesState.estados : []}
+                          propArrayOp="nombreEstado"
                           propArray={estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : ""}
                           masculinos=""
                           femeninos=""
@@ -759,7 +696,8 @@ const DatosPersonales = () => {
                           sexo=""
                           nameButton="..."
                           nameLabel="País de Origen"
-                          array={paises}
+                          array={datosPersonalesState.paises !== undefined && datosPersonalesState.paises !== "" ? datosPersonalesState.paises : []}
+                          propArrayOp="nombrePais"
                           propArray={
                             paisSelected !== undefined
                               ? paisSelected.nombrePais
@@ -789,7 +727,8 @@ const DatosPersonales = () => {
                           sexo=""
                           nameButton="..."
                           nameLabel="Estudios"
-                          array={estudios}
+                          array={datosPersonalesState.estudios !== undefined && datosPersonalesState.estudios !== "" ? datosPersonalesState.estudios : []}
+                          propArrayOp="estudiosNivel"
                           propArray={
                             estudioSelect !== undefined
                               ? estudioSelect.estudiosNivel

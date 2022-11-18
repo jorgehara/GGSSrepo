@@ -29,7 +29,6 @@ const TablaDomicilios = ({ columns , value}) => {
   //  setInputValor();
   //}, [valor.toString()])
   const valueSinNull = value !== undefined && value !== null && value;
-  console.log(valueSinNull)
   let barrios = [];
   let calles = [];
   let localidades = [];
@@ -50,7 +49,6 @@ const TablaDomicilios = ({ columns , value}) => {
       .then((res)=> calles.push(res.data.result)))
     });    
     setCalle(calles);
-    console.log(calles)
     barrio.map(async (item, index)=>{ 
       return( await axios.get(`http://54.243.192.82/api/Localidades/${item.idLocalidad}`)
       .then((res)=> localidades.push(res.data.result)))
@@ -95,11 +93,6 @@ const TablaDomicilios = ({ columns , value}) => {
  
 
 
-  console.log(calleSelec)
-  console.log(barrio)
-  console.log(localidadSelec)
-  console.log(departamento)
-  console.log(provinciaSelec)
 
   //console.log(barrios[0] !== undefined ? barrios[0].barrio : null);
 

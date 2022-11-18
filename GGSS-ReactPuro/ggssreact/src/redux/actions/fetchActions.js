@@ -118,13 +118,13 @@ export const addBarrios = (payload) =>{
         payload,
     };
 }
-export const addLocalidades = (payload) =>{
+export const addProvincias = (payload) =>{
     return {
         type : ADD_PROVINCIAS,
         payload,
     };
 }
-export const addProvincias = (payload) =>{
+export const addLocalidades = (payload) =>{
     return {
         type : ADD_LOCALIDADES,
         payload,

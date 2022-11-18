@@ -12,6 +12,7 @@ import TablaDomicilios from "../Tables/TablaDomicilios";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
 import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades, addProvincias } from "../../redux/actions/fetchActions";
+import InputForm from "../Inputs/InputForm/InputForm";
 
 //#endregion
 const Domicilios = () => {
@@ -74,9 +75,7 @@ const Domicilios = () => {
   },[])
   const generalStateData = useSelector((state)=> state.generalState)
 
-  console.log(generalStateData)
 
-  console.log(generalStateData.calles)
 
   //#region ------------------------------------------------------------------------------CONTEXT
   const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable } = useContext(employeContext);
@@ -86,31 +85,28 @@ const Domicilios = () => {
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   const calles = generalStateData.calles !== "" && generalStateData.calles !== undefined? generalStateData.calles.map((res) => {return (res.calle)}) : [];
-  const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => {return res.pisoDepto}) : null;
-  const deptos = saveDetpo !== undefined ? saveDetpo.map(res => {return res.departamento}) : null;
-  const provincias = saveProvincia !== undefined ? saveProvincia.map(res => {return res.provincia}) : null;
-  const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => {return res.localidad}) : null;
-  const barrios = saveBarrio !== undefined ? saveBarrio.map(res => {return res.barrio}) : null;
-  const pisoSelected = saveDom !== undefined ?  saveDom.map(m=> {return (m.pisoDepto)}) : null;
-  const calleSelected = saveDom !== undefined ?  saveDom.map(m=> {return (m.calle)}) : null;
-  const numCalleSelected = saveDom !== undefined ?  saveDom.map(m=> {return (m.numCalle)}) : null;
-  const provinciaSelected = saveDom !== undefined ?  saveDom.map(m=> {return (m.Provincia)}) : null;
-  const provinciaDepartamento = saveDom !== undefined ?  saveDom.map(m=> {return (m.Departamento)}) : null;
-  const provinciaLocalidad = saveDom !== undefined ?  saveDom.map(m=> {return (m.Localidad)}) : null;
-  const provinciaBarrio = saveDom !== undefined ?  saveDom.map(m=> {return (m.Barrio)}) : null;
-  const predeterminado = saveDom !== undefined ?  saveDom.map(m => {return(m.predeterminado)}) : null;
+  const pisoDepto = generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined ? generalStateData.domicilios.map(res => {return res.dpto}) : null;
+  const deptos = generalStateData.departamentos !== "" && generalStateData.departamentos !== undefined ? generalStateData.departamentos.map(res => {return res.departamento}) : null;
+  const provincias = generalStateData.provincias !== "" && generalStateData.provincias !== undefined ? generalStateData.provincias.map(res => {return res.provincia}) : null;
+  const localidades = generalStateData.localidades !== "" && generalStateData.localidades !== undefined ? generalStateData.localidades.map(res => {return res.localidad}) : null;
+  const barrios = generalStateData.barrios !== "" && generalStateData.barrios !== undefined ? generalStateData.barrios.map(res => {return res.barrio}) : null;  
+  const predeterminado = generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined ?  generalStateData.domicilios.map(m => {return(m.predeterminado)}) : null;
 
-  console.log(calles)
+
+  //SELECCIONADOS
+  //const provinciaSeleccionada = generalStateData.provincias !== "" && generalStateData.provincias !== undefined ? generalStateData.provincias.filter((provincia)=> provincia.idProvincia === empleadoUno.idProvincia);
+
+
 
   //#endregion
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
-  
+  const predeterminadoValue = predeterminado !== null ? predeterminado.toString() : "";
   useEffect(()=>{
     getEmpleados().then(res=> saveDomicilios(res))
   },[])
   useEffect(() => {
     setInputValor();
-  }, [predeterminado.toString()]);
+  }, [predeterminadoValue]);
   
   const idEmpleado = empleadoUno[0] !== undefined && empleadoUno.iDempleado;
   
@@ -124,7 +120,7 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
 
   const setInputValor = () => {
 
-    if (predeterminado.toString() === "1") {
+    if (predeterminado !== null && predeterminado.toString() === "1") {
       setInputValue("checked");
       return;
     }
@@ -186,8 +182,9 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                     sexo=""
                     nameButton="..."
                     nameLabel="Calle"
-                    array={calles !== null ? calles : ["calle", "calle"]}
-                    propArray={calleSelected !== undefined ? calleSelected.toString() : null}
+                    array={generalStateData.calles !== null && generalStateData.calles !== "" ? generalStateData.calles : ["calle", "calle"]}
+                    propArrayOp="calle"
+                    //propArray={calleSelected !== undefined && calleSelected !== null ? calleSelected.toString() : null}
                     masculinos=""
                     femeninos=""
                     display={true}
@@ -202,14 +199,14 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   <InputNumero
                     nameInput="inputNumCalle"
                     action={ADD_DOMICILIOS}
-                    array={paises}
+                    array={paises !== null ? paises : []}
                     generalState = {domicilios}
                     setGeneralState = {setDomicilios}
                     placeHolder="N° Calle"
                     nameCheck="Fijar"
                     defaultChecked=""
                     display={true}
-                    value={numCalleSelected !== undefined ? numCalleSelected.toString() : domiciliosState.inputNumCalle}
+                    //value={numCalleSelected !== undefined && numCalleSelected !== null ? numCalleSelected.toString() : domiciliosState.inputNumCalle}
                     disabled={disable}
                     idInput="inputNumCalle"
                     nameLabel="N°"
@@ -218,30 +215,26 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   />
                 </div>
                 </div>
-                <InputCbo
-                  value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom.pisoDepto
-                      : null
-                  }
-                  action={ADD_DOMICILIOS}
-                  generalState = {domicilios}
-                  setGeneralState = {setDomicilios}
-                  sexo=""
-                  nameButton="..."
-                  nameLabel="Piso/Dpto/
-                          Ofic/Torre"
-                          array={pisoDepto}
-                  propArray={pisoSelected !== undefined ? pisoSelected.toString() : null}
-                  masculinos=""
-                          femeninos=""
-                  display={true}
-                  idModal=""
-                  disabled={disable}
-                  nameInput="inputPisoCalle"
-                  idInput="inputPisoCalle"
-                  onChange={onChange}
-                />
+                  <InputForm
+                    value={
+                      pisoDepto !== null ?pisoDepto : []
+                    }
+                    nameInput="inputPisoCalle"
+                    idInput="inputPisoCalle"
+                    messageError="Solo puede contener números."
+                    placeHolder="Piso Dpto"
+                    disabled={disable}
+                    generalState={setDomicilios}
+                    action={ADD_DOMICILIOS}
+                    onChange={onChange}
+                    nameLabel="Piso/Dpto/
+                    Ofic/Torre"
+                    //datosPersonalesValue={
+                    //  pisoSelected !== undefined && pisoSelected !== null ? pisoSelected.toString() : null
+                    //}
+                    numbers={true}
+                  />
+                
               </div>
               <div className="col-xl-6">
                 
@@ -255,8 +248,9 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   sexo=""
                   nameButton="..."
                   nameLabel="Provincia"
-                  array={provincias !== undefined ? provincias : null}
-                  propArray={provinciaSelected !== undefined ? provinciaSelected.toString() : null}
+                  array={generalStateData.provincias !== undefined && generalStateData.provincias !== ""  ? generalStateData.provincias : []}
+                  propArrayOp="provincia"
+                  //propArray={provinciaSelected !== undefined && provinciaSelected !== null ? provinciaSelected.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}
@@ -278,8 +272,9 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   sexo=""
                   nameButton="..."
                   nameLabel="Departamento"
-                  array={deptos !== undefined ? deptos : null}
-                  propArray={provinciaDepartamento !== undefined ? provinciaDepartamento.toString() : null}
+                  array={generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos : []}
+                  propArrayop="departamento"
+                  //propArray={provinciaDepartamento !== undefined && provinciaDepartamento !== null ? provinciaDepartamento.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}
@@ -301,8 +296,9 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   sexo=""
                   nameButton="..."
                   nameLabel="Localidad"
-                  array={localidades !== undefined ? localidades : null}
-                  propArray={provinciaLocalidad !== undefined ?  provinciaLocalidad.toString() : null}
+                  array={generalStateData.localidades !== undefined && generalStateData.localidades !== "" ? generalStateData.localidades : []}
+                  propArrayOp="localidad"
+                  //propArray={provinciaLocalidad !== undefined && provinciaLocalidad !== null ?  provinciaLocalidad.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}
@@ -324,8 +320,9 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   sexo=""
                   nameButton="..."
                   nameLabel="Barrio"
-                  array={barrios !== undefined ? barrios : null}
-                  propArray={provinciaBarrio !== undefined ? provinciaBarrio.toString() : null}
+                  array={generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios : []}
+                  propArrayOp="barrio"
+                  //propArray={provinciaBarrio !== undefined && provinciaBarrio !== null ? provinciaBarrio.toString() : null}
                   masculinos=""
                           femeninos=""
                   display={true}

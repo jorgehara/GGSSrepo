@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./DNICboBox.css";
-const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabled, idInput, nameLabel, onChange, selectedId, datosPersonalesValue, propArray, datosPersonalesValue2, generalState, action, validateNumbersDNI}) => {
+const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabled, idInput, nameLabel, onChange, selectedId, datosPersonalesValue, propArray, datosPersonalesValue2, generalState, action, validateNumbersDNI,propArrayOp}) => {
 
 
   const [valor, setValor] = useState("");
@@ -22,8 +22,8 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabl
       </div>
       <div className="">
         <select disabled={disabled} className="formulario-input-DNI form-select ml-0 px-0" id={selectedId} value={datosPersonalesValue2} name={selectedId} onChange={(e)=> onChange(e, action)}>
-          {array.map((op, i) => {
-            return (propArray === op ? <option selected key={i} value={op}>{op}</option> : <option key={i} value={op}>{op}</option>);
+          {array !== undefined && array.map((op, i) => {
+            return (propArray === op[propArrayOp] ? <option selected key={i} value={op[propArrayOp]}>{op[propArrayOp]}</option> : <option key={i} value={op[propArrayOp]}>{op[propArrayOp]}</option>);
           })}
         </select>
       </div>

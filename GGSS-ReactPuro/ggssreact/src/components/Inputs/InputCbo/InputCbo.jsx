@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled, nameInput, idInput,onChange, datosPersonalesValue, action}) => {
+const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled, nameInput, idInput,onChange, datosPersonalesValue, action, propArrayOp,propArrayOpFem}) => {
   
-    
     const [mostrarComponente, setMostrarComponente] = useState(true);
-    const [returnBySexo, setReturnBySexo] = useState([]);
     const [valor, setValor] = useState("");
 
     useEffect(()=>{
@@ -20,19 +18,7 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
       setMostrarComponente(display)
       
     },[display])
-    useEffect(()=>{
-      setReturnBySexo(validateSexo(sexo,masculinos, femeninos));
-    },[sexo])
-
-    const validateSexo =(sexo, masculinos, femeninos)=>{
-      if(sexo === "M"){
-        return masculinos;
-      }
-      if(sexo === "F"){
-        return femeninos
-      }
-     
-  }
+   
   return (
     <div className='formulario__grupo__inputs__cbo '>
         <div className='form__grupo__label__inp '>
@@ -42,17 +28,24 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
             <div className='segundo'>
                 <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e, action)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>{fieldName}                    
                     {
-                       sexo !== null && sexo !== undefined && sexo.length > 0 && returnBySexo !== undefined ? returnBySexo.map((op, index)=>{
+                       sexo !== null && sexo !== undefined && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{
                         return(
-                          propArray === op ? <option key={index} selected defaultValue={op} value={op}>{op}</option> :
-                                <option defaultValue={op} value={op} key={index}>{op}</option> 
+                          propArray === op[propArrayOp] ? <option key={index} selected defaultValue={op[propArrayOp]} value={op[propArrayOp]}>
+                                                            {op[propArrayOp]} 
+                                                         </option> :
+                                                         <option defaultValue={op[propArrayOp]} value={op[propArrayOp]} key={index}>
+                                                            {op[propArrayOp]}
+                                                         </option> 
                         )
-                      }) :
-                        array !== [{}] && array.map((op, index)=>{
-                        
+                    }) :
+                        array !== undefined && array.map((op, index)=>{
                             return(
-                              propArray === op ? <option key={index} selected defaultValue={op} value={op}>{op }</option> :
-                                <option defaultValue={op} value={op} key={index}>{op}</option> 
+                              propArray === op[propArrayOp] ? <option key={index} selected defaultValue={op[propArrayOp]} value={op[propArrayOp]}>
+                                                                {op[propArrayOpFem]} 
+                                                             </option> :
+                                                             <option defaultValue={op[propArrayOp]} value={op[propArrayOp]} key={index}>
+                                                                {op[propArrayOpFem]}
+                                                             </option> 
                             )
                         })
                     }
