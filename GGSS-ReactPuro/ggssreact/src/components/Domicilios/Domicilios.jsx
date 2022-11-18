@@ -4,15 +4,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { employeContext } from "../../context/employeContext";
 import { ADD_DOMICILIOS } from "../../redux/types/domiciliosTypes";
-import { getData } from "../../services/fetchAPI";
 import { getEmpleados } from "../../services/mockDataDomicilios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import InputCbo from "../Inputs/InputCbo/InputCbo";
 import InputNumero from "../Inputs/InputNumero/InputNumero";
 import TablaDomicilios from "../Tables/TablaDomicilios";
-import TableBasic1 from "../Tables/TableBasic1";
-import { AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING } from "../../redux/types/fetchTypes";
+import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
+import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades, addProvincias } from "../../redux/actions/fetchActions";
 
 //#endregion
 const Domicilios = () => {
@@ -31,12 +30,14 @@ const Domicilios = () => {
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
   //#region ------------------------------------------------------------------------------REDUX
+
   const dispatch = useDispatch();
-  const handleFetch=(url, name )=>{
+
+  const handleFetch=(url, action )=>{
     dispatch({type: SET_LOADING});
       axios.get(url)
       .then((res)=>{
-        dispatch({type: AXIOS_SUCCESS, payload :{ name: name, value : res.data.result}});
+        dispatch( action(res.data.result));
       })
       .catch((err)=>{
         dispatch({type:AXIOS_ERROR});
@@ -64,16 +65,18 @@ const Domicilios = () => {
   //#endregion
 
   useEffect(()=>{
-    handleFetch(urlDomicilios, "domicilios");
-    handleFetch(urlCalles, "calles");
-    handleFetch(urlDeptos, "departamentos");
-    handleFetch(urlProvincias, "provincias");
-    handleFetch(urlLocalidades, "localidades");
-    handleFetch(urlBarrios, "barrios");
+    handleFetch(urlDomicilios, addDomicilios);
+    handleFetch(urlCalles, addCalles);
+    handleFetch(urlDeptos, addDepartamentos);
+    handleFetch(urlProvincias, addProvincias);
+    handleFetch(urlLocalidades, addLocalidades);
+    handleFetch(urlBarrios, addBarrios);
   },[])
   const generalStateData = useSelector((state)=> state.generalState)
 
   console.log(generalStateData)
+
+  console.log(generalStateData.calles)
 
   //#region ------------------------------------------------------------------------------CONTEXT
   const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable } = useContext(employeContext);
@@ -82,7 +85,7 @@ const Domicilios = () => {
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
+  const calles = generalStateData.calles !== "" && generalStateData.calles !== undefined? generalStateData.calles.map((res) => {return (res.calle)}) : [];
   const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => {return res.pisoDepto}) : null;
   const deptos = saveDetpo !== undefined ? saveDetpo.map(res => {return res.departamento}) : null;
   const provincias = saveProvincia !== undefined ? saveProvincia.map(res => {return res.provincia}) : null;
@@ -97,28 +100,11 @@ const Domicilios = () => {
   const provinciaBarrio = saveDom !== undefined ?  saveDom.map(m=> {return (m.Barrio)}) : null;
   const predeterminado = saveDom !== undefined ?  saveDom.map(m => {return(m.predeterminado)}) : null;
 
-  
+  console.log(calles)
 
   //#endregion
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
-  useEffect(()=>{
-    getData(urlDomicilios, setDomicilios);
-  },[])
-  useEffect(()=>{
-    getData(urlCalles, saveCalles);
-  },[])
-  useEffect(()=>{
-    getData(urlDeptos, saveDetpos);
-  },[])
-  useEffect(()=>{
-    getData(urlProvincias, saveProvincias);
-  },[])
-  useEffect(()=>{
-    getData(urlLocalidades, saveLocalidades);
-  },[])
-  useEffect(()=>{
-    getData(urlBarrios, saveBarrios);
-  },[])
+  
   useEffect(()=>{
     getEmpleados().then(res=> saveDomicilios(res))
   },[])
@@ -200,7 +186,7 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                     sexo=""
                     nameButton="..."
                     nameLabel="Calle"
-                    array={calles}
+                    array={calles !== null ? calles : ["calle", "calle"]}
                     propArray={calleSelected !== undefined ? calleSelected.toString() : null}
                     masculinos=""
                     femeninos=""

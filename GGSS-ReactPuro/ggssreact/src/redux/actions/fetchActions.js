@@ -1,4 +1,4 @@
-import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES } from "../types/fetchTypes";
+import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES } from "../types/fetchTypes";
 
 
 export const setLoading = (payload) =>{
@@ -90,6 +90,43 @@ export const addModosLiquidacion = (payload) =>{
 export const addEmpleadores = (payload) =>{
     return {
         type : ADD_EMPLEADORES,
+        payload,
+    };
+}
+
+export const addDomicilios = (payload) =>{
+    return {
+        type : ADD_DOMICLIOS,
+        payload,
+    };
+}
+export const addCalles = (payload) =>{
+    return {
+        type : ADD_CALLES,
+        payload,
+    };
+}
+export const addDepartamentos = (payload) =>{
+    return {
+        type : ADD_DEPARTAMENTOS,
+        payload,
+    };
+}
+export const addBarrios = (payload) =>{
+    return {
+        type : ADD_BARRIOS,
+        payload,
+    };
+}
+export const addLocalidades = (payload) =>{
+    return {
+        type : ADD_PROVINCIAS,
+        payload,
+    };
+}
+export const addProvincias = (payload) =>{
+    return {
+        type : ADD_LOCALIDADES,
         payload,
     };
 }
