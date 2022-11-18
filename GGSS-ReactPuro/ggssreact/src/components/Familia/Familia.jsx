@@ -33,8 +33,6 @@ const Familia = () => {
     inputDateBaja : "",
     // inputEstadosCivilesModalFem:""
   });
-
-
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
     const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
     const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
@@ -260,8 +258,6 @@ const Familia = () => {
         </div>
             </div>
           </div>
-   
-
         <div className="d-flex flex-row align-items-center">
           <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={saveFamiliarSelected !== undefined && saveFamiliarSelected !== null ? saveFamiliarSelected : []} parentescos={parentescos!== undefined ? parentescos : null} seleccionado={saveFamSelect}/>
           <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable}/>            
