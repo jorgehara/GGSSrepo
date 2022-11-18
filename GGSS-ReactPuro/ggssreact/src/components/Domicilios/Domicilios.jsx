@@ -82,7 +82,7 @@ const Domicilios = () => {
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
+  const calles = generalStateData.calles !== undefined ? generalStateData.data.calles.map((res) => {return (res.calle)}) : null;
   const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => {return res.pisoDepto}) : null;
   const deptos = saveDetpo !== undefined ? saveDetpo.map(res => {return res.departamento}) : null;
   const provincias = saveProvincia !== undefined ? saveProvincia.map(res => {return res.provincia}) : null;
@@ -101,24 +101,7 @@ const Domicilios = () => {
 
   //#endregion
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
-  useEffect(()=>{
-    getData(urlDomicilios, setDomicilios);
-  },[])
-  useEffect(()=>{
-    getData(urlCalles, saveCalles);
-  },[])
-  useEffect(()=>{
-    getData(urlDeptos, saveDetpos);
-  },[])
-  useEffect(()=>{
-    getData(urlProvincias, saveProvincias);
-  },[])
-  useEffect(()=>{
-    getData(urlLocalidades, saveLocalidades);
-  },[])
-  useEffect(()=>{
-    getData(urlBarrios, saveBarrios);
-  },[])
+  
   useEffect(()=>{
     getEmpleados().then(res=> saveDomicilios(res))
   },[])
