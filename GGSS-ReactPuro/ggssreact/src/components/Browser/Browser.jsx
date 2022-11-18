@@ -15,12 +15,12 @@ const Browser = () => {
     legajo: "",
     apellido: "",
   });
-  const url = "http://54.243.192.82/api/Empleados?records=1005";
+  const url = "http://54.243.192.82/api/Empleados?records=10000";
 
   const dispatch = useDispatch();
   const empleados = useSelector((state)=> state.employeStates.employes)
 
-  console.log(empleados)
+
 
 
   const {  saveDisable, disable} = useContext(employeContext);
@@ -48,7 +48,7 @@ const Browser = () => {
   
   function onSelect(e, name, idEmpleado) {
     getEmployeByName(empleados[0], name).then((res) => {
-      console.log(res[0].iDempleado)
+      
       dispatch(addOneEmploye(res[0].iDempleado));
       saveEmploye(res);
     });

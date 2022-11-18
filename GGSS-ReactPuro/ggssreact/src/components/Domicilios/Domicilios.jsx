@@ -9,28 +9,39 @@ import { getEmpleados } from "../../services/mockDataDomicilios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import InputCbo from "../Inputs/InputCbo/InputCbo";
 import InputNumero from "../Inputs/InputNumero/InputNumero";
+import TablaDomicilios from "../Tables/TablaDomicilios";
 import TableBasic1 from "../Tables/TableBasic1";
+import { AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
 
 //#endregion
 const Domicilios = () => {
 
   const [inputValue, setInputValue] = useState("");
-
+  const [domicilios, setDomicilios] = useState([]);
+  const [domiciliosDelEmpleado, setDomiciliosDelEmpleado] = useState([]);
   const columns = [
     "Predeterminado",
     "Calle",
-    "Número",
     "Barrio",
     "Localidad",
     "Piso/Of/Dpto",
     "Provincia",
-    "Obs"
   ];
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
   //#region ------------------------------------------------------------------------------REDUX
   const dispatch = useDispatch();
+  const handleFetch=(url, name )=>{
+    dispatch({type: SET_LOADING});
+      axios.get(url)
+      .then((res)=>{
+        dispatch({type: AXIOS_SUCCESS, payload :{ name: name, value : res.data.result}});
+      })
+      .catch((err)=>{
+        dispatch({type:AXIOS_ERROR});
+      })
+   }
   function onChange(e, action) {
     dispatch(
       {
@@ -39,19 +50,36 @@ const Domicilios = () => {
       });    
   }
   const domiciliosState = useSelector((state)=> state.domiciliosStates)
-  console.log(domiciliosState)
+  
   //#endregion
   
 
   //#region ------------------------------------------------------------------------------URLs
+  const urlDomicilios = "http://54.243.192.82/api/Domicilios";
   const urlCalles = "http://54.243.192.82/api/Calles";
   const urlDeptos = "http://54.243.192.82/api/Departamentos";
   const urlProvincias = "http://54.243.192.82/api/Provincias";
   const urlLocalidades = "http://54.243.192.82/api/Localidades";
   const urlBarrios = "http://54.243.192.82/api/Barrios";
   //#endregion
+
+  useEffect(()=>{
+    handleFetch(urlDomicilios, "domicilios");
+    handleFetch(urlCalles, "calles");
+    handleFetch(urlDeptos, "departamentos");
+    handleFetch(urlProvincias, "provincias");
+    handleFetch(urlLocalidades, "localidades");
+    handleFetch(urlBarrios, "barrios");
+  },[])
+  const generalStateData = useSelector((state)=> state.generalState)
+
+  console.log(generalStateData)
+
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable, domicilios, setDomicilios } = useContext(employeContext);
+  const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable } = useContext(employeContext);
+
+
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   const calles = saveCalle !== undefined ? saveCalle.map(res => {return res.calle}) : null;
@@ -68,8 +96,14 @@ const Domicilios = () => {
   const provinciaLocalidad = saveDom !== undefined ?  saveDom.map(m=> {return (m.Localidad)}) : null;
   const provinciaBarrio = saveDom !== undefined ?  saveDom.map(m=> {return (m.Barrio)}) : null;
   const predeterminado = saveDom !== undefined ?  saveDom.map(m => {return(m.predeterminado)}) : null;
+
+  
+
   //#endregion
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
+  useEffect(()=>{
+    getData(urlDomicilios, setDomicilios);
+  },[])
   useEffect(()=>{
     getData(urlCalles, saveCalles);
   },[])
@@ -91,17 +125,30 @@ const Domicilios = () => {
   useEffect(() => {
     setInputValor();
   }, [predeterminado.toString()]);
-  //#endregion
- 
   
+  const idEmpleado = empleadoUno[0] !== undefined && empleadoUno.iDempleado;
+  
+  useEffect(()=>{
+    setDomiciliosDelEmpleado(domicilios.filter((dom)=> dom.idEmpleado === empleadoUno[0].iDempleado));
+  },[idEmpleado])
+  //#endregion
+
+
+const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (empleadoUno[0] !== undefined && empleadoUno[0].iDempleado));
+
   const setInputValor = () => {
+
     if (predeterminado.toString() === "1") {
       setInputValue("checked");
       return;
     }
     setInputValue("");
   };
-  
+
+  //para CAlles:
+  let calleEmpleado = saveCalle!== undefined && domiciliosDelEmpleado[0] !== undefined &&  saveCalle.filter(((item)=>{ return(item.idCalle === domiciliosDelEmpleado[0].idCalle)}));
+
+
   return (
     
       //#region Menú Principal
@@ -304,7 +351,7 @@ const Domicilios = () => {
                 />
               </div>
               <ButtonCancelarAceptar cancelar="-" aceptar="+"disabled={disable} />
-              <TableBasic1 columns={columns} value={ saveDom !== undefined ? saveDom : null}/>
+              <TablaDomicilios columns={columns} value={ domicilioEmpleadoSelect!== undefined ? domicilioEmpleadoSelect : null}/>
               
             </div>
           </section>

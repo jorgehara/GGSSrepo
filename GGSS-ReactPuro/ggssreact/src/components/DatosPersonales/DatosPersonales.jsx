@@ -28,7 +28,8 @@ const DatosPersonales = () => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
   const [datosPersonales, setDatosPersonales] = useState({});
   const [disableEstado, setDisableEstado] = useState(false);
-
+  const [imagenSended , setImagenSended] = useState("");
+  const [empleados, setEmpleados] = useState([]);
   //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
   
   //#endregion
@@ -45,7 +46,7 @@ const DatosPersonales = () => {
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
  
-    console.log(datosPersonalesRedux)
+
   //#endregion
   //------------------------------------------------------CONTEXT
   const {
@@ -108,11 +109,27 @@ const DatosPersonales = () => {
   const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
   const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
   const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];
+  //Para Estado Civil
+  const idEstadoCivil= saveEstadoCivil!== undefined ? saveEstadoCivil.filter((ec)=> {return( ec.masculino === datosPersonalesRedux.estadoCivilInput || ec.femenino === datosPersonalesRedux.estadoCivilInput)}) : null;
+  const idSeleccionadoEC = idEstadoCivil.map((ec)=> {return(ec.idEstadoCivil)})
+  //Para Estudios
+  const idEstudiuos= saveEstudio!== undefined ? saveEstudio.filter((ec)=> {return( ec.estudiosNivel === datosPersonalesRedux.estudiosInput)}) : null;
+  const idEsudiosSelec = idEstudiuos.map((ec)=> {return(ec.iDestudios)})
 
-  const estadoCivilId = empleadoUno[0] !== undefined ? empleadoUno[0].iDestadoCivil : null;
-  console.log(empleadoUno[0] !== undefined ? empleadoUno[0] : null)
-  const estadoCivilSelectedId = saveEstadoCivil !== undefined && saveEstadoCivil.map((estado)=> estado.iDestadoCivil === estadoCivilId);
+  //Para Estados
+  const idEstados= saveEstado!== undefined ? saveEstado.filter((ec)=> {return( ec.nombreEstado === datosPersonalesRedux.estadosEmpleados)}) : null;
+  const idEstadoSelecs = idEstados.map((ec)=> {return(ec.idEstado)})
 
+  //Para PaisOrigen
+  const idPaisO= saveNacionalidad!== undefined ? saveNacionalidad.filter((ec)=> {return( ec.nombrePais === datosPersonalesRedux.paisOrigenInput)}) : null;
+  const idPaisOSelecs = idPaisO.map((ec)=> {return(ec.idPais)})
+   //Para Nacionalidad
+   const idNacionalidad= saveNacionalidad!== undefined ? saveNacionalidad.filter((ec)=> {return( ec.nacionalidad_masc === datosPersonalesRedux.nacionalidadesInput || ec.nacionalidad_fem === datosPersonalesRedux.nacionalidadesInput )}) : null;
+   const idNacionalidadSelecs = idNacionalidad.map((ec)=> {return(ec.idPais)})
+  //Para Tipo DNI
+  const idTipoDNI= saveTipoDNI!== undefined ? saveTipoDNI.filter((ec)=> {return( ec.tipoDocumento === datosPersonalesRedux.dniSelected)}) : null;
+  const idTiposDNI = idTipoDNI.map((ec)=> {return(ec.iDtipoDocumento)})
+  
 
   const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
   const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
@@ -145,7 +162,7 @@ const DatosPersonales = () => {
   
 
 
-  /// --- IGNORAR --- EN EL PRIMER RENDER, SE BUSCAN LOS DATOS DE LA API PASANDOLE LA URL Y LOS SETEA CON LA FN "saveEstadosCiviles" EN "saveEstadoCivil". ARRIBA SE MAPEAN
+  //#region --- IGNORAR --- EN EL PRIMER RENDER, SE BUSCAN LOS DATOS DE LA API PASANDOLE LA URL Y LOS SETEA CON LA FN "saveEstadosCiviles" EN "saveEstadoCivil". ARRIBA SE MAPEAN
   
   //GET DATA EMPLEADOS
   useEffect(() => {
@@ -197,7 +214,7 @@ const DatosPersonales = () => {
   //   getData(urlBancos, saveBancos)  
   // }, [])
 
-
+  //#endregion
   useEffect(() => {
 
   }, [disable])
@@ -219,75 +236,99 @@ const DatosPersonales = () => {
   function setImageEmpleado() {
     saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
   }
-  console.log(estadoCivilSelectedId);
-  const bodyPostEmploye = {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+
+    function textToBin(text) {
+      return (
+        Array
+          .from(text)
+          .reduce((acc, char) => acc.concat(char.charCodeAt().toString(2)), [])
+          .map(bin => '0'.repeat(8 - bin.length) + bin )
+          .join(' ')
+      );
+    }
+    useEffect(()=>{
+      setImagenSended(textToBin(datosPersonalesRedux.inputImage));
+    },[datosPersonalesRedux.inputImage])
+
+  let bodyPostEmploye = {
+    "iDempleado" : ((empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
     "legajo": datosPersonalesRedux.numLegajo,
     "apellido": datosPersonalesRedux.apellidoInput,
-    "iDtipoDocumento": idTipoSelected,
+    "iDtipoDocumento": Number(idTiposDNI[0]),
     "nroDocumento": datosPersonalesRedux.documentoInput,
     "cuil": datosPersonalesRedux.inputCuil,
     "sexo": datosPersonalesRedux.inputSexo,
-    "iDestadoCivil": 0,
-    "iDnacionalidad": 0,
-    "fechaNacimiento": "2022-11-16T18:04:19.597Z",
-    "iDestudios": 0,
-    "fechaIngreso": "2022-11-16T18:04:19.597Z",
-    "fechaEfectiva": "2022-11-16T18:04:19.597Z",
-    "iDcategoria": 0,
-    "iDcargo": 0,
-    "iDtareaDesempeñada": 0,
-    "idCentrodeCosto": 0,
-    "iDsectorDpto": 0,
-    "iDmodoContratacion": 0,
-    "iDmodoLiquidacion": 0,
-    "iDformadePago": 0,
-    "idbanco": 0,
+    "iDestadoCivil": Number(idSeleccionadoEC[0]),
+    "iDnacionalidad": Number(idNacionalidadSelecs[0]),
+    "fechaNacimiento": datosPersonalesRedux.inputDateNac,
+    "iDestudios": Number(idEsudiosSelec[0]),
+    "fechaIngreso": today,
+    "fechaEfectiva": today,
+    "iDcategoria": 5,
+    "iDcargo": 11,
+    "iDtareaDesempeñada": 30,
+    "idCentrodeCosto": 9,
+    "iDsectorDpto": 1,
+    "iDmodoContratacion": 11,
+    "iDmodoLiquidacion": 1,
+    "iDformadePago": 1,
+    "idbanco": 1,
     "nroCtaBanco": "string",
     "cbu": "string",
-    "iDlugardePago": 0,
-    "iDobraSocial": 0,
-    "iDsindicato": 0,
+    "iDlugardePago": 1,
+    "iDobraSocial": 1,
+    "iDsindicato": 1,
     "fechaEgreso": "2022-11-16T18:04:19.597Z",
-    "iDesquema": 0,
-    "iDempleador": 0,
-    "nombres": "string",
-    "idEstado": 0,
+    "iDesquema": 24,
+    "iDempleador": 21,
+    "nombres": datosPersonalesRedux.nombresInput,
+    "idEstado": Number(idEstadoSelecs),
     "rutaFoto": "string",
-    "telFijo": "string",
+    "telFijo": datosPersonalesRedux.telefonoInput,
     "acuerdo": 0,
     "neto": true,
-    "idPaisOrigen": 0,
-    "mail": "string",
-    "telMovil": "string",
+    "idPaisOrigen": Number(idPaisOSelecs[0]),
+    "mail": datosPersonalesRedux.email,
+    "telMovil": datosPersonalesRedux.movil,
     "adicObraSocial": true,
-    "idConceptoAdicObraSocial": 0,
+    "idConceptoAdicObraSocial": 44,
     "adicAfjp": true,
-    "idConceptoAdicAfjp": 0,
+    "idConceptoAdicAfjp": 48,
     "adicSindicato": true,
-    "idConceptoAdicSindicato": 0,
+    "idConceptoAdicSindicato": 49,
     "tipoCuenta": 0,
     "legajoAnterior": "string",
-    "imagen": "string",
+    "imagen": imagenSended,
     "totalRemuneracion": 0,
     "totalNeto": 0,
     "tieneEmbargos": true,
     "tieneSumarioAdministrativo": true,
     "tieneLicenciaSinGoceHaberes": true,
-    "obsEstudios": "string",
+    "obsEstudios": datosPersonalesRedux.observacionesEstudios,
     "obsFechaIngreso": "string",
-    "idAgrupamiento": 0,
-    "idDireccion": 0,
+    "idAgrupamiento": 1,
+    "idDireccion": 9,
     "observacionesAdscripto": "string",
-    "idSectorAfectacion": 0,
-    "idDireccionAfectacion": 0,
+    "idSectorAfectacion": 1,
+    "idDireccionAfectacion": 9,
     "obsAfectacion": "string"
   };
+ 
   //#endregion
 
   //#region ------------------------------------------------------------------------------VALIDACIONES
 
   //#endregion
-
+  useEffect(()=>{
+    axios.get("http://54.243.192.82/api/Empleados?records=10000")
+  .then((res) =>  setEmpleados(res.data.result));
+  
+  },[empleados.length])
   //#region ------------------------------------------------------------------------------VALIDACIONES
 
   const validateNumbers = (e) => {
@@ -332,10 +373,36 @@ const DatosPersonales = () => {
   };
   //#endregion
   // console.log(saveEmpl[0] !== undefined ? saveEmpl[0] : null);
-  function sendDataEmploye(){
-    axios
+  async function sendDataEmploye(){
+    
+    if(Object.values(bodyPostEmploye) === "" || Object.values(bodyPostEmploye) === null){
+      swal({
+        title: "Error",
+        text: "Debe llenar todos los campos",
+        icon: "error",
+      })
+      return;
+    }
+    await axios
     .post('http://54.243.192.82/api/Empleados', bodyPostEmploye)
-    .then((res)=> console.log(res));
+    .then((res)=> {
+      try{
+        if(res.status === 200){
+          return (swal({
+            title: "Ok",
+            text: "Empleado guardado con exito",
+            icon: "success",
+          }))
+        }
+      }catch(ex){
+        return (swal({
+          title: "Error",
+          text: `Error: ${ex}`,
+          icon: "error",
+        }))
+      }      
+      
+    })
   }
   return (
     //#region Menú Principal
@@ -563,7 +630,7 @@ const DatosPersonales = () => {
                           generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           sexo={
-                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : datosPersonales !== undefined && datosPersonales.inputSexo
+                            empleadoUno[0] !== undefined ? empleadoUno[0].sexo : datosPersonalesRedux !== undefined && datosPersonalesRedux.inputSexo
                           }
                           nameButton="..."
                           nameLabel="Nacionalidad"
@@ -701,9 +768,9 @@ const DatosPersonales = () => {
                           masculinos=""
                           femeninos=""
                           display={true}
-                          idModal="estadosEmpleados"
+                          idModal="paisOrigenInput"
                           disabled={disable}
-                          idInput="estadosEmpleados"
+                          idInput="paisOrigenInput"
                           onChange={onChange}
                           datosPersonalesValue={
                             datosPersonales !== undefined

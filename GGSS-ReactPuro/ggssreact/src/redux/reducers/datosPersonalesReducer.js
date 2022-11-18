@@ -19,7 +19,8 @@ export const initialState = {
             estadosEmpleados : "",
             estudiosInput : "",
             observacionesEstudios : "",
-            inputImage : ""
+            inputImage : "",
+            paisOrigenInput : ""
         }
     
 };
@@ -27,11 +28,8 @@ export const initialState = {
 const datosPersonalesReducer = (state = initialState, action) =>{
 
     const { type, payload }  = action;
-    console.log(payload !== undefined &&{ ...state,
-        [payload.name]:payload.value})
     switch(type) {
         case ADD_DATOS_PERSONALES : {
-            console.log("entro al case")
             return {
                 ...state,
                 formulario : {...state.formulario, [payload.name]:payload.value}

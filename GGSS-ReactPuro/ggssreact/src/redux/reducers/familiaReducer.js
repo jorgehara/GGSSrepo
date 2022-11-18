@@ -21,7 +21,6 @@ export const initialState = {
 const familiaReducer = (state = initialState, action) =>{
 
     const { type, payload }  = action;
-    console.log(payload)
     switch(type) {
         case ADD_FAMILIA : {
             console.log("entro al case")

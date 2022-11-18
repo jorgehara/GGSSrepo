@@ -24,7 +24,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
     
     setValor(value);
   },[value])
-  console.log(datosPersonalesValue)
+  
   return (
     clasess ? <div className={clasess.classOne}>
     <div className={clasess.classTwo}>

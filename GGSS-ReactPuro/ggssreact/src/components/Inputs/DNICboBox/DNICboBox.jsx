@@ -11,7 +11,6 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabl
   },[datosPersonalesValue])
   
   useEffect(()=>{
-    console.log(`entro con valor ${value}`);
     setValor(value);
   },[value])
 

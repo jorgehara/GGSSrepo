@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { employeContext } from '../../context/employeContext';
 
-const ButtonCancelarAceptar = ({cancelar, aceptar, disabled}) => {
+const ButtonCancelarAceptar = ({cancelar, aceptar, disabled,functionSend}) => {
 
   const { saveEmpl, saveEstados, saveEstado,  saveEstadosCiviles,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveDisable, disable} = useContext(employeContext);
 
@@ -15,7 +15,7 @@ const ButtonCancelarAceptar = ({cancelar, aceptar, disabled}) => {
             <button className='btn btn-danger 'disabled={disabled}
                     onClick={(e)=>deshabilitaEdit(e)}>{cancelar}</button>
                     
-            <button className='btn btn-success ml-2'disabled={disabled}
+            <button className='btn btn-success ml-2'disabled={disabled} onClick={functionSend}
                     
                     >{aceptar}</button>
         </div>
