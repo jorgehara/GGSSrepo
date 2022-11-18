@@ -103,12 +103,10 @@ const InputParentesco = ({
             checked={checked}
             disabled={disable}
           />
-          <label className="form-check-label input__parentesco" htmlFor="flexCheckChecked">
+          <label className="form-check-label label_FijarParents" htmlFor="flexCheckChecked">
             {nameCheck}
           </label>
         </div>
-
-
 </div>
 
 
