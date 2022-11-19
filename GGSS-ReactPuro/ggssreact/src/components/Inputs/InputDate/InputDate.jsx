@@ -39,7 +39,7 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
             {nameInput}
 
           </label>
-          <input className={mostrarComponente ? "form-check-input ml-4" : "none"} type="checkbox"  id="flexCheckChecked"  checked={checked} disabled={disabled} />
+          <input className={mostrarComponente ? "select-date-DatosPerson" : "none"} type="checkbox"  id="flexCheckChecked"  checked={checked} disabled={disabled} />
         </div>
         <div className="d-flex flex-row justify-content-start align-items-center">
           <input className={mostrarComponente2 ? "form-check-input " : "none"} type="checkbox"  id="flexCheckChecked"  checked={checked} disabled={disabled} />

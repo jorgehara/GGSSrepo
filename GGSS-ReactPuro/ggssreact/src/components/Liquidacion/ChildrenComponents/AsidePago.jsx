@@ -6,7 +6,6 @@ import InputRadio from '../../Inputs/InputRadio/InputRadio'
 const AsidePago = () => {
   return (
   <>
-    <div className='row col'>
       <div className="border p-2 col">
         <div>
                 <InputButton
@@ -55,7 +54,6 @@ const AsidePago = () => {
               </div>
 
               </div>
-    </div>
     </>
 
   )
