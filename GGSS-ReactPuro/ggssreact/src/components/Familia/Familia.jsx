@@ -122,7 +122,7 @@ const Familia = () => {
       
       <div className="container">
             <div className="row">
-              <div className="col-xl-6 border p-2">
+              <div className="col-xl-6 p-2">
                 <InputChecked
                   value={familiarSeleccionado === undefined ? 
                     (saveEmpl[0] !== undefined
@@ -210,7 +210,7 @@ const Familia = () => {
                   valueInputEstudios={familia.idInputEstudios !== undefined ? familia.idInputEstudios : null}
                 />
             </div>
-        <div className="col-xl-6 border p-2">
+        <div className="col-xl-6 p-2">
           
           <PaisOrigenFlia
                   nameInput="Pais de Origen"

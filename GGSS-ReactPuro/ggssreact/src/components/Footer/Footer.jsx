@@ -25,7 +25,7 @@ const Footer = () => {
                     <Link className="btn btn-danger btn-lg d-flex justify-content-center newClass mt-1" to="/">Salir</Link>
                 </div>
             </div>
-  )
+)
 }
 
 export default Footer
