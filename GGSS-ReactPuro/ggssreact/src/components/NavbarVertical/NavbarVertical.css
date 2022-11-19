@@ -1,0 +1,11 @@
+@media  screen and (min-width: 50px) {
+    .navbar .container-fluid, .navbar-expand-lg .navbarcollapse .navbar-nav{
+        /* flex-direction: column; */
+    }
+    .navVertical{
+        position: absolute;
+        width: 20px;
+        border-collapse: collapse;
+        align-items: flex-start;
+    }    
+}

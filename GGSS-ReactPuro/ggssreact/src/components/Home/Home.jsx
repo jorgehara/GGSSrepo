@@ -10,6 +10,7 @@ import Liquidacion from '../Liquidacion/Liquidacion';
 import AdicLiquidacion from "../AdicLiquidacion/AdicLiquidacion";
 import Navbar from '../Navbar/Navbar';
 import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
+import NavVertical from '../NavbarVertical/NavVertical';
 
 const Home = () => {
 
@@ -26,7 +27,7 @@ return (
             <div className='col-xl-3'>
                 <Browser />
             </div>
-            <div className='col-xl-9'>
+            <div className='col-xl-8'>
                 <Navbar />
                 {
                     location.pathname === "/home/datos-personales" && <DatosPersonales />
@@ -53,6 +54,12 @@ return (
                     
                 }
             </div>
+
+            <div className='col-sm-1'>
+            <NavVertical/>
+
+            </div>
+            
         </div>
         <Footer /> 
     </div>
