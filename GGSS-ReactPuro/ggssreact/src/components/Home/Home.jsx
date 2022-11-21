@@ -10,7 +10,7 @@ import Liquidacion from '../Liquidacion/Liquidacion';
 import AdicLiquidacion from "../AdicLiquidacion/AdicLiquidacion";
 import Navbar from '../Navbar/Navbar';
 import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
-import NavVertical from '../NavbarVertical/NavVertical';
+// import SideNavBar from '../NavbarVertical/SideNavBar';
 
 const Home = () => {
 
@@ -27,7 +27,7 @@ return (
             <div className='col-xl-3'>
                 <Browser />
             </div>
-            <div className='col-xl-8'>
+            <div className='col-xl-9'>
                 <Navbar />
                 {
                     location.pathname === "/home/datos-personales" && <DatosPersonales />
@@ -55,10 +55,10 @@ return (
                 }
             </div>
 
-            <div className='col-sm-1'>
-            <NavVertical/>
+            {/* <div className='col-sm-1'>
+            <SideNavBar/>
 
-            </div>
+            </div> */}
             
         </div>
         <Footer /> 

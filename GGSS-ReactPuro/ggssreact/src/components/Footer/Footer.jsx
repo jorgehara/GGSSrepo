@@ -6,7 +6,7 @@ import "./Footer.css"
 const Footer = () => {
   return (
 <>
-<div class="container-fluid-sm">
+<div class="row container-fluid-sm">
 <div class="row">
 <div class="col-7">
     <div class="d-flex col-md-11">

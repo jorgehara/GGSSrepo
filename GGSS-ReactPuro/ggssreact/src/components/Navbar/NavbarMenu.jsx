@@ -58,8 +58,8 @@ const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => 
 
 
 return (
-	    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-		<div className="container-fluid">
+	    <nav className="row gy-3 navbar navbar-expand-lg navbar-light bg-light col-sm-12">
+		<div className="container-sm">
 			<button className="navbar-toggler" type="button" 
 			data-bs-toggle="collapse" 
 			data-bs-target="#navbarNav" 
@@ -68,13 +68,14 @@ return (
 			aria-label="Toggle navigation">
 			<span className="navbar-toggler-icon"></span>
 			</button>
+			<div className="">
 			<div className="collapse navbar-collapse" id="navbarNav">
-			<ul className="navbar-nav">
-                <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			<ul className=" navbar-nav">
+                <li className=" nav-item dropdown">
+                    <a className="  nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Empleados
                     </a>
-                    <ul className="dropdown-menu">		
+                    <ul className=" dropdown-menu">		
                         <li><Link className="dropdown-item" to="/home">Ficha Empleados</Link></li>
                         <li><Link className="dropdown-item" to="#">Busqueda de Datos</Link></li>
                     </ul>
@@ -219,6 +220,8 @@ return (
 				</li>
       		</ul>
     </div>
+    </div>
+
   </div>
 </nav>
   )
