@@ -147,15 +147,15 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
   }
   useEffect(()=>{
     getDomicilioEmpleado()
-  },[empleadoUno])
+  },[empleadoUno.iDempleado])
 
-  const empleadoDomicilio = useSelector((state)=> state.domiciliosStates);
+  const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
 
     //Con este domicilio de los empleados, hay que mandarlo a la TableDomicilios y mapearlo para que muestre los datos por la tabla
     //el problema es que el domicilio solo trae los id, por lo que habria que hacer un filter en la lsita de Provincias con el id que nos trae
     // el domicilio (idBarrio) pegar en el getby id de localidades, con ese pegar en el getbyid de departamentos y con ese id pegar en el get by id
     //de provincias para ver que provincias pertenecen a ese domicilio
-  console.log(empleadoDomicilio);
+  console.log(domiciliosState);
 
   return (
     
@@ -211,7 +211,8 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                     array={generalStateData.calles !== null && generalStateData.calles !== "" ? generalStateData.calles : ["calle", "calle"]}
                     propArrayOp="calle"
                     propArrayOpFem="calle"
-                    //propArray={calleSelected !== undefined && calleSelected !== null ? calleSelected.toString() : null}
+                    propArray={empleadoDomicilio !== undefined && empleadoDomicilio !== null ? empleadoDomicilio.idCalle : null}
+                    selectedProp="idCalle"
                     masculinos=""
                     femeninos=""
                     display={true}
@@ -270,8 +271,6 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                     saveEmpl[0] !== undefined ? saveEmpl[0].idProvincia : null
                   }
                   action={ADD_DOMICILIOS}
-                  generalState = {domicilios}
-                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Provincia"
@@ -300,7 +299,7 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   sexo=""
                   nameButton="..."
                   nameLabel="Departamento"
-                  array={generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos : []}
+                  array={ generalStateData.provincias !== "" && generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos : []}
                   propArrayOp="departamento"
                   propArrayOpFem="departamento"
                   //propArray={provinciaDepartamento !== undefined && provinciaDepartamento !== null ? provinciaDepartamento.toString() : null}
@@ -365,7 +364,17 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                 />
               </div>
               <ButtonCancelarAceptar cancelar="-" aceptar="+"disabled={disable} />
-              <TablaDomicilios columns={columns} value={ domicilioEmpleadoSelect!== undefined ? domicilioEmpleadoSelect : null}/>
+              <TablaDomicilios 
+                columns={columns} 
+                empleadoSelect={empleadoUno !== undefined ? empleadoUno : null} 
+                value={ empleadoDomicilio!== undefined ? empleadoDomicilio : null}
+                provincias={generalStateData.provincias !== undefined && generalStateData.provincias !== ""  ? generalStateData.provincias : []}
+                departamentos={generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos : []}
+                localidades={generalStateData.localidades !== undefined && generalStateData.localidades !== "" ? generalStateData.localidades : []}
+                barrios={generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios : []}
+                calles={generalStateData.calles !== null && generalStateData.calles !== "" ? generalStateData.calles : ["calle", "calle"]}
+              />
+
               
             </div>
           </section>

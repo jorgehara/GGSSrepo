@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled, nameInput, idInput,onChange, datosPersonalesValue, action, propArrayOp,propArrayOpFem}) => {
+const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled, nameInput, idInput,onChange, datosPersonalesValue, action, propArrayOp,propArrayOpFem, selectedProp}) => {
   
     const [mostrarComponente, setMostrarComponente] = useState(true);
     const [valor, setValor] = useState("");
@@ -26,24 +26,26 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
                 <label className='formulario__label mt-2 mb-0' htmlFor="legajo">{nameLabel}</label>
             </div>
             <div className='segundo'>
-                <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e, action)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>{fieldName}                    
+                <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e, action)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
+                <option value="">Seleccionar</option>                    
                     {
                        sexo !== null && sexo !== undefined && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{
                         return(
-                          propArray === op[propArrayOp] ? <option key={index} selected defaultValue={op[propArrayOp]} value={op[propArrayOp]}>
+                         ( propArray === op[selectedProp]) ? <option key={index} selected value={op[propArrayOp]}>
                                                             {op[propArrayOp]} 
                                                          </option> :
-                                                         <option defaultValue={op[propArrayOp]} value={op[propArrayOp]} key={index}>
+                                                         <option defaultValue={op[propArrayOp]} value={op[propArrayOp]} key={index}>                                                          
                                                             {op[propArrayOp]}
                                                          </option> 
                         )
                     }) :
                         array !== undefined && array.map((op, index)=>{
                             return(
-                              propArray === op[propArrayOp] ? <option key={index} selected defaultValue={op[propArrayOp]} value={op[propArrayOp]}>
+                              (propArray === op[selectedProp]) ? <option key={index} selected value={op[propArrayOpFem]}>
                                                                 {op[propArrayOpFem]} 
                                                              </option> :
-                                                             <option defaultValue={op[propArrayOp]} value={op[propArrayOp]} key={index}>
+                                                             <option defaultValue={op[propArrayOpFem]} value={op[propArrayOpFem]} key={index}>
+                                                              
                                                                 {op[propArrayOpFem]}
                                                              </option> 
                             )

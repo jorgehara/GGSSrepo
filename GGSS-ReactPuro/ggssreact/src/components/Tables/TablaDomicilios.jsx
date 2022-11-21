@@ -4,22 +4,49 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getData } from "../../services/fetchAPI";
 
-const TablaDomicilios = ({ columns , value}) => {
-  //const valor = value !== undefined && value !== null ? value.map((valor, i)=>{return (valor.predeterminado)}) : "";
+const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, localidades, provincias, barrios, calles}) => {
+  const [checkPredeterminado, setCheckPredeterminado] = useState("");
+  const [domicilios, setDomicilios] = useState([]);
+
+   const valor = value !== undefined && value !== null ? value.predeterminado : null;
+
+   const inputValueDom=()=>{
+    
+    let calleSelect = "";
+    let barrioSelect = "";
+    let localidadSelect = "";
+    let provinciaSelect = "";
+    let departamentoSelect = "";
+
+    return value.map((valor,index)=>{
+        calleSelect = calles !== undefined ? calles.find((calle) => valor.idCalle === calle.idCalle) : null;
+        barrioSelect = barrios !== undefined ? barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio) : null;
+      console.log(barrioSelect)
+        localidadSelect = localidades !== undefined ? localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad) : null;
+        departamentoSelect = departamentos !== undefined ? departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento) : null;
+
+        provinciaSelect = provincias !== undefined && provincias.find((provincia)=> departamentoSelect.idProvincia === provincia.idProvincia);
+        const newDomicilios = {...valor, idCalle : calleSelect, idBarrio : barrioSelect, localidad : localidadSelect, provincia  : provinciaSelect, departamento : departamentoSelect}
+        return( newDomicilios)
+      })
+      
+
+  }
+  useEffect(()=>{
+    setInputValor();
+    setDomicilios(inputValueDom());
+  },[empleadoSelect.iDempleado])
+
   
 
 
-
-  //console.log(barrios[0] !== undefined ? barrios[0].barrio : null);
-
-
-  /*const setInputValor = () => {
-     if (valor.toString() === "1") {
+  const setInputValor = () => {
+     if (valor !== null && valor !== undefined && valor.toString() === "1") {
       setCheckPredeterminado("checked");
       return;
     }
     setCheckPredeterminado("");
-  }; */
+  }; 
 
   return (
     <>
@@ -37,6 +64,23 @@ const TablaDomicilios = ({ columns , value}) => {
             </tr>
           </thead>
           <tbody>
+            {
+              domicilios !== undefined && domicilios.map((valor, index)=>{
+                return(
+                  <tr>
+                    <th>
+                      <input  type="checkbox" className="border-0 px-2" id="capitulo" defaultChecked checked={checkPredeterminado}/>
+                    </th>
+                    <td>{valor !== undefined ? valor.idCalle.calle : null}</td>
+                    <td>{valor !== undefined ? valor.idBarrio.barrio : null}</td>
+                    <td>{valor !== undefined ? valor.localidad.localidad : null}</td>
+                    <td>{valor !== undefined ? valor.dpto : null}</td>
+                    <td>{valor !== undefined ? valor.provincia.provincia : null}</td>
+                  </tr>
+                  
+                  )
+              })
+            }
           
               {/* {
                 value.map((item, index)=>{
