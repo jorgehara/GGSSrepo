@@ -2,7 +2,7 @@ import React from 'react'
 import "./SindicatoLiquidacion.css";
 
 const SindicatoLiquidacion = ({idInput,nameLabel, array, nameButton}) => {
-  return (
+return (
     <div className='row'>
         <div className='col-xl-3'>
             <label htmlFor={idInput}>{nameLabel}</label>
@@ -28,7 +28,7 @@ const SindicatoLiquidacion = ({idInput,nameLabel, array, nameButton}) => {
             <button className='btn btn-danger btn-sm buttonSpace'>{nameButton}</button>
         </div>
     </div>
-  )
+)
 }
 
 export default SindicatoLiquidacion
