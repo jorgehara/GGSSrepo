@@ -34,13 +34,18 @@ const DatosPersonales = () => {
   //#endregion
   //const [state, dispatch] = useReducer(datosPersonalesReducer, initialState);
   const dispatch = useDispatch();
+
+
   function onChange(e, action) {
+    debugger;
     dispatch(
       {
         type: action,
         payload : {name : e.target.name, value : e.target.value}
       });    
   }
+
+
   //#region ------------------------------------------------------REDUX
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
@@ -332,9 +337,10 @@ const DatosPersonales = () => {
           text: `Error: ${ex}`,
           icon: "error",
         }))
-      }      
-      
+      }  
     })
+    //aca hacer otro post a http://54.243.192.82/api/EmpleadosDomicilio pasandole por body el idEmpleado y idDomicilio y si es predeterminado
+    //que el predeterminado viene del state del domicilio
   }
   return (
     //#region Menú Principal
@@ -592,6 +598,7 @@ const DatosPersonales = () => {
                           nameLabel="Estado"
                           array={datosPersonalesState.estados !== undefined && datosPersonalesState.estados !== "" ? datosPersonalesState.estados : []}
                           propArrayOp="nombreEstado"
+                          propArrayOpFem="nombreEstado"
                           propArray={estadoSEleccionado !== undefined ? estadoSEleccionado.nombreEstado : ""}
                           masculinos=""
                           femeninos=""
@@ -695,6 +702,7 @@ const DatosPersonales = () => {
                           nameLabel="País de Origen"
                           array={datosPersonalesState.paises !== undefined && datosPersonalesState.paises !== "" ? datosPersonalesState.paises : []}
                           propArrayOp="nombrePais"
+                          propArrayOpFem="nombrePais"
                           propArray={
                             paisSelected !== undefined
                               ? paisSelected.nombrePais
@@ -726,6 +734,7 @@ const DatosPersonales = () => {
                           nameLabel="Estudios"
                           array={datosPersonalesState.estudios !== undefined && datosPersonalesState.estudios !== "" ? datosPersonalesState.estudios : []}
                           propArrayOp="estudiosNivel"
+                          propArrayOpFem="estudiosNivel"
                           propArray={
                             estudioSelect !== undefined
                               ? estudioSelect.estudiosNivel

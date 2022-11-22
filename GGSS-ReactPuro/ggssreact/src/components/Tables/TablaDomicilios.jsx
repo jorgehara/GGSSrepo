@@ -1,15 +1,20 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import swal from "sweetalert";
+import { selectedIdDomicilio } from "../../redux/actions/domiciliosActions";
 import { getData } from "../../services/fetchAPI";
 
 const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, localidades, provincias, barrios, calles}) => {
   const [checkPredeterminado, setCheckPredeterminado] = useState("");
   const [domicilios, setDomicilios] = useState([]);
-
+  const [valueInitial, setValueInitial ] = useState([]);
    const valor = value !== undefined && value !== null ? value.predeterminado : null;
 
+   useEffect(()=>{
+    setValueInitial(value);
+   },[value])
    const inputValueDom=()=>{
     
     let calleSelect = "";
@@ -21,7 +26,7 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     return value.map((valor,index)=>{
         calleSelect = calles !== undefined ? calles.find((calle) => valor.idCalle === calle.idCalle) : null;
         barrioSelect = barrios !== undefined ? barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio) : null;
-      console.log(barrioSelect)
+      
         localidadSelect = localidades !== undefined ? localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad) : null;
         departamentoSelect = departamentos !== undefined ? departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento) : null;
 
@@ -35,11 +40,10 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
   useEffect(()=>{
     setInputValor();
     setDomicilios(inputValueDom());
-  },[empleadoSelect.iDempleado])
+  },[valueInitial])
 
   
-
-
+const dispatch = useDispatch();
   const setInputValor = () => {
      if (valor !== null && valor !== undefined && valor.toString() === "1") {
       setCheckPredeterminado("checked");
@@ -48,12 +52,15 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     setCheckPredeterminado("");
   }; 
 
+  console.log(valueInitial)
+ 
   return (
     <>
       <div className="row mt-5 overflow-scroll">
         <table className="table table-danger">
           <thead>
             <tr>
+              <th>Seleccionar</th>
               {columns.map((col, i) => {
                 return (
                   <th key={i} scope="col" className="px-2">
@@ -69,15 +76,17 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
                 return(
                   <tr>
                     <th>
-                      <input  type="checkbox" className="border-0 px-2" id="capitulo" defaultChecked checked={checkPredeterminado}/>
+                      <input type="radio" name="seleccionar" id="seleccionar" value={valor.idDomicilio} onClick={(e)=> dispatch(selectedIdDomicilio(e.target.value))}/>
                     </th>
-                    <td>{valor !== undefined ? valor.idCalle.calle : null}</td>
-                    <td>{valor !== undefined ? valor.idBarrio.barrio : null}</td>
-                    <td>{valor !== undefined ? valor.localidad.localidad : null}</td>
-                    <td>{valor !== undefined ? valor.dpto : null}</td>
-                    <td>{valor !== undefined ? valor.provincia.provincia : null}</td>
-                  </tr>
-                  
+                    <th>
+                      <input  type="checkbox" disabled="disabled" className="border-0 px-2" id="capitulo" defaultChecked value={valor.predeterminado} checked={checkPredeterminado}/>
+                    </th>
+                    <td>{valor !== undefined && valor.idCalle !== null && valor.idCalle !== undefined? valor.idCalle.calle : null}</td>
+                    <td>{valor !== undefined && valor.idBarrio !== null && valor.idBarrio !== undefined? valor.idBarrio.barrio : null}</td>
+                    <td>{valor !== undefined && valor.localidad !== null && valor.localidad !== undefined? valor.localidad.localidad : null}</td>
+                    <td>{valor !== undefined && valor.dpto !== null && valor.dpto !== undefined? valor.dpto : null}</td>
+                    <td>{valor !== undefined && valor.provincia !== null && valor.provincia !== undefined? valor.provincia.provincia : null}</td>
+                  </tr>                  
                   )
               })
             }

@@ -13,7 +13,8 @@ import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
 import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades, addProvincias } from "../../redux/actions/fetchActions";
 import InputForm from "../Inputs/InputForm/InputForm";
-import { addOneDomicilio } from "../../redux/actions/domiciliosActions";
+import { addOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
+import swal from "sweetalert";
 
 //#endregion
 const Domicilios = () => {
@@ -53,8 +54,11 @@ const Domicilios = () => {
         payload : {name : e.target.name, value : e.target.value}
       });    
   }
-  const domiciliosState = useSelector((state)=> state.domiciliosStates)
   
+  const domiciliosState = useSelector((state)=> state.domiciliosStates)
+  const domicilioDelEmpleado1 = useSelector((state)=> state.generalState.domicilios);
+ 
+  console.log(domicilioDelEmpleado1)
   //#endregion
   
 
@@ -75,14 +79,18 @@ const Domicilios = () => {
     handleFetch(urlLocalidades, addLocalidades);
     handleFetch(urlBarrios, addBarrios);
   },[])
+
+
   const generalStateData = useSelector((state)=> state.generalState)
-
+  const provinciaSelected = useSelector((state)=> state.domiciliosStates.provinciaSelected);
+  const departamentoSelected = useSelector((state)=> state.domiciliosStates.departamentoSelected);
+  const localidadSelected = useSelector((state)=> state.domiciliosStates.localidadSelected);
+  const domicilioDelEmpleado = useSelector((state)=> state.domiciliosStates.idDomicilioSelected);
  
-
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl, saveCalles,saveCalle,saveDetpos, saveDetpo, saveProvincias, saveProvincia,saveLocalidades, saveLocalidad, saveBarrios, saveBarrio, saveDoms,disable } = useContext(employeContext);
+  const { saveDom,saveDomicilios, saveEmpl,saveCalle, disable } = useContext(employeContext);
 
-
+  
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   useEffect(()=>{
     setIdEmpleado(empleadoUno.iDempleado)
@@ -126,36 +134,98 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
     setInputValue("");
   };
 
-  //para CAlles:
-  let calleEmpleado = saveCalle!== undefined && domiciliosDelEmpleado[0] !== undefined &&  saveCalle.filter(((item)=>{ return(item.idCalle === domiciliosDelEmpleado[0].idCalle)}));
+ 
+  
 
   // -----------------------------------------------------LLENAR CAMPOS 
 
  /*  const idEmpleadoPrueba = empleadoUno[0].iDempleado;
-
+  
   generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleadoPrueba ) 
  */
+  const arrayDepartamentos = provinciaSelected.payload !== undefined && generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos.filter((departamento) => departamento.idProvincia === provinciaSelected.payload.idProvincia) : null;
+
+
+  const arrayLocalidades = departamentoSelected.payload !== undefined && generalStateData.localidades !== undefined && generalStateData.localidades !== "" ? generalStateData.localidades.filter((localidad) => localidad.idDepartamento === departamentoSelected.payload.idDepartamento) : null;
+
+
+  const arrayBarrios = localidadSelected.payload !== undefined && generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios.filter((barrio) => barrio.idLocalidad === localidadSelected.payload.idLocalidad) : null;
+  useEffect(()=>{
+    getDomicilioEmpleado()
+  },[empleadoUno])
 
   function getDomicilioEmpleado(){
     if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
       let domicilioDelEmpleado = generalStateData.domicilios !== undefined && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === empleadoUno.iDempleado ) 
 
-      console.log(domicilioDelEmpleado)
 
       return dispatch(addOneDomicilio(domicilioDelEmpleado));     
     }
   }
-  useEffect(()=>{
-    getDomicilioEmpleado()
-  },[empleadoUno.iDempleado])
+  let idDomicilio = generalStateData.domicilios !== undefined && generalStateData.domicilios !== null && generalStateData.domicilios[generalStateData.domicilios.length -1] !== undefined ? ((generalStateData.domicilios[generalStateData.domicilios.length -1].idDomicilio)+1) : null;
 
+
+  let bodyPetition = {
+    "idDomicilio": idDomicilio,
+    "idBarrio": domiciliosState.inputBarriosDomicilios,
+    "idCalle": domiciliosState.inputCalleDomicilios,
+    "numero": domiciliosState.inputNumCalle,
+    "dpto": domiciliosState.inputPisoCalle,
+    "predeterminado": false,
+    "idEmpleado": empleadoUno.iDempleado,
+    "idEmpleador": 11
+  }
+  const sendDataDomicilios=()=>{
+    try{
+      if(domiciliosState !== null && domiciliosState.inputCalleDomicilios !== "" && domiciliosState.inputNumCalle !== "" && domiciliosState.inputPisoCalle !== "" && domiciliosState.inputProvinciaDomicilios !== "" && domiciliosState.inputDepartamentosDomicilios && domiciliosState.inputLocalidadesDomicilios !== "" && domiciliosState.inputBarriosDomicilios !== ""){
+          axios.post(urlDomicilios, bodyPetition)
+          .then((res)=> {
+            if(res.status === 200){
+              return swal({
+                title: "Domicilio Agregado",
+                text: "Domicilio agregado con éxito",
+                icon: "success",
+              });
+            };
+            
+          })
+          return;
+      }
+      return swal({
+        title: "Error",
+        text: "Debe completar todos los campos",
+        icon: "error",
+      })
+    }catch(err){
+      return swal({
+        title: "Error",
+        text: "Debe completar todos los campos",
+        icon: "error",
+      })
+    }
+  }
+  const deleteDomicilio =(id)=>{
+    
+    axios.delete(`http://54.243.192.82/api/Domicilios/${id}`)
+    .then((res)=> {
+      if(res.status === 200){
+        swal({
+          title: "Ok",
+          text: "Domicilio borrado con éxito",
+          icon: "success",
+        })
+      }
+    })
+  }
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
+  console.log(empleadoDomicilio)
+ 
+
 
     //Con este domicilio de los empleados, hay que mandarlo a la TableDomicilios y mapearlo para que muestre los datos por la tabla
     //el problema es que el domicilio solo trae los id, por lo que habria que hacer un filter en la lsita de Provincias con el id que nos trae
     // el domicilio (idBarrio) pegar en el getby id de localidades, con ese pegar en el getbyid de departamentos y con ese id pegar en el get by id
     //de provincias para ver que provincias pertenecen a ese domicilio
-  console.log(domiciliosState);
 
   return (
     
@@ -221,6 +291,7 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                     nameInput="inputCalleDomicilios"
                     idInput="inputCalleDomicilios"
                     onChange={onChange}
+                    valueId="idCalle"
                   />
                 </div>
                 <div className="col-xl-6">
@@ -286,6 +357,8 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   nameInput="inputProvinciaDomicilios"
                   idInput="inputProvinciaDomicilios"
                   onChange={onChange}
+                  provinciaAction = {selectedOption}
+                  valueId="provincia"
                 />
                   <InputCbo
                   value={
@@ -299,18 +372,20 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   sexo=""
                   nameButton="..."
                   nameLabel="Departamento"
-                  array={ generalStateData.provincias !== "" && generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos : []}
+                  array={ arrayDepartamentos !== null &&  arrayDepartamentos !== undefined  ? arrayDepartamentos : []}
                   propArrayOp="departamento"
                   propArrayOpFem="departamento"
                   //propArray={provinciaDepartamento !== undefined && provinciaDepartamento !== null ? provinciaDepartamento.toString() : null}
                   masculinos=""
                           femeninos=""
-                  display={true}
+                  display={false}
                   idModal="pdlb"
                   disabled={disable}
                   nameInput="inputDepartamentosDomicilios"
                   idInput="inputDepartamentosDomicilios"
                   onChange={onChange}
+                  provinciaAction = {selectedOptionDpto}
+                  valueId="departamento"
                 />
                 <InputCbo
                   value={
@@ -324,18 +399,20 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   sexo=""
                   nameButton="..."
                   nameLabel="Localidad"
-                  array={generalStateData.localidades !== undefined && generalStateData.localidades !== "" ? generalStateData.localidades : []}
+                  array={arrayLocalidades !== undefined && arrayLocalidades !== null ? arrayLocalidades : []}
                   propArrayOp="localidad"
                   propArrayOpFem="localidad"
                   //propArray={provinciaLocalidad !== undefined && provinciaLocalidad !== null ?  provinciaLocalidad.toString() : null}
                   masculinos=""
                           femeninos=""
-                  display={true}
+                  display={false}
                   idModal="pdlb"
                   disabled={disable}
                   nameInput="inputLocalidadesDomicilios"
                   idInput="inputLocalidadesDomicilios"
                   onChange={onChange}
+                  provinciaAction = {selectedOptionBarrio}
+                  valueId="localidad"
                 />
                 <InputCbo
                   value={
@@ -349,21 +426,22 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                   sexo=""
                   nameButton="..."
                   nameLabel="Barrio"
-                  array={generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios : []}
+                  array={arrayBarrios !== undefined && arrayBarrios !== null ? arrayBarrios : []}
                   propArrayOp="barrio"
                   propArrayOpFem="barrio"
                   //propArray={provinciaBarrio !== undefined && provinciaBarrio !== null ? provinciaBarrio.toString() : null}
                   masculinos=""
                           femeninos=""
-                  display={true}
+                  display={false}
                   idModal="pdlb"
                   disabled={disable}
                   nameInput="inputBarriosDomicilios"
                   idInput="inputBarriosDomicilios"
                   onChange={onChange}
+                  valueId="idBarrio"
                 />
               </div>
-              <ButtonCancelarAceptar cancelar="-" aceptar="+"disabled={disable} />
+              <ButtonCancelarAceptar idElimiar={domicilioDelEmpleado} cancelar="-" aceptar="+"disabled={disable} functionSend={sendDataDomicilios} functionDelete={deleteDomicilio}/>
               <TablaDomicilios 
                 columns={columns} 
                 empleadoSelect={empleadoUno !== undefined ? empleadoUno : null} 

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled, nameInput, idInput,onChange, datosPersonalesValue, action, propArrayOp,propArrayOpFem, selectedProp}) => {
+const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, propArray, sexo, masculinos, femeninos, idModal, disabled, nameInput, idInput,onChange, datosPersonalesValue, action, propArrayOp,propArrayOpFem, selectedProp,provinciaAction,valueId}) => {
   
     const [mostrarComponente, setMostrarComponente] = useState(true);
     const [valor, setValor] = useState("");
-
+    const dispatch = useDispatch();
     useEffect(()=>{
       setValor(datosPersonalesValue)
     },[datosPersonalesValue])
@@ -18,6 +19,9 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
       setMostrarComponente(display)
       
     },[display])
+    const onClickOption=(value)=>{
+      dispatch(provinciaAction(value))
+    }
    
   return (
     <div className='formulario__grupo__inputs__cbo '>
@@ -27,24 +31,24 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
             </div>
             <div className='segundo'>
                 <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e, action)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
-                <option value="">Seleccionar</option>                    
+                <option selected value="">Seleccionar</option>                    
                     {
                        sexo !== null && sexo !== undefined && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{
                         return(
-                         ( propArray === op[selectedProp]) ? <option key={index} selected value={op[propArrayOp]}>
+                         ( propArray === op[selectedProp]) ? <option key={index}  onClick={(e)=>onClickOption(op)} selected value={op[valueId]}>
                                                             {op[propArrayOp]} 
                                                          </option> :
-                                                         <option defaultValue={op[propArrayOp]} value={op[propArrayOp]} key={index}>                                                          
+                                                         <option defaultValue={op[propArrayOp]} onClick={(e)=>onClickOption(op)} value={op[valueId]} key={index}>                                                          
                                                             {op[propArrayOp]}
                                                          </option> 
                         )
                     }) :
                         array !== undefined && array.map((op, index)=>{
                             return(
-                              (propArray === op[selectedProp]) ? <option key={index} selected value={op[propArrayOpFem]}>
+                              (propArray === op[selectedProp]) ? <option key={index} onClick={(e)=>onClickOption(op)} value={op[valueId]}>
                                                                 {op[propArrayOpFem]} 
                                                              </option> :
-                                                             <option defaultValue={op[propArrayOpFem]} value={op[propArrayOpFem]} key={index}>
+                                                             <option defaultValue={op[propArrayOpFem]} onClick={(e)=>onClickOption(op)} value={op[valueId]} key={index}>
                                                               
                                                                 {op[propArrayOpFem]}
                                                              </option> 

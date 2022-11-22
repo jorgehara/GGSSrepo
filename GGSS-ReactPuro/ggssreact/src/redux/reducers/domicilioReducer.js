@@ -1,4 +1,4 @@
-import { ADD_DOMICILIOS,ADD_ONEDOMICILIO } from "../types/domiciliosTypes";
+import { ADD_DOMICILIOS,ADD_ONEDOMICILIO,SELECT_BARRIO,SELECT_DEPARTAMENTO,SELECT_ID_DOMICILIO,SELECT_PROVINCIA } from "../types/domiciliosTypes";
 
 
 export const initialState = {
@@ -10,7 +10,11 @@ export const initialState = {
     inputDepartamentosDomicilios : "",
     inputLocalidadesDomicilios : "",
     inputBarriosDomicilios : "",
-    domicilioEmpleado : []
+    domicilioEmpleado : [],
+    provinciaSelected : {},
+    departamentoSelected : {},
+    localidadSelected : {},
+    idDomicilioSelected : 0
 };
 
 const domicilioReducer = (state = initialState, action) =>{
@@ -27,10 +31,36 @@ const domicilioReducer = (state = initialState, action) =>{
             };
         }
         case ADD_ONEDOMICILIO : {
-            console.log(payload)
             return{
                 ...state,
-                domicilioEmpleado : [...payload]
+                domicilioEmpleado : payload
+            }
+        }
+        case SELECT_PROVINCIA :{
+
+            return{
+                ...state,
+                provinciaSelected : {payload}
+            }
+        }
+        case SELECT_DEPARTAMENTO :{
+
+            return{
+                ...state,
+                departamentoSelected : {payload}
+            }
+        }
+        case SELECT_BARRIO :{
+
+            return{
+                ...state,
+                localidadSelected : {payload}
+            }
+        }
+        case SELECT_ID_DOMICILIO :{
+            return{
+                ...state,
+                idDomicilioSelected : payload
             }
         }
         default :
