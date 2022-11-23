@@ -15,6 +15,12 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
    useEffect(()=>{
     setValueInitial(value);
    },[value])
+
+   useEffect(()=>{
+    setInputValor();
+    setDomicilios(inputValueDom());
+  },[valueInitial])
+
    const inputValueDom=()=>{
     
     let calleSelect = "";
@@ -23,28 +29,24 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     let provinciaSelect = "";
     let departamentoSelect = "";
 
-    return value.map((valor,index)=>{
-        calleSelect = calles !== undefined ? calles.find((calle) => valor.idCalle === calle.idCalle) : null;
-        barrioSelect = barrios !== undefined ? barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio) : null;
+    return valueInitial.map((valor,index)=>{
+        calleSelect = calles  && calles.find((calle) => valor.idCalle === calle.idCalle) ;
+        barrioSelect = barrios  && barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio) ;
       
-        localidadSelect = localidades !== undefined ? localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad) : null;
-        departamentoSelect = departamentos !== undefined ? departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento) : null;
+        localidadSelect = localidades  && localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad);
+        departamentoSelect = departamentos  && departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento);
 
-        provinciaSelect = provincias !== undefined && provincias.find((provincia)=> departamentoSelect.idProvincia === provincia.idProvincia);
+        provinciaSelect = provincias && provincias.find((provincia)=> departamentoSelect.idProvincia === provincia.idProvincia);
         const newDomicilios = {...valor, idCalle : calleSelect, idBarrio : barrioSelect, localidad : localidadSelect, provincia  : provinciaSelect, departamento : departamentoSelect}
         return( newDomicilios)
       })
       
 
   }
-  const valor = valueInitial !== undefined && valueInitial !== null ? valueInitial.map((item)=>{return(item.predeterminado)}) : null;
+  const valor = valueInitial && valueInitial !== null ? valueInitial.map((item)=>{return(item.predeterminado)}) : null;
    
   console.log(valor);
-  useEffect(()=>{
-    setInputValor();
-    inputValueDom();
-    setDomicilios(inputValueDom());
-  },[valueInitial])
+  
 
   
 const dispatch = useDispatch();
