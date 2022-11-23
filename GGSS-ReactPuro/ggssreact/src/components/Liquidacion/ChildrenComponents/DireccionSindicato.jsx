@@ -21,6 +21,7 @@ return (
             nameButton="..."
             nameLabel="Dirección"
             placeholder="Dirección"
+            action="ACTION"
         />
     <SindicatoLiquidacion idInput="sindicatoInput" nameLabel="Sindicato:" nameButton="..."
     array={sindicatosNAme}/>

@@ -10,6 +10,7 @@ const ColumnaInputs2da = () => {
           nameButton="..."
           nameLabel="Modo de Contratación"
           placeholder="Modo de Contratación"
+          action="ACTION"
         />
       </div>
       <div className="col">
@@ -17,6 +18,7 @@ const ColumnaInputs2da = () => {
           nameButton="..."
           nameLabel="Modo de Liquidación"
           placeholder="Modo de Liquidación"
+          action="ACTION"
         />
         </div>
       <div className="col">
@@ -24,6 +26,7 @@ const ColumnaInputs2da = () => {
           nameButton="..."
           nameLabel="Centro de Costo"
           placeholder="Centro de Costo"
+          action="ACTION"
         />
       </div>
       <div className="col">
@@ -31,6 +34,7 @@ const ColumnaInputs2da = () => {
           nameButton="..."
           nameLabel="Secretaria/Sector/Dpto"
           placeholder="Secretaria/Sector/Dpto"
+          action="ACTION"
         />
       </div>
       <div className="col">
@@ -38,6 +42,7 @@ const ColumnaInputs2da = () => {
           nameButton="..."
           nameLabel="Obra Social"
           placeholder="Obra Social"
+          action="ACTION"
         />
       </div>
     </>
