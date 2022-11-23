@@ -1,8 +1,7 @@
 import React from 'react'
-import CheckLabel from '../Inputs/CheckLabel/CheckLabel'
-import InputButton from '../Inputs/InputButton/InputButton'
-import InputDate from '../Inputs/InputDate/InputDate'
-import InputForm from '../Inputs/InputForm/InputForm'
+import InputForm from '../../Inputs/InputForm/InputForm';
+import CheckLabel from '../../Inputs/CheckLabel/CheckLabel'
+
 
 const DatosCertificado = () => {
   return (

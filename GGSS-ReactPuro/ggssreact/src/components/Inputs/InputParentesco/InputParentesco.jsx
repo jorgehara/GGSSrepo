@@ -27,16 +27,15 @@ const InputParentesco = ({
   }, [display]);
 
   return (
-    <div className="formulario__grupo">
-      <div className="row">
-        <div className="col-xl-4    ">
-          <label className="formulario-label-ParentescoFlia mt-2">
+    <div className="formulario__grupo__inputs">
+      <div className="formulario__grupo">
+          <label className="form-label-ParentsFlia mt-2">
             {nameInput}
           </label>
         </div>
         <div className="col-xl-3">
           <select
-            className="form-select px-0 form-input-ParentescoFlia"
+            className="form-select px-0 form-input-ParentsFlia"
             disabled={disable}
             //name={idInput}
             //id={idInput}
@@ -75,7 +74,9 @@ const InputParentesco = ({
               })}
           </select>
         </div>
-        <div className="col-xl-3 d-flex justify-content-end align-items-center btn-modal-miau">
+
+
+        <div className="col d-flex justify-content-end align-items-center btn-modal-miau">
           <ButtonCallModal
             idModal={idModal}
             className={
@@ -89,7 +90,7 @@ const InputParentesco = ({
             disabled={disable}
           />
         </div>
-        <div className="col-xl-2 form-inputs-radioFijar mt-2">
+        <div className="col form-inputs-radioFijar mt-2">
         <div 
           className={
             mostrarComponente ? "d-flex align-items-center " : "none"
@@ -103,16 +104,16 @@ const InputParentesco = ({
             checked={checked}
             disabled={disable}
           />
-          <label className="form-check-label input__parentesco" htmlFor="flexCheckChecked">
+          <label className="form-check-label label_FijarParents" htmlFor="flexCheckChecked">
             {nameCheck}
           </label>
         </div>
-
-
 </div>
+
+
         
       </div>
-    </div>
+    // </div>
   );
 };
 

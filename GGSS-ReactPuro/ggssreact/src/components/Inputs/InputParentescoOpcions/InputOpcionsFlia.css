@@ -72,18 +72,18 @@
 	width: 100%;
 }
 .selectFormFlia{
-	margin-left: 95%;
+	margin-left: 254%;
 	width: 227%;
 }
 
 .btn-modal-estu{
 	margin-top: 0.5rem;
 	position: absolute;
-	margin-left: 18%;
+	left: 24.5%;
 }
 .radio-Fijar-estu{
 	position: absolute;
-	margin-left: 26.7%;
+	margin-left: 24%;
 }
 .selectFormNacioFlia{
 	margin-left: 2.95%;
@@ -113,7 +113,7 @@
 	position: absolute;
 	left: 9%;
 }
-.labelEstudiosFamilia{
+.labelEstuFijar{
 	position: relative;
-	left: 75%;
+	left: 94%;
 }

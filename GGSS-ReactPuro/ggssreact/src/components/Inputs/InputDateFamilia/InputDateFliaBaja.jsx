@@ -41,7 +41,7 @@ const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,
               />
           </div>
           <input 
-          className={mostrarComponente ? "col-xl-3 form-check-input-date bajaFlia" : "none"} type="checkbox" 
+          className={mostrarComponente ? "col-xl-3 form-check-input-date datebajaFliaCheck" : "none"} type="checkbox" 
           disabled={disable}
           id="flexCheckChecked" 
           checked={checked}

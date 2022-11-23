@@ -141,7 +141,6 @@ const BasicModal = ({
                     return (
                       <InputModal
                         key={i}
-                        nameInput={p.nameInput}
                         placeHolder={p.placeholder}
                         nameLabel={p.label}
                         inputId={p.idInput}
@@ -167,7 +166,8 @@ const BasicModal = ({
 
                 {dropdown && <Dropdown nameDropdown="Partida" />}
 
-                {inputDate && <InputDate nameInput="Vencimiento" />}
+                  {/* HAY ALGO DEL INPUTDATE QUE ESTA DESACOMODANDO LA ALINEACION, CAMBIAR */}
+                {inputDate && <InputDate nameInput="Vencimiento" />} 
 
                 <br />
                 {textArea && <TextArea inputName="Observaciones" />}

@@ -244,7 +244,7 @@ export const objectLugaresPago = [
 
 export const objectDocumentacion = [
   {
-    label: "Documentacion",
+    label: "Documentación del Empleado",
     placeholder: "Carta de presentación"
   }
 ]
@@ -322,7 +322,7 @@ export const inputsNumCategorias = [
 export const inputsNumLicencias = [
   { label: "De" },
   { label: "a" },
-  { label: "años de ant. corresponde" }
+  { label: "años" }
 ]
 
 

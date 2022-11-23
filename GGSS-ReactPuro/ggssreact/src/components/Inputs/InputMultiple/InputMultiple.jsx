@@ -87,7 +87,7 @@ const InputMultiple = ({
           <div className="form__grupo__error">
             <p></p>
           </div>
-          <div className="col-xl-4  form-inputs-radio">
+          <div className="col-xl-4  form-inputs-radioFlia">
             <div className="form__grupo__label">
               <label className="form__grupo__label__label" htmlFor="legajo">
                 {nameInputRadio}

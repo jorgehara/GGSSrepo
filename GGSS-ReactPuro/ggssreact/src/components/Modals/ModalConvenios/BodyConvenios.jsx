@@ -6,15 +6,16 @@ import TextArea from '../../Inputs/TextArea/TextArea'
 import TableReduccion from '../../Tables/TableReduccion'
 import '../../Modals/Modales.css'
 import '../ModalEscala/ModalEscala.css'
+import './ModalConvenios.css'
 
 const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) => {
     return (
         <>
-            <div className="llamadaApi" style={{ height: "650px", width: "auto"}}>
+            <div className="llamadaApi" style={{ height: "650px", width: "auto" }}>
 
                 <label htmlFor="data">Datos: </label>
                 <br />
-                <select style={{height: "600px"}} className="form-select row mt-1 " multiple aria-label="multiple select example">
+                <select style={{ height: "600px" }} className="form-select row mt-1 " multiple aria-label="multiple select example">
                     {
                         aConvenios !== undefined ? aConvenios.map((op, i) => {
                             return (
@@ -45,7 +46,7 @@ const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) 
                 {
                     placeholder.map((p, i) => {
                         return (
-                            <InputModal key={i} nameInput={p.label} placeHolder={p.placeholder} inputId={p.label} />
+                            <InputModal key={i} nameLabel={p.label} placeHolder={p.placeholder} inputId={p.label} />
                         )
                     })
                 }
@@ -59,6 +60,7 @@ const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) 
 
                     <div className='inputNumSection'>
 
+
                         {
                             inputsNumConvenios.map((p, i) => {
                                 return (
@@ -70,16 +72,15 @@ const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) 
 
                         }
 
-                        <label>años</label>
+                        <label style={{ marginLeft: "30px", marginRight: "30px", textAlign: "center", position: "relative", top: "7px", right: "20px" }}>años</label>
 
-                        
+                        <div className='radioInputs' style={{ fontSize: "12px", padding: "10px" }}>
+                            <input type="number" min={"0"} style={{ width: "50px", textAlign: "center" }} />
+                            <input type="radio" name="cash" style={{ marginRight: "4px", marginLeft: "12px" }} />
+                            <label style={{ marginRight: "15px", textAlign: "center" }} htmlFor="importe">Importe ($)</label>
+                            <input type="radio" name="cash" style={{ marginRight: "4px" }} />
+                            <label style={{textAlign: "center"}} htmlFor="porcentaje">Porcentaje (%)</label>
 
-                        <div>
-                            <input type="num" style={{ width: "60px", marginLeft: "30px", marginRight: "15px" }} />
-                            <input type="radio" name="cash" style={{ marginRight: "4px" }} />
-                            <label style={{ marginRight: "15px" }} htmlFor="importe">Importe ($)</label>
-                            <input type="radio" name="cash" style={{ marginRight: "4px" }} />
-                            <label htmlFor="porcentaje">Porcentaje (%)</label>
                         </div>
 
 

@@ -10,6 +10,7 @@ import Liquidacion from '../Liquidacion/Liquidacion';
 import AdicLiquidacion from "../AdicLiquidacion/AdicLiquidacion";
 import Navbar from '../Navbar/Navbar';
 import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
+// import SideNavBar from '../NavbarVertical/SideNavBar';
 
 const Home = () => {
 
@@ -53,6 +54,12 @@ return (
                     
                 }
             </div>
+
+            {/* <div className='col-sm-1'>
+            <SideNavBar/>
+
+            </div> */}
+            
         </div>
         <Footer /> 
     </div>

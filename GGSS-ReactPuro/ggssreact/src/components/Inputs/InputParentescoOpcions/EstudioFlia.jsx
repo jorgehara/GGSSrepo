@@ -26,14 +26,13 @@ const EstudioFlia = ({
   }, [display]);
 
   return (
-    <div className="formulario__grupo mt-2">
-      <div className="row">
-        <div className="col-xl-4 ">
+    <div className="formulario__grupo__inputs">
+    <div className="formulario__grupo">
           <label className="form-label-EstudiosFlia mt-2">
             {nameInput}
           </label>
-        </div>
-        <div className="col-xl-3 ">
+        
+        <div className="col">
           <select
             className="form-select ml-4 mt-1 selectFormFlia"
             disabled={disable}
@@ -91,7 +90,7 @@ const EstudioFlia = ({
             checked={checked}
             disabled={disable}
           />
-          <label className="form-check-label labelEstudiosFamilia" htmlFor="flexCheckChecked">
+          <label className="form-check-label labelEstuFijar" htmlFor="flexCheckChecked">
             {nameCheck}
           </label>
         </div>

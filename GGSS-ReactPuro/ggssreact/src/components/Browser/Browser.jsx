@@ -72,7 +72,8 @@ const Browser = () => {
   }
   
   return (
-    <div className='container-fluid '>
+<>
+<div className='row gy-1 container-fluid '>
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
       <div className="row mt-1 w-100">
@@ -112,29 +113,43 @@ const Browser = () => {
           );
         })}
       </select>
-      <div className="d-inline-flex">
+        
+<div class="container text-center d-inline-flex">
+  <div class="row align-items-start">
+    <div class="col">
         <ButtonLarge
           color="danger"
-          tamaño=""
-          justyfy="end m-1"
+          tamaño="sm"
+          justyfy="center m-1"
+          align=""
           nameButton="Agregar"
           onClick={habilitaEdit}
         />
+    </div>
+    <div class="col">
         <ButtonLarge
           color="danger"
-          tamaño=""
-          justyfy="end m-1"
+          tamaño="sm"
+          justyfy="center m-1"
           nameButton="Modificar"
           onClick={habilitaEdit}
         />
+    </div>
+    <div class="col">
         <ButtonLarge
           color="danger"
-          tamaño=""
-          justyfy="end m-1"
+          tamaño="sm"
+          justyfy="center m-1"
           nameButton="Eliminar"
         />
-      </div>
     </div>
+
+      </div>
+      </div>
+
+      </div>
+</>
+  
   );
 };
 

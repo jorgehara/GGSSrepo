@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 
 const Navbar = () => {
   return (
-	    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+	    <nav className="row gy-3 navbar navbar-expand-lg navbar-light bg-light ">
 		<div className="container-fluid">
 			<button className="navbar-toggler" type="button" 
 			data-bs-toggle="collapse" 
@@ -13,7 +13,7 @@ const Navbar = () => {
 			aria-label="Toggle navigation">
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNav">
-			<ul className="navbar-nav">
+			<ul className="navbar-nav ">
 				<li><Link className="dropdown-item" to="/home/datos-personales"></Link>
                     <Link className="nav-link" to="/home/datos-personales">
 						Personales

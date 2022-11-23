@@ -1,19 +1,25 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import EmployeData from "../EmployeData/EmployeData";
 import InputButton from "../Inputs/InputButton/InputButton";
-import AsidePago from "./AsidePago";
-import ColumnaInputs from "./ColumnaInputs";
-import DatosCertificado from "./DatosCertificadoOficio";
-import IngresoContrato from "./IngresoContrato";
+import SindicatoLiquidacion from "../SindicatoLiquidacion/SindicatoLiquidacion";
+import AsidePago from "./ChildrenComponents/AsidePago";
+import ColumnaInputs2da from "./ChildrenComponents/ColumnaInputs2da";
+import DatosCertificado from "./ChildrenComponents/DatosCertificadoOficio";
+import DireccionSindicato from "./ChildrenComponents/DireccionSindicato";
+import IngresoContrato from "./ChildrenComponents/IngresoContrato";
+
 
 const Liquidacion = () => {
- 
+   
 return (
     <div className="container">
     <div className="row">
         <EmployeData />
     </div>
-
+<div className="container">
     <div className="row">
         <div className="col-xl-12">
         <InputButton
@@ -23,38 +29,28 @@ return (
             action=""
         />
         </div>
-        <div className="row">
-        <div className="col-xl-6">
-        <ColumnaInputs />
-        </div>
-
-        <div className="row col-xl-6">
-        <AsidePago />
-        <div className="col-xl-6">
-        <InputButton
-            nameButton="..."
-            nameLabel="Dirección"
-            placeholder="Dirección"
-            action=""
-        />
-        <InputButton
-            nameButton="..."
-            nameLabel="Sindicato"
-            placeholder="Sindicato"
-            action=""
-        />
-        </div>
-        </div>
-        <div className="row col-xl-12">
+</div>
+</div>
+<div className="container">
+    <div className="row align-items-start">
+        <div className="col-xl-4">
+        <ColumnaInputs2da />
         <IngresoContrato />
         </div>
-
+        <div className="col-xl-4">
+        <ColumnaInputs2da />
+        <DireccionSindicato />
+        </div>
+        <div className="row col-xl-4">
+        <AsidePago />
+        </div>
         <div className="row col-xl-12">
         <DatosCertificado />
         </div>
-        </div>
     </div>
-    </div>
+</div>
+</div>
+    
 );
 };
 

@@ -1,13 +1,13 @@
 import React from 'react'
-import InputButton from '../Inputs/InputButton/InputButton'
-import InputRadio from '../Inputs/InputRadio/InputRadio'
+import InputButton from '../../Inputs/InputButton/InputButton'
+import InputRadio from '../../Inputs/InputRadio/InputRadio'
+
 
 const AsidePago = () => {
   return (
-    <>
-     <div className="border p-2 col-xl-8">
-       {/* AsidePagos */}
-       <div>
+  <>
+      <div className="border p-2 col">
+        <div>
                 <InputButton
                   nameButton="..."
                   nameLabel="Forma de Pago"
@@ -58,9 +58,9 @@ const AsidePago = () => {
               <button type="button" class="btn btn-danger" disabled>Actualización masiva de datos</button>
               </div>
 
-              {/* Fin de AsidePago */}
               </div>
     </>
+
   )
 }
 

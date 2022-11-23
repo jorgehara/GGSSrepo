@@ -18,7 +18,7 @@
 }
 .form-input-DateFlia2{
 	text-align: start;
-     margin-left: 3%; 
+     margin-left: 28%; 
     /* margin-right: 0px; */
 	background: #fff;
 	border: 3px solid transparent;
@@ -34,18 +34,19 @@
 }
 .dateFlia{
 	position: absolute;
-    left: 43.7%;
+	margin-top: 0.35% ;
+    left: 37.8%;
 }
 .formularioDate{
 	margin-left: 0.1%;
 }
 .inputDate2{
-	 margin-left: 2.4rem; 
+	margin-left: 2.4rem; 
 }
 .inputDateBaja{
-	/* margin-left: 0%; */
+	margin-left: 50%;
 }
-.bajaFlia{
+.datebajaFliaCheck{
 	margin-top: 0px;
-    margin-left: 10%;
+    margin-left: 12%;
 }

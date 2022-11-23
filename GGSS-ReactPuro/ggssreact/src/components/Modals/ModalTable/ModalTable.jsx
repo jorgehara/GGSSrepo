@@ -33,7 +33,7 @@ const ModalTable = ({ idModal, nameModal, column, dropdown, jerarquia, btnAcepta
                                         })
 
                                     }
-                                    <label>días de licencia</label>
+                                    <label style={{position: "relative", top: "8px"}}>días de licencia</label>
                                 </div>
                             }
 

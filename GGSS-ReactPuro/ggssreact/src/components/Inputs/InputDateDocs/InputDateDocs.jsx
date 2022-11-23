@@ -65,7 +65,7 @@ const InputDateDocs = ({
         />
         <input
           id={idInput}
-          className={mostrarComponente2 ? "secondCheck2" : "secondCheck"}
+          className={mostrarComponente2 ? "secondCheck2" : "secondCheckDocs"}
           name={idInput}
           type="date"
           value={valor}
