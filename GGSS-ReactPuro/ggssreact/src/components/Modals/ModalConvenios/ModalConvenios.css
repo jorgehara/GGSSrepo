@@ -40,4 +40,5 @@
     position: relative;
     bottom: 10px;
     box-shadow: 1px 1px 3px 2px rgb(95, 8, 8);
+    border-radius: 30px;
 }
