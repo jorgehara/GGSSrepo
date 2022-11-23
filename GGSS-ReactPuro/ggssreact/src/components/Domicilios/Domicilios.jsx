@@ -58,7 +58,7 @@ const Domicilios = () => {
   const domiciliosState = useSelector((state)=> state.domiciliosStates)
   const domicilioDelEmpleado1 = useSelector((state)=> state.generalState.domicilios);
  
-  console.log(domicilioDelEmpleado1)
+  // console.log(domicilioDelEmpleado1)
   //#endregion
   
 
@@ -240,7 +240,7 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
   }
 
 
-  console.log(empleadoDomicilio)
+  // console.log(empleadoDomicilio)
  
 
 
