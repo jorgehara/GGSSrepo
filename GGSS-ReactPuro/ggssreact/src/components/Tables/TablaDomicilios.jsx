@@ -10,8 +10,8 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
   const [checkPredeterminado, setCheckPredeterminado] = useState("");
   const [domicilios, setDomicilios] = useState([]);
   const [valueInitial, setValueInitial ] = useState([]);
-   const valor = value !== undefined && value !== null ? value.predeterminado : null;
 
+   
    useEffect(()=>{
     setValueInitial(value);
    },[value])
@@ -37,19 +37,29 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
       
 
   }
+  const valor = valueInitial !== undefined && valueInitial !== null ? valueInitial.map((item)=>{return(item.predeterminado)}) : null;
+   
+  console.log(valor);
   useEffect(()=>{
     setInputValor();
+    inputValueDom();
     setDomicilios(inputValueDom());
   },[valueInitial])
 
   
 const dispatch = useDispatch();
+
   const setInputValor = () => {
-     if (valor !== null && valor !== undefined && valor.toString() === "1") {
-      setCheckPredeterminado("checked");
-      return;
-    }
-    setCheckPredeterminado("");
+    valor.map((val)=>{
+      console.log(val)
+      if (val !== null && val !== undefined && val.toString() === "true") {
+        
+        return setCheckPredeterminado("checked");
+      }
+      return setCheckPredeterminado("");
+
+    })
+    return
   }; 
 
   console.log(valueInitial)
@@ -76,7 +86,7 @@ const dispatch = useDispatch();
                 return(
                   <tr>
                     <th>
-                      <input type="radio" name="seleccionar" id="seleccionar" value={valor.idDomicilio} onClick={(e)=> dispatch(selectedIdDomicilio(e.target.value))}/>
+                      <input type="radio" name="seleccionar" id="seleccionar" value={valor.idDomicilio} onClick={(e)=> dispatch(selectedIdDomicilio(e.target.value))} />
                     </th>
                     <th>
                       <input  type="checkbox" disabled="disabled" className="border-0 px-2" id="capitulo" defaultChecked value={valor.predeterminado} checked={checkPredeterminado}/>

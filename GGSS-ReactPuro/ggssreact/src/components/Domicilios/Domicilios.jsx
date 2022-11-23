@@ -181,6 +181,8 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
           axios.post(urlDomicilios, bodyPetition)
           .then((res)=> {
             if(res.status === 200){
+              handleFetch(urlDomicilios, addDomicilios);
+              getDomicilioEmpleado()
               return swal({
                 title: "Domicilio Agregado",
                 text: "Domicilio agregado con éxito",
@@ -209,6 +211,8 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
     axios.delete(`http://54.243.192.82/api/Domicilios/${id}`)
     .then((res)=> {
       if(res.status === 200){
+        handleFetch(urlDomicilios, addDomicilios);
+        getDomicilioEmpleado()
         swal({
           title: "Ok",
           text: "Domicilio borrado con éxito",

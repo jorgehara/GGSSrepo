@@ -37,7 +37,6 @@ const DatosPersonales = () => {
 
 
   function onChange(e, action) {
-    debugger;
     dispatch(
       {
         type: action,
@@ -379,7 +378,7 @@ const DatosPersonales = () => {
                           value={
                             empleadoUno !== undefined || empleadoUno === null
                               ? empleadoUno.legajo
-                              : null
+                              : datosPersonalesRedux.numLegajo
                           }
                           nameInput="numLegajo"
                           idInput="numLegajo"
@@ -391,8 +390,8 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           nameLabel="Legajo"
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.numLegajo
+                            datosPersonalesRedux !== undefined
+                              ?datosPersonalesRedux.numLegajo
                               : "N° Legajo"
                           }
                           validateNumbers={validateNumbers}
@@ -402,7 +401,7 @@ const DatosPersonales = () => {
                           value={
                             empleadoUno !== undefined
                               ? empleadoUno.apellido
-                              : null
+                              : datosPersonalesRedux.apellidoInput
                           }
                           generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
@@ -414,8 +413,8 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           nameLabel="Apellidos"
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.apellidoInput
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.apellidoInput
                               : "Apellido"
                           }
                           validateLetters={validateTexts}
@@ -425,7 +424,7 @@ const DatosPersonales = () => {
                           value={
                             empleadoUno !== undefined
                               ? empleadoUno.nombres
-                              : null
+                              : datosPersonalesRedux.nombresInput
                           }
                           generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
@@ -437,8 +436,8 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           nameLabel="Nombres"
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.nombresInput
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.nombresInput
                               : "Nombres"
                           }
                           validateLetters={validateTexts}
@@ -448,7 +447,7 @@ const DatosPersonales = () => {
                           value={
                             empleadoUno !== undefined
                               ? empleadoUno.nroDocumento
-                              : null
+                              : datosPersonalesRedux.documentoInput
                           }
                           generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
@@ -468,13 +467,13 @@ const DatosPersonales = () => {
                               : null
                           }
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.documentoInput
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.documentoInput
                               : numDoc
                           }
                           datosPersonalesValue2={
-                            datosPersonales !== undefined
-                              ? datosPersonales.dniSelected
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.dniSelected
                               : "D.N.I"
                           }
                           validateNumbersDNI={validateNumbersDNI}
@@ -517,7 +516,7 @@ const DatosPersonales = () => {
                           value={
                             empleadoUno !== undefined
                               ? empleadoUno.telFijo
-                              : null
+                              : datosPersonalesRedux.telefonoInput
                           }
                           generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
@@ -529,8 +528,8 @@ const DatosPersonales = () => {
                           onChange={onChange}
                           nameLabel="Telefono"
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.telefonoInput
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.telefonoInput
                               : "N° Teléfono"
                           }
                           validateNumbers={validateNumbers}
@@ -621,9 +620,9 @@ const DatosPersonales = () => {
                           disabled={disable}
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.inputSexo
-                              : null
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.inputSexo
+                              : ""
                           }
                         />
                         <InputDate
@@ -639,8 +638,8 @@ const DatosPersonales = () => {
                           idInput="inputDateNac"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.inputDateNac
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.inputDateNac
                               : null
                           }
                         />
@@ -648,7 +647,7 @@ const DatosPersonales = () => {
                           value={
                             empleadoUno !== undefined
                               ? empleadoUno.telMovil
-                              : null
+                              : datosPersonalesRedux.movil
                           }
                           generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
@@ -660,8 +659,8 @@ const DatosPersonales = () => {
                           nameLabel="Celular"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.movil
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.movil
                               : "Movil"
                           }
                           validateNumbers={validateNumbers}
@@ -669,7 +668,7 @@ const DatosPersonales = () => {
                         />
                         <InputForm
                           value={
-                            empleadoUno !== undefined ? empleadoUno.mail : null
+                            empleadoUno !== undefined ? empleadoUno.mail : datosPersonalesRedux.email
                           }
                           generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
@@ -681,8 +680,8 @@ const DatosPersonales = () => {
                           nameLabel="Email"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.email
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.email
                               : "Email"
                           }
                           validateEmails={validateEmails}
@@ -716,8 +715,8 @@ const DatosPersonales = () => {
                           idInput="paisOrigenInput"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.estadosEmpleados
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.estadosEmpleados
                               : "Email"
                           }
                         />
@@ -748,8 +747,8 @@ const DatosPersonales = () => {
                           idInput="estudiosInput"
                           onChange={onChange}
                           datosPersonalesValue={
-                            datosPersonales !== undefined
-                              ? datosPersonales.estudiosInput
+                            datosPersonalesRedux !== undefined
+                              ? datosPersonalesRedux.estudiosInput
                               : "Email"
                           }
                         />
