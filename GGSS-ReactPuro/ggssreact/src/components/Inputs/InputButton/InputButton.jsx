@@ -65,7 +65,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     />
         </div>
 			  <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
-              className="btn btn-validacion btn-outline-danger ml-2" disabled={disabled}>
+              className="btn btn-validacion btn-outline-danger ml-4" disabled={disabled}>
               {nameButton}
         </button>
     </div>
