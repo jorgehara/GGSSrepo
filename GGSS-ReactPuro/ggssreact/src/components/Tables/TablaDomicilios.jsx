@@ -15,7 +15,17 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
    useEffect(()=>{
     setValueInitial(value);
    },[value])
-   const inputValueDom=()=>{
+
+   useEffect(()=>{
+    setInputValor();
+    inputValueDom(valueInitial);
+    setDomicilios(inputValueDom(valueInitial));
+  },[valueInitial])
+
+   console.log(value);
+   console.log(valueInitial);
+
+   const inputValueDom=(valor)=>{
     
     let calleSelect = "";
     let barrioSelect = "";
@@ -23,15 +33,20 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     let provinciaSelect = "";
     let departamentoSelect = "";
 
-    return value.map((valor,index)=>{
-        calleSelect = calles !== undefined ? calles.find((calle) => valor.idCalle === calle.idCalle) : null;
-        barrioSelect = barrios !== undefined ? barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio) : null;
-      
-        localidadSelect = localidades !== undefined ? localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad) : null;
-        departamentoSelect = departamentos !== undefined ? departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento) : null;
+    return valor && valor.map((valor,index)=>{
+      debugger;
+        calleSelect = calles && calles.find((calle) => valor.idCalle === calle.idCalle);
 
-        provinciaSelect = provincias !== undefined && provincias.find((provincia)=> departamentoSelect.idProvincia === provincia.idProvincia);
+        barrioSelect = barrios && barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio);
+      
+        localidadSelect = localidades && localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad);
+
+        departamentoSelect = departamentos && departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento);
+
+        provinciaSelect = provincias && provincias.find((provincia)=> departamentoSelect.idProvincia === provincia.idProvincia);
+
         const newDomicilios = {...valor, idCalle : calleSelect, idBarrio : barrioSelect, localidad : localidadSelect, provincia  : provinciaSelect, departamento : departamentoSelect}
+
         return( newDomicilios)
       })
       
@@ -40,11 +55,7 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
   const valor = valueInitial !== undefined && valueInitial !== null ? valueInitial.map((item)=>{return(item.predeterminado)}) : null;
    
   console.log(valor);
-  useEffect(()=>{
-    setInputValor();
-    inputValueDom();
-    setDomicilios(inputValueDom());
-  },[valueInitial])
+ 
 
   
 const dispatch = useDispatch();
