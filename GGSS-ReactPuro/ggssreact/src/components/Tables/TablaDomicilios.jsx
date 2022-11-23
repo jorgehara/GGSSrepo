@@ -18,10 +18,14 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
 
    useEffect(()=>{
     setInputValor();
-    setDomicilios(inputValueDom());
+    inputValueDom(valueInitial);
+    setDomicilios(inputValueDom(valueInitial));
   },[valueInitial])
 
-   const inputValueDom=()=>{
+   console.log(value);
+   console.log(valueInitial);
+
+   const inputValueDom=(valor)=>{
     
     let calleSelect = "";
     let barrioSelect = "";
@@ -29,15 +33,20 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     let provinciaSelect = "";
     let departamentoSelect = "";
 
-    return valueInitial.map((valor,index)=>{
-        calleSelect = calles  && calles.find((calle) => valor.idCalle === calle.idCalle) ;
-        barrioSelect = barrios  && barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio) ;
+    return valor && valor.map((valor,index)=>{
+      debugger;
+        calleSelect = calles && calles.find((calle) => valor.idCalle === calle.idCalle);
+
+        barrioSelect = barrios && barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio);
       
-        localidadSelect = localidades  && localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad);
-        departamentoSelect = departamentos  && departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento);
+        localidadSelect = localidades && localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad);
+
+        departamentoSelect = departamentos && departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento);
 
         provinciaSelect = provincias && provincias.find((provincia)=> departamentoSelect.idProvincia === provincia.idProvincia);
+
         const newDomicilios = {...valor, idCalle : calleSelect, idBarrio : barrioSelect, localidad : localidadSelect, provincia  : provinciaSelect, departamento : departamentoSelect}
+
         return( newDomicilios)
       })
       
@@ -46,7 +55,7 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
   const valor = valueInitial && valueInitial !== null ? valueInitial.map((item)=>{return(item.predeterminado)}) : null;
    
   console.log(valor);
-  
+ 
 
   
 const dispatch = useDispatch();

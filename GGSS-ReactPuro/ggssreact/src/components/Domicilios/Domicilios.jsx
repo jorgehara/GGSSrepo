@@ -86,6 +86,7 @@ const Domicilios = () => {
   const departamentoSelected = useSelector((state)=> state.domiciliosStates.departamentoSelected);
   const localidadSelected = useSelector((state)=> state.domiciliosStates.localidadSelected);
   const domicilioDelEmpleado = useSelector((state)=> state.domiciliosStates.idDomicilioSelected);
+  const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
  
   //#region ------------------------------------------------------------------------------CONTEXT
   const { saveDom,saveDomicilios, saveEmpl,saveCalle, disable } = useContext(employeContext);
@@ -175,22 +176,32 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
     "idEmpleado": empleadoUno.iDempleado,
     "idEmpleador": 11
   }
-  const sendDataDomicilios=()=>{
+  const sendDataDomicilios= async ()=>{
     try{
       if(domiciliosState !== null && domiciliosState.inputCalleDomicilios !== "" && domiciliosState.inputNumCalle !== "" && domiciliosState.inputPisoCalle !== "" && domiciliosState.inputProvinciaDomicilios !== "" && domiciliosState.inputDepartamentosDomicilios && domiciliosState.inputLocalidadesDomicilios !== "" && domiciliosState.inputBarriosDomicilios !== ""){
-          axios.post(urlDomicilios, bodyPetition)
+          await axios.post(urlDomicilios, bodyPetition)
           .then((res)=> {
             if(res.status === 200){
-              handleFetch(urlDomicilios, addDomicilios);
-              getDomicilioEmpleado()
-              return swal({
+              if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
+                let domicilioDelEmpleado = generalStateData.domicilios && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleado ) ;
+                dispatch(addOneDomicilio(domicilioDelEmpleado)); 
+              
+              }
+               swal({
                 title: "Domicilio Agregado",
                 text: "Domicilio agregado con éxito",
                 icon: "success",
-              });
-            };
-            
+              })
+          
+            };            
           })
+          handleFetch(urlDomicilios, addDomicilios);
+          if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
+            let domicilioDelEmpleado = generalStateData.domicilios && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleado ) ;
+            debugger;
+            dispatch(addOneDomicilio(domicilioDelEmpleado)); 
+          return;
+          }
           return;
       }
       return swal({
@@ -206,22 +217,29 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
       })
     }
   }
-  const deleteDomicilio =(id)=>{
+  const deleteDomicilio =async (id)=>{
     
-    axios.delete(`http://54.243.192.82/api/Domicilios/${id}`)
+    await axios.delete(`http://54.243.192.82/api/Domicilios/${id}`)
     .then((res)=> {
       if(res.status === 200){
-        handleFetch(urlDomicilios, addDomicilios);
-        getDomicilioEmpleado()
-        swal({
+        if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
+          let domicilioDelEmpleado = generalStateData.domicilios !== undefined && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleado) ;
+          debugger;
+          dispatch(addOneDomicilio(domicilioDelEmpleado)); 
+        
+        }
+        return swal({
           title: "Ok",
           text: "Domicilio borrado con éxito",
           icon: "success",
         })
       }
     })
+    
+    return;
   }
-  const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
+
+
   console.log(empleadoDomicilio)
  
 
