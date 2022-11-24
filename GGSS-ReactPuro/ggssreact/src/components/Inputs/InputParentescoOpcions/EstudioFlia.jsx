@@ -27,7 +27,7 @@ const EstudioFlia = ({
   }, [display]);
 
   return (
-    <div className="formulario__grupo__inputs">
+    <div className="formulario__grupo__inputs mt-2">
     <div className="formulario__grupo">
           <label className="form-label-EstudiosFlia mt-2">
             {nameInput}
@@ -44,8 +44,7 @@ const EstudioFlia = ({
             (e)=> onChange(e, action)
           }
           >
-            <option value="">Seleccionar</option>
-            {array && array.map((op, i) => {
+            {array.map((op, i) => {
               return propArray == op ? (
                 <option key={i} 
                 value={op[namePropOp]}

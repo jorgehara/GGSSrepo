@@ -61,7 +61,7 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
 const dispatch = useDispatch();
 
   const setInputValor = () => {
-    valor && valor.map((item)=> {
+    valor.map((item)=> {
       return (item === true ? setCheckPredeterminado("checked") : setCheckPredeterminado("")
       )
     });    
@@ -87,7 +87,7 @@ const dispatch = useDispatch();
           </thead>
           <tbody>
             {
-              domicilios && domicilios.map((valor, index)=>{
+              domicilios !== undefined && domicilios.map((valor, index)=>{
                 return(
                   <tr>
                     <th>
