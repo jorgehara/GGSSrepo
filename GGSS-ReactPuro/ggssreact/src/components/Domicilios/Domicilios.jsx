@@ -13,7 +13,7 @@ import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
 import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades, addProvincias } from "../../redux/actions/fetchActions";
 import InputForm from "../Inputs/InputForm/InputForm";
-import { addOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
+import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto, setPredeterminado } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 
 //#endregion
@@ -23,6 +23,7 @@ const Domicilios = () => {
   const [domicilios, setDomicilios] = useState([]);
   const [domiciliosDelEmpleado, setDomiciliosDelEmpleado] = useState([]);
   const [ idEmpleado, setIdEmpleado] = useState(0);
+  const [checked, setChecked] = useState(true);
   const columns = [
     "Predeterminado",
     "Calle",
@@ -89,8 +90,9 @@ const Domicilios = () => {
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
  
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl,saveCalle, disable } = useContext(employeContext);
+  const { saveDom,saveDomicilios, saveEmpl, disable } = useContext(employeContext);
 
+  console.log(domiciliosState)
   
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   useEffect(()=>{
@@ -113,9 +115,7 @@ const Domicilios = () => {
   useEffect(()=>{
     getEmpleados().then(res=> saveDomicilios(res))
   },[])
-  useEffect(() => {
-    setInputValor();
-  }, [predeterminadoValue]);
+ 
   
   
   useEffect(()=>{
@@ -124,19 +124,10 @@ const Domicilios = () => {
   //#endregion
 
 
-const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (empleadoUno[0] !== undefined && empleadoUno[0].iDempleado));
 
-  const setInputValor = () => {
-
-    if (predeterminado !== null && predeterminado.toString() === "1") {
-      setInputValue("checked");
-      return;
-    }
-    setInputValue("");
-  };
 
  
-  
+  console.log(domiciliosDelEmpleado);
 
   // -----------------------------------------------------LLENAR CAMPOS 
 
@@ -144,26 +135,27 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
   
   generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleadoPrueba ) 
  */
-  const arrayDepartamentos = provinciaSelected.payload !== undefined && generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos.filter((departamento) => departamento.idProvincia === provinciaSelected.payload.idProvincia) : null;
+  const arrayDepartamentos = provinciaSelected && provinciaSelected.payload && generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos.filter((departamento) => departamento.idProvincia === provinciaSelected.payload.idProvincia) : null;
 
 
-  const arrayLocalidades = departamentoSelected.payload !== undefined && generalStateData.localidades !== undefined && generalStateData.localidades !== "" ? generalStateData.localidades.filter((localidad) => localidad.idDepartamento === departamentoSelected.payload.idDepartamento) : null;
+  const arrayLocalidades = departamentoSelected && departamentoSelected.payload && generalStateData.localidades !== undefined && generalStateData.localidades !== "" ? generalStateData.localidades.filter((localidad) => localidad.idDepartamento === departamentoSelected.payload.idDepartamento) : null;
 
 
-  const arrayBarrios = localidadSelected.payload !== undefined && generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios.filter((barrio) => barrio.idLocalidad === localidadSelected.payload.idLocalidad) : null;
+  const arrayBarrios = localidadSelected  && localidadSelected.payload &&  generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios.filter((barrio) => barrio.idLocalidad === localidadSelected.payload.idLocalidad) : null;
+
   useEffect(()=>{
     getDomicilioEmpleado()
   },[empleadoUno])
 
   function getDomicilioEmpleado(){
     if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
-      let domicilioDelEmpleado = generalStateData.domicilios !== undefined && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === empleadoUno.iDempleado ) 
+      let domicilioDelEmpleado = generalStateData.domicilios && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === empleadoUno.iDempleado ) 
 
 
       return dispatch(addOneDomicilio(domicilioDelEmpleado));     
     }
   }
-  let idDomicilio = generalStateData.domicilios !== undefined && generalStateData.domicilios !== null && generalStateData.domicilios[generalStateData.domicilios.length -1] !== undefined ? ((generalStateData.domicilios[generalStateData.domicilios.length -1].idDomicilio)+1) : null;
+  let idDomicilio = generalStateData.domicilios && generalStateData.domicilios[generalStateData.domicilios.length -1] ? ((generalStateData.domicilios[generalStateData.domicilios.length -1].idDomicilio)+1) : null;
 
 
   let bodyPetition = {
@@ -172,36 +164,36 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
     "idCalle": domiciliosState.inputCalleDomicilios,
     "numero": domiciliosState.inputNumCalle,
     "dpto": domiciliosState.inputPisoCalle,
-    "predeterminado": false,
-    "idEmpleado": empleadoUno.iDempleado,
+    "predeterminado": domiciliosState && domiciliosState.inputPredeterminado,
+    "idEmpleado": empleadoUno && empleadoUno.iDempleado,
     "idEmpleador": 11
   }
+  console.log(empleadoUno && empleadoUno.iDempleado)
   const sendDataDomicilios= async ()=>{
     try{
-      if(domiciliosState !== null && domiciliosState.inputCalleDomicilios !== "" && domiciliosState.inputNumCalle !== "" && domiciliosState.inputPisoCalle !== "" && domiciliosState.inputProvinciaDomicilios !== "" && domiciliosState.inputDepartamentosDomicilios && domiciliosState.inputLocalidadesDomicilios !== "" && domiciliosState.inputBarriosDomicilios !== ""){
+    let predeterminadoExiste = empleadoDomicilio && empleadoDomicilio.filter((dom) => dom.predeterminado === true );
+    if(predeterminadoExiste && bodyPetition.predeterminado === true){
+      return swal({
+        title: "Error",
+        text: "No puede tener más de un domicilio Predeterminado",
+        icon: "error",
+      }) 
+    }
+    
+      if(domiciliosState && domiciliosState.inputCalleDomicilios !== "" && domiciliosState.inputNumCalle !== "" && domiciliosState.inputPisoCalle !== "" && domiciliosState.inputProvinciaDomicilios !== "" && domiciliosState.inputDepartamentosDomicilios && domiciliosState.inputLocalidadesDomicilios !== "" && domiciliosState.inputBarriosDomicilios !== ""){
           await axios.post(urlDomicilios, bodyPetition)
           .then((res)=> {
-            if(res.status === 200){
-              if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
-                let domicilioDelEmpleado = generalStateData.domicilios && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleado ) ;
-                dispatch(addOneDomicilio(domicilioDelEmpleado)); 
-              
-              }
+
+            if(res.status === 200){ 
+              dispatch(addNewDomicilio(res.data))  
                swal({
                 title: "Domicilio Agregado",
                 text: "Domicilio agregado con éxito",
                 icon: "success",
-              })
-          
+              })          
             };            
           })
-          handleFetch(urlDomicilios, addDomicilios);
-          if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
-            let domicilioDelEmpleado = generalStateData.domicilios && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleado ) ;
-            debugger;
-            dispatch(addOneDomicilio(domicilioDelEmpleado)); 
-          return;
-          }
+          
           return;
       }
       return swal({
@@ -221,27 +213,26 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
     
     await axios.delete(`http://54.243.192.82/api/Domicilios/${id}`)
     .then((res)=> {
-      if(res.status === 200){
-        if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
-          let domicilioDelEmpleado = generalStateData.domicilios !== undefined && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleado) ;
-          debugger;
-          dispatch(addOneDomicilio(domicilioDelEmpleado)); 
-        
-        }
+      if(res.status === 200){  
+        console.log(res)
+        dispatch(deleteOneDomicilio(Number(id)))
         return swal({
           title: "Ok",
-          text: "Domicilio borrado con éxito",
+          text: "Domicilio eliminado con éxito",
           icon: "success",
         })
       }
-    })
-    
-    return;
+    }    
+    )   
   }
 
-
+  console.log(typeof(domicilioDelEmpleado))
   console.log(empleadoDomicilio)
- 
+
+  const handleChangePredeterminado=()=>{
+    setChecked(!checked)
+    dispatch(setPredeterminado(checked));
+  }
 
 
     //Con este domicilio de los empleados, hay que mandarlo a la TableDomicilios y mapearlo para que muestre los datos por la tabla
@@ -279,10 +270,12 @@ const domicilioEmpleadoSelect = domicilios.filter((dom)=> dom.idEmpleado === (em
                 <div className="mt-2">
                   <input
                     defaultChecked
-                    checked={inputValue}
                     type="checkbox"
-                    name="predeterminado"
-                    id="predeterminado"
+                    name="inputPredeterminado"
+                    checked={!checked}
+                    value ={(e)=> e.target.checked ? empleadoDomicilio && empleadoDomicilio.inputPredeterminado : false }
+                    id="inputPredeterminado"
+                    onChange={(e)=>handleChangePredeterminado()}
                   />
                   <label className="ml-2" htmlFor="predeterminado">
                     Predeterminado

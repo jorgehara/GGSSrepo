@@ -19,9 +19,12 @@ import { useState } from "react";
 import InputDateFliaBaja from "../Inputs/InputDateFamilia/InputDateFliaBaja";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_FAMILIA } from "../../redux/types/familiaTypes";
+import { ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
+import axios from "axios";
 
 const Familia = () => {
-  const { saveEmpl, saveFamiliar, saveEstado,  saveFamiliares,  saveEstadoCivil, saveNacionalidades, saveNacionalidad ,saveEstudios, saveEstudio, saveTipoDNI, saveTiposDNI, saveParentescos, parentescos, disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect,saveFamiliarSelec} = useContext(employeContext);
+  const { saveEmpl, saveFamiliar,  saveFamiliares, saveNacionalidad , saveEstudio, saveParentescos, parentescos, disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect} = useContext(employeContext);
+
   const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
   const dispatch = useDispatch();
   
@@ -36,21 +39,30 @@ const Familia = () => {
     // inputEstadosCivilesModalFem:""
   });
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
+  const urlParentesco = "http://54.243.192.82/api/Parentescos";
+  const urlFamiliares = "http://54.243.192.82/api/Familiares";
+  const urlTiposDocumentos = "http://54.243.192.82/api/TiposDocumento";
+
+
   function onChange(e, action) {
-    console.log("entro")
     dispatch(
       {
         type: action,
         payload : {name : e.target.name, value : e.target.value}
       });    
   }
-  
+
+
   const empleadoUno = useSelector((state)=> state.employeStates.employe)
-  const familiarSel = useSelector((state)=> state.familiaStates.familiar)
- 
+  const familiarSel = useSelector((state)=> state.familiaStates.familiar) 
   const familiaRedux = useSelector((state)=> state.familiaStates.formulario);
-  console.log(familiarSel)
-  console.log(familiaRedux)
+  const tiposDni = useSelector((state)=> state.generalState.tiposDocumento);
+  const estudioValue = useSelector((state)=> state.generalState.estudios);
+  const paisesValue = useSelector((state)=> state.generalState.paises);
+  
+
+  console.log(paisesValue);
+
   useEffect(()=>{
     console.log(familiaRedux)
   },[familiaRedux])
@@ -58,9 +70,7 @@ const Familia = () => {
   //#endregion
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-    const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.masculino); }) : []; 
-    const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (estado.femenino); }) : [];
-    const estadosCiviles = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i)=>{ return (`Masculino: ${estado.masculino}, Femenino: ${estado.femenino}`); }) : [];    
+     
     const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_masc); }) : []; 
     const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_fem); }) : []; 
     const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
@@ -70,11 +80,7 @@ const Familia = () => {
     const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i)=>{ return (nac.estudiosNivel); }) : [];
     const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
     const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
-    const estadosArray = saveEstado.map((m,i)=>{return (m.nombreEstado)});
-    const estadosEmpleado = saveEstado !== undefined ? saveEstado.map(est => {return (est.nombreEstado)}) : null;
-    const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
-    const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
-    const tiposDNI = saveTipoDNI !== undefined ? saveTipoDNI.map(tdni=> {return tdni.tipoDocumento}) : null;
+   
     const idEmpleadoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDempleado  : 0;
     const parentesco = parentescos !== undefined ? parentescos.map((par,i)=> {return(par.nombreParentesco)}) : null;
     const parentSelected = familiarSeleccionado!== undefined ? familiarSeleccionado.iDparentesco : null;
@@ -82,9 +88,7 @@ const Familia = () => {
     //#endregion
  
   //#region ------------------------------------------------------------------------------URLs
-  const tipoDNI = ["D.N.I", "L.E.", "L.C.", "Pasaporte", "Visa"];
-  const urlParentesco = "http://54.243.192.82/api/Parentescos";
-  const urlFamiliares = "http://54.243.192.82/api/Familiares";
+  
   //#endregion
   //#region ------------------------------------------------------------------------------USEEFFECTS
   useEffect(()=>{
@@ -157,7 +161,8 @@ const Familia = () => {
                   action={ADD_FAMILIA}
                 />
                 <InputMultiple
-                  optionsDNI={tiposDNI}
+                  optionsDNI={tiposDni}
+                  namePropOp="tipoDocumento"
                   nameInputDNI="Documento"
                   valueRadio={
                     (familiarSeleccionado === undefined || Object.keys(familiarSeleccionado).length === 0 ) ? (saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null) :  familiarSeleccionado.sexo
@@ -214,7 +219,8 @@ const Familia = () => {
                 />
                 <EstudioFlia
                   nameInput="Estudios"
-                  array={estudios}
+                  array={estudioValue}
+                  namePropOp="estudiosNivel"
                   propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
                   placeHolder="Estudios"
                   nameButton="..."
@@ -233,7 +239,8 @@ const Familia = () => {
           
           <PaisOrigenFlia
                   nameInput="Pais de Origen"
-                  array={paises}
+                  array={paisesValue}
+                  namePropValue="nombrePais"
                   placeHolder="Paises"
                   nameButton="..."
                   nameCheck="Fijar"
@@ -247,14 +254,15 @@ const Familia = () => {
                 />
           <NacionalidadFlia
                   nameInput="Nacionalidad"
-                  array={nacionalidades !== undefined ? nacionalidades : "Nacionalidad"}
+                  array={paisesValue}
+                  namePropOp="nacionalidad_masc"
                   placeHolder="Nacionalidad"
                   nameButton="..."
                   nameCheck="Fijar"
                   checked=""
                   display={false}
-                  masculinos={nacionalidadesMasculinas}
-                  femeninos={nacionalidadesFemeninas}
+                  masculinos={paisesValue.nacionalidad_masc && paisesValue.nacionalidad_masc}
+                  femeninos={paisesValue.nacionalidad_fem && paisesValue.nacionalidad_fem}
                   sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
                   propArray="ARGENTINO"
                   idModal="nacionalidades"

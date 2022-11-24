@@ -17,7 +17,8 @@ const NacionalidadFlia = ({
   disable,
   action,
   onChange,
-  idInput
+  idInput,
+  namePropOp
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [returnBySexo, setReturnBySexo] = useState([]);
@@ -60,16 +61,16 @@ const NacionalidadFlia = ({
 
           {sexo !== undefined && sexo.length > 0 && returnBySexo !== undefined
             ? returnBySexo.map((op, index) => {
-                return propArray === op ? (
-                  <option key={index} selected defaultValue value={index}>
-                    {op}
+                return propArray === op[namePropOp] ? (
+                  <option key={index} selected defaultValue value={op[namePropOp]}>
+                    {op[namePropOp]}
                   </option>
                 ) : (
-                  <option key={index}>{op}</option>
+                  <option key={index} value={op[namePropOp]}>{op[namePropOp]}</option>
                 );
               })
             : array.map((op, i) => {
-                return <option key={i}>{op}</option>;
+                return <option value={op[namePropOp]} key={i}>{op[namePropOp]}</option>;
               })}
         </select>
       </div>

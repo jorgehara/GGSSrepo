@@ -37,7 +37,7 @@ const TableBasic = ({
   return (
     <>
       <div className="overflow-scroll ">
-        <table className="table table-secondary table-fit ">
+        <table className="table table-danger table-fit ">
           <thead>
             <tr>
               <th>Sel.</th>
