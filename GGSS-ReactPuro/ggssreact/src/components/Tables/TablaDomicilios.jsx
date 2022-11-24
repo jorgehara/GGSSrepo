@@ -34,7 +34,7 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     let departamentoSelect = "";
 
     return valor && valor.map((valor,index)=>{
-      debugger;
+    
         calleSelect = calles && calles.find((calle) => valor.idCalle === calle.idCalle);
 
         barrioSelect = barrios && barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio);
