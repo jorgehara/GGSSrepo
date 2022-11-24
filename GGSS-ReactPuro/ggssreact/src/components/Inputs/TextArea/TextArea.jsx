@@ -4,7 +4,7 @@ import './TextArea.css'
 const TextArea = ({inputName, maxLength, value, disabled, action, onChange, idInput}) => {
   return (
     <div className='row'>
-        <div className='form__grupo__label pl-1 mt-3'>
+        <div className='form__grupo__label pl-1 mt-2'>
             <label className='form__grupo__label__label m-0' htmlFor="legajo">{inputName}</label>
         </div>
 

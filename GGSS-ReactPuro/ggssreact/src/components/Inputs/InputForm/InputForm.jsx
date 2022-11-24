@@ -39,7 +39,7 @@ const InputForm = ({
       <div className="form__grupo-input">
         <input
           type="text"
-          className="formulario-input-Legajo"
+          className="formulario-input-Legajo "
           id={inputId}
           placeholder={placeHolder}
           value={ valor  }

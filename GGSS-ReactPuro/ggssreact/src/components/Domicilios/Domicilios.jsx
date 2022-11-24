@@ -15,7 +15,6 @@ import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades,
 import InputForm from "../Inputs/InputForm/InputForm";
 import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto, setPredeterminado } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
-import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 
 //#endregion
 const Domicilios = () => {
@@ -187,7 +186,7 @@ const Domicilios = () => {
 
             if(res.status === 200){ 
               dispatch(addNewDomicilio(res.data))  
-              swal({
+               swal({
                 title: "Domicilio Agregado",
                 text: "Domicilio agregado con éxito",
                 icon: "success",
@@ -330,7 +329,7 @@ const Domicilios = () => {
                   />
                 </div>
                 </div>
-                  <InputFormPiso
+                  <InputForm
                     value={
                       domiciliosState !== null ? domiciliosState.inputPisoCalle : []
                     }
