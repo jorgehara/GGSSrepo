@@ -22,7 +22,7 @@ const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,
 
 
   return (
-    <div className="mt-2">
+    <div className="mt-3">
       <div className='row d-flex flex-row justify-content-start formularioDate align-items-center'>
           <div className="col-xl-2 p-0">
             <label className="" htmlFor="flexCheckDefault">
