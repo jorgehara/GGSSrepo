@@ -14,7 +14,8 @@ export const initialState = {
         inputDateNac : "",
         inputDateBaja : "",
         nacionalidadFamilia : "",
-        textAreaObservacionesFamilia : ""
+        textAreaObservacionesFamilia : "",
+        tiposDocumento : []
     }
 };
 

@@ -13,7 +13,7 @@ import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
 import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades, addProvincias } from "../../redux/actions/fetchActions";
 import InputForm from "../Inputs/InputForm/InputForm";
-import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
+import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto, setPredeterminado } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 
 //#endregion
@@ -23,6 +23,7 @@ const Domicilios = () => {
   const [domicilios, setDomicilios] = useState([]);
   const [domiciliosDelEmpleado, setDomiciliosDelEmpleado] = useState([]);
   const [ idEmpleado, setIdEmpleado] = useState(0);
+  const [checked, setChecked] = useState(true);
   const columns = [
     "Predeterminado",
     "Calle",
@@ -89,8 +90,9 @@ const Domicilios = () => {
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
  
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl,saveCalle, disable } = useContext(employeContext);
+  const { saveDom,saveDomicilios, saveEmpl, disable } = useContext(employeContext);
 
+  console.log(domiciliosState)
   
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   useEffect(()=>{
@@ -113,9 +115,7 @@ const Domicilios = () => {
   useEffect(()=>{
     getEmpleados().then(res=> saveDomicilios(res))
   },[])
-  useEffect(() => {
-    setInputValor();
-  }, [predeterminadoValue]);
+ 
   
   
   useEffect(()=>{
@@ -125,14 +125,6 @@ const Domicilios = () => {
 
 
 
-  const setInputValor = () => {
-
-    if (predeterminado !== null && predeterminado.toString() === "1") {
-      setInputValue("checked");
-      return;
-    }
-    setInputValue("");
-  };
 
  
   console.log(domiciliosDelEmpleado);
@@ -172,17 +164,26 @@ const Domicilios = () => {
     "idCalle": domiciliosState.inputCalleDomicilios,
     "numero": domiciliosState.inputNumCalle,
     "dpto": domiciliosState.inputPisoCalle,
-    "predeterminado": false,
+    "predeterminado": domiciliosState && domiciliosState.inputPredeterminado,
     "idEmpleado": empleadoUno && empleadoUno.iDempleado,
     "idEmpleador": 11
   }
   console.log(empleadoUno && empleadoUno.iDempleado)
   const sendDataDomicilios= async ()=>{
-    debugger;
     try{
+    let predeterminadoExiste = empleadoDomicilio && empleadoDomicilio.filter((dom) => dom.predeterminado === true );
+    if(predeterminadoExiste && bodyPetition.predeterminado === true){
+      return swal({
+        title: "Error",
+        text: "No puede tener más de un domicilio Predeterminado",
+        icon: "error",
+      }) 
+    }
+    
       if(domiciliosState && domiciliosState.inputCalleDomicilios !== "" && domiciliosState.inputNumCalle !== "" && domiciliosState.inputPisoCalle !== "" && domiciliosState.inputProvinciaDomicilios !== "" && domiciliosState.inputDepartamentosDomicilios && domiciliosState.inputLocalidadesDomicilios !== "" && domiciliosState.inputBarriosDomicilios !== ""){
           await axios.post(urlDomicilios, bodyPetition)
           .then((res)=> {
+
             if(res.status === 200){ 
               dispatch(addNewDomicilio(res.data))  
                swal({
@@ -227,7 +228,11 @@ const Domicilios = () => {
 
   console.log(typeof(domicilioDelEmpleado))
   console.log(empleadoDomicilio)
- 
+
+  const handleChangePredeterminado=()=>{
+    setChecked(!checked)
+    dispatch(setPredeterminado(checked));
+  }
 
 
     //Con este domicilio de los empleados, hay que mandarlo a la TableDomicilios y mapearlo para que muestre los datos por la tabla
@@ -265,10 +270,12 @@ const Domicilios = () => {
                 <div className="mt-2">
                   <input
                     defaultChecked
-                    checked={inputValue}
                     type="checkbox"
-                    name="predeterminado"
-                    id="predeterminado"
+                    name="inputPredeterminado"
+                    checked={!checked}
+                    value ={(e)=> e.target.checked ? empleadoDomicilio && empleadoDomicilio.inputPredeterminado : false }
+                    id="inputPredeterminado"
+                    onChange={(e)=>handleChangePredeterminado()}
                   />
                   <label className="ml-2" htmlFor="predeterminado">
                     Predeterminado

@@ -52,7 +52,7 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
       
 
   }
-  const valor = valueInitial && valueInitial !== null ? valueInitial.map((item)=>{return(item.predeterminado)}) : null;
+  const valor = valueInitial && valueInitial.map((item)=>{return(item.predeterminado)});
    
   console.log(valor);
  
@@ -61,16 +61,10 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
 const dispatch = useDispatch();
 
   const setInputValor = () => {
-    valor.map((val)=>{
-      console.log(val)
-      if (val !== null && val !== undefined && val.toString() === "true") {
-        
-        return setCheckPredeterminado("checked");
-      }
-      return setCheckPredeterminado("");
-
-    })
-    return
+    valor.map((item)=> {
+      return (item === true ? setCheckPredeterminado("checked") : setCheckPredeterminado("")
+      )
+    });    
   }; 
 
   console.log(valueInitial)
@@ -100,7 +94,7 @@ const dispatch = useDispatch();
                       <input type="radio" name="seleccionar" id="seleccionar" value={valor.idDomicilio} onClick={(e)=> dispatch(selectedIdDomicilio(e.target.value))} />
                     </th>
                     <th>
-                      <input  type="checkbox" disabled="disabled" className="border-0 px-2" id="capitulo" defaultChecked value={valor.predeterminado} checked={checkPredeterminado}/>
+                      <input  type="checkbox" disabled="disabled" className="border-0 px-2" id="capitulo"  value={valor.predeterminado} checked={valor.predeterminado === null ? false : valor.predeterminado}/>
                     </th>
                     <td>{valor !== undefined && valor.idCalle !== null && valor.idCalle !== undefined? valor.idCalle.calle : null}</td>
                     <td>{valor !== undefined && valor.idBarrio !== null && valor.idBarrio !== undefined? valor.idBarrio.barrio : null}</td>

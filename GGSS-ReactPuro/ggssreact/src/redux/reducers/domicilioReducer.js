@@ -1,8 +1,9 @@
-import { ADD_DOMICILIOS,ADD_ONEDOMICILIO,SELECT_BARRIO,SELECT_DEPARTAMENTO,SELECT_ID_DOMICILIO,SELECT_PROVINCIA, ADD_NEW_DOMICILIO, DELETE_ONE_DOMICILIO } from "../types/domiciliosTypes";
+import { ADD_DOMICILIOS,ADD_ONEDOMICILIO,SELECT_BARRIO,SELECT_DEPARTAMENTO,SELECT_ID_DOMICILIO,SELECT_PROVINCIA, ADD_NEW_DOMICILIO, DELETE_ONE_DOMICILIO, SET_PREDETERMINADO } from "../types/domiciliosTypes";
 
 
 export const initialState = {
     //Este estado inicial lo llamamos en el Browser a partir de nuestro estado General (que era employeStates).
+    inputPredeterminado : false,
     inputCalleDomicilios : "",
     inputNumCalle : "",
     inputPisoCalle : "",
@@ -26,6 +27,7 @@ const domicilioReducer = (state = initialState, action) =>{
             
             return {
                 ...state,
+                inputPredeterminado : false,
                 [payload.name]:payload.value
                 
             };
@@ -40,6 +42,12 @@ const domicilioReducer = (state = initialState, action) =>{
             return{
                 ...state.domicilioEmpleado,
                 domicilioEmpleado : [...state.domicilioEmpleado, payload]
+            }
+        }
+        case SET_PREDETERMINADO : {
+            return {
+                ...state,
+                inputPredeterminado : payload
             }
         }
         case DELETE_ONE_DOMICILIO : {

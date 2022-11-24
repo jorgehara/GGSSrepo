@@ -34,8 +34,8 @@
 }
 .dateFlia{
 	position: absolute;
-	margin-top: 0.35% ;
-    left: 37.8%;
+	top: 30%;
+    left: 40%;
 }
 .formularioDate{
 	margin-left: 0.1%;
@@ -49,4 +49,7 @@
 .datebajaFliaCheck{
 	margin-top: 0px;
     margin-left: 12%;
+}
+.formulario__grupo{
+	position: relative;
 }

@@ -13,7 +13,8 @@ const PaisOrigenFlia = ({
   idModal,
   disable,
   action,
-  onChange
+  onChange,
+  namePropValue
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -30,7 +31,7 @@ const PaisOrigenFlia = ({
         <select className="form-select ml-0 mt-1" disabled={disable} onChange={(e)=> onChange(e,action)}>
           {
             array.map((op, i) => {
-              return propArray === op ?<option selected defaultValue  key={i}>{op}</option> : <option key={i}>{op}</option>
+              return propArray === op ?<option selected defaultValue value={op[namePropValue]}  key={i}>{op[namePropValue]}</option> : <option key={i}>{op[namePropValue]}</option>
             })
           }
         </select>

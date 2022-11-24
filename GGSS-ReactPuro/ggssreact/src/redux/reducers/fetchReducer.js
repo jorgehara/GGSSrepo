@@ -62,6 +62,7 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
         case ADD_TIPOSDOCUMENTO : {
+            console.log(action.payload)
             return{
                 ...state,
                 loading: false,
