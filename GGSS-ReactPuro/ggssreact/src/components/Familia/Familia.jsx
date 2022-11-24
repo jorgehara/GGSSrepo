@@ -258,7 +258,7 @@ const Familia = () => {
                       ? saveEmpl[0].fechaNacimiento
                       : null) : familiarSeleccionado.fechaNacimiento
                   }
-                  display={true}
+                  display={false}
                   checked={false}
                   nameInput="Nacimiento"
                   idInput="inputDateNac"
@@ -279,7 +279,7 @@ const Familia = () => {
                   nameButton="..."
                   nameCheck="Fijar"
                   checked=""
-                  display={true}
+                  display={false}
                   idModal="Estudios"
                   disable={disable}
                   idInput="idInputEstudios"
@@ -330,7 +330,7 @@ const Familia = () => {
             value={
               familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined ? saveEmpl[0].fechaEgreso : null) : familiarSeleccionado.fBaja
             }
-            display={true}
+            display={false}
             checked={false}
             nameInput="Fecha Baja"
             idInput="inputDateBaja"

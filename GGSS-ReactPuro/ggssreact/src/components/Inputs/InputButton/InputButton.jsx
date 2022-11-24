@@ -56,7 +56,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
             <input type="text" 
                     value={ datosPersonalesValue !== undefined && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
                     maxLength={maxLeght}
-                    className="formulario-input-Legajo col ml-0 px-0 mt-0 mb-2 mr-1" 
+                    className="formulario-input-Legajo ml-0 px-0 mt-0 mb-2 mr-1" 
                     placeholder={placeholder} 
                     id={id} 
                     name={id}
@@ -64,10 +64,12 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     onChange={(e)=> onChange(e,action )}
                     />
         </div>
+        <div className='row ml-4 boton-Generar '>
 			  <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
-              className="btn btn-validacion btn-outline-danger ml-4" disabled={disabled}>
+              className="btn btn-validacion btn-outline-danger" disabled={disabled}>
               {nameButton}
         </button>
+        </div>
     </div>
   );
 };

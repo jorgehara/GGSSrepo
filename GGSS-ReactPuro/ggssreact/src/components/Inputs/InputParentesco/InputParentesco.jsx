@@ -28,8 +28,8 @@ const InputParentesco = ({
 
   return (
     <div className="formulario__grupo__inputs">
-      <div className="formulario__grupo">
-          <label className="form-label-ParentsFlia mt-2">
+      <div className="formulario__grupo row gy-2">
+          <label className="form-label-ParentsFlia ">
             {nameInput}
           </label>
         </div>
@@ -91,7 +91,7 @@ const InputParentesco = ({
             disabled={disable}
           />
         </div>
-        <div className="col form-inputs-radioFijar mt-2">
+        <div className="col form-inputs-radioFijar">
         <div 
           className={
             mostrarComponente ? "d-flex align-items-center " : "none"
