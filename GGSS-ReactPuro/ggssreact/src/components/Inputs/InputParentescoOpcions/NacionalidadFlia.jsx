@@ -18,26 +18,34 @@ const NacionalidadFlia = ({
   action,
   onChange,
   idInput,
-  namePropOp
+  namePropOp,
+  namePropOPMAsc,
+  namePropFem
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [returnBySexo, setReturnBySexo] = useState([]);
+
   useEffect(() => {
     setMostrarComponente(display);
   }, [display]);
+
   useEffect(() => {
     setReturnBySexo(validateSexo(sexo, masculinos, femeninos));
   }, [sexo]);
+
+
+
   const validateSexo = (sexo, masculinos, femeninos) => {
     if (sexo === "M") {
-      console.log(masculinos);
-      return masculinos;
+      return masculinos && masculinos.map((mas)=> {return(mas[namePropOPMAsc])});
     }
     if (sexo === "F") {
-      console.log(femeninos);
-      return femeninos;
+      return femeninos && femeninos.map((fem)=> {return(fem[namePropFem])});
     }
   };
+
+  console.log(returnBySexo)
+
   return (
     <div className="formulario__grupo mt-2">
       <div className="">
@@ -53,23 +61,24 @@ const NacionalidadFlia = ({
           name={idInput}
           onChange={(e)=> onChange(e, action)}
         >
+          <option value="">Seleccionar</option>
             {/* {
             array.map((op, i) => {
               return propArray === op ?<option selected defaultValue  key={i}>{op}</option> : <option key={i}>{op}</option>
             })
           } */}
 
-          {sexo !== undefined && sexo.length > 0 && returnBySexo !== undefined
+          {sexo  && sexo.length > 0 && returnBySexo !== undefined
             ? returnBySexo.map((op, index) => {
-                return propArray === op[namePropOp] ? (
-                  <option key={index} selected defaultValue value={op[namePropOp]}>
-                    {op[namePropOp]}
+                return propArray === op ? (
+                  <option key={index} selected defaultValue value={op}>
+                    {op}
                   </option>
                 ) : (
-                  <option key={index} value={op[namePropOp]}>{op[namePropOp]}</option>
+                  <option key={index} value={op}>{op}</option>
                 );
               })
-            : array.map((op, i) => {
+            : array && array.map((op, i) => {
                 return <option value={op[namePropOp]} key={i}>{op[namePropOp]}</option>;
               })}
         </select>

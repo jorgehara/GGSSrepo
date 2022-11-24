@@ -18,9 +18,11 @@ import { getData, getFamiliarByIdEmpleado, getFamiliarByIdFamiliar } from "../..
 import { useState } from "react";
 import InputDateFliaBaja from "../Inputs/InputDateFamilia/InputDateFliaBaja";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_FAMILIA } from "../../redux/types/familiaTypes";
-import { ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
+import { ADD_FAMILIA, ADD_FAMILIAR } from "../../redux/types/familiaTypes";
+import { ADD_FAMILIARES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import axios from "axios";
+import { addFamiliares } from "../../redux/actions/fetchActions";
+import swal from "sweetalert";
 
 const Familia = () => {
   const { saveEmpl, saveFamiliar,  saveFamiliares, saveNacionalidad , saveEstudio, saveParentescos, parentescos, disable,saveFamiliarSelected,saveFamiliarPorEmpleado,saveFamSelect} = useContext(employeContext);
@@ -51,33 +53,43 @@ const Familia = () => {
         payload : {name : e.target.name, value : e.target.value}
       });    
   }
-
+  const handleFetch=(url, action )=>{
+    debugger;
+    dispatch({type: SET_LOADING});
+      axios.get(url)
+      .then((res)=>{
+        console.log(res.data.result)
+        dispatch( action(res.data.result));
+      })
+      .catch((err)=>{
+        dispatch({type:AXIOS_ERROR});
+      })
+   }
+   useEffect(()=>{
+    handleFetch(urlFamiliares, addFamiliares)
+  },[])
 
   const empleadoUno = useSelector((state)=> state.employeStates.employe)
-  const familiarSel = useSelector((state)=> state.familiaStates.familiar) 
+  const familiarSel = useSelector((state)=> state.generalState.familiares) 
   const familiaRedux = useSelector((state)=> state.familiaStates.formulario);
   const tiposDni = useSelector((state)=> state.generalState.tiposDocumento);
   const estudioValue = useSelector((state)=> state.generalState.estudios);
   const paisesValue = useSelector((state)=> state.generalState.paises);
   
 
-  console.log(paisesValue);
+  console.log(familiarSel);
 
   useEffect(()=>{
     console.log(familiaRedux)
   },[familiaRedux])
   
   //#endregion
-
+  
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
      
-    const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_masc); }) : []; 
-    const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nacionalidad_fem); }) : []; 
-    const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
-    const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i)=>{ return (nac.nombrePais); }) : [];
+    
     const idPaisOrigen = saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
     const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO"; 
-    const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i)=>{ return (nac.estudiosNivel); }) : [];
     const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
     const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
    
@@ -85,6 +97,8 @@ const Familia = () => {
     const parentesco = parentescos !== undefined ? parentescos.map((par,i)=> {return(par.nombreParentesco)}) : null;
     const parentSelected = familiarSeleccionado!== undefined ? familiarSeleccionado.iDparentesco : null;
     const parenSeleccionado = parentescos !== undefined ? parentescos.find((par)=> par.iDparentesco === parentSelected) : null;
+
+  
     //#endregion
  
   //#region ------------------------------------------------------------------------------URLs
@@ -133,6 +147,45 @@ const Familia = () => {
       setFamiliarSeleccionado(res);
     });
   }
+  let bodyPetition = {
+    "iDfamiliares": 150000,
+    "iDempleado": empleadoUno.iDempleado,
+    "apellidoyNombres": familiaRedux.inputApellidoNombres,
+    "iDparentesco": 7,
+    "sexo": familiaRedux.idRadioBtn,
+    "fechaNacimiento": familiaRedux.inputDateNac,
+    "iDnacionalidad": 12,
+    "iDtipoDocumento": 1,
+    "nroDocumento": "string",
+    "iDestudios": 10,
+    "iDpaisOrigen": 12,
+    "fBaja": familiaRedux.inputDateBaja,
+    "noDeducirGanancias": true,
+    "incluirCuotaAlimentaria": true,
+    "fechaCasamiento": null,
+    "fechaParto": null,
+    "fechaAcargoDesde": null,
+    "obs": familiaRedux.textAreaObservacionesFamilia
+  }
+  const sendData = async()=>{
+      try{
+        axios.post(urlFamiliares, bodyPetition)
+        .then(res =>{
+
+          swal({
+            title: "Ok",
+            text: "Familiar cargado correctamente",
+            icon: "success",
+          })
+        })
+        return;
+      }catch(err){
+          return err;
+      }
+  }
+  const deleteFamiliar=()=>{
+
+  }
   
   return (
     <div className="Lateral-Derecho">
@@ -161,11 +214,11 @@ const Familia = () => {
                   action={ADD_FAMILIA}
                 />
                 <InputMultiple
-                  optionsDNI={tiposDni}
+                  optionsDNI={tiposDni !== undefined && tiposDni}
                   namePropOp="tipoDocumento"
                   nameInputDNI="Documento"
                   valueRadio={
-                    (familiarSeleccionado === undefined || Object.keys(familiarSeleccionado).length === 0 ) ? (saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null) :  familiarSeleccionado.sexo
+                    familiaRedux && familiaRedux.idRadioBtn
                   }
                   valueDNI={
                     familiarSeleccionado === undefined || familiarSeleccionado === null ? (saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null) : familiarSeleccionado.nroDocumento
@@ -254,16 +307,18 @@ const Familia = () => {
                 />
           <NacionalidadFlia
                   nameInput="Nacionalidad"
-                  array={paisesValue}
+                  array={paisesValue && paisesValue}
                   namePropOp="nacionalidad_masc"
                   placeHolder="Nacionalidad"
                   nameButton="..."
                   nameCheck="Fijar"
                   checked=""
                   display={false}
-                  masculinos={paisesValue.nacionalidad_masc && paisesValue.nacionalidad_masc}
-                  femeninos={paisesValue.nacionalidad_fem && paisesValue.nacionalidad_fem}
-                  sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
+                  masculinos={paisesValue && paisesValue}
+                  namePropOPMAsc="nacionalidad_masc"
+                  femeninos={paisesValue && paisesValue}
+                  namePropFem="nacionalidad_fem"
+                  sexo={familiaRedux && familiaRedux.idRadioBtn}
                   propArray="ARGENTINO"
                   idModal="nacionalidades"
                   disable={disable}
@@ -296,7 +351,7 @@ const Familia = () => {
           <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable}/>            
         </div>
       <div className="d-flex justify-content-end">
-        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
+        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" functionSend={sendData} functionDelete={deleteFamiliar} />
       </div>
 
 

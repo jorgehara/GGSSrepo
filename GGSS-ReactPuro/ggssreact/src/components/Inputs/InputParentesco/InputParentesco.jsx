@@ -47,6 +47,7 @@ const InputParentesco = ({
             value={value}
             onChange={(e)=> onChange(e, action)}
           >
+            <option value="">Seleccionar</option>
             {array !== undefined &&
               array !== null &&
               array.map((op, i) => {

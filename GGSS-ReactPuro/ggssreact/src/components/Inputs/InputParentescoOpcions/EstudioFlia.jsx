@@ -44,7 +44,8 @@ const EstudioFlia = ({
             (e)=> onChange(e, action)
           }
           >
-            {array.map((op, i) => {
+            <option value="">Seleccionar</option>
+            {array && array.map((op, i) => {
               return propArray == op ? (
                 <option key={i} 
                 value={op[namePropOp]}

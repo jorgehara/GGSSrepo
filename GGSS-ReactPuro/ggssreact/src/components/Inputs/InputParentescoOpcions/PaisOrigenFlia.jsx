@@ -29,8 +29,9 @@ const PaisOrigenFlia = ({
       </div>
       <div className="SelectedFliaPais px-0">
         <select className="form-select ml-0 mt-1" disabled={disable} onChange={(e)=> onChange(e,action)}>
+          <option value="">Seleccionar</option>
           {
-            array.map((op, i) => {
+            array && array.map((op, i) => {
               return propArray === op ?<option selected defaultValue value={op[namePropValue]}  key={i}>{op[namePropValue]}</option> : <option key={i}>{op[namePropValue]}</option>
             })
           }
