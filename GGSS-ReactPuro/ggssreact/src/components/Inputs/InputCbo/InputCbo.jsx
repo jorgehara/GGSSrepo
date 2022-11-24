@@ -20,6 +20,7 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
       
     },[display])
     const onClickOption=(value)=>{
+      console.log(value)
       dispatch(provinciaAction(value))
     }
    

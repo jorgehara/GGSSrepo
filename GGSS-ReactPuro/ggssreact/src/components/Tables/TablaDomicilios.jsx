@@ -34,16 +34,16 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     let departamentoSelect = "";
 
     return valor && valor.map((valor,index)=>{
-      debugger;
+      
         calleSelect = calles && calles.find((calle) => valor.idCalle === calle.idCalle);
 
-        barrioSelect = barrios && barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio);
+        barrioSelect = barrios && calleSelect && barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio);
       
-        localidadSelect = localidades && localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad);
+        localidadSelect = localidades && barrioSelect && localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad);
 
-        departamentoSelect = departamentos && departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento);
+        departamentoSelect = departamentos && localidadSelect && departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento);
 
-        provinciaSelect = provincias && provincias.find((provincia)=> departamentoSelect.idProvincia === provincia.idProvincia);
+        provinciaSelect = provincias && departamentoSelect && provincias.find((provincia)=> departamentoSelect.idProvincia === provincia.idProvincia);
 
         const newDomicilios = {...valor, idCalle : calleSelect, idBarrio : barrioSelect, localidad : localidadSelect, provincia  : provinciaSelect, departamento : departamentoSelect}
 

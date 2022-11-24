@@ -1,4 +1,4 @@
-import { ADD_DOMICILIOS,ADD_ONEDOMICILIO,SELECT_BARRIO,SELECT_DEPARTAMENTO,SELECT_ID_DOMICILIO,SELECT_PROVINCIA } from "../types/domiciliosTypes";
+import { ADD_DOMICILIOS,ADD_ONEDOMICILIO,SELECT_BARRIO,SELECT_DEPARTAMENTO,SELECT_ID_DOMICILIO,SELECT_PROVINCIA, ADD_NEW_DOMICILIO, DELETE_ONE_DOMICILIO } from "../types/domiciliosTypes";
 
 
 export const initialState = {
@@ -34,6 +34,18 @@ const domicilioReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 domicilioEmpleado : payload
+            }
+        }
+        case ADD_NEW_DOMICILIO : {
+            return{
+                ...state.domicilioEmpleado,
+                domicilioEmpleado : [...state.domicilioEmpleado, payload]
+            }
+        }
+        case DELETE_ONE_DOMICILIO : {
+            return{
+                ...state.domicilioEmpleado,
+                domicilioEmpleado : state.domicilioEmpleado.filter((dom)=> dom.idDomicilio !== payload)
             }
         }
         case SELECT_PROVINCIA :{
