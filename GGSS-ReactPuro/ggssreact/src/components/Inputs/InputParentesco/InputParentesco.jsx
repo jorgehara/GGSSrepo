@@ -18,7 +18,9 @@ const InputParentesco = ({
   generalState,
   setGeneralState,
   onChange,
-  action
+  action,
+  propArrayOp,
+  propIdSelect
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -28,8 +30,8 @@ const InputParentesco = ({
 
   return (
     <div className="formulario__grupo__inputs">
-      <div className="formulario__grupo">
-          <label className="form-label-ParentsFlia mt-2">
+      <div className="formulario__grupo row gy-2">
+          <label className="form-label-ParentsFlia ">
             {nameInput}
           </label>
         </div>
@@ -47,20 +49,20 @@ const InputParentesco = ({
             value={value}
             onChange={(e)=> onChange(e, action)}
           >
-            {array !== undefined &&
-              array !== null &&
+            <option value="">Seleccionar</option>
+            {array  &&
               array.map((op, i) => {
-                return propArray === op ? (
+                return propArray === op[propArrayOp] ? (
                   <option selected key={i}
-                  //value={op}
+                  value={op[propIdSelect]}
                   >
-                    {op}
+                    {op[propArrayOp]}
                   </option>
                 ) : (
                   <option key={i}
-                  value={op}
+                  value={op[propIdSelect]}
                   >
-                    {op}</option>
+                    {op[propArrayOp]}</option>
                   // <option selected key={i} 
                   // value={op}
                   // >
@@ -90,7 +92,7 @@ const InputParentesco = ({
             disabled={disable}
           />
         </div>
-        <div className="col form-inputs-radioFijar mt-2">
+        <div className="col form-inputs-radioFijar">
         <div 
           className={
             mostrarComponente ? "d-flex align-items-center " : "none"

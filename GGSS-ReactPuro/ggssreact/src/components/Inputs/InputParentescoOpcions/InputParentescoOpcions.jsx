@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
-import "./InputOpcionsFlia.css";
-const PaisOrigenFlia = ({
-  nameLabel,
+import "./InputParentescoOpcions.css";
+const InputParentescoOpcions = ({
+  nameInput,
   array,
   placeHolder,
   nameButton,
@@ -11,12 +11,7 @@ const PaisOrigenFlia = ({
   display,
   propArray,
   idModal,
-  disable,
-  action,
-  onChange,
-  namePropValue,
-  idSelected,
-  nameInput
+  disable
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -27,19 +22,18 @@ const PaisOrigenFlia = ({
   return (
     <div className="formulario__grupo mt-1">
       <div className="">
-        <label className="formulario-label-ParentescoFliaOpcions mt-2">{nameLabel}</label>
+        <label className="formulario-label-ParentescoFliaOpcions mt-2">{nameInput}</label>
       </div>
-      <div className="SelectedFliaPais px-0">
-        <select className="form-select ml-0 mt-1" name={nameInput} disabled={disable} onChange={(e)=> onChange(e,action)}>
-          <option value="">Seleccionar</option>
+      <div className="">
+        <select className="form-select form-select-Opcions ml-0 mt-1" disabled={disable}>
           {
-           array && array.map((op, i) => {
-              return propArray === op ?<option selected defaultValue value={op[idSelected]}  key={i}>{op[namePropValue]}</option> : <option key={i} value={op[idSelected]}>{op[namePropValue]}</option>
+            array.map((op, i) => {
+              return propArray === op ?<option selected defaultValue  key={i}>{op}</option> : <option key={i}>{op}</option>
             })
           }
         </select>
       </div>
-      <div className="ml-0 d-flex justify-content-cener align-items-center btn-modal-nacio">
+      <div className="ml-0 d-flex justify-content-cener align-items-center">
         <ButtonCallModal idModal={idModal} className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disable}/> 
       </div>
       <div
@@ -65,4 +59,4 @@ const PaisOrigenFlia = ({
   );
 };
 
-export default PaisOrigenFlia;
+export default InputParentescoOpcions;

@@ -13,8 +13,10 @@ export const initialState = {
         inputParentesco : "",
         inputDateNac : "",
         inputDateBaja : "",
+        inputPaisOrigen : "",
         nacionalidadFamilia : "",
-        textAreaObservacionesFamilia : ""
+        textAreaObservacionesFamilia : "",
+        tiposDocumento : []
     }
 };
 

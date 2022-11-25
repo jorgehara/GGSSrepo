@@ -8,7 +8,7 @@ import TableReduccion from '../../Tables/TableReduccion';
 import Dropdown from '../../Inputs/Dropdown/Dropdown';
 
 
-const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, inputNumData, table, buttonNum, tableValores, column, flex, categorias, buttonNumTable, styleContainer, styleData }) => {
+const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, inputNumData, table, buttonNum, tableValores, column, flex, categorias, buttonNumTable, styleContainer, styleData}) => {
 
     return (
         <div>
@@ -74,9 +74,7 @@ const ModalEscala = ({ idModal, nameModal, array, hasInputDate, inputDateData, i
                                     {
                                         inputNumData.map((p, i) => {
                                             return (
-                                                <div className={tableValores && 'fontSizeValores'}>
-                                                    <InputNumModal key={i} nameInput={p.label} inputId={p.label} />
-                                                </div>
+                                                <InputNumModal key={i} nameInput={p.label} inputId={p.label} />
                                             )
                                         })
                                     }

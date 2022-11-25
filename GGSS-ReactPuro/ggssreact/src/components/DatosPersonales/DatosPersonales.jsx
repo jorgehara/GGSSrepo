@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ADD_DATOS_PERSONALES } from "../../redux/types/datosPersonalesTypes";
 import axios from "axios";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
-import { addCargos, addEmpleadores, addEstados, addEstadosCiviles, addEstudios, addFormasPago, addModosContratacion, addModosLiquidacion, addPaises, addParentescos, addTareasDesempeñadas, addTiposDocumento } from "../../redux/actions/fetchActions";
+import { addCargos, addEmpleadores, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addModosContratacion, addModosLiquidacion, addPaises, addParentescos, addTareasDesempeñadas, addTiposDocumento } from "../../redux/actions/fetchActions";
 
 //#endregion
 
@@ -80,7 +80,7 @@ const DatosPersonales = () => {
   const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
   const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
   const urlBancos = "http://54.243.192.82/api/Bancos"
-
+  const urlFamiliares = "http://54.243.192.82/api/Familiares";
   //#endregion
  
 
@@ -108,6 +108,7 @@ const DatosPersonales = () => {
     handleFetch( urlModosContratacion,addModosContratacion);
     handleFetch( urlModosLiquidacion,addModosLiquidacion);
     handleFetch( urlEmpleadores,addEmpleadores);
+    handleFetch( urlFamiliares,addFamiliares);
   },[])
  const datosPersonalesState = useSelector((state)=> state.generalState);
   //#endregion
