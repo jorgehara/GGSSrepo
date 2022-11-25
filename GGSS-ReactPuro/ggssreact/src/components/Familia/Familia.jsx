@@ -355,7 +355,7 @@ const Familia = () => {
           </div>
         </div>
         <div className="d-flex flex-row align-items-center">
-          <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={saveFamiliarSelected !== undefined && saveFamiliarSelected !== null ? saveFamiliarSelected : []} parentescos={parentescos !== undefined ? parentescos : null} seleccionado={saveFamSelect} />
+          <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={familiaresPorEmpleado &&  familiaresPorEmpleado } parentescos={parentescos !== undefined ? parentescos : null} seleccionado={saveFamSelect} />
           <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable} functionSend={sendData}  />
         </div>
         <div className="d-flex justify-content-end">

@@ -53,7 +53,7 @@ const TableBasic = ({
             </tr>
           </thead>
           <tbody className="table-group-divider" id="cuerpodetabla">
-            {array.map((col, i) => {
+            { array && array.map((col, i) => {
               return (
                 <tr scope="row" className="px-5" key={i}>
                   <th scope="row">
