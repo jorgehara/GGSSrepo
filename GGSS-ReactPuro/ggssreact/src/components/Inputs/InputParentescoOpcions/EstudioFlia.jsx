@@ -18,7 +18,8 @@ const EstudioFlia = ({
   generalState,
   setGeneralState,
   action,
-  namePropOp
+  namePropOp,
+  idSelect
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -44,16 +45,17 @@ const EstudioFlia = ({
             (e)=> onChange(e, action)
           }
           >
-            {array.map((op, i) => {
+            <option value="">Seleccionar</option>
+            {array && array.map((op, i) => {
               return propArray == op ? (
                 <option key={i} 
-                value={op[namePropOp]}
+                value={op[idSelect]}
                 selected defaultValue>
                   {op[namePropOp]}
                 </option>
               ) : (
                 <option key={i} 
-                value={op[namePropOp]}
+                value={op[idSelect]}
                 defaultValue>
                   {op[namePropOp]}
                 </option>

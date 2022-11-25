@@ -60,9 +60,13 @@ const Familia = () => {
   const tiposDni = useSelector((state) => state.generalState.tiposDocumento);
   const estudioValue = useSelector((state) => state.generalState.estudios);
   const paisesValue = useSelector((state) => state.generalState.paises);
+  const parentescosValue = useSelector((state)=> state.generalState.parentescos);
+  const estudiosValue = useSelector((state)=> state.generalState.estudios);
+  const familiaresValue = useSelector((state)=> state.generalState.familiares);
 
+  const familiaresPorEmpleado = familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
 
-  console.log(paisesValue);
+  console.log(familiaresPorEmpleado);
 
   useEffect(() => {
     console.log(familiaRedux)
@@ -147,17 +151,17 @@ const Familia = () => {
       })
   }
   let bodyPetition = {
-    "iDfamiliares": 150000,
+    "iDfamiliares": ((familiaresValue[familiaresValue.length -1]  && (familiaresValue[familiaresValue.length -1].iDfamiliares))+1),
     "iDempleado": empleadoUno.iDempleado,
     "apellidoyNombres": familiaRedux.inputApellidoNombres,
-    "iDparentesco": 7,
+    "iDparentesco": familiaRedux.inputParentesco,
     "sexo": familiaRedux.idRadioBtn,
     "fechaNacimiento": familiaRedux.inputDateNac,
-    "iDnacionalidad": 12,
-    "iDtipoDocumento": 1,
-    "nroDocumento": "string",
-    "iDestudios": 10,
-    "iDpaisOrigen": 12,
+    "iDnacionalidad": familiaRedux.nacionalidadFamilia,
+    "iDtipoDocumento": familiaRedux.inputCmbDni,
+    "nroDocumento": familiaRedux.inputNroDni,
+    "iDestudios": familiaRedux.idInputEstudios,
+    "iDpaisOrigen": familiaRedux.inputPaisOrigen,
     "fBaja": familiaRedux.inputDateBaja,
     "noDeducirGanancias": true,
     "incluirCuotaAlimentaria": true,
@@ -212,10 +216,11 @@ const Familia = () => {
               />
               <InputMultiple
                 optionsDNI={tiposDni}
+                idSelected="iDtipoDocumento"
                 namePropOp="tipoDocumento"
                 nameInputDNI="Documento"
                 valueRadio={
-                  (familiarSeleccionado === undefined || Object.keys(familiarSeleccionado).length === 0) ? (saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null) : familiarSeleccionado.sexo
+                  familiaRedux.idRadioBtn && familiaRedux.idRadioBtn
                 }
                 valueDNI={
                   familiarSeleccionado === undefined || familiarSeleccionado === null ? (saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null) : familiarSeleccionado.nroDocumento
@@ -228,14 +233,16 @@ const Familia = () => {
                 propsRadioButton={propsRadioButton}
                 onChange={onChange}
                 datosFamiliaValue1={familia.inputCmbDni !== undefined ? familia.inputCmbDni : null}
-                datosFamiliaRadio={familiaRedux.idRadioBtn !== undefined ? familiaRedux.idRadioBtn : null}
+                datosFamiliaRadio={familiaRedux.idRadioBtn && familiaRedux.idRadioBtn}
                 generalState={familia}
                 setGeneralState={setFamilia}
                 action={ADD_FAMILIA}
               />
               <InputParentesco
                 nameInput="Parentesco"
-                array={parentesco !== undefined ? parentesco : null}
+                array={parentescosValue &&  parentescosValue }
+                propArrayOp="nombreParentesco"
+                propIdSelect="iDparentesco"
                 placeHolder="Parentesco"
                 nameButton="..."
                 nameCheck="Fijar"
@@ -269,8 +276,9 @@ const Familia = () => {
               />
               <EstudioFlia
                 nameInput="Estudios"
-                array={estudioValue}
+                array={estudiosValue && estudiosValue}                
                 namePropOp="estudiosNivel"
+                idSelect="iDestudios"
                 propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
                 placeHolder="Estudios"
                 nameButton="..."
@@ -288,9 +296,11 @@ const Familia = () => {
             <div className="col-xl-6 p-2">
 
               <PaisOrigenFlia
-                nameInput="Pais de Origen"
-                array={paisesValue}
+                nameLabel="Pais de Origen"
+                array={paisesValue && paisesValue}
                 namePropValue="nombrePais"
+                nameInput="inputPaisOrigen"
+                idSelected="idPais"
                 placeHolder="Paises"
                 nameButton="..."
                 nameCheck="Fijar"
@@ -304,16 +314,19 @@ const Familia = () => {
               />
               <NacionalidadFlia
                 nameInput="Nacionalidad"
-                array={paisesValue}
+                array={paisesValue && paisesValue}
                 namePropOp="nacionalidad_masc"
                 placeHolder="Nacionalidad"
                 nameButton="..."
                 nameCheck="Fijar"
                 checked=""
                 display={false}
-                masculinos={paisesValue.nacionalidad_masc && paisesValue.nacionalidad_masc}
-                femeninos={paisesValue.nacionalidad_fem && paisesValue.nacionalidad_fem}
-                sexo={saveEmpl[0] !== undefined ? saveEmpl[0].sexo : null}
+                masculinos={paisesValue && paisesValue}
+                propIdSelect="idPais"
+                propArrayOpMasc = "nacionalidad_masc"
+                femeninos={paisesValue && paisesValue}
+                propArrayOpFem = "nacionalidad_fem"
+                sexo={familiaRedux.idRadioBtn && familiaRedux.idRadioBtn}
                 propArray="ARGENTINO"
                 idModal="nacionalidades"
                 disable={disable}

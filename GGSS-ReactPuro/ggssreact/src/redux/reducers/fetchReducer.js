@@ -1,4 +1,4 @@
-import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING,ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS} from "../types/fetchTypes";
+import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING,ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES} from "../types/fetchTypes";
 
 export const initialState = {
     loading: false, 
@@ -23,6 +23,7 @@ export const initialState = {
     localidades : "",
     barrios : "",    
     error : false,
+    familiares : ""
 }
 
 export const fetchReducer = (state = initialState, action) =>{
@@ -158,6 +159,13 @@ export const fetchReducer = (state = initialState, action) =>{
                 ...state,
                 loading: false,
                 provincias : action.payload
+            }
+        }
+        case ADD_FAMILIARES: {
+            return{
+                ...state,
+                loading: false,
+                familiares : action.payload
             }
         }
         case AXIOS_ERROR : 

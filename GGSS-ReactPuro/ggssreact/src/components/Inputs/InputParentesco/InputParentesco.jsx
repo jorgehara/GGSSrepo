@@ -18,7 +18,9 @@ const InputParentesco = ({
   generalState,
   setGeneralState,
   onChange,
-  action
+  action,
+  propArrayOp,
+  propIdSelect
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -47,20 +49,20 @@ const InputParentesco = ({
             value={value}
             onChange={(e)=> onChange(e, action)}
           >
-            {array !== undefined &&
-              array !== null &&
+            <option value="">Seleccionar</option>
+            {array  &&
               array.map((op, i) => {
-                return propArray === op ? (
+                return propArray === op[propArrayOp] ? (
                   <option selected key={i}
-                  //value={op}
+                  value={op[propIdSelect]}
                   >
-                    {op}
+                    {op[propArrayOp]}
                   </option>
                 ) : (
                   <option key={i}
-                  value={op}
+                  value={op[propIdSelect]}
                   >
-                    {op}</option>
+                    {op[propArrayOp]}</option>
                   // <option selected key={i} 
                   // value={op}
                   // >

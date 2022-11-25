@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputOpcionsFlia.css";
 const PaisOrigenFlia = ({
-  nameInput,
+  nameLabel,
   array,
   placeHolder,
   nameButton,
@@ -14,7 +14,9 @@ const PaisOrigenFlia = ({
   disable,
   action,
   onChange,
-  namePropValue
+  namePropValue,
+  idSelected,
+  nameInput
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -25,13 +27,14 @@ const PaisOrigenFlia = ({
   return (
     <div className="formulario__grupo mt-1">
       <div className="">
-        <label className="formulario-label-ParentescoFliaOpcions mt-2">{nameInput}</label>
+        <label className="formulario-label-ParentescoFliaOpcions mt-2">{nameLabel}</label>
       </div>
       <div className="SelectedFliaPais px-0">
-        <select className="form-select ml-0 mt-1" disabled={disable} onChange={(e)=> onChange(e,action)}>
+        <select className="form-select ml-0 mt-1" name={nameInput} disabled={disable} onChange={(e)=> onChange(e,action)}>
+          <option value="">Seleccionar</option>
           {
-            array.map((op, i) => {
-              return propArray === op ?<option selected defaultValue value={op[namePropValue]}  key={i}>{op[namePropValue]}</option> : <option key={i}>{op[namePropValue]}</option>
+           array && array.map((op, i) => {
+              return propArray === op ?<option selected defaultValue value={op[idSelected]}  key={i}>{op[namePropValue]}</option> : <option key={i} value={op[idSelected]}>{op[namePropValue]}</option>
             })
           }
         </select>

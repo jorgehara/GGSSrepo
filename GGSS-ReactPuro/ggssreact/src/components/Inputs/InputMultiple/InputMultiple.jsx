@@ -19,7 +19,8 @@ const InputMultiple = ({
   generalState,
   setGeneralState,
   action,
-  namePropOp
+  namePropOp,
+  idSelected
 }) => {
   const [valor, setValor] = useState("");
   const [valorRadioM, setValorRadioM] = useState(false);
@@ -64,8 +65,9 @@ const InputMultiple = ({
           </div>
           <div className="col-xl-4   d-flex justify-content-center align-items-center">
             <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,action)}>
+              <option value="">Seleccionar</option>
               {optionsDNI && optionsDNI.map((op, i) => {
-                return <option key={i} value={op[namePropOp]}>{op[namePropOp]}</option>;
+                return <option key={i} value={op[idSelected]}>{op[namePropOp]}</option>;
               })}
             </select>
           </div>
