@@ -22,6 +22,7 @@ import { ADD_FAMILIA } from "../../redux/types/familiaTypes";
 import { ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import axios from "axios";
 import swal from "sweetalert";
+import { addNewFamiliar, deleteOneFamiliar } from "../../redux/actions/fetchActions";
 
 const Familia = () => {
   const { saveEmpl, saveFamiliar, saveFamiliares, saveNacionalidad, saveEstudio, saveParentescos, parentescos, disable, saveFamiliarSelected, saveFamiliarPorEmpleado, saveFamSelect } = useContext(employeContext);
@@ -55,7 +56,6 @@ const Familia = () => {
 
 
   const empleadoUno = useSelector((state) => state.employeStates.employe)
-  const familiarSel = useSelector((state) => state.familiaStates.familiar)
   const familiaRedux = useSelector((state) => state.familiaStates.formulario);
   const tiposDni = useSelector((state) => state.generalState.tiposDocumento);
   const estudioValue = useSelector((state) => state.generalState.estudios);
@@ -63,10 +63,11 @@ const Familia = () => {
   const parentescosValue = useSelector((state)=> state.generalState.parentescos);
   const estudiosValue = useSelector((state)=> state.generalState.estudios);
   const familiaresValue = useSelector((state)=> state.generalState.familiares);
+  const idFamiliarSelected = useSelector((state)=> state.familiaStates.familiar);
 
   const familiaresPorEmpleado = familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
 
-  console.log(familiaresPorEmpleado);
+  console.log(idFamiliarSelected);
 
   useEffect(() => {
     console.log(familiaRedux)
@@ -175,6 +176,7 @@ const Familia = () => {
     try {
       await axios.post(urlFamiliares, bodyPetition)
         .then(res => {
+          dispatch(addNewFamiliar(res.data))
           swal({
             title: "Ok",
             text: "Familiar cargado correctamente",
@@ -186,7 +188,27 @@ const Familia = () => {
       return err;
     }
   }
-  const deleteFamiliar = () => {
+  const deleteFamiliar = (id) => {
+    try{
+      axios.delete(`${urlFamiliares}/${id}`)
+      .then((res)=>{
+        if(res.status === 200){
+          dispatch(deleteOneFamiliar(id));
+          swal({
+            title: "Ok",
+            text: "Familiar eliminado correctamente",
+            icon: "success",
+        })
+        }
+        return;
+      })
+    }catch(err){
+      swal({
+        title: "Error",
+        text: err,
+        icon: "error",
+    })
+    }
   }
   return (
     <div className="Lateral-Derecho">
@@ -356,7 +378,7 @@ const Familia = () => {
         </div>
         <div className="d-flex flex-row align-items-center">
           <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={familiaresPorEmpleado &&  familiaresPorEmpleado } parentescos={parentescos !== undefined ? parentescos : null} seleccionado={saveFamSelect} />
-          <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable} functionSend={sendData}  />
+          <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable} functionSend={sendData} functionDelete={deleteFamiliar} idElimiar={idFamiliarSelected}/>
         </div>
         <div className="d-flex justify-content-end">
           <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />

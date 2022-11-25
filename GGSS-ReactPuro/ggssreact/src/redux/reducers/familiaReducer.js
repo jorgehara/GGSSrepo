@@ -1,10 +1,8 @@
-import { ADD_FAMILIA, ADD_FAMILIAR } from "../types/familiaTypes";
+import { ADD_FAMILIA, ADD_FAMILIAR, ADD_FAMILIAR_ID } from "../types/familiaTypes";
 
 
 export const initialState = {
-    familiar : {
-
-    },
+    familiar : 0,
     formulario: {
         inputApellidoNombres : "",
         inputCmbDni : "",
@@ -32,10 +30,10 @@ const familiaReducer = (state = initialState, action) =>{
                 
             };
         }
-        case ADD_FAMILIAR : {
+        case ADD_FAMILIAR_ID : {
             return{
                 ...state,
-                familiar : {...payload}
+                familiar : payload
             }
         }
         default :

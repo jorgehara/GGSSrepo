@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addNewFamiliar } from "../../redux/actions/familiaActions";
 
 const TableBasic = ({
   columns,
@@ -9,7 +11,7 @@ const TableBasic = ({
 }) => {
   const [checked, setChecked] = useState(false);
   const [inputCheck, setInputCheck] = useState({});
-
+  const dispatch = useDispatch();
   useEffect(() => {
     setInputCheck({});
   }, [array]);
@@ -26,14 +28,6 @@ const TableBasic = ({
   }
   useEffect(() => {}, [inputCheck]);
 
-  function onChange(e) {
-    let name = e.target.name;
-    let checked = e.target.checked;
-    let newInput = { ...inputCheck };
-    newInput[name] = checked;
-    setInputCheck(newInput);
-    setChecked(checked);
-  }
   return (
     <>
       <div className="overflow-scroll ">
@@ -61,10 +55,10 @@ const TableBasic = ({
                     <input
                       type="radio"
                       checked={inputCheck[`selected${i}`]}
-                      onChange={(e) => onChange(e)}
                       name="imputRadio"
+                      value={col.iDfamiliares}
                       id={`selected${i}`}
-                      onClick={() => onSelect(array, col.iDfamiliares)}
+                      onClick={(e) => dispatch(addNewFamiliar(col.iDfamiliares))}
                     />
                   </th>
                   <td
