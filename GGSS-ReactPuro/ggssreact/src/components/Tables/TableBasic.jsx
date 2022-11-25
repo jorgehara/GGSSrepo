@@ -78,9 +78,8 @@ const TableBasic = ({
           </thead>
           <tbody className="table-group-divider" id="cuerpodetabla">
             { familiares && familiares.map((col, i) => {
-              console.log(col)
               return (
-                <tr scope="row" className="px-5" key={i}>
+                <tr className="px-5" key={i}>
                   <th scope="row">
                     {" "}
                     <input
@@ -96,7 +95,7 @@ const TableBasic = ({
                   className=""
                   key={col.iDfamiliares}>{col.apellidoyNombres}
                   </td>
-                  <td>{col.iDtipodocumento && col.iDtipodocumento.tipodocumento}</td>
+                  <td>{col.iDtipoDocumento && col.iDtipoDocumento.tipoDocumento}</td>
                   <td>{col && col.nroDocumento}</td>
                   <td>{col && col.sexo}</td>
                   <td>{col.iDparentesco && col.iDparentesco.nombreParentesco}</td>
