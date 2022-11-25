@@ -96,11 +96,11 @@ const dispatch = useDispatch();
                     <th>
                       <input  type="checkbox" disabled="disabled" className="border-0 px-2" id="capitulo"  value={valor.predeterminado} checked={valor.predeterminado === null ? false : valor.predeterminado}/>
                     </th>
-                    <td>{valor !== undefined && valor.idCalle !== null && valor.idCalle !== undefined? valor.idCalle.calle : null}</td>
-                    <td>{valor !== undefined && valor.idBarrio !== null && valor.idBarrio !== undefined? valor.idBarrio.barrio : null}</td>
-                    <td>{valor !== undefined && valor.localidad !== null && valor.localidad !== undefined? valor.localidad.localidad : null}</td>
-                    <td>{valor !== undefined && valor.dpto !== null && valor.dpto !== undefined? valor.dpto : null}</td>
-                    <td>{valor !== undefined && valor.provincia !== null && valor.provincia !== undefined? valor.provincia.provincia : null}</td>
+                    <td>{valor && valor.idCalle !== undefined? valor.idCalle.calle : null}</td>
+                    <td>{valor && valor.idBarrio !== undefined? valor.idBarrio.barrio : null}</td>
+                    <td>{valor && valor.localidad !== undefined? valor.localidad.localidad : null}</td>
+                    <td>{valor && valor.dpto !== undefined? valor.dpto : null}</td>
+                    <td>{valor && valor.provincia !== undefined? valor.provincia.provincia : null}</td>
                   </tr>                  
                   )
               })

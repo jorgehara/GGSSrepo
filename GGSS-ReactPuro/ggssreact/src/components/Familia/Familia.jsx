@@ -58,7 +58,6 @@ const Familia = () => {
   const empleadoUno = useSelector((state) => state.employeStates.employe)
   const familiaRedux = useSelector((state) => state.familiaStates.formulario);
   const tiposDni = useSelector((state) => state.generalState.tiposDocumento);
-  const estudioValue = useSelector((state) => state.generalState.estudios);
   const paisesValue = useSelector((state) => state.generalState.paises);
   const parentescosValue = useSelector((state)=> state.generalState.parentescos);
   const estudiosValue = useSelector((state)=> state.generalState.estudios);
@@ -67,7 +66,8 @@ const Familia = () => {
 
   const familiaresPorEmpleado = familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
 
-  console.log(idFamiliarSelected);
+  
+
 
   useEffect(() => {
     console.log(familiaRedux)
@@ -152,7 +152,7 @@ const Familia = () => {
       })
   }
   let bodyPetition = {
-    "iDfamiliares": ((familiaresValue[familiaresValue.length -1]  && (familiaresValue[familiaresValue.length -1].iDfamiliares))+1),
+    "iDfamiliares": ((familiaresValue && familiaresValue[familiaresValue.length -1]  && (familiaresValue[familiaresValue.length -1].iDfamiliares))+1),
     "iDempleado": empleadoUno.iDempleado,
     "apellidoyNombres": familiaRedux.inputApellidoNombres,
     "iDparentesco": familiaRedux.inputParentesco,
@@ -377,13 +377,22 @@ const Familia = () => {
           </div>
         </div>
         <div className="d-flex flex-row align-items-center">
-          <TableBasic onSelect={onSelect} columns={columns} disabled={disable} array={familiaresPorEmpleado &&  familiaresPorEmpleado } parentescos={parentescos !== undefined ? parentescos : null} seleccionado={saveFamSelect} />
+          <TableBasic 
+          onSelect={onSelect} 
+          columns={columns} 
+          disabled={disable} 
+          array={familiaresPorEmpleado &&  familiaresPorEmpleado } 
+          seleccionado={saveFamSelect} 
+          estudios={estudiosValue && estudiosValue}
+          paisOrigenNac={paisesValue && paisesValue}
+          parentescos={parentescosValue && parentescosValue}
+          tiposDni={tiposDni && tiposDni}
+          />
           <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable} functionSend={sendData} functionDelete={deleteFamiliar} idElimiar={idFamiliarSelected}/>
         </div>
         <div className="d-flex justify-content-end">
           <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
         </div>
-
 
       </div>
     </div>
