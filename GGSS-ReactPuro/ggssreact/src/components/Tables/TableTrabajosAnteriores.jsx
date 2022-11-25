@@ -1,36 +1,37 @@
 import React from 'react'
 
-const TableTrabajosAnteriores = ({nameLabel}) => {
+const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp}) => {
   return (
     <>
     <div className='d-flex flex-row justify-content-start align-items-start'> 
         <label htmlFor="">{nameLabel}</label>   
         <table class="table ">
             <thead>
-                <tr>
-                <th scope="col" colspan="3">Concepto</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col">Fecha Vto</th>
-                </tr>
+                {
+                    columns && columns.map((col,i)=>{
+                        return(
+                                <th key={i} scope="col">{col}</th>
+                        )
+                    })
+                }
+                
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td colspan="5">Concepto 1</td>
-                <td>Fecha 1</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td colspan="5">Concepto 2</td>
-                <td>Fecha 2</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td colspan="5">Concepto 3</td>
-                <td>Fecha 3</td>
-                </tr>
+                {
+                    array && array.map((item)=>{
+                        return(
+                            <tr>
+                                <th scope="row">{item.desde && item.desde.substring(
+                                                0,
+                                                item.desde.length - 9
+                                                )}
+                                </th>
+                                <td>{item.hasta && item.hasta.substring(0, item.hasta.length -9)}</td>
+                                <td>{item.descripcion}</td>
+                            </tr>
+                        )
+                    })
+                }                
             </tbody>
         </table>
     </div>

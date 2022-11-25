@@ -87,7 +87,7 @@ const dispatch = useDispatch();
           </thead>
           <tbody>
             {
-              domicilios !== undefined && domicilios.map((valor, index)=>{
+              domicilios && domicilios.map((valor, index)=>{
                 return(
                   <tr>
                     <th>
