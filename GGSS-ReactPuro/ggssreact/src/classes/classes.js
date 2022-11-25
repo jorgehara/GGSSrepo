@@ -10,33 +10,44 @@ const classesEstadosCiviles = [{
     "classEight" : "form__grupo__errors",
     "classNine" : "form__grupo__error"
   }]
-  const inputButtonClasess= [{
-    "classOne" : "formulario__grupo__inputs",
-    "classTwo" : 'formulario__grupo',
+  const inputButtonClasess= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
+    "classThree" : 'formulario__label_convenio',
+    "classFour" : 'formulario-input-Legajo-Button-convenio ml-0 px-0 mt-0  mr-1',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+  export const inputButtonClasessEmpleador= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label',
-    "classFour" : 'form__grupo-input',
-    "classFive" : "formulario-input-Legajo",
-    "classSix" : "form__grupo__icons",
-  }]
-  const inputButtonClassConvenioLiquidacion= [{
-    "classOne" : "formulario__grupo__inputs",
-    "classTwo" : 'formulario__grupo',
-    "classThree" : 'formulario__label',
-    "classFour" : 'form__grupo-input',
-    "classFive" : "claseprueba",
-    "classSix" : "form__grupo__icons",
-  }]
-  const inputButtonClassEStudiopsLiquidacion= [{
-    "classOne" : "formusfdsfdflario__grupo__inputs",
-    "classTwo" : 'formusdfsdflario__grupo',
-    "classThree" : 'formsdfsdulario__label',
-    "classFour" : 'form_fsdf_grupo-input',
-    "classFive" : "claseprueba",
-    "classSix" : "sd",
-  }]
- const clasesInputCbo = [{
-    "classOne" : "",
-    "classTwo" : ""
- }]
+    "classFour" : 'formulario-input-Legajo-Button ml-0 px-0 mt-0  mr-1',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+  const inputButtonClasessAsidePagos= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
+    "classThree" : 'formulario__label_AsidePagos',
+    "classFour" : 'formulario-input-Legajo-Button-AsidePagos ml-0 px-0 mt-0  mr-1',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+  export const inputButtonClasessDireccion= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button_direccion',
+    "classThree" : 'formulario__label_Direccion',
+    "classFour" : 'formulario-input-Legajo-Button-Direccion ml-0 px-0 mt-0  mr-1',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+  export const classesRadioLiquidacion = {
+    classOne : "formulario__grupo__inputs__radio_AsidePagos mt-2" ,
+    classTwo : 'formulario-label-Sexo',
+    classThree : "formulario-input-Sexo-AsidePagos",
+    classFour :  "form-check-input",
+    classFive : "form-check-label",
+    classSix : "formulario-input-Sexo-AsidePagos",
+    classSeven : "form-check-input",
+    classEigth : "form-check-label",
+    classNine : 'form__grupo__label'
+  }
 
-  export { classesEstadosCiviles, inputButtonClasess,inputButtonClassConvenioLiquidacion,inputButtonClassEStudiopsLiquidacion }
+  export { classesEstadosCiviles, inputButtonClasess,inputButtonClasessAsidePagos }

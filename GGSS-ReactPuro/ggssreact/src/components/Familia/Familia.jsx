@@ -119,7 +119,7 @@ const Familia = () => {
   }
   //#endregion
   const columns = [
-    "Apellido y Nombre",
+    "Ape Nombre",
     "Tipo",
     "N°Documento",
     "Sexo",

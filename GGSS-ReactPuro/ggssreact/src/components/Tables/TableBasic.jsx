@@ -47,7 +47,7 @@ const TableBasic = ({
         tipoDniSelec = tiposDni && tiposDni.find((tipoDni)=> valor.iDtipoDocumento === tipoDni.iDtipoDocumento);
 
         const newDomicilios = {...valor, iDestudios : estudioSelect, iDnacionalidad : nacionalidadSelected, iDpaisOrigen : paisOrigenSelect, iDparentesco  : parentescosSelect, iDtipoDocumento : tipoDniSelec}
-        console.log(valor)
+        console.log(paisOrigenNac)
         return( newDomicilios)
       })
       
@@ -78,6 +78,7 @@ const TableBasic = ({
           </thead>
           <tbody className="table-group-divider" id="cuerpodetabla">
             { familiares && familiares.map((col, i) => {
+              console.log(col)
               return (
                 <tr className="px-5" key={i}>
                   <th scope="row">

@@ -38,3 +38,24 @@
 	transition: .3s ease all;
     /* border-bottom: 1px solid rgb(78, 6, 6); */
 }
+.formulario__grupo__inputs__radio_AsidePagos{
+	font-size: 0.8rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+	margin-left: 1.1rem;
+}
+.formulario-input-Sexo-AsidePagos{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	width: 10rem;
+	gap: 2%;
+	text-align: start;
+	background: #fff;
+	border-radius: 3px;
+	transition: .3s ease all;
+	margin-left: 1.6rem;
+}

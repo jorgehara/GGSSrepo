@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { inputButtonClasessDireccion } from '../../../classes/classes';
 import InputButton from '../../Inputs/InputButton/InputButton';
 import SindicatoLiquidacion from '../../SindicatoLiquidacion/SindicatoLiquidacion';
 import '../../SindicatoLiquidacion/SindicatoLiquidacion.css';
@@ -13,11 +14,9 @@ const DireccionSindicato = () => {
 const sindicatosNAme = sindicatos.map((s)=> {return(s.nombreSindicato)})
   
 return (
-    <>
-    {/* <div className="row border p-2 col"> */}
-    <div className="row border border-bottom-0">
       <div className='col'>
         <InputButton
+            clasess={inputButtonClasessDireccion}
             nameButton="..."
             nameLabel="Dirección"
             placeholder="Dirección"
@@ -25,11 +24,7 @@ return (
         />
     <SindicatoLiquidacion idInput="sindicatoInput" nameLabel="Sindicato:" nameButton="..."
     array={sindicatosNAme}/>
-    </div>        
-  </div>
-        {/* </div> */}
-
-  </>
+    </div>  
   )
 }
 

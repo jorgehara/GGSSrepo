@@ -84,7 +84,7 @@ function InputFile({ disabled, imagen,onChange, idInput,action }) {
       </div>
 
       <button
-        className="btn btn-danger mt-2 btn-sm"
+        className="btn btn-outline-danger mt-2 btn-sm"
         onClick={(e) => acivatedInput(e)}
         disabled={disabled}
       >

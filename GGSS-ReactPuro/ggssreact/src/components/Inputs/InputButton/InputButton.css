@@ -1,13 +1,40 @@
-.formulario-input-Legajo-Button{
-	margin-bottom: 3px;
-	width: 200%;
-	margin-left: 10px;
-	margin-right: 0px;
+.fomulario__container__button{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+
+.formulario-input-Legajo-Button{	
+	width: 100%;
+	height: 2rem;
 	border: none;
-	/* border-radius: 3px; */
-	height: 42px;
 	transition: .3s ease all;
 	border-bottom: 1px solid rgb(78, 6, 6);
+}
+.formulario-input-Legajo-Button-convenio{
+	width: 81%;
+	height: 2rem;
+	border: none;
+	transition: .3s ease all;
+	border-bottom: 1px solid rgb(78, 6, 6);
+}
+.formulario-input-Legajo-Button-AsidePagos{
+	font-size: 0.8rem;
+	width: 61%;
+	height: 1.5rem;
+	border: none;
+	transition: .3s ease all;
+	border-bottom: 1px solid rgb(78, 6, 6);
+}
+.formulario__label_AsidePagos{
+	font-size: 0.8rem;
+	width: 25%;
+}
+.formulario__label_convenio{
+	width: 30%;
 }
 .claseprueba{
     width: 100vw;
@@ -16,3 +43,29 @@
 	width: 110%;
 	margin-left: 68%;
 } 
+
+.formulario__grupo__inputs-Button{
+	font-size: 0.9rem;
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+}
+.formulario-input-Legajo-Button-Direccion{
+	width: 81%;
+	height: 1.5rem;
+	border: none;
+	transition: .3s ease all;
+	border-bottom: 1px solid rgb(78, 6, 6);
+}
+.formulario__label_Direccion{
+	width: 35%;
+}
+.fomulario__container__button_direccion{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	width: 89%;
+}

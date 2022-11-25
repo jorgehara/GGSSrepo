@@ -1,5 +1,7 @@
 import React from 'react'
 import InputDate from '../../Inputs/InputDate/InputDate'
+import InputEfectivo from '../../Inputs/InputEfectivo/InputEfectivo'
+import InputIngreso from '../../Inputs/InputIngreso/InputIngreso'
 import AsignarEsqLiq from '../../Inputs/SelectAsignarEsqLiq/AsignarEsqLiq'
 import './Children.css'
 
@@ -7,25 +9,11 @@ import './Children.css'
 const IngresoContrato = () => {
 return (
 <>
-<div className="row border border-bottom-0 p-2 col">El contrato finaliza en:"      "Dias.
-    <div className='row'>
-        <div className='col'>
-        <InputDate nameInput="Ingresó" idInput="inputDatePresentacion" display={true} />
+    <div className="row border border-3 p-2 col"> <h5>El contrato finaliza en:"      "Dias.</h5>
+        <div className='row'>
+                <InputIngreso nameLabel="Ingresó:" nameInput="ingresoInput" />
+                <InputEfectivo nameLabel="Efectivo:" idInputCheck ="inputCheckEfectivo"idInputDate="inputDateEfectivo" idInputCheckAsigna="inputCheckAsigna" nameLabelAsigna="Asignar Esquema de Liquidación:" idSelect="selectOptionsId" />
         </div>
-    <div className='col'>
-    <InputDate nameInput="Efectivo" idInput="inputDatePresentacion" display={true} />
-        </div>
-    </div>
-    
-    <div className='col'>
-    <AsignarEsqLiq nameInput="Asignar Esquema de Liquidacion"
-    //  array={estudios}
-    //  propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
-    nameCheck=""
-    checked=""
-    display={true}
-    />
-    </div>
     </div>
 </>
 )

@@ -6,7 +6,7 @@ import "./InputButton.css";
 
 const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal , clasess}) => {
 
-  const [valor, setValor] = useState(0);
+  const [valor, setValor] = useState();
   const dispatch = useDispatch();
   
   useEffect(()=>{
@@ -24,52 +24,50 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
     
     setValor(value);
   },[value])
-  
+
   return (
-    clasess ? <div className={clasess.classOne}>
-    <div className={clasess.classTwo}>
-        <label className={clasess.classThree} htmlFor={nameInput}>{nameLabel}</label>
-    </div>
-    <div className={clasess.classFour}>
+    clasess ? <div className={`${clasess.classOne}`}>      
+    <div className={`${clasess.classTwo}`}>
+        <label className={`${clasess.classThree}`} htmlFor={nameInput}>{nameLabel}</label>
+
         <input type="text" 
                 value={ datosPersonalesValue !== undefined && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
                 maxLength={maxLeght}
-                className={clasess.classFive} 
+                className={`${clasess.classFour}`} 
                 placeholder={placeholder} 
                 id={id} 
                 name={id}
                 disabled={disabled}
                 onChange={(e)=> onChange(e,action )}
                 />
+        <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
+              className={`${clasess.classFive}`} disabled={disabled}>
+              {nameButton}
+        </button>
     </div>
-    <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
-          className={clasess.classSix} disabled={disabled}>
-          {nameButton}
-    </button>
-</div> 
+    
+</div>
         : 
-<div className="formulario__grupo__inputs">
-        <div className='formulario__grupo'>
-            <label className='formulario__label mt-2' htmlFor={nameInput}>{nameLabel}</label>
-        </div>
-        <div className='form__grupo-input'>
+<div className="formulario__grupo__inputs-Button mt-2">      
+        <div className='fomulario__container__button'>
+            <label className='formulario__label ' htmlFor={nameInput}>{nameLabel}</label>
+
             <input type="text" 
                     value={ datosPersonalesValue !== undefined && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
                     maxLength={maxLeght}
-                    className="formulario-input-Legajo ml-0 px-0 mt-0 mb-2 mr-1" 
+                    className="formulario-input-Legajo-Button ml-0 px-0 mt-0  mr-1" 
                     placeholder={placeholder} 
                     id={id} 
                     name={id}
                     disabled={disabled}
                     onChange={(e)=> onChange(e,action )}
                     />
+            <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
+                  className="btn btn-validacion btn-outline-danger" disabled={disabled}>
+                  {nameButton}
+            </button>
         </div>
-        <div className='row ml-4 boton-Generar '>
-			  <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
-              className="btn btn-validacion btn-outline-danger" disabled={disabled}>
-              {nameButton}
-        </button>
-        </div>
+			  
     </div>
   );
 };

@@ -4,6 +4,7 @@ import TableBasic1 from '../../Tables/TableBasic1'
 import InputCbo from '../InputCbo/InputCbo'
 import InputDate from '../InputDate/InputDate'
 import InputForm from '../InputForm/InputForm'
+import "./FieldSet.css";
 
 const FieldSet = () => {
     const columns1 =["Año", "Días Totales", "Tomados", "Restan", "Vto", "Prórroga", "Resolución", "Disponibles"]
@@ -25,7 +26,9 @@ const FieldSet = () => {
                     </div>
                 </div>
             </fieldset>
-            <ButtonCancelarAceptar cancelar="-" aceptar="+" />
+            <div className='col-xl-12 d-flex flex-row-reverse mt-2'>
+                <button className='btn btn-outline-success btnAgregar '>+</button>
+            </div>
             <TableBasic1 columns={columns1} value={[]}/>
             <TableBasic1 columns={columns2} value={[]}/>
         </div>
