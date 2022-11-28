@@ -1,4 +1,4 @@
-import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING,ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR} from "../types/fetchTypes";
+import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING,ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS} from "../types/fetchTypes";
 
 export const initialState = {
     loading: false, 
@@ -23,7 +23,15 @@ export const initialState = {
     localidades : "",
     barrios : "",    
     error : false,
-    familiares : ""
+    familiares : "",
+    convenios : "",
+    categorias : "",
+    agrupamientos : "",
+    centroCosto : "",
+    sectorDepto : "",
+    obrasSociales : "",
+    lugaresDePago : "",
+    bancos : ""
 }
 
 export const fetchReducer = (state = initialState, action) =>{
@@ -180,12 +188,59 @@ export const fetchReducer = (state = initialState, action) =>{
                 familiares : state.familiares.filter((fam)=> fam.iDfamiliares !== action.payload)
             }
         }
+        case ADD_CONVENIOS : {
+            return {
+                ...state,
+                convenios : action.payload
+            }
+        }
+        case ADD_CATEGORIAS : {
+            return {
+                ...state,
+                categorias : action.payload
+            }
+        }
         case AXIOS_ERROR : 
             return{
                 error: true,
                 loading : false,
                 data: {}
             } 
+        case ADD_AGRUPAMIENTOS : {
+            return {
+                ...state,
+                agrupamientos : action.payload
+            }
+        }
+        case ADD_CENTRO_COSTO : {
+            return {
+                ...state,
+                centroCosto : action.payload
+            }
+        }
+        case ADD_SECTOR_DEPTO : {
+            return {
+                ...state,
+                sectorDepto : action.payload
+            }
+        }
+        case ADD_OBRAS_SOCIALES : {
+            return {
+                ...state,
+                obrasSociales : action.payload
+            }
+        }
+        case ADD_LUGARES_DE_PAGO :
+            return {
+                ...state,
+                lugaresDePago : action.payload
+            }
+        case ADD_BANCOS : {
+            return{
+                ...state,
+                bancos : action.payload
+            }
+        }
         default : return state;
     }
 }

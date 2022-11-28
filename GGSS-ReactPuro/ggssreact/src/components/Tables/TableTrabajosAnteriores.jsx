@@ -7,9 +7,10 @@ const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp}) => {
 
   return (
     <>
-    <div className='d-flex flex-row justify-content-start align-items-start'> 
         <label htmlFor="">{nameLabel}</label>   
-        <table class="table table-danger">
+
+    <div className='d-flex flex-row justify-content-start align-items-start'> 
+        <table class="table table-danger ml-2">
             <thead>
                 {
                     columns && columns.map((col,i)=>{

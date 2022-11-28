@@ -1,4 +1,4 @@
-import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR } from "../types/fetchTypes";
+import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS } from "../types/fetchTypes";
 
 
 export const setLoading = (payload) =>{
@@ -147,4 +147,52 @@ export const addNewFamiliar =(payload)=>{
         type : ADD_NEW_FAMILIAR,
         payload
     }
+}
+export const addConvenios =(payload)=>{
+    return {
+        type : ADD_CONVENIOS,
+        payload
+    }
+}
+export const addCategorias =(payload)=>{
+    return {
+        type: ADD_CATEGORIAS,
+        payload,
+    };
+}
+export const addAgrupamientos=(payload)=>{
+    return{
+        type : ADD_AGRUPAMIENTOS,
+        payload
+    }
+}
+export const addCentroDeCosto=(payload)=>{
+    return {
+        type: ADD_CENTRO_COSTO,
+        payload,
+    };
+}
+export const addSectorDepto=(payload)=>{
+    return {
+        type: ADD_SECTOR_DEPTO,
+        payload,
+    };
+}
+export const addObrasSociales=(payload)=>{
+    return {
+        type : ADD_OBRAS_SOCIALES,
+        payload,
+    };
+}
+export const addLugaresDePago=(payload)=>{
+    return {
+        type : ADD_LUGARES_DE_PAGO,
+        payload,
+    };
+}
+export const addBancos =(payload)=>{
+    return {
+        type : ADD_BANCOS,
+        payload,
+    };
 }
