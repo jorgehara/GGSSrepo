@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
@@ -12,7 +13,8 @@ import TableTrabajosAnteriores from '../Tables/TableTrabajosAnteriores';
 import "./TrabajosAnteriores.css";
 
 const TrabajosAnteriores = () => {
-
+    const [checked , setChecked] = useState(false);
+    const [disabled , setDisabled] = useState(false);
     const dispatch = useDispatch();
 
     const handleFetch=(url, action )=>{
@@ -59,6 +61,9 @@ const TrabajosAnteriores = () => {
     const columns = ["Seleccionar" , "Desde" , "Hasta", "Descripción"];
 
     const trabajosAnterioresDelEmpleado = trabajosAnteriores && trabajosAnteriores.filter((trabajo)=> trabajo.idEmpleado === empleadoUno.iDempleado);
+    const valueCheck = useSelector((state)=> state.trabajosAnteriores.formulario.idCheckTrabajos);
+
+    console.log(valueCheck);
 
     console.log(trabajosAnteriores);
 
@@ -67,9 +72,35 @@ const TrabajosAnteriores = () => {
         "desde": valueInputDateDesde,
         "hasta": valueInputDateHasta,
         "descripcion": valueInputDescripcion,
-        "actualidad": true
+        "actualidad": valueCheck
     }
+   
 
+    console.log(bodyPetition)
+    const onCheckActualidad=(e)=>{
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy;
+        
+        if(!checked){
+            setDisabled(true);
+            dispatch(
+                {
+                  type: GET_INPUT,
+                  payload : {name : e.target.name, value : today}
+                });
+                return;
+        }
+        setDisabled(false);
+        dispatch(
+            {
+              type: GET_INPUT,
+              payload : {name : e.target.name, value : null}
+            });
+    }
     const sendData=async()=>{
         try{
             //LOADING
@@ -133,8 +164,8 @@ const TrabajosAnteriores = () => {
             <div className='col-xl-4'>
                 <div className='d-flex flex-row justify-content-start align-items-center mt-2 '>
                     <label htmlFor="idDateDesde">Hasta:</label>
-                    <input type="date" onChange={(e)=> onChange(e, GET_INPUT)} value={valueInputDateHasta} name="idDateHasta" id="idDateHasta" className='dateTrabajos2 '/>
-                    <input type="checkbox" name="idCheckTrabajos" id="idCheckTrabajos"  className='checkTrabajos' onChange={(e)=> onChange(e,GET_INPUT)} />
+                    <input type="date" onChange={(e)=> onChange(e, GET_INPUT)} disabled={disabled} value={valueInputDateHasta} name="idDateHasta" id="idDateHasta" className='dateTrabajos2 '/>
+                    <input type="checkbox" name="idCheckTrabajos" id="idCheckTrabajos" value={valueCheck} onClick={(e)=> setChecked(!checked)}  className='checkTrabajos' onChange={(e)=>onCheckActualidad(e)} />
                     <label htmlFor="idDateDesde" className='labelTrabajos'>Hasta la Actualidad:</label>
                 </div>
             </div>        

@@ -7,7 +7,7 @@ const initialState = {
         idDateDesde : "",
         idDateHasta : "",
         idDescripcionTrabajos : "",
-        idCheckTrabajos :""
+        idCheckTrabajos : false
     },
     idTrabajoAnterior : 0
 }
