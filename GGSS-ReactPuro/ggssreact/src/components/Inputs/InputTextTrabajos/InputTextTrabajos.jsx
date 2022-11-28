@@ -1,7 +1,7 @@
 import React from 'react'
 import "./InputTextTrabajos.css";
 
-const InputTextTrabajos = ({nameLabel,inputId, onChange, value, action, onSend}) => {
+const InputTextTrabajos = ({nameLabel,inputId, onChange, value, action, onSend,onDelete, id }) => {
   return (
     <>
         <div className='col-xl-6 d-flex flex-row justify-content-start align-items-center mt-2'>
@@ -10,7 +10,7 @@ const InputTextTrabajos = ({nameLabel,inputId, onChange, value, action, onSend})
         </div>
         <div className='col-xl-4 d-flex flex-row justify-content-start align-items-center mt-2'>
             <button className='btn btn-outline-success btn-sm buttonAceptarCancelar' onClick={onSend}>+</button>
-            <button className='btn btn-outline-danger btn-sm buttonAceptarCancelar' >-</button>
+            <button className='btn btn-outline-danger btn-sm buttonAceptarCancelar' onClick={()=>onDelete(id)} >-</button>
         </div>
     </>
     

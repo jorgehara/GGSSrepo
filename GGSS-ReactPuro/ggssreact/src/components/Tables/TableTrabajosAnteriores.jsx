@@ -1,11 +1,15 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { getIdTrabajoAnterior } from '../../redux/actions/trabajosAnterioresActions'
 
 const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp}) => {
+    const dispatch = useDispatch();
+
   return (
     <>
     <div className='d-flex flex-row justify-content-start align-items-start'> 
         <label htmlFor="">{nameLabel}</label>   
-        <table class="table ">
+        <table class="table table-danger">
             <thead>
                 {
                     columns && columns.map((col,i)=>{
@@ -19,13 +23,15 @@ const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp}) => {
             <tbody>
                 {
                     array && array.map((item)=>{
-                        return(
+                        console.log(item.idTrabajoAnterior)
+                        return( 
                             <tr>
-                                <th scope="row">{item.desde && item.desde.substring(
+                                <th scope="row"> <input type="radio" name="selectTrabajoAnt" id="selectTrabajoAnt" value={item.idTrabajoAnterior} onClick={(e)=> dispatch(getIdTrabajoAnterior(e.target.value))} /> </th>
+                                <td>{item.desde && item.desde.substring(
                                                 0,
                                                 item.desde.length - 9
                                                 )}
-                                </th>
+                                </td>
                                 <td>{item.hasta && item.hasta.substring(0, item.hasta.length -9)}</td>
                                 <td>{item.descripcion}</td>
                             </tr>

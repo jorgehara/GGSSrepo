@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
-import { getInput, getTrabajosAnteriores } from '../../redux/actions/trabajosAnterioresActions';
+import { addTrabajoAnterior, deleteOneTrabajo, getInput, getTrabajosAnteriores } from '../../redux/actions/trabajosAnterioresActions';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { GET_INPUT } from '../../redux/types/trabajosAnteriores';
 import EmployeData from '../EmployeData/EmployeData';
@@ -38,21 +38,25 @@ const TrabajosAnteriores = () => {
         handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores)
     },[])
 
+
+    const estado = useSelector((state)=> state.trabajosAnteriores.formulario);
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
     const trabajosAnteriores = useSelector((state)=> state.trabajosAnteriores.trabajosAnteriores);
     const valueInputDateDesde = useSelector((state)=> state.trabajosAnteriores.formulario.idDateDesde);
     const valueInputDateHasta = useSelector((state)=> state.trabajosAnteriores.formulario.idDateHasta);
     const valueInputDescripcion = useSelector((state)=> state.trabajosAnteriores.formulario.idDescripcionTrabajos);
+    const valueIdTrabajoAnterior = useSelector((state)=> state.trabajosAnteriores.idTrabajoAnterior);
 
+    console.log(trabajosAnteriores)
 
+    useEffect(()=>{
+    },[estado])
 
-    const estado = useSelector((state)=> state.trabajosAnteriores.formulario);
-
-    const columns = ["Desde" , "Hasta", "Descripción"];
+    const columns = ["Seleccionar" , "Desde" , "Hasta", "Descripción"];
 
     const trabajosAnterioresDelEmpleado = trabajosAnteriores && trabajosAnteriores.filter((trabajo)=> trabajo.idEmpleado === empleadoUno.iDempleado);
 
-    console.log(estado);
+    console.log(trabajosAnteriores);
 
     const bodyPetition = {
         "idEmpleado": empleadoUno.iDempleado,
@@ -68,12 +72,32 @@ const TrabajosAnteriores = () => {
             .then((res)=>{
                 if(res.status === 200){
                     dispatch(addTrabajoAnterior(res.data)) //crear la accion para agregar un nuevo trabajo.
+                    handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
                     swal({
                         title: "Trabajo anterior Agregado",
                         text: "Trabajo anterior agregado con éxito",
                         icon: "success",
                     })
                 }
+            })
+        }catch(err){
+            swal({
+                title: "Error",
+                text: err.toString(),
+                icon: "error",
+            })
+        }
+    }
+    const deleteTRabajoAnterior= async (id)=>{
+        try{
+            await axios.delete(`${urlTrabajosAnteriores}/${id}`)
+            .then((res)=> {
+                dispatch(deleteOneTrabajo(Number(id)));
+                swal({
+                    title: "Ok",
+                    text: "Trabajo anterior eliminado con éxito",
+                    icon: "success",
+                })
             })
         }catch(err){
             swal({
@@ -109,7 +133,7 @@ const TrabajosAnteriores = () => {
             </div>        
         </div>
         <div className='row'>
-            <InputTextTrabajos nameLabel="Descripción" inputId="idDescripcionTrabajos" onChange={onChange} value={valueInputDescripcion} action={GET_INPUT} onSend={sendData}/>
+            <InputTextTrabajos nameLabel="Descripción" inputId="idDescripcionTrabajos" onChange={onChange} value={valueInputDescripcion} action={GET_INPUT} onSend={sendData} onDelete={deleteTRabajoAnterior} id={valueIdTrabajoAnterior} />
         </div>
         <div className='row'>
             <TableTrabajosAnteriores nameLabel="Historial:" columns={columns} array={trabajosAnterioresDelEmpleado}/>
