@@ -1,6 +1,7 @@
 import React from 'react'
 import { classesRadioLiquidacion, inputButtonClasessAsidePagos } from '../../../classes/classes'
 import InputButton from '../../Inputs/InputButton/InputButton'
+import InputButtonLiquidacion from '../../Inputs/InputButton/InputButtonLiquidacion'
 import InputRadio from '../../Inputs/InputRadio/InputRadio'
 
 
@@ -9,31 +10,34 @@ const AsidePago = () => {
   <>
       <div className="border border-3 p-2 col mt-2">
         <div>
-                <InputButton
+                <InputButtonLiquidacion
                   clasess={inputButtonClasessAsidePagos}
                   nameButton="..."
                   nameLabel="Forma de Pago"
                   placeholder="Forma de Pago"
                   action="ACTION"
+                  array={[]}
                 />
               </div>
               <div>
-                <InputButton
+                <InputButtonLiquidacion
                 clasess={inputButtonClasessAsidePagos}
                   nameButton="..."
                   nameLabel="Lugar de Pago"
                   placeholder="Lugar de Pago"
                   action="ACTION"
+                  array={[]}
                 />
               </div>
               <div>
-                <InputButton
+                <InputButtonLiquidacion
                 clasess={inputButtonClasessAsidePagos}
                   nameButton="..."
                   nameLabel="Banco"
                   placeholder=""
                   display={true}
                   action="ACTION"
+                  array={[]}
                 />
               </div>
                 <div>
@@ -58,7 +62,7 @@ const AsidePago = () => {
                 clasess={inputButtonClasessAsidePagos}
                 nameButton="..."
                   nameLabel="C.B.U."
-                  placeholder="N° Cuenta"
+                  placeholder="C.B.U"
                   action="ACTION"
                 />
               </div>

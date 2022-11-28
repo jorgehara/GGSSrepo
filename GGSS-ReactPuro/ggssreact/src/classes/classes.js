@@ -14,28 +14,28 @@ const classesEstadosCiviles = [{
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_convenio',
-    "classFour" : 'formulario-input-Legajo-Button-convenio ml-0 px-0 mt-0  mr-1',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const inputButtonClasessEmpleador= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label',
-    "classFour" : 'formulario-input-Legajo-Button ml-0 px-0 mt-0  mr-1',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   const inputButtonClasessAsidePagos= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_AsidePagos',
-    "classFour" : 'formulario-input-Legajo-Button-AsidePagos ml-0 px-0 mt-0  mr-1',
+    "classFour" : 'formulario-input-InpButton-Pagos form-select ml-0 px-0',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const inputButtonClasessDireccion= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button_direccion',
     "classThree" : 'formulario__label_Direccion',
-    "classFour" : 'formulario-input-Legajo-Button-Direccion ml-0 px-0 mt-0  mr-1',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const classesRadioLiquidacion = {

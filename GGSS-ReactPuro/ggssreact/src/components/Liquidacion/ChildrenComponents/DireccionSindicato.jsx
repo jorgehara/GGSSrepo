@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { inputButtonClasessDireccion } from '../../../classes/classes';
 import InputButton from '../../Inputs/InputButton/InputButton';
+import InputButtonLiquidacion from '../../Inputs/InputButton/InputButtonLiquidacion';
 import SindicatoLiquidacion from '../../SindicatoLiquidacion/SindicatoLiquidacion';
 import '../../SindicatoLiquidacion/SindicatoLiquidacion.css';
 
@@ -15,12 +16,13 @@ const sindicatosNAme = sindicatos.map((s)=> {return(s.nombreSindicato)})
   
 return (
       <div className='col'>
-        <InputButton
+        <InputButtonLiquidacion
             clasess={inputButtonClasessDireccion}
             nameButton="..."
             nameLabel="Dirección"
             placeholder="Dirección"
             action="ACTION"
+            array={[]}
         />
     <SindicatoLiquidacion idInput="sindicatoInput" nameLabel="Sindicato:" nameButton="..."
     array={sindicatosNAme}/>

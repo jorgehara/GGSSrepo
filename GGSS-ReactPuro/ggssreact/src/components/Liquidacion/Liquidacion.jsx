@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { inputButtonClasess, inputButtonClasessEmpleador, inputButtonClassEStudiopsLiquidacion } from "../../classes/classes";
 import EmployeData from "../EmployeData/EmployeData";
 import InputButton from "../Inputs/InputButton/InputButton";
+import InputButtonLiquidacion from "../Inputs/InputButton/InputButtonLiquidacion";
 import SindicatoLiquidacion from "../SindicatoLiquidacion/SindicatoLiquidacion";
 import AsidePago from "./ChildrenComponents/AsidePago";
 import ColumnaInputs2da from "./ChildrenComponents/ColumnaInputs2da";
@@ -18,86 +19,97 @@ return (
     <div className="container">
         <div className="row">
             <div className="col-xl-12">
-                <InputButton
+                <InputButtonLiquidacion
                 clasess={inputButtonClasessEmpleador}
                 nameButton="..."
                 nameLabel="Empleador"
                 placeholder="Empleador"
                 action="ACTION"
+                array={[]}
                 />
             </div>        
         </div>
         <div className="row">
             <div className="col-xl-6">
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Convenio"
                     placeholder="Convenio"
                     action="ACTION"
+                    array={[]}
                 />
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Categoría"
                     placeholder="Categoría"
                     action="ACTION"
+                    array={[]}
                 />
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Agrupamiento"
                     placeholder="Agrupamiento"
                     action="ACTION"
+                    array={[]}
                 />
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Cargo"
                     placeholder="Cargo"
                     action="ACTION"
+                    array={[]}
                 />
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Tarea Desempeñada"
                     placeholder="Tarea Desempeñada"
                     action="ACTION"
+                    array={[]}
                 />
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Modo Contratación"
                     placeholder="Modo Contratación"
                     action="ACTION"
+                    array={[]}
                 />
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Modo Liquidación"
                     placeholder="Modo Liquidación"
                     action="ACTION"
+                    array={[]}
                 />
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Centro de Costo"
                     placeholder="Centro de Costo"
                     action="ACTION"
+                    array={[]}
                 />
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Secretaria/Sector/Dpto"
                     placeholder="Secretaria/Sector/Dpto"
                     action="ACTION"
+                    array={[]}
                 />
-                <InputButton
+                <InputButtonLiquidacion
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Obra Social"
                     placeholder="Obra Social"
                     action="ACTION"
+                    array={[]}
                 />
             </div>
             <div className="col-xl-6">

@@ -6,7 +6,8 @@ const initialState = {
     formulario : {
         idDateDesde : "",
         idDateHasta : "",
-        idDescripcionTrabajos : ""
+        idDescripcionTrabajos : "",
+        idCheckTrabajos :""
     },
     idTrabajoAnterior : 0
 }

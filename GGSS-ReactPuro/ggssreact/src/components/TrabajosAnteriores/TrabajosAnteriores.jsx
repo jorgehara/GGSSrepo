@@ -40,11 +40,15 @@ const TrabajosAnteriores = () => {
 
 
     const estado = useSelector((state)=> state.trabajosAnteriores.formulario);
+
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
+
     const trabajosAnteriores = useSelector((state)=> state.trabajosAnteriores.trabajosAnteriores);
+
     const valueInputDateDesde = useSelector((state)=> state.trabajosAnteriores.formulario.idDateDesde);
     const valueInputDateHasta = useSelector((state)=> state.trabajosAnteriores.formulario.idDateHasta);
     const valueInputDescripcion = useSelector((state)=> state.trabajosAnteriores.formulario.idDescripcionTrabajos);
+
     const valueIdTrabajoAnterior = useSelector((state)=> state.trabajosAnteriores.idTrabajoAnterior);
 
     console.log(trabajosAnteriores)
@@ -68,9 +72,11 @@ const TrabajosAnteriores = () => {
 
     const sendData=async()=>{
         try{
+            //LOADING
             axios.post(urlTrabajosAnteriores, bodyPetition)
             .then((res)=>{
                 if(res.status === 200){
+                    //loading false
                     dispatch(addTrabajoAnterior(res.data)) //crear la accion para agregar un nuevo trabajo.
                     handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
                     swal({
@@ -81,6 +87,7 @@ const TrabajosAnteriores = () => {
                 }
             })
         }catch(err){
+            //error true
             swal({
                 title: "Error",
                 text: err.toString(),
@@ -127,7 +134,7 @@ const TrabajosAnteriores = () => {
                 <div className='d-flex flex-row justify-content-start align-items-center mt-2 '>
                     <label htmlFor="idDateDesde">Hasta:</label>
                     <input type="date" onChange={(e)=> onChange(e, GET_INPUT)} value={valueInputDateHasta} name="idDateHasta" id="idDateHasta" className='dateTrabajos2 '/>
-                    <input type="checkbox" name="idCheckTrabajos" id="idCheckTrabajos" className='checkTrabajos'/>
+                    <input type="checkbox" name="idCheckTrabajos" id="idCheckTrabajos"  className='checkTrabajos' onChange={(e)=> onChange(e,GET_INPUT)} />
                     <label htmlFor="idDateDesde" className='labelTrabajos'>Hasta la Actualidad:</label>
                 </div>
             </div>        
