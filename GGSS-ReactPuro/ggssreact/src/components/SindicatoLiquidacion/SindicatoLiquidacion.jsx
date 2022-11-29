@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import "./SindicatoLiquidacion.css";
 
-const SindicatoLiquidacion = ({idInput,nameLabel, array, nameButton}) => {
+const SindicatoLiquidacion = ({idInput,nameLabel, array, nameButton, porpArrayOp, propArrayId, action}) => {
+
+
+    const [ checked, setChecked] = useState(new Array(array && array.length).fill(false));
+    const dispatch= useDispatch();
+
+    function onChangeInput(e, action, position){
+        const updateChecked = checked.map((item, index)=> index === position ? !item : item);
+
+        setChecked(updateChecked);
+        dispatch(
+            {
+              type: action,
+              payload : {name : e.target.name, value : e.target.value}
+            });  
+    }
+
 return (
     <div className='row d-flex flex-row justify-context-center align-items-center mt-2'>
         <div className='col-xl-3'>
@@ -10,13 +27,13 @@ return (
         <div className='col-xl-6'>
             <div className='selectMenuSindicatos border border-1'>
                 {
-                    array !== undefined && array.map((op, i)=>{
+                    array && array.map((op, i)=>{
                         return(
                             <>    
                                 
-                                <div class="d-flex flex-row justify-context-center align-items-center" key={i} value={op}>
-                                    <input type="checkbox" name="optionSindicato" id="checkOption" className='form-check-input checkList'/>
-                                    <label class="form-check-label " htmlFor="checkOption">{op}</label>
+                                <div class="d-flex flex-row justify-context-center align-items-center" key={i} >
+                                    <input type="checkbox" name={idInput} id={`${idInput}${i}`} checked={checked[i]} onChange={(e)=>onChangeInput(e , action, i)} value={op[propArrayId]} className='form-check-input checkList'/>
+                                    <label class="form-check-label " htmlFor="checkOption">{op[porpArrayOp]}</label>
                                 </div>
                             </>                          
                         )

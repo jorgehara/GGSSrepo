@@ -19,7 +19,20 @@ export const initialState = {
         inputBanco : "",
         inputNumCta : "",
         inputCBU : "",
-        inputRadioAsidePagos : ""
+        inputRadioAsidePagos : "",
+        inputDireccionLiquidacion : "",
+        sindicatosLiquidacion : [],
+        ingresoInput : "",
+        ingresoDateInput : "",
+        selectOptionsId : "",
+        inputCheckEfectivo : "",
+        inputDateEfectivo : "",
+        inputCheckAsigna : "",
+        inputTotalRemu : "",
+        inputTotalNeto : "",
+        inputCheckEmbargo : "",
+        inputCheckSumAdministrativo : "",
+        inputCheckLicSinGoce : ""
     }
 }
 

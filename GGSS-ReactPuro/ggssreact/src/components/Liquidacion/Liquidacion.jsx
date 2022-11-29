@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { inputButtonClasess, inputButtonClasessEmpleador, inputButtonClassEStudiopsLiquidacion } from "../../classes/classes";
-import { addAgrupamientos, addBancos, addCargos, addCategorias, addCentroDeCosto, addConvenios, addEmpleadores, addFormasPago, addLugaresDePago, addModosContratacion, addModosLiquidacion, addObrasSociales, addSectorDepto, addTareasDesempeñadas } from "../../redux/actions/fetchActions";
+import { addAgrupamientos, addBancos, addCargos, addCategorias, addCentroDeCosto, addConvenios, addDirecciones, addEmpleadores, addEsquemas, addFormasPago, addLugaresDePago, addModosContratacion, addModosLiquidacion, addObrasSociales, addSectorDepto, addSindicatos, addTareasDesempeñadas } from "../../redux/actions/fetchActions";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import { GET_INPUTS_VALUE } from "../../redux/types/liquidacionTypes";
 import InputButtonLiquidacion from "../Inputs/InputButton/InputButtonLiquidacion";
@@ -31,6 +31,9 @@ const Liquidacion = () => {
     const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos";
     const urlLugaresDePago = "http://54.243.192.82/api/LugaresdePago";
     const urlBancos = "http://54.243.192.82/api/Bancos";
+    const urlDirecciones = "http://54.243.192.82/api/Direcciones";
+    const urlSindicatos = "http://54.243.192.82/api/Sindicatos";
+    const urlEsquemas = "http://54.243.192.82/api/Esquemas";
 
     function onChange(e, action) {
         dispatch(
@@ -65,6 +68,9 @@ const Liquidacion = () => {
         handleFetch( urlFormasDePago, addFormasPago);
         handleFetch( urlLugaresDePago, addLugaresDePago);
         handleFetch( urlBancos, addBancos);
+        handleFetch( urlDirecciones, addDirecciones);
+        handleFetch( urlSindicatos, addSindicatos);
+        handleFetch( urlEsquemas, addEsquemas);
     },[])
 
     const empleadores = useSelector((state)=> state.generalState.empleadores);
@@ -83,8 +89,18 @@ const Liquidacion = () => {
     const formasPago = useSelector((state)=> state.generalState.formasDePago);
     const lugaresDePago = useSelector((state)=> state.generalState.lugaresDePago);
     const bancos = useSelector((state)=> state.generalState.bancos);
+    const direcciones = useSelector((state)=> state.generalState.direcciones);
+    const sindicatos = useSelector((state)=> state.generalState.sindicatos);
+    const ingresoDate = useSelector((state)=> state.liquidacionState.formulario.ingresoDateInput);
+    const ingresoTextInput = useSelector((state)=> state.liquidacionState.formulario.ingresoInput);
+    const esquemas = useSelector((state)=> state.generalState.esquemas);
+    const inputTotalRemu = useSelector((state)=> state.liquidacionState.formulario.inputTotalRemu);
+    const inputTotalNeto = useSelector((state)=> state.liquidacionState.formulario.inputTotalNeto);
+    const inputCheckEmbargos = useSelector((state)=> state.liquidacionState.formulario.inputCheckEmbargo);
+    const inputCheckSumAdministrativo = useSelector((state)=> state.liquidacionState.formulario.inputCheckSumAdministrativo);
+    const inputCheckLicSinGoce = useSelector((state)=> state.liquidacionState.formulario.inputCheckLicSinGoce);
 
-    console.log(bancos);
+    console.log(esquemas);
     console.log(formularioValue);
 
 return (
@@ -231,17 +247,17 @@ return (
             </div>
             <div className="col-xl-6">
                 <AsidePago formasPAgo ={formasPago && formasPago} lugaresDePago={lugaresDePago && lugaresDePago} bancos={bancos && bancos}/>
-                <DireccionSindicato />
+                <DireccionSindicato direcciones={direcciones && direcciones} sindicatos={sindicatos} />
             </div>
         </div>
         <div className="row">
             <div className="col-xl-12 mt-2">
-                <IngresoContrato />
+                <IngresoContrato ingresoDate={ingresoDate && ingresoDate} ingresoTextInput={ingresoTextInput && ingresoTextInput} esquemas={esquemas}/>
             </div>
         </div>
         <div className="row">
             <div className="col-xl-12 ">
-                <DatosCertificado nameLabel="Datos para Certificado de Oficio" />
+                <DatosCertificado nameLabel="Datos para Certificado de Oficio" inputTotalRemu={inputTotalRemu && inputTotalRemu} inputTotalNeto={inputTotalNeto && inputTotalNeto} inputCheckEmbargos={inputCheckEmbargos && inputCheckEmbargos} inputCheckSumAdministrativo={inputCheckSumAdministrativo && inputCheckSumAdministrativo} inputCheckLicSinGoce = {inputCheckLicSinGoce && inputCheckLicSinGoce} />
             </div>
         </div>
     </div>
