@@ -19,7 +19,7 @@ const Licencias = () => {
     })
     console.log(newAños)
 
-  return (
+return (
     <div className='container'>
         <div className='row'>
             <EmployeData />
@@ -39,12 +39,6 @@ const Licencias = () => {
 }
 
 export default Licencias
-
-
-
-
-
-
 
 
 // dateFuture = new Date(2029,2,4,23,59,59);
