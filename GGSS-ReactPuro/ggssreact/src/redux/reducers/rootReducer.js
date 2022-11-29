@@ -4,6 +4,7 @@ import domicilioReducer from "./domicilioReducer";
 import employeReducer from "./employeReducer";
 import familiaReducer from "./familiaReducer";
 import { fetchReducer } from "./fetchReducer";
+import { liquidacionReducer } from "./liquidacionReducer";
 import trabajosAnterioresReducer from "./trabajosAnterioresReducer";
 
 
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     domiciliosStates : domicilioReducer,
     familiaStates : familiaReducer,
     generalState : fetchReducer,
-    trabajosAnteriores : trabajosAnterioresReducer
+    trabajosAnteriores : trabajosAnterioresReducer,
+    liquidacionState : liquidacionReducer
 });
 
 export default rootReducer;

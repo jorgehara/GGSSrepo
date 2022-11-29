@@ -78,7 +78,6 @@ const DatosPersonales = () => {
   const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos"
   const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
   const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
-  const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
   const urlBancos = "http://54.243.192.82/api/Bancos"
   const urlFamiliares = "http://54.243.192.82/api/Familiares";
   //#endregion
@@ -107,7 +106,6 @@ const DatosPersonales = () => {
     handleFetch( urlFormasDePago,addFormasPago);
     handleFetch( urlModosContratacion,addModosContratacion);
     handleFetch( urlModosLiquidacion,addModosLiquidacion);
-    handleFetch( urlEmpleadores,addEmpleadores);
     handleFetch( urlFamiliares,addFamiliares);
   },[])
  const datosPersonalesState = useSelector((state)=> state.generalState);
