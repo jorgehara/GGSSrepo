@@ -93,3 +93,50 @@
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
 }
+.formulario-input-InpButton-Extras{
+	font-size: .9rem;
+	width: 50%;
+	text-align: start;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	/* height: 36px; */
+	transition: .3s ease all;
+    border-bottom: 1px solid rgb(78, 6, 6);
+}
+.formulario__label_Extras{
+	width: 10%;
+}
+.fomulario__container__button_extras{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	width: 89%;
+}
+.formulario__label_Extras-Instrum{
+	width: 15%;
+	margin-left: 2rem;
+}
+.formulario__grupo__inputs-Button-Extras{
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+}
+.formulario__label_Extras-Afectaciones{
+	width: 13.6%;
+	margin-left: 2rem;
+}
+.formulario-input-InpButton-Extras-Af{
+	font-size: .9rem;
+	width: 46.3%;
+	text-align: start;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	/* height: 36px; */
+	transition: .3s ease all;
+    border-bottom: 1px solid rgb(78, 6, 6);
+}

@@ -38,6 +38,27 @@ const classesEstadosCiviles = [{
     "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
+  export const inputButtonClasessExtras= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button_extras',
+    "classThree" : 'formulario__label_Extras',
+    "classFour" : 'formulario-input-InpButton-Extras form-select ml-0 px-0',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+  export const inputButtonClasessExtrasInstrum= {
+    "classOne" : "formulario__grupo__inputs-Button-Extras mt-2",
+    "classTwo" : 'fomulario__container__button_extras',
+    "classThree" : 'formulario__label_Extras-Instrum ',
+    "classFour" : 'formulario-input-InpButton-Extras form-select ml-0 px-0',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+  export const inputButtonClasessExtrasAfectaciones= {
+    "classOne" : "formulario__grupo__inputs-Button-Extras mt-2",
+    "classTwo" : 'fomulario__container__button_extras',
+    "classThree" : 'formulario__label_Extras-Afectaciones ',
+    "classFour" : 'formulario-input-InpButton-Extras-Af form-select ml-0 px-0',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
   export const classesRadioLiquidacion = {
     classOne : "formulario__grupo__inputs__radio_AsidePagos mt-2" ,
     classTwo : 'formulario-label-Sexo',

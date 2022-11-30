@@ -10,6 +10,7 @@ import Liquidacion from '../Liquidacion/Liquidacion';
 import AdicLiquidacion from "../AdicLiquidacion/AdicLiquidacion";
 import Navbar from '../Navbar/Navbar';
 import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
+import Extras from '../Extras/Extras';
 // import SideNavBar from '../NavbarVertical/SideNavBar';
 
 const Home = () => {
@@ -52,6 +53,9 @@ return (
                 {
                     location.pathname === "/home/trabajos-anteriores" && <TrabajosAnteriores />
                     
+                }
+                {
+                    location.pathname === '/home/extras' && <Extras />
                 }
             </div>
 
