@@ -45,7 +45,9 @@ const BasicModal = ({
   onChange,
   valueFem,
   valueMasc,
-  url
+  url,
+  bodyPetition,
+  dispatchAddAction,
 }) => {
   const dispatch = useDispatch();
 
@@ -63,26 +65,35 @@ function onCalcel(e, name){
     payload : ""
   })
 }
-const bodyPetition = {
+
+const bodyPetitionEstadosCiviles = {
   "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil)+1),
   "masculino": firstOptionCompare,
   "femenino": secondOptionCompare
 }
+
+const bodyPetitionEstudios = {
+  "idEstudio": ((array && array[array.length -1] && array && array[array.length -1].idEstudio)+1),
+  "masculino": firstOptionCompare,
+  "femenino": secondOptionCompare
+}
+
+
+
 async function agregar(){
   setDisabled(!disabled);
   try{
     await axios.post(url, bodyPetition)
     .then((res)=>{
       if(res.status === 200){
-        dispatch(addNewEstadoCivil(bodyPetition))
+        dispatch(dispatchAddAction(bodyPetition))
         
         swal({
           title: "Ok",
-          text: "Estado Civil agregado con éxito",
+          text: "Agregado con éxito",
           icon: "success",
         })  
       }
-      
     })
       
   }catch(err){

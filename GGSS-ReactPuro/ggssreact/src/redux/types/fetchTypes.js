@@ -41,4 +41,5 @@ export const ADD_ESQUEMAS = "ADD_ESQUEMAS";
 
 
 export const ADD_NEW_ESCI = "ADD_NEW_ESCI";
+export const ADD_NEW_ESTUDIO = "ADD_NEW_ESTUDIO";
 

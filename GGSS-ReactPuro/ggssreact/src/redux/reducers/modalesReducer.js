@@ -1,10 +1,12 @@
-import { ADD_NEW_ESCI, ADD_SELECTED_EC, CANCEL_MODALS, GET_ESTADOSCIVILES } from "../types/modalesTypes";
+import { ADD_NEW_ESCI, ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES } from "../types/modalesTypes";
 
 export const initialState = {
     estadoCivilSelected : "",
+    estudioSelected : "",
     formulario : {
         inputEstadosCivilesModal : "",
-        inputEstadosCivilesModalFem : ""
+        inputEstadosCivilesModalFem : "",
+        inputNivelEstudio : "",
     }
 }
 
@@ -25,6 +27,23 @@ const modalesReducer = (state = initialState, action) =>{
                 formulario : {...state.formulario, [payload.name]:payload.value}
             }
         }
+
+
+        case ADD_SELECTED_ESTUDIO : {
+            return{
+                ...state,
+                estudioSelected : payload
+            }
+        }
+        case GET_ESTUDIOS : {
+            return {
+                ...state,
+                formulario: {...state.formulario, [payload.name]:payload.value }
+            }
+        }
+
+
+        /// -----------------
         case CANCEL_MODALS : {
             debugger;
             let newForm = {...state.formulario}
