@@ -191,7 +191,7 @@ const DatosPersonales = () => {
     },[datosPersonalesRedux.inputImage])
 
   let bodyPostEmploye = {
-    "iDempleado" : ((empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
+    "iDempleado" : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
     "legajo": datosPersonalesRedux.numLegajo,
     "apellido": datosPersonalesRedux.apellidoInput,
     "iDtipoDocumento": Number(idTiposDNI[0]),

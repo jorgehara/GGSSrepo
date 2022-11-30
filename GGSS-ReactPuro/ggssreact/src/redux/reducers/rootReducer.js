@@ -5,6 +5,7 @@ import employeReducer from "./employeReducer";
 import familiaReducer from "./familiaReducer";
 import { fetchReducer } from "./fetchReducer";
 import { liquidacionReducer } from "./liquidacionReducer";
+import modalesReducer from "./modalesReducer";
 import trabajosAnterioresReducer from "./trabajosAnterioresReducer";
 
 
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     familiaStates : familiaReducer,
     generalState : fetchReducer,
     trabajosAnteriores : trabajosAnterioresReducer,
-    liquidacionState : liquidacionReducer
+    liquidacionState : liquidacionReducer,
+    modalState : modalesReducer   
 });
 
 export default rootReducer;

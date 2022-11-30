@@ -38,3 +38,7 @@ export const ADD_BANCOS = "ADD_BANCOS";
 export const ADD_DIRECCIONES = "ADD_DIRECCIONES";
 export const ADD_SINDICATOS = "ADD_SINDICATOS";
 export const ADD_ESQUEMAS = "ADD_ESQUEMAS";
+
+
+export const ADD_NEW_ESCI = "ADD_NEW_ESCI";
+

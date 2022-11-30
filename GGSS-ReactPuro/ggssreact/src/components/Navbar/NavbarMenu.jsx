@@ -14,20 +14,57 @@ import { employeContext } from '../../context/employeContext';
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
 import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
+import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { addEstadosCiviles } from '../../redux/actions/fetchActions';
+import { useEffect } from 'react';
+import { addSelectedEstadoCivil } from '../../redux/actions/modalesActions';
 // import { getEstadosCivilesModal } from '../../services/fetchAPI';
 // import { useEffect } from 'react';
 //#endregion
 
 
-
 const Navbar = () => {
-
 //#region --------------------------------- CONSTANTES DE DATOS -------------------------------
 const { empleadores, modosLiquidacion, modosContratacion, formasDePago, parentescos, tareasDesempeñadas, cargos, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio} = useContext(employeContext);
 
 //#endregion
+const dispatch = useDispatch();
 
+const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
+function onChange(e, action) {
+    dispatch(
+      {
+        type: action,
+        payload : {name : e.target.name, value : e.target.value}
+      });    
+  }
+const handleFetch=(url, action )=>{
+	dispatch({type: SET_LOADING});
+	  axios.get(url)
+	  .then((res)=>{
+		dispatch( action(res.data.result));
+	  })
+	  .catch((err)=>{
+		dispatch({type:AXIOS_ERROR});
+	  })
+   }
 
+   useEffect(()=>{
+    handleFetch( urlEstadosCiviles,addEstadosCiviles);
+  },[])
+
+  	
+  const estadosCivilesValue = useSelector((state)=> state.generalState.estadosCiviles);
+
+  	const estadoCivilSelected = useSelector((state)=> state.modalState.estadoCivilSelected);
+	const inputMascEstadosCiviles = useSelector((state)=> state.modalState.formulario.inputEstadosCivilesModal);
+	const inputFemEstadosCiviles = useSelector((state)=> state.modalState.formulario.inputEstadosCivilesModalFem);
+
+	
+	console.log((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length -1].idEstadoCivil)+1)
+	console.log(estadosCivilesValue)
 
 
 // console.log(modals.inputEstadosCivilesModal)
@@ -168,8 +205,12 @@ return (
 				</li>
 
 				{/* {/ MODALES TABLA PARA EMPLEADOS /} */}
-				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} array={estadosCiviles} 
-				// onChange={onChange} 
+				<BasicModal idModal="EstadoCivil" nameModal="Estados Civiles" placeholder={objectEstadosCiviles} array={estadosCivilesValue && estadosCivilesValue}  propArrayOp="masculino" propArrayId="idEstadoCivil" action={addSelectedEstadoCivil} opcionSelected={estadoCivilSelected}
+				inputIdCompare = "inputEstadosCivilesModal" firstOptionCompare={inputMascEstadosCiviles ? inputMascEstadosCiviles : estadoCivilSelected.masculino } secondOptionCompare={inputFemEstadosCiviles  ? inputFemEstadosCiviles : estadoCivilSelected.femenino}
+				onChange={onChange} 
+				valueFem ={inputFemEstadosCiviles}
+				valueMasc={inputMascEstadosCiviles}
+				url={urlEstadosCiviles}
 				// generalState={modals} 
 				// setGeneralState={setModals} 
 				// onSelect={onSelect} 

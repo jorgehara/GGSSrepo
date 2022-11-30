@@ -103,7 +103,7 @@ const Browser = () => {
         multiple
         aria-label="multiple select example"
       >
-        { listEmpleados !== undefined && listEmpleados.map((emp, i) => {
+        { listEmpleados  && listEmpleados.map((emp, i) => {
           return (
             <option
             key={i}

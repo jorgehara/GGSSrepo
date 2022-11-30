@@ -30,7 +30,6 @@ const datosPersonalesReducer = (state = initialState, action) =>{
     const { type, payload }  = action;
     switch(type) {
         case ADD_DATOS_PERSONALES : {
-            console.log(payload)
             return {
                 ...state,
                 formulario : {...state.formulario, [payload.name]:payload.value}

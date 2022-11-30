@@ -8,6 +8,14 @@ import InputDate from "../../Inputs/InputDate/InputDate";
 import InputNumModal from "../../Inputs/InputsModal/InputNumModal/InputNumModal";
 import Checkbox from "../../Inputs/Checkbox/Checkbox";
 import CheckboxNum from "../../Inputs/CheckboxNum/CheckboxNum";
+import { useDispatch } from "react-redux";
+import { addSelectedEstadoCivil } from "../../../redux/actions/modalesActions";
+import { CANCEL_MODALS, GET_ESTADOSCIVILES } from "../../../redux/types/modalesTypes";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
+import swal from "sweetalert";
+import { addNewEstadoCivil } from "../../../redux/actions/fetchActions";
 
 const BasicModal = ({
   idModal,
@@ -27,7 +35,71 @@ const BasicModal = ({
   hasCheckBoxNum,
   checkboxCheckName,
   checkboxNumName,
+  propArrayOp,
+  propArrayId,
+  action,
+  opcionSelected,
+  inputIdCompare,
+  firstOptionCompare,
+  secondOptionCompare,
+  onChange,
+  valueFem,
+  valueMasc,
+  url
 }) => {
+  const dispatch = useDispatch();
+
+  const [ disabled, setDisabled ] = useState(false);
+  
+
+  function onSelect(action, payload){
+    dispatch(action(payload));
+  }
+  
+function onCalcel(e, name){
+  setDisabled(false)
+  dispatch({
+    type : CANCEL_MODALS,
+    payload : ""
+  })
+}
+const bodyPetition = {
+  "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil)+1),
+  "masculino": firstOptionCompare,
+  "femenino": secondOptionCompare
+}
+async function agregar(){
+  setDisabled(!disabled);
+  try{
+    await axios.post(url, bodyPetition)
+    .then((res)=>{
+      if(res.status === 200){
+        dispatch(addNewEstadoCivil(bodyPetition))
+        
+        swal({
+          title: "Ok",
+          text: "Estado Civil agregado con éxito",
+          icon: "success",
+        })  
+      }
+      
+    })
+      
+  }catch(err){
+    swal({
+      title: "Error",
+      text: err.toString(),
+      icon: "error",
+    })
+  }
+}
+function modificar(){
+  setDisabled(!disabled);
+}
+function deleteOption(){
+  setDisabled(false);
+  return;
+}
   return (
     <div>
       <div
@@ -65,77 +137,36 @@ const BasicModal = ({
                   className="form-select row mt-1 selectOptions"
                   multiple
                   aria-label="multiple select example"
+                  disabled={disabled}
                 >
-                  {array !== undefined
-                    ? array.map((op, i) => {
+                  {array && array.map((op, i) => {
                         return (
                           <option
                             key={i}
-                            // onClick={(e) =>
-                            //   onSelect(
-                            //     e,
-                            //     functionModal,
-                            //     functionSaveSelected,
-                            //     arrayCompleto,
-                            //     op
-                            //   )
-                            // }
-                            value="1"
+                            value={op && op[propArrayId]}
+                            onClick={()=> onSelect(action, op)}
                           >
-                            {op}
+                            {op && op[propArrayOp]}
                           </option>
                         );
                       })
-                    : null}
+                  }
                 </select>
 
                 <div className="crudBtns">
-                  <button type="button" className="btn btn-danger crudBtn">
+                  <button type="button" className="btn btn-danger crudBtn" onClick={agregar}>
                     AGREGAR
                   </button>
-                  <button type="button" className="btn btn-danger crudBtn">
+                  <button type="button" className="btn btn-danger crudBtn" onClick={modificar}>
                     MODIFICAR
                   </button>
-                  <button type="button" className="btn btn-danger crudBtn">
+                  <button type="button" className="btn btn-danger crudBtn" onClick={()=>deleteOption}>
                     ELIMINAR
                   </button>
                 </div>
               </div>
 
             <div className="bodyInputs">
-              {/* <selectedOption ? (
-                  <>
-                    <InputModal
-                      nameInput="inputEstadosCivilesModal"
-                      placeHolder="Casado"
-                      nameLabel="Masculino"
-                      inputId="inputEstadosCivilesModal"
-                      onChange={onChange}
-                      generalState={generalState}
-                      setGeneralState={setGeneralState}
-                      value={
-                        generalState !== undefined && generalState !== null
-                          ? selectedOption.masculino
-                          : generalState.inputEstadosCivilesModal
-                      }
-                    />
-                    <InputModal
-                      nameInput="inputEstadosCivilesModalFem"
-                      placeHolder="Casada"
-                      nameLabel="Femenino"
-                      inputId="inputEstadosCivilesModalFem"
-                      onChange={onChange}
-                      generalState={generalState}
-                      setGeneralState={setGeneralState}
-                      value={
-                        generalState !== undefined && generalState !== null
-                          ? selectedOption.femenino
-                          : generalState.inputEstadosCivilesModalFem
-                      }
-                    />
-                  </>
-                ) : ( */}
-
                 {    
                   placeholder.map((p, i) => {
                     return (
@@ -144,10 +175,10 @@ const BasicModal = ({
                         placeHolder={p.placeholder}
                         nameLabel={p.label}
                         inputId={p.idInput}
-                        // onChange={onChange}
-                        // generalState={generalState}
-                        // setGeneralState={setGeneralState}
-                        // value={p}
+                        value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
+                        onChange={onChange}
+                        action={GET_ESTADOSCIVILES}
+                        opcionSelected={opcionSelected}
                       />
                     );
                   })
@@ -182,7 +213,7 @@ const BasicModal = ({
                   <button type="button" className="btn btn-danger btnAceptar">
                     ACEPTAR
                   </button>
-                  <button type="button" className="btn btn-danger">
+                  <button type="button" className="btn btn-danger" onClick={(e)=> onCalcel(e)} >
                     CANCELAR
                   </button>
                 </div>
