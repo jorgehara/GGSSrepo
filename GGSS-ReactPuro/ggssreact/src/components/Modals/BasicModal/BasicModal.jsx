@@ -9,13 +9,10 @@ import InputNumModal from "../../Inputs/InputsModal/InputNumModal/InputNumModal"
 import Checkbox from "../../Inputs/Checkbox/Checkbox";
 import CheckboxNum from "../../Inputs/CheckboxNum/CheckboxNum";
 import { useDispatch } from "react-redux";
-import { addSelectedEstadoCivil } from "../../../redux/actions/modalesActions";
 import { CANCEL_MODALS, GET_ESTADOSCIVILES } from "../../../redux/types/modalesTypes";
-import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-import { addNewEstadoCivil } from "../../../redux/actions/fetchActions";
 
 const BasicModal = ({
   idModal,
@@ -58,7 +55,7 @@ const BasicModal = ({
     dispatch(action(payload));
   }
   
-function onCalcel(e, name){
+function onCancel(e, name){
   setDisabled(false)
   dispatch({
     type : CANCEL_MODALS,
@@ -66,22 +63,30 @@ function onCalcel(e, name){
   })
 }
 
-const bodyPetitionEstadosCiviles = {
-  "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil)+1),
-  "masculino": firstOptionCompare,
-  "femenino": secondOptionCompare
-}
+// const bodyPetitionEstadosCiviles = {
+//   "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil) + 1),
+//   "masculino": firstOptionCompare,
+//   "femenino": secondOptionCompare
+// }
 
-const bodyPetitionEstudios = {
-  "idEstudio": ((array && array[array.length -1] && array && array[array.length -1].idEstudio)+1),
-  "masculino": firstOptionCompare,
-  "femenino": secondOptionCompare
-}
-
+// const bodyPetitionEstudios = {
+//   "IDestudio": ((array && array[array.length -1] && array && array[array.length -1].IDestudio) + 1),
+//   "estudiosNivel": firstOptionCompare || secondOptionCompare
+// }
 
 
 async function agregar(){
   setDisabled(!disabled);
+}
+function modificar(){
+  setDisabled(!disabled);
+}
+function deleteOption(){
+  setDisabled(false);
+  return;
+}
+
+async function aceptar(){
   try{
     await axios.post(url, bodyPetition)
     .then((res)=>{
@@ -94,7 +99,7 @@ async function agregar(){
           icon: "success",
         })  
       }
-    })
+  })
       
   }catch(err){
     swal({
@@ -103,14 +108,8 @@ async function agregar(){
       icon: "error",
     })
   }
-}
-function modificar(){
-  setDisabled(!disabled);
-}
-function deleteOption(){
-  setDisabled(false);
-  return;
-}
+} 
+
   return (
     <div>
       <div
@@ -171,7 +170,7 @@ function deleteOption(){
                   <button type="button" className="btn btn-danger crudBtn" onClick={modificar}>
                     MODIFICAR
                   </button>
-                  <button type="button" className="btn btn-danger crudBtn" onClick={()=>deleteOption}>
+                  <button type="button" className="btn btn-danger crudBtn" onClick={() => deleteOption}>
                     ELIMINAR
                   </button>
                 </div>
@@ -221,10 +220,10 @@ function deleteOption(){
                 
                 
                 <div className="btnInputs">
-                  <button type="button" className="btn btn-danger btnAceptar">
+                  <button type="button" className="btn btn-danger btnAceptar" onClick={aceptar}>
                     ACEPTAR
                   </button>
-                  <button type="button" className="btn btn-danger" onClick={(e)=> onCalcel(e)} >
+                  <button type="button" className="btn btn-danger" onClick={(e)=> onCancel(e)} >
                     CANCELAR
                   </button>
                 </div>

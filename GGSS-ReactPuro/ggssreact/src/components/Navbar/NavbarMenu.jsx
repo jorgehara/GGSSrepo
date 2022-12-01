@@ -20,6 +20,8 @@ import axios from 'axios';
 import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
 import { addSelectedEstadoCivil, addSelectedEstudio } from '../../redux/actions/modalesActions';
+import { bodyPetitionEstadosCiviles, bodyPetitionEstudios } from '../Modals/BasicModal/bodyPetitions';
+
 // import { getEstadosCivilesModal } from '../../services/fetchAPI';
 // import { useEffect } from 'react';
 //#endregion
@@ -102,6 +104,8 @@ const Navbar = () => {
 
 	console.log((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil) + 1)
 	console.log(estadosCivilesValue)
+
+	console.log(estudiosValue)
 
 
 	// console.log(modals.inputEstadosCivilesModal)
@@ -257,7 +261,7 @@ const Navbar = () => {
 								valueFem={inputFemEstadosCiviles}
 								valueMasc={inputMascEstadosCiviles}
 								url={urlEstadosCiviles}
-								bodyPetition="bodyPetitionEstadosCiviles"
+								bodyPetition={bodyPetitionEstadosCiviles}
 								dispatchAddAction={addNewEstadoCivil}
 								// generalState={modals} 
 								// setGeneralState={setModals} 
@@ -282,7 +286,7 @@ const Navbar = () => {
 								secondOptionCompare={inputNivelEstudio}
 								onChange={onChange}
 								url={urlEstudios}
-								bodyPetition="bodyPetitionEstudios"
+								bodyPetition={bodyPetitionEstudios}
 								dispatchAddAction={addNewEstudio}
 							/>
 
