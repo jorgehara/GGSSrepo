@@ -1,4 +1,4 @@
-const classesEstadosCiviles = [{
+export const classesEstadosCiviles = {
     "id" : "class1",
     "classOne" : "formulario__grupo__inputs",
     "classTwo" : 'formulario__grupo',
@@ -9,8 +9,8 @@ const classesEstadosCiviles = [{
     "classSeven" : "fas fa-times-circle form__grupo__icon",
     "classEight" : "form__grupo__errors",
     "classNine" : "form__grupo__error"
-  }]
-  const inputButtonClasess= {
+  }
+  export const inputButtonClasess= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_convenio',
@@ -24,7 +24,7 @@ const classesEstadosCiviles = [{
     "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
-  const inputButtonClasessAsidePagos= {
+  export const inputButtonClasessAsidePagos= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_AsidePagos',
@@ -71,4 +71,18 @@ const classesEstadosCiviles = [{
     classNine : 'form__grupo__label'
   }
 
-  export { classesEstadosCiviles, inputButtonClasess,inputButtonClasessAsidePagos }
+  export const inputButtonClasessCUIL= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
+    "classThree" : 'formulario__label_convenio',
+    "classFour" : 'formulario-input-Button-Cuil form-select ml-0 px-0',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+
+  export const inputFile= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
+    "classThree" : 'formulario__label_convenio',
+    "classFour" : 'formulario-input-Button-Cuil form-select ml-0 px-0',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }

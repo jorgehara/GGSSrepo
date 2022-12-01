@@ -20,6 +20,8 @@ import { ADD_DATOS_PERSONALES } from "../../redux/types/datosPersonalesTypes";
 import axios from "axios";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import { addCargos, addEmpleadores, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addModosContratacion, addModosLiquidacion, addPaises, addParentescos, addTareasDesempeñadas, addTiposDocumento } from "../../redux/actions/fetchActions";
+import { classesEstudios } from "./Classes";
+import { inputButtonClasess, inputButtonClasessCUIL } from "../../classes/classes";
 
 //#endregion
 
@@ -477,6 +479,8 @@ const DatosPersonales = () => {
                           }
                           validateNumbersDNI={validateNumbersDNI}
                         />
+
+
                         <InputButton
                           value={
                             empleadoUno !== undefined ? empleadoUno.cuil : datosPersonales.inputCuil
@@ -484,6 +488,7 @@ const DatosPersonales = () => {
                           generalState={datosPersonalesRedux !== undefined && datosPersonalesRedux}
                           action={ADD_DATOS_PERSONALES}
                           id="inputCuil"
+                          clasess={inputButtonClasessCUIL}
                           nameInput="inputCuil"
                           nameLabel="C.U.I.L"
                           nameButton="Generar"
@@ -511,6 +516,9 @@ const DatosPersonales = () => {
                           usaCuil={true}
                           swal={swal}
                         />
+
+
+
                         <InputForm
                           value={
                             empleadoUno !== undefined
