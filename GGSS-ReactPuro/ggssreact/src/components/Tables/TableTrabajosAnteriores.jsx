@@ -33,7 +33,7 @@ const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp}) => {
                                                 item.desde.length - 9
                                                 )}
                                 </td>
-                                <td>{item.hasta && item.hasta.substring(0, item.hasta.length -9)}</td>
+                                <td>{item.hasta && item.hasta ? item.hasta.substring(0, item.hasta.length -9) : "Actualidad"}</td>
                                 <td>{item.descripcion}</td>
                             </tr>
                         )

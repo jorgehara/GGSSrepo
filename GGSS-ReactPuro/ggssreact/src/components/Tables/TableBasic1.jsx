@@ -29,9 +29,10 @@ const TableBasic1 = ({columns, value,documentaciones}) => {
       <tbody>
         {
           value && value.map((valor)=>{
+            console.log(valor)
             return(
               <tr>
-                <th scope="row">{valor.fecha ? valor.fecha : "-"}</th>
+                <th scope="row">{valor.fecha ? valor.fecha.substring(0, valor.fecha.length -9) : "-"}</th>
                 <td>{valor.fechaVencimiento ? valor.fechaVencimiento : "-"}</td>
                 <td>{getDocumentacion(documentaciones, valor.idDocumentacion).documentacion1}</td>
                 <td>{valor.generaLiquidacion === true ? "Genera" : "No genera"}</td>

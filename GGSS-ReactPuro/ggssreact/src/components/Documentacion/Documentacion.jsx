@@ -52,9 +52,9 @@ const Documentacion = () => {
 
     const datosFormulario = useSelector((state)=> state.documentacionState.formulario);
 
-    const documentacionDelEmpleado = empleadoUno && documentacionEmpleados && documentacionEmpleados.filter((doc)=> {return(doc.idEmpleado === 1153)});
+    const documentacionDelEmpleado = empleadoUno && documentacionEmpleados && documentacionEmpleados.filter((doc)=> {return(doc.idEmpleado === empleadoUno.iDempleado)});
 
-    console.log(datosFormulario);
+    console.log(empleadoUno);
 
 return (
     <div className='container'>

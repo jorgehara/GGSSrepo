@@ -26,7 +26,6 @@ const trabajosAnterioresReducer = (state = initialState, action) =>{
             };
         }
         case GET_INPUT : {
-            console.log(payload)
             return {
                 ...state,
                 formulario : {...state.formulario, [payload.name]:payload.value}

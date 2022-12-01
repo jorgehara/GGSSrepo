@@ -27,10 +27,10 @@ return (
                 <b>Total días disponibles : {cantidadDias}</b>
             </div>
             <div className='d-flex flex-row justify-content-center align-items-center col-xl-12'>
-                <InputCbo display={false} value={[]} propArrayOpFem="año" array={newAños} valueId="año" nameLabel="Opciones:" nameButton="..."/>
+                <InputCbo display={false} value={[]} propArrayOpFem="año" array={[]} valueId="año" nameLabel="Opciones:" nameButton="..."/>
             </div>
             <div className='col-xl-12 mt-2'>
-                <FieldSet />
+                <FieldSet array={newAños} valueId="año" propArrayOpFem="año"/>
             </div>
             
         </div>

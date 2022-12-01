@@ -65,7 +65,7 @@ const TrabajosAnteriores = () => {
 
     console.log(valueCheck);
 
-    console.log(trabajosAnteriores);
+    console.log(trabajosAnterioresDelEmpleado);
 
     const bodyPetition = {
         "idEmpleado": empleadoUno.iDempleado,
@@ -77,6 +77,8 @@ const TrabajosAnteriores = () => {
    
 
     console.log(bodyPetition)
+
+
     const onCheckActualidad=(e)=>{
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
@@ -90,17 +92,23 @@ const TrabajosAnteriores = () => {
             dispatch(
                 {
                   type: GET_INPUT,
-                  payload : {name : e.target.name, value : today}
-                });
+                  payload : {name : e.target.name, value : true}
+                })
+            dispatch({
+                type: GET_INPUT,
+                payload : {name : "idDateHasta", value : null}
+              });
                 return;
         }
         setDisabled(false);
         dispatch(
             {
               type: GET_INPUT,
-              payload : {name : e.target.name, value : null}
+              payload : {name : e.target.name, value : false}
             });
     }
+
+
     const sendData=async()=>{
         try{
             //LOADING

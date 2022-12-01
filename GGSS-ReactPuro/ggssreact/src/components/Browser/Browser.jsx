@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { employeContext } from '../../context/employeContext';
-import {  getEmployeByLegajo, getEmployeByName } from '../../services/fetchAPI';
+import {  getEmployeById, getEmployeByLegajo, getEmployeByName } from '../../services/fetchAPI';
 import { getDomicilioEmpleado } from '../../services/mockDataDomicilios';
 import { useDispatch, useSelector } from "react-redux";
 import ButtonLarge from '../Buttons/ButtonLarge'
 import "./Browser.css";
-import { addEmploye, addOneEmploye, selectedEmploye } from '../../redux/actions/employeActions';
+import { addEmploye, addOneEmploye, getEmployes, selectedEmploye } from '../../redux/actions/employeActions';
+import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
+import { ADD_EMPLOYE, GET_INPUT_VALU_BROWSER } from '../../redux/types/employeTypes';
 
 const Browser = () => {
   const [listEmpleados, setListEmpleados] = useState([]);
@@ -18,52 +20,73 @@ const Browser = () => {
   const url = "http://54.243.192.82/api/Empleados?records=10000";
 
   const dispatch = useDispatch();
-  const empleados = useSelector((state)=> state.employeStates.employes)
+  const empleados = useSelector((state)=> state.employeStates.empleados)
 
+  const valueInputLegajo = useSelector((state)=> state.employeStates.formulario.inpurLegajoBrowser);
+  const valueInputApellido = useSelector((state)=> state.employeStates.formulario.inputApellidoNombreBrowser);
+
+  const valueInputs = useSelector((state)=> state.employeStates.formulario);
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
 
 
 
   const {  saveDisable, disable} = useContext(employeContext);
 
+  const handleFetch=(url, action )=>{
+    dispatch({type: SET_LOADING});
+      axios.get(url)
+      .then((res)=>{
+        dispatch( action(res.data.result));
+      })
+      .catch((err)=>{
+        dispatch({type:AXIOS_ERROR});
+      })
+   }
+
   useEffect(() => {
     axios.get(url).then((res) => {
       let data = res.data.result;
 
-      if (empData.apellido.length > 0) {
-        getEmployeByName(data, empData.apellido).then((res) =>
-          setListEmpleados(res)
+      console.log(data)
+      if (valueInputApellido.length > 0) {
+        getEmployeByName(data, valueInputApellido).then((res) =>
+            dispatch(getEmployes(res))
         );
         return;
       }
-      if (empData.legajo.length > 0) {
-        getEmployeByLegajo(data, empData.legajo).then((res) =>
-          setListEmpleados(res)
+      if (valueInputLegajo.length > 0) {
+        getEmployeByLegajo(data, valueInputLegajo).then((res) =>
+            dispatch(getEmployes(res))
         );
         return;
       }
-      dispatch(addEmploye(res.data.result))
-      setListEmpleados(res.data.result);
+      dispatch(getEmployes(res.data.result))
     });
-  }, [empData.apellido, empData.legajo]);
+
+  }, [valueInputLegajo, valueInputApellido]);
   
+ 
+
+  console.log(empleadoUno)
+
   function onSelect(e, name, idEmpleado) {
-    getEmployeByName(empleados[0], name).then((res) => {
-      
-      dispatch(addOneEmploye(res[0].iDempleado));
-      saveEmploye(res);
+    
+    getEmployeById(empleados, idEmpleado).then((res) => {  
+      console.log(res[0].iDempleado)    
+      dispatch(addOneEmploye(res[0]));
     });
+
     getDomicilioEmpleado(idEmpleado).then((res) => {
       saveDomicilio(res);
     });
   }
 
-  function onInputChange(evt) {
-    const name = evt.target.name;
-    const value = (evt.target.value).toUpperCase();
-
-    let newEmpData = { ...empData };
-    newEmpData[name] = value;
-    setEmpData(newEmpData);
+  function onChange(e, action) {
+    dispatch(
+      {
+        type: action,
+        payload : {name : e.target.name, value : e.target.value}
+      });    
   }
 
   function habilitaEdit(e){
@@ -78,23 +101,23 @@ const Browser = () => {
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
       <div className="row mt-1 w-100">
         <input
-          onChange={(e) => onInputChange(e)}
-          value={empData.legajo}
+          onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
+          value={valueInputLegajo && valueInputLegajo}
           className="form__grupo__input__browser mr-2"
           type="number"
-          name="legajo"
-          id="legajos"
+          name="inpurLegajoBrowser"
+          id="inpurLegajoBrowser"
           placeholder="Ingrese Legajo "
         />
       </div>
       <div className="row mt-1 mr-2 w-100">
         <input
-          onChange={(e) => onInputChange(e)}
-          value={empData.apellido}
+          onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
+          value={valueInputApellido && valueInputApellido}
           className="form__grupo__input__browser mr-2"
           type="text"
-          name="apellido"
-          id="nombres"
+          name="inputApellidoNombreBrowser"
+          id="inputApellidoNombreBrowser"
           placeholder="Ingrese Nombre "
         />
       </div>
@@ -103,7 +126,7 @@ const Browser = () => {
         multiple
         aria-label="multiple select example"
       >
-        { listEmpleados  && listEmpleados.map((emp, i) => {
+        {  empleados && empleados.map((emp, i) => {
           return (
             <option
             key={i}
@@ -111,7 +134,7 @@ const Browser = () => {
               value="1"
             >{`${emp.apellido}, ${emp.nombres}`}</option>
           );
-        })}
+        }) }
       </select>
         
 <div class="container text-center d-inline-flex">

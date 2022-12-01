@@ -6,7 +6,7 @@ import InputDate from '../InputDate/InputDate'
 import InputForm from '../InputForm/InputForm'
 import "./FieldSet.css";
 
-const FieldSet = () => {
+const FieldSet = ({array,valueId, propArrayOpFem}) => {
     const columns1 =["Año", "Días Totales", "Tomados", "Restan", "Vto", "Prórroga", "Resolución", "Disponibles"]
     const columns2 =["Desde", "Hasta", "Fecha Suspensión"]
   return (
@@ -16,7 +16,7 @@ const FieldSet = () => {
                 <legend className='float-none w-auto p-2'>Cargar disponibles por periodo</legend>
                 <div className='row'>
                     <div className='col-xl-4'>
-                        <InputCbo display={false} value={[]} array={[]} nameLabel="Año:" nameButton="..."/>
+                        <InputCbo display={false} value={[]} valueId={valueId} propArrayOpFem={propArrayOpFem} array={array} nameLabel="Año:" nameButton="..."/>
                     </div>
                     <div className='col-xl-4'>
                         <InputForm display={false} value={[]} array={[]} nameLabel="Cant Días Disponibles:" nameButton="..."/>

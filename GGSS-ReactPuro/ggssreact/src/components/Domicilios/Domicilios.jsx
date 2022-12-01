@@ -167,7 +167,7 @@ const Domicilios = () => {
     "dpto": domiciliosState.inputPisoCalle,
     "predeterminado": domiciliosState && domiciliosState.inputPredeterminado,
     "idEmpleado": empleadoUno && empleadoUno.iDempleado,
-    "idEmpleador": 11
+    "idEmpleador": null
   }
   console.log(empleadoUno && empleadoUno.iDempleado)
   const sendDataDomicilios= async ()=>{
@@ -181,7 +181,7 @@ const Domicilios = () => {
       }) 
     }
     
-      if(domiciliosState && domiciliosState.inputCalleDomicilios !== "" && domiciliosState.inputNumCalle !== "" && domiciliosState.inputPisoCalle !== "" && domiciliosState.inputProvinciaDomicilios !== "" && domiciliosState.inputDepartamentosDomicilios && domiciliosState.inputLocalidadesDomicilios !== "" && domiciliosState.inputBarriosDomicilios !== ""){
+      if(domiciliosState.inputCalleDomicilios && domiciliosState.inputCalleDomicilios !== "" && domiciliosState.inputNumCalle !== "" && domiciliosState.inputPisoCalle !== "" && domiciliosState.inputProvinciaDomicilios !== "" && domiciliosState.inputDepartamentosDomicilios && domiciliosState.inputLocalidadesDomicilios !== "" && domiciliosState.inputBarriosDomicilios !== ""){
           await axios.post(urlDomicilios, bodyPetition)
           .then((res)=> {
 
@@ -270,11 +270,10 @@ const Domicilios = () => {
               <div className="col-xl-6 ">
                 <div className="mt-2">
                   <input
-                    defaultChecked
                     type="checkbox"
                     name="inputPredeterminado"
                     checked={!checked}
-                    value ={(e)=> e.target.checked ? empleadoDomicilio && empleadoDomicilio.inputPredeterminado : false }
+                    value ={(e)=> e.target.checked ? empleadoDomicilio && empleadoDomicilio.inputPredeterminado : empleadoDomicilio.inputPredeterminado  }
                     id="inputPredeterminado"
                     onChange={(e)=>handleChangePredeterminado()}
                   />
