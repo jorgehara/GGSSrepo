@@ -1,4 +1,4 @@
-import { ADD_NEW_ESCI, ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES } from "../types/modalesTypes";
+import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES } from "../types/modalesTypes";
 
 export const initialState = {
     estadoCivilSelected : "",

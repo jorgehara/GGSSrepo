@@ -89,7 +89,6 @@ const Navbar = () => {
 
 	}, [])
 
-
 	// GET DE LOS ENDPOINTS
 	const estadosCivilesValue = useSelector((state) => state.generalState.estadosCiviles);
 	const estudiosValue = useSelector((state) => state.generalState.estudios)
@@ -273,8 +272,9 @@ const Navbar = () => {
 								idModal="Estudios"
 								nameModal="Estudios"
 								placeholder={objectEstudios}
-								array={estudiosValue}
-								propArrayOp="masculino" propArrayId="idEstudio"
+								array={estudiosValue && estudiosValue}
+								propArrayOp="estudiosNivel" 
+								propArrayId="IDestudios"
 								action={addSelectedEstudio}
 								opcionSelected={estudioSelected}
 								inputIdCompare="inputNivelEstudio"
