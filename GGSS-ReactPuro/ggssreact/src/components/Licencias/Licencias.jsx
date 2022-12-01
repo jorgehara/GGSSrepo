@@ -1,4 +1,7 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { selectedOption } from '../../redux/actions/licenciasActions';
+import { OPTIONS_FORMULARIO } from '../../redux/types/LicenciasTypes';
 import EmployeData from '../EmployeData/EmployeData'
 import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
@@ -6,9 +9,22 @@ import InputCbo from '../Inputs/InputCbo/InputCbo';
 const Licencias = () => {
     const cantidadDias = 10;
 
+    const dispatch = useDispatch();
+    const opciones = [{
+        opcion : "1 - Disponibles por Periodo",        
+    },{
+        opcion : "2 - Solicita Nueva Licencia",        
+    },{
+        opcion : "3 - Prorroga Vencimiento",        
+    },{
+        opcion : "4 - Suspende Licencia",        
+    }]
     const año = new Date().getFullYear();
     const años = Array.from(new Array(123), (val, index) => año - index);
 
+    const selectedOption = useSelector((state)=> state.licenciasState.formulario.inputOpcionsLicencias);
+
+    console.log(selectedOption);
 
     const newAños = años && años.map((año)=>{
         return (
@@ -17,7 +33,13 @@ const Licencias = () => {
             }
         )
     })
-    console.log(newAños)
+    function onChange(e, action) {
+        dispatch(
+          {
+            type: action,
+            payload : {name : e.target.name, value : e.target.value}
+          });    
+      }
 
 return (
     <div className='container'>
@@ -27,12 +49,11 @@ return (
                 <b>Total días disponibles : {cantidadDias}</b>
             </div>
             <div className='d-flex flex-row justify-content-center align-items-center col-xl-12'>
-                <InputCbo display={false} value={[]} propArrayOpFem="año" array={[]} valueId="año" nameLabel="Opciones:" nameButton="..."/>
+                <InputCbo display={false} idInput="inputOpcionsLicencias" value={[]} propArrayOpFem="opcion" array={opciones} valueId="opcion" nameLabel="Opciones:" nameButton="..." onChange={onChange} provinciaAction={selectedOption} action={OPTIONS_FORMULARIO}/>
             </div>
             <div className='col-xl-12 mt-2'>
-                <FieldSet array={newAños} valueId="año" propArrayOpFem="año"/>
-            </div>
-            
+                <FieldSet array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={selectedOption} />
+            </div>            
         </div>
     </div>
   )
