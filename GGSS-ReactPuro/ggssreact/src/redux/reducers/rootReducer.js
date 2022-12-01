@@ -1,5 +1,6 @@
 import { combineReducers } from "redux"
 import datosPersonalesReducer from "./datosPersonalesReducer";
+import { documentacionReducer } from "./documentacionReducer";
 import domicilioReducer from "./domicilioReducer";
 import employeReducer from "./employeReducer";
 import familiaReducer from "./familiaReducer";
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     generalState : fetchReducer,
     trabajosAnteriores : trabajosAnterioresReducer,
     liquidacionState : liquidacionReducer,
-    modalState : modalesReducer   
+    modalState : modalesReducer,
+    documentacionState : documentacionReducer 
 });
 
 export default rootReducer;

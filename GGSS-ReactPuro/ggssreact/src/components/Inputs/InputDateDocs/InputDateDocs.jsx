@@ -12,6 +12,7 @@ const InputDateDocs = ({
   datosPersonalesValue,
   generalState,
   setGeneralState,
+  action
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [mostrarComponente2, setMostrarComponente2] = useState(true);
@@ -70,7 +71,7 @@ const InputDateDocs = ({
           type="date"
           value={valor}
           disabled={disabled}
-          onChange={(e) => onChange(e, generalState, setGeneralState)}
+          onChange={(e) => onChange(e,action )}
         />
       </div>
     </div>
