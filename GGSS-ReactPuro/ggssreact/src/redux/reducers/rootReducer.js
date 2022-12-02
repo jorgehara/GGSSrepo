@@ -3,6 +3,7 @@ import datosPersonalesReducer from "./datosPersonalesReducer";
 import { documentacionReducer } from "./documentacionReducer";
 import domicilioReducer from "./domicilioReducer";
 import employeReducer from "./employeReducer";
+import { extrasReducer } from "./extrasReducer";
 import familiaReducer from "./familiaReducer";
 import { fetchReducer } from "./fetchReducer";
 import { licenciasReducer } from "./LicenciasReducer";
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     liquidacionState : liquidacionReducer,
     modalState : modalesReducer,
     documentacionState : documentacionReducer,
-    licenciasState : licenciasReducer 
+    licenciasState : licenciasReducer,
+    extrasState : extrasReducer
 });
 
 export default rootReducer;
