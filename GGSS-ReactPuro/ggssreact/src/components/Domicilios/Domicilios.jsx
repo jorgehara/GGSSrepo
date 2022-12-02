@@ -267,7 +267,7 @@ const Domicilios = () => {
         <div className="accordion-body">
           <section className="">
             <div className="row">
-              <div className="col-xl-6 ">
+              <div className="col-xl-6">
                 <div className="mt-2">
                   <input
                     type="checkbox"
@@ -350,7 +350,7 @@ const Domicilios = () => {
                   />
                 
               </div>
-              <div className="col-xl-6">
+              <div className="col-xl-5 mx-4 gy-4 py-2">
                 
                   <InputCbo
                   value={

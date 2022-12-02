@@ -13,7 +13,8 @@ const Navbar = () => {
 			aria-label="Toggle navigation">
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNav">
-			<ul className="navbar-nav ">
+			
+			<ul className="navbar-nav navBAR border fs-6 ">
 				<li><Link className="dropdown-item" to="/home/datos-personales"></Link>
                     <Link className="nav-link" to="/home/datos-personales">
 						Personales

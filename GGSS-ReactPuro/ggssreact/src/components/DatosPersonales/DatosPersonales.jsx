@@ -21,7 +21,10 @@ import axios from "axios";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import { addCargos, addEmpleadores, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addModosContratacion, addModosLiquidacion, addPaises, addParentescos, addTareasDesempeñadas, addTiposDocumento } from "../../redux/actions/fetchActions";
 import { classesEstudios } from "./Classes";
-import { inputButtonClasess, inputButtonClasessCUIL } from "../../classes/classes";
+import { inputButtonClasess, inputButtonClasessCUIL, inputCbo, inputRadio } from "../../classes/classes";
+import TextAreaCHARS from "../Inputs/TextArea/TextAreaCHARS";
+import PruebaText from "../Inputs/TextArea/PruebaText";
+import PruebaTEXTO2 from "../Inputs/TextArea/PruebaTEXTO2";
 
 //#endregion
 
@@ -543,6 +546,7 @@ const DatosPersonales = () => {
                           numbers={true}
                         />
                         <InputCbo
+                        clasess={inputCbo}
                           value={
                             saveEstadoCivil !== undefined
                               ? saveEstadoCivil.idEstadoCivil
@@ -615,6 +619,7 @@ const DatosPersonales = () => {
                           disabled={disable}
                         />
                         <InputRadio
+                        classes={inputRadio}
                           value={
                             empleadoUno!== undefined ? empleadoUno.sexo : datosPersonalesRedux.inputSexo
                           }
@@ -768,6 +773,7 @@ const DatosPersonales = () => {
                           action={ADD_DATOS_PERSONALES}
                           onChange={onChange}
                         />
+                        <PruebaTEXTO2/>
                       </div>
 
 

@@ -39,14 +39,14 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
         </div>
         <div className={classes.classThree}>
           <input className={classes.classFour}
-                 type="radio" 
-                 id={idInput} 
-                 name={idInput} 
-                 defaultChecked 
-                 checked={valorRadioM} 
-                 onChange={(e)=> onChange(e, action)} 
-                 value="M" 
-                 disabled={disabled}/>
+                type="radio" 
+                id={idInput} 
+                name={idInput} 
+                defaultChecked 
+                checked={valorRadioM} 
+                onChange={(e)=> onChange(e, action)} 
+                value="M" 
+                disabled={disabled}/>
           <label className={classes.classFive} htmlFor="inlineCheckbox1">{nameFirst}</label>
         </div>
         <div className={classes.classSix}>
@@ -65,19 +65,19 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
     </div> 
     : 
     <div className="formulario__grupo__inputs__radio">
-        <div className='form__grupo__label'>
-            <label className='formulario-label-Sexo'  htmlFor="legajo">{nameLabel}</label>
+        <div className="form__grupo__label">
+            <label className="formulario-label-Sexo"  htmlFor="legajo">{nameLabel}</label>
         </div>
         <div className="formulario-input-Sexo">
           <input className="form-check-input" 
-                 type="radio" 
-                 id={idInput} 
-                 name={idInput} 
-                 defaultChecked 
-                 checked={valorRadioM} 
-                 onChange={(e)=> onChange(e, action)} 
-                 value="M" 
-                 disabled={disabled}/>
+                type="radio" 
+                id={idInput} 
+                name={idInput} 
+                defaultChecked 
+                checked={valorRadioM} 
+                onChange={(e)=> onChange(e, action)} 
+                value="M" 
+                disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox1">{nameFirst}</label>
         </div>
         <div className="formulario-input-SexoF">

@@ -25,13 +25,14 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
     }
    
   return (
-        clasess ? <div className={`${clasess.classOne}`}>
-        <div className={`${clasess.classOne}`}>
-            <div className={`${clasess.classOne}`}>
-                <label className={`${clasess.classOne}`} htmlFor="legajo">{nameLabel}</label>
+        clasess ? 
+      <div className={`${clasess.classOne}`}>
+        <div className={`${clasess.classTwo}`}>
+            <div className={`${clasess.classThree}`}>
+                <label className={`${clasess.classFour}`} htmlFor="legajo">{nameLabel}</label>
             </div>
-            <div className='segundo'>
-                <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e, action)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
+            <div className={`${clasess.classFive}`}>
+                <select className={`${clasess.classSix}`} onChange={(e)=>onChange(e, action)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
                 <option selected value="">Seleccionar</option>                    
                     {
                     sexo !== null && sexo !== undefined && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{
@@ -43,7 +44,9 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
                         {op[propArrayOp]}
                       </option> 
                         )
-                    }) :
+                    }) 
+                    
+                    :
                         array !== undefined && array.map((op, index)=>{
                             return(
                               (propArray === op[selectedProp]) ? <option key={index} onClick={(e)=>onClickOption(op)} value={op[valueId]}>
@@ -58,14 +61,14 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
                     }
                 </select>
             </div>
+
             {mostrarComponente && <div>
-              <ButtonCallModal className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} idModal={idModal} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disabled}>
+              <ButtonCallModal 
+                className={mostrarComponente ? clasess.classSeven : "none"} 
+                idModal={idModal} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disabled}>
                 {nameButton}
               </ButtonCallModal>
-              {/* <button type="button" 
-                className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"}>
-                {nameButton}
-              </button> */}
+           
             </div>}
             
         </div>
@@ -73,12 +76,12 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
 
 
     :
-    <div className='formulario__grupo__inputs__cbo '>
-        <div className='form__grupo__label__inp '>
-            <div className='primero'>
-                <label className='formulario__label mt-2 mb-0' htmlFor="legajo">{nameLabel}</label>
+    <div className="formulario__grupo__inputs__cbo">
+        <div className="form__grupo__label__inp">
+            <div className="primero">
+                <label className="formulario__label mt-2 mb-0" htmlFor="legajo">{nameLabel}</label>
             </div>
-            <div className='segundo'>
+            <div className="segundo">
                 <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e, action)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
                 <option selected value="">Seleccionar</option>                    
                     {
@@ -100,7 +103,7 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
                                                              <option defaultValue={op[propArrayOpFem]} onClick={(e)=>onClickOption(op)} value={op[valueId]} key={index}>
                                                               
                                                                 {op[propArrayOpFem]}
-                                                             </option> 
+                                                            </option> 
                             )
                         })
                     }
@@ -110,12 +113,7 @@ const InputCbo = ({nameLabel, array, fieldName, value, display, nameButton, prop
               <ButtonCallModal className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"} idModal={idModal} nameButton={nameButton} useNavbar={false} useButton={true} disabled={disabled}>
                 {nameButton}
               </ButtonCallModal>
-              {/* <button type="button" 
-                className={mostrarComponente ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 " : "none"}>
-                {nameButton}
-              </button> */}
             </div>}
-            
         </div>
       </div>
   );
