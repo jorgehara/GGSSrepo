@@ -11,17 +11,42 @@ import AdicLiquidacion from "../AdicLiquidacion/AdicLiquidacion";
 import Navbar from '../Navbar/Navbar';
 import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
 import Extras from '../Extras/Extras';
+import { useState } from 'react';
 // import SideNavBar from '../NavbarVertical/SideNavBar';
 
 const Home = () => {
 
     let location = useLocation();
-
     const navigate = useNavigate();
-
     useEffect(()=>{
         navigate("/home/datos-personales")
     },[])
+
+    const [ formValues , setFormValues] = useState({
+        datosPersonales : {
+
+        },
+        familia : {
+
+        },
+        liquidacion : {
+
+        },
+        trabajosAnteriores : {
+
+        },
+        documentacion : {
+
+        },
+        licencias : {
+
+        },
+        extras : {
+            
+        }
+    })
+
+
 return (
     <div className='container-fluid'>
         <div className='row'>
@@ -57,13 +82,7 @@ return (
                 {
                     location.pathname === '/home/extras' && <Extras />
                 }
-            </div>
-
-            {/* <div className='col-sm-1'>
-            <SideNavBar/>
-
-            </div> */}
-            
+            </div>            
         </div>
         <Footer /> 
     </div>
