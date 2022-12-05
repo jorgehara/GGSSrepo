@@ -45,7 +45,7 @@ const TextArea = ({inputName, maxLength, value, disabled, action, onChange, idIn
           name={idInput} 
           disabled={disabled}
           data-max-chars="255" 
-          class="input-control count-chars"
+          class="input-control count-chars px-1"
           >
 
           </textarea>

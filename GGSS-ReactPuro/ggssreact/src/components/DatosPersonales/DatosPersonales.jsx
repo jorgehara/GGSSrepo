@@ -22,7 +22,6 @@ import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import { addCargos, addEmpleadores, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addModosContratacion, addModosLiquidacion, addNumeradores, addPaises, addParentescos, addTareasDesempeñadas, addTiposDocumento } from "../../redux/actions/fetchActions";
 import { classesEstudios } from "./Classes";
 import { inputButtonClasess, inputButtonClasessCUIL, inputCbo, inputRadio } from "../../classes/classes";
-import PruebaTEXTO2 from "../Inputs/TextArea/PruebaTEXTO2";
 
 //#endregion
 
@@ -751,7 +750,7 @@ const DatosPersonales = () => {
                           action={ADD_DATOS_PERSONALES}
                           onChange={onChange}
                         />
-                        {/* <PruebaTEXTO2/> */}
+                     
                       </div>
 
 
