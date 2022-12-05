@@ -9,12 +9,10 @@ const InputModal = ({
     inputId,
     value,
     action,
-    opcionSelected,
     onChange
 }) => {
 
 
-    console.log(value)
 
     
 
