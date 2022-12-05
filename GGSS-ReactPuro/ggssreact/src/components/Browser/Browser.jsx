@@ -49,7 +49,6 @@ const Browser = () => {
     axios.get(url).then((res) => {
       let data = res.data.result;
 
-      console.log(data)
       if (valueInputApellido.length > 0) {
         getEmployeByName(data, valueInputApellido).then((res) =>
             dispatch(getEmployes(res))
@@ -70,7 +69,6 @@ const Browser = () => {
  
   const deshabilitado = useSelector((state)=> state.employeStates.disable);
 
-  console.log(empleadoUno)
 
   function onSelect(e, name, idEmpleado) {
     
@@ -109,7 +107,6 @@ const Browser = () => {
     dispatch(addOneEmploye(inputsJson));
     dispatch(disableFunctions(true));
   }
-  console.log(empleadoUno);
   function habilitaUpdate(e){
     e.preventDefault();
     if(empleadoUno.iDempleado && empleadoUno.iDempleado){

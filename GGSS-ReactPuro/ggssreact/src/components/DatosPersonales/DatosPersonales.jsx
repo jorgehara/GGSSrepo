@@ -359,7 +359,6 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
     dispatch(disableFunctions(false));
      
   }
-  console.log(empleadoUno);
   return (
     //#region Menú Principal
     <div className="Lateral-Derecho">

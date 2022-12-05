@@ -113,7 +113,6 @@ async function agregar(){
     })
   }
 }
-console.log(array)
 function modificar(){
   setDisabled(!disabled);
 }

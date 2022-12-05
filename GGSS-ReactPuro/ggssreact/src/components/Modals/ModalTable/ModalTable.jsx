@@ -26,9 +26,9 @@ const ModalTable = ({ idModal, nameModal, column, dropdown, jerarquia, btnAcepta
                                     {
                                         objectInputs.map((p, i) => {
                                             return (
-                                                <>
-                                                    <InputNumModal key={i} nameInput={p.label} inputId={p.label} />
-                                                </>
+                                                <div key={i}>
+                                                    <InputNumModal  nameInput={p.label} inputId={p.label} />
+                                                </div>
                                             )
                                         })
 

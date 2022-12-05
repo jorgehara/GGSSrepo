@@ -14,7 +14,6 @@ const InputForm = ({
   idInput,
   cancelar
 }) => {
-  console.log(cancelar)
   return (
     <div className="formulario__grupo__inputs">
       <div className="formulario__grupo">

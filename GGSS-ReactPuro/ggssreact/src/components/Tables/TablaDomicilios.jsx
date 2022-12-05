@@ -22,8 +22,6 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     setDomicilios(inputValueDom(valueInitial));
   },[valueInitial])
 
-   console.log(value);
-   console.log(valueInitial);
 
    const inputValueDom=(valor)=>{
     
@@ -54,7 +52,6 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
   }
   const valor = valueInitial && valueInitial.map((item)=>{return(item.predeterminado)});
    
-  console.log(valor);
  
 
   
@@ -67,7 +64,6 @@ const dispatch = useDispatch();
     });    
   }; 
 
-  console.log(valueInitial)
  
   return (
     <>

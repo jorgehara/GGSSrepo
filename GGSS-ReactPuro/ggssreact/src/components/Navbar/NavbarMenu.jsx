@@ -134,9 +134,9 @@ return (
                     </a>
 
                     <ul className="dropdown-menu">
-						<li class="dropdown-submenu">
-						<a className='dropdown-item' tabindex="-1" href="#">Para Empleados</a>
-							<ul class="dropdown-menu">
+						<li className="dropdown-submenu">
+						<a className='dropdown-item' tabIndex="-1" href="#">Para Empleados</a>
+							<ul className="dropdown-menu">
 								<div className="datosEmpleados" style={{fontSize: "13px"}}>
 									<ButtonCallModal idModal="EstadoCivil" nameButton="Estados Civiles" useNavbar={true} />
 									<ButtonCallModal idModal="Estudios" nameButton="Estudios" useNavbar={true} />
@@ -162,9 +162,9 @@ return (
 						</li>						
 			
 						<hr />
-						<li class="dropdown-submenu">
-						<a className='dropdown-item' tabindex="-1" href="#">Para Liquidación</a>
-							<ul class="dropdown-menu">
+						<li className="dropdown-submenu">
+						<a className='dropdown-item' tabIndex="-1" href="#">Para Liquidación</a>
+							<ul className="dropdown-menu">
 								<div className="datosLiquidacion" style={{fontSize: "13px"}}>
 									<ButtonCallModal idModal="Bancos" nameButton="Bancos" useNavbar={true} />
 									<ButtonCallModal idModal="Telefonia" nameButton="Empresas de telefonia celular" useNavbar={true} />
@@ -284,8 +284,8 @@ return (
 				<ModalTable idModal="Licencias" nameModal="Licencias por Antigüedad" licencias={true} column={tableLicencias} objectInputs={inputsNumLicencias}/>
 
 
-				<li class="nav-item">
-					<a class="nav-link" href="/">Salir</a>
+				<li className="nav-item">
+					<a className="nav-link" href="/">Salir</a>
 				</li>
       		</ul>
     </div>

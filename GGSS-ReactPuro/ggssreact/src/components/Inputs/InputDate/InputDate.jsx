@@ -44,12 +44,11 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
     getValue(disable);
   },[disable])
   
-  console.log(value)
 
   return (
     <div className="formulario__grupo__inputs mt-2">
-        <div class="form-check p-0">
-          <label class="form-check-label" for="flexCheckDefault">
+        <div className="form-check p-0">
+          <label className="form-check-label" htmlFor="flexCheckDefault">
             {nameInput}
 
           </label>

@@ -36,7 +36,6 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
                 <option selected value="">Seleccionar</option>                    
                     {
                     sexo  && sexo  && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{
-                      console.log(Number(idSelected) === op[valueId])
                         return(
                       ( Number(idSelected) === op[valueId]) ? <option key={index}  onClick={(e)=>onClickOption(op)} selected value={op[valueId]}>
                         {op[propArrayOp]} 
@@ -47,7 +46,6 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
                         )
                     }) :
                         array !== undefined && array.map((op, index)=>{
-                          console.log(Number(idSelected) === op[valueId])
                             return(
                               (Number(idSelected) === op[valueId]) ? <option key={index} selected onClick={(e)=>onClickOption(op)} value={op[valueId]}>
                               {op[propArrayOpFem]} 
@@ -86,7 +84,6 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
                 <option selected value="">Seleccionar</option>                    
                     {
                        sexo !== null && sexo !== undefined && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{
-                        console.log(Number(idSelected) === op[valueId])
                         return(
                          ( Number(idSelected) === op[valueId]) ? <option key={index}  onClick={(e)=>onClickOption(op)} selected value={op[valueId]}>
                                                             {op[propArrayOp]} 
@@ -97,7 +94,6 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
                         )
                     }) :
                         array !== undefined && array.map((op, index)=>{
-                          console.log(Number(idSelected))
                             return(
                               (Number(idSelected) === op[valueId]) ? <option key={index} selected onClick={(e)=>onClickOption(op)} value={op[valueId]}>
                                                                 {op[propArrayOpFem]} 

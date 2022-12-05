@@ -46,7 +46,9 @@ const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) 
                 {
                     placeholder.map((p, i) => {
                         return (
-                            <InputModal key={i} nameLabel={p.label} placeHolder={p.placeholder} inputId={p.label} />
+                            <div key={i}>
+                                <InputModal  nameLabel={p.label} placeHolder={p.placeholder} inputId={p.label} />
+                            </div>
                         )
                     })
                 }
@@ -64,9 +66,9 @@ const BodyConvenios = ({ placeholder, aConvenios, inputsNumConvenios, column }) 
                         {
                             inputsNumConvenios.map((p, i) => {
                                 return (
-                                    <>
-                                        <InputNumModal key={i} nameInput={p.label} inputId={p.label} />
-                                    </>
+                                    <div key={i}>
+                                        <InputNumModal  nameInput={p.label} inputId={p.label} />
+                                    </div >
                                 )
                             })
 

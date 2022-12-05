@@ -60,7 +60,6 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
   const domiciliosState = useSelector((state)=> state.domiciliosStates)
   const domicilioDelEmpleado1 = useSelector((state)=> state.generalState.domicilios);
  
-  console.log(domicilioDelEmpleado1)
   //#endregion
   
     function onChangeValues(e, key){
@@ -112,7 +111,6 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
   //#region ------------------------------------------------------------------------------CONTEXT
   const { saveDom,saveDomicilios, saveEmpl, disable } = useContext(employeContext);
 
-  console.log(domiciliosState)
   
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   useEffect(()=>{
@@ -147,7 +145,6 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
 
 
  
-  console.log(domiciliosDelEmpleado);
 
   // -----------------------------------------------------LLENAR CAMPOS 
 
@@ -188,7 +185,6 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
     "idEmpleado": empleadoUno && empleadoUno.iDempleado,
     "idEmpleador": null
   }
-  console.log(empleadoUno && empleadoUno.iDempleado)
   const sendDataDomicilios= async ()=>{
     try{
     let predeterminadoExiste = empleadoDomicilio && empleadoDomicilio.filter((dom) => dom.predeterminado === true );
@@ -246,7 +242,6 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
     )   
   }
 
-  console.log(checked)
 
   const handleChangePredeterminado=(e, key)=>{
     setChecked(!checked)
