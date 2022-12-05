@@ -150,7 +150,7 @@ const Browser = () => {
         />
       </div>
       <select
-        className="form-select row mt-1 selectMenu ml-4"
+        className="form-select row mt-1 selectMenu "
         multiple
         aria-label="multiple select example"
         disabled={deshabilitado}

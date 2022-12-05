@@ -35,7 +35,7 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
                 <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e, idInput)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
                 <option selected value="">Seleccionar</option>                    
                     {
-                    sexo !== null && sexo !== undefined && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{
+                    sexo  && sexo  && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{
                       console.log(Number(idSelected) === op[valueId])
                         return(
                       ( Number(idSelected) === op[valueId]) ? <option key={index}  onClick={(e)=>onClickOption(op)} selected value={op[valueId]}>

@@ -697,7 +697,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
             </div>
           </div>
         </div>
-        <Domicilios disabled={disable} deshabilitar={deshabilitar}/>
+        <Domicilios disabled={disable} deshabilitar={deshabilitar} responses={responses} setResponses={setResponses} />
       </div>
       <div className="d-flex justify-content-end">
         <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} functionSend={sendDataEmploye} functionDelete={cancelButton}/>
