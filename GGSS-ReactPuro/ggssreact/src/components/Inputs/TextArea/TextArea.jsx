@@ -12,7 +12,7 @@ const TextArea = ({inputName, maxLength, value, disabled, action, onChange, idIn
         <input className="form-control-obs txtArea" 
                 value={value}
                 placeholder="Ingrese Observaciones" 
-                onChange={(e)=>onChange(e, action)}
+                onChange={(e)=>onChange(e, idInput)}
                 id={idInput} 
                 cols="21" 
                 rows="2"

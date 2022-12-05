@@ -12,13 +12,12 @@ import TablaDomicilios from "../Tables/TablaDomicilios";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
 import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades, addProvincias } from "../../redux/actions/fetchActions";
-import InputForm from "../Inputs/InputForm/InputForm";
 import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto, setPredeterminado } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 
 //#endregion
-const Domicilios = () => {
+const Domicilios = ({deshabilitar}) => {
 
   const [inputValue, setInputValue] = useState("");
   const [domicilios, setDomicilios] = useState([]);
@@ -80,7 +79,7 @@ const Domicilios = () => {
     handleFetch(urlProvincias, addProvincias);
     handleFetch(urlLocalidades, addLocalidades);
     handleFetch(urlBarrios, addBarrios);
-  },[])
+  },[deshabilitar])
 
 
   const generalStateData = useSelector((state)=> state.generalState)

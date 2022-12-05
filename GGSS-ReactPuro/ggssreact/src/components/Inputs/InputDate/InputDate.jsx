@@ -7,11 +7,11 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [mostrarComponente2, setMostrarComponente2] = useState(true);
   const [valor, setValor] = useState("");
-  const fecha = value !== null && value !== undefined ? value.substring(0, value.length -9) : null;
+
+
+  const fecha = value && value  ? value.substring(0, value.length -9) : null;
   const dispatch = useDispatch();
-  useEffect(()=>{
-    setValor(datosPersonalesValue)
-  },[datosPersonalesValue])
+
 
   useEffect(()=>{
     setValor(fecha);
@@ -44,7 +44,7 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
     getValue(disable);
   },[disable])
   
-  console.log(idInput)
+  console.log(value)
 
   return (
     <div className="formulario__grupo__inputs mt-2">
@@ -61,7 +61,7 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
           {
             type: action,
             payload : {name : idInput, value : ""}
-          }) : valor} disabled={disabled ? disabled : disable} onChange={(e)=>onChange(e,action)} />
+          }) : fecha} disabled={disabled ? disabled : disable} onChange={(e)=>onChange(e,idInput)} />
             
         </div>
     </div>

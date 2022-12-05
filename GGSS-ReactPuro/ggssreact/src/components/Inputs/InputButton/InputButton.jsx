@@ -31,14 +31,14 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
         <label className={`${clasess.classThree}`} htmlFor={nameInput}>{nameLabel}</label>
 
         <input type="text" 
-                value={ datosPersonalesValue !== undefined && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
+                value={ datosPersonalesValue && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
                 maxLength={maxLeght}
                 className={`${clasess.classFour}`} 
                 placeholder={placeholder} 
                 id={id} 
                 name={id}
                 disabled={disabled}
-                onChange={(e)=> onChange(e,action )}
+                onChange={(e)=> onChange(e, id)}
                 />
         <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
               className={`${clasess.classFive}`} disabled={disabled}>
@@ -60,7 +60,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     id={id} 
                     name={id}
                     disabled={disabled}
-                    onChange={(e)=> onChange(e,action )}
+                    onChange={(e)=> onChange(e,id )}
                     />
             <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
                   className="btn btn-validacion btn-outline-danger" disabled={disabled}>

@@ -44,7 +44,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                  name={idInput} 
                  defaultChecked 
                  checked={valorRadioM} 
-                 onChange={(e)=> onChange(e, action)} 
+                 onChange={(e)=> onChange(e, idInput)} 
                  value="M" 
                  disabled={disabled}/>
           <label className={classes.classFive} htmlFor="inlineCheckbox1">{nameFirst}</label>
@@ -57,7 +57,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                 name={idInput} 
                 defaultChecked 
                 checked={valorRadioF} 
-                onChange={(e)=> onChange(e, action)} 
+                onChange={(e)=> onChange(e, idInput)} 
                 value="F" 
                 disabled={disabled}/>
         <label className={classes.classEigth} htmlFor="inlineCheckbox2">{nameSecond}</label>
@@ -75,7 +75,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                  name={idInput} 
                  defaultChecked 
                  checked={valorRadioM} 
-                 onChange={(e)=> onChange(e, action)} 
+                 onChange={(e)=> onChange(e, idInput)} 
                  value="M" 
                  disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox1">{nameFirst}</label>
@@ -88,7 +88,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                 name={idInput} 
                 defaultChecked 
                 checked={valorRadioF} 
-                onChange={(e)=> onChange(e, action)} 
+                onChange={(e)=> onChange(e, idInput)} 
                 value="F" 
                 disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox2">{nameSecond}</label>

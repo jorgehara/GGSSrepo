@@ -6,9 +6,10 @@ import { getDomicilioEmpleado } from '../../services/mockDataDomicilios';
 import { useDispatch, useSelector } from "react-redux";
 import ButtonLarge from '../Buttons/ButtonLarge'
 import "./Browser.css";
-import { addEmploye, addOneEmploye, getEmployes, selectedEmploye } from '../../redux/actions/employeActions';
+import { addEmploye, addOneEmploye, disableFunctions, getEmployes, selectedEmploye } from '../../redux/actions/employeActions';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { ADD_EMPLOYE, GET_INPUT_VALU_BROWSER } from '../../redux/types/employeTypes';
+import swal from 'sweetalert';
 
 const Browser = () => {
   const [listEmpleados, setListEmpleados] = useState([]);
@@ -17,6 +18,7 @@ const Browser = () => {
     legajo: "",
     apellido: "",
   });
+  
   const url = "http://54.243.192.82/api/Empleados?records=10000";
 
   const dispatch = useDispatch();
@@ -66,6 +68,7 @@ const Browser = () => {
   }, [valueInputLegajo, valueInputApellido]);
   
  
+  const deshabilitado = useSelector((state)=> state.employeStates.disable);
 
   console.log(empleadoUno)
 
@@ -91,7 +94,32 @@ const Browser = () => {
 
   function habilitaEdit(e){
     e.preventDefault();
-    saveDisable(false)
+    Array.from(document.querySelectorAll("input")).forEach(
+      input => (input.value = "")
+    );
+    saveDisable(false);
+    let employeData = {...empleadoUno};
+
+    const inputsArray = Object.entries(employeData);
+
+    const clearInputs = inputsArray.map(([key])=> [key, '']);
+
+    const inputsJson = Object.fromEntries(clearInputs);
+
+    dispatch(addOneEmploye(inputsJson));
+    dispatch(disableFunctions(true));
+  }
+  console.log(empleadoUno);
+  function habilitaUpdate(e){
+    e.preventDefault();
+    if(empleadoUno.iDempleado && empleadoUno.iDempleado){
+      return dispatch(disableFunctions(true));
+    }
+    swal({
+          title: "Error",
+          text: `Debe seleccionar un empleado`,
+          icon: "error",
+    })
   }
   
   return (
@@ -125,6 +153,7 @@ const Browser = () => {
         className="form-select row mt-1 selectMenu ml-4"
         multiple
         aria-label="multiple select example"
+        disabled={deshabilitado}
       >
         {  empleados && empleados.map((emp, i) => {
           return (
@@ -155,7 +184,7 @@ const Browser = () => {
           tamaño="sm"
           justyfy="center m-1"
           nameButton="Modificar"
-          onClick={habilitaEdit}
+          onClick={habilitaUpdate}
         />
     </div>
     <div class="col">

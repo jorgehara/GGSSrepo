@@ -16,36 +16,16 @@ import { useState } from 'react';
 
 const Home = () => {
 
-    let location = useLocation();
-    const navigate = useNavigate();
-    useEffect(()=>{
-        navigate("/home/datos-personales")
-    },[])
 
-    const [ formValues , setFormValues] = useState({
-        datosPersonales : {
+    const [tabIndex, setTabIndex] = useState(0);
+    const [responses, setResponses] = useState({});
 
-        },
-        familia : {
+    function handleTabChange(value){
+        
+        setTabIndex(value);
+    };
 
-        },
-        liquidacion : {
-
-        },
-        trabajosAnteriores : {
-
-        },
-        documentacion : {
-
-        },
-        licencias : {
-
-        },
-        extras : {
-            
-        }
-    })
-
+    console.log(responses)
 
 return (
     <div className='container-fluid'>
@@ -54,33 +34,33 @@ return (
                 <Browser />
             </div>
             <div className='col-xl-9'>
-                <Navbar />
+                <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
                 {
-                    location.pathname === "/home/datos-personales" && <DatosPersonales />
+                    tabIndex === 0 && <DatosPersonales  responses={responses} setResponses={setResponses} />
                 } 
                 {
-                    location.pathname === "/home/familia" && <Familia />
+                    tabIndex === 1 && <Familia  responses={responses} setResponses={setResponses} />
                 }
                 {
-                    location.pathname === "/home/liquidacion" && <Liquidacion />
+                    tabIndex === 2 && <Liquidacion  responses={responses} setResponses={setResponses} />
                 }
                 {
-                    location.pathname === "/home/documentacion" && <Documentacion />
+                    tabIndex === 3 && <AdicLiquidacion  responses={responses} setResponses={setResponses} />
                 }
                 {
-                    location.pathname === "/home/licencias" && <Licencias />
+                    tabIndex === 4 && <TrabajosAnteriores  responses={responses} setResponses={setResponses} />
                     
                 }
                 {
-                    location.pathname === "/home/adic-liquidacion" && <AdicLiquidacion />
+                    tabIndex === 5 && <Documentacion  responses={responses} setResponses={setResponses} />
                     
                 }
                 {
-                    location.pathname === "/home/trabajos-anteriores" && <TrabajosAnteriores />
+                    tabIndex === 6 && <Licencias  responses={responses} setResponses={setResponses} />
                     
                 }
                 {
-                    location.pathname === '/home/extras' && <Extras />
+                    tabIndex === 7 && <Extras  responses={responses} setResponses={setResponses} />
                 }
             </div>            
         </div>

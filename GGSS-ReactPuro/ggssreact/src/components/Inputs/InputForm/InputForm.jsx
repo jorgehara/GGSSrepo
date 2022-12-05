@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import "./InputForm.css";
 
 const InputForm = ({
-  nameInput,
   messageError,
   placeHolder,
   inputId,
@@ -10,25 +8,13 @@ const InputForm = ({
   disabled,
   onChange,
   nameLabel,
-  datosPersonalesValue,
-  generalState,
-  action,
   validateNumbers,
   validateLetters,
-  validateEmails,
   numbers,
-  email
+  idInput,
+  cancelar
 }) => {
-  const [valor, setValor] = useState("");
-
-  useEffect(() => {
-    setValor(datosPersonalesValue);
-  }, [datosPersonalesValue]);
-
-  useEffect(() => {
-    setValor(value);
-  }, [value]);
-
+  console.log(cancelar)
   return (
     <div className="formulario__grupo__inputs">
       <div className="formulario__grupo">
@@ -40,12 +26,12 @@ const InputForm = ({
         <input
           type="text"
           className="formulario-input-Legajo"
-          id={inputId}
+          id={idInput}
           placeholder={placeHolder}
-          value={ valor  }
-          onChange={(e) => onChange(e,action)}
+          value={ cancelar ? null : value  }
+          onChange={(e)=>onChange(e, idInput)}
           disabled={disabled}
-          name={nameInput}
+          name={idInput}
           onKeyPress={(numbers && validateNumbers) || (!numbers && validateLetters)}
         />
       </div>
