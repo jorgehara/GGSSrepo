@@ -1,37 +1,20 @@
 .form__grupo__inputs_Obs{
     width: 220px;
     resize: none;
-}
-.form-control-obs{
-    resize: vertical none;
+	
 }
 
 .txtArea{
     width: 460px;
     resize: none;
-    padding: 7px;
-    
 }
 
-.txtArea:focus{
+.txtArea:focus:active{
     background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
 }
 
-
-/* .count-container{
-	background-color: #30383e;
-	min-height: 100vh;
-	padding: 100px 15px;
-} */
-/* .count-container form{
-	max-width: 700px;
-	margin:auto;
-	display: flex;
-	flex-wrap: wrap;
-} */
 .count-container form .input-group{
 	width: 100%;
-	/* margin-bottom: 30px; */
 }
 .count-container form .input-control{
 	display: block;
@@ -39,17 +22,32 @@
 	height: 50px;
 	font-size: 14px;
 	padding: 15px;
-	color: #000000;
+	
 }
 .count-container form textarea.input-control{
 	height: 140px;
+
 }
+
+.input-control :focus{
+	background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+	outline: none;
+
+}
+
 .count-container form textarea.input-control{
 	height: 140px;
 }
 .count-container form .input-msg{
-	font-size: 18px;
-	padding-top: 10px;
+	font-size: 13px;
+	background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+	transition: .3s ease all;
+	border-bottom: 1px solid rgb(78, 6, 6);
+	/* padding-top: 4px; */
+}
+.textarea:active{
+	background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+	transition: .3s ease all;
 }
 .text-red{
 	color: red;

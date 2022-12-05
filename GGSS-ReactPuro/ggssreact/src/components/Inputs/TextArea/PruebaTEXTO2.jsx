@@ -28,7 +28,9 @@ return (
             <div class="input-group">
             </div>
             <div class="input-group">
-            <textarea placeholder="Message" maxlength="255" data-max-chars="255" class="input-control count-chars"></textarea>
+            <textarea placeholder="Message" maxlength="255" data-max-chars="255" class="input-control count-chars">
+                
+            </textarea>
         <div class="input-msg text-red"></div>
             </div>
         </form>
