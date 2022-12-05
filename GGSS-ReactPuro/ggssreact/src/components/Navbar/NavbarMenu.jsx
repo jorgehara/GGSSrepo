@@ -26,6 +26,8 @@ import { bodyPetitionEstadosCiviles, bodyPetitionEstudios } from '../Modals/Basi
 // import { useEffect } from 'react';
 //#endregion
 
+console.log(bodyPetitionEstadosCiviles)
+
 
 const Navbar = () => {
 	//#region --------------------------------- CONSTANTES DE DATOS -------------------------------
@@ -106,6 +108,9 @@ const Navbar = () => {
 	console.log(estadosCivilesValue)
 
 	console.log(estudiosValue)
+
+
+	const [responses, setResponses] = useState({});
 
 
 	// console.log(modals.inputEstadosCivilesModal)
@@ -263,6 +268,8 @@ const Navbar = () => {
 								url={urlEstadosCiviles}
 								bodyPetition={bodyPetitionEstadosCiviles}
 								dispatchAddAction={addNewEstadoCivil}
+								res={responses}
+								setRes={setResponses}
 								// generalState={modals} 
 								// setGeneralState={setModals} 
 								// onSelect={onSelect} 

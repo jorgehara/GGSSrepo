@@ -1,62 +1,70 @@
-import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES } from "../types/modalesTypes";
+import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES, ADD_PETITION_VALUE } from "../types/modalesTypes";
 
 export const initialState = {
-    estadoCivilSelected : "",
-    estudioSelected : "",
-    formulario : {
-        inputEstadosCivilesModal : "",
-        inputEstadosCivilesModalFem : "",
-        inputNivelEstudio : "",
+    estadoCivilSelected: "",
+    estudioSelected: "",
+    formulario: {
+        inputEstadosCivilesModal: "",
+        inputEstadosCivilesModalFem: "",
+        inputNivelEstudio: "",
     }
 }
 
-const modalesReducer = (state = initialState, action) =>{
+const modalesReducer = (state = initialState, action) => {
 
-    const { type, payload }  = action;
-    switch(type) {
-        case ADD_SELECTED_EC : {
+    const { type, payload } = action;
+    switch (type) {
+        case ADD_SELECTED_EC: {
             return {
                 ...state,
-                estadoCivilSelected :  payload
-                
+                estadoCivilSelected: payload
+
             };
         }
-        case GET_ESTADOSCIVILES : {
+        case GET_ESTADOSCIVILES: {
             return {
                 ...state,
-                formulario : {...state.formulario, [payload.name]:payload.value}
+                formulario: { ...state.formulario, [payload.name]: payload.value }
             }
         }
 
 
-        case ADD_SELECTED_ESTUDIO : {
-            return{
-                ...state,
-                estudioSelected : payload
-            }
-        }
-        case GET_ESTUDIOS : {
+        case ADD_SELECTED_ESTUDIO: {
             return {
                 ...state,
-                formulario: {...state.formulario, [payload.name]:payload.value }
+                estudioSelected: payload
+            }
+        }
+        case GET_ESTUDIOS: {
+            return {
+                ...state,
+                formulario: { ...state.formulario, [payload.name]: payload.value }
             }
         }
 
+        // --- POST ----
 
-        /// -----------------
-        case CANCEL_MODALS : {
+        case ADD_PETITION_VALUE: {
+            return {
+                ...state,
+                // bodyPetitionEstudios: { ...bodyPetitionEstudios, [payload.name]: payload.value }
+            }
+        }
+
+        /// -------------- BTN CANCELAR
+        case CANCEL_MODALS: {
             debugger;
-            let newForm = {...state.formulario}
+            let newForm = { ...state.formulario }
             return {
                 ...state,
-                formulario : Object.keys(newForm).reduce((acc, curr)=> ({...acc, [curr]: ""}), {})
+                formulario: Object.keys(newForm).reduce((acc, curr) => ({ ...acc, [curr]: "" }), {})
             }
         }
-       
 
-        default :
-        return state;
+
+        default:
+            return state;
     }
 }
 
-export default  modalesReducer;
+export default modalesReducer;

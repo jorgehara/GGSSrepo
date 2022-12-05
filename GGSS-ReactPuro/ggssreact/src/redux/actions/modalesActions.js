@@ -1,20 +1,20 @@
-import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS } from "../types/modalesTypes"
+import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, ADD_PETITION_VALUE } from "../types/modalesTypes"
 
-export const addSelectedEstadoCivil=(payload)=>{
+export const addSelectedEstadoCivil = (payload) => {
     return {
-        type : ADD_SELECTED_EC,
+        type: ADD_SELECTED_EC,
         payload
     }
 }
-export const getEstadosCiviles =(payload)=>{
-    return{
-        type : GET_ESTADOSCIVILES,
+export const getEstadosCiviles = (payload) => {
+    return {
+        type: GET_ESTADOSCIVILES,
         payload
     }
 }
 
 export const addSelectedEstudio = (payload) => {
-    return { 
+    return {
         type: ADD_SELECTED_ESTUDIO,
         payload
     }
@@ -28,9 +28,19 @@ export const getEstudios = (payload) => {
 }
 
 
-export const cancelModals=(payload)=>{
+/// ACTION PARA POSTEAR
+export const addPetitionValue = (payload) => {
     return {
-        type : CANCEL_MODALS,
+        type: ADD_PETITION_VALUE,
+        payload,
+    }
+}
+
+
+
+export const cancelModals = (payload) => {
+    return {
+        type: CANCEL_MODALS,
         payload
     };
 }

@@ -45,6 +45,8 @@ const BasicModal = ({
   url,
   bodyPetition,
   dispatchAddAction,
+  res,
+  setRes
 }) => {
   const dispatch = useDispatch();
 
@@ -62,6 +64,8 @@ function onCancel(e, name){
     payload : ""
   })
 }
+
+const [ bodyPetitionEstudios, setBodyPetitionEstudios] = useState(res["bodyPetitionEstudios"]);
 
 // const bodyPetitionEstadosCiviles = {
 //   "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil) + 1),
