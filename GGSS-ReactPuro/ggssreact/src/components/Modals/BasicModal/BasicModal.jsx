@@ -133,8 +133,8 @@ const BasicModal = ({
   async function aceptar() {
     try {
       await axios.post(urlEstadosCiviles, bodyPetition)
-        .then((res) => {
-          if (res.status === 200) {
+        .then((resp) => {
+          if (resp.status === 200) {
             dispatch(dispatchAddAction(res.modalDataInputs))
             swal({
               title: "Ok",
@@ -152,6 +152,11 @@ const BasicModal = ({
       })
     }
   }
+  
+  
+  console.log(firstOptionCompare)
+  console.log(inputIdCompare)
+  console.log(secondOptionCompare)
 
   return (
     <div>
@@ -222,6 +227,7 @@ const BasicModal = ({
               <div className="bodyInputs">
                 {
                   placeholder.map((p, i) => {
+                    console.log(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)
                     return (
                       <InputModal
                         key={i}

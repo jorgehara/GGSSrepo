@@ -257,7 +257,7 @@ const Navbar = () => {
 								propArrayOp="masculino" propArrayId="idEstadoCivil"
 								action={addSelectedEstadoCivil}
 								opcionSelected={estadoCivilSelected}
-								inputIdCompare="inputEstadosCivilesModal"
+								inputIdCompare="masculino"
 								firstOptionCompare={inputMascEstadosCiviles ? inputMascEstadosCiviles : estadoCivilSelected.masculino}
 								secondOptionCompare={inputFemEstadosCiviles ? inputFemEstadosCiviles : estadoCivilSelected.femenino}
 								// onChange={onChange}
