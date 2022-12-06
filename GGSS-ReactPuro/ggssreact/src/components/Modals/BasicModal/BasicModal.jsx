@@ -8,12 +8,11 @@ import InputDate from "../../Inputs/InputDate/InputDate";
 import InputNumModal from "../../Inputs/InputsModal/InputNumModal/InputNumModal";
 import Checkbox from "../../Inputs/Checkbox/Checkbox";
 import CheckboxNum from "../../Inputs/CheckboxNum/CheckboxNum";
-import { useDispatch } from "react-redux";
+import { useDispatch,  useSelector } from "react-redux";
 import { CANCEL_MODALS, GET_ESTADOSCIVILES } from "../../../redux/types/modalesTypes";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-import { useEffect } from "react";
 
 const BasicModal = ({
   idModal,
@@ -44,97 +43,115 @@ const BasicModal = ({
   valueFem,
   valueMasc,
   url,
-  bodyPetition,
+  // bodyPetition,
   dispatchAddAction,
-  res,
-  setRes
+  response,
+  setResponse
 }) => {
   const dispatch = useDispatch();
 
-  const [ disabled, setDisabled ] = useState(false);
-  
+  const [disabled, setDisabled] = useState(false);
 
-  function onSelect(action, payload){
+
+  function onSelect(action, payload) {
     dispatch(action(payload));
   }
-  
-function onCancel(e, name){
-  setDisabled(false)
-  dispatch({
-    type : CANCEL_MODALS,
-    payload : ""
-  })
-}
 
-// const [ bodyPetitionEstudios, setBodyPetitionEstudios] = useState(res["bodyPetitionEstudios"]);
-
-// const bodyPetitionEstadosCiviles = {
-//   "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil) + 1),
-//   "masculino": firstOptionCompare,
-//   "femenino": secondOptionCompare
-// }
-
-// const bodyPetitionEstudios = {
-//   "IDestudio": ((array && array[array.length -1] && array && array[array.length -1].IDestudio) + 1),
-//   "estudiosNivel": firstOptionCompare || secondOptionCompare
-// }
-
-
-// ESTADO QUE GUARDA EL VALOR DE LOS INPUTS
-
-const [ modalDataInputs, setModalDataInputs ] = useState(res["modalDataInputs"])
-
-function onChangeValues(e, key) {
-  const newResponse = {...modalDataInputs}
-  newResponse[key] = e.target.value
-  setModalDataInputs({
-    ...newResponse
-  })
-}
-
-useEffect(() => {
-  return () => {
-    setRes({
-      ...res,
-      modalDataInputs
+  function onCancel(e, name) {
+    setDisabled(false)
+    dispatch({
+      type: CANCEL_MODALS,
+      payload: ""
     })
   }
-}, [modalDataInputs])
+
+  // const [ bodyPetitionEstudios, setBodyPetitionEstudios] = useState(res["bodyPetitionEstudios"]);
+
+  // const bodyPetitionEstadosCiviles = {
+  //   "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil) + 1),
+  //   "masculino": firstOptionCompare,
+  //   "femenino": secondOptionCompare
+  // }
+
+  // const bodyPetitionEstudios = {
+  //   "IDestudio": ((array && array[array.length -1] && array && array[array.length -1].IDestudio) + 1),
+  //   "estudiosNivel": firstOptionCompare || secondOptionCompare
+  // }
+
+  	// GET DE LOS ENDPOINTS
+	const estadosCivilesValue = useSelector((state) => state.generalState.estadosCiviles);
+	// const estudiosValue = useSelector((state) => state.generalState.estudios)
+
+	// const estadoCivilSelected = useSelector((state) => state.modalState.estadoCivilSelected);
+	// const inputMascEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModal);
+	// const inputFemEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModalFem);
+
+	// const estudioSelected = useSelector((state) => state.modalState.estudioSelected);
+	// const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio )
 
 
-async function agregar(){
-  setDisabled(!disabled);
-}
-function modificar(){
-  setDisabled(!disabled);
-}
-function deleteOption(){
-  setDisabled(false);
-  return;
-}
+  // ESTADO QUE GUARDA EL VALOR DE LOS INPUTS
 
-// async function aceptar(){
-//   try{
-//     await axios.post(url, modalDataInputs)
-//     .then((res)=>{
-//       if(res.status === 200){
-//         dispatch(dispatchAddAction(modalDataInputs))
-//         swal({
-//           title: "Ok",
-//           text: "Agregado con éxito",
-//           icon: "success",
-//         })  
-//       }
-//   })
-      
-//   }catch(err){
-//     swal({
-//       title: "Error",
-//       text: err.toString(),
-//       icon: "error",
-//     })
-//   }
-// } 
+  const [modalDataInputs, setModalDataInputs] = useState(response["modalDataInputs"])
+
+  function onChangeValues(e, key) {
+    const newResponse = { ...modalDataInputs }
+    newResponse[key] = e.target.value
+    setModalDataInputs({
+      ...newResponse
+    })
+  }
+
+  useEffect(() => {
+    return () => {
+      setResponse({
+        ...response,
+        modalDataInputs
+      })
+    }
+  }, [modalDataInputs])
+
+
+  async function agregar() {
+    setDisabled(!disabled);
+  }
+  function modificar() {
+    setDisabled(!disabled);
+  }
+  function deleteOption() {
+    setDisabled(false);
+    return;
+  }
+
+
+  const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles"
+
+  const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
+
+  const bodyPetition = { ...response.modalDataInputs, idEstadoCivil: idEstadoCivil };
+
+  async function aceptar() {
+    try {
+      await axios.post(urlEstadosCiviles, bodyPetition)
+        .then((res) => {
+          if (res.status === 200) {
+            dispatch(dispatchAddAction(res.modalDataInputs))
+            swal({
+              title: "Ok",
+              text: "Agregado con éxito",
+              icon: "success",
+            })
+          }
+        })
+
+    } catch (err) {
+      swal({
+        title: "Error",
+        text: err.toString(),
+        icon: "error",
+      })
+    }
+  }
 
   return (
     <div>
@@ -176,16 +193,16 @@ function deleteOption(){
                   disabled={disabled}
                 >
                   {array && array.map((op, i) => {
-                        return (
-                          <option
-                            key={i}
-                            value={op && op[propArrayId]}
-                            onClick={()=> onSelect(action, op)}
-                          >
-                            {op && op[propArrayOp]}
-                          </option>
-                        );
-                      })
+                    return (
+                      <option
+                        key={i}
+                        value={op && op[propArrayId]}
+                        onClick={() => onSelect(action, op)}
+                      >
+                        {op && op[propArrayOp]}
+                      </option>
+                    );
+                  })
                   }
                 </select>
 
@@ -202,8 +219,8 @@ function deleteOption(){
                 </div>
               </div>
 
-            <div className="bodyInputs">
-                {    
+              <div className="bodyInputs">
+                {
                   placeholder.map((p, i) => {
                     return (
                       <InputModal
@@ -233,23 +250,23 @@ function deleteOption(){
 
                 {dropdown && <Dropdown nameDropdown="Partida" />}
 
-                  {/* HAY ALGO DEL INPUTDATE QUE ESTA DESACOMODANDO LA ALINEACION, CAMBIAR */}
-                {inputDate && <InputDate nameInput="Vencimiento" />} 
+                {/* HAY ALGO DEL INPUTDATE QUE ESTA DESACOMODANDO LA ALINEACION, CAMBIAR */}
+                {inputDate && <InputDate nameInput="Vencimiento" />}
 
                 <br />
                 {textArea && <TextArea inputName="Observaciones" />}
                 <hr />
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
                 <div className="btnInputs">
-                  <button type="button" className="btn btn-danger btnAceptar" >
+                  <button type="button" className="btn btn-danger btnAceptar" onClick={aceptar} >
                     ACEPTAR
                   </button>
-                  <button type="button" className="btn btn-danger" onClick={(e)=> onCancel(e)} >
+                  <button type="button" className="btn btn-danger" onClick={(e) => onCancel(e)} >
                     CANCELAR
                   </button>
                 </div>
