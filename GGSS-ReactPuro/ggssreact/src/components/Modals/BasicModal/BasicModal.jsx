@@ -45,8 +45,8 @@ const BasicModal = ({
   url,
   // bodyPetition,
   dispatchAddAction,
-  response,
-  setResponse
+  res,
+  setRes
 }) => {
   const dispatch = useDispatch();
 
@@ -92,7 +92,7 @@ const BasicModal = ({
 
   // ESTADO QUE GUARDA EL VALOR DE LOS INPUTS
 
-  const [modalDataInputs, setModalDataInputs] = useState(response["modalDataInputs"])
+  const [modalDataInputs, setModalDataInputs] = useState(res["modalDataInputs"])
 
   function onChangeValues(e, key) {
     const newResponse = { ...modalDataInputs }
@@ -104,8 +104,8 @@ const BasicModal = ({
 
   useEffect(() => {
     return () => {
-      setResponse({
-        ...response,
+      setRes({
+        ...res,
         modalDataInputs
       })
     }
@@ -128,7 +128,7 @@ const BasicModal = ({
 
   const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
 
-  const bodyPetition = { ...response.modalDataInputs, idEstadoCivil: idEstadoCivil };
+  const bodyPetition = { ...res.modalDataInputs, idEstadoCivil: idEstadoCivil };
 
   async function aceptar() {
     try {

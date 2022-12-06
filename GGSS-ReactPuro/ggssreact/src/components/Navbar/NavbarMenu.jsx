@@ -266,8 +266,8 @@ const Navbar = () => {
 								url={urlEstadosCiviles}
 								// bodyPetition={bodyPetitionEstadosCiviles}
 								dispatchAddAction={addNewEstadoCivil}
-								response={responses}
-								setResponse={setResponses}
+								res={responses}
+								setRes={setResponses}
 								// generalState={modals} 
 								// setGeneralState={setModals} 
 								// onSelect={onSelect} 
