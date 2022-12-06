@@ -42,12 +42,12 @@ const EstudioFlia = ({
             id={idInput}
             value={valueInputEstudios}
             onChange={
-            (e)=> onChange(e, action)
+            (e)=> onChange(e, idInput)
           }
           >
             <option value="">Seleccionar</option>
             {array && array.map((op, i) => {
-              return propArray == op ? (
+              return propArray === op[idSelect] ? (
                 <option key={i} 
                 value={op[idSelect]}
                 selected defaultValue>

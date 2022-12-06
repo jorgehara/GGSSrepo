@@ -23,6 +23,7 @@ import { ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING } from "../../redux/types/
 import axios from "axios";
 import swal from "sweetalert";
 import { addNewFamiliar, deleteOneFamiliar } from "../../redux/actions/fetchActions";
+import { disableFunctions } from "../../redux/actions/employeActions";
 
 const Familia = ({responses, setResponses}) => {
   const { saveEmpl, saveFamiliar, saveFamiliares, saveNacionalidad, saveEstudio, saveParentescos, parentescos, disable, saveFamiliarSelected, saveFamiliarPorEmpleado, saveFamSelect } = useContext(employeContext);
@@ -225,6 +226,22 @@ function onChangeValues(e, key){
     })
     }
   }
+  function cancelButton(){
+    Array.from(document.querySelectorAll("input")).forEach(
+      input => (input.value = "")
+    );
+    if(formFamilia && formFamilia){
+      const inputsArray = Object.entries(formFamilia);
+
+      const clearInputs = inputsArray.map(([key])=> [key, '']);
+
+      const inputsJson = Object.fromEntries(clearInputs);
+
+      setFormFamilia(inputsJson);
+    }
+    dispatch(disableFunctions(false));
+     
+  }
   return (
     <div className="Lateral-Derecho">
       <div className="container-fluid">
@@ -288,28 +305,23 @@ function onChangeValues(e, key){
               />
               <InputDateFlia
                 value={
-                  familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined
-                    ? saveEmpl[0].fechaNacimiento
-                    : null) : familiarSeleccionado.fechaNacimiento
+                  !familiarSeleccionado ? (empleadoUno && empleadoUno.fechaNacimiento) : familiarSeleccionado.fechaNacimiento
                 }
                 display={false}
                 checked={false}
                 nameInput="Nacimiento"
                 idInput="inputDateNac"
-                valueGeneral={familia.inputDateNac !== undefined ? familia.inputDateNac : null}
-                onChange={onChange}
+                valueGeneral={ formFamilia?.inputDateNac && formFamilia?.inputDateNac }
+                onChange={onChangeValues}
                 disable={disable}
-                generalState={familia}
-                setGeneralState={setFamilia}
-                familiarSeleccionado={familiarSeleccionado !== undefined ? familiarSeleccionado : null}
-                action={ADD_FAMILIA}
+                familiarSeleccionado={familiarSeleccionado && familiarSeleccionado }
               />
               <EstudioFlia
                 nameInput="Estudios"
                 array={estudiosValue && estudiosValue}                
                 namePropOp="estudiosNivel"
                 idSelect="iDestudios"
-                propArray={estudioSelect !== undefined ? estudioSelect.estudiosNivel : "Cursos"}
+                propArray={ formFamilia?.idInputEstudios && formFamilia?.idInputEstudios }
                 placeHolder="Estudios"
                 nameButton="..."
                 nameCheck="Fijar"
@@ -318,9 +330,8 @@ function onChangeValues(e, key){
                 idModal="Estudios"
                 disable={disable}
                 idInput="idInputEstudios"
-                onChange={onChange}
-                valueInputEstudios={familia.idInputEstudios !== undefined ? familia.idInputEstudios : null}
-                action={ADD_FAMILIA}
+                onChange={onChangeValues}
+                valueInputEstudios={ formFamilia?.idInputEstudios && formFamilia?.idInputEstudios }
               />
             </div>
             <div className="col-xl-6 p-2">
@@ -336,10 +347,10 @@ function onChangeValues(e, key){
                 nameCheck="Fijar"
                 checked=""
                 display={false}
-                propArray={paisSelected !== undefined ? paisSelected.nombrePais : ""}
+                propArray={formFamilia?.nombrePais && formFamilia?.nombrePais }
                 idModal="paises"
                 disable={disable}
-                onChange={onChange}
+                onChange={onChangeValues}
                 action={ADD_FAMILIA}
               />
               <NacionalidadFlia
@@ -356,31 +367,27 @@ function onChangeValues(e, key){
                 propArrayOpMasc = "nacionalidad_masc"
                 femeninos={paisesValue && paisesValue}
                 propArrayOpFem = "nacionalidad_fem"
-                sexo={familiaRedux.idRadioBtn && familiaRedux.idRadioBtn}
-                propArray="ARGENTINO"
+                sexo={formFamilia?.idRadioBtn && formFamilia?.idRadioBtn}
+                propArray={formFamilia?.idRadioBtn && formFamilia?.idRadioBtn}
                 idModal="nacionalidades"
                 disable={disable}
-                action={ADD_FAMILIA}
-                onChange={onChange}
+                onChange={onChangeValues}
                 idInput="nacionalidadFamilia"
               />
               <InputDateFliaBaja
                 value={
-                  familiarSeleccionado === undefined ? (saveEmpl[0] !== undefined ? saveEmpl[0].fechaEgreso : null) : familiarSeleccionado.fBaja
+                  !familiarSeleccionado  ? (empleadoUno.fechaEgreso &&  empleadoUno.fechaEgreso ) : familiarSeleccionado.fBaja
                 }
                 display={false}
                 checked={false}
                 nameInput="Fecha Baja"
                 idInput="inputDateBaja"
                 disable={disable}
-                generalState={familia}
-                setGeneralState={setFamilia}
                 familiarSeleccionado={familiarSeleccionado !== undefined ? familiarSeleccionado : null}
-                valueGeneral={familia.inputDateBaja !== undefined ? familia.inputDateBaja : null}
-                onChange={onChange}
-                action={ADD_FAMILIA}
+                valueGeneral={formFamilia?.inputDateBaja && formFamilia?.inputDateBaja }
+                onChange={onChangeValues}
               />
-              <TextArea inputName="Observaciones" maxLength="255" disabled={disable} onChange={onChange} idInput="textAreaObservacionesFamilia" action={ADD_FAMILIA} value={familiaRedux !== undefined && familiaRedux.textAreaObservacionesFamilia} />
+              <TextArea inputName="Observaciones" maxLength="255" disabled={disable} onChange={onChangeValues} idInput="textAreaObservacionesFamilia"  value={formFamilia?.textAreaObservacionesFamilia && formFamilia?.textAreaObservacionesFamilia} />
             </div>
           </div>
         </div>
@@ -399,7 +406,7 @@ function onChangeValues(e, key){
           <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable} functionSend={sendData} functionDelete={deleteFamiliar} idElimiar={idFamiliarSelected}/>
         </div>
         <div className="d-flex justify-content-end">
-          <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" />
+          <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" functionDelete={cancelButton} />
         </div>
 
       </div>
