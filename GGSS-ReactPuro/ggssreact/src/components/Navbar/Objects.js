@@ -7,15 +7,15 @@ export const objectEstadosCiviles = [
 	{
 		"label": "Masculino",
 		"placeholder": "Casado",
-    "idInput" : "inputEstadosCivilesModal",
-    "nameInput" : "inputEstadosCivilesModal",
+    "idInput" : "masculino",
+    "nameInput" : "masculino",
     "sexo" : "M"
 	},
 	{
 		"label": "Femenino",
 		"placeholder": "Casada",
-    "idInput" : "inputEstadosCivilesModalFem",
-    "nameInput" : "inputEstadosCivilesModalFem",
+    "idInput" : "femenino",
+    "nameInput" : "femenino",
     "sexo" : "F"
 	}
 ]

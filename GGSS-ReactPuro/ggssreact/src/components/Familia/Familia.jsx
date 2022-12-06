@@ -24,10 +24,16 @@ import axios from "axios";
 import swal from "sweetalert";
 import { addNewFamiliar, deleteOneFamiliar } from "../../redux/actions/fetchActions";
 
-const Familia = () => {
+const Familia = ({responses, setResponses}) => {
   const { saveEmpl, saveFamiliar, saveFamiliares, saveNacionalidad, saveEstudio, saveParentescos, parentescos, disable, saveFamiliarSelected, saveFamiliarPorEmpleado, saveFamSelect } = useContext(employeContext);
 
   const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
+
+  const [ formFamilia, setFormFamilia ] = useState(responses["formFamilia"]);
+
+
+
+
   const dispatch = useDispatch();
 
   const [familia, setFamilia] = useState({
@@ -40,6 +46,7 @@ const Familia = () => {
     inputDateBaja: "",
     // inputEstadosCivilesModalFem:""
   });
+
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   const urlParentesco = "http://54.243.192.82/api/Parentescos";
   const urlFamiliares = "http://54.243.192.82/api/Familiares";
@@ -53,7 +60,24 @@ const Familia = () => {
         payload: { name: e.target.name, value: e.target.value }
       });
   }
+function onChangeValues(e, key){
 
+      const newResponse = {...formFamilia};
+      newResponse[key] = e.target.value;
+      setFormFamilia({
+        ...newResponse
+      });
+    };
+
+
+    useEffect(() => {
+      return () => {
+        setResponses({
+          ...responses,
+          formFamilia
+        });
+      };
+    },[formFamilia]);
 
   const empleadoUno = useSelector((state) => state.employeStates.employe)
   const familiaRedux = useSelector((state) => state.familiaStates.formulario);
@@ -69,26 +93,17 @@ const Familia = () => {
   
 
 
-  useEffect(() => {
-    console.log(familiaRedux)
-  }, [familiaRedux])
-
   //#endregion
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
 
-  const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
-  const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
-  const nacionalidades = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (`Masculino: ${nac.nacionalidad_masc}, Femenino: ${nac.nacionalidad_fem}`); }) : [];
-  const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nombrePais); }) : [];
+  
   const idPaisOrigen = saveEmpl[0].idPaisOrigen !== undefined ? saveEmpl[0].idPaisOrigen : 0;
   const paisSelected = saveNacionalidad !== undefined ? saveNacionalidad.find(pais => pais.idPais === idPaisOrigen) : "ARGENTINO";
-  const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i) => { return (nac.estudiosNivel); }) : [];
   const idSelected = saveEmpl[0].iDestudios !== undefined ? saveEmpl[0].iDestudios : 0;
   const estudioSelect = saveEstudio !== undefined ? saveEstudio.find(estudio => estudio.iDestudios === idSelected) : "(Ninguno)";
 
   const idEmpleadoSelected = saveEmpl[0] !== undefined ? saveEmpl[0].iDempleado : 0;
-  const parentesco = parentescos !== undefined ? parentescos.map((par, i) => { return (par.nombreParentesco) }) : null;
   const parentSelected = familiarSeleccionado !== undefined ? familiarSeleccionado.iDparentesco : null;
   const parenSeleccionado = parentescos !== undefined ? parentescos.find((par) => par.iDparentesco === parentSelected) : null;
   //#endregion
@@ -222,10 +237,7 @@ const Familia = () => {
           <div className="row">
             <div className="col-xl-6 p-2">
               <InputChecked
-                value={familiarSeleccionado === undefined ?
-                  (empleadoUno[0] !== undefined
-                    ? `${saveEmpl[0].apellido}, ${saveEmpl[0].nombres}`
-                    : null) : familiarSeleccionado.apellidoyNombres
+                value={formFamilia?.inputApellidoNombres ? formFamilia?.inputApellidoNombres : familiarSeleccionado.apellidoyNombres
                 }
                 nameLabel="Apellido y Nombres"
                 nameCheck="Fijar"
@@ -233,8 +245,7 @@ const Familia = () => {
                 disabled={disable}
                 idInput="inputApellidoNombres"
                 nameInput="inputApellidoNombres"
-                onChange={onChange}
-                action={ADD_FAMILIA}
+                onChange={onChangeValues}
               />
               <InputMultiple
                 optionsDNI={tiposDni}
@@ -242,10 +253,10 @@ const Familia = () => {
                 namePropOp="tipoDocumento"
                 nameInputDNI="Documento"
                 valueRadio={
-                  familiaRedux.idRadioBtn && familiaRedux.idRadioBtn
+                  formFamilia?.idRadioBtn && formFamilia?.idRadioBtn
                 }
                 valueDNI={
-                  familiarSeleccionado === undefined || familiarSeleccionado === null ? (saveEmpl[0] !== undefined ? saveEmpl[0].nroDocumento : null) : familiarSeleccionado.nroDocumento
+                  !familiarSeleccionado  ? (empleadoUno && empleadoUno.nroDocumento) : familiarSeleccionado.nroDocumento
                 }
                 nameFirst="Masculino"
                 nameSecond="Femenino"
@@ -253,12 +264,9 @@ const Familia = () => {
                 placeholder="17654987"
                 disable={disable}
                 propsRadioButton={propsRadioButton}
-                onChange={onChange}
-                datosFamiliaValue1={familia.inputCmbDni !== undefined ? familia.inputCmbDni : null}
-                datosFamiliaRadio={familiaRedux.idRadioBtn && familiaRedux.idRadioBtn}
-                generalState={familia}
-                setGeneralState={setFamilia}
-                action={ADD_FAMILIA}
+                onChange={onChangeValues}
+                datosFamiliaValue1={ formFamilia?.inputCmbDni && formFamilia?.inputCmbDni }
+                datosFamiliaRadio={formFamilia?.idRadioBtn && formFamilia?.idRadioBtn}
               />
               <InputParentesco
                 nameInput="Parentesco"
@@ -271,11 +279,11 @@ const Familia = () => {
                 checked=""
                 display={true}
                 idModal="Parentescos"
-                propArray={parenSeleccionado !== undefined ? parenSeleccionado.nombreParentesco : null}
+                propArray={formFamilia?.inputParentesco && formFamilia?.inputParentesco}
                 disable={disable}
                 idInput="inputParentesco"
-                value={familia.inputParentesco !== undefined ? familia.inputParentesco : null}
-                onChange={onChange}
+                value={formFamilia?.inputParentesco !== undefined ? formFamilia?.inputParentesco : null}
+                onChange={onChangeValues}
                 action={ADD_FAMILIA}
               />
               <InputDateFlia

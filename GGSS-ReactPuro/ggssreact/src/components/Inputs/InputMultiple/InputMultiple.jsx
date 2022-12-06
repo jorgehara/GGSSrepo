@@ -64,7 +64,7 @@ const InputMultiple = ({
             
           </div>
           <div className="col-xl-4 divCboMultiple  d-flex justify-content-start align-items-center">
-            <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,action)}>
+            <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,propsRadioButton.idCboDni)}>
               <option value="">Seleccionar</option>
               {optionsDNI && optionsDNI.map((op, i) => {
                 return <option key={i} value={op[idSelected]}>{op[namePropOp]}</option>;
@@ -81,7 +81,7 @@ const InputMultiple = ({
               disabled={disable}
               id={propsRadioButton.idNroDni}
               name={propsRadioButton.idNroDni}
-              onChange={(e)=>onChange(e,action)}
+              onChange={(e)=>onChange(e,propsRadioButton.idNroDni)}
             ></input>
           </div>
           <div className="form__grupo__icon">
@@ -105,7 +105,7 @@ const InputMultiple = ({
                   name={propsRadioButton.idRadioBtn}
                   defaultChecked
                   checked={valorRadioM}
-                  onChange={(e)=>onChange(e, action)}
+                  onChange={(e)=>onChange(e, propsRadioButton.idRadioBtn)}
                   value="M"
                   disabled={disable}
                 />

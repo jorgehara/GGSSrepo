@@ -30,7 +30,7 @@ const InputChecked = ({
               value={value}
               name={nameInput}
               onChange={(e) => 
-                onChange(e,action)}
+                onChange(e,idInput)}
               disabled={disabled}
             />
 
