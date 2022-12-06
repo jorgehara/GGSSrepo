@@ -71,15 +71,23 @@
 .form-select-Opcions{
 	width: 100%;
 }
+
 .selectFormFlia{
-	margin-left: 254%;
-	width: 227%;
+	padding: 0;
+	margin-left: 5.6rem;
+	width: 7rem;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 42px;
+	transition: .3s ease all;
+    border-bottom: 1px solid rgb(78, 6, 6);
 }
 
 .btn-modal-estu{
 	margin-top: 0.5rem;
 	position: absolute;
-	left: 262%;
+	left: 14.7rem;
 }
 .radio-Fijar-estu{
 	position: absolute;

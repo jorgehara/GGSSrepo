@@ -63,7 +63,7 @@ const InputMultiple = ({
           <div>
             
           </div>
-          <div className="col-xl-4 divCboMultiple  d-flex justify-content-center align-items-center">
+          <div className="col-xl-4 divCboMultiple  d-flex justify-content-start align-items-center">
             <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,action)}>
               <option value="">Seleccionar</option>
               {optionsDNI && optionsDNI.map((op, i) => {
@@ -71,7 +71,7 @@ const InputMultiple = ({
               })}
             </select>
           </div>
-          <div className="col-xl-2 d-flex justify-content-center align-items-center">
+          <div className="col-xl-2 d-flex justify-content-start align-items-center">
             <input
               type="text"
               maxLength="8"
@@ -96,8 +96,8 @@ const InputMultiple = ({
                 {nameInputRadio}
               </label>
             </div>
-            <div className="d-flex flex-column justify-content-center align-items-center pt-4 pb-4 inputsSexo">
-              <div className="d-flex flex-row justify-content-center align-items-center inputSexo">
+            <div className="d-flex flex-column justify-content-start align-items-center inputsSexo">
+              <div className="d-flex flex-row justify-content-start align-items-center inputSexo">
                 <input
                   className="form-check-input"
                   type="radio"
