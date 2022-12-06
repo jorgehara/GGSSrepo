@@ -13,6 +13,7 @@ import { CANCEL_MODALS, GET_ESTADOSCIVILES } from "../../../redux/types/modalesT
 import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import { useEffect } from "react";
 
 const BasicModal = ({
   idModal,
@@ -65,7 +66,7 @@ function onCancel(e, name){
   })
 }
 
-const [ bodyPetitionEstudios, setBodyPetitionEstudios] = useState(res["bodyPetitionEstudios"]);
+// const [ bodyPetitionEstudios, setBodyPetitionEstudios] = useState(res["bodyPetitionEstudios"]);
 
 // const bodyPetitionEstadosCiviles = {
 //   "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil) + 1),
@@ -79,6 +80,28 @@ const [ bodyPetitionEstudios, setBodyPetitionEstudios] = useState(res["bodyPetit
 // }
 
 
+// ESTADO QUE GUARDA EL VALOR DE LOS INPUTS
+
+const [ modalDataInputs, setModalDataInputs ] = useState(res["modalDataInputs"])
+
+function onChangeValues(e, key) {
+  const newResponse = {...modalDataInputs}
+  newResponse[key] = e.target.value
+  setModalDataInputs({
+    ...newResponse
+  })
+}
+
+useEffect(() => {
+  return () => {
+    setRes({
+      ...res,
+      modalDataInputs
+    })
+  }
+}, [modalDataInputs])
+
+
 async function agregar(){
   setDisabled(!disabled);
 }
@@ -90,29 +113,28 @@ function deleteOption(){
   return;
 }
 
-async function aceptar(){
-  try{
-    await axios.post(url, bodyPetition)
-    .then((res)=>{
-      if(res.status === 200){
-        dispatch(dispatchAddAction(bodyPetition))
-        
-        swal({
-          title: "Ok",
-          text: "Agregado con éxito",
-          icon: "success",
-        })  
-      }
-  })
+// async function aceptar(){
+//   try{
+//     await axios.post(url, modalDataInputs)
+//     .then((res)=>{
+//       if(res.status === 200){
+//         dispatch(dispatchAddAction(modalDataInputs))
+//         swal({
+//           title: "Ok",
+//           text: "Agregado con éxito",
+//           icon: "success",
+//         })  
+//       }
+//   })
       
-  }catch(err){
-    swal({
-      title: "Error",
-      text: err.toString(),
-      icon: "error",
-    })
-  }
-} 
+//   }catch(err){
+//     swal({
+//       title: "Error",
+//       text: err.toString(),
+//       icon: "error",
+//     })
+//   }
+// } 
 
   return (
     <div>
@@ -190,7 +212,7 @@ async function aceptar(){
                         nameLabel={p.label}
                         inputId={p.idInput}
                         value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
-                        onChange={onChange}
+                        onChange={onChangeValues}
                         action={GET_ESTADOSCIVILES}
                         opcionSelected={opcionSelected}
                       />
@@ -224,7 +246,7 @@ async function aceptar(){
                 
                 
                 <div className="btnInputs">
-                  <button type="button" className="btn btn-danger btnAceptar" onClick={aceptar}>
+                  <button type="button" className="btn btn-danger btnAceptar" >
                     ACEPTAR
                   </button>
                   <button type="button" className="btn btn-danger" onClick={(e)=> onCancel(e)} >

@@ -18,7 +18,7 @@ import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio } from '../../redux/actions/fetchActions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { addSelectedEstadoCivil, addSelectedEstudio } from '../../redux/actions/modalesActions';
 import { bodyPetitionEstadosCiviles, bodyPetitionEstudios } from '../Modals/BasicModal/bodyPetitions';
 
@@ -107,6 +107,8 @@ const Navbar = () => {
 
 
 	const [responses, setResponses] = useState({});
+
+	console.log(responses)
 
 
 	// console.log(modals.inputEstadosCivilesModal)
@@ -258,11 +260,11 @@ const Navbar = () => {
 								inputIdCompare="inputEstadosCivilesModal"
 								firstOptionCompare={inputMascEstadosCiviles ? inputMascEstadosCiviles : estadoCivilSelected.masculino}
 								secondOptionCompare={inputFemEstadosCiviles ? inputFemEstadosCiviles : estadoCivilSelected.femenino}
-								onChange={onChange}
+								// onChange={onChange}
 								valueFem={inputFemEstadosCiviles}
 								valueMasc={inputMascEstadosCiviles}
 								url={urlEstadosCiviles}
-								bodyPetition={bodyPetitionEstadosCiviles}
+								// bodyPetition={bodyPetitionEstadosCiviles}
 								dispatchAddAction={addNewEstadoCivil}
 								res={responses}
 								setRes={setResponses}
