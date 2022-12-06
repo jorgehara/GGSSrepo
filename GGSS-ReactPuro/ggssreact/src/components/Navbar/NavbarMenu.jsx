@@ -1,5 +1,5 @@
 //#region -----------------------------------------------------------------------IMPORTS
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import './Navbar.css'
 import ButtonCallModal from '../Buttons/ButtonCallModal'
@@ -18,9 +18,9 @@ import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio } from '../../redux/actions/fetchActions';
-import { useEffect, useState } from 'react';
 import { addSelectedEstadoCivil, addSelectedEstudio } from '../../redux/actions/modalesActions';
 import { bodyPetitionEstadosCiviles, bodyPetitionEstudios } from '../Modals/BasicModal/bodyPetitions';
+import swal from 'sweetalert';
 
 // import { getEstadosCivilesModal } from '../../services/fetchAPI';
 // import { useEffect } from 'react';
@@ -108,7 +108,7 @@ const Navbar = () => {
 
 	const [responses, setResponses] = useState({});
 
-	console.log(responses)
+	console.log(responses.modalDataInputs)
 
 
 	// console.log(modals.inputEstadosCivilesModal)
@@ -138,6 +138,34 @@ const Navbar = () => {
 	const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
 
 
+
+	const idEstadoCivil =  ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length -1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length -1].idEstadoCivil))+1)
+	
+	const bodyPetition = {...responses.modalDataInputs, idEstadoCivil : idEstadoCivil};
+
+	 async function aceptar(){
+	   try{
+	     await axios.post(urlEstadosCiviles, bodyPetition) 
+	     .then((res)=>{
+	       if(res.status === 200){
+	         //dispatch(dispatchAddAction(responses.modalDataInputs)) Aca hacer la acción que actualice la lista
+	         swal({
+	           title: "Ok",
+	           text: "Agregado con éxito",
+	           icon: "success",
+	         })  
+	       }
+	   })
+		
+	   }catch(err){
+	     swal({
+	       title: "Error",
+	       text: err.toString(),
+	       icon: "error",
+	     })
+	   }
+	 } 
+console.log(bodyPetition);
 	return (
 		<nav className="row gy-3 navbar navbar-expand-lg navbar-light bg-light col-sm-12">
 			<div className="container-sm">
