@@ -359,6 +359,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
     dispatch(disableFunctions(false));
      
   }
+  console.log(formDatosPersonales)
   return (
     //#region Menú Principal
     <div className="Lateral-Derecho">
@@ -400,7 +401,6 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
                           messageError="Solo puede contener números."
                           placeHolder="N° Legajo"
                           disabled={disable}
-                          action={ADD_DATOS_PERSONALES}
                           onChange={onChangeValues}
                           nameLabel="Legajo"                          
                           validateNumbers={validateNumbers}
@@ -411,7 +411,6 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
                           value={
                             formDatosPersonales?.apellidoInput ? formDatosPersonales?.apellidoInput : empleadoUno.apellido
                           }
-                          action={ADD_DATOS_PERSONALES}
                           idInput="apellidoInput"
                           messageError="Solo puede contener letras."
                           placeHolder="Ingrese Apellidos"

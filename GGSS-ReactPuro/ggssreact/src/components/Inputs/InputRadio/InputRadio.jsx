@@ -42,7 +42,6 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                  type="radio" 
                  id={idInput} 
                  name={idInput} 
-                 defaultChecked 
                  checked={valorRadioM} 
                  onChange={(e)=> onChange(e, idInput)} 
                  value="M" 
@@ -54,8 +53,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                 className={classes.classSeven} 
                 type="radio" 
                 id={idInput} 
-                name={idInput} 
-                defaultChecked 
+                name={idInput}                  
                 checked={valorRadioF} 
                 onChange={(e)=> onChange(e, idInput)} 
                 value="F" 
@@ -72,8 +70,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
           <input className="form-check-input" 
                  type="radio" 
                  id={idInput} 
-                 name={idInput} 
-                 defaultChecked 
+                 name={idInput}                   
                  checked={valorRadioM} 
                  onChange={(e)=> onChange(e, idInput)} 
                  value="M" 
@@ -85,8 +82,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                 className="form-check-input" 
                 type="radio" 
                 id={idInput} 
-                name={idInput} 
-                defaultChecked 
+                name={idInput}                  
                 checked={valorRadioF} 
                 onChange={(e)=> onChange(e, idInput)} 
                 value="F" 

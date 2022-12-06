@@ -47,7 +47,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
       })
       .catch((err)=>{
         dispatch({type:AXIOS_ERROR});
-      })
+      }) 
    }
   function onChange(e, action) {
     dispatch(
@@ -358,9 +358,6 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                     onChange={onChangeValues}
                     nameLabel="Piso/Dpto/
                     Ofic/Torre"
-                    //datosPersonalesValue={
-                    //  pisoSelected !== undefined && pisoSelected !== null ? pisoSelected.toString() : null
-                    //}
                     numbers={true}
                   />
                 
@@ -395,8 +392,6 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                     formDomicilios?.inputDepartamentosDomicilios ? formDomicilios?.inputDepartamentosDomicilios : empleadoUno.departamento
                   }
                   action={ADD_DOMICILIOS}
-                  generalState = {domicilios}
-                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Departamento"
@@ -421,8 +416,6 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                     formDomicilios?.inputLocalidadesDomicilios ? formDomicilios?.inputLocalidadesDomicilios : empleadoUno.localidad
                   }
                   action={ADD_DOMICILIOS}
-                  generalState = {domicilios}
-                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Localidad"
@@ -446,8 +439,6 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                     formDomicilios?.inputBarriosDomicilios ? formDomicilios?.inputBarriosDomicilios : empleadoUno.barrio
                   }
                   action={ADD_DOMICILIOS}
-                  generalState = {domicilios}
-                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Barrio"

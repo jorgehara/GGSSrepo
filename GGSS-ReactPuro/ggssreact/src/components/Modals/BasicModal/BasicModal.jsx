@@ -156,6 +156,7 @@ function deleteOption(){
                 <select
                   className="form-select row mt-1 selectOptions"
                   multiple
+                  defaultValue={[]}
                   aria-label="multiple select example"
                   disabled={disabled}
                 >

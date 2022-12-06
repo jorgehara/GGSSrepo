@@ -147,6 +147,7 @@ const Browser = () => {
         />
       </div>
       <select
+        defaultValue={[]}
         className="form-select row mt-1 selectMenu "
         multiple
         aria-label="multiple select example"
@@ -163,9 +164,9 @@ const Browser = () => {
         }) }
       </select>
         
-<div class="container text-center d-inline-flex">
-  <div class="row align-items-start">
-    <div class="col">
+<div className="container text-center d-inline-flex">
+  <div className="row align-items-start">
+    <div className="col">
         <ButtonLarge
           color="danger"
           tamaño="sm"
@@ -175,7 +176,7 @@ const Browser = () => {
           onClick={habilitaEdit}
         />
     </div>
-    <div class="col">
+    <div className="col">
         <ButtonLarge
           color="danger"
           tamaño="sm"
@@ -184,7 +185,7 @@ const Browser = () => {
           onClick={habilitaUpdate}
         />
     </div>
-    <div class="col">
+    <div className="col">
         <ButtonLarge
           color="danger"
           tamaño="sm"

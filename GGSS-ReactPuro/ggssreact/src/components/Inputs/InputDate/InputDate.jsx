@@ -55,7 +55,7 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
           <input className={mostrarComponente ? "select-date-DatosPerson" : "none"} type="checkbox"  id="flexCheckChecked"  checked={checked} disabled={disabled} />
         </div>
         <div className="d-flex flex-row justify-content-start align-items-center">
-            <input className={mostrarComponente2 ? "form-check-input " : "none"} type="checkbox" onClick={()=> setDisable(!disable)}  id="flexCheckChecked"  checked={checked} disabled={disabled} />
+            <input className={mostrarComponente2 ? "form-check-input " : "none"} value={disable} type="checkbox" onClick={()=> setDisable(!disable)}  id="flexCheckChecked"  checked={checked} disabled={disabled} />
             <input id={idInput} className={mostrarComponente2 ? "secondCheck2" : "secondCheck"} name={idInput} type="date" value={disable ? ()=> dispatch(
           {
             type: action,
