@@ -60,7 +60,7 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
           {
             type: action,
             payload : {name : idInput, value : ""}
-          }) : fecha} disabled={disabled ? disabled : disable} onChange={(e)=>onChange(e,idInput)} />
+          }) : (value ? value : fecha)} disabled={disabled ? disabled : disable} onChange={(e)=>onChange(e,idInput)} />
             
         </div>
     </div>

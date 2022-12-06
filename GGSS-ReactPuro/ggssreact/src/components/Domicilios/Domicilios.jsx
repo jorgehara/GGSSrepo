@@ -17,7 +17,7 @@ import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 
 //#endregion
-const Domicilios = ({deshabilitar, responses, setResponses}) => {
+const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, setFormDatosPersonales}) => {
 
   const [inputValue, setInputValue] = useState("");
   const [domicilios, setDomicilios] = useState([]);
@@ -63,9 +63,9 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
   //#endregion
   
     function onChangeValues(e, key){
-      const newResponse = {...formDomicilios};
+      const newResponse = {...formDatosPersonales};
       newResponse[key] = e.target.value;
-      setFormDomicilios({
+      setFormDatosPersonales({
         ...newResponse
       });
     };
@@ -73,12 +73,13 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
 
     useEffect(() => {
       return () => {
+        debugger;
         setResponses({
           ...responses,
-          formDomicilios
+          formDatosPersonales
         });
       };
-    },[formDomicilios]);
+    },[formDatosPersonales]);
 
 
 
@@ -290,7 +291,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                     type="checkbox"
                     name="inputPredeterminado"
                     checked={!checked}
-                    value ={formDomicilios?.inputPredeterminado && formDomicilios?.inputPredeterminado  }
+                    value ={formDatosPersonales?.inputPredeterminado && formDatosPersonales?.inputPredeterminado  }
                     id="inputPredeterminado"
                     onChange={(e)=>handleChangePredeterminado(e, "inputPredeterminado" )}
                   />
@@ -303,7 +304,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                 <div className="row">
                 <div className="col-xl-6">
                   <InputCbo
-                    value={formDomicilios?.inputCalleDomicilios ? formDomicilios?.inputCalleDomicilios : empleadoUno.calle}
+                    value={formDatosPersonales?.inputCalleDomicilios ? formDatosPersonales?.inputCalleDomicilios : empleadoUno.calle}
                     action={ADD_DOMICILIOS}
                     sexo=""
                     nameButton="..."
@@ -312,7 +313,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                     propArrayOp="calle"
                     propArrayOpFem="calle"
                     propArray={empleadoDomicilio !== undefined && empleadoDomicilio !== null ? empleadoDomicilio.idCalle : null}
-                    idSelected={formDomicilios?.inputCalleDomicilios ? formDomicilios?.inputCalleDomicilios : empleadoUno.calle}
+                    idSelected={formDatosPersonales?.inputCalleDomicilios ? formDatosPersonales?.inputCalleDomicilios : empleadoUno.calle}
                     masculinos=""
                     femeninos=""
                     display={true}
@@ -340,13 +341,13 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                     idInput="inputNumCalle"
                     nameLabel="N°"
                     onChange={onChangeValues}
-                    inputValueState={formDomicilios?.inputNumCalle ? formDomicilios?.inputNumCalle : empleadoUno.nroCalle}
+                    inputValueState={formDatosPersonales?.inputNumCalle ? formDatosPersonales?.inputNumCalle : empleadoUno.nroCalle}
                   />
                 </div>
                 </div>
                   <InputFormPiso
                     value={
-                      formDomicilios?.inputPisoCalle ? formDomicilios?.inputPisoCalle : empleadoUno.pisoCalle
+                      formDatosPersonales?.inputPisoCalle ? formDatosPersonales?.inputPisoCalle : empleadoUno.pisoCalle
                     }
                     nameInput="inputPisoCalle"
                     idInput="inputPisoCalle"
@@ -366,7 +367,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                 
                   <InputCbo
                   value={
-                    formDomicilios?.inputProvinciaDomicilios ? formDomicilios?.inputProvinciaDomicilios : empleadoUno.provincia
+                    formDatosPersonales?.inputProvinciaDomicilios ? formDatosPersonales?.inputProvinciaDomicilios : empleadoUno.provincia
                   }
                   action={ADD_DOMICILIOS}
                   sexo=""
@@ -377,7 +378,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                   propArrayOpFem="provincia"
                   masculinos=""
                   femeninos=""
-                  idSelected={formDomicilios?.inputProvinciaDomicilios ? formDomicilios?.inputProvinciaDomicilios : empleadoUno.provincia}
+                  idSelected={formDatosPersonales?.inputProvinciaDomicilios ? formDatosPersonales?.inputProvinciaDomicilios : empleadoUno.provincia}
                   display={true}
                   idModal="pdlb"
                   disabled={disable}
@@ -389,7 +390,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                 />
                   <InputCbo
                   value={
-                    formDomicilios?.inputDepartamentosDomicilios ? formDomicilios?.inputDepartamentosDomicilios : empleadoUno.departamento
+                    formDatosPersonales?.inputDepartamentosDomicilios ? formDatosPersonales?.inputDepartamentosDomicilios : empleadoUno.departamento
                   }
                   action={ADD_DOMICILIOS}
                   sexo=""
@@ -401,7 +402,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                   //propArray={provinciaDepartamento !== undefined && provinciaDepartamento !== null ? provinciaDepartamento.toString() : null}
                   masculinos=""
                   femeninos=""
-                  idSelected={formDomicilios?.inputDepartamentosDomicilios ? formDomicilios?.inputDepartamentosDomicilios : empleadoUno.departamento}
+                  idSelected={formDatosPersonales?.inputDepartamentosDomicilios ? formDatosPersonales?.inputDepartamentosDomicilios : empleadoUno.departamento}
                   display={false}
                   idModal="pdlb"
                   disabled={disable}
@@ -413,7 +414,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                 />
                 <InputCbo
                   value={
-                    formDomicilios?.inputLocalidadesDomicilios ? formDomicilios?.inputLocalidadesDomicilios : empleadoUno.localidad
+                    formDatosPersonales?.inputLocalidadesDomicilios ? formDatosPersonales?.inputLocalidadesDomicilios : empleadoUno.localidad
                   }
                   action={ADD_DOMICILIOS}
                   sexo=""
@@ -424,7 +425,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                   propArrayOpFem="localidad"
                   masculinos=""
                   femeninos=""
-                  idSelected={formDomicilios?.inputDepartamentosDomicilios ? formDomicilios?.inputDepartamentosDomicilios : empleadoUno.localidad}
+                  idSelected={formDatosPersonales?.inputDepartamentosDomicilios ? formDatosPersonales?.inputDepartamentosDomicilios : empleadoUno.localidad}
                   display={false}
                   idModal="pdlb"
                   disabled={disable}
@@ -436,7 +437,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                 />
                 <InputCbo
                   value={
-                    formDomicilios?.inputBarriosDomicilios ? formDomicilios?.inputBarriosDomicilios : empleadoUno.barrio
+                    formDatosPersonales?.inputBarriosDomicilios ? formDatosPersonales?.inputBarriosDomicilios : empleadoUno.barrio
                   }
                   action={ADD_DOMICILIOS}
                   sexo=""
@@ -447,7 +448,7 @@ const Domicilios = ({deshabilitar, responses, setResponses}) => {
                   propArrayOpFem="barrio"
                   masculinos=""
                   femeninos=""
-                  idSelected={formDomicilios?.inputBarriosDomicilios ? formDomicilios?.inputBarriosDomicilios : empleadoUno.barrio}
+                  idSelected={formDatosPersonales?.inputBarriosDomicilios ? formDatosPersonales?.inputBarriosDomicilios : empleadoUno.barrio}
                   display={false}
                   idModal="pdlb"
                   disabled={disable}

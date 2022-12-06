@@ -26,26 +26,49 @@ import { disableFunctions } from "../../redux/actions/employeActions";
 
 //#endregion
 
-const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
+const DatosPersonales = ({responses, setResponses, cancelar}) => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
-  const [datosPersonales, setDatosPersonales] = useState({});
   const [disableEstado, setDisableEstado] = useState(false);
   const [imagenSended , setImagenSended] = useState("");
   const [empleados, setEmpleados] = useState([]);
-
-
-
-
-
+  const [image, setImage] = useState("");
 
   const [ formDatosPersonales, setFormDatosPersonales ] = useState(responses["formDatosPersonales"]);
-  //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
-  
-  //#endregion
-  //const [state, dispatch] = useReducer(datosPersonalesReducer, initialState);
+ 
+
   const dispatch = useDispatch();
+//------------------------------------------------------CONTEXT
+const {
+  saveEmpl,
+  disable, 
+} = useContext(employeContext);
 
 
+  //#region ------------------------------------------------------REDUX
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
+  const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
+  const deshabilitar = useSelector((state)=> state.employeStates.disable);
+  const datosPersonalesState = useSelector((state)=> state.generalState);
+  const numeradores = useSelector((state)=> state.generalState.numeradores);
+
+  
+
+  //#endregion
+   //#region URLS EMPLEADOS
+   const urlEstados = "http://54.243.192.82/api/Estados";
+   const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
+   const urlPaisesNac = "http://54.243.192.82/api/Paises";
+   const urlEstudios = "http://54.243.192.82/api/Estudios";
+   const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
+   const urlCargos = "http://54.243.192.82/api/Cargos"
+   const urlTareasDesempeñadas = "http://54.243.192.82/api/TareasDesempeñadas"
+   const urlParentescos = "http://54.243.192.82/api/Parentescos"
+   const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos"
+   const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
+   const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
+   const urlFamiliares = "http://54.243.192.82/api/Familiares";
+   const urlNumeradores = "http://54.243.192.82/api/Numeradores";
+   //#endregion
   function onChange(e, action) {
     dispatch(
       {
@@ -73,93 +96,59 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
     };
   },[formDatosPersonales]);
   
-
-
-
+  const handleFetch=(url, action )=>{
+    dispatch({type: SET_LOADING});
+      axios.get(url)
+      .then((res)=>{
+        dispatch( action(res.data.result));
+      })
+      .catch((err)=>{
+        dispatch({type:AXIOS_ERROR});
+      })
+   }
+   useEffect(()=>{
+    axios.get("http://54.243.192.82/api/Empleados?records=10000")
+  .then((res) =>  setEmpleados(res.data.result));
   
+  },[])
+   useEffect(()=>{
+     handleFetch( urlEstados, addEstados);
+     handleFetch( urlEstadosCiviles,addEstadosCiviles);
+     handleFetch( urlPaisesNac,addPaises);
+     handleFetch( urlEstudios,addEstudios);
+     handleFetch( urlTiposDNI,addTiposDocumento);
+     handleFetch( urlCargos,addCargos);
+     handleFetch( urlTareasDesempeñadas,addTareasDesempeñadas);
+     handleFetch( urlParentescos,addParentescos);
+     handleFetch( urlFormasDePago,addFormasPago);
+     handleFetch( urlModosContratacion,addModosContratacion);
+     handleFetch( urlModosLiquidacion,addModosLiquidacion);
+     handleFetch( urlFamiliares,addFamiliares);
+     handleFetch( urlNumeradores,addNumeradores);
+   },[deshabilitar])
 
-  //#region ------------------------------------------------------REDUX
-  const empleadoUno = useSelector((state)=> state.employeStates.employe);
-  const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
-  const deshabilitar = useSelector((state)=> state.employeStates.disable);
+   
 
-  
-
-  //#endregion
-  //------------------------------------------------------CONTEXT
-  const {
-    saveEmpl,
-    disable, 
-  } = useContext(employeContext);
-  //--------------------------------------------------------------------ESTADOS
-  const [image, setImage] = useState("");
-
-  //#region ------------------------------------------------------------------------------URLs (Luego cambiar a archivos Js)
-  
-  //#region URLS EMPLEADOS
-  const urlEstados = "http://54.243.192.82/api/Estados";
-  const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
-  const urlPaisesNac = "http://54.243.192.82/api/Paises";
-  const urlEstudios = "http://54.243.192.82/api/Estudios";
-  const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
-  const urlCargos = "http://54.243.192.82/api/Cargos"
-  const urlTareasDesempeñadas = "http://54.243.192.82/api/TareasDesempeñadas"
-  const urlParentescos = "http://54.243.192.82/api/Parentescos"
-  const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos"
-  const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
-  const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
-  const urlFamiliares = "http://54.243.192.82/api/Familiares";
-  const urlNumeradores = "http://54.243.192.82/api/Numeradores";
-  //#endregion
- 
-
-
- const handleFetch=(url, action )=>{
-   dispatch({type: SET_LOADING});
-     axios.get(url)
-     .then((res)=>{
-       dispatch( action(res.data.result));
-     })
-     .catch((err)=>{
-       dispatch({type:AXIOS_ERROR});
-     })
-  }
   useEffect(()=>{
-    handleFetch( urlEstados, addEstados);
-    handleFetch( urlEstadosCiviles,addEstadosCiviles);
-    handleFetch( urlPaisesNac,addPaises);
-    handleFetch( urlEstudios,addEstudios);
-    handleFetch( urlTiposDNI,addTiposDocumento);
-    handleFetch( urlCargos,addCargos);
-    handleFetch( urlTareasDesempeñadas,addTareasDesempeñadas);
-    handleFetch( urlParentescos,addParentescos);
-    handleFetch( urlFormasDePago,addFormasPago);
-    handleFetch( urlModosContratacion,addModosContratacion);
-    handleFetch( urlModosLiquidacion,addModosLiquidacion);
-    handleFetch( urlFamiliares,addFamiliares);
-    handleFetch( urlNumeradores,addNumeradores);
-  },[deshabilitar])
+    setDisableEstado(false);
+  },[formDatosPersonales?.inputSexo])
 
- const datosPersonalesState = useSelector((state)=> state.generalState);
-  //#endregion
+  /* useEffect(()=>{
+    setImagenSended(textToBin(formDatosPersonales?.inputImage));
+  },[formDatosPersonales?.inputImage]) */
 
 
-  const numeradores = useSelector((state)=> state.generalState.numeradores);
-
-  function getNumeradorId(tabla){
-
+   function getNumeradorId(tabla){
     return numeradores && numeradores.filter((num)=>{
       return (num.tabla === tabla)
     })
   }
- 
-  useEffect(() => {
-    setImageEmpleado();
-  }, [saveEmpl[0].obsFechaIngreso]);
+  
 
-  useEffect(()=>{
-    setDisableEstado(false);
-  },[datosPersonalesRedux.inputSexo])
+  
+  
+ 
+  
 
   function setImageEmpleado() {
     saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
@@ -170,18 +159,16 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
     let yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
 
-    function textToBin(text) {
-      return (
-        Array
-          .from(text)
-          .reduce((acc, char) => acc.concat(char.charCodeAt().toString(2)), [])
-          .map(bin => '0'.repeat(8 - bin.length) + bin )
-          .join(' ')
-      );
-    }
-    useEffect(()=>{
-      setImagenSended(textToBin(datosPersonalesRedux.inputImage));
-    },[datosPersonalesRedux.inputImage])
+  function textToBin(text) {
+    return (
+      Array
+        .from(text)
+        .reduce((acc, char) => acc.concat(char.charCodeAt().toString(2)), [])
+        .map(bin => '0'.repeat(8 - bin.length) + bin )
+        .join(' ')
+    );
+  }
+    
 
   let bodyPostEmploye = {
     "iDempleado" : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
@@ -252,16 +239,8 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
   tabla : "Empleados",
   ultimovalor : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1)
  }
-  //#endregion
   
-  //#region ------------------------------------------------------------------------------VALIDACIONES
   
-  //#endregion
-  useEffect(()=>{
-    axios.get("http://54.243.192.82/api/Empleados?records=10000")
-  .then((res) =>  setEmpleados(res.data.result));
-  
-  },[])
   //#region ------------------------------------------------------------------------------VALIDACIONES
 
   const validateNumbers = (e) => {
@@ -305,7 +284,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
     }
   };
   //#endregion
-  // console.log(saveEmpl[0] !== undefined ? saveEmpl[0] : null);
+  
   async function sendDataEmploye(){
     
     if(Object.values(bodyPostEmploye) === "" || Object.values(bodyPostEmploye) === null){
@@ -339,7 +318,6 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
       }  
     }) 
   }
-  const navigate = useNavigate();
 
   function cancelButton(){
     Array.from(document.querySelectorAll("input")).forEach(
@@ -354,12 +332,12 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
 
       setFormDatosPersonales(inputsJson);
     }
-    
-    
     dispatch(disableFunctions(false));
      
   }
   console.log(formDatosPersonales)
+
+
   return (
     //#region Menú Principal
     <div className="Lateral-Derecho">
@@ -371,8 +349,6 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
-              // aria-expanded="true"
-              // aria-controls="collapseOne"
             >
               Datos Personales
             </button>
@@ -498,7 +474,6 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
                           numbers={true}
                         />
                         <InputCbo
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           sexo={
                             empleadoUno && empleadoUno ? empleadoUno.sexo : formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo
@@ -523,7 +498,6 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
                               ? empleadoUno.idNacionalidad
                               : null
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           sexo={
                             empleadoUno && empleadoUno ? empleadoUno.sexo : formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo
@@ -695,7 +669,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, setCancelar}) => {
             </div>
           </div>
         </div>
-        <Domicilios disabled={disable} deshabilitar={deshabilitar} responses={responses} setResponses={setResponses} />
+        <Domicilios formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={deshabilitar} responses={responses} setResponses={setResponses} />
       </div>
       <div className="d-flex justify-content-end">
         <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} functionSend={sendDataEmploye} functionDelete={cancelButton}/>

@@ -57,13 +57,13 @@ const InputMultiple = ({
     // <div className="container-flex align-items-center">
       <div className="formulario__grupo ">
         <div className=" d-flex flex-row justify-content-start align-items-center">
-          <div className="col-xl-6  d-flex justify-content-start align-items-center">
+          <div className="col-xl-6 divLabelMultiple  d-flex justify-content-start align-items-center">
             <label className="formulario-label-DNIFamilia mt-1 ">{nameInputDNI}</label>
           </div>
           <div>
             
           </div>
-          <div className="col-xl-4   d-flex justify-content-center align-items-center">
+          <div className="col-xl-4 divCboMultiple  d-flex justify-content-center align-items-center">
             <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,action)}>
               <option value="">Seleccionar</option>
               {optionsDNI && optionsDNI.map((op, i) => {

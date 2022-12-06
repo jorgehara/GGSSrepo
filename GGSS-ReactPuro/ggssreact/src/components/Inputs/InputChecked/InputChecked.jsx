@@ -17,7 +17,7 @@ const InputChecked = ({
     <>
     <div className="formulario__grupo__inputs">
     <div className="formulario__grupo">
-            <label className="form__labelFlia w-100 mt-2" htmlFor={idInput}>
+            <label className="form__labelFlia mt-2" htmlFor={idInput}>
               {nameLabel}
             </label>
         
