@@ -21,6 +21,7 @@ import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocument
 import { useEffect } from 'react';
 import { addSelectedEstadoCivil, addSelectedEstudio } from '../../redux/actions/modalesActions';
 import { bodyPetitionEstadosCiviles, bodyPetitionEstudios } from '../Modals/BasicModal/bodyPetitions';
+import swal from "sweetalert";
 
 // import { getEstadosCivilesModal } from '../../services/fetchAPI';
 // import { useEffect } from 'react';
@@ -53,13 +54,13 @@ const Navbar = () => {
 	const urlCalles = "http://54.243.192.82/api/Calles"
 	const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
 
-	function onChange(e, action) {
-		dispatch(
-			{
-				type: action,
-				payload: { name: e.target.name, value: e.target.value }
-			});
-	}
+	// function onChange(e, action) {
+	// 	dispatch(
+	// 		{
+	// 			type: action,
+	// 			payload: { name: e.target.name, value: e.target.value }
+	// 		});
+	// }
 	const handleFetch = (url, action) => {
 		dispatch({ type: SET_LOADING });
 		axios.get(url)
@@ -101,14 +102,62 @@ const Navbar = () => {
 	const inputFemEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModalFem);
 
 	const estudioSelected = useSelector((state) => state.modalState.estudioSelected);
-	const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio )
+	const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio)
 
 
 
 
 	const [responses, setResponses] = useState({});
 
-	console.log(responses)
+
+
+
+	const [modalDataInputs, setModalDataInputs] = useState(responses["modalDataInputs"])
+
+	function onChangeValues(e, key) {
+		const newResponse = { ...modalDataInputs }
+		newResponse[key] = e.target.value
+		setModalDataInputs({
+			...newResponse
+		})
+	}
+
+	useEffect(() => {
+		return () => {
+			setResponses({
+				...responses,
+				modalDataInputs
+			})
+		}
+	}, [modalDataInputs])
+
+	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
+
+	const bodyPetition = { ...responses.modalDataInputs, idEstadoCivil: idEstadoCivil };
+
+	async function aceptar() {
+		try {
+		  await axios.post(urlEstadosCiviles, bodyPetition)
+			.then((res) => {
+			  if (res.status === 200) {
+				dispatch(addNewEstadoCivil(responses.modalDataInputs))
+				swal({
+				  title: "Ok",
+				  text: "Agregado con éxito",
+				  icon: "success",
+				})
+			  }
+			})
+	
+		} catch (err) {
+		  swal({
+			title: "Error",
+			text: err.toString(),
+			icon: "error",
+		  })
+		}
+	  }
+
 
 
 	// console.log(modals.inputEstadosCivilesModal)
@@ -257,10 +306,10 @@ const Navbar = () => {
 								propArrayOp="masculino" propArrayId="idEstadoCivil"
 								action={addSelectedEstadoCivil}
 								opcionSelected={estadoCivilSelected}
-								inputIdCompare="inputEstadosCivilesModal"
+								inputIdCompare="masculino"
 								firstOptionCompare={inputMascEstadosCiviles ? inputMascEstadosCiviles : estadoCivilSelected.masculino}
 								secondOptionCompare={inputFemEstadosCiviles ? inputFemEstadosCiviles : estadoCivilSelected.femenino}
-								// onChange={onChange}
+								onChange={onChangeValues}
 								valueFem={inputFemEstadosCiviles}
 								valueMasc={inputMascEstadosCiviles}
 								url={urlEstadosCiviles}
@@ -268,13 +317,14 @@ const Navbar = () => {
 								dispatchAddAction={addNewEstadoCivil}
 								res={responses}
 								setRes={setResponses}
-								// generalState={modals} 
-								// setGeneralState={setModals} 
-								// onSelect={onSelect} 
-								// functionModal={getEstadosCivilesModal} 
-								// functionSaveSelected={saveEstadoCivilSelected} 
-								// selectedOption={estadoCivilSelected} 
-								// arrayCompleto={saveEstadoCivil}
+								postFn={aceptar}
+							// generalState={modals} 
+							// setGeneralState={setModals} 
+							// onSelect={onSelect} 
+							// functionModal={getEstadosCivilesModal} 
+							// functionSaveSelected={saveEstadoCivilSelected} 
+							// selectedOption={estadoCivilSelected} 
+							// arrayCompleto={saveEstadoCivil}
 							/>
 
 							<BasicModal
@@ -282,14 +332,14 @@ const Navbar = () => {
 								nameModal="Estudios"
 								placeholder={objectEstudios}
 								array={estudiosValue && estudiosValue}
-								propArrayOp="estudiosNivel" 
+								propArrayOp="estudiosNivel"
 								propArrayId="IDestudios"
 								action={addSelectedEstudio}
 								opcionSelected={estudioSelected}
 								inputIdCompare="inputNivelEstudio"
 								firstOptionCompare={inputNivelEstudio}
 								secondOptionCompare={inputNivelEstudio}
-								onChange={onChange}
+								// onChange={onChange}
 								url={urlEstudios}
 								bodyPetition={bodyPetitionEstudios}
 								dispatchAddAction={addNewEstudio}
@@ -298,55 +348,55 @@ const Navbar = () => {
 							/>
 
 							<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} array={tiposDNIMap} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="Parentescos" nameModal="Parentescos" placeholder={objectParentescos} hasCheckbox={true} checkboxName="Genera Asignación" hasCheckBoxNum={true} checkboxCheckName="Deduce Ganancias" checkboxNumName="Importe" textArea={true} array={parentescosMap} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} array={estadosArray} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} array={cargosMap} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} array={tareasMap} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="formasDePago" nameModal="Formas de Pago" placeholder={objectFormasDePago} textArea={true} array={formasDePagoMap} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true} array={modosContratacionMap} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" placeholder={objectModosLiquidacion} dropdown={true} textArea={true} array={modosLiquidacionMap} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} array={paises} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} array={nacionalidades} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" aDepartamentos={deptos} aProvincias={provincias} aLocalidades={localidades} aBarrios={barrios} />
 							<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true} array={calles} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" array={empleadoresMap} />
 							<BasicModal idModal="alicuotas" nameModal="Alicuotas" placeholder={objectAlicuotas} inputNum={true} inputNumName="Alicuota" hasCheckbox={true} checkboxName="Pide N° CUIT" res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 
 							{/* {/ MODALES TABLA PARA LIQUIDACIÓN /} */}
-							<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true}res={responses}
-							setRes={setResponses} />
+							<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true} res={responses}
+								setRes={setResponses} />
 							<BasicModal idModal="Telefonia" nameModal="Empresas de Telefonia" placeholder={objectEmpresasTelefonia} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="Sindicatos" nameModal="Sindicatos" placeholder={objectSindicatos} dropdown={true} res={responses}
-							setRes={setResponses}/>
-							<BasicModal idModal="ObrasSociales" nameModal="Obras Sociales" placeholder={objectObrasSociales} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true}res={responses}
-							setRes={setResponses} />
+								setRes={setResponses} />
+							<BasicModal idModal="ObrasSociales" nameModal="Obras Sociales" placeholder={objectObrasSociales} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true} res={responses}
+								setRes={setResponses} />
 							<BasicModal idModal="AFJP" nameModal="A.F.J.P" placeholder={objectAFJP} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="CentrosCosto" nameModal="Centros de Costo" placeholder={objectCentrosCosto} dropdown={true} textArea={true} res={responses}
-							setRes={setResponses}/>
-							<BasicModal idModal="SectoresDeptos" nameModal="Sectores/Departamentos" placeholder={objectSectoresDptos} dropdown={true} textArea={true}res={responses}
-							setRes={setResponses} />
+								setRes={setResponses} />
+							<BasicModal idModal="SectoresDeptos" nameModal="Sectores/Departamentos" placeholder={objectSectoresDptos} dropdown={true} textArea={true} res={responses}
+								setRes={setResponses} />
 							<BasicModal idModal="Direcciones" nameModal="Direcciones" placeholder={objectDirecciones} textArea={true} relacion={true} nameRelacion="Sector/Dpto" res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="LugaresPago" nameModal="Lugares de Pago" placeholder={objectLugaresPago} textArea={true} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<BasicModal idModal="Documentacion" nameModal="Documentación" placeholder={objectDocumentacion} textArea={true} res={responses}
-							setRes={setResponses}/>
+								setRes={setResponses} />
 							<ModalTable idModal="Reduccion" nameModal="Tabla de Reducción de Deducciones" column={tableReduccionHeadings} btnAceptar={true} />
 							<ModalEscala idModal="Escala" nameModal="Escala de Ganancias" inputNumData={inputNumDataEscala} hasInputDate={true} inputDateData={inputDateDataEscala} table={true} buttonNum={true} flex={true} styleContainer={{ height: "600px", width: "auto" }} styleData={{ height: "350px" }} />
 							<ModalEscala idModal="Deducciones" nameModal="Deducciones de Ganancias" inputNumData={inputNumDataDeducciones} hasInputDate={true} inputDateData={inputDateDataDeducciones} styleContainer={{ height: "400px", width: "auto" }} styleData={{ height: "350px" }} />

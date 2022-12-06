@@ -46,7 +46,8 @@ const BasicModal = ({
   // bodyPetition,
   dispatchAddAction,
   res,
-  setRes
+  setRes,
+  postFn
 }) => {
   const dispatch = useDispatch();
 
@@ -79,7 +80,7 @@ const BasicModal = ({
   // }
 
   	// GET DE LOS ENDPOINTS
-	const estadosCivilesValue = useSelector((state) => state.generalState.estadosCiviles);
+	// const estadosCivilesValue = useSelector((state) => state.generalState.estadosCiviles);
 	// const estudiosValue = useSelector((state) => state.generalState.estudios)
 
 	// const estadoCivilSelected = useSelector((state) => state.modalState.estadoCivilSelected);
@@ -92,24 +93,24 @@ const BasicModal = ({
 
   // ESTADO QUE GUARDA EL VALOR DE LOS INPUTS
 
-  const [modalDataInputs, setModalDataInputs] = useState(res["modalDataInputs"])
+  // const [modalDataInputs, setModalDataInputs] = useState(res["modalDataInputs"])
 
-  function onChangeValues(e, key) {
-    const newResponse = { ...modalDataInputs }
-    newResponse[key] = e.target.value
-    setModalDataInputs({
-      ...newResponse
-    })
-  }
+  // function onChangeValues(e, key) {
+  //   const newResponse = { ...modalDataInputs }
+  //   newResponse[key] = e.target.value
+  //   setModalDataInputs({
+  //     ...newResponse
+  //   })
+  // }
 
-  useEffect(() => {
-    return () => {
-      setRes({
-        ...res,
-        modalDataInputs
-      })
-    }
-  }, [modalDataInputs])
+  // useEffect(() => {
+  //   return () => {
+  //     setRes({
+  //       ...res,
+  //       modalDataInputs
+  //     })
+  //   }
+  // }, [modalDataInputs])
 
 
   async function agregar() {
@@ -124,34 +125,34 @@ const BasicModal = ({
   }
 
 
-  const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles"
+  // const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles"
 
-  const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
+  // const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
 
-  const bodyPetition = { ...res.modalDataInputs, idEstadoCivil: idEstadoCivil };
+  // const bodyPetition = { ...res.modalDataInputs, idEstadoCivil: idEstadoCivil };
 
-  async function aceptar() {
-    try {
-      await axios.post(urlEstadosCiviles, bodyPetition)
-        .then((res) => {
-          if (res.status === 200) {
-            dispatch(dispatchAddAction(res.modalDataInputs))
-            swal({
-              title: "Ok",
-              text: "Agregado con éxito",
-              icon: "success",
-            })
-          }
-        })
+  // async function aceptar() {
+  //   try {
+  //     await axios.post(urlEstadosCiviles, bodyPetition)
+  //       .then((res) => {
+  //         if (res.status === 200) {
+  //           dispatch(dispatchAddAction(res.modalDataInputs))
+  //           swal({
+  //             title: "Ok",
+  //             text: "Agregado con éxito",
+  //             icon: "success",
+  //           })
+  //         }
+  //       })
 
-    } catch (err) {
-      swal({
-        title: "Error",
-        text: err.toString(),
-        icon: "error",
-      })
-    }
-  }
+  //   } catch (err) {
+  //     swal({
+  //       title: "Error",
+  //       text: err.toString(),
+  //       icon: "error",
+  //     })
+  //   }
+  // }
 
   return (
     <div>
@@ -229,7 +230,7 @@ const BasicModal = ({
                         nameLabel={p.label}
                         inputId={p.idInput}
                         value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
-                        onChange={onChangeValues}
+                        onChange={onChange}
                         action={GET_ESTADOSCIVILES}
                         opcionSelected={opcionSelected}
                       />
@@ -263,7 +264,7 @@ const BasicModal = ({
 
 
                 <div className="btnInputs">
-                  <button type="button" className="btn btn-danger btnAceptar" onClick={aceptar} >
+                  <button type="button" className="btn btn-danger btnAceptar" onClick={postFn} >
                     ACEPTAR
                   </button>
                   <button type="button" className="btn btn-danger" onClick={(e) => onCancel(e)} >
