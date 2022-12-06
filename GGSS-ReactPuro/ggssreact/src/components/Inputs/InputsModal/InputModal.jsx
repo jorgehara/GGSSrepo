@@ -24,20 +24,6 @@ const InputModal = ({
                 </div>
             </div>
 
-            {/* <label style={{ marginRight: "15px" }} className='labelModal' htmlFor={inputId}>{nameLabel}: </label>
-
-            <input type="text"
-                className='inputModal'
-                name={nameInput}
-                id={inputId}
-                placeholder={placeHolder}
-                value={value}
-                onChange={(e) => onChange(e, generalState, setGeneralState)}>
-            </input>
-
-            <br />
-            <br /> */}
-
         </div>
     )
 }
