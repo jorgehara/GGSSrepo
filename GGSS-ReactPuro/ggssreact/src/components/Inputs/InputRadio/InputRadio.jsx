@@ -3,7 +3,7 @@ import "./InputRadio.css";
 
 
 
-const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,nameLabel ,datosPersonalesValue, action, classes}) => {
+const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,nameLabel ,datosPersonalesValue, action, classes, asidePagos}) => {
 
     const [valor, setValor] = useState("");
     const [valorRadioM, setValorRadioM] = useState(false);
@@ -44,7 +44,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                  name={idInput} 
                  checked={valorRadioM} 
                  onChange={(e)=> onChange(e, idInput)} 
-                 value="M" 
+                 value={asidePagos ? 1 : "M"} 
                  disabled={disabled}/>
           <label className={classes.classFive} htmlFor="inlineCheckbox1">{nameFirst}</label>
         </div>
@@ -56,7 +56,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                 name={idInput}                  
                 checked={valorRadioF} 
                 onChange={(e)=> onChange(e, idInput)} 
-                value="F" 
+                value={asidePagos ? 2 : "F"} 
                 disabled={disabled}/>
         <label className={classes.classEigth} htmlFor="inlineCheckbox2">{nameSecond}</label>
         </div>

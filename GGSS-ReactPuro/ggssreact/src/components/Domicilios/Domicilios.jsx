@@ -72,13 +72,10 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
 
 
     useEffect(() => {
-      return () => {
-        debugger;
         setResponses({
           ...responses,
           formDatosPersonales
-        });
-      };
+        });      
     },[formDatosPersonales]);
 
 

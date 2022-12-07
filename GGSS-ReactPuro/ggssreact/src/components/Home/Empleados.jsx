@@ -14,19 +14,16 @@ import Extras from '../Extras/Extras';
 import { useState } from 'react';
 // import SideNavBar from '../NavbarVertical/SideNavBar';
 
-const Home = () => {
-
-
+const Empleados = () => {
     const [tabIndex, setTabIndex] = useState(0);
+
     const [responses, setResponses] = useState({});
 
-    function handleTabChange(value){
-        
+    function handleTabChange(value){        
         setTabIndex(value);
-    };
-
-    console.log(responses)
-
+    };  
+    console.log(responses);
+    
 return (
     <div className='container-fluid'>
         <div className='row'>
@@ -69,4 +66,4 @@ return (
 )
 }
 
-export default Home
+export default Empleados

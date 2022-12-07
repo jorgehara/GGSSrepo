@@ -87,13 +87,11 @@ const {
   };
 
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => {    
       setResponses({
         ...responses,
         formDatosPersonales
-      });
-    };
+      });    
   },[formDatosPersonales]);
   
   const handleFetch=(url, action )=>{

@@ -41,7 +41,6 @@ export const liquidacionReducer =(state = initialState, action)=>{
 
     switch(type){
         case GET_INPUTS_VALUE : {
-            console.log(payload)
             return{
                 ...state,
                 formulario : {...state.formulario, [payload.name]:payload.value}

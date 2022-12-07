@@ -62,8 +62,7 @@ const Familia = ({responses, setResponses}) => {
       });
   }
 function onChangeValues(e, key){
-
-      const newResponse = {...formFamilia};
+      let newResponse = {...formFamilia};
       newResponse[key] = e.target.value;
       setFormFamilia({
         ...newResponse
@@ -72,13 +71,14 @@ function onChangeValues(e, key){
 
 
     useEffect(() => {
-      return () => {
         setResponses({
           ...responses,
           formFamilia
-        });
-      };
+        });      
     },[formFamilia]);
+
+
+console.log(responses["formFamilia"])
 
   const empleadoUno = useSelector((state) => state.employeStates.employe)
   const familiaRedux = useSelector((state) => state.familiaStates.formulario);
@@ -88,7 +88,6 @@ function onChangeValues(e, key){
   const estudiosValue = useSelector((state)=> state.generalState.estudios);
   const familiaresValue = useSelector((state)=> state.generalState.familiares);
   const idFamiliarSelected = useSelector((state)=> state.familiaStates.familiar);
-
   const familiaresPorEmpleado = familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
 
   
