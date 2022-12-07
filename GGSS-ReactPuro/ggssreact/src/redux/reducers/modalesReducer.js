@@ -42,14 +42,6 @@ const modalesReducer = (state = initialState, action) => {
             }
         }
 
-        // --- POST ----
-
-        case ADD_PETITION_VALUE: {
-            return {
-                ...state,
-                // bodyPetitionEstudios: { ...bodyPetitionEstudios, [payload.name]: payload.value }
-            }
-        }
 
         /// -------------- BTN CANCELAR
         case CANCEL_MODALS: {

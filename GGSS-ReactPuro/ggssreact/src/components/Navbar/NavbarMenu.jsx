@@ -105,11 +105,7 @@ const Navbar = () => {
 	const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio)
 
 
-
-
 	const [responses, setResponses] = useState({});
-
-
 
 
 	const [modalDataInputs, setModalDataInputs] = useState(responses["modalDataInputs"])
@@ -122,14 +118,15 @@ const Navbar = () => {
 		})
 	}
 
+
 	useEffect(() => {
-		return () => {
-			setResponses({
-				...responses,
-				modalDataInputs
-			})
-		}
-	}, [modalDataInputs])
+		setResponses({
+			...responses,
+			modalDataInputs
+		});
+		console.log(responses)
+		console.log(modalDataInputs)
+	}, [modalDataInputs]);
 
 	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
 
@@ -137,26 +134,26 @@ const Navbar = () => {
 
 	async function aceptar() {
 		try {
-		  await axios.post(urlEstadosCiviles, bodyPetition)
-			.then((res) => {
-			  if (res.status === 200) {
-				dispatch(addNewEstadoCivil(responses.modalDataInputs))
-				swal({
-				  title: "Ok",
-				  text: "Agregado con éxito",
-				  icon: "success",
+			await axios.post(urlEstadosCiviles, bodyPetition)
+				.then((res) => {
+					if (res.status === 200) {
+						dispatch(addNewEstadoCivil(responses.modalDataInputs))
+						swal({
+							title: "Ok",
+							text: "Agregado con éxito",
+							icon: "success",
+						})
+					}
 				})
-			  }
-			})
-	
+
 		} catch (err) {
-		  swal({
-			title: "Error",
-			text: err.toString(),
-			icon: "error",
-		  })
+			swal({
+				title: "Error",
+				text: err.toString(),
+				icon: "error",
+			})
 		}
-	  }
+	}
 
 
 

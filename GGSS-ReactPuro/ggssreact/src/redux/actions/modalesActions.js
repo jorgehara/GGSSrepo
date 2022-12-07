@@ -28,16 +28,6 @@ export const getEstudios = (payload) => {
 }
 
 
-/// ACTION PARA POSTEAR
-export const addPetitionValue = (payload) => {
-    return {
-        type: ADD_PETITION_VALUE,
-        payload,
-    }
-}
-
-
-
 export const cancelModals = (payload) => {
     return {
         type: CANCEL_MODALS,

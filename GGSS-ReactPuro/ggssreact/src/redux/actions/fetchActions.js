@@ -216,8 +216,7 @@ export const addEsquemas=(payload)=>{
 }
 
 
-// -----------------------------------------
-
+// --------- ESTOS SON PARA POSTEAR EN LA API ---------
 export const addNewEstadoCivil = (payload) => {
     return {
         type : ADD_NEW_ESCI,

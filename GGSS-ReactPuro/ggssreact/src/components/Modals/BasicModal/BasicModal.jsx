@@ -155,6 +155,8 @@ const BasicModal = ({
   //   }
   // }
 
+  const opcionesApi = array
+
   return (
     <div>
       <div
@@ -194,7 +196,7 @@ const BasicModal = ({
                   aria-label="multiple select example"
                   disabled={disabled}
                 >
-                  {array && array.map((op, i) => {
+                  {array && opcionesApi.map((op, i) => {
                     return (
                       <option
                         key={i}
@@ -224,7 +226,6 @@ const BasicModal = ({
               <div className="bodyInputs">
                 {
                   placeholder.map((p, i) => {
-                    console.log(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)
                     return (
                       <InputModal
                         key={i}
