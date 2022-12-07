@@ -24,8 +24,8 @@ export const objectEstudios = [
 	{
 		"label": "Nivel de Estudios",
 		"placeholder": "Universitario",
-    "idInput": "inputNivelEstudio",
-    "nameInput": "inputNivelEstudio"
+    "idInput": "estudiosNivel",
+    "nameInput": "estudiosNivel"
 	}
 ]
 

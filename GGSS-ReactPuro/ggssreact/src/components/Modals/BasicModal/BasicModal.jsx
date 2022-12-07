@@ -39,15 +39,14 @@ const BasicModal = ({
   inputIdCompare,
   firstOptionCompare,
   secondOptionCompare,
-  onChange,
-  valueFem,
-  valueMasc,
-  url,
-  // bodyPetition,
+  urlApi,
+  idApi,
+  bodyPet, // ---> el bodyPet toma el idApi
   dispatchAddAction,
-  res,
-  setRes,
-  postFn
+  resp,
+  onChange,
+  // setRes,
+  // postFn
 }) => {
   const dispatch = useDispatch();
 
@@ -66,51 +65,14 @@ const BasicModal = ({
     })
   }
 
-  // const [ bodyPetitionEstudios, setBodyPetitionEstudios] = useState(res["bodyPetitionEstudios"]);
 
-  // const bodyPetitionEstadosCiviles = {
-  //   "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil) + 1),
-  //   "masculino": firstOptionCompare,
-  //   "femenino": secondOptionCompare
-  // }
+  // POR SI NECESITO DSP
 
   // const bodyPetitionEstudios = {
   //   "IDestudio": ((array && array[array.length -1] && array && array[array.length -1].IDestudio) + 1),
   //   "estudiosNivel": firstOptionCompare || secondOptionCompare
   // }
 
-  	// GET DE LOS ENDPOINTS
-	// const estadosCivilesValue = useSelector((state) => state.generalState.estadosCiviles);
-	// const estudiosValue = useSelector((state) => state.generalState.estudios)
-
-	// const estadoCivilSelected = useSelector((state) => state.modalState.estadoCivilSelected);
-	// const inputMascEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModal);
-	// const inputFemEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModalFem);
-
-	// const estudioSelected = useSelector((state) => state.modalState.estudioSelected);
-	// const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio )
-
-
-  // ESTADO QUE GUARDA EL VALOR DE LOS INPUTS
-
-  // const [modalDataInputs, setModalDataInputs] = useState(res["modalDataInputs"])
-
-  // function onChangeValues(e, key) {
-  //   const newResponse = { ...modalDataInputs }
-  //   newResponse[key] = e.target.value
-  //   setModalDataInputs({
-  //     ...newResponse
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   return () => {
-  //     setRes({
-  //       ...res,
-  //       modalDataInputs
-  //     })
-  //   }
-  // }, [modalDataInputs])
 
 
   async function agregar() {
@@ -125,35 +87,28 @@ const BasicModal = ({
   }
 
 
-  // const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles"
+	async function aceptar() {
+		try {
+			await axios.post(urlApi, bodyPet)
+				.then((res) => {
+					if (res.status === 200) {
+						dispatch(dispatchAddAction(resp.modalDataInputs))
+						swal({
+							title: "Ok",
+							text: "Agregado con éxito",
+							icon: "success",
+						})
+					}
+				})
 
-  // const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
-
-  // const bodyPetition = { ...res.modalDataInputs, idEstadoCivil: idEstadoCivil };
-
-
-  // async function aceptar() {
-  //   try {
-  //     await axios.post(urlEstadosCiviles, bodyPetition)
-  //       .then((res) => {
-  //         if (res.status === 200) {
-  //           dispatch(dispatchAddAction(res.modalDataInputs))
-  //           swal({
-  //             title: "Ok",
-  //             text: "Agregado con éxito",
-  //             icon: "success",
-  //           })
-  //         }
-  //       })
-
-  //   } catch (err) {
-  //     swal({
-  //       title: "Error",
-  //       text: err.toString(),
-  //       icon: "error",
-  //     })
-  //   }
-  // }
+		} catch (err) {
+			swal({
+				title: "Error",
+				text: err.toString(),
+				icon: "error",
+			})
+		}
+	}
 
   const opcionesApi = array
 
@@ -234,7 +189,7 @@ const BasicModal = ({
                         inputId={p.idInput}
                         value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
                         onChange={onChange}
-                        action={GET_ESTADOSCIVILES}
+                        // action={GET_ESTADOSCIVILES}
                         opcionSelected={opcionSelected}
                       />
                     );
@@ -267,7 +222,7 @@ const BasicModal = ({
 
 
                 <div className="btnInputs">
-                  <button type="button" className="btn btn-danger btnAceptar" onClick={postFn} >
+                  <button type="button" className="btn btn-danger btnAceptar" onClick={aceptar} >
                     ACEPTAR
                   </button>
                   <button type="button" className="btn btn-danger" onClick={(e) => onCancel(e)} >
