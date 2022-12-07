@@ -45,12 +45,32 @@ const BasicModal = ({
   onChange,
   valueFem,
   valueMasc,
-  url
+  url,
+  responses,
+  setResponses,
+  idInput
 }) => {
   const dispatch = useDispatch();
 
   const [ disabled, setDisabled ] = useState(false);
-  
+  const [ modalDataInputs, setModalDataInputs ] = useState(responses["modalDataInputs"]);
+
+  function onChangeValues(e, key){
+    const newResponse = {...modalDataInputs};
+    newResponse[key] = e.target.value;
+    setModalDataInputs({
+      ...newResponse
+    });
+};
+useEffect(() => {
+  return () => {
+    setResponses({
+      ...responses,
+      modalDataInputs
+    });
+  };
+},[modalDataInputs]);
+
 
   function onSelect(action, payload){
     dispatch(action(payload));
@@ -136,6 +156,7 @@ function deleteOption(){
                 <select
                   className="form-select row mt-1 selectOptions"
                   multiple
+                  defaultValue={[]}
                   aria-label="multiple select example"
                   disabled={disabled}
                 >
@@ -176,7 +197,7 @@ function deleteOption(){
                         nameLabel={p.label}
                         inputId={p.idInput}
                         value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
-                        onChange={onChange}
+                        onChange={onChangeValues}
                         action={GET_ESTADOSCIVILES}
                         opcionSelected={opcionSelected}
                       />

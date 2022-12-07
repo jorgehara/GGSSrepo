@@ -14,7 +14,9 @@ import DireccionSindicato from "./ChildrenComponents/DireccionSindicato";
 import IngresoContrato from "./ChildrenComponents/IngresoContrato";
 
 
-const Liquidacion = () => {
+const Liquidacion = ({responses, setResponses}) => {
+    const [ formLiquidacion, setFormLiquidacion ] = useState(responses["formLiquidacion"]);
+
     const dispatch = useDispatch();
 
     const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
@@ -42,6 +44,22 @@ const Liquidacion = () => {
             payload : {name : e.target.name, value : e.target.value}
           });    
       }
+    function onChangeValues(e, key){
+        const newResponse = {...formLiquidacion};
+        newResponse[key] = e.target.value;
+        setFormLiquidacion({
+            ...newResponse
+        });
+    };
+
+
+    useEffect(() => {
+        setResponses({
+          ...responses,
+          formLiquidacion
+        });      
+    },[formLiquidacion]);
+
 
     const handleFetch=(url, action )=>{
         dispatch({type: SET_LOADING});
@@ -100,8 +118,7 @@ const Liquidacion = () => {
     const inputCheckSumAdministrativo = useSelector((state)=> state.liquidacionState.formulario.inputCheckSumAdministrativo);
     const inputCheckLicSinGoce = useSelector((state)=> state.liquidacionState.formulario.inputCheckLicSinGoce);
 
-    console.log(esquemas);
-    console.log(formularioValue);
+    
 
 return (
     <div className="container">
@@ -112,12 +129,12 @@ return (
                 nameButton="..."
                 nameLabel="Empleador"
                 placeholder="Empleador"
-                value={empleadorValue && empleadorValue}
+                value={formLiquidacion?.inputEmpleadorLiquidacion && formLiquidacion?.inputEmpleadorLiquidacion}
                 array={empleadores && empleadores}
                 propArrayOp="razonSocial"
                 propIdOption="iDempleador"
                 idInput="inputEmpleadorLiquidacion"
-                onChange={onChange}
+                onChange={onChangeValues}
                 action={GET_INPUTS_VALUE}
                 />
             </div>        
@@ -128,12 +145,13 @@ return (
                     clasess={inputButtonClasess}
                     nameButton="..."
                     nameLabel="Convenio"
+                    value={formLiquidacion?.inputConvenio && formLiquidacion?.inputConvenio}
                     placeholder="Convenio"
                     array={convenios && convenios}
                     propArrayOp="convenio"
                     propIdOption="iDconvenio"
                     idInput="inputConvenio"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
@@ -141,11 +159,12 @@ return (
                     nameButton="..."
                     nameLabel="Categoría"
                     placeholder="Categoría"
+                    value={formLiquidacion?.inputCategoria && formLiquidacion?.inputCategoria}
                     array={categorias && categorias}
                     propArrayOp="categoria"
                     propIdOption="iDcategoria"
                     idInput="inputCategoria"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
@@ -153,11 +172,12 @@ return (
                     nameButton="..."
                     nameLabel="Agrupamiento"
                     placeholder="Agrupamiento"
+                    value={formLiquidacion?.inputAgrupamiento && formLiquidacion?.inputAgrupamiento}
                     array={agrupamientos && agrupamientos}
                     propArrayOp="agrupamiento"
                     propIdOption="idAgrupamiento"
                     idInput="inputAgrupamiento"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
@@ -165,11 +185,12 @@ return (
                     nameButton="..."
                     nameLabel="Cargo"
                     placeholder="Cargo"
+                    value={formLiquidacion?.inputCargo && formLiquidacion?.inputCargo}
                     array={cargos && cargos}
                     propArrayOp="nombreCargo"
                     propIdOption="iDcargo"
                     idInput="inputCargo"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
@@ -177,11 +198,12 @@ return (
                     nameButton="..."
                     nameLabel="Tarea Desempeñada"
                     placeholder="Tarea Desempeñada"
+                    value={formLiquidacion?.inputTareaDesempeñada && formLiquidacion?.inputTareaDesempeñada}
                     array={tareasDesempeñadas && tareasDesempeñadas}
                     propArrayOp="tareaDesempeñada"
                     propIdOption="idTareaDesempeñada"
                     idInput="inputTareaDesempeñada"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
@@ -189,11 +211,12 @@ return (
                     nameButton="..."
                     nameLabel="Modo Contratación"
                     placeholder="Modo Contratación"
+                    value={formLiquidacion?.inputModoCOntratacion && formLiquidacion?.inputModoCOntratacion}
                     array={modosContratacion && modosContratacion}
                     propArrayOp="modoContratacion"
                     propIdOption="iDmodoContratacion"
                     idInput="inputModoCOntratacion"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
@@ -201,11 +224,12 @@ return (
                     nameButton="..."
                     nameLabel="Modo Liquidación"
                     placeholder="Modo Liquidación"
+                    value={formLiquidacion?.inputModoLiquidacion && formLiquidacion?.inputModoLiquidacion}
                     array={modosLiquidacopm && modosLiquidacopm}
                     propArrayOp="modoLiquidacion"
                     propIdOption="iDmodoLiquidacion"
                     idInput="inputModoLiquidacion"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
@@ -213,11 +237,12 @@ return (
                     nameButton="..."
                     nameLabel="Centro de Costo"
                     placeholder="Centro de Costo"
+                    value={formLiquidacion?.inputCentroCosto && formLiquidacion?.inputCentroCosto}
                     array={centroDeCostos && centroDeCostos}
                     propArrayOp="centrodeCosto"
                     propIdOption="idCentrodeCosto"
                     idInput="inputCentroCosto"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
@@ -225,11 +250,12 @@ return (
                     nameButton="..."
                     nameLabel="Secretaria/Sector/Dpto"
                     placeholder="Secretaria/Sector/Dpto"
+                    value={formLiquidacion?.inputSectorDepto && formLiquidacion?.inputSectorDepto}
                     array={sectorDepto && sectorDepto}
                     propArrayOp="sectorDpto"
                     propIdOption="iDsectorDpto"
                     idInput="inputSectorDepto"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
@@ -237,27 +263,28 @@ return (
                     nameButton="..."
                     nameLabel="Obra Social"
                     placeholder="Obra Social"
+                    value={formLiquidacion?.inputObraSocial && formLiquidacion?.inputObraSocial}
                     array={obrasSociales && obrasSociales}
                     propArrayOp="nombreObraSocial"
                     propIdOption="iDobraSocial"
                     idInput="inputObraSocial"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUTS_VALUE}
                 />
             </div>
             <div className="col-xl-6">
-                <AsidePago formasPAgo ={formasPago && formasPago} lugaresDePago={lugaresDePago && lugaresDePago} bancos={bancos && bancos}/>
-                <DireccionSindicato direcciones={direcciones && direcciones} sindicatos={sindicatos} />
+                <AsidePago formLiquidacion={formLiquidacion && formLiquidacion} formasPAgo ={formasPago && formasPago} onChange={onChangeValues} lugaresDePago={lugaresDePago && lugaresDePago} bancos={bancos && bancos}/>
+                <DireccionSindicato formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} direcciones={direcciones && direcciones} sindicatos={sindicatos} />
             </div>
         </div>
         <div className="row">
             <div className="col-xl-12 mt-2">
-                <IngresoContrato ingresoDate={ingresoDate && ingresoDate} ingresoTextInput={ingresoTextInput && ingresoTextInput} esquemas={esquemas}/>
+                <IngresoContrato  formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} ingresoDate={ingresoDate && ingresoDate} ingresoTextInput={ingresoTextInput && ingresoTextInput} esquemas={esquemas}/>
             </div>
         </div>
         <div className="row">
             <div className="col-xl-12 ">
-                <DatosCertificado nameLabel="Datos para Certificado de Oficio" inputTotalRemu={inputTotalRemu && inputTotalRemu} inputTotalNeto={inputTotalNeto && inputTotalNeto} inputCheckEmbargos={inputCheckEmbargos && inputCheckEmbargos} inputCheckSumAdministrativo={inputCheckSumAdministrativo && inputCheckSumAdministrativo} inputCheckLicSinGoce = {inputCheckLicSinGoce && inputCheckLicSinGoce} />
+                <DatosCertificado formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} nameLabel="Datos para Certificado de Oficio" inputTotalRemu={inputTotalRemu && inputTotalRemu} inputTotalNeto={inputTotalNeto && inputTotalNeto} inputCheckEmbargos={inputCheckEmbargos && inputCheckEmbargos} inputCheckSumAdministrativo={inputCheckSumAdministrativo && inputCheckSumAdministrativo} inputCheckLicSinGoce = {inputCheckLicSinGoce && inputCheckLicSinGoce} />
             </div>
         </div>
     </div>

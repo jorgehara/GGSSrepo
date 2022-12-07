@@ -27,7 +27,7 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, val
               className='inputDate2' 
               id={idInput} 
               name={idInput}
-              onChange={(e)=> onChange(e, action)}
+              onChange={(e)=> onChange(e, idInput)}
               type="date" 
               value={fecha} 
               disabled={disable}

@@ -12,19 +12,19 @@ import TablaDomicilios from "../Tables/TablaDomicilios";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
 import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades, addProvincias } from "../../redux/actions/fetchActions";
-import InputForm from "../Inputs/InputForm/InputForm";
 import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto, setPredeterminado } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 
 //#endregion
-const Domicilios = () => {
+const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, setFormDatosPersonales}) => {
 
   const [inputValue, setInputValue] = useState("");
   const [domicilios, setDomicilios] = useState([]);
   const [domiciliosDelEmpleado, setDomiciliosDelEmpleado] = useState([]);
   const [ idEmpleado, setIdEmpleado] = useState(0);
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
+  const [ formDomicilios, setFormDomicilios ] = useState(responses["formDomicilios"]);
   const columns = [
     "Predeterminado",
     "Calle",
@@ -47,7 +47,7 @@ const Domicilios = () => {
       })
       .catch((err)=>{
         dispatch({type:AXIOS_ERROR});
-      })
+      }) 
    }
   function onChange(e, action) {
     dispatch(
@@ -60,9 +60,25 @@ const Domicilios = () => {
   const domiciliosState = useSelector((state)=> state.domiciliosStates)
   const domicilioDelEmpleado1 = useSelector((state)=> state.generalState.domicilios);
  
-  console.log(domicilioDelEmpleado1)
   //#endregion
   
+    function onChangeValues(e, key){
+      const newResponse = {...formDatosPersonales};
+      newResponse[key] = e.target.value;
+      setFormDatosPersonales({
+        ...newResponse
+      });
+    };
+
+
+    useEffect(() => {
+        setResponses({
+          ...responses,
+          formDatosPersonales
+        });      
+    },[formDatosPersonales]);
+
+
 
   //#region ------------------------------------------------------------------------------URLs
   const urlDomicilios = "http://54.243.192.82/api/Domicilios";
@@ -80,7 +96,7 @@ const Domicilios = () => {
     handleFetch(urlProvincias, addProvincias);
     handleFetch(urlLocalidades, addLocalidades);
     handleFetch(urlBarrios, addBarrios);
-  },[])
+  },[deshabilitar])
 
 
   const generalStateData = useSelector((state)=> state.generalState)
@@ -93,7 +109,6 @@ const Domicilios = () => {
   //#region ------------------------------------------------------------------------------CONTEXT
   const { saveDom,saveDomicilios, saveEmpl, disable } = useContext(employeContext);
 
-  console.log(domiciliosState)
   
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   useEffect(()=>{
@@ -128,7 +143,6 @@ const Domicilios = () => {
 
 
  
-  console.log(domiciliosDelEmpleado);
 
   // -----------------------------------------------------LLENAR CAMPOS 
 
@@ -169,7 +183,6 @@ const Domicilios = () => {
     "idEmpleado": empleadoUno && empleadoUno.iDempleado,
     "idEmpleador": null
   }
-  console.log(empleadoUno && empleadoUno.iDempleado)
   const sendDataDomicilios= async ()=>{
     try{
     let predeterminadoExiste = empleadoDomicilio && empleadoDomicilio.filter((dom) => dom.predeterminado === true );
@@ -227,12 +240,14 @@ const Domicilios = () => {
     )   
   }
 
-  console.log(typeof(domicilioDelEmpleado))
-  console.log(empleadoDomicilio)
 
-  const handleChangePredeterminado=()=>{
+  const handleChangePredeterminado=(e, key)=>{
     setChecked(!checked)
-    dispatch(setPredeterminado(checked));
+    const newResponse = {...formDomicilios};
+      newResponse[key] = e.target.checked;
+      setFormDomicilios({
+        ...newResponse
+      });
   }
 
 
@@ -273,9 +288,9 @@ const Domicilios = () => {
                     type="checkbox"
                     name="inputPredeterminado"
                     checked={!checked}
-                    value ={(e)=> e.target.checked ? empleadoDomicilio && empleadoDomicilio.inputPredeterminado : empleadoDomicilio.inputPredeterminado  }
+                    value ={formDatosPersonales?.inputPredeterminado && formDatosPersonales?.inputPredeterminado  }
                     id="inputPredeterminado"
-                    onChange={(e)=>handleChangePredeterminado()}
+                    onChange={(e)=>handleChangePredeterminado(e, "inputPredeterminado" )}
                   />
                   <label className="ml-2" htmlFor="predeterminado">
                     Predeterminado
@@ -286,9 +301,7 @@ const Domicilios = () => {
                 <div className="row">
                 <div className="col-xl-6">
                   <InputCbo
-                    value={saveDom[0] !== undefined ? saveDom[0].calle : null}
-                    generalState = {domicilios}
-                    setGeneralState = {setDomicilios}
+                    value={formDatosPersonales?.inputCalleDomicilios ? formDatosPersonales?.inputCalleDomicilios : empleadoUno.calle}
                     action={ADD_DOMICILIOS}
                     sexo=""
                     nameButton="..."
@@ -297,7 +310,7 @@ const Domicilios = () => {
                     propArrayOp="calle"
                     propArrayOpFem="calle"
                     propArray={empleadoDomicilio !== undefined && empleadoDomicilio !== null ? empleadoDomicilio.idCalle : null}
-                    selectedProp="idCalle"
+                    idSelected={formDatosPersonales?.inputCalleDomicilios ? formDatosPersonales?.inputCalleDomicilios : empleadoUno.calle}
                     masculinos=""
                     femeninos=""
                     display={true}
@@ -305,7 +318,7 @@ const Domicilios = () => {
                     disabled={disable}
                     nameInput="inputCalleDomicilios"
                     idInput="inputCalleDomicilios"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     valueId="idCalle"
                   />
                 </div>
@@ -324,14 +337,14 @@ const Domicilios = () => {
                     disabled={disable}
                     idInput="inputNumCalle"
                     nameLabel="N°"
-                    onChange={onChange}
-                    inputValueState={domiciliosState !== undefined ?  domiciliosState.inputNumCalle : null}
+                    onChange={onChangeValues}
+                    inputValueState={formDatosPersonales?.inputNumCalle ? formDatosPersonales?.inputNumCalle : empleadoUno.nroCalle}
                   />
                 </div>
                 </div>
                   <InputFormPiso
                     value={
-                      domiciliosState !== null ? domiciliosState.inputPisoCalle : []
+                      formDatosPersonales?.inputPisoCalle ? formDatosPersonales?.inputPisoCalle : empleadoUno.pisoCalle
                     }
                     nameInput="inputPisoCalle"
                     idInput="inputPisoCalle"
@@ -340,12 +353,9 @@ const Domicilios = () => {
                     disabled={disable}
                     generalState={setDomicilios}
                     action={ADD_DOMICILIOS}
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     nameLabel="Piso/Dpto/
                     Ofic/Torre"
-                    //datosPersonalesValue={
-                    //  pisoSelected !== undefined && pisoSelected !== null ? pisoSelected.toString() : null
-                    //}
                     numbers={true}
                   />
                 
@@ -354,7 +364,7 @@ const Domicilios = () => {
                 
                   <InputCbo
                   value={
-                    saveEmpl[0] !== undefined ? saveEmpl[0].idProvincia : null
+                    formDatosPersonales?.inputProvinciaDomicilios ? formDatosPersonales?.inputProvinciaDomicilios : empleadoUno.provincia
                   }
                   action={ADD_DOMICILIOS}
                   sexo=""
@@ -363,27 +373,23 @@ const Domicilios = () => {
                   array={generalStateData.provincias !== undefined && generalStateData.provincias !== ""  ? generalStateData.provincias : []}
                   propArrayOp="provincia"
                   propArrayOpFem="provincia"
-                  //propArray={provinciaSelected !== undefined && provinciaSelected !== null ? provinciaSelected.toString() : null}
                   masculinos=""
-                          femeninos=""
+                  femeninos=""
+                  idSelected={formDatosPersonales?.inputProvinciaDomicilios ? formDatosPersonales?.inputProvinciaDomicilios : empleadoUno.provincia}
                   display={true}
                   idModal="pdlb"
                   disabled={disable}
                   nameInput="inputProvinciaDomicilios"
                   idInput="inputProvinciaDomicilios"
-                  onChange={onChange}
+                  onChange={onChangeValues}
                   provinciaAction = {selectedOption}
-                  valueId="provincia"
+                  valueId="idProvincia"
                 />
                   <InputCbo
                   value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Provincia
-                      : null
+                    formDatosPersonales?.inputDepartamentosDomicilios ? formDatosPersonales?.inputDepartamentosDomicilios : empleadoUno.departamento
                   }
                   action={ADD_DOMICILIOS}
-                  generalState = {domicilios}
-                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Departamento"
@@ -392,67 +398,60 @@ const Domicilios = () => {
                   propArrayOpFem="departamento"
                   //propArray={provinciaDepartamento !== undefined && provinciaDepartamento !== null ? provinciaDepartamento.toString() : null}
                   masculinos=""
-                          femeninos=""
+                  femeninos=""
+                  idSelected={formDatosPersonales?.inputDepartamentosDomicilios ? formDatosPersonales?.inputDepartamentosDomicilios : empleadoUno.departamento}
                   display={false}
                   idModal="pdlb"
                   disabled={disable}
                   nameInput="inputDepartamentosDomicilios"
                   idInput="inputDepartamentosDomicilios"
-                  onChange={onChange}
+                  onChange={onChangeValues}
                   provinciaAction = {selectedOptionDpto}
-                  valueId="departamento"
+                  valueId="idDepartamento"
                 />
                 <InputCbo
                   value={
-                  saveDom[0] !== undefined || saveDom[0] === null
-                  ? saveDom[0].Provincia
-                  : null
+                    formDatosPersonales?.inputLocalidadesDomicilios ? formDatosPersonales?.inputLocalidadesDomicilios : empleadoUno.localidad
                   }
                   action={ADD_DOMICILIOS}
-                  generalState = {domicilios}
-                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Localidad"
                   array={arrayLocalidades !== undefined && arrayLocalidades !== null ? arrayLocalidades : []}
                   propArrayOp="localidad"
                   propArrayOpFem="localidad"
-                  //propArray={provinciaLocalidad !== undefined && provinciaLocalidad !== null ?  provinciaLocalidad.toString() : null}
                   masculinos=""
-                          femeninos=""
+                  femeninos=""
+                  idSelected={formDatosPersonales?.inputDepartamentosDomicilios ? formDatosPersonales?.inputDepartamentosDomicilios : empleadoUno.localidad}
                   display={false}
                   idModal="pdlb"
                   disabled={disable}
                   nameInput="inputLocalidadesDomicilios"
                   idInput="inputLocalidadesDomicilios"
-                  onChange={onChange}
+                  onChange={onChangeValues}
                   provinciaAction = {selectedOptionBarrio}
-                  valueId="localidad"
+                  valueId="idLocalidad"
                 />
                 <InputCbo
                   value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Provincia
-                      : null
+                    formDatosPersonales?.inputBarriosDomicilios ? formDatosPersonales?.inputBarriosDomicilios : empleadoUno.barrio
                   }
                   action={ADD_DOMICILIOS}
-                  generalState = {domicilios}
-                  setGeneralState = {setDomicilios}
                   sexo=""
                   nameButton="..."
                   nameLabel="Barrio"
                   array={arrayBarrios !== undefined && arrayBarrios !== null ? arrayBarrios : []}
                   propArrayOp="barrio"
                   propArrayOpFem="barrio"
-                  //propArray={provinciaBarrio !== undefined && provinciaBarrio !== null ? provinciaBarrio.toString() : null}
                   masculinos=""
-                          femeninos=""
+                  femeninos=""
+                  idSelected={formDatosPersonales?.inputBarriosDomicilios ? formDatosPersonales?.inputBarriosDomicilios : empleadoUno.barrio}
                   display={false}
                   idModal="pdlb"
                   disabled={disable}
                   nameInput="inputBarriosDomicilios"
                   idInput="inputBarriosDomicilios"
-                  onChange={onChange}
+                  onChange={onChangeValues}
                   valueId="idBarrio"
                 />
               </div>

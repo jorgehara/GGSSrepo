@@ -1,5 +1,6 @@
 .input__formFlia{
     /* width: 15rem; */
+	
 }
 .formulario-input-Familia{
     margin-bottom: 3px;
@@ -20,6 +21,7 @@
 }
 
 .form__labelFlia{
+	width: 10rem;
 	display: block;
 	font-weight: 400;
     /* width: 85px; */

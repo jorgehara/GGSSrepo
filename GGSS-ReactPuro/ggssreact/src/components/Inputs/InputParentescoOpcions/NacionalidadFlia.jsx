@@ -58,7 +58,7 @@ const NacionalidadFlia = ({
           disabled={disable}
           id={idInput}
           name={idInput}
-          onChange={(e)=> onChange(e, action)}
+          onChange={(e)=> onChange(e, idInput)}
         >
           <option value="">Seleccionar</option>
             {/* {
@@ -69,7 +69,7 @@ const NacionalidadFlia = ({
 
           {sexo  && sexo.length > 0 && returnBySexo 
             ? returnBySexo.map((op, index) => {
-                return propArray === op ? (
+                return propArray === op[propIdSelect] ? (
                   <option key={index} selected defaultValue value={op[propIdSelect]}>
                     {sexo && sexo === "M" ? op[namePropOp] : op[propArrayOpFem] } 
                   </option>
@@ -78,7 +78,8 @@ const NacionalidadFlia = ({
                 );
               })
             : array && array.map((op, i) => {
-                return <option value={op[propIdSelect]} key={i}>{op[namePropOp]}</option>;
+                return propArray === op[propIdSelect] ? <option selected value={op[propIdSelect]} key={i}>{op[namePropOp]}</option> :
+                <option value={op[propIdSelect]} key={i}>{op[namePropOp]}</option>
               })}
         </select>
       </div>

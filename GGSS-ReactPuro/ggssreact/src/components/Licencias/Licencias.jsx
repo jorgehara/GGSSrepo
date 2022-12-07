@@ -22,9 +22,9 @@ const Licencias = () => {
     const año = new Date().getFullYear();
     const años = Array.from(new Array(123), (val, index) => año - index);
 
-    const selectedOption = useSelector((state)=> state.licenciasState.formulario.inputOpcionsLicencias);
+    const selectedOptions = useSelector((state)=> state.licenciasState.selectedOptionLicencia);
 
-    console.log(selectedOption);
+    console.log(selectedOptions);
 
     const newAños = años && años.map((año)=>{
         return (
@@ -52,7 +52,7 @@ return (
                 <InputCbo display={false} idInput="inputOpcionsLicencias" value={[]} propArrayOpFem="opcion" array={opciones} valueId="opcion" nameLabel="Opciones:" nameButton="..." onChange={onChange} provinciaAction={selectedOption} action={OPTIONS_FORMULARIO}/>
             </div>
             <div className='col-xl-12 mt-2'>
-                <FieldSet array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={selectedOption} />
+                <FieldSet array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={selectedOptions.opcion} />
             </div>            
         </div>
     </div>

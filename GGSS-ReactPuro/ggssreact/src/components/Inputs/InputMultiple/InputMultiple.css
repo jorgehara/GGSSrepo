@@ -11,7 +11,7 @@
 	display: block;
 }
 .formulario-input-DNI-familia{
-	width: 89px;
+	width: 100%;
 	text-align: start;
 	background: #fff;
 	border: 3px solid transparent;
@@ -19,10 +19,18 @@
 	height: 36px;
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
-	margin-left: 17%;
+
 }
+.divLabelMultiple{
+	width: 10rem;
+	
+}
+.divCboMultiple{
+	width: 7rem;
+}
+
 .formulario-input-DNI-input{
-	width: 89px;
+	width: 100%;
 	text-align: start;
     /* margin-right: 0px; */
 	background: #fff;
@@ -31,6 +39,7 @@
 	height: 36px;
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
+
 }
 .formulario-label-ParentescoFlia-Dos{
 	font-style: normal;
@@ -46,7 +55,10 @@
 	margin-left: 5%;
 	width: 80px;
 }
-
+.form-inputs-radioFlia{
+	width: 5rem;
+	height: 4rem;
+}
 .form-input-DNIfamilia{
 	width: 89px;
 	text-align: start;
@@ -59,12 +71,10 @@
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
 }
-.form-inputs-radioFlia{
-	margin-left: 2%;
-}
+
 .inputsSexo{
-	margin-left: 26%;
+	width: 5.5rem;
 }
 .inputSexo{
-	margin-left: 2%;
+	margin-left: 0.1rem;
 }

@@ -9,8 +9,6 @@
 
 .form-input-DateFlia2{
 	text-align: start;
-     margin-left: 1.5%; 
-    /* margin-right: 0px; */
 	background: #fff;
 	border: 3px solid transparent;
 	border-radius: 3px;
@@ -18,8 +16,7 @@
 }
 .form-input-DateFlia2{
 	text-align: start;
-     margin-left: 28%; 
-    /* margin-right: 0px; */
+	margin-left: 2.3rem;
 	background: #fff;
 	border: 3px solid transparent;
 	border-radius: 3px;

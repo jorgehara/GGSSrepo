@@ -3,7 +3,7 @@ import "./InputRadio.css";
 
 
 
-const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,nameLabel ,datosPersonalesValue, action, classes}) => {
+const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,nameLabel ,datosPersonalesValue, action, classes, asidePagos}) => {
 
     const [valor, setValor] = useState("");
     const [valorRadioM, setValorRadioM] = useState(false);
@@ -39,14 +39,13 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
         </div>
         <div className={classes.classThree}>
           <input className={classes.classFour}
-                type="radio" 
-                id={idInput} 
-                name={idInput} 
-                defaultChecked 
-                checked={valorRadioM} 
-                onChange={(e)=> onChange(e, action)} 
-                value="M" 
-                disabled={disabled}/>
+                 type="radio" 
+                 id={idInput} 
+                 name={idInput} 
+                 checked={valorRadioM} 
+                 onChange={(e)=> onChange(e, idInput)} 
+                 value={asidePagos ? 1 : "M"} 
+                 disabled={disabled}/>
           <label className={classes.classFive} htmlFor="inlineCheckbox1">{nameFirst}</label>
         </div>
         <div className={classes.classSix}>
@@ -54,11 +53,10 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                 className={classes.classSeven} 
                 type="radio" 
                 id={idInput} 
-                name={idInput} 
-                defaultChecked 
+                name={idInput}                  
                 checked={valorRadioF} 
-                onChange={(e)=> onChange(e, action)} 
-                value="F" 
+                onChange={(e)=> onChange(e, idInput)} 
+                value={asidePagos ? 2 : "F"} 
                 disabled={disabled}/>
         <label className={classes.classEigth} htmlFor="inlineCheckbox2">{nameSecond}</label>
         </div>
@@ -70,14 +68,13 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
         </div>
         <div className="formulario-input-Sexo">
           <input className="form-check-input" 
-                type="radio" 
-                id={idInput} 
-                name={idInput} 
-                defaultChecked 
-                checked={valorRadioM} 
-                onChange={(e)=> onChange(e, action)} 
-                value="M" 
-                disabled={disabled}/>
+                 type="radio" 
+                 id={idInput} 
+                 name={idInput}                   
+                 checked={valorRadioM} 
+                 onChange={(e)=> onChange(e, idInput)} 
+                 value="M" 
+                 disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox1">{nameFirst}</label>
         </div>
         <div className="formulario-input-SexoF">
@@ -85,10 +82,9 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                 className="form-check-input" 
                 type="radio" 
                 id={idInput} 
-                name={idInput} 
-                defaultChecked 
+                name={idInput}                  
                 checked={valorRadioF} 
-                onChange={(e)=> onChange(e, action)} 
+                onChange={(e)=> onChange(e, idInput)} 
                 value="F" 
                 disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox2">{nameSecond}</label>

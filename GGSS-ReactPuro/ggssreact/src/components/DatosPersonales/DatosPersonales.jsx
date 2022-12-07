@@ -20,24 +20,55 @@ import { ADD_DATOS_PERSONALES } from "../../redux/types/datosPersonalesTypes";
 import axios from "axios";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import { addCargos, addEmpleadores, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addModosContratacion, addModosLiquidacion, addNumeradores, addPaises, addParentescos, addTareasDesempeñadas, addTiposDocumento } from "../../redux/actions/fetchActions";
-import { classesEstudios } from "./Classes";
-import { inputButtonClasess, inputButtonClasessCUIL, inputCbo, inputRadio } from "../../classes/classes";
+import {  inputButtonClasessCUIL, inputRadio } from "../../classes/classes";
+import { useNavigate } from "react-router-dom";
+import { disableFunctions } from "../../redux/actions/employeActions";
 
 //#endregion
 
-const DatosPersonales = () => {
+const DatosPersonales = ({responses, setResponses, cancelar}) => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
-  const [datosPersonales, setDatosPersonales] = useState({});
   const [disableEstado, setDisableEstado] = useState(false);
   const [imagenSended , setImagenSended] = useState("");
   const [empleados, setEmpleados] = useState([]);
-  //#region ------------------------------------------------------------------------------ONCHANGE-HANDLER
-  
-  //#endregion
-  //const [state, dispatch] = useReducer(datosPersonalesReducer, initialState);
+  const [image, setImage] = useState("");
+
+  const [ formDatosPersonales, setFormDatosPersonales ] = useState(responses["formDatosPersonales"]);
+ 
+
   const dispatch = useDispatch();
+//------------------------------------------------------CONTEXT
+const {
+  saveEmpl,
+  disable, 
+} = useContext(employeContext);
 
 
+  //#region ------------------------------------------------------REDUX
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
+  const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
+  const deshabilitar = useSelector((state)=> state.employeStates.disable);
+  const datosPersonalesState = useSelector((state)=> state.generalState);
+  const numeradores = useSelector((state)=> state.generalState.numeradores);
+
+  
+
+  //#endregion
+   //#region URLS EMPLEADOS
+   const urlEstados = "http://54.243.192.82/api/Estados";
+   const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
+   const urlPaisesNac = "http://54.243.192.82/api/Paises";
+   const urlEstudios = "http://54.243.192.82/api/Estudios";
+   const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
+   const urlCargos = "http://54.243.192.82/api/Cargos"
+   const urlTareasDesempeñadas = "http://54.243.192.82/api/TareasDesempeñadas"
+   const urlParentescos = "http://54.243.192.82/api/Parentescos"
+   const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos"
+   const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
+   const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
+   const urlFamiliares = "http://54.243.192.82/api/Familiares";
+   const urlNumeradores = "http://54.243.192.82/api/Numeradores";
+   //#endregion
   function onChange(e, action) {
     dispatch(
       {
@@ -47,109 +78,75 @@ const DatosPersonales = () => {
   }
 
 
-  //#region ------------------------------------------------------REDUX
-  const empleadoUno = useSelector((state)=> state.employeStates.employe);
-  const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
- 
+  function onChangeValues(e, key){
+      const newResponse = {...formDatosPersonales};
+      newResponse[key] = e.target.value;
+      setFormDatosPersonales({
+        ...newResponse
+      });
+  };
 
-  //#endregion
-  //------------------------------------------------------CONTEXT
-  const {
-    saveEmpl,
-    saveEstado,
-    saveEstadoCivil,
-    saveNacionalidad,
-    saveEstudio,
-    saveTipoDNI,
-    disable, 
-  } = useContext(employeContext);
-  //--------------------------------------------------------------------ESTADOS
-  const [image, setImage] = useState("");
 
-  //#region ------------------------------------------------------------------------------URLs (Luego cambiar a archivos Js)
+  useEffect(() => {    
+      setResponses({
+        ...responses,
+        formDatosPersonales
+      });    
+  },[formDatosPersonales]);
   
-  //#region URLS EMPLEADOS
-  const urlEstados = "http://54.243.192.82/api/Estados";
-  const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
-  const urlPaisesNac = "http://54.243.192.82/api/Paises";
-  const urlEstudios = "http://54.243.192.82/api/Estudios";
-  const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
-  const urlCargos = "http://54.243.192.82/api/Cargos"
-  const urlTareasDesempeñadas = "http://54.243.192.82/api/TareasDesempeñadas"
-  const urlParentescos = "http://54.243.192.82/api/Parentescos"
-  const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos"
-  const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
-  const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
-  const urlBancos = "http://54.243.192.82/api/Bancos"
-  const urlFamiliares = "http://54.243.192.82/api/Familiares";
-  const urlNumeradores = "http://54.243.192.82/api/Numeradores";
-  //#endregion
- 
-
-
- const handleFetch=(url, action )=>{
-   dispatch({type: SET_LOADING});
-     axios.get(url)
-     .then((res)=>{
-       dispatch( action(res.data.result));
-     })
-     .catch((err)=>{
-       dispatch({type:AXIOS_ERROR});
-     })
-  }
-  useEffect(()=>{
-    handleFetch( urlEstados, addEstados);
-    handleFetch( urlEstadosCiviles,addEstadosCiviles);
-    handleFetch( urlPaisesNac,addPaises);
-    handleFetch( urlEstudios,addEstudios);
-    handleFetch( urlTiposDNI,addTiposDocumento);
-    handleFetch( urlCargos,addCargos);
-    handleFetch( urlTareasDesempeñadas,addTareasDesempeñadas);
-    handleFetch( urlParentescos,addParentescos);
-    handleFetch( urlFormasDePago,addFormasPago);
-    handleFetch( urlModosContratacion,addModosContratacion);
-    handleFetch( urlModosLiquidacion,addModosLiquidacion);
-    handleFetch( urlFamiliares,addFamiliares);
-    handleFetch( urlNumeradores,addNumeradores);
+  const handleFetch=(url, action )=>{
+    dispatch({type: SET_LOADING});
+      axios.get(url)
+      .then((res)=>{
+        dispatch( action(res.data.result));
+      })
+      .catch((err)=>{
+        dispatch({type:AXIOS_ERROR});
+      })
+   }
+   useEffect(()=>{
+    axios.get("http://54.243.192.82/api/Empleados?records=10000")
+  .then((res) =>  setEmpleados(res.data.result));
+  
   },[])
- const datosPersonalesState = useSelector((state)=> state.generalState);
-  //#endregion
+   useEffect(()=>{
+     handleFetch( urlEstados, addEstados);
+     handleFetch( urlEstadosCiviles,addEstadosCiviles);
+     handleFetch( urlPaisesNac,addPaises);
+     handleFetch( urlEstudios,addEstudios);
+     handleFetch( urlTiposDNI,addTiposDocumento);
+     handleFetch( urlCargos,addCargos);
+     handleFetch( urlTareasDesempeñadas,addTareasDesempeñadas);
+     handleFetch( urlParentescos,addParentescos);
+     handleFetch( urlFormasDePago,addFormasPago);
+     handleFetch( urlModosContratacion,addModosContratacion);
+     handleFetch( urlModosLiquidacion,addModosLiquidacion);
+     handleFetch( urlFamiliares,addFamiliares);
+     handleFetch( urlNumeradores,addNumeradores);
+   },[deshabilitar])
+
+   
+
+  useEffect(()=>{
+    setDisableEstado(false);
+  },[formDatosPersonales?.inputSexo])
+
+  /* useEffect(()=>{
+    setImagenSended(textToBin(formDatosPersonales?.inputImage));
+  },[formDatosPersonales?.inputImage]) */
 
 
-  const numeradores = useSelector((state)=> state.generalState.numeradores);
-
-  function getNumeradorId(tabla){
-
+   function getNumeradorId(tabla){
     return numeradores && numeradores.filter((num)=>{
       return (num.tabla === tabla)
     })
   }
-  //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   
-  //Para Estado Civil
+
+  
+  
  
   
-
-  //#endregion
-
-  //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
-  
-
-
-  //#region --- IGNORAR --- EN EL PRIMER RENDER, SE BUSCAN LOS DATOS DE LA API PASANDOLE LA URL Y LOS SETEA CON LA FN "saveEstadosCiviles" EN "saveEstadoCivil". ARRIBA SE MAPEAN
-  
-  //GET DATA EMPLEADOS
- 
-
-  //#endregion
-
-  useEffect(() => {
-    setImageEmpleado();
-  }, [saveEmpl[0].obsFechaIngreso]);
-
-  useEffect(()=>{
-    setDisableEstado(false);
-  },[datosPersonalesRedux.inputSexo])
 
   function setImageEmpleado() {
     saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
@@ -160,18 +157,16 @@ const DatosPersonales = () => {
     let yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
 
-    function textToBin(text) {
-      return (
-        Array
-          .from(text)
-          .reduce((acc, char) => acc.concat(char.charCodeAt().toString(2)), [])
-          .map(bin => '0'.repeat(8 - bin.length) + bin )
-          .join(' ')
-      );
-    }
-    useEffect(()=>{
-      setImagenSended(textToBin(datosPersonalesRedux.inputImage));
-    },[datosPersonalesRedux.inputImage])
+  function textToBin(text) {
+    return (
+      Array
+        .from(text)
+        .reduce((acc, char) => acc.concat(char.charCodeAt().toString(2)), [])
+        .map(bin => '0'.repeat(8 - bin.length) + bin )
+        .join(' ')
+    );
+  }
+    
 
   let bodyPostEmploye = {
     "iDempleado" : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
@@ -236,22 +231,14 @@ const DatosPersonales = () => {
     "idDireccionAfectacion": 1,
     "obsAfectacion": "string"
   };
-  console.log(datosPersonalesState.estudios);
-  console.log(datosPersonalesRedux);
+ 
+
  const bodyNumeradores = {
   tabla : "Empleados",
   ultimovalor : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1)
  }
-  //#endregion
   
-  //#region ------------------------------------------------------------------------------VALIDACIONES
   
-  //#endregion
-  useEffect(()=>{
-    axios.get("http://54.243.192.82/api/Empleados?records=10000")
-  .then((res) =>  setEmpleados(res.data.result));
-  
-  },[])
   //#region ------------------------------------------------------------------------------VALIDACIONES
 
   const validateNumbers = (e) => {
@@ -295,7 +282,7 @@ const DatosPersonales = () => {
     }
   };
   //#endregion
-  // console.log(saveEmpl[0] !== undefined ? saveEmpl[0] : null);
+  
   async function sendDataEmploye(){
     
     if(Object.values(bodyPostEmploye) === "" || Object.values(bodyPostEmploye) === null){
@@ -327,10 +314,28 @@ const DatosPersonales = () => {
           icon: "error",
         }))
       }  
-    })
-    //aca hacer otro post a http://54.243.192.82/api/EmpleadosDomicilio pasandole por body el idEmpleado y idDomicilio y si es predeterminado
-    //que el predeterminado viene del state del domicilio
+    }) 
   }
+
+  function cancelButton(){
+    Array.from(document.querySelectorAll("input")).forEach(
+      input => (input.value = "")
+    );
+    if(formDatosPersonales && formDatosPersonales){
+      const inputsArray = Object.entries(formDatosPersonales);
+
+      const clearInputs = inputsArray.map(([key])=> [key, '']);
+
+      const inputsJson = Object.fromEntries(clearInputs);
+
+      setFormDatosPersonales(inputsJson);
+    }
+    dispatch(disableFunctions(false));
+     
+  }
+  console.log(formDatosPersonales)
+
+
   return (
     //#region Menú Principal
     <div className="Lateral-Derecho">
@@ -342,8 +347,6 @@ const DatosPersonales = () => {
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
-              // aria-expanded="true"
-              // aria-controls="collapseOne"
             >
               Datos Personales
             </button>
@@ -366,112 +369,67 @@ const DatosPersonales = () => {
                         }
                         <InputForm
                           value={
-                            empleadoUno !== undefined || empleadoUno === null
-                              ? empleadoUno.legajo
-                              : datosPersonalesRedux.numLegajo
+                            formDatosPersonales?.numLegajo ? formDatosPersonales?.numLegajo : empleadoUno.legajo
                           }
-                          nameInput="numLegajo"
                           idInput="numLegajo"
                           messageError="Solo puede contener números."
                           placeHolder="N° Legajo"
                           disabled={disable}
-                          generalState={datosPersonales}
-                          action={ADD_DATOS_PERSONALES}
-                          onChange={onChange}
-                          nameLabel="Legajo"
-                          datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ?datosPersonalesRedux.numLegajo
-                              : "N° Legajo"
-                          }
+                          onChange={onChangeValues}
+                          nameLabel="Legajo"                          
                           validateNumbers={validateNumbers}
                           numbers={true}
+                          cancelar = {cancelar}
                         />
                         <InputForm
                           value={
-                            empleadoUno !== undefined
-                              ? empleadoUno.apellido
-                              : datosPersonalesRedux.apellidoInput
+                            formDatosPersonales?.apellidoInput ? formDatosPersonales?.apellidoInput : empleadoUno.apellido
                           }
-                          generalState={datosPersonales}
-                          action={ADD_DATOS_PERSONALES}
-                          nameInput="apellidoInput"
                           idInput="apellidoInput"
                           messageError="Solo puede contener letras."
                           placeHolder="Ingrese Apellidos"
                           disabled={disable}
-                          onChange={onChange}
-                          nameLabel="Apellidos"
-                          datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.apellidoInput
-                              : "Apellido"
-                          }
+                          onChange={onChangeValues}
+                          nameLabel="Apellidos"                          
                           validateLetters={validateTexts}
                           numbers={false}
                         />
                         <InputForm
                           value={
-                            empleadoUno !== undefined
-                              ? empleadoUno.nombres
-                              : datosPersonalesRedux.nombresInput
+                            formDatosPersonales?.nombresInput ? formDatosPersonales?.nombresInput : empleadoUno.nombres
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
-                          nameInput="nombresInput"
                           idInput="nombresInput"
                           messageError="Solo puede contener letras."
                           placeHolder="Ingrese Nombres"
                           disabled={disable}
-                          onChange={onChange}
-                          nameLabel="Nombres"
-                          datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.nombresInput
-                              : "Nombres"
-                          }
+                          onChange={onChangeValues}
+                          nameLabel="Nombres"                          
                           validateLetters={validateTexts}
                           numbers={false}
                         />
                         <DNICboBox
                           value={
-                            empleadoUno !== undefined
-                              ? empleadoUno.nroDocumento
-                              : datosPersonalesRedux.documentoInput
+                            formDatosPersonales?.documentoInput ? formDatosPersonales?.documentoInput : empleadoUno.nroDocumento
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
-                          nameInput="documentoInput"
                           idInput="documentoInput"
                           messageError="Solo puede contener números, sin puntos."
                           placeHolder="23456789"
-                          array={datosPersonalesState.tiposDocumento !== undefined && datosPersonalesState.tiposDocumento !== "" ? datosPersonalesState.tiposDocumento : ["no entro"]}
+                          array={datosPersonalesState.tiposDocumento && datosPersonalesState.tiposDocumento !== "" ? datosPersonalesState.tiposDocumento : ["no entro"]}
                           propArrayOp="tipoDocumento"
                           propArrayId = "iDtipoDocumento"
                           disabled={disable}
                           nameLabel="D.N.I."
-                          onChange={onChange}
+                          onChange={onChangeValues}
                           selectedId="dniSelected"
-                          
-                          datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.documentoInput
-                              : null
-                          }
-                          datosPersonalesValue2={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.dniSelected
-                              : "D.N.I"
-                          }
+                          idSelected = {formDatosPersonales?.dniSelected && formDatosPersonales?.dniSelected}
                           validateNumbersDNI={validateNumbersDNI}
                         />
-
-
                         <InputButton
                           value={
-                            empleadoUno !== undefined ? empleadoUno.cuil : datosPersonales.inputCuil
+                            formDatosPersonales?.inputCuil ? formDatosPersonales?.inputCuil : empleadoUno.cuil
                           }
-                          generalState={datosPersonalesRedux !== undefined && datosPersonalesRedux}
                           action={ADD_DATOS_PERSONALES}
                           id="inputCuil"
                           clasess={inputButtonClasessCUIL}
@@ -480,103 +438,81 @@ const DatosPersonales = () => {
                           nameButton="Generar"
                           placeholder="##-########-#"
                           idModal="modalCuil"
-                          array={[]}
                           disabled={disable}
-                          onChange={onChange}
+                          onChange={onChangeValues}
                           datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.inputCuil
-                              : "N° CUIL"
+                            formDatosPersonales?.inputCuil && formDatosPersonales?.inputCuil
                           }
                           funcionCuil={generateCuil}
                           nroDocumento={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.documentoInput
-                              : null
+                            formDatosPersonales?.documentoInput && formDatosPersonales?.documentoInput
                           }
                           genre={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.inputSexo
-                              : null
+                            formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo
                           }
                           usaCuil={true}
                           swal={swal}
                         />
-
-
-
                         <InputForm
                           value={
-                            empleadoUno !== undefined
-                              ? empleadoUno.telFijo
-                              : datosPersonalesRedux.telefonoInput
+                            formDatosPersonales?.telefonoInput ? formDatosPersonales?.telefonoInput : empleadoUno.telFijo
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           nameInput="telefonoInput"
                           idInput="telefonoInput"
                           messageError="Solo puede contener números."
                           placeHolder="11352458965"
                           disabled={disable}
-                          onChange={onChange}
+                          onChange={onChangeValues}
                           nameLabel="Telefono"
                           datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.telefonoInput
-                              : "N° Teléfono"
+                            formDatosPersonales?.telefonoInput && formDatosPersonales?.telefonoInput
                           }
                           validateNumbers={validateNumbers}
                           numbers={true}
                         />
                         <InputCbo
-                        clasess={inputCbo}
-                          value={
-                            saveEstadoCivil !== undefined
-                              ? saveEstadoCivil.idEstadoCivil
-                              : null
-                          }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           sexo={
-                            empleadoUno !== undefined ? empleadoUno.sexo : datosPersonalesRedux !== undefined && datosPersonalesRedux.inputSexo
+                            empleadoUno && empleadoUno ? empleadoUno.sexo : formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo
                           }
                           nameButton="..." 
                           nameLabel="Estado Civil"
-                          array={datosPersonalesState.estadosCiviles !== undefined && datosPersonalesState.estadosCiviles !== "" ? datosPersonalesState.estadosCiviles : ["no entro"]}
+                          array={datosPersonalesState.estadosCiviles && datosPersonalesState.estadosCiviles && datosPersonalesState.estadosCiviles !== "" ? datosPersonalesState.estadosCiviles : ["no entro"]}
                           propArrayOp="masculino"
                           propArrayOpFem="femenino"
-                          propArray="Casado"
+                          idSelected = {formDatosPersonales?.estadoCivilInput ? formDatosPersonales?.estadoCivilInput : empleadoUno.iDestadoCivil}
                           valueId="idEstadoCivil"
                           display={true}
                           idModal="EstadoCivil"
-                          disabled={(datosPersonalesRedux && datosPersonalesRedux.inputSexo && datosPersonalesRedux.inputSexo === "") ? disableEstado : disable}
+                          disabled={(formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo === "") ? disableEstado : disable}
                           nameInput="estadoCivilInput"
                           idInput="estadoCivilInput"
-                          onChange={onChange}
+                          onChange={onChangeValues}
                         />
                         <InputCbo
                           value={
-                            empleadoUno !== undefined
+                            empleadoUno && empleadoUno
                               ? empleadoUno.idNacionalidad
                               : null
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           sexo={
-                            empleadoUno !== undefined ? empleadoUno.sexo : datosPersonalesRedux !== undefined && datosPersonalesRedux.inputSexo
+                            empleadoUno && empleadoUno ? empleadoUno.sexo : formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo
                           }
                           nameButton="..."
                           nameLabel="Nacionalidad"
                           array={datosPersonalesState.paises !== undefined && datosPersonalesState.paises !== "" ? datosPersonalesState.paises : ["Nacionalidad"]}
                           propArrayOp="nacionalidad_masc"
                           propArrayOpFem="nacionalidad_fem"
+                          idSelected={formDatosPersonales?.nacionalidadesInput ? formDatosPersonales?.nacionalidadesInput : empleadoUno.iDnacionalidad}
                           valueId="idPais"
                           propArray="Casado"
                           display={true}
                           idModal="nacionalidades"
                           disabled={disable}
                           idInput="nacionalidadesInput"
-                          onChange={onChange}
+                          onChange={onChangeValues}
                         />
                       </div>
                       <div className="tercera_columna col-xl-4">
@@ -586,7 +522,6 @@ const DatosPersonales = () => {
                               ? empleadoUno.idEstado
                               : null
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           sexo=""
                           nameButton="..."
@@ -594,10 +529,11 @@ const DatosPersonales = () => {
                           array={datosPersonalesState.estados !== undefined && datosPersonalesState.estados !== "" ? datosPersonalesState.estados : []}
                           propArrayOp="nombreEstado"
                           propArrayOpFem="nombreEstado"
+                          idSelected={formDatosPersonales?.estadosEmpleados ? formDatosPersonales?.estadosEmpleados : empleadoUno.idEstado}
                           valueId="idEstado"
                           masculinos=""
                           femeninos=""
-                          onChange={onChange}
+                          onChange={onChangeValues}
                           display={true}
                           idInput="estadosEmpleados"
                           idModal="estadosEmpleados"
@@ -606,47 +542,33 @@ const DatosPersonales = () => {
                         <InputRadio
                         classes={inputRadio}
                           value={
-                            empleadoUno!== undefined ? empleadoUno.sexo : datosPersonalesRedux.inputSexo
+                            formDatosPersonales?.inputSexo ? formDatosPersonales?.inputSexo : empleadoUno.sexo
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           nameFirst="Masculino"
                           nameSecond="Femenino"
                           nameLabel="Sexo"
                           idInput="inputSexo"
                           disabled={disable}
-                          onChange={onChange}
+                          onChange={onChangeValues}
                           datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.inputSexo
-                              : ""
+                            formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo
                           }
                         />
                         <InputDate
                           value={
-                            empleadoUno !== undefined
-                              ? empleadoUno.fechaNacimiento
-                              : null
+                            formDatosPersonales?.inputDateNac ? formDatosPersonales?.inputDateNac : empleadoUno.fechaNacimiento                            
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           nameInput="Nacimiento"
                           disabled={disable}
                           idInput="inputDateNac"
-                          onChange={onChange}
-                          datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.inputDateNac
-                              : null
-                          }
+                          onChange={onChangeValues}
                         />
                         <InputForm
                           value={
-                            empleadoUno !== undefined
-                              ? empleadoUno.telMovil
-                              : datosPersonalesRedux.movil
+                            formDatosPersonales?.movil ? formDatosPersonales?.movil : empleadoUno.movil
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           nameInput="movil"
                           idInput="movil"
@@ -654,44 +576,30 @@ const DatosPersonales = () => {
                           placeHolder="Ingrese su celular"
                           disabled={disable}
                           nameLabel="Celular"
-                          onChange={onChange}
-                          datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.movil
-                              : "Movil"
-                          }
+                          onChange={onChangeValues}
                           validateNumbers={validateNumbers}
                           numbers={true}
                         />
                         <InputForm
                           value={
-                            empleadoUno !== undefined ? empleadoUno.mail : datosPersonalesRedux.email
+                            formDatosPersonales?.email ? formDatosPersonales?.email : empleadoUno.email
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           nameInput="email"
-                          inputId="email"
+                          idInput="email"
                           messageError="Ingrese un email válido."
                           placeHolder="correo@correo.com.ar"
                           disabled={disable}
                           nameLabel="Email"
-                          onChange={onChange}
-                          datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.email
-                              : "Email"
-                          }
+                          onChange={onChangeValues}
                           validateEmails={validateEmails}
                           numbers={false}
                           email={true}
                         />
                         <InputCbo
                           value={
-                            empleadoUno !== undefined
-                              ? empleadoUno.idPaisdeOrigen
-                              : null
+                            formDatosPersonales?.inputSexo ? formDatosPersonales?.inputSexo : empleadoUno.idPaisdeOrigen
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           sexo=""
                           nameButton="..."
@@ -699,6 +607,7 @@ const DatosPersonales = () => {
                           array={datosPersonalesState.paises !== undefined && datosPersonalesState.paises !== "" ? datosPersonalesState.paises : []}
                           propArrayOp="nombrePais"
                           propArrayOpFem="nombrePais"
+                          idSelected={formDatosPersonales?.paisOrigenInput ? formDatosPersonales?.paisOrigenInput : empleadoUno.idPaisOrigen}
                           valueId="idPais"                          
                           masculinos=""
                           femeninos=""
@@ -706,20 +615,12 @@ const DatosPersonales = () => {
                           idModal="paisOrigenInput"
                           disabled={disable}
                           idInput="paisOrigenInput"
-                          onChange={onChange}
-                          datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.estadosEmpleados
-                              : "Email"
-                          }
+                          onChange={onChangeValues}
                         />
                         <InputCbo
                           value={
-                            empleadoUno !== undefined
-                              ? empleadoUno.idEstudios
-                              : null
+                            formDatosPersonales?.estudiosInput ? formDatosPersonales?.estudiosInput : empleadoUno.idEstudios
                           }
-                          generalState={datosPersonales}
                           action={ADD_DATOS_PERSONALES}
                           sexo=""
                           nameButton="..."
@@ -727,6 +628,7 @@ const DatosPersonales = () => {
                           array={datosPersonalesState.estudios !== undefined && datosPersonalesState.estudios !== "" ? datosPersonalesState.estudios : []}
                           propArrayOp="estudiosNivel"
                           propArrayOpFem="estudiosNivel"
+                          idSelected={formDatosPersonales?.estudiosInput ? formDatosPersonales?.estudiosInput : empleadoUno.iDestudios}
                           valueId="iDestudios"
                           masculinos=""
                           femeninos=""
@@ -734,21 +636,16 @@ const DatosPersonales = () => {
                           idModal="Estudios"
                           disabled={disable}
                           idInput="estudiosInput"
-                          onChange={onChange}
-                          datosPersonalesValue={
-                            datosPersonalesRedux !== undefined
-                              ? datosPersonalesRedux.estudiosInput
-                              : "Email"
-                          }
+                          onChange={onChangeValues}
                         />
                         <TextArea
                           inputName="Observaciones"
                           idInput="observacionesEstudios"
                           maxLength="255"
-                          value={datosPersonales !== undefined && datosPersonales.observacionesEstudios}
+                          value={formDatosPersonales?.observacionesEstudios ? formDatosPersonales?.observacionesEstudios : empleadoUno.obsEstudios}
                           disabled={disable}
                           action={ADD_DATOS_PERSONALES}
-                          onChange={onChange}
+                          onChange={onChangeValues}
                         />
                      
                       </div>
@@ -772,10 +669,10 @@ const DatosPersonales = () => {
             </div>
           </div>
         </div>
-        <Domicilios disabled={disable} />
+        <Domicilios formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={deshabilitar} responses={responses} setResponses={setResponses} />
       </div>
       <div className="d-flex justify-content-end">
-        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} functionSend={sendDataEmploye}/>
+        <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} functionSend={sendDataEmploye} functionDelete={cancelButton}/>
       </div>
     </div>
   );

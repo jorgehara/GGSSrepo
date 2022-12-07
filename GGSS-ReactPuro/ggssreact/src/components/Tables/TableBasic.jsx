@@ -24,7 +24,6 @@ const TableBasic = ({
     setFamiliares(inputValueDom(array));
   }, [array]);
 
-    console.log(array)
 
   const inputValueDom=(valor)=>{
     
@@ -47,7 +46,6 @@ const TableBasic = ({
         tipoDniSelec = tiposDni && tiposDni.find((tipoDni)=> valor.iDtipoDocumento === tipoDni.iDtipoDocumento);
 
         const newDomicilios = {...valor, iDestudios : estudioSelect, iDnacionalidad : nacionalidadSelected, iDpaisOrigen : paisOrigenSelect, iDparentesco  : parentescosSelect, iDtipoDocumento : tipoDniSelec}
-        console.log(paisOrigenNac)
         return( newDomicilios)
       })
       

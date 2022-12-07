@@ -1,4 +1,4 @@
-import { ADD_EMPLOYE, REMOVE_EMPLOYE, SELECTED_EMPLOYE, UPDATE_EMPLOYE,ADD_ONE_EMPLOYE, GET_INPUT_VALU_BROWSER, GET_EMPLOYES } from "../types/employeTypes";
+import { ADD_EMPLOYE, REMOVE_EMPLOYE, SELECTED_EMPLOYE, UPDATE_EMPLOYE,ADD_ONE_EMPLOYE, GET_INPUT_VALU_BROWSER, GET_EMPLOYES, DISABLE_FUNCTIONS } from "../types/employeTypes";
 
 const initialState = {
     //Este estado inicial lo llamamos en el Browser a partir de nuestro estado General (que era employeStates).
@@ -8,7 +8,8 @@ const initialState = {
     formulario : {
         inpurLegajoBrowser : "",
         inputApellidoNombreBrowser : ""
-    }
+    },
+    disable : false
 };
 
 const employeReducer = (state = initialState, action) =>{
@@ -61,6 +62,12 @@ const employeReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 empleados : payload
+            }
+        }
+        case DISABLE_FUNCTIONS : {
+            return {
+                ...state,
+                disable: payload
             }
         }
         default :

@@ -47,12 +47,12 @@ const InputParentesco = ({
             name={idInput}
             id={idInput}
             value={value}
-            onChange={(e)=> onChange(e, action)}
+            onChange={(e)=> onChange(e, idInput)}
           >
             <option value="">Seleccionar</option>
             {array  &&
               array.map((op, i) => {
-                return propArray === op[propArrayOp] ? (
+                return propArray === op[propIdSelect] ? (
                   <option selected key={i}
                   value={op[propIdSelect]}
                   >

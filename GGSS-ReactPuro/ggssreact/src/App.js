@@ -4,10 +4,8 @@ import NavbarMenu from './components/Navbar/NavbarMenu';
 import { Routes as Switch,  Route,
   // useLocation
 } from "react-router-dom";
-import DatosPersonales from './components/DatosPersonales/DatosPersonales';
-import Domicilios from './components/Domicilios/Domicilios';
 import { EmpleadoContextProvider } from './context/employeContext';
-import Home from './components/Home/Home';
+import Empleados from './components/Home/Empleados';
 
 
 function App() {
@@ -16,15 +14,7 @@ function App() {
     <EmpleadoContextProvider>
       <NavbarMenu />
           <Switch>
-            <Route path="/home" exact element={<Home />} /> 
-            <Route path="/home/datos-personales" exact element={<Home />}/>  
-            <Route path="/home/familia" exact element={<Home />} />  
-            <Route path="/home/liquidacion" exact element={<Home />} /> 
-            <Route path="/home/documentacion" exact element={<Home />} /> 
-            <Route path="/home/licencias" exact element={<Home />} /> 
-            <Route path="/home/adic-liquidacion" exact element={<Home />} /> 
-            <Route path="/home/trabajos-anteriores" exact element={<Home />} /> 
-            <Route path="/home/extras" exact element={<Home />} /> 
+            <Route path="/ficha-empleados" exact element={<Empleados />} /> 
           </Switch>        
     </EmpleadoContextProvider>
     </>

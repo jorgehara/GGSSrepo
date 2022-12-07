@@ -30,11 +30,11 @@ const PaisOrigenFlia = ({
         <label className="formulario-label-ParentescoFliaOpcions mt-2">{nameLabel}</label>
       </div>
       <div className="SelectedFliaPais px-0">
-        <select className="form-select ml-0 mt-1" name={nameInput} disabled={disable} onChange={(e)=> onChange(e,action)}>
+        <select className="form-select ml-0 mt-1" name={nameInput} disabled={disable} onChange={(e)=> onChange(e,nameInput)}>
           <option value="">Seleccionar</option>
           {
            array && array.map((op, i) => {
-              return propArray === op ?<option selected defaultValue value={op[idSelected]}  key={i}>{op[namePropValue]}</option> : <option key={i} value={op[idSelected]}>{op[namePropValue]}</option>
+              return propArray === op[idSelected] ?<option selected defaultValue value={op[idSelected]}  key={i}>{op[namePropValue]}</option> : <option key={i} value={op[idSelected]}>{op[namePropValue]}</option>
             })
           }
         </select>

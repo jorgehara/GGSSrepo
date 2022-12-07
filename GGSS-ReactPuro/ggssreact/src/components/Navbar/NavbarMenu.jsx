@@ -1,5 +1,5 @@
 //#region -----------------------------------------------------------------------IMPORTS
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
 import './Navbar.css'
 import ButtonCallModal from '../Buttons/ButtonCallModal'
@@ -25,9 +25,13 @@ import { addSelectedEstadoCivil } from '../../redux/actions/modalesActions';
 //#endregion
 
 
-const Navbar = () => {
+const NavbarMenu = () => {
 //#region --------------------------------- CONSTANTES DE DATOS -------------------------------
 const { empleadores, modosLiquidacion, modosContratacion, formasDePago, parentescos, tareasDesempeñadas, cargos, saveEstado, saveEstadoCivil, saveNacionalidad , saveEstudio, saveTipoDNI, saveCalle,saveDoms,saveProvincia,saveLocalidad,saveDetpo,saveBarrio} = useContext(employeContext);
+
+const [responses, setResponses] = useState({});
+
+
 
 //#endregion
 const dispatch = useDispatch();
@@ -63,8 +67,6 @@ const handleFetch=(url, action )=>{
 	const inputFemEstadosCiviles = useSelector((state)=> state.modalState.formulario.inputEstadosCivilesModalFem);
 
 	
-	console.log((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length -1].idEstadoCivil)+1)
-	console.log(estadosCivilesValue)
 
 
 // console.log(modals.inputEstadosCivilesModal)
@@ -113,7 +115,7 @@ return (
                         Empleados
                     </a>
                     <ul className=" dropdown-menu">		
-                        <li><Link className="dropdown-item" to="/home">Ficha Empleados</Link></li>
+                        <li><Link className="dropdown-item" to="/ficha-empleados">Ficha Empleados</Link></li>
                         <li><Link className="dropdown-item" to="#">Busqueda de Datos</Link></li>
                     </ul>
                 </li>
@@ -132,9 +134,9 @@ return (
                     </a>
 
                     <ul className="dropdown-menu">
-						<li class="dropdown-submenu">
-						<a className='dropdown-item' tabindex="-1" href="#">Para Empleados</a>
-							<ul class="dropdown-menu">
+						<li className="dropdown-submenu">
+						<a className='dropdown-item' tabIndex="-1" href="#">Para Empleados</a>
+							<ul className="dropdown-menu">
 								<div className="datosEmpleados" style={{fontSize: "13px"}}>
 									<ButtonCallModal idModal="EstadoCivil" nameButton="Estados Civiles" useNavbar={true} />
 									<ButtonCallModal idModal="Estudios" nameButton="Estudios" useNavbar={true} />
@@ -160,9 +162,9 @@ return (
 						</li>						
 			
 						<hr />
-						<li class="dropdown-submenu">
-						<a className='dropdown-item' tabindex="-1" href="#">Para Liquidación</a>
-							<ul class="dropdown-menu">
+						<li className="dropdown-submenu">
+						<a className='dropdown-item' tabIndex="-1" href="#">Para Liquidación</a>
+							<ul className="dropdown-menu">
 								<div className="datosLiquidacion" style={{fontSize: "13px"}}>
 									<ButtonCallModal idModal="Bancos" nameButton="Bancos" useNavbar={true} />
 									<ButtonCallModal idModal="Telefonia" nameButton="Empresas de telefonia celular" useNavbar={true} />
@@ -211,6 +213,9 @@ return (
 				valueFem ={inputFemEstadosCiviles}
 				valueMasc={inputMascEstadosCiviles}
 				url={urlEstadosCiviles}
+				idInput = "estadoCivil"
+				responses={responses} 
+				setResponses={setResponses}
 				// generalState={modals} 
 				// setGeneralState={setModals} 
 				// onSelect={onSelect} 
@@ -219,34 +224,57 @@ return (
 				// selectedOption={estadoCivilSelected} 
 				arrayCompleto={saveEstadoCivil}/>
 				
-				<BasicModal idModal="Estudios" nameModal="Estudios" placeholder={objectEstudios} array={estudios}/>
-				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} array={tiposDNIMap} />
-				<BasicModal idModal="Parentescos" nameModal="Parentescos" placeholder={objectParentescos} hasCheckbox={true} checkboxName="Genera Asignación" hasCheckBoxNum={true} checkboxCheckName="Deduce Ganancias" checkboxNumName="Importe" textArea={true} array={parentescosMap} />
-				<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} array={estadosArray} />
-				<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} array={cargosMap} />
-				<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} array={tareasMap} />
-				<BasicModal idModal="formasDePago" nameModal="Formas de Pago" placeholder={objectFormasDePago} textArea={true} array={formasDePagoMap} />
-				<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true} array={modosContratacionMap}/>
-				<BasicModal idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" placeholder={objectModosLiquidacion} dropdown={true} textArea={true} array={modosLiquidacionMap} />
-				<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
-				<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} array={paises}/>
-				<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} array={nacionalidades}/>
+				<BasicModal idModal="Estudios" nameModal="Estudios" placeholder={objectEstudios} array={estudios} responses={responses} setResponses={setResponses} />
+				<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} array={tiposDNIMap} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="Parentescos" nameModal="Parentescos" placeholder={objectParentescos} hasCheckbox={true} checkboxName="Genera Asignación" hasCheckBoxNum={true} checkboxCheckName="Deduce Ganancias" checkboxNumName="Importe" textArea={true} array={parentescosMap} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} array={estadosArray} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} array={cargosMap} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} array={tareasMap} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="formasDePago" nameModal="Formas de Pago" placeholder={objectFormasDePago} textArea={true} array={formasDePagoMap} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true} array={modosContratacionMap} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" placeholder={objectModosLiquidacion} dropdown={true} textArea={true} array={modosLiquidacionMap} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} array={paises} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} array={nacionalidades} responses={responses} 
+				setResponses={setResponses}/>
 				<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" aDepartamentos={deptos}aProvincias={provincias} aLocalidades={localidades} aBarrios={barrios} />
-				<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true} array={calles}/>
+				<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true} array={calles} responses={responses} 
+				setResponses={setResponses}/>
 				<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" array={empleadoresMap} />
-				<BasicModal idModal="alicuotas" nameModal="Alicuotas" placeholder={objectAlicuotas} inputNum={true} inputNumName="Alicuota" hasCheckbox={true} checkboxName="Pide N° CUIT"/>
+				<BasicModal idModal="alicuotas" nameModal="Alicuotas" placeholder={objectAlicuotas} inputNum={true} inputNumName="Alicuota" hasCheckbox={true} checkboxName="Pide N° CUIT" responses={responses} 
+				setResponses={setResponses}/>
 
 				{/* {/ MODALES TABLA PARA LIQUIDACIÓN /} */}
-				<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true} />
-				<BasicModal idModal="Telefonia" nameModal="Empresas de Telefonia" placeholder={objectEmpresasTelefonia} />
-				<BasicModal idModal="Sindicatos" nameModal="Sindicatos" placeholder={objectSindicatos} dropdown={true} />
-				<BasicModal idModal="ObrasSociales" nameModal="Obras Sociales" placeholder={objectObrasSociales} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true} />
-				<BasicModal idModal="AFJP" nameModal="A.F.J.P" placeholder={objectAFJP} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true} />
-				<BasicModal idModal="CentrosCosto" nameModal="Centros de Costo" placeholder={objectCentrosCosto} dropdown={true} textArea={true} />
-				<BasicModal idModal="SectoresDeptos" nameModal="Sectores/Departamentos" placeholder={objectSectoresDptos} dropdown={true} textArea={true} />
-				<BasicModal idModal="Direcciones" nameModal="Direcciones" placeholder={objectDirecciones} textArea={true} relacion={true} nameRelacion="Sector/Dpto" />
-				<BasicModal idModal="LugaresPago" nameModal="Lugares de Pago" placeholder={objectLugaresPago} textArea={true} />
-				<BasicModal idModal="Documentacion" nameModal="Documentación" placeholder={objectDocumentacion} textArea={true} />
+				<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true}  responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="Telefonia" nameModal="Empresas de Telefonia" placeholder={objectEmpresasTelefonia} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="Sindicatos" nameModal="Sindicatos" placeholder={objectSindicatos} dropdown={true} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="ObrasSociales" nameModal="Obras Sociales" placeholder={objectObrasSociales} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="AFJP" nameModal="A.F.J.P" placeholder={objectAFJP} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="CentrosCosto" nameModal="Centros de Costo" placeholder={objectCentrosCosto} dropdown={true} textArea={true} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="SectoresDeptos" nameModal="Sectores/Departamentos" placeholder={objectSectoresDptos} dropdown={true} textArea={true} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="Direcciones" nameModal="Direcciones" placeholder={objectDirecciones} textArea={true} relacion={true} nameRelacion="Sector/Dpto" responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="LugaresPago" nameModal="Lugares de Pago" placeholder={objectLugaresPago} textArea={true} responses={responses} 
+				setResponses={setResponses}/>
+				<BasicModal idModal="Documentacion" nameModal="Documentación" placeholder={objectDocumentacion} textArea={true} responses={responses} 
+				setResponses={setResponses}/>
 				<ModalTable idModal="Reduccion" nameModal="Tabla de Reducción de Deducciones" column={tableReduccionHeadings} btnAceptar={true}/>
 				<ModalEscala idModal="Escala" nameModal="Escala de Ganancias" inputNumData={inputNumDataEscala} hasInputDate={true} inputDateData={inputDateDataEscala} table={true} buttonNum={true} flex={true} styleContainer={{height: "600px", width: "auto"}} styleData={{height: "350px"}} />
 				<ModalEscala idModal="Deducciones" nameModal="Deducciones de Ganancias" inputNumData={inputNumDataDeducciones} hasInputDate={true} inputDateData={inputDateDataDeducciones} styleContainer={{height: "400px", width: "auto"}} styleData={{height: "350px"}} />
@@ -256,8 +284,8 @@ return (
 				<ModalTable idModal="Licencias" nameModal="Licencias por Antigüedad" licencias={true} column={tableLicencias} objectInputs={inputsNumLicencias}/>
 
 
-				<li class="nav-item">
-					<a class="nav-link" href="/">Salir</a>
+				<li className="nav-item">
+					<a className="nav-link" href="/">Salir</a>
 				</li>
       		</ul>
     </div>
@@ -268,4 +296,4 @@ return (
   )
 }
 
-export default Navbar;
+export default NavbarMenu;

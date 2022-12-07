@@ -13,7 +13,10 @@ import "./FieldSet.css";
 const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption}) => {
     const columns1 =["Año", "Días Totales", "Tomados", "Restan", "Vto", "Prórroga", "Resolución", "Disponibles"]
     const columns2 =["Desde", "Hasta", "Fecha Suspensión"]
+
   console.log(opciones && opciones[1].opcion === "2 - Solicita Nueva Licencia")
+  console.log(selectedOption)
+
     return (  
         
         <>
