@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import "./InputDate.css";
 
-const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChange,datosPersonalesValue, action, setDisable, disable, actionReset }) => {
+const InputDate = ({ nameInput,display, value, disabled,idInput, onChange, action, setDisable, disable, idInputCheck, valueCheck }) => {
   
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [mostrarComponente2, setMostrarComponente2] = useState(true);
+  const [checked, setChecked] = useState(false);
+
   const [valor, setValor] = useState("");
 
 
@@ -55,12 +57,8 @@ const InputDate = ({ nameInput,display, checked, value, disabled,idInput, onChan
           <input className={mostrarComponente ? "select-date-DatosPerson" : "none"} type="checkbox"  id="flexCheckChecked"  checked={checked} disabled={disabled} />
         </div>
         <div className="d-flex flex-row justify-content-start align-items-center">
-            <input className={mostrarComponente2 ? "form-check-input " : "none"} value={disable} type="checkbox" onClick={()=> setDisable(!disable)}  id="flexCheckChecked"  checked={checked} disabled={disabled} />
-            <input id={idInput} className={mostrarComponente2 ? "secondCheck2" : "secondCheck"} name={idInput} type="date" value={disable ? ()=> dispatch(
-          {
-            type: action,
-            payload : {name : idInput, value : ""}
-          }) : (value ? value : fecha)} disabled={disabled ? disabled : disable} onChange={(e)=>onChange(e.target.value,idInput)} />
+            <input className={mostrarComponente2 ? "form-check-input " : "none"}type="checkbox" id={idInputCheck} name={idInputCheck} onChange={(e)=>{setDisable(!disable); setChecked(!checked); onChange(e.target.checked, idInputCheck)}}  checked={checked} disabled={disabled} />
+            <input id={idInput} className={mostrarComponente2 ? "secondCheck2" : "secondCheck"} name={idInput} type="date" value={valueCheck ? value : "" } disabled={disabled ? disabled : disable} onChange={(e)=>onChange(e.target.value, idInput)} />
             
         </div>
     </div>

@@ -22,9 +22,12 @@ const AdicLiquidacion = ({responses, setResponses}) => {
             dispatch({type:AXIOS_ERROR});
           })
     }
+    
     useEffect(()=>{
         //handleFetch(urlConvenios, addConvenios);
     },[])
+
+    
     function onChangeValues(e, key){
         const newResponse = {...formAdicLiquidacion};
         newResponse[key] = e;

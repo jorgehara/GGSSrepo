@@ -16,10 +16,12 @@ import { getInputValue, getOneDocumento } from '../../redux/actions/documentacio
 import { inputButtonClasess } from '../../classes/classes';
 import { GET_INPUT_VALUE } from '../../redux/types/documentacionTypes';
 
-const Documentacion = () => {
+const Documentacion = ({responses, setResponses}) => {
     const columns = ["Fecha", "Vencimiento", "Documento", "Liq", "Observaciones", "Incluir Cuota"]
     const dispatch = useDispatch();
     const [ disable, setDisable] = useState(true);
+    const [ formDocumentacion, setFormDocumentacion ] = useState(responses["formDocumentacion"]);
+
 
     const urlDocumentacionEmpleados = "http://54.243.192.82/api/EmpleadosDocumentacion";
     const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
@@ -34,6 +36,20 @@ const Documentacion = () => {
             dispatch({type:AXIOS_ERROR});
           })
        }
+       function onChangeValues(e, key){
+        const newResponse = {...formDocumentacion};
+        newResponse[key] = e;
+        setFormDocumentacion({
+            ...newResponse
+        });
+    };
+    useEffect(() => {
+        setResponses({
+          ...responses,
+          formDocumentacion
+        });      
+    },[formDocumentacion]);
+
        function onChange(e, action) {
         dispatch(
           {
@@ -63,10 +79,10 @@ return (
         </div>
         <div className='row'>
             <div className='col-xl-12'>
-                <InputDateDocs nameInput="Fecha Presentación" idInput="inputDatePresentacion" display={false} onChange={onChange} action={GET_INPUT_VALUE}/>
+                <InputDateDocs nameInput="Fecha Presentación" idInput="inputDatePresentacion" display={false} onChange={onChangeValues} action={GET_INPUT_VALUE} value={formDocumentacion?.inputDatePresentacion && formDocumentacion?.inputDatePresentacion} />
             </div>
             <div className='col-xl-12'>
-                <InputDate nameInput="Fecha Vencimiento" disable={disable} setDisable={setDisable} idInput="inputDateVencimiento" display={true}  onChange={onChange} action={GET_INPUT_VALUE} actionReset={getInputValue}/>
+                <InputDate nameInput="Fecha Vencimiento" disable={disable} setDisable={setDisable} idInput="inputDateVencimiento" display={true}  onChange={onChangeValues} action={GET_INPUT_VALUE} actionReset={getInputValue} value={formDocumentacion?.inputDateVencimiento && formDocumentacion?.inputDateVencimiento} valueCheck={formDocumentacion?.inputCheckDocusDate && formDocumentacion?.inputCheckDocusDate} idInputCheck="inputCheckDocusDate" />
             </div>
             <div className='col-xl-12'>
                 <InputButtonLiquidacion
@@ -78,18 +94,19 @@ return (
                     propArrayOp="documentacion1"
                     propIdOption="idDocumentacion"
                     idInput="inputSelectDocumentacion"
-                    onChange={onChange}
+                    onChange={onChangeValues}
                     action={GET_INPUT_VALUE}
+                    value={formDocumentacion?.inputSelectDocumentacion && formDocumentacion?.inputSelectDocumentacion}
                 />
             </div>
             <div className='col-xl-12'>
-                <TextArea inputName="Observaciones " onChange={onChange} idInput="textAreaDocumentacion" action={GET_INPUT_VALUE}/>
+                <TextArea inputName="Observaciones " onChange={onChangeValues} idInput="textAreaDocumentacion" action={GET_INPUT_VALUE} value={formDocumentacion?.textAreaDocumentacion && formDocumentacion?.textAreaDocumentacion} />
             </div>
             <div className='col-xl-12'>
-                <CheckLabel idInput="inputCheckLiquidacion" nameLabel="Se tiene en cuenta en la Liquidación (Sólo si se cumplen las condiciones necesarias)"  onChange={onChange} action={GET_INPUT_VALUE}/>
+                <CheckLabel idInput="inputCheckLiquidacion" nameLabel="Se tiene en cuenta en la Liquidación (Sólo si se cumplen las condiciones necesarias)"  onChange={onChangeValues} action={GET_INPUT_VALUE} value={formDocumentacion?.inputCheckLiquidacion && formDocumentacion?.inputCheckLiquidacion} />
             </div>
             <div className='col-xl-12'>
-                <CheckLabel idInput="inputIncluirCuotaAlim" nameLabel="Incluir en cuota Alimentaria"  onChange={onChange} action={GET_INPUT_VALUE}/>
+                <CheckLabel idInput="inputIncluirCuotaAlim" nameLabel="Incluir en cuota Alimentaria"  onChange={onChangeValues} action={GET_INPUT_VALUE} value={formDocumentacion?.inputIncluirCuotaAlim && formDocumentacion?.inputIncluirCuotaAlim} />
             </div>
             <div className='col-xl-12'>
                 <ButtonCancelarAceptar cancelar="-" aceptar="+" />

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { inputButtonClasessExtras, inputButtonClasessExtrasAfectaciones, inputButtonClasessExtrasInstrum } from '../../classes/classes'
 import { GET_INPUT_VALUES_EXTRAS } from '../../redux/types/extrasTypes';
@@ -12,11 +12,27 @@ import TextArea from '../Inputs/TextArea/TextArea';
 import TableExtras from '../Tables/TableExtras';
 import "./Extras.css";
 
-const Extras = () => {
+const Extras = ({responses, setResponses}) => {
 
     const columns = ["Fecha", "Descripción", "Observaciones"]
     const dispatch = useDispatch();
+    const [ formDatosExtras, setFormDatosExtras ] = useState(responses["formDatosExtras"]);
 
+    function onChangeValues(e, key){
+        const newResponse = {...formDatosExtras};
+        newResponse[key] = e;
+        setFormDatosExtras({
+          ...newResponse
+        });
+    };
+  
+  
+    useEffect(() => {    
+        setResponses({
+          ...responses,
+          formDatosExtras
+        });    
+    },[formDatosExtras]);
 
   function onChange(e, action) {
     dispatch(
@@ -25,9 +41,7 @@ const Extras = () => {
         payload : {name : e.target.name, value : e.target.value}
       });    
   }
-  const formulario = useSelector((state)=> state.extrasState.formulario);
 
-  console.log(formulario);
 
 
 
@@ -40,17 +54,26 @@ const Extras = () => {
       <div className='container border border-3 border-top-0'>
               <div className='row  mt-1'>
                   <div className='col-xl-12'>
-                      <InputButtonLiquidacion idInput="inputDatosExtrasCbo" nameButton="..." onChange={onChange} nameLabel="Datos Extras" id="inputDatosExtrasExtras" action={GET_INPUT_VALUES_EXTRAS} clasess={inputButtonClasessExtras} />
+                      <InputButtonLiquidacion 
+                      idInput="inputDatosExtrasCbo" 
+                      nameButton="..." 
+                      onChange={onChangeValues} 
+                      value={formDatosExtras?.inputDatosExtrasCbo && formDatosExtras?.inputDatosExtrasCbo}
+                      propArrayOp=""
+                      propIdOption=""
+                      nameLabel="Datos Extras" 
+                      action={GET_INPUT_VALUES_EXTRAS} 
+                      clasess={inputButtonClasessExtras} />
                   </div>
               </div>
               <div className='row'>
                   <div className='col-xl-6'>
-                      <InputDate onChange={onChange} idInput="inputFechaExtras" nameInput="Fecha" action={GET_INPUT_VALUES_EXTRAS} />
+                      <InputDate valueCheck={true} value={formDatosExtras?.inputFechaExtras && formDatosExtras?.inputFechaExtras} onChange={onChangeValues} idInput="inputFechaExtras" nameInput="Fecha" action={GET_INPUT_VALUES_EXTRAS} />
                   </div>
               </div>
               <div className='row'>
                     <div className='col-xl-12'>
-                        <TextArea onChange={onChange} idInput="inputTextExtras"  inputName="Observaciones" action={GET_INPUT_VALUES_EXTRAS} />
+                        <TextArea onChange={onChangeValues} idInput="inputTextExtras" value={formDatosExtras?.inputTextExtras && formDatosExtras?.inputTextExtras} inputName="Observaciones" action={GET_INPUT_VALUES_EXTRAS} />
                         <ButtonCancelarAceptar cancelar="-" aceptar="+" />
                         <TableExtras columns={columns} />
                     </div>

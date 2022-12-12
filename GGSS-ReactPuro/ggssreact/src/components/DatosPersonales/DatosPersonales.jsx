@@ -123,22 +123,11 @@ const {
     setDisableEstado(false);
   },[formDatosPersonales?.inputSexo])
 
-  /* useEffect(()=>{
-    setImagenSended(textToBin(formDatosPersonales?.inputImage));
-  },[formDatosPersonales?.inputImage]) */
-
-
    function getNumeradorId(tabla){
     return numeradores && numeradores.filter((num)=>{
       return (num.tabla === tabla)
     })
   }
-  
-
-  
-  
- 
-  
 
   function setImageEmpleado() {
     saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);

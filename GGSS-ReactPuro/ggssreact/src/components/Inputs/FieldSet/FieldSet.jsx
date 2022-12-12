@@ -10,7 +10,7 @@ import PorPeriodo from './Childs/PorPeriodo'
 import Prorroga from './Childs/Prorroga'
 import "./FieldSet.css";
 
-const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption}) => {
+const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onChange, valueForm}) => {
     const columns1 =["Año", "Días Totales", "Tomados", "Restan", "Vto", "Prórroga", "Resolución", "Disponibles"]
     const columns2 =["Desde", "Hasta", "Fecha Suspensión"]
 
@@ -28,16 +28,16 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption}) => 
                   
               </div>
                {
-                selectedOption && selectedOption === "1 - Disponibles por Periodo" && <PorPeriodo valueId={valueId} array={array} propArrayOpFem={propArrayOpFem} />
+                selectedOption && selectedOption === "1 - Disponibles por Periodo" && <PorPeriodo valueForm={valueForm} onChange={onChange} valueId={valueId} array={array} propArrayOpFem={propArrayOpFem} />
                }
                {
-                selectedOption && selectedOption === "2 - Solicita Nueva Licencia" && <NuevaLicencia valueId={valueId} array={array} propArrayOpFem={propArrayOpFem} />
+                selectedOption && selectedOption === "2 - Solicita Nueva Licencia" && <NuevaLicencia valueForm={valueForm} onChange={onChange} valueId={valueId} array={array} propArrayOpFem={propArrayOpFem} />
                }
                {
-                selectedOption && selectedOption === "3 - Prorroga Vencimiento" && <Prorroga />
+                selectedOption && selectedOption === "3 - Prorroga Vencimiento" && <Prorroga valueForm={valueForm} onChange={onChange} />
                }
                {
-                 selectedOption && selectedOption === "4 - Suspende Licencia" && <FechaSuspencion />
+                 selectedOption && selectedOption === "4 - Suspende Licencia" && <FechaSuspencion valueForm={valueForm} onChange={onChange} />
                }
            </div>
            </fieldset>

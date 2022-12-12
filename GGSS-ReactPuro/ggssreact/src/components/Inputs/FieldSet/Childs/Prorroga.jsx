@@ -2,12 +2,20 @@ import React from 'react'
 import InputDate from '../../InputDate/InputDate'
 import InputForm from '../../InputForm/InputForm'
 
-const Prorroga = () => {
+const Prorroga = ({valueForm, onChange}) => {
   return (
     <div className='row'>
         <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center'>
-            <InputDate nameInput="Nueva Fecha:" />
-            <InputForm nameLabel="N° Resolución" />
+            <InputDate nameInput="Nueva Fecha:" valueForm={valueForm} onChange={onChange} valueCheck={true} idInput="inputNuevaFechaLic" value={valueForm?.inputNuevaFechaLic && valueForm?.inputNuevaFechaLic} />
+            <InputForm 
+            nameLabel="N° Resolución" 
+            valueForm={valueForm} 
+            onChange={onChange} 
+            value={
+              valueForm?.inputNuevaResolucionLic && valueForm?.inputNuevaResolucionLic 
+            }
+            idInput="inputNuevaResolucionLic"
+            />
         </div>
     </div>
   )

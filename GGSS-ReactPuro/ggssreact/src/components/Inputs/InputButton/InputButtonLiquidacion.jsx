@@ -62,7 +62,7 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
                     id={idInput} 
                     name={idInput}
                     disabled={disabled}
-                    onChange={(e)=> onChange(e,idInput )}
+                    onChange={(e)=> onChange(e.target.value, idInput )}
                     />
             <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
                   className="btn btn-validacion btn-outline-danger" disabled={disabled}>
