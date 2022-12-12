@@ -142,12 +142,6 @@ const {
     })
   }
   
-
-  
-  
- 
-  
-
   function setImageEmpleado() {
     saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
   }
@@ -299,7 +293,7 @@ const {
       try{
         if(res.status === 200){
           const idEmpleado = getNumeradorId("Empleados");
-           axios.put(`http://54.243.192.82/api/Numeradores/${idEmpleado[0].tabla}`, bodyNumeradores)
+          axios.put(`http://54.243.192.82/api/Numeradores/${idEmpleado[0].tabla}`, bodyNumeradores)
           .then((res)=> console.log(res));
           return (swal({
             title: "Ok",

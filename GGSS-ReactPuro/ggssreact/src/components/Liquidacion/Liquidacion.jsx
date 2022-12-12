@@ -72,7 +72,7 @@ const Liquidacion = ({responses, setResponses}) => {
           })
        }
     useEffect(()=>{
-        handleFetch(urlConvenios, addConvenios);
+        handleFetch( urlConvenios, addConvenios);
         handleFetch( urlEmpleadores,addEmpleadores);
         handleFetch( urlCategorias, addCategorias);
         handleFetch( urlAgrupamientos, addAgrupamientos);
@@ -92,8 +92,8 @@ const Liquidacion = ({responses, setResponses}) => {
     },[])
 
     const empleadores = useSelector((state)=> state.generalState.empleadores);
-    const formularioValue = useSelector((state)=> state.liquidacionState.formulario);
-    const empleadorValue = useSelector((state)=> state.liquidacionState.formulario.inputEmpleador);
+    // const formularioValue = useSelector((state)=> state.liquidacionState.formulario);
+    // const empleadorValue = useSelector((state)=> state.liquidacionState.formulario.inputEmpleador);
     const convenios = useSelector((state)=> state.generalState.convenios);
     const categorias = useSelector((state)=> state.generalState.categorias);
     const agrupamientos = useSelector((state)=> state.generalState.agrupamientos);

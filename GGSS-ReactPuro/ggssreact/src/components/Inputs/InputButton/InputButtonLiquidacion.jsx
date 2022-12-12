@@ -31,8 +31,7 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
     clasess ? <div className={`${clasess.classOne}`}>      
     <div className={`${clasess.classTwo}`}>
         <label className={`${clasess.classThree}`} htmlFor={nameInput}>{nameLabel}</label>
-
-       <select name={idInput} id={idInput} className={clasess.classFour} onChange={(e)=>onChange(e, idInput)} value={value && value} >
+      <select name={idInput} id={idInput} className={clasess.classFour} onChange={(e)=>onChange(e, idInput)} value={value && value} >
         <option value="">Seleccionar</option>
         {
             array && array.map((valor,index)=>{
@@ -41,7 +40,7 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
                 )
             })
         }
-       </select>
+      </select>
         <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
               className={`${clasess.classFive}`} disabled={disabled}>
               {nameButton}
@@ -53,7 +52,6 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
 <div className="formulario__grupo__inputs-Button mt-2">      
         <div className='fomulario__container__button'>
             <label className='formulario__label ' htmlFor={nameInput}>{nameLabel}</label>
-
             <input type="text" 
                     value={ value && value}
                     maxLength={maxLeght}
@@ -69,7 +67,6 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
                   {nameButton}
             </button>
         </div>
-			  
     </div>
   );
 };
