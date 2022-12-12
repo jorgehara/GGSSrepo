@@ -10,24 +10,7 @@ import "./AdicLiquidacion.css";
 
 const AdicLiquidacion = ({responses, setResponses}) => {
     const [ formAdicLiquidacion, setFormAdicLiquidacion ] = useState(responses["formAdicLiquidacion"]);
-    const dispatch = useDispatch();
-
-    const handleFetch=(url, action )=>{
-        dispatch({type: SET_LOADING});
-          axios.get(url)
-          .then((res)=>{
-            dispatch( action(res.data.result));
-          })
-          .catch((err)=>{
-            dispatch({type:AXIOS_ERROR});
-          })
-    }
-    
-    useEffect(()=>{
-        //handleFetch(urlConvenios, addConvenios);
-    },[])
-
-    
+        
     function onChangeValues(e, key){
         const newResponse = {...formAdicLiquidacion};
         newResponse[key] = e;

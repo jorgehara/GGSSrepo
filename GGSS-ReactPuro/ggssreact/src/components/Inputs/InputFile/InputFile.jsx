@@ -60,13 +60,24 @@ function InputFile({ disabled, imagen,onChange, idInput,action }) {
               id={idInput}
               name={idInput}
               accept="image/png, image/jpg"
+              onChange = {(e)=>{ 
+                if (e.target.files[0] !== undefined) {
+                const reader = new FileReader();
+                reader.readAsDataURL(e.target.files[0]);
+                reader.onload = (e) => {
+                  e.preventDefault();
+                  onChange(e.target.result, idInput)
+                  dispatch({
+                    type : action,
+                    payload : {name : idInput, value : e.target.result}
+                  })
+                  setImageSelectedPrevious(e.target.result); // le damos el binario de la imagen para mostrarla en pantalla
+                  setDisplayButton("none");
+                };}}}
               multiple
               width="220px"
               height="100px"
               disabled={disabled}
-              onChange={(e) => {
-                changeImage(e);
-              }}
             ></input>
             <div className="imageSelect d-flex justify-content-center align-items-center center ml-1 mr-6 ">
               <img
