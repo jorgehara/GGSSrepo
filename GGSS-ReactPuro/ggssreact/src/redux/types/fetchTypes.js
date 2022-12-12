@@ -44,3 +44,11 @@ export const ADD_ESQUEMAS = "ADD_ESQUEMAS";
 export const ADD_NEW_ESCI = "ADD_NEW_ESCI";
 export const ADD_NEW_ESTUDIO = "ADD_NEW_ESTUDIO";
 
+
+// DELETE TYPES
+export const GET_ID_ESCI = "GET_ID_ESCI"
+export const DELETE_ESCI = "DELETE_ESCI"
+
+
+
+

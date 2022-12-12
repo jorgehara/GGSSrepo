@@ -17,7 +17,7 @@ import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio } from '../../redux/actions/fetchActions';
+import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
 import { addSelectedEstadoCivil, addSelectedEstudio } from '../../redux/actions/modalesActions';
 import swal from "sweetalert";
@@ -133,29 +133,29 @@ const Navbar = () => {
 
 
 
-	// const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
-	// const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
-	// const estadosCiviles = estadosCivilesMasculinos.concat(estadosCivilesFemeninos);
-	// const estadosArray = saveEstado.map((m, i) => { return (m.nombreEstado) });
-	// const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nombrePais); }) : [];
-	// const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i) => { return (nac.estudiosNivel); }) : [];
-	// const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
-	// const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
-	// const nacionalidades = nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
-	// const calles = saveCalle !== undefined ? saveCalle.map(res => { return res.calle }) : null;
-	// const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => { return res.pisoDepto }) : null;
-	// const deptos = saveDetpo !== undefined ? saveDetpo.map(res => { return res.departamento }) : null;
-	// const provincias = saveProvincia !== undefined ? saveProvincia.map(res => { return res.provincia }) : null;
-	// const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => { return res.localidad }) : null;
-	// const barrios = saveBarrio !== undefined ? saveBarrio.map(res => { return res.barrio }) : null;
-	// const cargosMap = cargos !== undefined ? cargos.map((cargo, i) => { return (cargo.nombreCargo); }) : [];
-	// const tareasMap = tareasDesempeñadas !== undefined ? tareasDesempeñadas.map((tarea, i) => { return (tarea.tareaDesempeñada) }) : [];
-	// const tiposDNIMap = saveTipoDNI !== undefined ? saveTipoDNI.map((tdni, i) => { return tdni.tipoDocumento }) : [];
-	// const parentescosMap = parentescos !== undefined ? parentescos.map((parent, i) => { return parent.nombreParentesco }) : [];
-	// const formasDePagoMap = formasDePago !== undefined ? formasDePago.map((forma, i) => { return forma.nombreFormadePago }) : [];
-	// const modosContratacionMap = modosContratacion !== undefined ? modosContratacion.map((modo, i) => { return modo.modoContratacion }) : [];
-	// const modosLiquidacionMap = modosLiquidacion !== undefined ? modosLiquidacion.map((modo, i) => { return modo.modoLiquidacion }) : [];
-	// const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
+	const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
+	const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
+	const estadosCiviles = estadosCivilesMasculinos.concat(estadosCivilesFemeninos);
+	const estadosArray = saveEstado.map((m, i) => { return (m.nombreEstado) });
+	const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nombrePais); }) : [];
+	const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i) => { return (nac.estudiosNivel); }) : [];
+	const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
+	const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
+	const nacionalidades = nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
+	const calles = saveCalle !== undefined ? saveCalle.map(res => { return res.calle }) : null;
+	const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => { return res.pisoDepto }) : null;
+	const deptos = saveDetpo !== undefined ? saveDetpo.map(res => { return res.departamento }) : null;
+	const provincias = saveProvincia !== undefined ? saveProvincia.map(res => { return res.provincia }) : null;
+	const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => { return res.localidad }) : null;
+	const barrios = saveBarrio !== undefined ? saveBarrio.map(res => { return res.barrio }) : null;
+	const cargosMap = cargos !== undefined ? cargos.map((cargo, i) => { return (cargo.nombreCargo); }) : [];
+	const tareasMap = tareasDesempeñadas !== undefined ? tareasDesempeñadas.map((tarea, i) => { return (tarea.tareaDesempeñada) }) : [];
+	const tiposDNIMap = saveTipoDNI !== undefined ? saveTipoDNI.map((tdni, i) => { return tdni.tipoDocumento }) : [];
+	const parentescosMap = parentescos !== undefined ? parentescos.map((parent, i) => { return parent.nombreParentesco }) : [];
+	const formasDePagoMap = formasDePago !== undefined ? formasDePago.map((forma, i) => { return forma.nombreFormadePago }) : [];
+	const modosContratacionMap = modosContratacion !== undefined ? modosContratacion.map((modo, i) => { return modo.modoContratacion }) : [];
+	const modosLiquidacionMap = modosLiquidacion !== undefined ? modosLiquidacion.map((modo, i) => { return modo.modoLiquidacion }) : [];
+	const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
 
 
 	return (
@@ -282,6 +282,7 @@ const Navbar = () => {
 								secondOptionCompare={inputFemEstadosCiviles ? inputFemEstadosCiviles : estadoCivilSelected.femenino}
 								urlApi={urlEstadosCiviles}
 								dispatchAddAction={addNewEstadoCivil}
+								dispatchDeleteAction={deleteEstadoCivil}
 								bodyPet={bodyPetitionEC}
 								idApi={idEstadoCivil}
 								resp={responses}

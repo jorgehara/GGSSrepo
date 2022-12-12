@@ -43,6 +43,7 @@ const BasicModal = ({
   idApi,
   bodyPet, // ---> el bodyPet toma el idApi
   dispatchAddAction,
+  dispatchDeleteAction,
   resp,
   onChange,
   // setRes,
@@ -66,14 +67,6 @@ const BasicModal = ({
   }
 
 
-  // POR SI NECESITO DSP
-
-  // const bodyPetitionEstudios = {
-  //   "IDestudio": ((array && array[array.length -1] && array && array[array.length -1].IDestudio) + 1),
-  //   "estudiosNivel": firstOptionCompare || secondOptionCompare
-  // }
-
-
 
   async function agregar() {
     setDisabled(!disabled);
@@ -81,11 +74,30 @@ const BasicModal = ({
   function modificar() {
     setDisabled(!disabled);
   }
-  function deleteOption() {
-    setDisabled(false);
-    return;
-  }
 
+
+
+    const deleteOption = async (id) => {
+        try{
+            await axios.delete(`${urlApi}/${id}`)
+            .then((res)=> {
+                dispatch(dispatchDeleteAction((id)));
+                swal({
+                    title: "Ok",
+                    text: "Eliminado con éxito",
+                    icon: "success",
+                })
+            })
+        }catch(err){
+            swal({
+                title: "Error",
+                text: err,
+                icon: "error",
+            })
+        }
+    }
+
+  
 
 	async function aceptar() {
 		try {
@@ -172,7 +184,7 @@ const BasicModal = ({
                   <button type="button" className="btn btn-danger crudBtn" onClick={modificar}>
                     MODIFICAR
                   </button>
-                  <button type="button" className="btn btn-danger crudBtn" onClick={() => deleteOption}>
+                  <button type="button" className="btn btn-danger crudBtn" onClick={() => deleteOption(idApi)}>
                     ELIMINAR
                   </button>
                 </div>
