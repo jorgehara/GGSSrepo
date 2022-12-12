@@ -33,7 +33,7 @@ const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,
               className='inputDateBaja' 
               id={idInput} 
               name={idInput}
-              onChange={(e)=> onChange(e, idInput)}
+              onChange={(e)=> onChange(e.target.value, idInput)}
               type="date" 
               value={valueGeneral && valueGeneral  ?  valueGeneral : valor} 
               disabled={disable}

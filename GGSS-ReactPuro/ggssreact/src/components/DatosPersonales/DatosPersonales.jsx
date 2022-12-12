@@ -60,12 +60,7 @@ const {
    const urlPaisesNac = "http://54.243.192.82/api/Paises";
    const urlEstudios = "http://54.243.192.82/api/Estudios";
    const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
-   const urlCargos = "http://54.243.192.82/api/Cargos"
-   const urlTareasDesempeñadas = "http://54.243.192.82/api/TareasDesempeñadas"
    const urlParentescos = "http://54.243.192.82/api/Parentescos"
-   const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos"
-   const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
-   const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
    const urlFamiliares = "http://54.243.192.82/api/Familiares";
    const urlNumeradores = "http://54.243.192.82/api/Numeradores";
    //#endregion
@@ -80,7 +75,7 @@ const {
 
   function onChangeValues(e, key){
       const newResponse = {...formDatosPersonales};
-      newResponse[key] = e.target.value;
+      newResponse[key] = e;
       setFormDatosPersonales({
         ...newResponse
       });
@@ -109,23 +104,20 @@ const {
   .then((res) =>  setEmpleados(res.data.result));
   
   },[])
+  
    useEffect(()=>{
      handleFetch( urlEstados, addEstados);
      handleFetch( urlEstadosCiviles,addEstadosCiviles);
      handleFetch( urlPaisesNac,addPaises);
      handleFetch( urlEstudios,addEstudios);
      handleFetch( urlTiposDNI,addTiposDocumento);
-     handleFetch( urlCargos,addCargos);
-     handleFetch( urlTareasDesempeñadas,addTareasDesempeñadas);
      handleFetch( urlParentescos,addParentescos);
-     handleFetch( urlFormasDePago,addFormasPago);
-     handleFetch( urlModosContratacion,addModosContratacion);
-     handleFetch( urlModosLiquidacion,addModosLiquidacion);
      handleFetch( urlFamiliares,addFamiliares);
      handleFetch( urlNumeradores,addNumeradores);
+    
    },[deshabilitar])
 
-   
+    
 
   useEffect(()=>{
     setDisableEstado(false);

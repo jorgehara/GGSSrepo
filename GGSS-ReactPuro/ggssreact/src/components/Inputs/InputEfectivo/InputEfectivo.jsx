@@ -38,10 +38,10 @@ const InputEfectivo = ({nameLabel, idInputCheck,idInputDate, idInputCheckAsigna,
     <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center mt-2'>
         <label className='' htmlFor="">{nameLabel}</label>
         <input onChange={(e)=> onChangeChecks(e, GET_INPUTS_VALUE)} checked={checked} className='checkEfectivo' type="checkbox" name={idInputCheck} id={idInputCheck}  />
-        <input onChange={(e)=> onChange(e, idInputDate)} disabled={disabled} className='inputdates' type="date" name={idInputDate} id={idInputDate} />
+        <input onChange={(e)=> onChange(e.target.value, idInputDate)} disabled={disabled} className='inputdates' type="date" name={idInputDate} id={idInputDate} />
         <input onChange={(e)=> onChangeCheck2s(e, GET_INPUTS_VALUE)} className=' checkAsigna' type="checkbox" name={idInputCheckAsigna} id={idInputCheckAsigna}  />
         <label className='labelAsigna' htmlFor="">{nameLabelAsigna}</label>
-        <select className='selectAsigna' disabled={disabled2} onChange={(e)=> onChange(e, idSelect)} name={idSelect} id={idSelect}>
+        <select className='selectAsigna' disabled={disabled2} onChange={(e)=> onChange(e.target.value, idSelect)} name={idSelect} id={idSelect}>
           <option value="">Seleccionar</option>
           {
             esquemas && esquemas.map((op, index)=>{

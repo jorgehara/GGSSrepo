@@ -49,13 +49,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
         dispatch({type:AXIOS_ERROR});
       }) 
    }
-  function onChange(e, action) {
-    dispatch(
-      {
-        type: action,
-        payload : {name : e.target.name, value : e.target.value}
-      });    
-  }
+  
   
   const domiciliosState = useSelector((state)=> state.domiciliosStates)
   const domicilioDelEmpleado1 = useSelector((state)=> state.generalState.domicilios);
@@ -64,7 +58,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
   
     function onChangeValues(e, key){
       const newResponse = {...formDatosPersonales};
-      newResponse[key] = e.target.value;
+      newResponse[key] = e;
       setFormDatosPersonales({
         ...newResponse
       });
@@ -127,7 +121,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
 
   //#endregion
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
-  const predeterminadoValue = predeterminado !== null ? predeterminado.toString() : "";
+
   useEffect(()=>{
     getEmpleados().then(res=> saveDomicilios(res))
   },[])
@@ -251,10 +245,6 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
   }
 
 
-    //Con este domicilio de los empleados, hay que mandarlo a la TableDomicilios y mapearlo para que muestre los datos por la tabla
-    //el problema es que el domicilio solo trae los id, por lo que habria que hacer un filter en la lsita de Provincias con el id que nos trae
-    // el domicilio (idBarrio) pegar en el getby id de localidades, con ese pegar en el getbyid de departamentos y con ese id pegar en el get by id
-    //de provincias para ver que provincias pertenecen a ese domicilio
 
   return (
     

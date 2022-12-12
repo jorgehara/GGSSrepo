@@ -11,8 +11,8 @@ const InputIngreso = ({nameLabel,nameInputDate, nameInput,  value, valueDate, on
   return (
     <div className='col-xl-12 d-flex fle-row justify-content-start align-items-center'>
         <label htmlFor="">{nameLabel}</label>
-        <input type="date" onChange={(e)=> onChange(e, nameInputDate)} value={valueDate && valueDate} className='inputDates' name={nameInputDate} id={nameInputDate} />
-        <input type="text" onChange={(e)=> onChange(e, nameInput)} value={value} className="textboxIngreso" name={nameInput} id={nameInput} />
+        <input type="date" onChange={(e)=> onChange(e.target.value, nameInputDate)} value={valueDate && valueDate} className='inputDates' name={nameInputDate} id={nameInputDate} />
+        <input type="text" onChange={(e)=> onChange(e.target.value, nameInput)} value={value} className="textboxIngreso" name={nameInput} id={nameInput} />
     </div>
   )
 }

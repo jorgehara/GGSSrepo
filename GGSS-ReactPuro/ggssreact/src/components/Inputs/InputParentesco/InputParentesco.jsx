@@ -47,7 +47,7 @@ const InputParentesco = ({
             name={idInput}
             id={idInput}
             value={value}
-            onChange={(e)=> onChange(e, idInput)}
+            onChange={(e)=> onChange(e.target.value, idInput)}
           >
             <option value="">Seleccionar</option>
             {array  &&
