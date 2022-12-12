@@ -127,36 +127,35 @@ const Navbar = () => {
 	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
 	const bodyPetitionEC = { ...responses.modalDataInputs, idEstadoCivil: idEstadoCivil };
 	//Estudios
-	const idEstudio = ((estudiosValue && estudiosValue[estudiosValue.length - 1] !== undefined && (estudiosValue[estudiosValue.length - 1].iDestudios)))
+	const idEstudio = ((estudiosValue && estudiosValue[estudiosValue.length - 1] !== undefined && (estudiosValue[estudiosValue.length - 1].iDestudios))  + 1)
 	const bodyPetEstudio = {...responses.modalDataInputs, iDestudios: idEstudio  }
 
 
 
 
-
-	const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
-	const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
-	const estadosCiviles = estadosCivilesMasculinos.concat(estadosCivilesFemeninos);
-	const estadosArray = saveEstado.map((m, i) => { return (m.nombreEstado) });
-	const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nombrePais); }) : [];
-	const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i) => { return (nac.estudiosNivel); }) : [];
-	const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
-	const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
-	const nacionalidades = nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
-	const calles = saveCalle !== undefined ? saveCalle.map(res => { return res.calle }) : null;
-	const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => { return res.pisoDepto }) : null;
-	const deptos = saveDetpo !== undefined ? saveDetpo.map(res => { return res.departamento }) : null;
-	const provincias = saveProvincia !== undefined ? saveProvincia.map(res => { return res.provincia }) : null;
-	const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => { return res.localidad }) : null;
-	const barrios = saveBarrio !== undefined ? saveBarrio.map(res => { return res.barrio }) : null;
-	const cargosMap = cargos !== undefined ? cargos.map((cargo, i) => { return (cargo.nombreCargo); }) : [];
-	const tareasMap = tareasDesempeñadas !== undefined ? tareasDesempeñadas.map((tarea, i) => { return (tarea.tareaDesempeñada) }) : [];
-	const tiposDNIMap = saveTipoDNI !== undefined ? saveTipoDNI.map((tdni, i) => { return tdni.tipoDocumento }) : [];
-	const parentescosMap = parentescos !== undefined ? parentescos.map((parent, i) => { return parent.nombreParentesco }) : [];
-	const formasDePagoMap = formasDePago !== undefined ? formasDePago.map((forma, i) => { return forma.nombreFormadePago }) : [];
-	const modosContratacionMap = modosContratacion !== undefined ? modosContratacion.map((modo, i) => { return modo.modoContratacion }) : [];
-	const modosLiquidacionMap = modosLiquidacion !== undefined ? modosLiquidacion.map((modo, i) => { return modo.modoLiquidacion }) : [];
-	const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
+	// const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
+	// const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
+	// const estadosCiviles = estadosCivilesMasculinos.concat(estadosCivilesFemeninos);
+	// const estadosArray = saveEstado.map((m, i) => { return (m.nombreEstado) });
+	// const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nombrePais); }) : [];
+	// const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i) => { return (nac.estudiosNivel); }) : [];
+	// const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
+	// const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
+	// const nacionalidades = nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
+	// const calles = saveCalle !== undefined ? saveCalle.map(res => { return res.calle }) : null;
+	// const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => { return res.pisoDepto }) : null;
+	// const deptos = saveDetpo !== undefined ? saveDetpo.map(res => { return res.departamento }) : null;
+	// const provincias = saveProvincia !== undefined ? saveProvincia.map(res => { return res.provincia }) : null;
+	// const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => { return res.localidad }) : null;
+	// const barrios = saveBarrio !== undefined ? saveBarrio.map(res => { return res.barrio }) : null;
+	// const cargosMap = cargos !== undefined ? cargos.map((cargo, i) => { return (cargo.nombreCargo); }) : [];
+	// const tareasMap = tareasDesempeñadas !== undefined ? tareasDesempeñadas.map((tarea, i) => { return (tarea.tareaDesempeñada) }) : [];
+	// const tiposDNIMap = saveTipoDNI !== undefined ? saveTipoDNI.map((tdni, i) => { return tdni.tipoDocumento }) : [];
+	// const parentescosMap = parentescos !== undefined ? parentescos.map((parent, i) => { return parent.nombreParentesco }) : [];
+	// const formasDePagoMap = formasDePago !== undefined ? formasDePago.map((forma, i) => { return forma.nombreFormadePago }) : [];
+	// const modosContratacionMap = modosContratacion !== undefined ? modosContratacion.map((modo, i) => { return modo.modoContratacion }) : [];
+	// const modosLiquidacionMap = modosLiquidacion !== undefined ? modosLiquidacion.map((modo, i) => { return modo.modoLiquidacion }) : [];
+	// const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
 
 
 	return (
@@ -287,7 +286,6 @@ const Navbar = () => {
 								idApi={idEstadoCivil}
 								resp={responses}
 								onChange={onChangeValues}
-							// postFn={aceptar}
 							// generalState={modals} 
 							// setGeneralState={setModals} 
 							// onSelect={onSelect} 
@@ -302,8 +300,7 @@ const Navbar = () => {
 								nameModal="Estudios"
 								placeholder={objectEstudios}
 								array={estudiosValue && estudiosValue}
-								propArrayOp="estudiosNivel"
-								propArrayId="iDestudios"
+								propArrayOp="estudiosNivel" propArrayId="iDestudios"
 								action={addSelectedEstudio}
 								opcionSelected={estudioSelected}
 								inputIdCompare="estudiosNivel"
