@@ -284,7 +284,7 @@ const Navbar = () => {
 								dispatchAddAction={addNewEstadoCivil}
 								dispatchDeleteAction={deleteEstadoCivil}
 								bodyPet={bodyPetitionEC}
-								idApi={idEstadoCivil}
+								idApi={getIdEstadoCivil}
 								resp={responses}
 								onChange={onChangeValues}
 							// generalState={modals} 
