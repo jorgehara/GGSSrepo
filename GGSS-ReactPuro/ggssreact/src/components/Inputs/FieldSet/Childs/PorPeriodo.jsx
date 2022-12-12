@@ -4,18 +4,29 @@ import InputCbo from '../../InputCbo/InputCbo'
 import InputDate from '../../InputDate/InputDate'
 import InputForm from '../../InputForm/InputForm'
 
-const PorPeriodo = ({valueId,propArrayOpFem, array, columns1, columns2 }) => {
+const PorPeriodo = ({valueId,propArrayOpFem, array, onChange,valueForm }) => {
   return (
     <>
           <div className='row'>
               <div className='col-xl-4'>
-                  <InputCbo display={false} value={[]} valueId={valueId} propArrayOpFem={propArrayOpFem} array={array} nameLabel="Año:" nameButton="..." />
+                  <InputCbo 
+                  display={false} 
+                  onChange={onChange} 
+                  value={valueForm?.inputCboAñosLicencia && valueForm?.inputCboAñosLicencia} 
+                  idInput="inputCboAñosLicencia" 
+                  valueId={valueId} 
+                  propArrayOp={propArrayOpFem}
+                  propArrayOpFem={propArrayOpFem} 
+                  idSelected = {valueForm?.inputCboAñosLicencia && valueForm?.inputCboAñosLicencia }
+                  array={array} 
+                  nameLabel="Año:" 
+                  nameButton="..." />
               </div>
               <div className='col-xl-4'>
-                  <InputForm display={false} value={[]} array={[]} nameLabel="Cant Días Disponibles:" nameButton="..." />
+                  <InputForm display={false} onChange={onChange} idInput="inputCantDiasDispLicencia" value={valueForm?.inputCantDiasDispLicencia && valueForm?.inputCantDiasDispLicencia} array={[]} nameLabel="Cant Días Disponibles:" nameButton="..." />
               </div>
               <div className='col-xl-4'>
-                  <InputDate nameInput="Vencimiento" />
+                  <InputDate valueCheck={true} nameInput="Vencimiento" onChange={onChange} idInput="inputVencimientoLicencias" value={valueForm?.inputVencimientoLicencias && valueForm?.inputVencimientoLicencias} />
               </div>
           </div></>
             

@@ -42,7 +42,7 @@ const EstudioFlia = ({
             id={idInput}
             value={valueInputEstudios}
             onChange={
-            (e)=> onChange(e, idInput)
+            (e)=> onChange(e.target.value, idInput)
           }
           >
             <option value="">Seleccionar</option>

@@ -58,7 +58,7 @@ const NacionalidadFlia = ({
           disabled={disable}
           id={idInput}
           name={idInput}
-          onChange={(e)=> onChange(e, idInput)}
+          onChange={(e)=> onChange(e.target.value, idInput)}
         >
           <option value="">Seleccionar</option>
             {/* {

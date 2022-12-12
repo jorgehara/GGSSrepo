@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedOption } from '../../redux/actions/licenciasActions';
 import { OPTIONS_FORMULARIO } from '../../redux/types/LicenciasTypes';
@@ -6,8 +6,9 @@ import EmployeData from '../EmployeData/EmployeData'
 import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
 
-const Licencias = () => {
+const Licencias = ({responses, setResponses}) => {
     const cantidadDias = 10;
+    const [ formLicencias, setFormLicencias ] = useState(responses["formLicencias"]);
 
     const dispatch = useDispatch();
     const opciones = [{
@@ -24,7 +25,6 @@ const Licencias = () => {
 
     const selectedOptions = useSelector((state)=> state.licenciasState.selectedOptionLicencia);
 
-    console.log(selectedOptions);
 
     const newAños = años && años.map((año)=>{
         return (
@@ -33,6 +33,21 @@ const Licencias = () => {
             }
         )
     })
+
+    function onChangeValues(e, key){
+        const newResponse = {...formLicencias};
+        newResponse[key] = e;
+        setFormLicencias({
+            ...newResponse
+        });
+    };
+    useEffect(() => {
+        setResponses({
+          ...responses,
+          formLicencias
+        });      
+    },[formLicencias]);
+
     function onChange(e, action) {
         dispatch(
           {
@@ -49,10 +64,22 @@ return (
                 <b>Total días disponibles : {cantidadDias}</b>
             </div>
             <div className='d-flex flex-row justify-content-center align-items-center col-xl-12'>
-                <InputCbo display={false} idInput="inputOpcionsLicencias" value={[]} propArrayOpFem="opcion" array={opciones} valueId="opcion" nameLabel="Opciones:" nameButton="..." onChange={onChange} provinciaAction={selectedOption} action={OPTIONS_FORMULARIO}/>
+                <InputCbo 
+                display={false} 
+                idInput="inputOpcionsLicencias" 
+                value={[]} 
+                propArrayOpFem="opcion" 
+                array={opciones} 
+                valueId="opcion" 
+                nameLabel="Opciones:" 
+                nameButton="..." 
+                onChange={onChangeValues} 
+                provinciaAction={selectedOption} 
+                action={OPTIONS_FORMULARIO} 
+                idSelected = {formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} />
             </div>
             <div className='col-xl-12 mt-2'>
-                <FieldSet array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={selectedOptions.opcion} />
+                <FieldSet array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} onChange={onChangeValues} valueForm={formLicencias && formLicencias} />
             </div>            
         </div>
     </div>

@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { inputButtonClasess, inputButtonClasessEmpleador, inputButtonClassEStudiopsLiquidacion } from "../../classes/classes";
+import { inputButtonClasess, inputButtonClasessEmpleador } from "../../classes/classes";
 import { addAgrupamientos, addBancos, addCargos, addCategorias, addCentroDeCosto, addConvenios, addDirecciones, addEmpleadores, addEsquemas, addFormasPago, addLugaresDePago, addModosContratacion, addModosLiquidacion, addObrasSociales, addSectorDepto, addSindicatos, addTareasDesempeñadas } from "../../redux/actions/fetchActions";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import { GET_INPUTS_VALUE } from "../../redux/types/liquidacionTypes";
@@ -18,7 +18,9 @@ const Liquidacion = ({responses, setResponses}) => {
     const [ formLiquidacion, setFormLiquidacion ] = useState(responses["formLiquidacion"]);
 
     const dispatch = useDispatch();
+    const deshabilitar = useSelector((state)=> state.employeStates.disable);
 
+    //#region ------------------------------------------------------------------------------------URLs
     const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
     const urlConvenios = "http://54.243.192.82/api/Convenios";
     const urlCategorias = "http://54.243.192.82/api/Categorias";
@@ -36,17 +38,12 @@ const Liquidacion = ({responses, setResponses}) => {
     const urlDirecciones = "http://54.243.192.82/api/Direcciones";
     const urlSindicatos = "http://54.243.192.82/api/Sindicatos";
     const urlEsquemas = "http://54.243.192.82/api/Esquemas";
-
-    function onChange(e, action) {
-        dispatch(
-          {
-            type: action,
-            payload : {name : e.target.name, value : e.target.value}
-          });    
-      }
+//#endregion
+    
+    
     function onChangeValues(e, key){
         const newResponse = {...formLiquidacion};
-        newResponse[key] = e.target.value;
+        newResponse[key] = e;
         setFormLiquidacion({
             ...newResponse
         });
@@ -70,7 +67,8 @@ const Liquidacion = ({responses, setResponses}) => {
           .catch((err)=>{
             dispatch({type:AXIOS_ERROR});
           })
-       }
+    }
+//#region ----------------------------------------------------------------------------------------useEffects
     useEffect(()=>{
         handleFetch( urlConvenios, addConvenios);
         handleFetch( urlEmpleadores,addEmpleadores);
@@ -90,10 +88,12 @@ const Liquidacion = ({responses, setResponses}) => {
         handleFetch( urlSindicatos, addSindicatos);
         handleFetch( urlEsquemas, addEsquemas);
     },[])
-
-    const empleadores = useSelector((state)=> state.generalState.empleadores);
-    // const formularioValue = useSelector((state)=> state.liquidacionState.formulario);
-    // const empleadorValue = useSelector((state)=> state.liquidacionState.formulario.inputEmpleador);
+//#endregion
+    
+//#region -----------------------------------------------------------------------------------------Constantes de Datos Redux
+const empleadores = useSelector((state)=> state.generalState.empleadores);
+    const formularioValue = useSelector((state)=> state.liquidacionState.formulario);
+    const empleadorValue = useSelector((state)=> state.liquidacionState.formulario.inputEmpleador);
     const convenios = useSelector((state)=> state.generalState.convenios);
     const categorias = useSelector((state)=> state.generalState.categorias);
     const agrupamientos = useSelector((state)=> state.generalState.agrupamientos);
@@ -117,8 +117,7 @@ const Liquidacion = ({responses, setResponses}) => {
     const inputCheckEmbargos = useSelector((state)=> state.liquidacionState.formulario.inputCheckEmbargo);
     const inputCheckSumAdministrativo = useSelector((state)=> state.liquidacionState.formulario.inputCheckSumAdministrativo);
     const inputCheckLicSinGoce = useSelector((state)=> state.liquidacionState.formulario.inputCheckLicSinGoce);
-
-    
+//#endregion
 
 return (
     <div className="container">

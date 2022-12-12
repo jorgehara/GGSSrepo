@@ -22,8 +22,8 @@ const Empleados = () => {
     function handleTabChange(value){        
         setTabIndex(value);
     };  
-    console.log(responses);
     
+    console.log(responses);
 return (
     <div className='container-fluid'>
         <div className='row'>

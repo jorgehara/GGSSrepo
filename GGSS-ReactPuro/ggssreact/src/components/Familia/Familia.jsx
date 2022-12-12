@@ -22,7 +22,7 @@ import { ADD_FAMILIA } from "../../redux/types/familiaTypes";
 import { ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import axios from "axios";
 import swal from "sweetalert";
-import { addNewFamiliar, deleteOneFamiliar } from "../../redux/actions/fetchActions";
+import { addEstudios, addNewFamiliar, addPaises, addParentescos, addTiposDocumento, deleteOneFamiliar } from "../../redux/actions/fetchActions";
 import { disableFunctions } from "../../redux/actions/employeActions";
 
 const Familia = ({responses, setResponses}) => {
@@ -49,10 +49,11 @@ const Familia = ({responses, setResponses}) => {
   });
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const urlParentesco = "http://54.243.192.82/api/Parentescos";
+  const urlParentescos = "http://54.243.192.82/api/Parentescos";
   const urlFamiliares = "http://54.243.192.82/api/Familiares";
   const urlTiposDocumentos = "http://54.243.192.82/api/TiposDocumento";
-
+  const urlPaisesNac = "http://54.243.192.82/api/Paises";
+  const urlEstudios = "http://54.243.192.82/api/Estudios";
 
   function onChange(e, action) {
     dispatch(
@@ -63,7 +64,7 @@ const Familia = ({responses, setResponses}) => {
   }
 function onChangeValues(e, key){
       let newResponse = {...formFamilia};
-      newResponse[key] = e.target.value;
+      newResponse[key] = e;
       setFormFamilia({
         ...newResponse
       });
@@ -89,10 +90,10 @@ console.log(responses["formFamilia"])
   const familiaresValue = useSelector((state)=> state.generalState.familiares);
   const idFamiliarSelected = useSelector((state)=> state.familiaStates.familiar);
   const familiaresPorEmpleado = familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
-
+  const deshabilitar = useSelector((state)=> state.employeStates.disable);
   
 
-
+console.log(estudiosValue)
   //#endregion
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
@@ -112,19 +113,7 @@ console.log(responses["formFamilia"])
 
   //#endregion
   //#region ------------------------------------------------------------------------------USEEFFECTS
-  useEffect(() => {
-    getData(urlParentesco, saveParentescos);
-  }, [])
-  useEffect(() => {
-    getData(urlFamiliares, saveFamiliares);
-  }, [])
-  useEffect(() => {
-    getFamiliarByIdEmpleado(saveFamiliar, idEmpleadoSelected).then(res => saveFamiliarPorEmpleado(res));
-
-  }, [idEmpleadoSelected])
-  useEffect(() => {
-
-  }, [parenSeleccionado])
+ 
   //#endregion
   //#region ------------------------------------------------------------------------------Objetos de props
   const propsRadioButton = {
@@ -166,6 +155,13 @@ console.log(responses["formFamilia"])
         dispatch({ type: AXIOS_ERROR });
       })
   }
+  useEffect(()=>{
+    handleFetch( urlTiposDocumentos,addTiposDocumento);
+    handleFetch( urlPaisesNac,addPaises);
+    handleFetch( urlEstudios,addEstudios);
+    handleFetch( urlParentescos,addParentescos);
+},[deshabilitar])
+
   let bodyPetition = {
     "iDfamiliares": ((familiaresValue && familiaresValue[familiaresValue.length -1]  && (familiaresValue[familiaresValue.length -1].iDfamiliares))+1),
     "iDempleado": empleadoUno.iDempleado,
@@ -272,7 +268,7 @@ console.log(responses["formFamilia"])
                   formFamilia?.idRadioBtn && formFamilia?.idRadioBtn
                 }
                 valueDNI={
-                  !familiarSeleccionado  ? (empleadoUno && empleadoUno.nroDocumento) : familiarSeleccionado.nroDocumento
+                  formFamilia?.inputNroDni && formFamilia?.inputNroDni 
                 }
                 nameFirst="Masculino"
                 nameSecond="Femenino"
@@ -283,6 +279,7 @@ console.log(responses["formFamilia"])
                 onChange={onChangeValues}
                 datosFamiliaValue1={ formFamilia?.inputCmbDni && formFamilia?.inputCmbDni }
                 datosFamiliaRadio={formFamilia?.idRadioBtn && formFamilia?.idRadioBtn}
+                propSelected= {formFamilia?.inputCmbDni && formFamilia?.inputCmbDni}
               />
               <InputParentesco
                 nameInput="Parentesco"

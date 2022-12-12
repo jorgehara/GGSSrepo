@@ -38,7 +38,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                 id={id} 
                 name={id}
                 disabled={disabled}
-                onChange={(e)=> onChange(e, id)}
+                onChange={(e)=> onChange(e.target.value, id)}
                 />
         <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
               className={`${clasess.classFive}`} disabled={disabled}>
@@ -60,7 +60,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     id={id} 
                     name={id}
                     disabled={disabled}
-                    onChange={(e)=> onChange(e,id )}
+                    onChange={(e)=> onChange(e.target.value,id )}
                     />
             <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
                   className="btn btn-validacion btn-outline-danger" disabled={disabled}>

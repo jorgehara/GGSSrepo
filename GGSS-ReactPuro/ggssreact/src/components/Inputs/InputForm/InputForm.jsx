@@ -28,7 +28,7 @@ const InputForm = ({
           id={idInput}
           placeholder={placeHolder}
           value={ cancelar ? null : value  }
-          onChange={(e)=>onChange(e, idInput)}
+          onChange={(e)=>onChange(e.target.value, idInput)}
           disabled={disabled}
           name={idInput}
           onKeyPress={(numbers && validateNumbers) || (!numbers && validateLetters)}

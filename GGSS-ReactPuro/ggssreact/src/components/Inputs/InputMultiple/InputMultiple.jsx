@@ -16,11 +16,10 @@ const InputMultiple = ({
   onChange,
   datosFamiliaValue1,
   datosFamiliaRadio,
-  generalState,
-  setGeneralState,
   action,
   namePropOp,
-  idSelected
+  idSelected,
+  propSelected
 }) => {
   const [valor, setValor] = useState("");
   const [valorRadioM, setValorRadioM] = useState(false);
@@ -51,7 +50,7 @@ const InputMultiple = ({
         setValorRadioM(false);
       } 
     }    
-  
+  console.log(valueDNI && valueDNI.inputNroDni)
  
   return (
     // <div className="container-flex align-items-center">
@@ -64,10 +63,11 @@ const InputMultiple = ({
             
           </div>
           <div className="col-xl-4 divCboMultiple  d-flex justify-content-start align-items-center">
-            <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e,propsRadioButton.idCboDni)}>
+            <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e.target.value,propsRadioButton.idCboDni)}>
               <option value="">Seleccionar</option>
               {optionsDNI && optionsDNI.map((op, i) => {
-                return <option key={i} value={op[idSelected]}>{op[namePropOp]}</option>;
+                return propSelected === op[idSelected] ? <option key={i} selected value={op[idSelected]}>{op[namePropOp]}</option> :
+                <option key={i} value={op[idSelected]}>{op[namePropOp]}</option> 
               })}
             </select>
           </div>
@@ -81,14 +81,13 @@ const InputMultiple = ({
               disabled={disable}
               id={propsRadioButton.idNroDni}
               name={propsRadioButton.idNroDni}
-              onChange={(e)=>onChange(e,propsRadioButton.idNroDni)}
+              onChange={(e)=>onChange(e.target.value, propsRadioButton.idNroDni)}
             ></input>
           </div>
           <div className="form__grupo__icon">
             <i className="fas fa-times-circle"></i>
           </div>
           <div className="form__grupo__error">
-            <p></p>
           </div>
           <div className="col-xl-4  form-inputs-radioFlia">
             <div className="form__grupo__label">
@@ -105,7 +104,7 @@ const InputMultiple = ({
                   name={propsRadioButton.idRadioBtn}
                   defaultChecked
                   checked={valorRadioM}
-                  onChange={(e)=>onChange(e, propsRadioButton.idRadioBtn)}
+                  onChange={(e)=>onChange(e.target.value, propsRadioButton.idRadioBtn)}
                   value="M"
                   disabled={disable}
                 />
@@ -121,7 +120,7 @@ const InputMultiple = ({
                   defaultChecked
                   name={propsRadioButton.idRadioBtn}
                   checked={valorRadioF}
-                  onChange={(e)=>onChange(e, action)}
+                  onChange={(e)=>onChange(e.target.value, action)}
                   value="F"
                   disabled={disable}
                 />

@@ -32,7 +32,7 @@ return (
                             <>    
                                 
                                 <div class="d-flex flex-row justify-context-center align-items-center" key={i} >
-                                    <input type="checkbox" name={idInput} id={`${idInput}${i}`} checked={checked[i]} onChange={(e)=> {onChange(e, idInput);const updateChecked = checked.map((item, index)=> index === i ? !item : item);
+                                    <input type="checkbox" name={idInput} id={`${idInput}${i}`} checked={checked[i]} onChange={(e)=> {onChange(e.target.value, idInput);const updateChecked = checked.map((item, index)=> index === i ? !item : item);
                                     setChecked(updateChecked); }} value={op[propArrayId]} className='form-check-input checkList'/>
                                     <label class="form-check-label " htmlFor="checkOption">{op[porpArrayOp]}</label>
                                 </div>

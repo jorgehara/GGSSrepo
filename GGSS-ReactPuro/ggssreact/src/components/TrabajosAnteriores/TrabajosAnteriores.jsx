@@ -12,74 +12,64 @@ import InputTextTrabajos from '../Inputs/InputTextTrabajos/InputTextTrabajos';
 import TableTrabajosAnteriores from '../Tables/TableTrabajosAnteriores';
 import "./TrabajosAnteriores.css";
 
-const TrabajosAnteriores = () => {
+const TrabajosAnteriores = ({responses, setResponses}) => {
     const [checked , setChecked] = useState(false);
     const [disabled , setDisabled] = useState(false);
+    const [ formTrabajosAnteriores, setFormTrabajosAnteriores ] = useState(responses["formTrabajosAnteriores"]);
     const dispatch = useDispatch();
 
     const handleFetch=(url, action )=>{
-        dispatch({type: SET_LOADING});
-          axios.get(url)
-          .then((res)=>{
-            dispatch( action(res.data.result));
-          })
-          .catch((err)=>{
-            dispatch({type:AXIOS_ERROR});
-          })
-       }
-       function onChange(e, action) {
-        dispatch(
-          {
-            type: action,
-            payload : {name : e.target.name, value : e.target.value}
-          });    
-      }
+    dispatch({type: SET_LOADING});
+        axios.get(url)
+        .then((res)=>{
+        dispatch( action(res.data.result));
+        })
+        .catch((err)=>{
+        dispatch({type:AXIOS_ERROR});
+        })
+    }
+    
+    function onChangeValues(e, key){
+        const newResponse = {...formTrabajosAnteriores};
+        newResponse[key] = e;
+        setFormTrabajosAnteriores({
+            ...newResponse
+        });
+    };
+
+
+    useEffect(() => {
+    setResponses({
+        ...responses,
+        formTrabajosAnteriores
+    });      
+},[formTrabajosAnteriores]);
+    
     const urlTrabajosAnteriores = "http://54.243.192.82/api/TrabajosAnteriores";
 
     useEffect(()=>{
         handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores)
     },[])
 
-
     const estado = useSelector((state)=> state.trabajosAnteriores.formulario);
 
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
-
     const trabajosAnteriores = useSelector((state)=> state.trabajosAnteriores.trabajosAnteriores);
-
-    const valueInputDateDesde = useSelector((state)=> state.trabajosAnteriores.formulario.idDateDesde);
-    const valueInputDateHasta = useSelector((state)=> state.trabajosAnteriores.formulario.idDateHasta);
-    const valueInputDescripcion = useSelector((state)=> state.trabajosAnteriores.formulario.idDescripcionTrabajos);
-
-    const valueIdTrabajoAnterior = useSelector((state)=> state.trabajosAnteriores.idTrabajoAnterior);
-
-    console.log(trabajosAnteriores)
-
-    useEffect(()=>{
-    },[estado])
+    const valueIdTrabajoAnterior = useSelector((state)=> state.trabajosAnteriores.idTrabajoAnterior);    
 
     const columns = ["Seleccionar" , "Desde" , "Hasta", "Descripción"];
 
     const trabajosAnterioresDelEmpleado = trabajosAnteriores && trabajosAnteriores.filter((trabajo)=> trabajo.idEmpleado === empleadoUno.iDempleado);
-    const valueCheck = useSelector((state)=> state.trabajosAnteriores.formulario.idCheckTrabajos);
-
-    console.log(valueCheck);
-
-    console.log(trabajosAnterioresDelEmpleado);
 
     const bodyPetition = {
         "idEmpleado": empleadoUno.iDempleado,
-        "desde": valueInputDateDesde,
-        "hasta": valueInputDateHasta,
-        "descripcion": valueInputDescripcion,
-        "actualidad": valueCheck
-    }
-   
+        "desde": formTrabajosAnteriores?.idDateDesde && formTrabajosAnteriores?.idDateDesde,
+        "hasta": formTrabajosAnteriores?.idDateHasta && formTrabajosAnteriores?.idDateHasta,
+        "descripcion": formTrabajosAnteriores?.idDescripcionTrabajos && formTrabajosAnteriores?.idDescripcionTrabajos,
+        "actualidad": formTrabajosAnteriores?.idCheckTrabajos && formTrabajosAnteriores?.idCheckTrabajos
+    }  
 
-    console.log(bodyPetition)
-
-
-    const onCheckActualidad=(e)=>{
+    const onCheckActualidad=(e, key, idValues)=>{
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
         let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -89,24 +79,22 @@ const TrabajosAnteriores = () => {
         
         if(!checked){
             setDisabled(true);
-            dispatch(
-                {
-                  type: GET_INPUT,
-                  payload : {name : e.target.name, value : true}
-                })
-            dispatch({
-                type: GET_INPUT,
-                payload : {name : "idDateHasta", value : null}
-              });
-                return;
-        }
-        setDisabled(false);
-        dispatch(
-            {
-              type: GET_INPUT,
-              payload : {name : e.target.name, value : false}
+            const newRespons = {...formTrabajosAnteriores}
+            newRespons[idValues] = "";
+            newRespons[key] = e;
+            setFormTrabajosAnteriores({
+                ...newRespons
             });
-    }
+            return;
+        }
+        const newRespons = {...formTrabajosAnteriores}
+        setDisabled(false);
+        newRespons[key] = e;
+            setFormTrabajosAnteriores({
+                ...newRespons
+            });
+            return;
+        }
 
 
     const sendData=async()=>{
@@ -164,7 +152,7 @@ const TrabajosAnteriores = () => {
             <div className='col-xl-4'>
                 <div className='d-flex flex-row justify-content-start align-items-center mt-2 '>
                     <label htmlFor="idDateDesde">Desde:</label>
-                    <input type="date" onChange={(e)=> onChange(e, GET_INPUT)} value={valueInputDateDesde} name="idDateDesde" id="idDateDesde" className='dateTrabajos '/>
+                    <input type="date" onChange={(e)=> onChangeValues(e.target.value, "idDateDesde")} value={formTrabajosAnteriores?.idDateDesde && formTrabajosAnteriores?.idDateDesde} name="idDateDesde" id="idDateDesde" className='dateTrabajos '/>
                 </div>
             </div>        
         </div>
@@ -172,14 +160,14 @@ const TrabajosAnteriores = () => {
             <div className='col-xl-4'>
                 <div className='d-flex flex-row justify-content-start align-items-center mt-2 '>
                     <label htmlFor="idDateDesde">Hasta:</label>
-                    <input type="date" onChange={(e)=> onChange(e, GET_INPUT)} disabled={disabled} value={valueInputDateHasta} name="idDateHasta" id="idDateHasta" className='dateTrabajos2 '/>
-                    <input type="checkbox" name="idCheckTrabajos" id="idCheckTrabajos" value={valueCheck} onClick={(e)=> setChecked(!checked)}  className='checkTrabajos' onChange={(e)=>onCheckActualidad(e)} />
+                    <input type="date" onChange={(e)=> onChangeValues(e.target.value, "idDateHasta")} disabled={disabled} value={checked ? null : formTrabajosAnteriores?.idDateHasta && formTrabajosAnteriores?.idDateHasta} name="idDateHasta" id="idDateHasta" className='dateTrabajos2 '/>
+                    <input type="checkbox" name="idCheckTrabajos" id="idCheckTrabajos" className='checkTrabajos' onChange={(e)=>{ setChecked(!checked); onCheckActualidad(e.target.checked , "idCheckTrabajos", "idDateHasta")}} />
                     <label htmlFor="idDateDesde" className='labelTrabajos'>Hasta la Actualidad:</label>
                 </div>
             </div>        
         </div>
         <div className='row'>
-            <InputTextTrabajos nameLabel="Descripción" inputId="idDescripcionTrabajos" onChange={onChange} value={valueInputDescripcion} action={GET_INPUT} onSend={sendData} onDelete={deleteTRabajoAnterior} id={valueIdTrabajoAnterior} />
+            <InputTextTrabajos nameLabel="Descripción" inputId="idDescripcionTrabajos" onChange={onChangeValues} value={formTrabajosAnteriores?.idDescripcionTrabajos && formTrabajosAnteriores?.idDescripcionTrabajos} action={GET_INPUT} onSend={sendData} onDelete={deleteTRabajoAnterior} id={valueIdTrabajoAnterior} />
         </div>
         <div className='row'>
             <TableTrabajosAnteriores nameLabel="Historial:" columns={columns} array={trabajosAnterioresDelEmpleado}/>

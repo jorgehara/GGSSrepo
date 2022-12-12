@@ -43,7 +43,7 @@ const InputFormPiso = ({
           id={idInput}
           placeholder={placeHolder}
           value={ valor  }
-          onChange={(e) => onChange(e,idInput)}
+          onChange={(e) => onChange(e.target.value,idInput)}
           disabled={disabled}
           name={nameInput}
           onKeyPress={(numbers && validateNumbers) || (!numbers && validateLetters)}

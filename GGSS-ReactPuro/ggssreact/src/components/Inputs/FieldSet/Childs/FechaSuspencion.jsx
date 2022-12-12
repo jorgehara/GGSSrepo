@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import InputDate from '../../InputDate/InputDate'
 import "./Childs.css";
 
 
-const FechaSuspencion = () => {
+const FechaSuspencion = ({valueForm, onChange}) => {
+  const [checked, setChecked] = useState(false);
+  const [disable, setDisable] = useState(false);
+
   return (
     <div className='row'>
         <div className='col-xl-12'>
-            <InputDate nameInput="Fecha Suspención:" />
+            <InputDate disabled={disable} nameInput="Fecha Suspención:" onChange={onChange} valueCheck={true} idInput="inputDateSuspLic" value={checked ? "" : valueForm?.inputDateSuspLic && valueForm?.inputDateSuspLic} />
             <div className='d-flex flex-row justify-content-start align-items-center'>
                 <div className='space'/>
-                <input type="checkbox" className='mt-1' name="inputQuitaSusp" id="inputQuitaSusp" />
+                <input type="checkbox" checked={checked} className='mt-1' name="inputQuitaSusp" id="inputQuitaSusp" onChange={(e)=>{ setDisable(!disable); setChecked(!checked); onChange(e.target.checked, "inputQuitaSusp")}} />
                 <label htmlFor="inputQuitaSusp">Quitar Fecha de Suspensión</label>
             </div>
         </div>

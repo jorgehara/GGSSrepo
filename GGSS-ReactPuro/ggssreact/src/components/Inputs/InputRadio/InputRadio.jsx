@@ -43,7 +43,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                  id={idInput} 
                  name={idInput} 
                  checked={valorRadioM} 
-                 onChange={(e)=> onChange(e, idInput)} 
+                 onChange={(e)=> onChange(e.target.value, idInput)} 
                  value={asidePagos ? 1 : "M"} 
                  disabled={disabled}/>
           <label className={classes.classFive} htmlFor="inlineCheckbox1">{nameFirst}</label>
@@ -55,7 +55,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                 id={idInput} 
                 name={idInput}                  
                 checked={valorRadioF} 
-                onChange={(e)=> onChange(e, idInput)} 
+                onChange={(e)=> onChange(e.target.value, idInput)} 
                 value={asidePagos ? 2 : "F"} 
                 disabled={disabled}/>
         <label className={classes.classEigth} htmlFor="inlineCheckbox2">{nameSecond}</label>
@@ -72,7 +72,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                  id={idInput} 
                  name={idInput}                   
                  checked={valorRadioM} 
-                 onChange={(e)=> onChange(e, idInput)} 
+                 onChange={(e)=> onChange(e.target.value, idInput)} 
                  value="M" 
                  disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox1">{nameFirst}</label>
@@ -84,7 +84,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
                 id={idInput} 
                 name={idInput}                  
                 checked={valorRadioF} 
-                onChange={(e)=> onChange(e, idInput)} 
+                onChange={(e)=> onChange(e.target.value, idInput)} 
                 value="F" 
                 disabled={disabled}/>
         <label className="form-check-label" htmlFor="inlineCheckbox2">{nameSecond}</label>
