@@ -8,7 +8,7 @@ import InputDate from "../../Inputs/InputDate/InputDate";
 import InputNumModal from "../../Inputs/InputsModal/InputNumModal/InputNumModal";
 import Checkbox from "../../Inputs/Checkbox/Checkbox";
 import CheckboxNum from "../../Inputs/CheckboxNum/CheckboxNum";
-import { useDispatch,  useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CANCEL_MODALS, GET_ESTADOSCIVILES } from "../../../redux/types/modalesTypes";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -44,6 +44,7 @@ const BasicModal = ({
   bodyPet, // ---> el bodyPet toma el idApi
   dispatchAddAction,
   dispatchDeleteAction,
+  dispatchGetID,
   resp,
   onChange,
   // setRes,
@@ -54,9 +55,10 @@ const BasicModal = ({
   const [disabled, setDisabled] = useState(false);
 
 
-  function onSelect(action, payload) {
+  function onSelect(action, payload, op) {
     dispatch(action(payload));
-  }
+    dispatch(dispatchGetID(op[propArrayId]))
+  }  
 
   function onCancel(e, name) {
     setDisabled(false)
@@ -77,50 +79,50 @@ const BasicModal = ({
 
 
 
-    const deleteOption = async (id) => {
-        try{
-            await axios.delete(`${urlApi}/${id}`)
-            .then((res)=> {
-                dispatch(dispatchDeleteAction((id)));
-                swal({
-                    title: "Ok",
-                    text: "Eliminado con éxito",
-                    icon: "success",
-                })
-            })
-        }catch(err){
-            swal({
-                title: "Error",
-                text: err,
-                icon: "error",
-            })
-        }
+  const deleteOption = async (id) => {
+    try {
+      await axios.delete(`${urlApi}/${id}`)
+        .then((res) => {
+          dispatch(dispatchDeleteAction((id)));
+          swal({
+            title: "Ok",
+            text: "Eliminado con éxito",
+            icon: "success",
+          })
+        })
+    } catch (err) {
+      swal({
+        title: "Error",
+        text: err,
+        icon: "error",
+      })
     }
+  }
 
-  
 
-	async function aceptar() {
-		try {
-			await axios.post(urlApi, bodyPet)
-				.then((res) => {
-					if (res.status === 200) {
-						dispatch(dispatchAddAction(resp.modalDataInputs))
-						swal({
-							title: "Ok",
-							text: "Agregado con éxito",
-							icon: "success",
-						})
-					}
-				})
 
-		} catch (err) {
-			swal({
-				title: "Error",
-				text: err.toString(),
-				icon: "error",
-			})
-		}
-	}
+  async function aceptar() {
+    try {
+      await axios.post(urlApi, bodyPet)
+        .then((res) => {
+          if (res.status === 200) {
+            dispatch(dispatchAddAction(resp.modalDataInputs))
+            swal({
+              title: "Ok",
+              text: "Agregado con éxito",
+              icon: "success",
+            })
+          }
+        })
+
+    } catch (err) {
+      swal({
+        title: "Error",
+        text: err.toString(),
+        icon: "error",
+      })
+    }
+  }
 
   const opcionesApi = array
 
@@ -169,6 +171,7 @@ const BasicModal = ({
                         key={i}
                         value={op && op[propArrayId]}
                         onClick={() => onSelect(action, op)}
+                        // onClick={() => dispatch(dispatchGetID(op[propArrayId]))}
                       >
                         {op && op[propArrayOp]}
                       </option>

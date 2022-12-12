@@ -115,6 +115,8 @@ const Navbar = () => {
 	const estadoCivilSelected = useSelector((state) => state.modalState.estadoCivilSelected);
 	const inputMascEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModal);
 	const inputFemEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModalFem);
+	const valueIdEstadoCivil = useSelector((state)=> state.generalState.idEstadoCivil);    
+
 	// Estudios
 	const estudiosValue = useSelector((state) => state.generalState.estudios)
 	const estudioSelected = useSelector((state) => state.modalState.estudioSelected);
@@ -283,8 +285,9 @@ const Navbar = () => {
 								urlApi={urlEstadosCiviles}
 								dispatchAddAction={addNewEstadoCivil}
 								dispatchDeleteAction={deleteEstadoCivil}
+								dispatchGetID={getIdEstadoCivil}
 								bodyPet={bodyPetitionEC}
-								idApi={getIdEstadoCivil}
+								idApi={valueIdEstadoCivil}
 								resp={responses}
 								onChange={onChangeValues}
 							// generalState={modals} 
@@ -310,7 +313,7 @@ const Navbar = () => {
 								urlApi={urlEstudios}
 								dispatchAddAction={addNewEstudio}
 								bodyPet={bodyPetEstudio}
-								idApi={idEstudio}
+								// idApi={valueIdEstadoCivil}
 								resp={responses}
 								onChange={onChangeValues}
 							/>
