@@ -1,4 +1,4 @@
-import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, ADD_PETITION_VALUE } from "../types/modalesTypes"
+import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, ADD_PETITION_VALUE, ADD_SELECTED_TIPODOC, GET_TIPOSDOC } from "../types/modalesTypes"
 
 export const addSelectedEstadoCivil = (payload) => {
     return {
@@ -26,6 +26,27 @@ export const getEstudios = (payload) => {
         payload
     }
 }
+
+
+export const addSelectedTipoDocu = (payload) => {
+    return {
+        type: ADD_SELECTED_TIPODOC,
+        payload
+    }
+}
+export const getTiposDoc = (payload) => {
+    return {
+        type: GET_TIPOSDOC,
+        payload
+    }
+}
+
+
+
+
+
+
+
 
 
 export const cancelModals = (payload) => {

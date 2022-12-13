@@ -44,9 +44,12 @@ const BasicModal = ({
   bodyPet, // ---> el bodyPet toma el idApi
   dispatchAddAction,
   dispatchDeleteAction,
+  dispatchPutAction,
   dispatchGetID,
   resp,
   onChange,
+  refetch,
+  setRefetch
   // setRes,
   // postFn
 }) => {
@@ -54,11 +57,13 @@ const BasicModal = ({
 
   const [disabled, setDisabled] = useState(false);
 
+  const [toModify, setToModify] = useState(false)
+
 
   function onSelect(action, payload, op) {
     dispatch(action(payload));
     dispatch(dispatchGetID(op[propArrayId]))
-  }  
+  }
 
   function onCancel(e, name) {
     setDisabled(false)
@@ -75,11 +80,12 @@ const BasicModal = ({
   }
   function modificar() {
     setDisabled(!disabled);
+    setToModify(!toModify)
   }
 
 
 
-  const deleteOption = async (id) => {
+  const deleteOption = async (id) => { // le pasamos de param el idApi cuando ejecutamos la funcion en el boton delete
     try {
       await axios.delete(`${urlApi}/${id}`)
         .then((res) => {
@@ -89,6 +95,7 @@ const BasicModal = ({
             text: "Eliminado con éxito",
             icon: "success",
           })
+          setRefetch(!refetch); // resetea la lista 
         })
     } catch (err) {
       swal({
@@ -101,20 +108,39 @@ const BasicModal = ({
 
 
 
-  async function aceptar() {
+  async function aceptar(id) {
     try {
-      await axios.post(urlApi, bodyPet)
+      if (!toModify) {
+        await axios.post(urlApi, bodyPet)
+          .then((res) => {
+            if (res.status === 200) {
+              dispatch(dispatchAddAction(resp.modalDataInputs))
+              swal({
+                title: "Ok",
+                text: "Agregado con éxito",
+                icon: "success",
+              })
+              
+            }
+          })
+      } else {
+        await axios.delete(`${urlApi}/${id}`) // elimina el valor seleccionado
         .then((res) => {
-          if (res.status === 200) {
-            dispatch(dispatchAddAction(resp.modalDataInputs))
-            swal({
-              title: "Ok",
-              text: "Agregado con éxito",
-              icon: "success",
-            })
-          }
+          axios.post(urlApi, bodyPet) // y agrega otro con otro nombre
+          .then((res) => {
+            if (res.status == 200) {
+              dispatch(dispatchPutAction(resp.modalDataInputs))
+              swal({
+                title: "Ok",
+                text: "Modificado con éxito",
+                icon: "success",
+              })
+            }
+          })
         })
-
+        
+      }
+      setRefetch(!refetch); // resetea la lista 
     } catch (err) {
       swal({
         title: "Error",
@@ -123,6 +149,11 @@ const BasicModal = ({
       })
     }
   }
+
+  useEffect(() => {
+    console.log('API actualizada con éxito!')
+  }, [refetch])
+
 
   const opcionesApi = array
 
@@ -170,8 +201,8 @@ const BasicModal = ({
                       <option
                         key={i}
                         value={op && op[propArrayId]}
-                        onClick={() => onSelect(action, op)}
-                        // onClick={() => dispatch(dispatchGetID(op[propArrayId]))}
+                        // onClick={() => onSelect(action, op)}
+                        onClick={() => dispatch(dispatchGetID(op[propArrayId]))}
                       >
                         {op && op[propArrayOp]}
                       </option>
@@ -237,7 +268,7 @@ const BasicModal = ({
 
 
                 <div className="btnInputs">
-                  <button type="button" className="btn btn-danger btnAceptar" onClick={aceptar} >
+                  <button type="button" className="btn btn-danger btnAceptar" onClick={() => aceptar(idApi)} >
                     ACEPTAR
                   </button>
                   <button type="button" className="btn btn-danger" onClick={(e) => onCancel(e)} >

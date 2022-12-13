@@ -1,4 +1,5 @@
-import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI } from "../types/fetchTypes";
+import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC } from "../types/fetchTypes";
+import { GET_ESTUDIOS } from "../types/modalesTypes";
 
 
 export const setLoading = (payload) =>{
@@ -216,7 +217,7 @@ export const addEsquemas=(payload)=>{
 }
 
 
-// --------- ESTOS SON PARA POSTEAR EN LA API ---------
+// --------- POST ACTIONS ---------
 export const addNewEstadoCivil = (payload) => {
     return {
         type : ADD_NEW_ESCI,
@@ -231,9 +232,17 @@ export const addNewEstudio = (payload) => {
     }
 }
 
+export const addNewTipoDoc = (payload) => {
+    return {
+        type: ADD_NEW_TIPODOC,
+        payload
+    }
+}
+
 
 // -------- DELETE ACTIONS -----------
 
+//estados civiles
 export const getIdEstadoCivil = (payload) => {
     return{
         type : GET_ID_ESCI,
@@ -244,6 +253,59 @@ export const getIdEstadoCivil = (payload) => {
 export const deleteEstadoCivil = (payload) => {
     return{
         type : DELETE_ESCI,
+        payload
+    }
+}
+
+//estudios
+
+export const getIdEstudio = (payload) => {
+    return{
+        type : GET_ID_ESTUDIO,
+        payload
+    }
+}
+export const deleteEstudio = (payload) => {
+    return{
+        type: DELETE_ESTUDIO,
+        payload
+    }
+}
+
+// tipos de documento
+
+export const getIdTipoDoc = (payload) => {
+    return{
+        type: GET_ID_TIPODOC,
+        payload
+    }
+}
+export const deleteTipoDoc = (payload) => {
+    return{
+        type: DELETE_TIPODOC,
+        payload
+    }
+}
+
+// -------- PUT ACTIONS -----------
+
+export const putEstadoCivil = (payload) => {
+    return{
+        type: PUT_ESCI,
+        payload
+    }
+}
+
+export const putEstudio = (payload) => {
+    return{
+        type: PUT_ESTUDIO,
+        payload
+    }
+}
+
+export const putTipoDoc = (payload) => {
+    return{
+        type: PUT_TIPODOC,
         payload
     }
 }

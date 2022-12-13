@@ -1,12 +1,14 @@
-import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES, ADD_PETITION_VALUE } from "../types/modalesTypes";
+import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES, ADD_PETITION_VALUE, ADD_SELECTED_TIPODOC, GET_TIPOSDOC } from "../types/modalesTypes";
 
 export const initialState = {
     estadoCivilSelected: "",
     estudioSelected: "",
+    tipoDocumentoSelected: "",
     formulario: {
         inputEstadosCivilesModal: "",
         inputEstadosCivilesModalFem: "",
         inputNivelEstudio: "",
+        inputTipoDocumento: ""
     }
 }
 
@@ -39,6 +41,19 @@ const modalesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 formulario: { ...state.formulario, [payload.name]: payload.value }
+            }
+        }
+
+        case ADD_SELECTED_TIPODOC: {
+            return {
+                ...state,
+                tipoDocumentoSelected: payload
+            }
+        }
+        case GET_TIPOSDOC: {
+            return {
+                ...state,
+                formulario: {...state.formulario, [payload.name]: payload.value }
             }
         }
 

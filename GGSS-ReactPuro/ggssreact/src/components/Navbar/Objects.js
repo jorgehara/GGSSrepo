@@ -32,7 +32,9 @@ export const objectEstudios = [
 export const objectTipoDocumento = [
   {
     "label": "Tipo de Documento",
-    "placeholder": "DNI"
+    "placeholder": "DNI",
+    "idInput": "tipoDocumento",
+    "nameInput": "tipoDocumento"
   }
 ]
 

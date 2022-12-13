@@ -17,10 +17,11 @@ import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil } from '../../redux/actions/fetchActions';
+import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
-import { addSelectedEstadoCivil, addSelectedEstudio } from '../../redux/actions/modalesActions';
+import { addSelectedEstadoCivil, addSelectedEstudio, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
 import swal from "sweetalert";
+
 
 // import { getEstadosCivilesModal } from '../../services/fetchAPI';
 // import { useEffect } from 'react';
@@ -65,6 +66,9 @@ const Navbar = () => {
 			})
 	}
 
+	const [refetch, setRefetch] = useState(true); // estado para recargar cada vez que se ejecute un post/put/delete
+	
+
 	useEffect(() => {
 		handleFetch(urlEstadosCiviles, addEstadosCiviles)
 		handleFetch(urlEstudios, addEstudios)
@@ -84,7 +88,7 @@ const Navbar = () => {
 		handleFetch(urlCalles, addCalles)
 		handleFetch(urlEmpleadores, addEmpleadores)
 
-	}, [])
+	}, [refetch])
 
 
 	// ESTADOS QUE GUARDAN EL VALOR DE LOS INPUTS
@@ -121,6 +125,13 @@ const Navbar = () => {
 	const estudiosValue = useSelector((state) => state.generalState.estudios)
 	const estudioSelected = useSelector((state) => state.modalState.estudioSelected);
 	const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio)
+	const valueIdEstudio = useSelector((state)=> state.generalState.idEstudio);
+
+	// Tipos de documento
+	const tiposDocumentoValue = useSelector((state) => state.generalState.tiposDocumento)
+	const tipoDocumentoSelected = useSelector((state) => state.modalState.tipoDocumentoSelected)
+	const inputTipoDocumento = useSelector((state) => state.modalState.formulario.inputTipoDocumento)
+	const valueIdTipoDoc = useSelector((state) => state.generalState.idTipoDoc)
 
 
 
@@ -130,8 +141,10 @@ const Navbar = () => {
 	const bodyPetitionEC = { ...responses.modalDataInputs, idEstadoCivil: idEstadoCivil };
 	//Estudios
 	const idEstudio = ((estudiosValue && estudiosValue[estudiosValue.length - 1] !== undefined && (estudiosValue[estudiosValue.length - 1].iDestudios))  + 1)
-	const bodyPetEstudio = {...responses.modalDataInputs, iDestudios: idEstudio  }
-
+	const bodyPetEstudio = { ...responses.modalDataInputs, iDestudios: idEstudio  }
+	//Tipos de documento
+	const idTiposDocumento = ((tiposDocumentoValue && tiposDocumentoValue[tiposDocumentoValue.length - 1] !== undefined && (tiposDocumentoValue[tiposDocumentoValue.length - 1].iDtipoDocumento)) + 1)
+	const bodyPetTiposDoc = { ...responses.modalDataInputs, iDtipoDocumento : idTiposDocumento }
 
 
 
@@ -285,11 +298,14 @@ const Navbar = () => {
 								urlApi={urlEstadosCiviles}
 								dispatchAddAction={addNewEstadoCivil}
 								dispatchDeleteAction={deleteEstadoCivil}
+								dispatchPutAction={putEstadoCivil}
 								dispatchGetID={getIdEstadoCivil}
 								bodyPet={bodyPetitionEC}
 								idApi={valueIdEstadoCivil}
 								resp={responses}
 								onChange={onChangeValues}
+								refetch={refetch}
+								setRefetch={setRefetch}
 							// generalState={modals} 
 							// setGeneralState={setModals} 
 							// onSelect={onSelect} 
@@ -312,13 +328,41 @@ const Navbar = () => {
 								secondOptionCompare={inputNivelEstudio ? inputNivelEstudio : estudioSelected.estudiosNivel}
 								urlApi={urlEstudios}
 								dispatchAddAction={addNewEstudio}
+								dispatchDeleteAction={deleteEstudio}
+								dispatchPutAction={putEstudio}
+								dispatchGetID={getIdEstudio}
 								bodyPet={bodyPetEstudio}
-								// idApi={valueIdEstadoCivil}
+								idApi={valueIdEstudio}
 								resp={responses}
 								onChange={onChangeValues}
+								refetch={refetch}
+								setRefetch={setRefetch}
 							/>
 
-							<BasicModal idModal="TipoDocumento" nameModal="Tipo de Documento" placeholder={objectTipoDocumento} array={tiposDNIMap} />
+							<BasicModal 
+								idModal="TipoDocumento" 
+								nameModal="Tipo de Documento" 
+								placeholder={objectTipoDocumento} 
+								array={tiposDocumentoValue && tiposDocumentoValue} 
+								propArrayOp="tipoDocumento" propArrayId="iDtipoDocumento"
+								action={addSelectedTipoDocu}
+								opcionSelected={tipoDocumentoSelected}
+								inputIdCompare="tipoDocumento"
+								firstOptionCompare={inputTipoDocumento ? inputTipoDocumento : tipoDocumentoSelected.tipoDocumento}
+								secondOptionCompare={inputTipoDocumento ? inputTipoDocumento : tipoDocumentoSelected.tipoDocumento}
+								urlApi={urlTiposDocumento}
+								dispatchAddAction={addNewTipoDoc}
+								dispatchDeleteAction={deleteTipoDoc}
+								dispatchPutAction={putTipoDoc}
+								dispatchGetID={getIdTipoDoc}
+								bodyPet={bodyPetTiposDoc}
+								idApi={valueIdTipoDoc}
+								resp={responses}
+								onChange={onChangeValues}
+								refetch={refetch}
+								setRefetch={setRefetch}
+							/>
+
 							<BasicModal idModal="Parentescos" nameModal="Parentescos" placeholder={objectParentescos} hasCheckbox={true} checkboxName="Genera Asignación" hasCheckBoxNum={true} checkboxCheckName="Deduce Ganancias" checkboxNumName="Importe" textArea={true} array={parentescosMap} />
 							<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} array={estadosArray} />
 							<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} array={cargosMap} />
