@@ -7,6 +7,7 @@ import "./Browser.css";
 import {  addOneEmploye, disableFunctions, getEmployes  } from '../../redux/actions/employeActions';
 import {  GET_INPUT_VALU_BROWSER } from '../../redux/types/employeTypes';
 import swal from 'sweetalert';
+import { disbledInputs } from '../../redux/actions/fetchActions';
 
 const Browser = () => {
     
@@ -70,6 +71,7 @@ const Browser = () => {
     Array.from(document.querySelectorAll("input")).forEach(
       input => (input.value = "")
     );
+    dispatch(disbledInputs(false));
     //saveDisable(false);
     let employeData = {...empleadoUno};
 

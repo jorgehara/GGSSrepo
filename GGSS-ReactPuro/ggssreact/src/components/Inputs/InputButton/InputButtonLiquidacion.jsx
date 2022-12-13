@@ -1,30 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import "./InputButton.css";
 
-const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal , clasess, array,propArrayOp, propIdOption, idInput}) => {
+const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, swal , clasess, array,propArrayOp, propIdOption, idInput}) => {
 
-  const [valor, setValor] = useState();
-  const dispatch = useDispatch();
   
-  useEffect(()=>{
-    dispatch({
-      type : action,
-      payload : { name : id, value : valor }
-    })
-  },[valor])
-
-  useEffect(()=>{
-    setValor(datosPersonalesValue)
-  },[datosPersonalesValue])
-  
-  useEffect(()=>{
-    
-    setValor(value);
-  },[value])
-
 
 
   return (
@@ -42,7 +21,7 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
             })
         }
        </select>
-        <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
+        <button type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal)}
               className={`${clasess.classFive}`} disabled={disabled}>
               {nameButton}
         </button>
@@ -64,7 +43,7 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
                     disabled={disabled}
                     onChange={(e)=> onChange(e.target.value, idInput )}
                     />
-            <button  type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
+            <button  type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal)}
                   className="btn btn-validacion btn-outline-danger" disabled={disabled}>
                   {nameButton}
             </button>
