@@ -1,4 +1,5 @@
-import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_DOCU_EMPL, ADD_NUMERADORES, DISABLED_INPUTS } from "../types/fetchTypes";
+import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO } from "../types/fetchTypes";
+import { GET_ESTUDIOS } from "../types/modalesTypes";
 
 
 export const setLoading = (payload) =>{
@@ -214,27 +215,126 @@ export const addEsquemas=(payload)=>{
         payload,
     };
 }
-export const addNewEstadoCivil=(payload)=>{
+
+
+// --------- POST ACTIONS ---------
+export const addNewEstadoCivil = (payload) => {
     return {
         type : ADD_NEW_ESCI,
         payload,
     };
 }
-export const addDocumentacionEmpleados=(payload)=>{
+
+export const addNewEstudio = (payload) => {
     return {
-        type : ADD_DOCU_EMPL,
+        type: ADD_NEW_ESTUDIO,
         payload,
-    };
+    }
 }
-export const addNumeradores=(payload)=>{
+
+export const addNewTipoDoc = (payload) => {
     return {
-        type : ADD_NUMERADORES,
-        payload,
-    };
+        type: ADD_NEW_TIPODOC,
+        payload
+    }
 }
-export const disbledInputs=(payload)=>{
+
+export const addNewParentesco = (payload) => {
     return {
-        type : DISABLED_INPUTS,
+        type: ADD_NEW_PARENTESCO,
+        payload
+    }
+}
+
+
+// -------- DELETE ACTIONS -----------
+
+//estados civiles
+export const getIdEstadoCivil = (payload) => {
+    return{
+        type : GET_ID_ESCI,
         payload,
-    };
+    }
+}
+
+export const deleteEstadoCivil = (payload) => {
+    return{
+        type : DELETE_ESCI,
+        payload
+    }
+}
+
+//estudios
+
+export const getIdEstudio = (payload) => {
+    return{
+        type : GET_ID_ESTUDIO,
+        payload
+    }
+}
+export const deleteEstudio = (payload) => {
+    return{
+        type: DELETE_ESTUDIO,
+        payload
+    }
+}
+
+// tipos de documento
+
+export const getIdTipoDoc = (payload) => {
+    return{
+        type: GET_ID_TIPODOC,
+        payload
+    }
+}
+export const deleteTipoDoc = (payload) => {
+    return{
+        type: DELETE_TIPODOC,
+        payload
+    }
+}
+
+// parentescos
+
+export const getIdParentesco = (payload) => {
+    return {
+        type: GET_ID_PARENTESCO,
+        payload
+    }
+}
+export const deleteParentesco = (payload) => {
+    return {
+        type: DELETE_PARENTESCO,
+        payload
+    }
+}
+
+// -------- PUT ACTIONS -----------
+
+export const putEstadoCivil = (payload) => {
+    return{
+        type: PUT_ESCI,
+        payload
+    }
+}
+
+export const putEstudio = (payload) => {
+    return{
+        type: PUT_ESTUDIO,
+        payload
+    }
+}
+
+export const putTipoDoc = (payload) => {
+    return{
+        type: PUT_TIPODOC,
+        payload
+    }
+}
+
+export const putParentesco = (payload) => {
+    return {
+        type: PUT_PARENTESCO,
+        payload
+    }
 }

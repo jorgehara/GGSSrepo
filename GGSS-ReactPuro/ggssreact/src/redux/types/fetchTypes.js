@@ -41,7 +41,43 @@ export const ADD_ESQUEMAS = "ADD_ESQUEMAS";
 export const ADD_NUMERADORES = "ADD_NUMERADORES";
 
 
+// ESTOS SON PARA POSTEAR EN LA API
 export const ADD_NEW_ESCI = "ADD_NEW_ESCI";
+export const ADD_NEW_ESTUDIO = "ADD_NEW_ESTUDIO";
+export const ADD_NEW_TIPODOC = "ADD_NEW_TIPODOC"
+export const ADD_NEW_PARENTESCO = "ADD_NEW_PARENTESCO"
+
+
+// DELETE TYPES
+// estados civiles
+export const GET_ID_ESCI = "GET_ID_ESCI"
+export const DELETE_ESCI = "DELETE_ESCI"
+
+// estudios
+export const GET_ID_ESTUDIO = "GET_ID_ESTUDIO"
+export const DELETE_ESTUDIO = "DELETE_ESTUDIO"
+
+export const GET_ID_TIPODOC = "GET_ID_TIPODOC"
+export const DELETE_TIPODOC = "DELETE_TIPODOC"
+
+// parentescos 
+export const GET_ID_PARENTESCO = "GET_ID_PARENTESCO"
+export const DELETE_PARENTESCO = "DELETE_PARENTESCO"
+
+// PUT TYPES
+
+export const PUT_ESCI = "PUT_ESCI"
+export const PUT_ESTUDIO = "PUT_ESTUDIO"
+export const PUT_TIPODOC = "PUT_TIPODOC"
+export const PUT_PARENTESCO = "PUT_PARENTESCO"
+
+
+
+
+
+
+
+
 
 export const ADD_DOCU_EMPL = "ADD_DOCU_EMPL";
 

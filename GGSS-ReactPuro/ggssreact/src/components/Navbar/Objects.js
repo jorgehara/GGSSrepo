@@ -23,14 +23,18 @@ export const objectEstadosCiviles = [
 export const objectEstudios = [
 	{
 		"label": "Nivel de Estudios",
-		"placeholder": "Universitario"
+		"placeholder": "Universitario",
+    "idInput": "estudiosNivel",
+    "nameInput": "estudiosNivel"
 	}
 ]
 
 export const objectTipoDocumento = [
   {
     "label": "Tipo de Documento",
-    "placeholder": "DNI"
+    "placeholder": "DNI",
+    "idInput": "tipoDocumento",
+    "nameInput": "tipoDocumento"
   }
 ]
 
@@ -38,9 +42,13 @@ export const objectTipoDocumento = [
 export const objectParentescos = [
   {
     label: "Parentesco",
-    placeholder: "Abuelo"
+    placeholder: "Abuelo",
+    idInput: "nombreParentesco",
+    nameInput: "nombreParentesco"
   }
 ]
+
+// export const object
 
 
 // -------------
