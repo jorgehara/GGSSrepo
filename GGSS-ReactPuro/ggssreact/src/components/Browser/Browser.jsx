@@ -1,49 +1,25 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
-import { employeContext } from '../../context/employeContext';
+import React, { useEffect } from 'react'
 import {  getEmployeById, getEmployeByLegajo, getEmployeByName } from '../../services/fetchAPI';
-import { getDomicilioEmpleado } from '../../services/mockDataDomicilios';
 import { useDispatch, useSelector } from "react-redux";
 import ButtonLarge from '../Buttons/ButtonLarge'
 import "./Browser.css";
-import { addEmploye, addOneEmploye, disableFunctions, getEmployes, selectedEmploye } from '../../redux/actions/employeActions';
-import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
-import { ADD_EMPLOYE, GET_INPUT_VALU_BROWSER } from '../../redux/types/employeTypes';
+import {  addOneEmploye, disableFunctions, getEmployes  } from '../../redux/actions/employeActions';
+import {  GET_INPUT_VALU_BROWSER } from '../../redux/types/employeTypes';
 import swal from 'sweetalert';
 
 const Browser = () => {
-  const [listEmpleados, setListEmpleados] = useState([]);
-  const { saveEmploye, saveDomicilio } = useContext(employeContext);
-  const [empData, setEmpData] = useState({
-    legajo: "",
-    apellido: "",
-  });
-  
+    
   const url = "http://54.243.192.82/api/Empleados?records=10000";
 
   const dispatch = useDispatch();
-  const empleados = useSelector((state)=> state.employeStates.empleados)
 
+  const empleados = useSelector((state)=> state.employeStates.empleados);
   const valueInputLegajo = useSelector((state)=> state.employeStates.formulario.inpurLegajoBrowser);
   const valueInputApellido = useSelector((state)=> state.employeStates.formulario.inputApellidoNombreBrowser);
-
-  const valueInputs = useSelector((state)=> state.employeStates.formulario);
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
+  const deshabilitado = useSelector((state)=> state.employeStates.disable);
 
-
-
-  const {  saveDisable, disable} = useContext(employeContext);
-
-  const handleFetch=(url, action )=>{
-    dispatch({type: SET_LOADING});
-      axios.get(url)
-      .then((res)=>{
-        dispatch( action(res.data.result));
-      })
-      .catch((err)=>{
-        dispatch({type:AXIOS_ERROR});
-      })
-   }
 
   useEffect(() => {
     axios.get(url).then((res) => {
@@ -67,7 +43,6 @@ const Browser = () => {
   }, [valueInputLegajo, valueInputApellido]);
   
  
-  const deshabilitado = useSelector((state)=> state.employeStates.disable);
 
 
   function onSelect(e, name, idEmpleado) {
@@ -77,9 +52,9 @@ const Browser = () => {
       dispatch(addOneEmploye(res[0]));
     });
 
-    getDomicilioEmpleado(idEmpleado).then((res) => {
+    /* getDomicilioEmpleado(idEmpleado).then((res) => {
       saveDomicilio(res);
-    });
+    }); */
   }
 
   function onChange(e, action) {
@@ -95,7 +70,7 @@ const Browser = () => {
     Array.from(document.querySelectorAll("input")).forEach(
       input => (input.value = "")
     );
-    saveDisable(false);
+    //saveDisable(false);
     let employeData = {...empleadoUno};
 
     const inputsArray = Object.entries(employeData);

@@ -151,7 +151,6 @@ return (
                     propIdOption="iDconvenio"
                     idInput="inputConvenio"
                     onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
                 />
                 <InputButtonLiquidacion
                     clasess={inputButtonClasess}

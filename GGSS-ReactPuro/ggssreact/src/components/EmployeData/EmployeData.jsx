@@ -1,23 +1,27 @@
 // import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { employeContext } from "../../context/employeContext";
 import InputEmpData from "../Inputs/InputEmpData/InputEmpData";
 import "./EmployeData.css";
 
 const EmployeData = ({disabled}) => {
   const { saveEmpl , saveEstado } = useContext(employeContext);
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
+  const estadosCiviles = useSelector((state)=> state.generalState.estadosCiviles);
   const [image, setImage] = useState("");
-  const idEstadoSelec = saveEmpl[0] !== undefined ? saveEmpl[0].idEstado : 0;
-  const estadoSEleccionado = saveEstado !== undefined ? saveEstado.find(est => est.idEstado === idEstadoSelec) : "ARGENTINO"; 
+
+  const idEstadoSelec = empleadoUno && empleadoUno.idEstado;
+  const estadoSEleccionado = estadosCiviles && estadosCiviles.find(est => est.idEstado === idEstadoSelec); 
 
   useEffect(() => {
     setImageEmpleado()
-  }, [saveEmpl[0].obsFechaIngreso]);
+  }, [empleadoUno.obsFechaIngreso]);
 
     function setImageEmpleado(){
-      saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
+      empleadoUno.obsFechaIngreso !== undefined && setImage(empleadoUno.obsFechaIngreso);
     }
-  
+  console.log(empleadoUno && empleadoUno)
   return (
     <div className="container-fluid p-0">
       <div className="container-fluid border border-3  ">
@@ -38,9 +42,7 @@ const EmployeData = ({disabled}) => {
                 idInput=""
                 inputValue=
                 {
-                saveEmpl[0] !== undefined || saveEmpl[0] === null
-                ? saveEmpl[0].legajo
-                : null
+                  empleadoUno && empleadoUno.legajo
                 }
                 nameLabel="Legajo: "
                 disabled={disabled}
@@ -49,9 +51,7 @@ const EmployeData = ({disabled}) => {
                 idInput="apellidoInfo"
                 // className="apellido"
                 inputValue={
-                saveEmpl[0] !== undefined || saveEmpl[0] === null
-                    ? saveEmpl[0].apellido
-                    : null
+                  empleadoUno && empleadoUno.apellido
                 }
                 nameLabel="Apellido: "
                 disabled={disabled}
@@ -60,9 +60,8 @@ const EmployeData = ({disabled}) => {
             <InputEmpData
                   idInput="tipoDNIInfo"
                   inputValue={
-                    saveEmpl[0] !== undefined || saveEmpl[0] === null
-                      ? saveEmpl[0].nroDocumento
-                      : null}
+                    empleadoUno && empleadoUno.nroDocumento
+                  }
                   nameLabel="NroDoc:"
                   disabled={disabled}
                 />
@@ -80,9 +79,7 @@ const EmployeData = ({disabled}) => {
                 <InputEmpData
                   idInput="nombresInfo"
                   inputValue={
-                    saveEmpl[0] !== undefined || saveEmpl[0] === null
-                      ? saveEmpl[0].nombres
-                      : null
+                    empleadoUno && empleadoUno.nombres
                   }
                   nameLabel="Nombres: "
                   disabled={disabled}

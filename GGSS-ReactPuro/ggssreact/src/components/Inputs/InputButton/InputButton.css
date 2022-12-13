@@ -20,7 +20,7 @@
 	border: none;
 	transition: .3s ease all;
 	border-bottom: 1px solid rgb(78, 6, 6);
-	margin-left: 3.4rem;
+	margin-left: 2.8rem;
 }
 .formulario-input-Legajo-Button-convenio{
 	width: 81%;
@@ -42,6 +42,8 @@
 	width: 25%;
 }
 .formulario__label_convenio{
+	color: black;
+	font-weight: 500;
 	width: 30%;
 }
 .claseprueba{
