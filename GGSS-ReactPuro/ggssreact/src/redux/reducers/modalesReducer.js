@@ -1,14 +1,25 @@
-import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES, ADD_PETITION_VALUE, ADD_SELECTED_TIPODOC, GET_TIPOSDOC } from "../types/modalesTypes";
+import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES, ADD_PETITION_VALUE, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS } from "../types/modalesTypes";
 
 export const initialState = {
     estadoCivilSelected: "",
     estudioSelected: "",
     tipoDocumentoSelected: "",
+    parentescoSelected: "",
     formulario: {
+        // estados civiles
         inputEstadosCivilesModal: "",
         inputEstadosCivilesModalFem: "",
+        // estudios
         inputNivelEstudio: "",
-        inputTipoDocumento: ""
+        // tipos de documento
+        inputTipoDocumento: "",
+        // parentescos
+        inputParentesco: "",
+        inputAsignacionParent: "",
+        inputGananciaParent: "",
+        inputImporteParent: "",
+        inputObsParent: "",
+        // --------------
     }
 }
 
@@ -54,6 +65,21 @@ const modalesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 formulario: {...state.formulario, [payload.name]: payload.value }
+            }
+        }
+
+        case ADD_SELECTED_PARENTESCO : {
+            return {
+                ...state,
+                parentescoSelected: payload
+
+            }
+        }
+        case GET_PARENTESCOS : {
+            return {
+                ...state,
+                formulario: {...state.formulario, [payload.name]: payload.value}
+
             }
         }
 

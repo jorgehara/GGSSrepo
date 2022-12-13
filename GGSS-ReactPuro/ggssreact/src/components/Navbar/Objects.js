@@ -42,9 +42,13 @@ export const objectTipoDocumento = [
 export const objectParentescos = [
   {
     label: "Parentesco",
-    placeholder: "Abuelo"
+    placeholder: "Abuelo",
+    idInput: "nombreParentesco",
+    nameInput: "nombreParentesco"
   }
 ]
+
+// export const object
 
 
 // -------------

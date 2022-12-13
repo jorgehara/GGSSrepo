@@ -67,7 +67,7 @@ const Navbar = () => {
 	}
 
 	const [refetch, setRefetch] = useState(true); // estado para recargar cada vez que se ejecute un post/put/delete
-	
+
 
 	useEffect(() => {
 		handleFetch(urlEstadosCiviles, addEstadosCiviles)
@@ -119,19 +119,31 @@ const Navbar = () => {
 	const estadoCivilSelected = useSelector((state) => state.modalState.estadoCivilSelected);
 	const inputMascEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModal);
 	const inputFemEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModalFem);
-	const valueIdEstadoCivil = useSelector((state)=> state.generalState.idEstadoCivil);    
+	const valueIdEstadoCivil = useSelector((state) => state.generalState.idEstadoCivil);
 
 	// Estudios
 	const estudiosValue = useSelector((state) => state.generalState.estudios)
 	const estudioSelected = useSelector((state) => state.modalState.estudioSelected);
 	const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio)
-	const valueIdEstudio = useSelector((state)=> state.generalState.idEstudio);
+	const valueIdEstudio = useSelector((state) => state.generalState.idEstudio);
 
 	// Tipos de documento
 	const tiposDocumentoValue = useSelector((state) => state.generalState.tiposDocumento)
 	const tipoDocumentoSelected = useSelector((state) => state.modalState.tipoDocumentoSelected)
 	const inputTipoDocumento = useSelector((state) => state.modalState.formulario.inputTipoDocumento)
 	const valueIdTipoDoc = useSelector((state) => state.generalState.idTipoDoc)
+
+	// Parentescos
+	const parentescosValue = useSelector((state) => state.generalState.parentescos)
+	const parentescoSelected = useSelector((state) => state.modalState.parentescoSelected)
+	const inputParentesco = useSelector((state) => state.modalState.formulario.inputParentesco)
+	const inputAsignacionParent = useSelector((state) => state.modalState.formulario.inputAsignacionParent)
+	const inputGananciaParent = useSelector((state) => state.modalState.formulario.inputGananciaParent)
+	const inputImporteParent = useSelector((state) => state.modalState.formulario.inputImporteParent)
+	const inputObsParent = useSelector((state) => state.modalState.formulario.inputObsParent)
+	const valueIdParentesco = useSelector((state) => state.generalState.idParentesco)
+
+
 
 
 
@@ -140,11 +152,11 @@ const Navbar = () => {
 	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
 	const bodyPetitionEC = { ...responses.modalDataInputs, idEstadoCivil: idEstadoCivil };
 	//Estudios
-	const idEstudio = ((estudiosValue && estudiosValue[estudiosValue.length - 1] !== undefined && (estudiosValue[estudiosValue.length - 1].iDestudios))  + 1)
-	const bodyPetEstudio = { ...responses.modalDataInputs, iDestudios: idEstudio  }
+	const idEstudio = ((estudiosValue && estudiosValue[estudiosValue.length - 1] !== undefined && (estudiosValue[estudiosValue.length - 1].iDestudios)) + 1)
+	const bodyPetEstudio = { ...responses.modalDataInputs, iDestudios: idEstudio }
 	//Tipos de documento
 	const idTiposDocumento = ((tiposDocumentoValue && tiposDocumentoValue[tiposDocumentoValue.length - 1] !== undefined && (tiposDocumentoValue[tiposDocumentoValue.length - 1].iDtipoDocumento)) + 1)
-	const bodyPetTiposDoc = { ...responses.modalDataInputs, iDtipoDocumento : idTiposDocumento }
+	const bodyPetTiposDoc = { ...responses.modalDataInputs, iDtipoDocumento: idTiposDocumento }
 
 
 
@@ -339,11 +351,11 @@ const Navbar = () => {
 								setRefetch={setRefetch}
 							/>
 
-							<BasicModal 
-								idModal="TipoDocumento" 
-								nameModal="Tipo de Documento" 
-								placeholder={objectTipoDocumento} 
-								array={tiposDocumentoValue && tiposDocumentoValue} 
+							<BasicModal
+								idModal="TipoDocumento"
+								nameModal="Tipo de Documento"
+								placeholder={objectTipoDocumento}
+								array={tiposDocumentoValue && tiposDocumentoValue}
 								propArrayOp="tipoDocumento" propArrayId="iDtipoDocumento"
 								action={addSelectedTipoDocu}
 								opcionSelected={tipoDocumentoSelected}
@@ -363,7 +375,17 @@ const Navbar = () => {
 								setRefetch={setRefetch}
 							/>
 
-							<BasicModal idModal="Parentescos" nameModal="Parentescos" placeholder={objectParentescos} hasCheckbox={true} checkboxName="Genera Asignación" hasCheckBoxNum={true} checkboxCheckName="Deduce Ganancias" checkboxNumName="Importe" textArea={true} array={parentescosMap} />
+							<BasicModal
+								idModal="Parentescos"
+								nameModal="Parentescos"
+								placeholder={objectParentescos}
+								hasCheckbox={true}
+								checkboxName="Genera Asignación"
+								hasCheckBoxNum={true}
+								checkboxCheckName="Deduce Ganancias"
+								checkboxNumName="Importe"
+								textArea={true}
+								array={parentescosMap} />
 							<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} array={estadosArray} />
 							<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} array={cargosMap} />
 							<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} array={tareasMap} />
