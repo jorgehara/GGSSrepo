@@ -18,6 +18,7 @@ import { disableFunctions } from '../../redux/actions/employeActions';
 const Empleados = () => {
     const [tabIndex, setTabIndex] = useState(0);
     const [responses, setResponses] = useState({});
+    const [disable , setDisable] = useState(true);
     const dispatch = useDispatch();
 
     function handleTabChange(value){        
@@ -25,44 +26,39 @@ const Empleados = () => {
     };  
     function cancelEdit(e){
         e.preventDefault();
-        dispatch(disableFunctions(false));
-
-        dispatch(disabledInputs(true));
+        setDisable(true);
     }
 return (
     <div className='container-fluid'>
         <div className='row'>
             <div className='col-xl-3'>
-                <Browser />
+                <Browser  disable={disable} setDisable={setDisable} />
             </div>
             <div className='col-xl-9 '>
                 <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
                 {
-                    tabIndex === 0 && <DatosPersonales  responses={responses} setResponses={setResponses} />
+                    tabIndex === 0 && <DatosPersonales disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 } 
                 {
-                    tabIndex === 1 && <Familia  responses={responses} setResponses={setResponses} />
+                    tabIndex === 1 && <Familia disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 }
                 {
-                    tabIndex === 2 && <Liquidacion  responses={responses} setResponses={setResponses} />
+                    tabIndex === 2 && <Liquidacion disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 }
                 {
-                    tabIndex === 3 && <AdicLiquidacion  responses={responses} setResponses={setResponses} />
+                    tabIndex === 3 && <AdicLiquidacion disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 }
                 {
-                    tabIndex === 4 && <TrabajosAnteriores  responses={responses} setResponses={setResponses} />
-                    
+                    tabIndex === 4 && <TrabajosAnteriores disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
-                    tabIndex === 5 && <Documentacion  responses={responses} setResponses={setResponses} />
-                    
+                    tabIndex === 5 && <Documentacion disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
-                    tabIndex === 6 && <Licencias  responses={responses} setResponses={setResponses} />
-                    
+                    tabIndex === 6 && <Licencias disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
-                    tabIndex === 7 && <Extras  responses={responses} setResponses={setResponses} />
+                    tabIndex === 7 && <Extras disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 }
             </div>            
         </div>

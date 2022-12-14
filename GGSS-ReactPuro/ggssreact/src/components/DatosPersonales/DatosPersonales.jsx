@@ -25,7 +25,7 @@ import EmployeData from "../EmployeData/EmployeData";
 
 //#endregion
 
-const DatosPersonales = ({responses, setResponses, cancelar}) => {
+const DatosPersonales = ({responses, setResponses, cancelar, disable}) => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
   const [disableEstado, setDisableEstado] = useState(false);
   const [imagenSended , setImagenSended] = useState("");
@@ -42,7 +42,6 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
   const deshabilitar = useSelector((state)=> state.employeStates.disable);
   const datosPersonalesState = useSelector((state)=> state.generalState);
   const numeradores = useSelector((state)=> state.generalState.numeradores);
-  const disable = useSelector((state)=> state.generalState.disabled);
   console.log(disable)
   //#endregion
 

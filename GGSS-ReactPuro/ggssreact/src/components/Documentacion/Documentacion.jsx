@@ -15,10 +15,10 @@ import { getInputValue, getOneDocumento } from '../../redux/actions/documentacio
 import { inputButtonClasess } from '../../classes/classes';
 import { GET_INPUT_VALUE } from '../../redux/types/documentacionTypes';
 
-const Documentacion = ({responses, setResponses}) => {
+const Documentacion = ({responses, setResponses, disable}) => {
     const columns = ["Fecha", "Vencimiento", "Documento", "Liq", "Observaciones", "Incluir Cuota"]
     const dispatch = useDispatch();
-    const [ disable, setDisable] = useState(true);
+    const [ disableI, setDisableI] = useState(true);
     const [ formDocumentacion, setFormDocumentacion ] = useState(responses["formDocumentacion"]);
 
 
@@ -73,7 +73,7 @@ return (
                 <InputDateDocs nameInput="Fecha Presentación" idInput="inputDatePresentacion" display={false} onChange={onChangeValues} action={GET_INPUT_VALUE} value={formDocumentacion?.inputDatePresentacion && formDocumentacion?.inputDatePresentacion} />
             </div>
             <div className='col-xl-12'>
-                <InputDate nameInput="Fecha Vencimiento" disable={disable} setDisable={setDisable} idInput="inputDateVencimiento" display={true}  onChange={onChangeValues} action={GET_INPUT_VALUE} actionReset={getInputValue} value={formDocumentacion?.inputDateVencimiento && formDocumentacion?.inputDateVencimiento} valueCheck={formDocumentacion?.inputCheckDocusDate && formDocumentacion?.inputCheckDocusDate} idInputCheck="inputCheckDocusDate" />
+                <InputDate nameInput="Fecha Vencimiento" disable={disableI} setDisable={setDisableI} idInput="inputDateVencimiento" display={true}  onChange={onChangeValues} action={GET_INPUT_VALUE} actionReset={getInputValue} value={formDocumentacion?.inputDateVencimiento && formDocumentacion?.inputDateVencimiento} valueCheck={formDocumentacion?.inputCheckDocusDate && formDocumentacion?.inputCheckDocusDate} idInputCheck="inputCheckDocusDate" />
             </div>
             <div className='col-xl-12'>
                 <InputButtonLiquidacion

@@ -10,7 +10,7 @@ import swal from 'sweetalert';
 import { disabledInputs } from '../../redux/actions/fetchActions';
 import "./Browser.css"
 
-const Browser = () => {
+const Browser = ({disable , setDisable}) => {
     
   const url = "http://54.243.192.82/api/Empleados?records=10000";
 
@@ -21,7 +21,6 @@ const Browser = () => {
   const valueInputApellido = useSelector((state)=> state.employeStates.formulario.inputApellidoNombreBrowser);
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   const deshabilitado = useSelector((state)=> state.employeStates.disable);
-  const disable = useSelector((state)=> state.generalState.disabled);
   useEffect(() => {
     axios.get(url).then((res) => {
       let data = res.data.result;
@@ -80,7 +79,7 @@ const Browser = () => {
     const clearInputs = inputsArray.map(([key])=> [key, '']);
 
     const inputsJson = Object.fromEntries(clearInputs);
-    dispatch(disabledInputs(false));
+    setDisable(false);
     dispatch(addOneEmploye(inputsJson));
   }
   function habilitaUpdate(e){
@@ -94,7 +93,7 @@ const Browser = () => {
           icon: "error",
     })
   }
-  
+  console.log(disable)
   return (
 <>
 <div className='row gy-1 container-flex p-0 m-o '>

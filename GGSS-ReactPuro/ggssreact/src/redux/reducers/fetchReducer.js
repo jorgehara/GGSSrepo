@@ -38,7 +38,7 @@ export const initialState = {
     esquemas : "",
     documentacionEmpleados : "",
     numeradores : "",
-    disabled : false,
+    disabled : true,
     datosExtras : "",
     instrumLegales : "",
     idEstadoCivil : 0,

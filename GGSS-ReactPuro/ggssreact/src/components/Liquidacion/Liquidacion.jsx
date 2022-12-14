@@ -149,6 +149,7 @@ return (
                         idInput="inputEmpleadorLiquidacion"
                         onChange={onChangeValues}
                         action={GET_INPUTS_VALUE}
+                        obligatorio = {true}
                         />
                     </div>        
                 </div>

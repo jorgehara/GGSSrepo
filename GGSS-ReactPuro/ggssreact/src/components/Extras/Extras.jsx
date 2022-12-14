@@ -14,7 +14,7 @@ import TextArea from '../Inputs/TextArea/TextArea';
 import TableExtras from '../Tables/TableExtras';
 import "./Extras.css";
 
-const Extras = ({responses, setResponses}) => {
+const Extras = ({responses, setResponses, disable}) => {
 
     const columns = ["Fecha", "Descripción", "Observaciones"]
     const dispatch = useDispatch();

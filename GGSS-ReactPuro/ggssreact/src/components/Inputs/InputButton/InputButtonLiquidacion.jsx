@@ -11,7 +11,13 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
     <div className={`${clasess.classTwo}`}>
         <label className={`${clasess.classThree}`} htmlFor={nameInput}>{nameLabel}</label>
 
-       <select name={idInput} id={idInput} disabled={disabled} className={obligatorio ? `${clasess.classFour}` : `${clasess.classFour}`} onChange={(e)=>onChange(e.target.value, idInput)} value={value && value} >
+       <select 
+       name={idInput} 
+       id={idInput} 
+       disabled={disabled} 
+       className={obligatorio ? `${clasess.classFour}` : `${clasess.classFour}`} 
+       onChange={(e)=>onChange(e.target.value, idInput)} 
+       value={value && value} >
         <option value="">Seleccionar</option>
         {
             array && array.map((valor,index)=>{

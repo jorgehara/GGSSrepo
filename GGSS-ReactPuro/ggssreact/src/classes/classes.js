@@ -14,7 +14,7 @@ export const classesEstadosCiviles = {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_convenio',
-    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const inputButtonClasessEmpleador= {
@@ -28,7 +28,7 @@ export const classesEstadosCiviles = {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_AsidePagos',
-    "classFour" : 'formulario-input-InpButton-Pagos form-select ml-0 px-0',
+    "classFour" : 'formulario-input-InpButton-Pagos form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const inputButtonClasessDireccion= {
@@ -42,14 +42,14 @@ export const classesEstadosCiviles = {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button_extras',
     "classThree" : 'formulario__label_Extras',
-    "classFour" : 'formulario-input-InpButton-Extras form-select ml-0 px-0',
+    "classFour" : 'formulario-input-InpButton-Extras form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const inputButtonClasessExtrasInstrum= {
     "classOne" : "formulario__grupo__inputs-Button-Extras mt-2",
     "classTwo" : 'fomulario__container__button_extras',
     "classThree" : 'formulario__label_Extras-Instrum ',
-    "classFour" : 'formulario-input-InpButton-Extras form-select ml-0 px-0',
+    "classFour" : 'formulario-input-InpButton-Extras form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const inputButtonClasessExtrasAfectaciones= {
