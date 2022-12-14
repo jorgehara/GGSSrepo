@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { disabledInputs } from '../../redux/actions/fetchActions';
 import { disableFunctions } from '../../redux/actions/employeActions';
-
+import './Home.css';
 const Empleados = () => {
     const [tabIndex, setTabIndex] = useState(0);
     const [responses, setResponses] = useState({});
@@ -35,7 +35,7 @@ return (
             <div className='col-xl-3'>
                 <Browser />
             </div>
-            <div className='col-xl-9 '>
+            <div className='col-xl-9 lateralDerecho'>
                 <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
                 {
                     tabIndex === 0 && <DatosPersonales  responses={responses} setResponses={setResponses} />

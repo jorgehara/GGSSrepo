@@ -293,7 +293,8 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
       //#region Menú Principal
 
     <>
-      <EmployeData /><div className="Lateral-Derecho">
+      <EmployeData />
+      <div className="lateralDerecho">
         <div className="accordion" id="accordionExample">
           <div className="accordion-item">
             <h4 className="accordion-header" id="headingOne">
