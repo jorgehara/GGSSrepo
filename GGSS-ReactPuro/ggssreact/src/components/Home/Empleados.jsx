@@ -11,16 +11,24 @@ import Navbar from '../Navbar/Navbar';
 import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
 import Extras from '../Extras/Extras';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { disabledInputs } from '../../redux/actions/fetchActions';
+import { disableFunctions } from '../../redux/actions/employeActions';
 
 const Empleados = () => {
     const [tabIndex, setTabIndex] = useState(0);
-
     const [responses, setResponses] = useState({});
+    const dispatch = useDispatch();
 
     function handleTabChange(value){        
         setTabIndex(value);
     };  
-    
+    function cancelEdit(e){
+        e.preventDefault();
+        dispatch(disableFunctions(false));
+
+        dispatch(disabledInputs(true));
+    }
 return (
     <div className='container-fluid'>
         <div className='row'>
@@ -59,7 +67,7 @@ return (
             </div>            
         </div>
         <div className='d-flex flex-row-reverse  w-100 '>
-            <button className='btn btn-danger '>
+            <button className='btn btn-danger ' onClick={(e)=>cancelEdit(e)}>
                 Cancelar
             </button>
             <button className='btn btn-success '>

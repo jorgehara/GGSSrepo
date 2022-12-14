@@ -54,7 +54,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
   
   const domiciliosState = useSelector((state)=> state.domiciliosStates)
   const domicilioDelEmpleado1 = useSelector((state)=> state.generalState.domicilios);
- 
+  const disable = useSelector((state)=> state.generalState.disabled);
   //#endregion
   
     function onChangeValues(e, key){
@@ -91,7 +91,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
     handleFetch(urlProvincias, addProvincias);
     handleFetch(urlLocalidades, addLocalidades);
     handleFetch(urlBarrios, addBarrios);
-  },[deshabilitar])
+  },[disable])
 
 
   const generalStateData = useSelector((state)=> state.generalState)
@@ -102,7 +102,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
  
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl, disable } = useContext(employeContext);
+  const { saveDomicilios, } = useContext(employeContext);
 
   
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
@@ -115,13 +115,6 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
   const predeterminado = generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined ?  generalStateData.domicilios.map(m => {return(m.predeterminado)}) : null;
 
 
-  //SELECCIONADOS
-  //const provinciaSeleccionada = generalStateData.provincias !== "" && generalStateData.provincias !== undefined ? generalStateData.provincias.filter((provincia)=> provincia.idProvincia === empleadoUno.idProvincia);
-
-
-
-  //#endregion
-  //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
 
   useEffect(()=>{
     getEmpleados().then(res=> saveDomicilios(res))
@@ -141,10 +134,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
 
   // -----------------------------------------------------LLENAR CAMPOS 
 
- /*  const idEmpleadoPrueba = empleadoUno[0].iDempleado;
-  
-  generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === idEmpleadoPrueba ) 
- */
+ 
   const arrayDepartamentos = provinciaSelected && provinciaSelected.payload && generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos.filter((departamento) => departamento.idProvincia === provinciaSelected.payload.idProvincia) : null;
 
 
@@ -311,6 +301,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                     idInput="inputCalleDomicilios"
                     onChange={onChangeValues}
                     valueId="idCalle"
+                    obligatorio ={true}
                   />
                 </div>
                 <div className="col-xl-6">
@@ -376,6 +367,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   onChange={onChangeValues}
                   provinciaAction = {selectedOption}
                   valueId="idProvincia"
+                  obligatorio ={true}
                 />
                   <InputCbo
                   value={
@@ -400,6 +392,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   onChange={onChangeValues}
                   provinciaAction = {selectedOptionDpto}
                   valueId="idDepartamento"
+                  obligatorio ={true}
                 />
                 <InputCbo
                   value={
@@ -423,6 +416,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   onChange={onChangeValues}
                   provinciaAction = {selectedOptionBarrio}
                   valueId="idLocalidad"
+                  obligatorio ={true}
                 />
                 <InputCbo
                   value={
@@ -445,13 +439,14 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   idInput="inputBarriosDomicilios"
                   onChange={onChangeValues}
                   valueId="idBarrio"
+                  obligatorio ={true}
                 />
               </div>
               <ButtonCancelarAceptar idElimiar={domicilioDelEmpleado} cancelar="-" aceptar="+"disabled={disable} functionSend={sendDataDomicilios} functionDelete={deleteDomicilio}/>
               <TablaDomicilios 
                 columns={columns} 
-                empleadoSelect={empleadoUno !== undefined ? empleadoUno : null} 
-                value={ empleadoDomicilio!== undefined ? empleadoDomicilio : null}
+                empleadoSelect={empleadoUno && empleadoUno} 
+                value={ empleadoDomicilio && empleadoDomicilio }
                 provincias={generalStateData.provincias !== undefined && generalStateData.provincias !== ""  ? generalStateData.provincias : []}
                 departamentos={generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos : []}
                 localidades={generalStateData.localidades !== undefined && generalStateData.localidades !== "" ? generalStateData.localidades : []}

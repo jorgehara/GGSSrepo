@@ -11,7 +11,8 @@ const InputChecked = ({
   idInput,
   nameInput,
   onChange,
-  action
+  action,
+  obligatorio
 }) => {
   return (
     <>
@@ -24,7 +25,7 @@ const InputChecked = ({
           <div className="d-flex align-items-center col-xl-4 px-0">
             <input
               type="text"
-              className="formulario-input-Familia"
+              className={obligatorio ? "formulario-input-Familia obligatorio" : "formulario-input-Familia"}
               id={idInput}
               placeholder={placeHolder}
               value={value}

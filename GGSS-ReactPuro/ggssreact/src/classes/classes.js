@@ -21,7 +21,7 @@ export const classesEstadosCiviles = {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label',
-    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const inputButtonClasessAsidePagos= {
@@ -76,13 +76,13 @@ export const classesEstadosCiviles = {
     classThree : "primero",
     classFour :  "formulario__label mt-2 mb-0",
     classFive : "segundo",
-    classSix : "formulario-input-Estado-Provincias form-select ml-0 px-0",
+    classSix : "formulario-input-Estado-Provincias form-select ml-0 px-0 obligatorio",
   }
   export const inputButtonClasessCUIL= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
-    "classThree" : 'formulario__label',
-    "classFour" : 'formulario-input-Button-Cuil ml-0 px-0',
+    "classThree" : 'formulario__label_convenio',
+    "classFour" : 'formulario-input-Button-Cuil form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
 

@@ -21,7 +21,8 @@ const NacionalidadFlia = ({
   namePropOp,
   propArrayOpMasc,
   propArrayOpFem,
-  propIdSelect
+  propIdSelect,
+  obligatorio
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [returnBySexo, setReturnBySexo] = useState([]);
@@ -54,7 +55,7 @@ const NacionalidadFlia = ({
       </div>
       <div className="SelectedFlia px-0">
         <select
-          className="form-select mt-1 "
+          className={obligatorio ? "form-select mt-1 obligatorio" : "form-select mt-1 "}
           disabled={disable}
           id={idInput}
           name={idInput}

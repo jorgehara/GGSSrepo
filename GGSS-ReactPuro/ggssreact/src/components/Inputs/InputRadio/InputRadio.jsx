@@ -3,7 +3,7 @@ import "./InputRadio.css";
 
 
 
-const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,nameLabel ,datosPersonalesValue, action, classes, asidePagos}) => {
+const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,nameLabel ,datosPersonalesValue, action, classes, asidePagos, obligatorio}) => {
 
     const [valor, setValor] = useState("");
     const [valorRadioM, setValorRadioM] = useState(false);
@@ -67,7 +67,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
             <label className="formulario-label-Sexo"  htmlFor="legajo">{nameLabel}</label>
         </div>
         <div className="formulario-input-Sexo">
-          <input className="form-check-input" 
+          <input className={obligatorio ? "form-check-input obligatorio" : "form-check-input"} 
                  type="radio" 
                  id={idInput} 
                  name={idInput}                   
@@ -79,7 +79,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
         </div>
         <div className="formulario-input-SexoF">
           <input 
-                className="form-check-input" 
+                className={obligatorio ? "form-check-input obligatorio" : "form-check-input"} 
                 type="radio" 
                 id={idInput} 
                 name={idInput}                  

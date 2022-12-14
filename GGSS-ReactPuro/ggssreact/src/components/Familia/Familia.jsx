@@ -242,6 +242,7 @@ function onChangeValues(e, key){
                 idInput="inputApellidoNombres"
                 nameInput="inputApellidoNombres"
                 onChange={onChangeValues}
+                obligatorio ={true}
               />
               <InputMultiple
                 optionsDNI={tiposDni}
@@ -264,6 +265,7 @@ function onChangeValues(e, key){
                 datosFamiliaValue1={ formFamilia?.inputCmbDni && formFamilia?.inputCmbDni }
                 datosFamiliaRadio={formFamilia?.idRadioBtn && formFamilia?.idRadioBtn}
                 propSelected= {formFamilia?.inputCmbDni && formFamilia?.inputCmbDni}
+                obligatorio ={true}
               />
               <InputParentesco
                 nameInput="Parentesco"
@@ -282,6 +284,7 @@ function onChangeValues(e, key){
                 value={formFamilia?.inputParentesco !== undefined ? formFamilia?.inputParentesco : null}
                 onChange={onChangeValues}
                 action={ADD_FAMILIA}
+                obligatorio ={true}
               />
               <InputDateFlia
                 value={
@@ -295,6 +298,7 @@ function onChangeValues(e, key){
                 onChange={onChangeValues}
                 disable={disable}
                 familiarSeleccionado={familiarSeleccionado && familiarSeleccionado }
+                
               />
               <EstudioFlia
                 nameInput="Estudios"
@@ -312,6 +316,7 @@ function onChangeValues(e, key){
                 idInput="idInputEstudios"
                 onChange={onChangeValues}
                 valueInputEstudios={ formFamilia?.idInputEstudios && formFamilia?.idInputEstudios }
+                obligatorio ={true}
               />
             </div>
             <div className="col-xl-6 p-2">
@@ -332,6 +337,7 @@ function onChangeValues(e, key){
                 disable={disable}
                 onChange={onChangeValues}
                 action={ADD_FAMILIA}
+                obligatorio ={true}
               />
               <NacionalidadFlia
                 nameInput="Nacionalidad"
@@ -353,6 +359,7 @@ function onChangeValues(e, key){
                 disable={disable}
                 onChange={onChangeValues}
                 idInput="nacionalidadFamilia"
+                obligatorio ={true}
               />
               <InputDateFliaBaja
                 value={

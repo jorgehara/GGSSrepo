@@ -13,6 +13,8 @@ const InputModal = ({
 }) => {
 
 
+    
+
     return (
 
         <div className="inputModalContainer">
@@ -20,7 +22,7 @@ const InputModal = ({
             <div className="row mb-3 inputLabelContainer">
                 <label htmlFor="inputPassword3" className="col-sm-4 col-form-label">{nameLabel}:</label>
                 <div className="col-sm-8">
-                    <input type="text" className="inputModal" id={inputId} name={inputId} placeholder={placeHolder} value={value} onChange={(e) => onChange(e, inputId )}/>
+                    <input type="text" className="inputModal" id={inputId} name={inputId} placeholder={placeHolder} value={value} onChange={(e) => onChange(e.target.checked, inputId )}/>
                 </div>
             </div>
 
