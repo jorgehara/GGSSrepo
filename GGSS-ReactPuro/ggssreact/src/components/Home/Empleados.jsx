@@ -58,6 +58,14 @@ return (
                 }
             </div>            
         </div>
+        <div className='d-flex flex-row-reverse  w-100 '>
+            <button className='btn btn-danger '>
+                Cancelar
+            </button>
+            <button className='btn btn-success '>
+                Aceptar
+            </button>
+        </div>
         <Footer /> 
     </div>
 )

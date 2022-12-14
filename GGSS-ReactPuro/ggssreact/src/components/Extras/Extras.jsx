@@ -167,10 +167,7 @@ const Extras = ({responses, setResponses}) => {
                     <div className='divObservacionesAfectacionObs '>
                         <TextArea disabled={!formDatosExtras?.inputAfectacionesExtras} idInput="inputTextExtrasAfectaciones" inputName="Observaciones" onChange={onChangeValues} action={GET_INPUT_VALUES_EXTRAS} value={formDatosExtras?.inputTextExtrasAfectaciones && formDatosExtras?.inputTextExtrasAfectaciones} />                          
                     </div>
-                    <div className='d-flex flex-row-reverse justify-content-start align-items-center'>
-                        <button className='btn btn-outline-success'>Aceptar</button>
-                        <button className='btn btn-outline-danger ml-2'>Cancelar</button>
-                    </div>
+                    
               </div>
           </div>
       </section>  

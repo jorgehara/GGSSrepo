@@ -383,7 +383,6 @@ function onChangeValues(e, key){
           <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable} functionSend={sendData} functionDelete={deleteFamiliar} idElimiar={idFamiliarSelected}/>
         </div>
         <div className="d-flex justify-content-end">
-          <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" functionDelete={cancelButton} />
         </div>
 
       </div>

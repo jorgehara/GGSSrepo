@@ -48,14 +48,7 @@ const Documentacion = ({responses, setResponses}) => {
           formDocumentacion
         });      
     },[formDocumentacion]);
-
-    function onChange(e, action) {
-    dispatch(
-        {
-        type: action,
-        payload : {name : e.target.name, value : e.target.value}
-        });    
-    }
+    
     useEffect(()=>{
         handleFetch( urlDocumentacionEmpleados, addDocumentacionEmpleados);
         handleFetch( urlDocumentacion, getOneDocumento);
