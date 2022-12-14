@@ -22,7 +22,9 @@
 	border-radius: 0;
 	border-bottom: 1px solid rgb(78, 6, 6);
 	margin-left: 3.0rem;
-	/* margin-right: 0.5rem; */
+	margin-right: 1.5rem;
+	font-size: 400;
+	height: 36px;
 }
 .formulario-input-Legajo-Button-convenio{
 	width: 81%;
