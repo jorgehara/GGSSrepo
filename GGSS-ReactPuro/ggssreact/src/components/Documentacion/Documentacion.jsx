@@ -12,7 +12,7 @@ import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { addDocumentacionEmpleados } from '../../redux/actions/fetchActions';
 import axios from 'axios';
 import { getInputValue, getOneDocumento } from '../../redux/actions/documentacionActions';
-import { inputButtonClasess } from '../../classes/classes';
+import { inputButtonDoc } from '../../classes/classes';
 import { GET_INPUT_VALUE } from '../../redux/types/documentacionTypes';
 
 const Documentacion = ({responses, setResponses}) => {
@@ -77,7 +77,7 @@ return (
             </div>
             <div className='col-xl-12'>
                 <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
+                    clasess={inputButtonDoc}
                     nameButton="..."
                     nameLabel="Documentación"
                     placeholder="Documentación"
