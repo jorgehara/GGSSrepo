@@ -260,7 +260,7 @@ return (
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
                             nameButton="..."
-                            nameLabel="Secretaria/Sector/Dpto"
+                            nameLabel="Secretaria/Sector"
                             placeholder="Secretaria/Sector/Dpto"
                             value={formLiquidacion?.inputSectorDepto && formLiquidacion?.inputSectorDepto}
                             array={sectorDepto && sectorDepto}
