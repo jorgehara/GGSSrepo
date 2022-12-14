@@ -10,7 +10,6 @@ import InputFile from "../Inputs/InputFile/InputFile";
 import InputForm from "../Inputs/InputForm/InputForm";
 import InputRadio from "../Inputs/InputRadio/InputRadio";
 import "./DatosPersonales.css";
-import { employeContext } from "../../context/employeContext";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
 import generateCuil from "./funcGenerarCuil.js";
@@ -98,8 +97,7 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
      handleFetch( urlTiposDNI,addTiposDocumento);
      handleFetch( urlParentescos,addParentescos);
      handleFetch( urlFamiliares,addFamiliares);
-     handleFetch( urlNumeradores,addNumeradores);
-    
+     handleFetch( urlNumeradores,addNumeradores);    
    },[deshabilitar])
     
 
@@ -112,24 +110,15 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
       return (num.tabla === tabla)
     })
   }
-  function setImageEmpleado() {
-    empleadoUno && setImage(empleadoUno.obsFechaIngreso);
-  }
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = today.getFullYear();
-    today = mm + '/' + dd + '/' + yyyy;
 
-  function textToBin(text) {
-    return (
-      Array
-        .from(text)
-        .reduce((acc, char) => acc.concat(char.charCodeAt().toString(2)), [])
-        .map(bin => '0'.repeat(8 - bin.length) + bin )
-        .join(' ')
-    );
-  }
+  
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = today.getFullYear();
+  today = mm + '/' + dd + '/' + yyyy;
+
+  
     
 
   let bodyPostEmploye = {
@@ -576,7 +565,7 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
           <Domicilios formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={deshabilitar} responses={responses} setResponses={setResponses} />
         </div>
         <div className="d-flex justify-content-end">
-          <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} functionSend={sendDataEmploye} functionDelete={cancelButton} />
+          
         </div>
       </div></>
   );

@@ -26,14 +26,13 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
     }
    
   return (
-        clasess ? 
-      <div className={`${clasess.classOne}`}>
+        clasess ? <div className={`${clasess.classOne}`}>
         <div className={`${clasess.classTwo}`}>
             <div className={`${clasess.classThree}`}>
                 <label className={`${clasess.classFour}`} htmlFor="legajo">{nameLabel}</label>
             </div>
-            <div className='segundo'>
-                <select className="formulario-input-Estado form-select ml-0 px-0" defaultValue="" onChange={(e)=>onChange(e.target.value, idInput)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
+            <div className={`${clasess.classFive}`}>
+                <select className={`${clasess.classSix}`} defaultValue="" onChange={(e)=>onChange(e.target.value, idInput)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
                 <option selected value="">Seleccionar</option>                    
                     {
                     sexo  && sexo  && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{

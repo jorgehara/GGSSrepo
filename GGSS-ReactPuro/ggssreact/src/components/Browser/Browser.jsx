@@ -7,6 +7,7 @@ import "./Browser.css";
 import {  addOneEmploye, disableFunctions, getEmployes  } from '../../redux/actions/employeActions';
 import {  GET_INPUT_VALU_BROWSER } from '../../redux/types/employeTypes';
 import swal from 'sweetalert';
+import { disabledInputs } from '../../redux/actions/fetchActions';
 
 const Browser = () => {
     
@@ -70,6 +71,7 @@ const Browser = () => {
     Array.from(document.querySelectorAll("input")).forEach(
       input => (input.value = "")
     );
+    dispatch(disabledInputs(false));
     //saveDisable(false);
     let employeData = {...empleadoUno};
 
@@ -142,31 +144,21 @@ const Browser = () => {
 <div className="container text-center d-inline-flex">
   <div className="row align-items-start">
     <div className="col">
-        <ButtonLarge
-          color="danger"
-          tamaño="sm"
-          justyfy="center m-1"
-          align=""
-          nameButton="Agregar"
-          onClick={habilitaEdit}
-        />
+      <button className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`} onClick={(e)=>habilitaEdit(e)}>
+        Agregar
+      </button>
     </div>
     <div className="col">
-        <ButtonLarge
-          color="danger"
-          tamaño="sm"
-          justyfy="center m-1"
-          nameButton="Modificar"
-          onClick={habilitaUpdate}
-        />
+      <button className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`} onClick={(e)=>habilitaUpdate(e)}>
+        Modificar
+      </button>
+       
     </div>
     <div className="col">
-        <ButtonLarge
-          color="danger"
-          tamaño="sm"
-          justyfy="center m-1"
-          nameButton="Eliminar"
-        />
+      <button className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`} onClick={(e)=>habilitaUpdate(e)}>
+          Eliminar
+      </button>
+        
     </div>
 
       </div>

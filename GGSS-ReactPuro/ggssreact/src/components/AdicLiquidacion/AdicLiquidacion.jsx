@@ -55,7 +55,6 @@ const AdicLiquidacion = ({responses, setResponses}) => {
         </div>
         <div className='row'>
             <div className='col-xl-12 mt-2'>
-                <ButtonCancelarAceptar aceptar="Aceptar" cancelar="Cancelar" />
             </div>
         </div>
     </div>

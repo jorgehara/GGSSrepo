@@ -5,7 +5,7 @@
 }
 
 .txtArea{
-    width: 300px;
+    width: 200px;
     resize: none;
 }
 
@@ -54,4 +54,7 @@
 }
 .text-orange{
 	color: orange;
+}
+.input-control{
+	width: 32.5rem;
 }

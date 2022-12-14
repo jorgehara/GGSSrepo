@@ -1,11 +1,13 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { inputButtonClasessExtras, inputButtonClasessExtrasAfectaciones, inputButtonClasessExtrasInstrum } from '../../classes/classes'
+import { addDatosExtras, addInstrumLegales } from '../../redux/actions/fetchActions';
 import { GET_INPUT_VALUES_EXTRAS } from '../../redux/types/extrasTypes';
+import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
 import EmployeData from '../EmployeData/EmployeData'
 import CheckLabel from '../Inputs/CheckLabel/CheckLabel';
-import InputButton from '../Inputs/InputButton/InputButton';
 import InputButtonLiquidacion from '../Inputs/InputButton/InputButtonLiquidacion'
 import InputDate from '../Inputs/InputDate/InputDate';
 import TextArea from '../Inputs/TextArea/TextArea';
@@ -17,6 +19,11 @@ const Extras = ({responses, setResponses}) => {
     const columns = ["Fecha", "Descripción", "Observaciones"]
     const dispatch = useDispatch();
     const [ formDatosExtras, setFormDatosExtras ] = useState(responses["formDatosExtras"]);
+    const deshabilitar = useSelector((state)=> state.employeStates.disable);
+    const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/0,%201`;
+    const urlInstrumLegal = "http://54.243.192.82/api/InstrumentosLegales/0?modo=1"
+    const datosExtras = useSelector((state)=> state.generalState.datosExtras);
+    const instrumLegales = useSelector((state)=> state.generalState.instrumLegales);
 
     function onChangeValues(e, key){
         const newResponse = {...formDatosExtras};
@@ -25,7 +32,21 @@ const Extras = ({responses, setResponses}) => {
           ...newResponse
         });
     };
-  
+    console.log(instrumLegales);
+    const handleFetch=(url, action )=>{
+        dispatch({type: SET_LOADING});
+          axios.get(url)
+          .then((res)=>{
+            dispatch( action(res.data));
+          })
+          .catch((err)=>{
+            dispatch({type:AXIOS_ERROR});
+          })
+       }
+       useEffect(()=>{
+        handleFetch( urlDatosExtras, addDatosExtras);  
+        handleFetch( urlInstrumLegal, addInstrumLegales);      
+      },[deshabilitar])
   
     useEffect(() => {    
         setResponses({
@@ -59,8 +80,9 @@ const Extras = ({responses, setResponses}) => {
                       nameButton="..." 
                       onChange={onChangeValues} 
                       value={formDatosExtras?.inputDatosExtrasCbo && formDatosExtras?.inputDatosExtrasCbo}
-                      propArrayOp=""
-                      propIdOption=""
+                      propArrayOp="descripcion"
+                      array={datosExtras && datosExtras}
+                      propIdOption="idDatoExtra"
                       nameLabel="Datos Extras" 
                       action={GET_INPUT_VALUES_EXTRAS} 
                       clasess={inputButtonClasessExtras} />
@@ -87,6 +109,9 @@ const Extras = ({responses, setResponses}) => {
                         value={formDatosExtras?.inputInstrumLegal && formDatosExtras?.inputInstrumLegal} 
                         nameButton="..." 
                         nameLabel="Instrum. Legal" 
+                        array={instrumLegales && instrumLegales}
+                        propArrayOp="descripcion"
+                        propIdOption="idInstrumentoLegal"
                         idInput="inputInstrumLegal" 
                         id="inputInstrumLegal" 
                         clasess={inputButtonClasessExtrasInstrum} 
@@ -106,6 +131,9 @@ const Extras = ({responses, setResponses}) => {
                         value={formDatosExtras?.inputInstrumLegalAfectaciones && formDatosExtras?.inputInstrumLegalAfectaciones} 
                         nameButton="..." 
                         nameLabel="Instrum. Legal" 
+                        array={instrumLegales && instrumLegales}
+                        propArrayOp="descripcion"
+                        propIdOption="idInstrumentoLegal"
                         id="inputInstrumLegalAfectaciones" 
                         idInput="inputInstrumLegalAfectaciones" 
                         action={GET_INPUT_VALUES_EXTRAS} 
@@ -139,10 +167,7 @@ const Extras = ({responses, setResponses}) => {
                     <div className='divObservacionesAfectacionObs '>
                         <TextArea disabled={!formDatosExtras?.inputAfectacionesExtras} idInput="inputTextExtrasAfectaciones" inputName="Observaciones" onChange={onChangeValues} action={GET_INPUT_VALUES_EXTRAS} value={formDatosExtras?.inputTextExtrasAfectaciones && formDatosExtras?.inputTextExtrasAfectaciones} />                          
                     </div>
-                    <div className='d-flex flex-row-reverse justify-content-start align-items-center'>
-                        <button className='btn btn-outline-success'>Aceptar</button>
-                        <button className='btn btn-outline-danger ml-2'>Cancelar</button>
-                    </div>
+                    
               </div>
           </div>
       </section>  

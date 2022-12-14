@@ -15,6 +15,7 @@ import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades,
 import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto, setPredeterminado } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
+import { inputClassProvinciasDomicilios } from "../../classes/classes";
 
 //#endregion
 const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, setFormDatosPersonales}) => {
@@ -353,6 +354,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
               <div className="col-xl-5 mx-4 gy-4 py-2">
                 
                   <InputCbo
+                  clasess={inputClassProvinciasDomicilios}
                   value={
                     formDatosPersonales?.inputProvinciaDomicilios ? formDatosPersonales?.inputProvinciaDomicilios : empleadoUno.provincia
                   }

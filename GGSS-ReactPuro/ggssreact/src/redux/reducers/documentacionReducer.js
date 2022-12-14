@@ -17,7 +17,6 @@ export const documentacionReducer=(state = initialState, action)=>{
 
  switch(type){
     case GET_INPUT_VALUE : {
-        console.log(payload)
         return{
             ...state,
             formulario : {...state.formulario, [payload.name]:payload.value}

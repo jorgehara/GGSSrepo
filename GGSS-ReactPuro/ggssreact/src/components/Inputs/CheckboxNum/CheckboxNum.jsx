@@ -9,10 +9,10 @@ const CheckboxNum = ({
     placeHolder,
     onChange,
     inputId,
+    inputNumId
 }) => {
 
     const [checked, setChecked] = useState(false);
-    const [inputNum, setInputNum] = useState("");
 
     return (
 
