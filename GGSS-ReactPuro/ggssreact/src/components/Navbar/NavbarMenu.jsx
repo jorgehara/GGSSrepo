@@ -29,7 +29,7 @@ import swal from "sweetalert";
 
 
 
-const Navbar = () => {
+const NavbarMenu = () => {
 	//#region --------------------------------- CONSTANTES DE DATOS -------------------------------
 	const { empleadores, modosLiquidacion, modosContratacion, formasDePago, parentescos, tareasDesempeñadas, cargos, saveEstado, saveEstadoCivil, saveNacionalidad, saveEstudio, saveTipoDNI, saveCalle, saveDoms, saveProvincia, saveLocalidad, saveDetpo, saveBarrio } = useContext(employeContext);
 
@@ -204,7 +204,7 @@ const Navbar = () => {
 									Empleados
 								</a>
 								<ul className=" dropdown-menu">
-									<li><Link className="dropdown-item" to="/home">Ficha Empleados</Link></li>
+									<li><Link className="dropdown-item" to="/ficha-empleados">Ficha Empleados</Link></li>
 									<li><Link className="dropdown-item" to="#">Busqueda de Datos</Link></li>
 								</ul>
 							</li>

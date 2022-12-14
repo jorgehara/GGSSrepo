@@ -271,8 +271,24 @@ export const fetchReducer = (state = initialState, action) =>{
                 esquemas : action.payload
             }
         }
-
-
+        case DISABLED_INPUTS : {
+            return {
+                ...state,
+                disabled : action.payload
+            }
+        }
+        case ADD_NUMERADORES : {
+            return {
+                ...state,
+                numeradores : action.payload
+            }
+        }
+        case ADD_DOCU_EMPL : {
+            return {
+                ...state,
+                documentacionEmpleados : action.payload
+            }
+        }
 
         // --------------- POST REDUX ---------------
          case ADD_NEW_ESCI :{
