@@ -1,4 +1,4 @@
-import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING, ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO} from "../types/fetchTypes";
+import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING, ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO} from "../types/fetchTypes";
 
 export const initialState = {
     loading: false, 
@@ -39,7 +39,8 @@ export const initialState = {
     idEstadoCivil : 0,
     idEstudio : 0,
     idTipoDoc : 0,
-    idParentesco : 0
+    idParentesco : 0,
+    idEstado : 0
 }
 
 export const fetchReducer = (state = initialState, action) =>{
@@ -298,6 +299,13 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
 
+        case ADD_NEW_ESTADO : {
+            return {
+                ...state,
+                estados: [...state.estados, action.payload]
+            }
+        }
+
 
         // --------------- DELETE REDUX ---------------
 
@@ -353,6 +361,19 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
 
+        case GET_ID_ESTADO : {
+            return {
+                ...state,
+                idEstado : action.payload
+            }
+        }
+        case DELETE_ESTADO : {
+            return {
+                ...state,
+                estados: state.estados.filter((estado) => estado.idEstado !== action.payload)
+            }
+        } 
+
         
         // --------------- PUT REDUX ---------------
 
@@ -385,6 +406,14 @@ export const fetchReducer = (state = initialState, action) =>{
                 ...state,
                 parentescos : state.parentescos.filter((paren) => paren.idParentesco !== action.payload),
                 parentescos: [...state.parentescos, action.payload]
+            }
+        }
+
+        case PUT_ESTADO : {
+            return {
+                ...state,
+                estados: state.estados.filter((estado) => estado.idEstado !== action.payload),
+                estados: [...state.estados, action.payload]
             }
         }
 

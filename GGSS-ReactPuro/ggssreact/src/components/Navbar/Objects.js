@@ -75,7 +75,9 @@ export const checkboxNumParentescos = [
 export const objectEstado = [
   {
     "label": "Estado",
-    "placeholder": "Estado1"
+    "placeholder": "Estado1",
+    "idInput": "nombreEstado",
+    "nameInput": "nombreEstado"
   }
 ]
 

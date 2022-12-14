@@ -17,9 +17,9 @@ import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco } from '../../redux/actions/fetchActions';
+import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
-import { addSelectedEstadoCivil, addSelectedEstudio, addSelectedParentesco, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
+import { addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedParentesco, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
 import swal from "sweetalert";
 
 
@@ -91,11 +91,6 @@ const Navbar = () => {
 	}, [refetch])
 
 
-
-	console.log('OBJETO NORMAL: ' + objectParentescos)
-	console.log('OBJETO CHECKBOX: ' + checkboxParentescos)
-	console.log('OBJETO NUM CHECKBOX: ' + checkboxNumParentescos)
-
 	// ESTADOS QUE GUARDAN EL VALOR DE LOS INPUTS
 	const [responses, setResponses] = useState({});
 	const [modalDataInputs, setModalDataInputs] = useState(responses["modalDataInputs"])
@@ -106,6 +101,12 @@ const Navbar = () => {
 		setModalDataInputs({
 			...newResponse
 		})
+	}
+
+	function onChangeCheckboxes(e, key) {
+		const newResponse = { modalDataInputs }
+		newResponse[key] = e.target.value
+		setModalDataInputs(newResponse)
 	}
 
 	useEffect(() => {
@@ -148,6 +149,13 @@ const Navbar = () => {
 	const inputObsParent = useSelector((state) => state.modalState.formulario.inputObsParent)
 	const valueIdParentesco = useSelector((state) => state.generalState.idParentesco)
 
+	// estados para los empleados
+	const estadosValue = useSelector((state) => state.generalState.estados)
+	const estadoSelected = useSelector((state) => state.modalState.estadoSelected)
+	const inputEstado = useSelector((state) => state.modalState.formulario.inputEstado)
+	const valueIdEstado = useSelector((state) => state.generalState.idEstado)
+
+
 
 
 
@@ -165,6 +173,9 @@ const Navbar = () => {
 	//Parentescos
 	const idParentesco = ((parentescosValue && parentescosValue[parentescosValue.length - 1] !== undefined && (parentescosValue[parentescosValue.length - 1].iDparentesco)) + 1)
 	const bodyPetParentescos = { ...responses.modalDataInputs, iDparentesco: idParentesco }
+	// estados para los empleados
+	const idEstado = ((estadosValue && estadosValue[estadosValue.length - 1] !== undefined && (estadosValue[estadosValue.length - 1].idEstado)) + 1)
+	const bodyPetEstados = { ...responses.modalDataInputs, idEstado: idEstado }
 
 
 
@@ -400,6 +411,7 @@ const Navbar = () => {
 								action={addSelectedParentesco}
 								opcionSelected={parentescoSelected}
 								urlApi={urlParentescos}
+								inputIdCompare="nombreParentesco"
 								firstOptionCompare={inputParentesco ? inputParentesco : parentescoSelected.nombreParentesco}
 								secondOptionCompare={inputParentesco ? inputParentesco : parentescoSelected.nombreParentesco}
 								dispatchAddAction={addNewParentesco}
@@ -409,11 +421,41 @@ const Navbar = () => {
 								bodyPet={bodyPetParentescos}
 								idApi={valueIdParentesco}
 								onChange={onChangeValues}
+								onChangeCheckboxes={onChangeCheckboxes}
+								valueCheckbox={inputAsignacionParent}
+								valueCheckboxNum={inputGananciaParent}
+								valueNumCheck={inputImporteParent}
+								valueObs={inputObsParent}
+								refetch={refetch}
+								setRefetch={setRefetch}
+								resp={responses}
+
+							/>
+							<BasicModal
+								idModal="estadosEmpleados"
+								nameModal="Estados para empleados"
+								placeholder={objectEstado}
+								array={estadosValue && estadosValue}
+								propArrayOp="nombreEstado" propArrayId="idEstado"
+								action={addSelectedEstado}
+								opcionSelected={estadoSelected}
+								urlApi={urlEstados}
+								inputIdCompare="nombreEstado"
+								firstOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
+								secondOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
+								dispatchAddAction={addNewEstado}
+								dispatchDeleteAction={deleteEstado}
+								dispatchPutAction={putEstado}
+								dispatchGetID={getIdEstado}
+								bodyPet={bodyPetEstados}
+								idApi={valueIdEstado}
+								onChange={onChangeValues}
+								resp={responses}
 								refetch={refetch}
 								setRefetch={setRefetch}
 
 							/>
-							<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} array={estadosArray} />
+
 							<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} array={cargosMap} />
 							<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} array={tareasMap} />
 							<BasicModal idModal="formasDePago" nameModal="Formas de Pago" placeholder={objectFormasDePago} textArea={true} array={formasDePagoMap} />

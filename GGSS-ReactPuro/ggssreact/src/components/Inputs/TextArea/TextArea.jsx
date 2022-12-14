@@ -1,7 +1,7 @@
 import React from 'react'
 import './TextArea.css'
 
-const TextArea = ({inputName, maxLength, value, disabled, action, onChange, idInput}) => {
+const TextArea = ({inputName, maxLength, value, disabled, action, onChange, inputId}) => {
   return (
     <div className='row'>
         <div className='form__grupo__label pl-1 mt-3'>
@@ -12,11 +12,11 @@ const TextArea = ({inputName, maxLength, value, disabled, action, onChange, idIn
         <input className="form-control-obs txtArea" 
                 value={value}
                 placeholder="Ingrese Observaciones" 
-                onChange={(e)=>onChange(e, action)}
-                id={idInput} 
+                onChange={(e) => onChange(e, inputId )}
+                id={inputId} 
                 cols="21" 
                 rows="2"
-                name={idInput} 
+                name={inputId} 
                 maxLength={maxLength}
                 disabled={disabled}
                 >

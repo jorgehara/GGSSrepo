@@ -50,6 +50,10 @@ const BasicModal = ({
   dispatchGetID,
   resp,
   onChange,
+  onChangeCheckboxes,
+  valueCheckbox,
+  valueCheckboxNum,
+  valueNumCheck,
   refetch,
   setRefetch
   // setRes,
@@ -237,8 +241,8 @@ const BasicModal = ({
                         inputId={p.idInput}
                         value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
                         onChange={onChange}
-                        // action={GET_ESTADOSCIVILES}
-                        opcionSelected={opcionSelected}
+                      // action={GET_ESTADOSCIVILES}
+                      // opcionSelected={opcionSelected}
                       />
                     );
                   })
@@ -250,11 +254,16 @@ const BasicModal = ({
                   hasCheckbox &&
                   checkboxObject?.map((p, i) => {
                     // console.log(typeof(p.label))
-                    <Checkbox
-                      key={i}
-                      nameCheckbox={p.label}
-                      inputId={p.idInput}
-                    />
+                    return (
+                      <Checkbox
+                        key={i}
+                        nameCheckbox={p.label}
+                        inputId={p.idInput}
+                        onChange={onChangeCheckboxes}
+                        value={valueCheckbox}
+                      />
+                    )
+
                   })
                 }
 
@@ -262,13 +271,19 @@ const BasicModal = ({
                   hasCheckBoxNum &&
                   checkboxNumObject?.map((p, i) => {
                     // console.log(typeof(p.label))
-                    <CheckboxNum
-                      key={i}
-                      nameCheckbox={p.label}
-                      nameInputNum={p.labelNum}
-                      inputId={p.idInput}
-                      inputNumId={p.idInputNum}
-                    />
+                    return (
+                      <CheckboxNum
+                        key={i}
+                        nameCheckbox={p.label}
+                        nameInputNum={p.labelNum}
+                        inputId={p.idInput}
+                        inputNumId={p.idInputNum}
+                        onChange={onChangeCheckboxes}
+                        valueCheck={valueCheckboxNum}
+                        valueNum={valueNumCheck}
+                      />
+                    )
+
                   })
 
                 }
@@ -279,7 +294,12 @@ const BasicModal = ({
                 {inputDate && <InputDate nameInput="Vencimiento" />}
 
                 <br />
-                {textArea && <TextArea inputName="Observaciones" />}
+                {textArea &&
+                  <TextArea
+                    inputName="Observaciones"
+                    onChange={onChange}
+                    inputId={"obs"}
+                  />}
                 <hr />
 
 

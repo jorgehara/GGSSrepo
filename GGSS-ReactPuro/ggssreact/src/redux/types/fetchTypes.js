@@ -45,6 +45,7 @@ export const ADD_NEW_ESCI = "ADD_NEW_ESCI";
 export const ADD_NEW_ESTUDIO = "ADD_NEW_ESTUDIO";
 export const ADD_NEW_TIPODOC = "ADD_NEW_TIPODOC"
 export const ADD_NEW_PARENTESCO = "ADD_NEW_PARENTESCO"
+export const ADD_NEW_ESTADO = "ADD_NEW_ESTADO"
 
 
 // DELETE TYPES
@@ -63,12 +64,17 @@ export const DELETE_TIPODOC = "DELETE_TIPODOC"
 export const GET_ID_PARENTESCO = "GET_ID_PARENTESCO"
 export const DELETE_PARENTESCO = "DELETE_PARENTESCO"
 
+// estados para los empleados
+export const GET_ID_ESTADO = "GET_ID_ESTADO"
+export const DELETE_ESTADO = "DELETE_ESTADO"
+
 // PUT TYPES
 
 export const PUT_ESCI = "PUT_ESCI"
 export const PUT_ESTUDIO = "PUT_ESTUDIO"
 export const PUT_TIPODOC = "PUT_TIPODOC"
 export const PUT_PARENTESCO = "PUT_PARENTESCO"
+export const PUT_ESTADO = "PUT_ESTADO"
 
 
 
