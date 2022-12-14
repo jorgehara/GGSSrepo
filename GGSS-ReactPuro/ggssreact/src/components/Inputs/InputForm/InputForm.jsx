@@ -12,7 +12,8 @@ const InputForm = ({
   validateLetters,
   numbers,
   idInput,
-  cancelar
+  cancelar,
+  obligatorio
 }) => {
   return (
     <div className="formulario__grupo__inputs">
@@ -22,6 +23,22 @@ const InputForm = ({
         </label>
       </div>
       <div className="form__grupo-input">
+        {
+          obligatorio ? 
+          <input
+          type="text"
+          className="formulario-input-Legajo obligatorio"
+          id={idInput}
+          data-bs-toggle="tooltip" 
+          data-bs-placement="top"
+          data-bs-title="Campo obligario"
+          placeholder={placeHolder}
+          value={ cancelar ? null : value  }
+          onChange={(e)=>onChange(e.target.value, idInput)}
+          disabled={disabled}
+          name={idInput}
+          onKeyPress={(numbers && validateNumbers) || (!numbers && validateLetters)}
+        /> :
         <input
           type="text"
           className="formulario-input-Legajo"
@@ -33,6 +50,7 @@ const InputForm = ({
           name={idInput}
           onKeyPress={(numbers && validateNumbers) || (!numbers && validateLetters)}
         />
+        }
       </div>
       <div className="form__grupo__icons">
         <i className="fas fa-times-circle form__grupo__icon"></i>

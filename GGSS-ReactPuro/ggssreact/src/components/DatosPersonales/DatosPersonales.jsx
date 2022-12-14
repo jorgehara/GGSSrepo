@@ -43,6 +43,7 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
   const datosPersonalesState = useSelector((state)=> state.generalState);
   const numeradores = useSelector((state)=> state.generalState.numeradores);
   const disable = useSelector((state)=> state.generalState.disabled);
+  console.log(disable)
   //#endregion
 
   //#region URLS EMPLEADOS
@@ -98,7 +99,7 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
      handleFetch( urlParentescos,addParentescos);
      handleFetch( urlFamiliares,addFamiliares);
      handleFetch( urlNumeradores,addNumeradores);    
-   },[deshabilitar])
+   },[disable])
     
 
   useEffect(()=>{
@@ -331,7 +332,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             nameLabel="Legajo"
                             validateNumbers={validateNumbers}
                             numbers={true}
-                            cancelar={cancelar} />
+                            cancelar={cancelar} 
+                            obligatorio ={true}
+                            />
                           <InputForm
                             value={formDatosPersonales?.apellidoInput ? formDatosPersonales?.apellidoInput : empleadoUno.apellido}
                             idInput="apellidoInput"
@@ -341,7 +344,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             onChange={onChangeValues}
                             nameLabel="Apellidos"
                             validateLetters={validateTexts}
-                            numbers={false} />
+                            numbers={false} 
+                            obligatorio ={true}
+                            />
                           <InputForm
                             value={formDatosPersonales?.nombresInput ? formDatosPersonales?.nombresInput : empleadoUno.nombres}
                             action={ADD_DATOS_PERSONALES}
@@ -352,7 +357,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             onChange={onChangeValues}
                             nameLabel="Nombres"
                             validateLetters={validateTexts}
-                            numbers={false} />
+                            numbers={false} 
+                            obligatorio ={true}
+                            />
                           <DNICboBox
                             value={formDatosPersonales?.documentoInput ? formDatosPersonales?.documentoInput : empleadoUno.nroDocumento}
                             action={ADD_DATOS_PERSONALES}
@@ -367,7 +374,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             onChange={onChangeValues}
                             selectedId="dniSelected"
                             idSelected={formDatosPersonales?.dniSelected && formDatosPersonales?.dniSelected}
-                            validateNumbersDNI={validateNumbersDNI} />
+                            validateNumbersDNI={validateNumbersDNI}
+                            obligatorio ={true}
+                            />
                           <InputButton
                             value={formDatosPersonales?.inputCuil ? formDatosPersonales?.inputCuil : empleadoUno.cuil}
                             action={ADD_DATOS_PERSONALES}
@@ -385,7 +394,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             nroDocumento={formDatosPersonales?.documentoInput && formDatosPersonales?.documentoInput}
                             genre={formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo}
                             usaCuil={true}
-                            swal={swal} />
+                            swal={swal} 
+                            obligatorio ={true}
+                            />
                           <InputForm
                             value={formDatosPersonales?.telefonoInput ? formDatosPersonales?.telefonoInput : empleadoUno.telFijo}
                             action={ADD_DATOS_PERSONALES}
@@ -398,7 +409,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             nameLabel="Telefono"
                             datosPersonalesValue={formDatosPersonales?.telefonoInput && formDatosPersonales?.telefonoInput}
                             validateNumbers={validateNumbers}
-                            numbers={true} />
+                            numbers={true} 
+                            
+                            />
                           <InputCbo
                             action={ADD_DATOS_PERSONALES}
                             sexo={empleadoUno && empleadoUno ? empleadoUno.sexo : formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo}
@@ -414,7 +427,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             disabled={(formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo === "") ? disableEstado : disable}
                             nameInput="estadoCivilInput"
                             idInput="estadoCivilInput"
-                            onChange={onChangeValues} />
+                            onChange={onChangeValues} 
+                            obligatorio ={true}
+                            />
                           <InputCbo
                             value={empleadoUno && empleadoUno
                               ? empleadoUno.idNacionalidad
@@ -433,7 +448,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             idModal="nacionalidades"
                             disabled={disable}
                             idInput="nacionalidadesInput"
-                            onChange={onChangeValues} />
+                            onChange={onChangeValues} 
+                            obligatorio ={true}
+                            />
                         </div>
                         <div className="tercera_columna col-xl-4">
                           <InputCbo
@@ -455,7 +472,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             display={true}
                             idInput="estadosEmpleados"
                             idModal="estadosEmpleados"
-                            disabled={disable} />
+                            disabled={disable} 
+                            obligatorio ={true}
+                            />
                           <InputRadio
                             value={formDatosPersonales?.inputSexo ? formDatosPersonales?.inputSexo : empleadoUno.sexo}
                             action={ADD_DATOS_PERSONALES}
@@ -465,7 +484,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             idInput="inputSexo"
                             disabled={disable}
                             onChange={onChangeValues}
-                            datosPersonalesValue={formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo} />
+                            datosPersonalesValue={formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo} 
+                            obligatorio ={true}
+                            />
                           <InputDate
                             value={formDatosPersonales?.inputDateNac ? formDatosPersonales?.inputDateNac : empleadoUno.fechaNacimiento}
                             action={ADD_DATOS_PERSONALES}
@@ -515,7 +536,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             idModal="paisOrigenInput"
                             disabled={disable}
                             idInput="paisOrigenInput"
-                            onChange={onChangeValues} />
+                            onChange={onChangeValues} 
+                            obligatorio ={true}
+                            />
                           <InputCbo
                             value={formDatosPersonales?.estudiosInput ? formDatosPersonales?.estudiosInput : empleadoUno.idEstudios}
                             action={ADD_DATOS_PERSONALES}
@@ -533,7 +556,9 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
                             idModal="Estudios"
                             disabled={disable}
                             idInput="estudiosInput"
-                            onChange={onChangeValues} />
+                            onChange={onChangeValues}
+                            obligatorio ={true}
+                            />
                           <TextArea
                             inputName="Observaciones"
                             idInput="observacionesEstudios"

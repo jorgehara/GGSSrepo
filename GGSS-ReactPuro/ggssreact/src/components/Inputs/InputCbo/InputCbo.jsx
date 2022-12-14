@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
 import "./InputCbo.css";
 
-const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sexo, idModal, disabled, idInput,onChange, datosPersonalesValue, action, propArrayOp,propArrayOpFem,provinciaAction,valueId, clasess}) => {
+const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sexo, idModal, disabled, idInput,onChange, datosPersonalesValue, action, propArrayOp,propArrayOpFem,provinciaAction,valueId, clasess, obligatorio}) => {
   
     const [mostrarComponente, setMostrarComponente] = useState(true);
     const [valor, setValor] = useState("");
@@ -82,7 +82,7 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
                 <label className="formulario__label mt-2 mb-0" htmlFor="legajo">{nameLabel}</label>
             </div>
             <div className='segundo'>
-                <select className="formulario-input-Estado form-select ml-0 px-0" onChange={(e)=>onChange(e.target.value, idInput)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
+                <select className={obligatorio ? "formulario-input-Estado form-select ml-0 px-0 obligatorio" : "formulario-input-Estado form-select ml-0 px-0"} onChange={(e)=>onChange(e.target.value, idInput)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
                 <option selected value="">Seleccionar</option>                    
                     {
                        sexo !== null && sexo !== undefined && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{

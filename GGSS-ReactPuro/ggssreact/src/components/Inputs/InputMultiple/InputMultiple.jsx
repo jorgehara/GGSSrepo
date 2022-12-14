@@ -19,7 +19,8 @@ const InputMultiple = ({
   action,
   namePropOp,
   idSelected,
-  propSelected
+  propSelected,
+  obligatorio
 }) => {
   const [valor, setValor] = useState("");
   const [valorRadioM, setValorRadioM] = useState(false);
@@ -63,7 +64,7 @@ const InputMultiple = ({
             
           </div>
           <div className="col-xl-4 divCboMultiple  d-flex justify-content-start align-items-center">
-            <select className="formulario-input-DNI-familia form-select  px-0" value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e.target.value,propsRadioButton.idCboDni)}>
+            <select className={obligatorio ? "formulario-input-DNI-familia form-select  px-0 obligatorio" : "formulario-input-DNI-familia form-select  px-0"} value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e.target.value,propsRadioButton.idCboDni)}>
               <option value="">Seleccionar</option>
               {optionsDNI && optionsDNI.map((op, i) => {
                 return propSelected === op[idSelected] ? <option key={i} selected value={op[idSelected]}>{op[namePropOp]}</option> :
@@ -76,7 +77,7 @@ const InputMultiple = ({
               type="text"
               maxLength="8"
               value={valueDNI}
-              className="formulario-input-DNI-input px-0 mt-0 mb-0"
+              className={obligatorio ? "formulario-input-DNI-input px-0 mt-0 mb-0 obligatorio" : "formulario-input-DNI-input px-0 mt-0 mb-0"}
               placeholder={placeholder}
               disabled={disable}
               id={propsRadioButton.idNroDni}
@@ -98,7 +99,7 @@ const InputMultiple = ({
             <div className="d-flex flex-column justify-content-start align-items-center inputsSexo">
               <div className="d-flex flex-row justify-content-start align-items-center inputSexo">
                 <input
-                  className="form-check-input"
+                  className={obligatorio ? "form-check-input obligatorio" : "form-check-input"}
                   type="radio"
                   id={propsRadioButton.idRadioBtn}
                   name={propsRadioButton.idRadioBtn}
@@ -114,7 +115,7 @@ const InputMultiple = ({
               </div>
               <div className="d-flex flex-row justify-content-center align-items-center">
                 <input
-                  className="form-check-input p-1"
+                  className={obligatorio ? "form-check-input obligatorio" : "form-check-input"}
                   type="radio"
                   id={propsRadioButton.idRadioBtn}
                   defaultChecked

@@ -97,7 +97,7 @@ const NavbarMenu = () => {
 
 	function onChangeValues(e, key) {
 		const newResponse = { ...modalDataInputs }
-		newResponse[key] = e.target.value
+		newResponse[key] = e
 		setModalDataInputs({
 			...newResponse
 		})

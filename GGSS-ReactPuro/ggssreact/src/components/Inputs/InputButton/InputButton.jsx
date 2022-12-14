@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import "./InputButton.css";
 
-const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal , clasess}) => {
+const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal , clasess, obligatorio}) => {
 
   const [valor, setValor] = useState();
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
             <input type="text" 
                     value={ datosPersonalesValue !== undefined && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
                     maxLength={maxLeght}
-                    className="formulario-input-Legajo-Button ml-0 px-0 mt-0  mr-1" 
+                    className={obligatorio ? "formulario-input-Legajo-Button ml-0 px-0 mt-0  mr-1 obligatorio" : "formulario-input-Legajo-Button ml-0 px-0 mt-0  mr-1"} 
                     placeholder={placeholder} 
                     id={id} 
                     name={id}

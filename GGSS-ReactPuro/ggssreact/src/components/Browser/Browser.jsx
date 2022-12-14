@@ -21,8 +21,7 @@ const Browser = () => {
   const valueInputApellido = useSelector((state)=> state.employeStates.formulario.inputApellidoNombreBrowser);
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   const deshabilitado = useSelector((state)=> state.employeStates.disable);
-
-
+  const disable = useSelector((state)=> state.generalState.disabled);
   useEffect(() => {
     axios.get(url).then((res) => {
       let data = res.data.result;
@@ -72,7 +71,7 @@ const Browser = () => {
     Array.from(document.querySelectorAll("input")).forEach(
       input => (input.value = "")
     );
-    dispatch(disabledInputs(false));
+    
     //saveDisable(false);
     let employeData = {...empleadoUno};
 
@@ -81,9 +80,8 @@ const Browser = () => {
     const clearInputs = inputsArray.map(([key])=> [key, '']);
 
     const inputsJson = Object.fromEntries(clearInputs);
-
+    dispatch(disabledInputs(false));
     dispatch(addOneEmploye(inputsJson));
-    dispatch(disableFunctions(true));
   }
   function habilitaUpdate(e){
     e.preventDefault();
@@ -130,7 +128,7 @@ const Browser = () => {
         className="form-select  mt-1 selectMenu "
         multiple
         aria-label="multiple select example"
-        disabled={deshabilitado}
+        disabled={!disable}
       >
         {  empleados && empleados.map((emp, i) => {
           return (
