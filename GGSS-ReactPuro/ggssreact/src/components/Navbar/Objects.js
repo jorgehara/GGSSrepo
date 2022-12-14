@@ -39,16 +39,35 @@ export const objectTipoDocumento = [
 ]
 
 
+
+// parentescos
 export const objectParentescos = [
   {
-    label: "Parentesco",
-    placeholder: "Abuelo",
-    idInput: "nombreParentesco",
-    nameInput: "nombreParentesco"
+    "label": "Parentesco",
+    "placeholder": "Abuelo",
+    "idInput": "nombreParentesco",
+    "nameInput": "nombreParentesco"
   }
 ]
 
-// export const object
+export const checkboxParentescos = [
+  {
+    "label": "Genera asignación",
+    "idInput": "generaAsignacion",
+    "nameInput": "generaAsignacion"
+  }
+]
+
+export const checkboxNumParentescos = [
+  {
+    "label": "Deduce ganancias",
+    "labelNum": "Importe",
+    "idInput": "deduceGanancias",
+    "idInputNum": "importeDeduce"
+  }
+]
+
+
 
 
 // -------------
