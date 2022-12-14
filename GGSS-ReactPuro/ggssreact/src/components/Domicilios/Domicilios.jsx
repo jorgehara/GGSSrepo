@@ -273,7 +273,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
         <div className="accordion-body">
           <section className="">
             <div className="row">
-              <div className="col-xl-6 ">
+              <div className="col-xl-6">
                 <div className="mt-2">
                   <input
                     type="checkbox"
@@ -351,7 +351,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   />
                 
               </div>
-              <div className="col-xl-6">
+              <div className="col-xl-5 mx-4 gy-4 py-2">
                 
                   <InputCbo
                   clasess={inputClassProvinciasDomicilios}

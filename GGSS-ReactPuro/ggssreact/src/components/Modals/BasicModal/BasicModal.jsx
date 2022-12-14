@@ -8,14 +8,11 @@ import InputDate from "../../Inputs/InputDate/InputDate";
 import InputNumModal from "../../Inputs/InputsModal/InputNumModal/InputNumModal";
 import Checkbox from "../../Inputs/Checkbox/Checkbox";
 import CheckboxNum from "../../Inputs/CheckboxNum/CheckboxNum";
-import { useDispatch } from "react-redux";
-import { addSelectedEstadoCivil } from "../../../redux/actions/modalesActions";
+import { useDispatch, useSelector } from "react-redux";
 import { CANCEL_MODALS, GET_ESTADOSCIVILES } from "../../../redux/types/modalesTypes";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-import { addNewEstadoCivil } from "../../../redux/actions/fetchActions";
 
 const BasicModal = ({
   idModal,
@@ -42,84 +39,124 @@ const BasicModal = ({
   inputIdCompare,
   firstOptionCompare,
   secondOptionCompare,
+  urlApi,
+  idApi,
+  bodyPet, // ---> el bodyPet toma el idApi
+  dispatchAddAction,
+  dispatchDeleteAction,
+  dispatchPutAction,
+  dispatchGetID,
+  resp,
   onChange,
-  valueFem,
-  valueMasc,
-  url,
-  responses,
-  setResponses,
-  idInput
+  refetch,
+  setRefetch
+  // setRes,
+  // postFn
 }) => {
   const dispatch = useDispatch();
 
-  const [ disabled, setDisabled ] = useState(false);
-  const [ modalDataInputs, setModalDataInputs ] = useState(responses["modalDataInputs"]);
+  const [disabled, setDisabled] = useState(false);
 
-  function onChangeValues(e, key){
-    const newResponse = {...modalDataInputs};
-    newResponse[key] = e.target.value;
-    setModalDataInputs({
-      ...newResponse
-    });
-};
-useEffect(() => {
-  return () => {
-    setResponses({
-      ...responses,
-      modalDataInputs
-    });
-  };
-},[modalDataInputs]);
+  const [toModify, setToModify] = useState(false)
 
 
-  function onSelect(action, payload){
+  function onSelect(action, payload, op) {
     dispatch(action(payload));
+    dispatch(dispatchGetID(op[propArrayId]))
   }
-  
-function onCalcel(e, name){
-  setDisabled(false)
-  dispatch({
-    type : CANCEL_MODALS,
-    payload : ""
-  })
-}
-const bodyPetition = {
-  "idEstadoCivil": ((array && array[array.length -1] && array && array[array.length -1].idEstadoCivil)+1),
-  "masculino": firstOptionCompare,
-  "femenino": secondOptionCompare
-}
-async function agregar(){
-  setDisabled(!disabled);
-  try{
-    await axios.post(url, bodyPetition)
-    .then((res)=>{
-      if(res.status === 200){
-        dispatch(addNewEstadoCivil(bodyPetition))
+
+  function onCancel(e, name) {
+    setDisabled(false)
+    dispatch({
+      type: CANCEL_MODALS,
+      payload: ""
+    })
+  }
+
+
+
+  async function agregar() {
+    setDisabled(!disabled);
+  }
+  function modificar() {
+    setDisabled(!disabled);
+    setToModify(!toModify)
+  }
+
+
+
+  const deleteOption = async (id) => { // le pasamos de param el idApi cuando ejecutamos la funcion en el boton delete
+    try {
+      await axios.delete(`${urlApi}/${id}`)
+        .then((res) => {
+          dispatch(dispatchDeleteAction((id)));
+          swal({
+            title: "Ok",
+            text: "Eliminado con éxito",
+            icon: "success",
+          })
+          setRefetch(!refetch); // resetea la lista 
+        })
+    } catch (err) {
+      swal({
+        title: "Error",
+        text: err,
+        icon: "error",
+      })
+    }
+  }
+
+
+
+  async function aceptar(id) {
+    try {
+      if (!toModify) {
+        await axios.post(urlApi, bodyPet)
+          .then((res) => {
+            if (res.status === 200) {
+              dispatch(dispatchAddAction(resp.modalDataInputs))
+              swal({
+                title: "Ok",
+                text: "Agregado con éxito",
+                icon: "success",
+              })
+              
+            }
+          })
+      } else {
+        await axios.delete(`${urlApi}/${id}`) // elimina el valor seleccionado
+        .then((res) => {
+          axios.post(urlApi, bodyPet) // y agrega otro con otro nombre
+          .then((res) => {
+            if (res.status == 200) {
+              dispatch(dispatchPutAction(resp.modalDataInputs))
+              swal({
+                title: "Ok",
+                text: "Modificado con éxito",
+                icon: "success",
+              })
+            }
+          })
+        })
         
-        swal({
-          title: "Ok",
-          text: "Estado Civil agregado con éxito",
-          icon: "success",
-        })  
       }
-      
-    })
-      
-  }catch(err){
-    swal({
-      title: "Error",
-      text: err.toString(),
-      icon: "error",
-    })
+      setRefetch(!refetch); // resetea la lista 
+    } catch (err) {
+      swal({
+        title: "Error",
+        text: err.toString(),
+        icon: "error",
+      })
+    }
   }
-}
-function modificar(){
-  setDisabled(!disabled);
-}
-function deleteOption(){
-  setDisabled(false);
-  return;
-}
+
+  useEffect(() => {
+    console.log('API actualizada con éxito!')
+  }, [refetch])
+
+
+  const opcionesApi = array
+
   return (
     <div>
       <div
@@ -160,17 +197,18 @@ function deleteOption(){
                   aria-label="multiple select example"
                   disabled={disabled}
                 >
-                  {array && array.map((op, i) => {
-                        return (
-                          <option
-                            key={i}
-                            value={op && op[propArrayId]}
-                            onClick={()=> onSelect(action, op)}
-                          >
-                            {op && op[propArrayOp]}
-                          </option>
-                        );
-                      })
+                  {array && opcionesApi.map((op, i) => {
+                    return (
+                      <option
+                        key={i}
+                        value={op && op[propArrayId]}
+                        // onClick={() => onSelect(action, op)}
+                        onClick={() => dispatch(dispatchGetID(op[propArrayId]))}
+                      >
+                        {op && op[propArrayOp]}
+                      </option>
+                    );
+                  })
                   }
                 </select>
 
@@ -181,14 +219,14 @@ function deleteOption(){
                   <button type="button" className="btn btn-danger crudBtn" onClick={modificar}>
                     MODIFICAR
                   </button>
-                  <button type="button" className="btn btn-danger crudBtn" onClick={()=>deleteOption}>
+                  <button type="button" className="btn btn-danger crudBtn" onClick={() => deleteOption(idApi)}>
                     ELIMINAR
                   </button>
                 </div>
               </div>
 
-            <div className="bodyInputs">
-                {    
+              <div className="bodyInputs">
+                {
                   placeholder.map((p, i) => {
                     return (
                       <InputModal
@@ -197,8 +235,8 @@ function deleteOption(){
                         nameLabel={p.label}
                         inputId={p.idInput}
                         value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
-                        onChange={onChangeValues}
-                        action={GET_ESTADOSCIVILES}
+                        onChange={onChange}
+                        // action={GET_ESTADOSCIVILES}
                         opcionSelected={opcionSelected}
                       />
                     );
@@ -218,23 +256,23 @@ function deleteOption(){
 
                 {dropdown && <Dropdown nameDropdown="Partida" />}
 
-                  {/* HAY ALGO DEL INPUTDATE QUE ESTA DESACOMODANDO LA ALINEACION, CAMBIAR */}
-                {inputDate && <InputDate nameInput="Vencimiento" />} 
+                {/* HAY ALGO DEL INPUTDATE QUE ESTA DESACOMODANDO LA ALINEACION, CAMBIAR */}
+                {inputDate && <InputDate nameInput="Vencimiento" />}
 
                 <br />
                 {textArea && <TextArea inputName="Observaciones" />}
                 <hr />
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
                 <div className="btnInputs">
-                  <button type="button" className="btn btn-danger btnAceptar">
+                  <button type="button" className="btn btn-danger btnAceptar" onClick={() => aceptar(idApi)} >
                     ACEPTAR
                   </button>
-                  <button type="button" className="btn btn-danger" onClick={(e)=> onCalcel(e)} >
+                  <button type="button" className="btn btn-danger" onClick={(e) => onCancel(e)} >
                     CANCELAR
                   </button>
                 </div>

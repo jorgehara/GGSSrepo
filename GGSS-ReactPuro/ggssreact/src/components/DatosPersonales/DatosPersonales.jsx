@@ -33,7 +33,7 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
   const [image, setImage] = useState("");
   const [ formDatosPersonales, setFormDatosPersonales ] = useState(responses["formDatosPersonales"]);
 
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
 
   //#region ------------------------------------------------------REDUX
@@ -252,7 +252,7 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
       try{
         if(res.status === 200){
           const idEmpleado = getNumeradorId("Empleados");
-           axios.put(`http://54.243.192.82/api/Numeradores/${idEmpleado[0].tabla}`, bodyNumeradores)
+          axios.put(`http://54.243.192.82/api/Numeradores/${idEmpleado[0].tabla}`, bodyNumeradores)
           .then((res)=> console.log(res));
           return (swal({
             title: "Ok",

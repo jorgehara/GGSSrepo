@@ -63,8 +63,8 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
     </div> 
     : 
     <div className="formulario__grupo__inputs__radio">
-        <div className='form__grupo__label'>
-            <label className='formulario-label-Sexo'  htmlFor="legajo">{nameLabel}</label>
+        <div className="form__grupo__label">
+            <label className="formulario-label-Sexo"  htmlFor="legajo">{nameLabel}</label>
         </div>
         <div className="formulario-input-Sexo">
           <input className="form-check-input" 

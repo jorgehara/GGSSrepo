@@ -32,7 +32,6 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
 <div className="formulario__grupo__inputs-Button mt-2">      
         <div className='fomulario__container__button'>
             <label className='formulario__label ' htmlFor={nameInput}>{nameLabel}</label>
-
             <input type="text" 
                     value={ value && value}
                     maxLength={maxLeght}
@@ -48,7 +47,6 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
                   {nameButton}
             </button>
         </div>
-			  
     </div>
   );
 };

@@ -70,7 +70,7 @@ const Liquidacion = ({responses, setResponses}) => {
     }
 //#region ----------------------------------------------------------------------------------------useEffects
     useEffect(()=>{
-        handleFetch(urlConvenios, addConvenios);
+        handleFetch( urlConvenios, addConvenios);
         handleFetch( urlEmpleadores,addEmpleadores);
         handleFetch( urlCategorias, addCategorias);
         handleFetch( urlAgrupamientos, addAgrupamientos);

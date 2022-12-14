@@ -60,15 +60,15 @@ export const classesEstadosCiviles = {
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const classesRadioLiquidacion = {
-    classOne : "formulario__grupo__inputs__radio_AsidePagos mt-2" ,
-    classTwo : 'formulario-label-Sexo',
-    classThree : "formulario-input-Sexo-AsidePagos",
-    classFour :  "form-check-input",
-    classFive : "form-check-label",
-    classSix : "formulario-input-Sexo-AsidePagos",
-    classSeven : "form-check-input",
-    classEigth : "form-check-label",
-    classNine : 'form__grupo__label'
+    "classOne" : "formulario__grupo__inputs__radio_AsidePagos mt-2" ,
+    "classTwo" : 'formulario-label-Sexo',
+    "classThree": "formulario-input-Sexo-AsidePagos",
+    "classFour" :  "form-check-input",
+    "classFive" : "form-check-label",
+    "classSix" : "formulario-input-Sexo-AsidePagos",
+    "classSeven" : "form-check-input",
+    "classEigth" : "form-check-label",
+    "classNine" : "form__grupo__label",
   }
   export const inputClassProvinciasDomicilios = {
     classOne : "formulario__grupo__inputs__cbo" ,
@@ -86,10 +86,24 @@ export const classesEstadosCiviles = {
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
 
-  export const inputFile= {
-    "classOne" : "formulario__grupo__inputs-Button mt-2",
-    "classTwo" : 'fomulario__container__button',
-    "classThree" : 'formulario__label_convenio',
-    "classFour" : 'formulario-input-Button-Cuil form-select ml-0 px-0',
-    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  export const inputCbo= {
+    "classOne" : "formulario__grupo__inputs__cbo",
+    "classTwo" : "form__grupo__label__inp",
+    "classThree" : "primero",
+    "classFour" : "formulario__label mt-2 mb-0",
+    "classFive" : "segundo",
+    "classSix" : "formulario-input-Estado form-select ml-0 px-0",
+    "classSeven" : "tercero btn btn-validacion btn-outline-danger btn-sm ml-2",
+  }
+
+  export const inputRadio= {
+    "classOne" : "formulario__grupo__inputs__radio",
+    "classTwo" : "formulario-label-Sexo",
+    "classThree" : "formulario-input-Sexo",
+    "classFour" : "form-check-input",
+    "classFive" : "form-check-label",
+    "classSix" : "formulario-input-SexoF",
+    "classSeven" : "form-check-input",
+    "classEigth" : "form-check-label",
+    "classNine" : "form__grupo__label",
   }
