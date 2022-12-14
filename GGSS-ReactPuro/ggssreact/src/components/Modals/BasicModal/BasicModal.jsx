@@ -28,6 +28,8 @@ const BasicModal = ({
   relacion,
   nameRelacion,
   hasCheckbox,
+  checkboxObject,
+  checkboxNumObject,
   checkboxName,
   hasCheckBoxNum,
   checkboxCheckName,
@@ -41,7 +43,7 @@ const BasicModal = ({
   secondOptionCompare,
   urlApi,
   idApi,
-  bodyPet, // ---> el bodyPet toma el idApi
+  bodyPet,
   dispatchAddAction,
   dispatchDeleteAction,
   dispatchPutAction,
@@ -120,25 +122,25 @@ const BasicModal = ({
                 text: "Agregado con éxito",
                 icon: "success",
               })
-              
+
             }
           })
       } else {
         await axios.delete(`${urlApi}/${id}`) // elimina el valor seleccionado
-        .then((res) => {
-          axios.post(urlApi, bodyPet) // y agrega otro con otro nombre
           .then((res) => {
-            if (res.status == 200) {
-              dispatch(dispatchPutAction(resp.modalDataInputs))
-              swal({
-                title: "Ok",
-                text: "Modificado con éxito",
-                icon: "success",
+            axios.post(urlApi, bodyPet) // y agrega otro con otro nombre
+              .then((res) => {
+                if (res.status == 200) {
+                  dispatch(dispatchPutAction(resp.modalDataInputs))
+                  swal({
+                    title: "Ok",
+                    text: "Modificado con éxito",
+                    icon: "success",
+                  })
+                }
               })
-            }
           })
-        })
-        
+
       }
       setRefetch(!refetch); // resetea la lista 
     } catch (err) {
@@ -245,14 +247,32 @@ const BasicModal = ({
 
                 {inputNum && <InputNumModal nameInput={inputNumName} />}
 
-                {hasCheckbox && <Checkbox nameCheckbox={checkboxName} />}
+                {
+                  hasCheckbox &&
+                  checkboxObject?.map((p, i) => {
+                    // console.log(typeof(p.label))
+                    <Checkbox
+                      key={i}
+                      nameCheckbox={p.label}
+                      inputId={p.idInput}
+                    />
+                  })
+                }
 
-                {hasCheckBoxNum && (
-                  <CheckboxNum
-                    nameCheckbox={checkboxCheckName}
-                    nameInputNum={checkboxNumName}
-                  />
-                )}
+                {
+                  hasCheckBoxNum &&
+                  checkboxNumObject?.map((p, i) => {
+                    // console.log(typeof(p.label))
+                    <CheckboxNum
+                      key={i}
+                      nameCheckbox={p.label}
+                      nameInputNum={p.labelNum}
+                      inputId={p.idInput}
+                      inputNumId={p.idInputNum}
+                    />
+                  })
+
+                }
 
                 {dropdown && <Dropdown nameDropdown="Partida" />}
 
