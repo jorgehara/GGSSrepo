@@ -70,7 +70,14 @@ export const classesEstadosCiviles = {
     classEigth : "form-check-label",
     classNine : 'form__grupo__label'
   }
-
+  export const inputClassProvinciasDomicilios = {
+    classOne : "formulario__grupo__inputs__cbo" ,
+    classTwo : 'form__grupo__label__inp',
+    classThree : "primero",
+    classFour :  "formulario__label mt-2 mb-0",
+    classFive : "segundo",
+    classSix : "formulario-input-Estado-Provincias form-select ml-0 px-0",
+  }
   export const inputButtonClasessCUIL= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',

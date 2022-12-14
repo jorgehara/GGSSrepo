@@ -1,3 +1,7 @@
 .btnCallModal{
     z-index: 56;
 }
+.disabledClass{
+    pointer-events: none;
+  cursor: default;
+}

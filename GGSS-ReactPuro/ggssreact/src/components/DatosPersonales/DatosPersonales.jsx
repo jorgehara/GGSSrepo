@@ -10,7 +10,6 @@ import InputFile from "../Inputs/InputFile/InputFile";
 import InputForm from "../Inputs/InputForm/InputForm";
 import InputRadio from "../Inputs/InputRadio/InputRadio";
 import "./DatosPersonales.css";
-import { employeContext } from "../../context/employeContext";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
 import generateCuil from "./funcGenerarCuil.js";
@@ -98,8 +97,7 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
      handleFetch( urlTiposDNI,addTiposDocumento);
      handleFetch( urlParentescos,addParentescos);
      handleFetch( urlFamiliares,addFamiliares);
-     handleFetch( urlNumeradores,addNumeradores);
-    
+     handleFetch( urlNumeradores,addNumeradores);    
    },[deshabilitar])
     
 
@@ -114,11 +112,11 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
   }
 
   
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = today.getFullYear();
-    today = mm + '/' + dd + '/' + yyyy;
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = today.getFullYear();
+  today = mm + '/' + dd + '/' + yyyy;
 
   
     
