@@ -225,7 +225,7 @@ function onChangeValues(e, key){
     <div className="Lateral-Derecho">
       <div className="container-fluid">
 
-        <div className="row border border-3">
+        <div className="row border border-1">
           <EmployeData disabled={disable} />
         </div>
 

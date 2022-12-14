@@ -99,11 +99,11 @@ const Browser = () => {
   
   return (
 <>
-<div className='row gy-1 container-fluid '>
+<div className='row gy-1 container-flex p-0 m-o '>
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
-      <div className="row mt-1 ">
-        <div className="container">
+      <div className="row mt-1 p-0 m-0 ">
+        <div className="container m-0 p-0">
           <input
             onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
             value={valueInputLegajo && valueInputLegajo}

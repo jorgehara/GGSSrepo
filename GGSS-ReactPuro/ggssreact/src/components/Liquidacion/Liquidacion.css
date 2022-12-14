@@ -2,9 +2,8 @@
     text-decoration: none;
 }
 .tituloAcordeon{
-    color: black;
     display: flex;
-    width: 80%;
+    width: 100%;
 }
 .accordion-button{
     display: flex;

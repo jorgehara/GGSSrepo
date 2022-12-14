@@ -7,6 +7,7 @@ import { inputButtonClasess, inputButtonClasessEmpleador } from "../../classes/c
 import { addAgrupamientos, addBancos, addCargos, addCategorias, addCentroDeCosto, addConvenios, addDirecciones, addEmpleadores, addEsquemas, addFormasPago, addLugaresDePago, addModosContratacion, addModosLiquidacion, addObrasSociales, addSectorDepto, addSindicatos, addTareasDesempeñadas } from "../../redux/actions/fetchActions";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import { GET_INPUTS_VALUE } from "../../redux/types/liquidacionTypes";
+import EmployeData from "../EmployeData/EmployeData";
 import InputButtonLiquidacion from "../Inputs/InputButton/InputButtonLiquidacion";
 import AsidePago from "./ChildrenComponents/AsidePago";
 import DatosCertificado from "./ChildrenComponents/DatosCertificadoOficio";
@@ -19,7 +20,7 @@ const Liquidacion = ({responses, setResponses}) => {
 
     const dispatch = useDispatch();
     const deshabilitar = useSelector((state)=> state.employeStates.disable);
-
+    const disable = useSelector((state)=> state.generalState.disabled);
     //#region ------------------------------------------------------------------------------------URLs
     const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
     const urlConvenios = "http://54.243.192.82/api/Convenios";
@@ -120,12 +121,16 @@ const empleadores = useSelector((state)=> state.generalState.empleadores);
 //#endregion
 
 return (
-    <div className="container">
+    <div className="container-flex">
+        <div className="container-flex border border-1">
+          <EmployeData disabled={disable} />
+        </div>
+        <div className="container-flex">
         <div className="accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
-            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Datos de Liquidación
+            <button className="accordion-button acordeonOption" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <p className="tituloAcordeon p-0 m-0" >Datos de Liquidación </p>
             </button>
           </h2>
           <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -289,11 +294,11 @@ return (
         </div>
         <div className="accordion-item">
             <h2 className="accordion-header" id="headingTwo">
-              <button style={{display : "flex;"}} className="accordion-button acordeonOption" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <p className="tituloAcordeon" >Datos de Ingreso y Certificado de Oficio</p> 
+              <button style={{display : "flex;"}} className="accordion-button acordeonOption collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <p className="tituloAcordeon p-0 m-0" >Datos de Ingreso y Certificado de Oficio</p> 
               </button>
             </h2>
-            <div id="collapseTwo" className="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div className="accordion-body">
                 <div className="row">
                     <div className="col-xl-12 mt-2">
@@ -310,6 +315,8 @@ return (
           </div>          
         </div>
       </div>
+        </div>
+        
         
     
 );
