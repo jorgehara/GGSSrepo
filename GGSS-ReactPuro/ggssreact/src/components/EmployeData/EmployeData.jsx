@@ -23,9 +23,7 @@ const EmployeData = ({disabled}) => {
     }
   console.log(empleadoUno && empleadoUno)
   return (
-    <div className="container-fluid p-0">
-      <div className="container-fluid border border-3  ">
-        <div className="container text-start py-2">
+        <div className="container-flex border border-3 p-2 text-start py-2">
             <div className="row">
               <div className="col-2 d-flex align-items-center">
                 <img
@@ -89,8 +87,6 @@ const EmployeData = ({disabled}) => {
           </div>
           </div>
           
-        </div>
-      </div>
   );
 };
 export default EmployeData;

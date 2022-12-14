@@ -49,6 +49,23 @@ h6{
     border-radius: 6px 0 6px 6px;
 }
 .navbar-nav :focus{
-    background-color: rgb(220,53,69);
-    color: #fff;
+    background-color: rgba(220, 53, 70, 0.24);
+    color: black;
+    border-radius: 10px;
+    border-bottom-left-radius : 0;
+    border-bottom-right-radius : 0 ;
+}
+
+.contendeorNavbar{
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    height: 100%;
+}
+.actived{
+    background-color: rgba(220, 53, 70, 0.24);
+    color: black;
+    border-radius: 10px;
+    border-bottom-left-radius : 0;
+    border-bottom-right-radius : 0 ;
 }

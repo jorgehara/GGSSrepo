@@ -27,7 +27,7 @@ return (
             <div className='col-xl-3'>
                 <Browser />
             </div>
-            <div className='col-xl-9'>
+            <div className='col-xl-9 '>
                 <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
                 {
                     tabIndex === 0 && <DatosPersonales  responses={responses} setResponses={setResponses} />

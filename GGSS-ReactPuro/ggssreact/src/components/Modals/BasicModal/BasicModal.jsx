@@ -163,6 +163,7 @@ const BasicModal = ({
     <div>
       <div
         className="modal fade"
+        style={{background : "transparent"}}
         id={idModal}
         tabIndex="-1"
         aria-labelledby={`${idModal}Label`}

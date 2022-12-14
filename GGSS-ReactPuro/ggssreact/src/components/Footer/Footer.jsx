@@ -31,28 +31,25 @@ const Footer = () => {
 
   return (
 <>
-<div className="row container-fluid-sm">
-<div className="row">
-<div className="col-7">
-    <div className="d-flex col-md-11">
-        <ButtonLarge color="danger" url={urlReporteAsignacionesFamiliares} empleadoUno={empleadoUno} tamaño="md" justyfy="center m-1" align="start" nameButton="Imprimir Constancia de Asignaciones Familiares" />
-        <ButtonLarge color="danger" url={urlReporteResumenLegajo} empleadoUno={empleadoUno} tamaño="md" justyfy="center m-1" align="start" nameButton="Imprimir Resumen Legajo Empleado" />
-        <ButtonLarge color="danger" url={urlReporteServicio} empleadoUno={empleadoUno} tamaño="md" justyfy="center m-1" align="start" nameButton="Imprimir Certificado de Servicio/Oficio" />
-        <ButtonLarge color="danger" url={urlFichaEmpleado} empleadoUno={empleadoUno} tamaño="md" justyfy="center m-1" align="start" nameButton="Imprimir Ficha Empleado" />
-        <ButtonLarge color="danger" url="" tamaño="md" justyfy="center m-1" align="start" nameButton="Licencias Franquicias" />
+<div className="row container-fluid-sm p-2">
+    <div className="row">
+        <div className="col-7">
+            <div className="d-flex col-md-11">
+                <ButtonLarge color="danger" url={urlReporteAsignacionesFamiliares} empleadoUno={empleadoUno} tamaño="md" justyfy="center m-1" align="start" nameButton="Imprimir Constancia de Asignaciones Familiares" />
+                <ButtonLarge color="danger" url={urlReporteResumenLegajo} empleadoUno={empleadoUno} tamaño="md" justyfy="center m-1" align="start" nameButton="Imprimir Resumen Legajo Empleado" />
+                <ButtonLarge color="danger" url={urlReporteServicio} empleadoUno={empleadoUno} tamaño="md" justyfy="center m-1" align="start" nameButton="Imprimir Certificado de Servicio/Oficio" />
+                <ButtonLarge color="danger" url={urlFichaEmpleado} empleadoUno={empleadoUno} tamaño="md" justyfy="center m-1" align="start" nameButton="Imprimir Ficha Empleado" />
+                <ButtonLarge color="danger" url="" tamaño="md" justyfy="center m-1" align="start" nameButton="Licencias Franquicias" />
+            </div>
+        </div>
+        <div className="col-4 salirExit">
+            <div className="row justify-content-end">
+                <div className="col-md-1">
+                    <Link className="btn btn-danger btn-lg" to="/">Salir</Link>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-<div className="col-4 salirExit">
-    <div className="row justify-content-end">
-    <div className="col-md-1">
-        <Link className="btn btn-danger btn-lg" to="/">Salir</Link>
-    </div>
-    </div>
-</div>
-
-
-</div>
 </div>
 </>
 )
