@@ -12,7 +12,7 @@ import AsidePago from "./ChildrenComponents/AsidePago";
 import DatosCertificado from "./ChildrenComponents/DatosCertificadoOficio";
 import DireccionSindicato from "./ChildrenComponents/DireccionSindicato";
 import IngresoContrato from "./ChildrenComponents/IngresoContrato";
-
+import "./Liquidacion.css"
 
 const Liquidacion = ({responses, setResponses}) => {
     const [ formLiquidacion, setFormLiquidacion ] = useState(responses["formLiquidacion"]);
@@ -121,171 +121,196 @@ const empleadores = useSelector((state)=> state.generalState.empleadores);
 
 return (
     <div className="container">
-        <div className="row">
-            <div className="col-xl-12">
-                <InputButtonLiquidacion
-                clasess={inputButtonClasessEmpleador}
-                nameButton="..."
-                nameLabel="Empleador"
-                placeholder="Empleador"
-                value={formLiquidacion?.inputEmpleadorLiquidacion && formLiquidacion?.inputEmpleadorLiquidacion}
-                array={empleadores && empleadores}
-                propArrayOp="razonSocial"
-                propIdOption="iDempleador"
-                idInput="inputEmpleadorLiquidacion"
-                onChange={onChangeValues}
-                action={GET_INPUTS_VALUE}
-                />
-            </div>        
-        </div>
-        <div className="row">
-            <div className="col-xl-6">
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Convenio"
-                    value={formLiquidacion?.inputConvenio && formLiquidacion?.inputConvenio}
-                    placeholder="Convenio"
-                    array={convenios && convenios}
-                    propArrayOp="convenio"
-                    propIdOption="iDconvenio"
-                    idInput="inputConvenio"
-                    onChange={onChangeValues}
-                />
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Categoría"
-                    placeholder="Categoría"
-                    value={formLiquidacion?.inputCategoria && formLiquidacion?.inputCategoria}
-                    array={categorias && categorias}
-                    propArrayOp="categoria"
-                    propIdOption="iDcategoria"
-                    idInput="inputCategoria"
-                    onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
-                />
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Agrupamiento"
-                    placeholder="Agrupamiento"
-                    value={formLiquidacion?.inputAgrupamiento && formLiquidacion?.inputAgrupamiento}
-                    array={agrupamientos && agrupamientos}
-                    propArrayOp="agrupamiento"
-                    propIdOption="idAgrupamiento"
-                    idInput="inputAgrupamiento"
-                    onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
-                />
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Cargo"
-                    placeholder="Cargo"
-                    value={formLiquidacion?.inputCargo && formLiquidacion?.inputCargo}
-                    array={cargos && cargos}
-                    propArrayOp="nombreCargo"
-                    propIdOption="iDcargo"
-                    idInput="inputCargo"
-                    onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
-                />
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Tarea Desempeñada"
-                    placeholder="Tarea Desempeñada"
-                    value={formLiquidacion?.inputTareaDesempeñada && formLiquidacion?.inputTareaDesempeñada}
-                    array={tareasDesempeñadas && tareasDesempeñadas}
-                    propArrayOp="tareaDesempeñada"
-                    propIdOption="idTareaDesempeñada"
-                    idInput="inputTareaDesempeñada"
-                    onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
-                />
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Modo Contratación"
-                    placeholder="Modo Contratación"
-                    value={formLiquidacion?.inputModoCOntratacion && formLiquidacion?.inputModoCOntratacion}
-                    array={modosContratacion && modosContratacion}
-                    propArrayOp="modoContratacion"
-                    propIdOption="iDmodoContratacion"
-                    idInput="inputModoCOntratacion"
-                    onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
-                />
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Modo Liquidación"
-                    placeholder="Modo Liquidación"
-                    value={formLiquidacion?.inputModoLiquidacion && formLiquidacion?.inputModoLiquidacion}
-                    array={modosLiquidacopm && modosLiquidacopm}
-                    propArrayOp="modoLiquidacion"
-                    propIdOption="iDmodoLiquidacion"
-                    idInput="inputModoLiquidacion"
-                    onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
-                />
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Centro de Costo"
-                    placeholder="Centro de Costo"
-                    value={formLiquidacion?.inputCentroCosto && formLiquidacion?.inputCentroCosto}
-                    array={centroDeCostos && centroDeCostos}
-                    propArrayOp="centrodeCosto"
-                    propIdOption="idCentrodeCosto"
-                    idInput="inputCentroCosto"
-                    onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
-                />
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Secretaria/Sector/Dpto"
-                    placeholder="Secretaria/Sector/Dpto"
-                    value={formLiquidacion?.inputSectorDepto && formLiquidacion?.inputSectorDepto}
-                    array={sectorDepto && sectorDepto}
-                    propArrayOp="sectorDpto"
-                    propIdOption="iDsectorDpto"
-                    idInput="inputSectorDepto"
-                    onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
-                />
-                <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
-                    nameButton="..."
-                    nameLabel="Obra Social"
-                    placeholder="Obra Social"
-                    value={formLiquidacion?.inputObraSocial && formLiquidacion?.inputObraSocial}
-                    array={obrasSociales && obrasSociales}
-                    propArrayOp="nombreObraSocial"
-                    propIdOption="iDobraSocial"
-                    idInput="inputObraSocial"
-                    onChange={onChangeValues}
-                    action={GET_INPUTS_VALUE}
-                />
+        <div className="accordion" id="accordionExample">
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingOne">
+            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Datos de Liquidación
+            </button>
+          </h2>
+          <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div className="accordion-body">
+                <div className="row">
+                    <div className="col-xl-12">
+                        <InputButtonLiquidacion
+                        clasess={inputButtonClasessEmpleador}
+                        nameButton="..."
+                        nameLabel="Empleador"
+                        placeholder="Empleador"
+                        value={formLiquidacion?.inputEmpleadorLiquidacion && formLiquidacion?.inputEmpleadorLiquidacion}
+                        array={empleadores && empleadores}
+                        propArrayOp="razonSocial"
+                        propIdOption="iDempleador"
+                        idInput="inputEmpleadorLiquidacion"
+                        onChange={onChangeValues}
+                        action={GET_INPUTS_VALUE}
+                        />
+                    </div>        
+                </div>
+                <div className="row">
+                    <div className="col-xl-6">
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Convenio"
+                            value={formLiquidacion?.inputConvenio && formLiquidacion?.inputConvenio}
+                            placeholder="Convenio"
+                            array={convenios && convenios}
+                            propArrayOp="convenio"
+                            propIdOption="iDconvenio"
+                            idInput="inputConvenio"
+                            onChange={onChangeValues}
+                        />
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Categoría"
+                            placeholder="Categoría"
+                            value={formLiquidacion?.inputCategoria && formLiquidacion?.inputCategoria}
+                            array={categorias && categorias}
+                            propArrayOp="categoria"
+                            propIdOption="iDcategoria"
+                            idInput="inputCategoria"
+                            onChange={onChangeValues}
+                            action={GET_INPUTS_VALUE}
+                        />
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Agrupamiento"
+                            placeholder="Agrupamiento"
+                            value={formLiquidacion?.inputAgrupamiento && formLiquidacion?.inputAgrupamiento}
+                            array={agrupamientos && agrupamientos}
+                            propArrayOp="agrupamiento"
+                            propIdOption="idAgrupamiento"
+                            idInput="inputAgrupamiento"
+                            onChange={onChangeValues}
+                            action={GET_INPUTS_VALUE}
+                        />
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Cargo"
+                            placeholder="Cargo"
+                            value={formLiquidacion?.inputCargo && formLiquidacion?.inputCargo}
+                            array={cargos && cargos}
+                            propArrayOp="nombreCargo"
+                            propIdOption="iDcargo"
+                            idInput="inputCargo"
+                            onChange={onChangeValues}
+                            action={GET_INPUTS_VALUE}
+                        />
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Tarea Desempeñada"
+                            placeholder="Tarea Desempeñada"
+                            value={formLiquidacion?.inputTareaDesempeñada && formLiquidacion?.inputTareaDesempeñada}
+                            array={tareasDesempeñadas && tareasDesempeñadas}
+                            propArrayOp="tareaDesempeñada"
+                            propIdOption="idTareaDesempeñada"
+                            idInput="inputTareaDesempeñada"
+                            onChange={onChangeValues}
+                            action={GET_INPUTS_VALUE}
+                        />
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Modo Contratación"
+                            placeholder="Modo Contratación"
+                            value={formLiquidacion?.inputModoCOntratacion && formLiquidacion?.inputModoCOntratacion}
+                            array={modosContratacion && modosContratacion}
+                            propArrayOp="modoContratacion"
+                            propIdOption="iDmodoContratacion"
+                            idInput="inputModoCOntratacion"
+                            onChange={onChangeValues}
+                            action={GET_INPUTS_VALUE}
+                        />
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Modo Liquidación"
+                            placeholder="Modo Liquidación"
+                            value={formLiquidacion?.inputModoLiquidacion && formLiquidacion?.inputModoLiquidacion}
+                            array={modosLiquidacopm && modosLiquidacopm}
+                            propArrayOp="modoLiquidacion"
+                            propIdOption="iDmodoLiquidacion"
+                            idInput="inputModoLiquidacion"
+                            onChange={onChangeValues}
+                            action={GET_INPUTS_VALUE}
+                        />
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Centro de Costo"
+                            placeholder="Centro de Costo"
+                            value={formLiquidacion?.inputCentroCosto && formLiquidacion?.inputCentroCosto}
+                            array={centroDeCostos && centroDeCostos}
+                            propArrayOp="centrodeCosto"
+                            propIdOption="idCentrodeCosto"
+                            idInput="inputCentroCosto"
+                            onChange={onChangeValues}
+                            action={GET_INPUTS_VALUE}
+                        />
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Secretaria/Sector/Dpto"
+                            placeholder="Secretaria/Sector/Dpto"
+                            value={formLiquidacion?.inputSectorDepto && formLiquidacion?.inputSectorDepto}
+                            array={sectorDepto && sectorDepto}
+                            propArrayOp="sectorDpto"
+                            propIdOption="iDsectorDpto"
+                            idInput="inputSectorDepto"
+                            onChange={onChangeValues}
+                            action={GET_INPUTS_VALUE}
+                        />
+                        <InputButtonLiquidacion
+                            clasess={inputButtonClasess}
+                            nameButton="..."
+                            nameLabel="Obra Social"
+                            placeholder="Obra Social"
+                            value={formLiquidacion?.inputObraSocial && formLiquidacion?.inputObraSocial}
+                            array={obrasSociales && obrasSociales}
+                            propArrayOp="nombreObraSocial"
+                            propIdOption="iDobraSocial"
+                            idInput="inputObraSocial"
+                            onChange={onChangeValues}
+                            action={GET_INPUTS_VALUE}
+                        />
+                    </div>
+                    <div className="col-xl-6">
+                        <AsidePago formLiquidacion={formLiquidacion && formLiquidacion} formasPAgo ={formasPago && formasPago} onChange={onChangeValues} lugaresDePago={lugaresDePago && lugaresDePago} bancos={bancos && bancos}/>
+                        <DireccionSindicato formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} direcciones={direcciones && direcciones} sindicatos={sindicatos} />
+                    </div>
+                </div>
             </div>
-            <div className="col-xl-6">
-                <AsidePago formLiquidacion={formLiquidacion && formLiquidacion} formasPAgo ={formasPago && formasPago} onChange={onChangeValues} lugaresDePago={lugaresDePago && lugaresDePago} bancos={bancos && bancos}/>
-                <DireccionSindicato formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} direcciones={direcciones && direcciones} sindicatos={sindicatos} />
-            </div>
+          </div>
         </div>
-        <div className="row">
-            <div className="col-xl-12 mt-2">
-                <IngresoContrato  formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} ingresoDate={ingresoDate && ingresoDate} ingresoTextInput={ingresoTextInput && ingresoTextInput} esquemas={esquemas}/>
+        <div className="accordion-item">
+            <h2 className="accordion-header" id="headingTwo">
+              <button style={{display : "flex;"}} className="accordion-button acordeonOption" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <p className="tituloAcordeon" >Datos de Ingreso y Certificado de Oficio</p> 
+              </button>
+            </h2>
+            <div id="collapseTwo" className="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div className="accordion-body">
+                <div className="row">
+                    <div className="col-xl-12 mt-2">
+                        <IngresoContrato  formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} ingresoDate={ingresoDate && ingresoDate} ingresoTextInput={ingresoTextInput && ingresoTextInput} esquemas={esquemas}/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-xl-12 ">
+                        <DatosCertificado formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} nameLabel="Datos para Certificado de Oficio" inputTotalRemu={inputTotalRemu && inputTotalRemu} inputTotalNeto={inputTotalNeto && inputTotalNeto} inputCheckEmbargos={inputCheckEmbargos && inputCheckEmbargos} inputCheckSumAdministrativo={inputCheckSumAdministrativo && inputCheckSumAdministrativo} inputCheckLicSinGoce = {inputCheckLicSinGoce && inputCheckLicSinGoce} />
+                    </div>
+                </div>
+              </div>
             </div>
+          </div>          
         </div>
-        <div className="row">
-            <div className="col-xl-12 ">
-                <DatosCertificado formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} nameLabel="Datos para Certificado de Oficio" inputTotalRemu={inputTotalRemu && inputTotalRemu} inputTotalNeto={inputTotalNeto && inputTotalNeto} inputCheckEmbargos={inputCheckEmbargos && inputCheckEmbargos} inputCheckSumAdministrativo={inputCheckSumAdministrativo && inputCheckSumAdministrativo} inputCheckLicSinGoce = {inputCheckLicSinGoce && inputCheckLicSinGoce} />
-            </div>
-        </div>
-    </div>
+      </div>
+        
     
 );
 };

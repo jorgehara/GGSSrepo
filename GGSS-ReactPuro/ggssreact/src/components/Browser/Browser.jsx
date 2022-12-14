@@ -8,6 +8,7 @@ import {  addOneEmploye, disableFunctions, getEmployes  } from '../../redux/acti
 import {  GET_INPUT_VALU_BROWSER } from '../../redux/types/employeTypes';
 import swal from 'sweetalert';
 import { disabledInputs } from '../../redux/actions/fetchActions';
+import "./Browser.css"
 
 const Browser = () => {
     
@@ -101,22 +102,23 @@ const Browser = () => {
 <div className='row gy-1 container-fluid '>
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
-      <div className="row mt-1 w-100">
-        <input
-          onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
-          value={valueInputLegajo && valueInputLegajo}
-          className="form__grupo__input__browser mr-2"
-          type="number"
-          name="inpurLegajoBrowser"
-          id="inpurLegajoBrowser"
-          placeholder="Ingrese Legajo "
-        />
-      </div>
-      <div className="row mt-1 mr-2 w-100">
+      <div className="row mt-1 ">
+        <div className="container">
+          <input
+            onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
+            value={valueInputLegajo && valueInputLegajo}
+            className="form__grupo__input__browser "
+            type="number"
+            name="inpurLegajoBrowser"
+            id="inpurLegajoBrowser"
+            placeholder="Ingrese Legajo "
+          />
+      
+      <div className="row mt-1 m-0 p-0  w-100">
         <input
           onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
           value={valueInputApellido && valueInputApellido}
-          className="form__grupo__input__browser mr-2"
+          className="form__grupo__input__browser "
           type="text"
           name="inputApellidoNombreBrowser"
           id="inputApellidoNombreBrowser"
@@ -125,7 +127,7 @@ const Browser = () => {
       </div>
       <select
         defaultValue={[]}
-        className="form-select row mt-1 selectMenu "
+        className="form-select  mt-1 selectMenu "
         multiple
         aria-label="multiple select example"
         disabled={deshabilitado}
@@ -140,8 +142,10 @@ const Browser = () => {
           );
         }) }
       </select>
+        </div>
+        </div>
         
-<div className="container text-center d-inline-flex">
+<div className="container ">
   <div className="row align-items-start">
     <div className="col">
       <button className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`} onClick={(e)=>habilitaEdit(e)}>
