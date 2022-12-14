@@ -8,7 +8,6 @@ import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
 import EmployeData from '../EmployeData/EmployeData'
 import CheckLabel from '../Inputs/CheckLabel/CheckLabel';
-import InputButton from '../Inputs/InputButton/InputButton';
 import InputButtonLiquidacion from '../Inputs/InputButton/InputButtonLiquidacion'
 import InputDate from '../Inputs/InputDate/InputDate';
 import TextArea from '../Inputs/TextArea/TextArea';

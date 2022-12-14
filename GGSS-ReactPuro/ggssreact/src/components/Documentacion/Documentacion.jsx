@@ -6,7 +6,6 @@ import EmployeData from '../EmployeData/EmployeData';
 import CheckLabel from '../Inputs/CheckLabel/CheckLabel';
 import TableBasic1 from '../Tables/TableBasic1';
 import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
-import { ADD_DATOS_PERSONALES } from '../../redux/types/datosPersonalesTypes';
 import InputDateDocs from '../Inputs/InputDateDocs/InputDateDocs';
 import { useDispatch, useSelector } from 'react-redux';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
@@ -28,15 +27,15 @@ const Documentacion = ({responses, setResponses}) => {
 
     const handleFetch=(url, action )=>{
         dispatch({type: SET_LOADING});
-          axios.get(url)
-          .then((res)=>{
+            axios.get(url)
+            .then((res)=>{
             dispatch( action(res.data.result));
-          })
-          .catch((err)=>{
+        })
+            .catch((err)=>{
             dispatch({type:AXIOS_ERROR});
-          })
-       }
-       function onChangeValues(e, key){
+        })
+    }
+    function onChangeValues(e, key){
         const newResponse = {...formDocumentacion};
         newResponse[key] = e;
         setFormDocumentacion({
@@ -50,27 +49,26 @@ const Documentacion = ({responses, setResponses}) => {
         });      
     },[formDocumentacion]);
 
-       function onChange(e, action) {
-        dispatch(
-          {
-            type: action,
-            payload : {name : e.target.name, value : e.target.value}
-          });    
-      }
-       useEffect(()=>{
-         handleFetch( urlDocumentacionEmpleados, addDocumentacionEmpleados);
-         handleFetch( urlDocumentacion, getOneDocumento);
-       },[])
+    function onChange(e, action) {
+    dispatch(
+        {
+        type: action,
+        payload : {name : e.target.name, value : e.target.value}
+        });    
+    }
+    useEffect(()=>{
+        handleFetch( urlDocumentacionEmpleados, addDocumentacionEmpleados);
+        handleFetch( urlDocumentacion, getOneDocumento);
+    },[])
     
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
     const documentacionEmpleados = useSelector((state)=> state.generalState.documentacionEmpleados);
     const documentaciones = useSelector((state)=> state.documentacionState.domiciliosDelEmpleado);
 
-    const datosFormulario = useSelector((state)=> state.documentacionState.formulario);
+    //const datosFormulario = useSelector((state)=> state.documentacionState.formulario);
 
     const documentacionDelEmpleado = empleadoUno && documentacionEmpleados && documentacionEmpleados.filter((doc)=> {return(doc.idEmpleado === empleadoUno.iDempleado)});
 
-    console.log(empleadoUno);
 
 return (
     <div className='container'>

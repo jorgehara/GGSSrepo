@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
 import Browser from '../Browser/Browser'
 import DatosPersonales from '../DatosPersonales/DatosPersonales'
 import Documentacion from '../Documentacion/Documentacion';
@@ -12,7 +11,6 @@ import Navbar from '../Navbar/Navbar';
 import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
 import Extras from '../Extras/Extras';
 import { useState } from 'react';
-// import SideNavBar from '../NavbarVertical/SideNavBar';
 
 const Empleados = () => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -23,7 +21,6 @@ const Empleados = () => {
         setTabIndex(value);
     };  
     
-    console.log(responses);
 return (
     <div className='container-fluid'>
         <div className='row'>

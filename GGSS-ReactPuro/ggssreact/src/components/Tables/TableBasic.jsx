@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNewFamiliar } from "../../redux/actions/familiaActions";
 
 const TableBasic = ({
   columns,
   array,
-  parentescos,
   onSelect,
   seleccionado,
-  estudios,
-  paisOrigenNac,
-  tiposDni  
 }) => {
-  const [checked, setChecked] = useState(false);
   const [inputCheck, setInputCheck] = useState({});
   const [familiares, setFamiliares ] = useState([]);
   const dispatch = useDispatch();
-  
+  const estudios = useSelector((state)=> state.generalState.estudios);
+  const parentescos = useSelector((state)=> state.generalState.parentescos);
+  const paisOrigenNac = useSelector((state) => state.generalState.paises);
+  const tiposDni = useSelector((state) => state.generalState.tiposDocumento);
   
   
   useEffect(() => {
@@ -54,8 +52,6 @@ const TableBasic = ({
 
 
 
-  useEffect(() => {}, [inputCheck]);
-
   return (
     <>
       <div className="overflow-scroll ">
@@ -76,7 +72,7 @@ const TableBasic = ({
           </thead>
           <tbody className="table-group-divider" id="cuerpodetabla">
             { familiares && familiares.map((col, i) => {
-              console.log(col)
+              
               return (
                 <tr className="px-5" key={i}>
                   <th scope="row">
@@ -99,7 +95,7 @@ const TableBasic = ({
                   <td>{col && col.sexo}</td>
                   <td>{col.iDparentesco && col.iDparentesco.nombreParentesco}</td>
                   <td>
-                    {col.fechaNacimiento.substring(
+                    {col.fechaNacimiento && col.fechaNacimiento.substring(
                       0,
                       col.fechaNacimiento.length - 9
                     )}

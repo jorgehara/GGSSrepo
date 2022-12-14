@@ -22,7 +22,20 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
         <>
           <div>
             <fieldset className='border p-2'>
-              <legend className='float-none w-auto p-2'>Cargar disponibles por periodo</legend>
+              <legend className='float-none w-auto p-2'>
+                {
+                  selectedOption && selectedOption === "1 - Disponibles por Periodo" && "Cargar disponibles por periodo"
+                }
+                {
+                  selectedOption && selectedOption === "2 - Solicita Nueva Licencia" && "Solicita Nueva Licencia"
+                }
+                {
+                  selectedOption && selectedOption === "3 - Prorroga Vencimiento" && "Prorroga Vencimiento"
+                }
+                {
+                  selectedOption && selectedOption === "4 - Suspende Licencia" && "Suspende Licencia"
+                }
+              </legend>
                 <div className='row'>
                <div className='col-xl-4'>
                   

@@ -113,24 +113,14 @@ const DatosPersonales = ({responses, setResponses, cancelar}) => {
     })
   }
 
-  function setImageEmpleado() {
-    empleadoUno && setImage(empleadoUno.obsFechaIngreso);
-  }
+  
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
 
-  function textToBin(text) {
-    return (
-      Array
-        .from(text)
-        .reduce((acc, char) => acc.concat(char.charCodeAt().toString(2)), [])
-        .map(bin => '0'.repeat(8 - bin.length) + bin )
-        .join(' ')
-    );
-  }
+  
     
 
   let bodyPostEmploye = {
