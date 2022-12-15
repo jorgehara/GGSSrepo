@@ -1,27 +1,19 @@
 // import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { employeContext } from "../../context/employeContext";
 import InputEmpData from "../Inputs/InputEmpData/InputEmpData";
 import "./EmployeData.css";
 
-const EmployeData = ({disabled}) => {
-  const { saveEmpl , saveEstado } = useContext(employeContext);
+const EmployeData = ({disabled, image}) => {
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   const estadosCiviles = useSelector((state)=> state.generalState.estadosCiviles);
-  const [image, setImage] = useState("");
 
   const idEstadoSelec = empleadoUno && empleadoUno.idEstado;
   const estadoSEleccionado = estadosCiviles && estadosCiviles.find(est => est.idEstado === idEstadoSelec); 
 
-  useEffect(() => {
-    setImageEmpleado()
-  }, [empleadoUno.obsFechaIngreso]);
+  
 
-    function setImageEmpleado(){
-      empleadoUno.obsFechaIngreso !== undefined && setImage(empleadoUno.obsFechaIngreso);
-    }
-  console.log(empleadoUno && empleadoUno)
+    
   return (
         <div className="container-flex border border-3 p-2 text-start py-2">
             <div className="row">

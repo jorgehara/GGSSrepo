@@ -49,13 +49,13 @@ const NacionalidadFlia = ({
   return (
     <div className="formulario__grupo mt-2">
       <div className="">
-        <label className="formulario-label-ParentescoFliaOpcions mt-2 ">
+        <label className="formulario-label-ParentescoFliaOpcions mt-3 ">
           {nameInput}
         </label>
       </div>
       <div className="SelectedFlia px-0">
         <select
-          className={obligatorio ? "form-select mt-1 obligatorio" : "form-select mt-1 "}
+          className={obligatorio ? "form-select mt-1 form-input-PaisDeOrigenFlia obligatorio" : "form-select mt-1 "}
           disabled={disable}
           id={idInput}
           name={idInput}

@@ -4,3 +4,4 @@ export const GET_INPUT = "GET_INPUT";
 export const ADD_TRABAJO_ANTERIOR = "ADD_TRABAJO_ANTERIOR";
 export const GET_ID_TRABAJO = "GET_ID_TRABAJO";
 export const DELETE_ONE_TRABAJO = "DELETE_ONE_TRABAJO";
+export const GET_TRABAJO = "GET_TRABAJO";

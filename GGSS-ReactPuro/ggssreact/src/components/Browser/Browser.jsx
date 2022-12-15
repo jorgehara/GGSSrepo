@@ -21,7 +21,13 @@ const Browser = ({disable , setDisable}) => {
   const valueInputApellido = useSelector((state)=> state.employeStates.formulario.inputApellidoNombreBrowser);
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   const deshabilitado = useSelector((state)=> state.employeStates.disable);
+
+
+  console.log("ejecuto browser")
+
+
   useEffect(() => {
+    console.log("ejecuto browser fetch")
     axios.get(url).then((res) => {
       let data = res.data.result;
 
@@ -51,10 +57,6 @@ const Browser = ({disable , setDisable}) => {
       console.log(res[0].iDempleado)    
       dispatch(addOneEmploye(res[0]));
     });
-
-    /* getDomicilioEmpleado(idEmpleado).then((res) => {
-      saveDomicilio(res);
-    }); */
   }
 
   function onChange(e, action) {
@@ -65,13 +67,11 @@ const Browser = ({disable , setDisable}) => {
       });    
   }
 
-  function habilitaEdit(e){
-    e.preventDefault();
-    Array.from(document.querySelectorAll("input")).forEach(
+  function habilitaEdit(){
+
+    Array.from(document.querySelectorAll("input.deshabilita")).forEach(
       input => (input.value = "")
     );
-    
-    //saveDisable(false);
     let employeData = {...empleadoUno};
 
     const inputsArray = Object.entries(employeData);
@@ -82,10 +82,11 @@ const Browser = ({disable , setDisable}) => {
     setDisable(false);
     dispatch(addOneEmploye(inputsJson));
   }
+
   function habilitaUpdate(e){
     e.preventDefault();
     if(empleadoUno.iDempleado && empleadoUno.iDempleado){
-      return dispatch(disableFunctions(true));
+      return setDisable(false);;
     }
     swal({
           title: "Error",
@@ -93,7 +94,6 @@ const Browser = ({disable , setDisable}) => {
           icon: "error",
     })
   }
-  console.log(disable)
   return (
 <>
 <div className='row gy-1 container-flex p-0 m-o '>
@@ -145,7 +145,7 @@ const Browser = ({disable , setDisable}) => {
 <div className="container ">
   <div className="row align-items-start">
     <div className="col">
-      <button className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`} onClick={(e)=>habilitaEdit(e)}>
+      <button className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`} onClick={habilitaEdit}>
         Agregar
       </button>
     </div>

@@ -26,12 +26,12 @@ const PaisOrigenFlia = ({
   }, [display]);
 
   return (
-    <div className="formulario__grupo mt-1">
+    <div className="formulario__grupo ">
       <div className="">
-        <label className="formulario-label-ParentescoFliaOpcions mt-2">{nameLabel}</label>
+        <label className="formulario-label-ParentescoFliaOpcions mt-3">{nameLabel}</label>
       </div>
       <div className="SelectedFliaPais px-0">
-        <select className={obligatorio ? "form-select ml-0 mt-1 obligatorio" : "form-select ml-0 mt-1"} name={nameInput} disabled={disable} onChange={(e)=> onChange(e.target.value,nameInput)}>
+        <select className={obligatorio ? "form-select ml-0 mt-1 form-input-PaisDeOrigenFlia obligatorio" : "form-select ml-0 mt-1"} name={nameInput} disabled={disable} onChange={(e)=> onChange(e.target.value,nameInput)}>
           <option value="">Seleccionar</option>
           {
            array && array.map((op, i) => {

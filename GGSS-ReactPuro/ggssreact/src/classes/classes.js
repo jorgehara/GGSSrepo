@@ -107,3 +107,10 @@ export const classesEstadosCiviles = {
     "classEigth" : "form-check-label",
     "classNine" : "form__grupo__label",
   }
+  export const inputButtonClasessDocumentacion= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
+    "classThree" : 'formulario__label',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }

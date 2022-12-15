@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { getIdTrabajoAnterior } from '../../redux/actions/trabajosAnterioresActions'
+import { addTrabajo, getIdTrabajoAnterior } from '../../redux/actions/trabajosAnterioresActions'
 
-const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp}) => {
+const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp, setModificar}) => {
     const dispatch = useDispatch();
 
   return (
@@ -24,10 +24,9 @@ const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp}) => {
             <tbody>
                 {
                     array && array.map((item)=>{
-                        console.log(item.idTrabajoAnterior)
                         return( 
                             <tr>
-                                <th scope="row"> <input type="radio" name="selectTrabajoAnt" id="selectTrabajoAnt" value={item.idTrabajoAnterior} onClick={(e)=> dispatch(getIdTrabajoAnterior(e.target.value))} /> </th>
+                                <th scope="row"> <input type="radio" name="selectTrabajoAnt" id="selectTrabajoAnt" value={item.idTrabajoAnterior} onClick={(e)=>  { setModificar(false); dispatch(addTrabajo(item)); dispatch(getIdTrabajoAnterior(e.target.value))}} /> </th>
                                 <td>{item.desde && item.desde.substring(
                                                 0,
                                                 item.desde.length - 9
@@ -43,7 +42,7 @@ const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp}) => {
         </table>
     </div>
     <div className='col-xl-3'>
-        <button className="btn btn-danger btn-sm ">
+        <button className="btn btn-danger btn-sm " onClick={()=> setModificar(true)}>
             Modificar Datos
         </button>
     </div>

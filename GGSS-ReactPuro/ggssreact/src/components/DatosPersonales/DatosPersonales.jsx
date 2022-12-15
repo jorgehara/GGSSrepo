@@ -10,27 +10,21 @@ import InputFile from "../Inputs/InputFile/InputFile";
 import InputForm from "../Inputs/InputForm/InputForm";
 import InputRadio from "../Inputs/InputRadio/InputRadio";
 import "./DatosPersonales.css";
-import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
 import generateCuil from "./funcGenerarCuil.js";
 import TextArea from "../Inputs/TextArea/TextArea";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_DATOS_PERSONALES } from "../../redux/types/datosPersonalesTypes";
 import axios from "axios";
-import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
-import {  addEstados, addEstadosCiviles, addEstudios, addFamiliares, addNumeradores, addPaises, addParentescos, addTiposDocumento } from "../../redux/actions/fetchActions";
 import {  inputButtonClasessCUIL } from "../../classes/classes";
 import { disableFunctions } from "../../redux/actions/employeActions";
 import EmployeData from "../EmployeData/EmployeData";
 
 //#endregion
 
-const DatosPersonales = ({responses, setResponses, cancelar, disable}) => {
+const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstado, disable, empleados}) => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
-  const [disableEstado, setDisableEstado] = useState(false);
   const [imagenSended , setImagenSended] = useState("");
-  const [empleados, setEmpleados] = useState([]);
-  const [image, setImage] = useState("");
   const [ formDatosPersonales, setFormDatosPersonales ] = useState(responses["formDatosPersonales"]);
 
   const dispatch = useDispatch();
@@ -39,24 +33,10 @@ const DatosPersonales = ({responses, setResponses, cancelar, disable}) => {
   //#region ------------------------------------------------------REDUX
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
-  const deshabilitar = useSelector((state)=> state.employeStates.disable);
   const datosPersonalesState = useSelector((state)=> state.generalState);
   const numeradores = useSelector((state)=> state.generalState.numeradores);
-  console.log(disable)
+ 
   //#endregion
-
-  //#region URLS EMPLEADOS
-   const urlEstados = "http://54.243.192.82/api/Estados";
-   const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
-   const urlPaisesNac = "http://54.243.192.82/api/Paises";
-   const urlEstudios = "http://54.243.192.82/api/Estudios";
-   const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
-   const urlParentescos = "http://54.243.192.82/api/Parentescos"
-   const urlFamiliares = "http://54.243.192.82/api/Familiares";
-   const urlNumeradores = "http://54.243.192.82/api/Numeradores";
-  //#endregion
-
-  
   function onChangeValues(e, key){
       const newResponse = {...formDatosPersonales};
       newResponse[key] = e;
@@ -66,44 +46,13 @@ const DatosPersonales = ({responses, setResponses, cancelar, disable}) => {
   };
 
 
-  useEffect(() => {    
+  useEffect(() => {  
       setResponses({
         ...responses,
         formDatosPersonales
       });    
   },[formDatosPersonales]);
-  
-  const handleFetch=(url, action )=>{
-    dispatch({type: SET_LOADING});
-      axios.get(url)
-      .then((res)=>{
-        dispatch( action(res.data.result));
-      })
-      .catch((err)=>{
-        dispatch({type:AXIOS_ERROR});
-      })
-   }
-   useEffect(()=>{
-    axios.get("http://54.243.192.82/api/Empleados?records=10000")
-  .then((res) =>  setEmpleados(res.data.result));
-  
-  },[])
-  
-   useEffect(()=>{
-     handleFetch( urlEstados, addEstados);
-     handleFetch( urlEstadosCiviles,addEstadosCiviles);
-     handleFetch( urlPaisesNac,addPaises);
-     handleFetch( urlEstudios,addEstudios);
-     handleFetch( urlTiposDNI,addTiposDocumento);
-     handleFetch( urlParentescos,addParentescos);
-     handleFetch( urlFamiliares,addFamiliares);
-     handleFetch( urlNumeradores,addNumeradores);    
-   },[disable])
-    
-
-  useEffect(()=>{
-    setDisableEstado(false);
-  },[formDatosPersonales?.inputSexo])
+ 
 
    function getNumeradorId(tabla){
     return numeradores && numeradores.filter((num)=>{
@@ -117,80 +66,6 @@ const DatosPersonales = ({responses, setResponses, cancelar, disable}) => {
   let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   let yyyy = today.getFullYear();
   today = mm + '/' + dd + '/' + yyyy;
-
-  
-    
-
-  let bodyPostEmploye = {
-    "iDempleado" : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
-    "legajo": datosPersonalesRedux.numLegajo,
-    "apellido": datosPersonalesRedux.apellidoInput,
-    "iDtipoDocumento": datosPersonalesRedux.dniSelected,
-    "nroDocumento": datosPersonalesRedux.documentoInput,
-    "cuil": datosPersonalesRedux.inputCuil,
-    "sexo": datosPersonalesRedux.inputSexo,
-    "iDestadoCivil": datosPersonalesRedux.estadoCivilInput,
-    "iDnacionalidad": datosPersonalesRedux.nacionalidadesInput,
-    "fechaNacimiento": datosPersonalesRedux.inputDateNac,
-    "iDestudios": datosPersonalesRedux.estudiosInput,
-    "fechaIngreso": today,
-    "fechaEfectiva": today,
-    "iDcategoria": 9,
-    "iDcargo": 11,
-    "iDtareaDesempeñada": 30,
-    "idCentrodeCosto": 26,
-    "iDsectorDpto": 1,
-    "iDmodoContratacion": 11,
-    "iDmodoLiquidacion": 1,
-    "iDformadePago": 1,
-    "idbanco": 4,
-    "nroCtaBanco": "string",
-    "cbu": "string",
-    "iDlugardePago": 1,
-    "iDobraSocial": 1,
-    "iDsindicato": 1,
-    "fechaEgreso": "2022-11-16T18:04:19.597Z",
-    "iDesquema": 1,
-    "iDempleador": 1,
-    "nombres": datosPersonalesRedux.nombresInput,
-    "idEstado": datosPersonalesRedux.estadosEmpleados,
-    "rutaFoto": "string",
-    "telFijo": datosPersonalesRedux.telefonoInput,
-    "acuerdo": 0,
-    "neto": 0,
-    "idPaisOrigen": datosPersonalesRedux.paisOrigenInput,
-    "mail": datosPersonalesRedux.email,
-    "telMovil": datosPersonalesRedux.movil,
-    "adicObraSocial": true,
-    "idConceptoAdicObraSocial": 44,
-    "adicAfjp": true,
-    "idConceptoAdicAfjp": 48,
-    "adicSindicato": true,
-    "idConceptoAdicSindicato": 49,
-    "tipoCuenta": 0,
-    "legajoAnterior": "string",
-    "imagen": imagenSended,
-    "totalRemuneracion": 0,
-    "totalNeto": 0,
-    "tieneEmbargos": true,
-    "tieneSumarioAdministrativo": true,
-    "tieneLicenciaSinGoceHaberes": true,
-    "obsEstudios": datosPersonalesRedux.observacionesEstudios,
-    "obsFechaIngreso": "string",
-    "idAgrupamiento": 1,
-    "idDireccion": 1,
-    "observacionesAdscripto": "string",
-    "idSectorAfectacion": 1,
-    "idDireccionAfectacion": 1,
-    "obsAfectacion": "string"
-  };
- 
-
- const bodyNumeradores = {
-  tabla : "Empleados",
-  ultimovalor : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1)
- }
-  
   
   //#region ------------------------------------------------------------------------------VALIDACIONES
 
@@ -237,7 +112,75 @@ const DatosPersonales = ({responses, setResponses, cancelar, disable}) => {
   //#endregion
   
   async function sendDataEmploye(){
-    
+    let bodyPostEmploye = {
+      "iDempleado" : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
+      "legajo": datosPersonalesRedux.numLegajo,
+      "apellido": datosPersonalesRedux.apellidoInput,
+      "iDtipoDocumento": datosPersonalesRedux.dniSelected,
+      "nroDocumento": datosPersonalesRedux.documentoInput,
+      "cuil": datosPersonalesRedux.inputCuil,
+      "sexo": datosPersonalesRedux.inputSexo,
+      "iDestadoCivil": datosPersonalesRedux.estadoCivilInput,
+      "iDnacionalidad": datosPersonalesRedux.nacionalidadesInput,
+      "fechaNacimiento": datosPersonalesRedux.inputDateNac,
+      "iDestudios": datosPersonalesRedux.estudiosInput,
+      "fechaIngreso": today,
+      "fechaEfectiva": today,
+      "iDcategoria": 9,
+      "iDcargo": 11,
+      "iDtareaDesempeñada": 30,
+      "idCentrodeCosto": 26,
+      "iDsectorDpto": 1,
+      "iDmodoContratacion": 11,
+      "iDmodoLiquidacion": 1,
+      "iDformadePago": 1,
+      "idbanco": 4,
+      "nroCtaBanco": "string",
+      "cbu": "string",
+      "iDlugardePago": 1,
+      "iDobraSocial": 1,
+      "iDsindicato": 1,
+      "fechaEgreso": "2022-11-16T18:04:19.597Z",
+      "iDesquema": 1,
+      "iDempleador": 1,
+      "nombres": datosPersonalesRedux.nombresInput,
+      "idEstado": datosPersonalesRedux.estadosEmpleados,
+      "rutaFoto": "string",
+      "telFijo": datosPersonalesRedux.telefonoInput,
+      "acuerdo": 0,
+      "neto": 0,
+      "idPaisOrigen": datosPersonalesRedux.paisOrigenInput,
+      "mail": datosPersonalesRedux.email,
+      "telMovil": datosPersonalesRedux.movil,
+      "adicObraSocial": true,
+      "idConceptoAdicObraSocial": 44,
+      "adicAfjp": true,
+      "idConceptoAdicAfjp": 48,
+      "adicSindicato": true,
+      "idConceptoAdicSindicato": 49,
+      "tipoCuenta": 0,
+      "legajoAnterior": "string",
+      "imagen": imagenSended,
+      "totalRemuneracion": 0,
+      "totalNeto": 0,
+      "tieneEmbargos": true,
+      "tieneSumarioAdministrativo": true,
+      "tieneLicenciaSinGoceHaberes": true,
+      "obsEstudios": datosPersonalesRedux.observacionesEstudios,
+      "obsFechaIngreso": "string",
+      "idAgrupamiento": 1,
+      "idDireccion": 1,
+      "observacionesAdscripto": "string",
+      "idSectorAfectacion": 1,
+      "idDireccionAfectacion": 1,
+      "obsAfectacion": "string"
+    };
+   
+  
+   const bodyNumeradores = {
+    tabla : "Empleados",
+    ultimovalor : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1)
+   }
     if(Object.values(bodyPostEmploye) === "" || Object.values(bodyPostEmploye) === null){
       swal({
         title: "Error",
@@ -292,7 +235,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, disable}) => {
       //#region Menú Principal
 
     <>
-      <EmployeData /><div className="Lateral-Derecho">
+      <EmployeData image={image} /><div className="Lateral-Derecho">
         <div className="accordion" id="accordionExample">
           <div className="accordion-item">
             <h4 className="accordion-header" id="headingOne">
@@ -586,7 +529,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, disable}) => {
               </div>
             </div>
           </div>
-          <Domicilios formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={deshabilitar} responses={responses} setResponses={setResponses} />
+          <Domicilios onChangeValues={onChangeValues} formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={disable} responses={responses} setResponses={setResponses} />
         </div>
         <div className="d-flex justify-content-end">
           

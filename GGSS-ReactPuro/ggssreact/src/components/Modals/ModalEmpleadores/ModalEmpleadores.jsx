@@ -22,11 +22,11 @@ const ModalEmpleadores = ({ idModal, nameModal, array }) => {
                                 <br />
                                 <select style={{height: "1000px"}} className="form-select row mt-1 selectOptions" multiple aria-label="multiple select example">
                                     {
-                                        array !== undefined ? array.map((op, i)=>{
+                                        array && array.map((op, i)=>{
                                             return(
                                                 <option key={i} value="1">{op}</option>
                                             )
-                                        }) : null
+                                        })
                                     }
                                 </select>
 

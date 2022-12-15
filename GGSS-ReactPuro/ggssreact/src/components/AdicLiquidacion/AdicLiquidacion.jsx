@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addConceptos } from '../../redux/actions/fetchActions';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar'
 import EmployeData from '../EmployeData/EmployeData'
@@ -10,7 +11,10 @@ import "./AdicLiquidacion.css";
 
 const AdicLiquidacion = ({responses, setResponses}) => {
     const [ formAdicLiquidacion, setFormAdicLiquidacion ] = useState(responses["formAdicLiquidacion"]);
-        
+    const dispatch = useDispatch();
+
+    const conceptos = useSelector((state)=> state.generalState.conceptos);
+
     function onChangeValues(e, key){
         const newResponse = {...formAdicLiquidacion};
         newResponse[key] = e;
@@ -34,7 +38,7 @@ const AdicLiquidacion = ({responses, setResponses}) => {
         </div>
         <div className='row'>
                 <p>Concepto: (Son los conceptos marcados como condicionales en el esquema correspondiente al empleado)</p>
-                <InputAdicLiquidacion onChangeValues={onChangeValues} idInput="inputConceptosAdicLiq" />
+                <InputAdicLiquidacion propArrayId="iDconcepto" porpArrayOp="concepto" conceptos={conceptos} onChangeValues={onChangeValues} idInput="inputConceptosAdicLiq" />
                 <div className='col-xl-2'>
                     <button className='btn btn-danger btn-sm'>Datos adicionales...</button>
                 </div>

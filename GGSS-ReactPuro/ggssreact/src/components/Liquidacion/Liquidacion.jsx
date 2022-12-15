@@ -16,29 +16,15 @@ import IngresoContrato from "./ChildrenComponents/IngresoContrato";
 import "./Liquidacion.css"
 
 const Liquidacion = ({responses, setResponses}) => {
+
+    
     const [ formLiquidacion, setFormLiquidacion ] = useState(responses["formLiquidacion"]);
 
     const dispatch = useDispatch();
     const deshabilitar = useSelector((state)=> state.employeStates.disable);
     const disable = useSelector((state)=> state.generalState.disabled);
     //#region ------------------------------------------------------------------------------------URLs
-    const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
-    const urlConvenios = "http://54.243.192.82/api/Convenios";
-    const urlCategorias = "http://54.243.192.82/api/Categorias";
-    const urlAgrupamientos = "http://54.243.192.82/api/Agrupamientos";
-    const urlCargos = "http://54.243.192.82/api/Cargos";
-    const urlTareas = "http://54.243.192.82/api/TareasDesempeñadas";
-    const urlModosCont =  "http://54.243.192.82/api/ModosContratacion";
-    const urlModoLiq =  "http://54.243.192.82/api/ModosLiquidacion";
-    const urlCentroCosto = "http://54.243.192.82/api/CentrosDeCostos";
-    const urlSectorDepto = "http://54.243.192.82/api/SectoresDptos";
-    const urlObrasSociales = "http://54.243.192.82/api/ObrasSociales";
-    const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos";
-    const urlLugaresDePago = "http://54.243.192.82/api/LugaresdePago";
-    const urlBancos = "http://54.243.192.82/api/Bancos";
-    const urlDirecciones = "http://54.243.192.82/api/Direcciones";
-    const urlSindicatos = "http://54.243.192.82/api/Sindicatos";
-    const urlEsquemas = "http://54.243.192.82/api/Esquemas";
+   
 //#endregion
     
     
@@ -69,27 +55,7 @@ const Liquidacion = ({responses, setResponses}) => {
             dispatch({type:AXIOS_ERROR});
           })
     }
-//#region ----------------------------------------------------------------------------------------useEffects
-    useEffect(()=>{
-        handleFetch( urlConvenios, addConvenios);
-        handleFetch( urlEmpleadores,addEmpleadores);
-        handleFetch( urlCategorias, addCategorias);
-        handleFetch( urlAgrupamientos, addAgrupamientos);
-        handleFetch( urlCargos, addCargos);
-        handleFetch( urlTareas, addTareasDesempeñadas);
-        handleFetch( urlModosCont, addModosContratacion);
-        handleFetch( urlModoLiq, addModosLiquidacion);
-        handleFetch( urlCentroCosto, addCentroDeCosto);
-        handleFetch( urlSectorDepto, addSectorDepto);
-        handleFetch( urlObrasSociales, addObrasSociales);
-        handleFetch( urlFormasDePago, addFormasPago);
-        handleFetch( urlLugaresDePago, addLugaresDePago);
-        handleFetch( urlBancos, addBancos);
-        handleFetch( urlDirecciones, addDirecciones);
-        handleFetch( urlSindicatos, addSindicatos);
-        handleFetch( urlEsquemas, addEsquemas);
-    },[])
-//#endregion
+
     
 //#region -----------------------------------------------------------------------------------------Constantes de Datos Redux
 const empleadores = useSelector((state)=> state.generalState.empleadores);

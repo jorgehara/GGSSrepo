@@ -10,7 +10,6 @@ import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 // ------------------------ OBJECTS ------------------------
 import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas } from './Objects'
 // -----------------------------------------------------------
-import { employeContext } from '../../context/employeContext';
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
 import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
@@ -20,77 +19,20 @@ import axios from 'axios';
 import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
 import { addSelectedEstadoCivil, addSelectedEstudio, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
-import swal from "sweetalert";
 
 
-// import { getEstadosCivilesModal } from '../../services/fetchAPI';
-// import { useEffect } from 'react';
-//#endregion
 
 
 
 const NavbarMenu = () => {
-	//#region --------------------------------- CONSTANTES DE DATOS -------------------------------
-	const { empleadores, modosLiquidacion, modosContratacion, formasDePago, parentescos, tareasDesempeñadas, cargos, saveEstado, saveEstadoCivil, saveNacionalidad, saveEstudio, saveTipoDNI, saveCalle, saveDoms, saveProvincia, saveLocalidad, saveDetpo, saveBarrio } = useContext(employeContext);
-
-	//#endregion
-	const dispatch = useDispatch();
-
+	
 	const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles"
 	const urlEstudios = "http://54.243.192.82/api/Estudios"
 	const urlTiposDocumento = "http://54.243.192.82/api/TiposDocumento"
-	const urlParentescos = "http://54.243.192.82/api/Parentescos"
-	const urlEstados = "http://54.243.192.82/api/Estados"
-	const urlCargos = "http://54.243.192.82/api/Cargos"
-	const urlTareas = "http://54.243.192.82/api/TareasDesempeñadas"
-	const urlFormasPago = "http://54.243.192.82/api/FormasdePagos"
-	const urlModosContratacion = "http://54.243.192.82/api/ModosContratacion"
-	const urlModosLiquidacion = "http://54.243.192.82/api/ModosLiquidacion"
-	const urlPaises = "http://54.243.192.82/api/Paises"
-	const urlProvincias = "http://54.243.192.82/api/Provincias"
-	const urlDepartamentos = "http://54.243.192.82/api/Departamentos"
-	const urlLocalidades = "http://54.243.192.82/api/Localidades"
-	const urlBarrios = "http://54.243.192.82/api/Barrios"
-	const urlCalles = "http://54.243.192.82/api/Calles"
-	const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
-
-
-	const handleFetch = (url, action) => {
-		dispatch({ type: SET_LOADING });
-		axios.get(url)
-			.then((res) => {
-				dispatch(action(res.data.result));
-			})
-			.catch((err) => {
-				dispatch({ type: AXIOS_ERROR });
-			})
-	}
 
 	const [refetch, setRefetch] = useState(true); // estado para recargar cada vez que se ejecute un post/put/delete
 
-
-	useEffect(() => {
-		handleFetch(urlEstadosCiviles, addEstadosCiviles)
-		handleFetch(urlEstudios, addEstudios)
-		handleFetch(urlTiposDocumento, addTiposDocumento)
-		handleFetch(urlParentescos, addParentescos)
-		handleFetch(urlEstados, addEstados)
-		handleFetch(urlCargos, addCargos)
-		handleFetch(urlTareas, addTareasDesempeñadas)
-		handleFetch(urlFormasPago, addFormasPago)
-		handleFetch(urlModosContratacion, addModosContratacion)
-		handleFetch(urlModosLiquidacion, addModosLiquidacion)
-		handleFetch(urlPaises, addPaises)
-		handleFetch(urlProvincias, addProvincias)
-		handleFetch(urlDepartamentos, addDepartamentos)
-		handleFetch(urlLocalidades, addLocalidades)
-		handleFetch(urlBarrios, addBarrios)
-		handleFetch(urlCalles, addCalles)
-		handleFetch(urlEmpleadores, addEmpleadores)
-
-	}, [refetch])
-
-
+	
 	// ESTADOS QUE GUARDAN EL VALOR DE LOS INPUTS
 	const [responses, setResponses] = useState({});
 	const [modalDataInputs, setModalDataInputs] = useState(responses["modalDataInputs"])
@@ -104,12 +46,11 @@ const NavbarMenu = () => {
 	}
 
 	useEffect(() => {
+		console.log("entro al effecto")
 		setResponses({
 			...responses,
 			modalDataInputs
 		});
-		console.log(responses)
-		console.log(modalDataInputs)
 	}, [modalDataInputs]);
 
 	// ------- GET DE LOS ENDPOINTS  -----
@@ -143,6 +84,37 @@ const NavbarMenu = () => {
 	const inputObsParent = useSelector((state) => state.modalState.formulario.inputObsParent)
 	const valueIdParentesco = useSelector((state) => state.generalState.idParentesco)
 
+	//Estados
+	const estadosValue = useSelector((state)=> state.generalState.estados)
+
+	//Paises
+	const paisNacionalidad = useSelector((state)=> state.generalState.paises)
+	//Calles
+	const calle = useSelector((state)=> state.generalState.calles)
+	//Departamentos
+	const dptos = useSelector((state)=> state.generalState.departamentos)
+	//Provincias
+	const provinciasValue = useSelector((state)=> state.generalState.provincias)
+	//Localidades
+	const localidadesValue = useSelector((state)=> state.generalState.localidades);
+	//Barrios
+	const barriosValue = useSelector((state)=> state.generalState.barrios)
+	//Cargos
+	const cargosValue = useSelector((state)=> state.generalState.cargos);
+	//TareaDesempeñada
+	const tareaValues = useSelector((state)=> state.generalState.tareaDesempeñada);
+	//Formas de Pago
+	const formasDePagoValue = useSelector((state)=> state.generalState.formasDePago)
+	//ModosContratacion
+	const modosContratacionValue = useSelector((state)=> state.generalState.modosContratacion)
+	//Modos Liquidacion
+	const modosLiqValue = useSelector((state)=> state.generalState.modosLiquidacion);
+	//Empleadores
+	const empleadoresValue = useSelector((state)=> state.generalState.empleadores)
+
+
+
+
 
 
 
@@ -160,29 +132,39 @@ const NavbarMenu = () => {
 
 
 
-	const estadosCivilesMasculinos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.masculino); }) : [];
-	const estadosCivilesFemeninos = saveEstadoCivil !== undefined ? saveEstadoCivil.map((estado, i) => { return (estado.femenino); }) : [];
-	const estadosCiviles = estadosCivilesMasculinos.concat(estadosCivilesFemeninos);
-	const estadosArray = saveEstado.map((m, i) => { return (m.nombreEstado) });
-	const paises = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nombrePais); }) : [];
-	const estudios = saveEstudio !== undefined ? saveEstudio.map((nac, i) => { return (nac.estudiosNivel); }) : [];
-	const nacionalidadesMasculinas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) : [];
-	const nacionalidadesFemeninas = saveNacionalidad !== undefined ? saveNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) : [];
-	const nacionalidades = nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
-	const calles = saveCalle !== undefined ? saveCalle.map(res => { return res.calle }) : null;
-	const pisoDepto = saveDoms !== undefined ? saveDoms.map(res => { return res.pisoDepto }) : null;
-	const deptos = saveDetpo !== undefined ? saveDetpo.map(res => { return res.departamento }) : null;
-	const provincias = saveProvincia !== undefined ? saveProvincia.map(res => { return res.provincia }) : null;
-	const localidades = saveLocalidad !== undefined ? saveLocalidad.map(res => { return res.localidad }) : null;
-	const barrios = saveBarrio !== undefined ? saveBarrio.map(res => { return res.barrio }) : null;
-	const cargosMap = cargos !== undefined ? cargos.map((cargo, i) => { return (cargo.nombreCargo); }) : [];
-	const tareasMap = tareasDesempeñadas !== undefined ? tareasDesempeñadas.map((tarea, i) => { return (tarea.tareaDesempeñada) }) : [];
-	const tiposDNIMap = saveTipoDNI !== undefined ? saveTipoDNI.map((tdni, i) => { return tdni.tipoDocumento }) : [];
-	const parentescosMap = parentescos !== undefined ? parentescos.map((parent, i) => { return parent.nombreParentesco }) : [];
-	const formasDePagoMap = formasDePago !== undefined ? formasDePago.map((forma, i) => { return forma.nombreFormadePago }) : [];
-	const modosContratacionMap = modosContratacion !== undefined ? modosContratacion.map((modo, i) => { return modo.modoContratacion }) : [];
-	const modosLiquidacionMap = modosLiquidacion !== undefined ? modosLiquidacion.map((modo, i) => { return modo.modoLiquidacion }) : [];
-	const empleadoresMap = empleadores !== undefined ? empleadores.map((empl, i) => { return empl.razonSocial }) : [];
+	const estadosArray = estadosValue && estadosValue.map((m, i) => { return (m.nombreEstado) });
+	const paises = paisNacionalidad && paisNacionalidad.map((nac, i) => { return (nac.nombrePais); });
+
+	const estudios = estudiosValue && estudiosValue.map((nac, i) => { return (nac.estudiosNivel); });
+
+	const nacionalidadesMasculinas = paisNacionalidad && paisNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) ;
+	const nacionalidadesFemeninas = paisNacionalidad && paisNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) ;
+
+	const nacionalidades = nacionalidadesMasculinas && nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
+
+	const calles = calle && calle.map(res => { return res.calle }) ;
+
+	const deptos = dptos && dptos.map(res => { return res.departamento });
+
+	const provincias = provinciasValue && provinciasValue.map(res => { return res.provincia });
+
+	const localidades = localidadesValue && localidadesValue.map(res => { return res.localidad });
+
+	const barrios = barriosValue && barriosValue.map(res => { return res.barrio });
+
+	const cargosMap = cargosValue && cargosValue.map((cargo, i) => { return (cargo.nombreCargo); });
+
+	const tareasMap = tareaValues && tareaValues.map((tarea, i) => { return (tarea.tareaDesempeñada) });
+
+	const parentescosMap = parentescosValue && parentescosValue.map((parent, i) => { return parent.nombreParentesco });
+
+	const formasDePagoMap = formasDePagoValue && formasDePagoValue.map((forma, i) => { return forma.nombreFormadePago });
+
+	const modosContratacionMap = modosContratacionValue && modosContratacionValue.map((modo, i) => { return modo.modoContratacion });
+
+	const modosLiquidacionMap = modosLiqValue && modosLiqValue.map((modo, i) => { return modo.modoLiquidacion });
+
+	const empleadoresMap = empleadoresValue && empleadoresValue.map((empl, i) => { return empl.razonSocial });
 
 
 	return (
@@ -319,13 +301,6 @@ const NavbarMenu = () => {
 								onChange={onChangeValues}
 								refetch={refetch}
 								setRefetch={setRefetch}
-							// generalState={modals} 
-							// setGeneralState={setModals} 
-							// onSelect={onSelect} 
-							// functionModal={getEstadosCivilesModal} 
-							// functionSaveSelected={saveEstadoCivilSelected} 
-							// selectedOption={estadoCivilSelected} 
-							// arrayCompleto={saveEstadoCivil}
 							/>
 
 							<BasicModal

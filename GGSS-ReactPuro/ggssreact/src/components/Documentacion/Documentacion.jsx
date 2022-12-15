@@ -12,7 +12,7 @@ import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { addDocumentacionEmpleados } from '../../redux/actions/fetchActions';
 import axios from 'axios';
 import { getInputValue, getOneDocumento } from '../../redux/actions/documentacionActions';
-import { inputButtonClasess } from '../../classes/classes';
+import { inputButtonClasess, inputButtonClasessDocumentacion } from '../../classes/classes';
 import { GET_INPUT_VALUE } from '../../redux/types/documentacionTypes';
 
 const Documentacion = ({responses, setResponses, disable}) => {
@@ -21,20 +21,6 @@ const Documentacion = ({responses, setResponses, disable}) => {
     const [ disableI, setDisableI] = useState(true);
     const [ formDocumentacion, setFormDocumentacion ] = useState(responses["formDocumentacion"]);
 
-
-    const urlDocumentacionEmpleados = "http://54.243.192.82/api/EmpleadosDocumentacion";
-    const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
-
-    const handleFetch=(url, action )=>{
-        dispatch({type: SET_LOADING});
-            axios.get(url)
-            .then((res)=>{
-            dispatch( action(res.data.result));
-        })
-            .catch((err)=>{
-            dispatch({type:AXIOS_ERROR});
-        })
-    }
     function onChangeValues(e, key){
         const newResponse = {...formDocumentacion};
         newResponse[key] = e;
@@ -50,8 +36,7 @@ const Documentacion = ({responses, setResponses, disable}) => {
     },[formDocumentacion]);
     
     useEffect(()=>{
-        handleFetch( urlDocumentacionEmpleados, addDocumentacionEmpleados);
-        handleFetch( urlDocumentacion, getOneDocumento);
+        
     },[])
     
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
@@ -77,7 +62,7 @@ return (
             </div>
             <div className='col-xl-12'>
                 <InputButtonLiquidacion
-                    clasess={inputButtonClasess}
+                    clasess={inputButtonClasessDocumentacion}
                     nameButton="..."
                     nameLabel="Documentación"
                     placeholder="Documentación"

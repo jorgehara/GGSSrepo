@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import "./Navbar.css"
 const Navbar = ({handleTabChange, tabIndex}) => {
 
+		console.log("ejecuto navbar")
 
   return (
 	    <nav className="row gy-3 navbar navbar-expand-lg navbar-light bg-light p-0 m-0 ">
@@ -15,7 +16,7 @@ const Navbar = ({handleTabChange, tabIndex}) => {
 			aria-label="Toggle navigation">
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNav">
-			<ul className="navbar-nav"  >
+			<ul className="navbar-nav navbarNavSub"  >
 				<li >
                     <Link className={tabIndex === 0 ? "nav-link actived" : "nav-link"} value="1" onClick={(e)=>handleTabChange(0)} >
 						Personales

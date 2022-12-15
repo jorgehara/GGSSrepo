@@ -72,12 +72,7 @@ export const PUT_TIPODOC = "PUT_TIPODOC"
 export const PUT_PARENTESCO = "PUT_PARENTESCO"
 
 
-
-
-
-
-
-
+export const ADD_CONCEPTOS = "ADD_CONCEPTOS";
 
 export const ADD_DOCU_EMPL = "ADD_DOCU_EMPL";
 
