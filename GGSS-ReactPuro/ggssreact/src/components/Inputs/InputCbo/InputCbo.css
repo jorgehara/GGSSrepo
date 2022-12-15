@@ -107,22 +107,9 @@
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
 }
-/* input:focus, select:focus, select, .form-select, input.form-control:focus {
-
-    outline:none !important;
-
-    outline-width: 0 !important;
-
-    box-shadow: none;
-
-    -moz-box-shadow: none;
-
-    -webkit-box-shadow: none;
-
+/* .options:hover{
+    background-color: #bb2929;
 } */
-
-/* 
-.btn:active { background-color: red }
-.btn.btn-primary:hover { background-color: green }
-.accordion:active { background-color: red }
-.btn.btn-primary:hover { background-color: green } */
+/* .options:focus{
+    background-color: #bb2929;
+} */
