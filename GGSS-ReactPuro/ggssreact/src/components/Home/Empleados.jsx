@@ -31,6 +31,8 @@ const Empleados = () => {
     
     const dispatch = useDispatch();
 
+//#region URLs
+
     const urlEstados = "http://54.243.192.82/api/Estados";
     const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
     const urlPaisesNac = "http://54.243.192.82/api/Paises";
@@ -64,18 +66,19 @@ const Empleados = () => {
     const urlDirecciones = "http://54.243.192.82/api/Direcciones";
     const urlSindicatos = "http://54.243.192.82/api/Sindicatos";
     const urlEsquemas = "http://54.243.192.82/api/Esquemas";
-    const urlConceptos = `http://54.243.192.82/api/ConceptosDatos/0,1`;
+    const urlConceptos = "http://54.243.192.82/api/ConceptosDatos/0,1";
     const urlTrabajosAnteriores = "http://54.243.192.82/api/TrabajosAnteriores";
     const urlDocumentacionEmpleados = "http://54.243.192.82/api/EmpleadosDocumentacion";
     const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
     const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/0,%201`;
     const urlInstrumLegal = "http://54.243.192.82/api/InstrumentosLegales/0?modo=1"
-
+//#endregion
+    
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
 
     function setImageEmpleado(){
         empleadoUno.obsFechaIngreso !== undefined && setImage(empleadoUno.obsFechaIngreso);
-      }
+    }
     function handleTabChange(value){        
         setTabIndex(value);
     };  
@@ -94,19 +97,25 @@ const Empleados = () => {
             dispatch({type:AXIOS_ERROR});
         })
     }
+    const handleFetchComun=(url, action )=>{
+        dispatch({type: SET_LOADING});
+        axios.get(url)
+        .then((res)=>{
+            dispatch( action(res.data));
+        })
+        .catch((err)=>{
+            dispatch({type:AXIOS_ERROR});
+        })
+    }
     useEffect(()=>{
         console.log("ejecuta use effect fetchs")
-        handleFetch( urlEstados, addEstados);
-        handleFetch( urlEstadosCiviles,addEstadosCiviles);
-        handleFetch( urlPaisesNac,addPaises);
-        handleFetch( urlEstudios,addEstudios);
         handleFetch( urlTiposDNI,addTiposDocumento);
         handleFetch( urlParentescos,addParentescos);
         handleFetch( urlFamiliares,addFamiliares);
         handleFetch( urlNumeradores,addNumeradores);         
         handleFetch( urlFamiliares,addFamiliares);
 
-        handleFetch(urlDomicilios, addDomicilios);
+         handleFetch(urlDomicilios, addDomicilios);
         handleFetch(urlCalles, addCalles);
         handleFetch(urlDeptos, addDepartamentos);
         handleFetch(urlProvincias, addProvincias);
@@ -131,7 +140,7 @@ const Empleados = () => {
         handleFetch( urlSindicatos, addSindicatos);
         handleFetch( urlEsquemas, addEsquemas);
 
-        handleFetch( urlConceptos, addConceptos);
+        handleFetchComun( urlConceptos, addConceptos);
 
         handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores)
 
@@ -139,7 +148,7 @@ const Empleados = () => {
         handleFetch( urlDocumentacion, getOneDocumento);
 
         handleFetch( urlDatosExtras, addDatosExtras);  
-        handleFetch( urlInstrumLegal, addInstrumLegales);  
+        handleFetch( urlInstrumLegal, addInstrumLegales);   
 
       },[disable])
 

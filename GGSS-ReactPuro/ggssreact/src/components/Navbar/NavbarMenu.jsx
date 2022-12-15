@@ -46,7 +46,6 @@ const NavbarMenu = () => {
 	}
 
 	useEffect(() => {
-		console.log("entro al effecto")
 		setResponses({
 			...responses,
 			modalDataInputs

@@ -35,7 +35,9 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
   const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
   const datosPersonalesState = useSelector((state)=> state.generalState);
   const numeradores = useSelector((state)=> state.generalState.numeradores);
- 
+  const generalStateData = useSelector((state)=> state.generalState.tiposDocumento)
+
+  console.log(generalStateData)
   //#endregion
   function onChangeValues(e, key){
       const newResponse = {...formDatosPersonales};

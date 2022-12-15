@@ -76,7 +76,6 @@ const BasicModal = ({
   }
 
 
-  console.log("ejecuto modal")
   async function agregar() {
     setDisabled(!disabled);
   }
