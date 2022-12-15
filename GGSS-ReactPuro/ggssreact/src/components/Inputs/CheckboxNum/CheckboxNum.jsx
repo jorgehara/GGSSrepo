@@ -27,10 +27,8 @@ const CheckboxNum = ({
                     placeholder={placeHolder}
                     checked={checked}
                     value={valueCheck}
-                    onChange={(e) => {
-                        setChecked(!checked)
-                        onChange(e, inputId)   
-                    }}>
+                    onChange={(e) => { setChecked(!checked); onChange(e.target.checked, inputId) }}
+                >
                 </input>
 
                 <label style={{ marginLeft: "15px" }} className='labelModal' htmlFor={inputId}>{nameCheckbox} </label>
@@ -50,7 +48,8 @@ const CheckboxNum = ({
                     placeholder={placeHolder}
                     disabled={!checked}
                     value={valueNum}
-                    onChange={(e) => onChange(e, inputNumId )}>
+                    onChange={(e) => onChange(e.target.value, inputId )} // NO ANDA
+                    > 
                 </input>
 
                 <br />

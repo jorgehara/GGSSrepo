@@ -8,8 +8,8 @@ import InputDate from "../../Inputs/InputDate/InputDate";
 import InputNumModal from "../../Inputs/InputsModal/InputNumModal/InputNumModal";
 import Checkbox from "../../Inputs/Checkbox/Checkbox";
 import CheckboxNum from "../../Inputs/CheckboxNum/CheckboxNum";
-import { useDispatch, useSelector } from "react-redux";
-import { CANCEL_MODALS, GET_ESTADOSCIVILES } from "../../../redux/types/modalesTypes";
+import { useDispatch } from "react-redux";
+import { CANCEL_MODALS } from "../../../redux/types/modalesTypes";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
@@ -30,6 +30,7 @@ const BasicModal = ({
   hasCheckbox,
   checkboxObject,
   checkboxNumObject,
+  textAreaObject,
   checkboxName,
   hasCheckBoxNum,
   checkboxCheckName,
@@ -50,10 +51,10 @@ const BasicModal = ({
   dispatchGetID,
   resp,
   onChange,
-  onChangeCheckboxes,
   valueCheckbox,
   valueCheckboxNum,
   valueNumCheck,
+  valueObs,
   refetch,
   setRefetch
   // setRes,
@@ -66,10 +67,10 @@ const BasicModal = ({
   const [toModify, setToModify] = useState(false)
 
 
-  function onSelect(action, payload, op) {
-    dispatch(action(payload));
-    dispatch(dispatchGetID(op[propArrayId]))
-  }
+  // function onSelect(action, payload, op) {
+  //   dispatch(action(payload));
+  //   dispatch(dispatchGetID(op[propArrayId]))
+  // }
 
   function onCancel(e, name) {
     setDisabled(false)
@@ -134,7 +135,7 @@ const BasicModal = ({
           .then((res) => {
             axios.post(urlApi, bodyPet) // y agrega otro con otro nombre
               .then((res) => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                   dispatch(dispatchPutAction(resp.modalDataInputs))
                   swal({
                     title: "Ok",
@@ -259,7 +260,7 @@ const BasicModal = ({
                         key={i}
                         nameCheckbox={p.label}
                         inputId={p.idInput}
-                        onChange={onChangeCheckboxes}
+                        onChange={onChange}
                         value={valueCheckbox}
                       />
                     )
@@ -278,7 +279,7 @@ const BasicModal = ({
                         nameInputNum={p.labelNum}
                         inputId={p.idInput}
                         inputNumId={p.idInputNum}
-                        onChange={onChangeCheckboxes}
+                        onChange={onChange}
                         valueCheck={valueCheckboxNum}
                         valueNum={valueNumCheck}
                       />
@@ -295,17 +296,21 @@ const BasicModal = ({
 
                 <br />
                 {textArea &&
-                  <TextArea
-                    inputName="Observaciones"
-                    onChange={onChange}
-                    inputId={"obs"}
-                  />}
+                  textAreaObject?.map((p, i) => {
+                    console.log(textAreaObject)
+                    return (
+                      <TextArea
+                        key={i}
+                        inputName={p.label}
+                        onChange={onChange}
+                        inputId={p.idInput}
+                        value={valueObs}
+                      />
+                    )
+                  })
+                }
+                
                 <hr />
-
-
-
-
-
 
                 <div className="btnInputs">
                   <button type="button" className="btn btn-danger btnAceptar" onClick={() => aceptar(idApi)} >

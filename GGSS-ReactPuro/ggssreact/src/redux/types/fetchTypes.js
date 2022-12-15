@@ -46,6 +46,7 @@ export const ADD_NEW_ESTUDIO = "ADD_NEW_ESTUDIO";
 export const ADD_NEW_TIPODOC = "ADD_NEW_TIPODOC"
 export const ADD_NEW_PARENTESCO = "ADD_NEW_PARENTESCO"
 export const ADD_NEW_ESTADO = "ADD_NEW_ESTADO"
+export const ADD_NEW_FORMAPAGO = "ADD_NEW_FORMAPAGO"
 
 
 // DELETE TYPES
@@ -68,6 +69,10 @@ export const DELETE_PARENTESCO = "DELETE_PARENTESCO"
 export const GET_ID_ESTADO = "GET_ID_ESTADO"
 export const DELETE_ESTADO = "DELETE_ESTADO"
 
+// formas de pago
+export const GET_ID_FORMAPAGO = "GET_ID_FORMAPAGO"
+export const DELETE_FORMAPAGO = "DELETE_FORMAPAGO"
+
 // PUT TYPES
 
 export const PUT_ESCI = "PUT_ESCI"
@@ -75,6 +80,7 @@ export const PUT_ESTUDIO = "PUT_ESTUDIO"
 export const PUT_TIPODOC = "PUT_TIPODOC"
 export const PUT_PARENTESCO = "PUT_PARENTESCO"
 export const PUT_ESTADO = "PUT_ESTADO"
+export const PUT_FORMAPAGO = "PUT_FORMAPAGO"
 
 
 

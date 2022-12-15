@@ -1,5 +1,6 @@
 import React from 'react'
 import './Checkbox.css'
+import { useState } from 'react'
 
 const Checkbox = ({
     nameCheckbox,
@@ -9,6 +10,10 @@ const Checkbox = ({
     value,
     onChange
 }) => {
+
+    const [checked, setChecked] = useState(value ? value : false)
+
+
     return (
         <div className="inputModalContainer">
 
@@ -17,7 +22,9 @@ const Checkbox = ({
                 id={inputId}
                 placeholder={placeHolder}
                 value={value}
-                onChange={(e) => onChange(e, inputId )}
+                name={inputId}
+                checked={checked}
+                onChange={(e) => { setChecked(!checked); onChange(e.target.checked, inputId) }} // NO ANDA
             >
             </input>
 
