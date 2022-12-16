@@ -81,7 +81,10 @@ export const PUT_PARENTESCO = "PUT_PARENTESCO"
 
 export const ADD_DOCU_EMPL = "ADD_DOCU_EMPL";
 
+<<<<<<< HEAD
 export const DISABLED_INPUTS = "DISABLED_INPUTS";
 
 export const ADD_DATOS_EXTRAS = "ADD_DATOS_EXTRAS";
 export const ADD_INSTRUM_LEGALES = "ADD_INSTRUM_LEGALES";
+=======
+>>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)

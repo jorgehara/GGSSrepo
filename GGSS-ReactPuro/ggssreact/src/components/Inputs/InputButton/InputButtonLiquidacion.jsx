@@ -11,7 +11,11 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
     <div className={`${clasess.classTwo}`}>
         <label className={`${clasess.classThree}`} htmlFor={nameInput}>{nameLabel}</label>
 
+<<<<<<< HEAD
        <select name={idInput} id={idInput} disabled={disabled} className={obligatorio ? `${clasess.classFour}` : `${clasess.classFour}`} onChange={(e)=>onChange(e.target.value, idInput)} value={value && value} >
+=======
+       <select name={idInput} id={idInput} className={clasess.classFour} onChange={(e)=>onChange(e.target.value, idInput)} value={value && value} >
+>>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
         <option value="">Seleccionar</option>
         {
             array && array.map((valor,index)=>{
@@ -42,7 +46,11 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
                     disabled={disabled}
                     onChange={(e)=> onChange(e.target.value, idInput )}
                     />
+<<<<<<< HEAD
             <button  type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal)}
+=======
+            <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
+>>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
                   className="btn btn-validacion btn-outline-danger" disabled={disabled}>
                   {nameButton}
             </button>

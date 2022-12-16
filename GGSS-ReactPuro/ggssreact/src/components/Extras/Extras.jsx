@@ -96,6 +96,7 @@ const Extras = ({responses, setResponses}) => {
                         action={GET_INPUT_VALUES_EXTRAS} 
                         clasess={inputButtonClasessExtras} />
                     </div>
+<<<<<<< HEAD
                 </div>
                 <div className='row'>
                     <div className='col-xl-6'>
@@ -136,11 +137,21 @@ const Extras = ({responses, setResponses}) => {
                         clasess={inputButtonClasessExtrasInstrum} 
                         onChange={onChangeValues} 
                         action={GET_INPUT_VALUES_EXTRAS} />
+=======
+              </div>
+              <div className='linea' />
+              <div className='row'>
+                    <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center'>
+                        <CheckLabel idInput="inpútAdscriptoExtras" nameLabel="Adscripto" onChange={onChange} action={GET_INPUT_VALUES_EXTRAS} />
+                        <InputButtonLiquidacion nameButton="..." nameLabel="Instrum. Legal" id="inputInstrumLegal" clasess={inputButtonClasessExtrasInstrum} onChange={onChange} action={GET_INPUT_VALUES_EXTRAS} />
+>>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
                     </div>
                     <div className='divObservaciones'>
-                        <TextArea disabled={!formDatosExtras?.inputAdscriptoExtras} idInput="inputTextExtrasAdscripto" inputName="Observaciones" onChange={onChangeValues} action={GET_INPUT_VALUES_EXTRAS} value={formDatosExtras?.inputTextExtrasAdscripto && formDatosExtras?.inputTextExtrasAdscripto} />
+                        <TextArea idInput="inputTextExtrasAdscripto" inputName="Observaciones" onChange={onChange} action={GET_INPUT_VALUES_EXTRAS} />
                     </div>
+
               </div>
+<<<<<<< HEAD
               </div>
             </div>
           </div>  
@@ -168,33 +179,22 @@ const Extras = ({responses, setResponses}) => {
                         action={GET_INPUT_VALUES_EXTRAS} 
                         clasess={inputButtonClasessExtrasInstrum} 
                         onChange={onChange} />
+=======
+              <div className='linea' />
+              <div className='row'>
+                    <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center'>
+                        <CheckLabel idInput="inputAfectacionesExtras" nameLabel="Afectaciones" onChange={onChange} action={GET_INPUT_VALUES_EXTRAS} />
+                        <InputButtonLiquidacion nameButton="..." nameLabel="Instrum. Legal" id="inputInstrumLegalAfectaciones" action={GET_INPUT_VALUES_EXTRAS} clasess={inputButtonClasessExtrasInstrum} onChange={onChange} />
+>>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
                     </div>
                     <div className='divObservacionesAfectacion'>
-                        <InputButtonLiquidacion 
-                        disabled={!formDatosExtras?.inputAfectacionesExtras} 
-                        value={formDatosExtras?.inputSectorExtras && formDatosExtras?.inputSectorExtras} 
-                        nameButton="..." 
-                        nameLabel="Sector" 
-                        id="inputSectorExtras" 
-                        idInput="inputSectorExtras" 
-                        action={GET_INPUT_VALUES_EXTRAS} 
-                        clasess={inputButtonClasessExtrasAfectaciones} 
-                        onChange={onChange} />
+                        <InputButtonLiquidacion nameButton="..." nameLabel="Sector" id="inputSectorExtras" action={GET_INPUT_VALUES_EXTRAS} clasess={inputButtonClasessExtrasAfectaciones} onChange={onChange} />
                     </div>
                     <div className='divObservacionesAfectacion'>
-                        <InputButtonLiquidacion 
-                        disabled={!formDatosExtras?.inputAfectacionesExtras} 
-                        value={formDatosExtras?.inputDireccionesExtras && formDatosExtras?.inputDireccionesExtras} 
-                        nameButton="..." 
-                        nameLabel="Direcciones" 
-                        id="inputDireccionesExtras" 
-                        idInput="inputDireccionesExtras" 
-                        action={GET_INPUT_VALUES_EXTRAS} 
-                        clasess={inputButtonClasessExtrasAfectaciones} 
-                        onChange={onChange} />
+                        <InputButtonLiquidacion nameButton="..." nameLabel="Direcciones" id="inputDireccionesExtras" action={GET_INPUT_VALUES_EXTRAS} clasess={inputButtonClasessExtrasAfectaciones} onChange={onChange} />
                     </div>
                     <div className='divObservacionesAfectacionObs '>
-                        <TextArea disabled={!formDatosExtras?.inputAfectacionesExtras} idInput="inputTextExtrasAfectaciones" inputName="Observaciones" onChange={onChangeValues} action={GET_INPUT_VALUES_EXTRAS} value={formDatosExtras?.inputTextExtrasAfectaciones && formDatosExtras?.inputTextExtrasAfectaciones} />                          
+                        <TextArea idInput="inputTextExtrasAfectaciones" inputName="Observaciones" onChange={onChange} action={GET_INPUT_VALUES_EXTRAS} />                          
                     </div>
                     
               </div>
