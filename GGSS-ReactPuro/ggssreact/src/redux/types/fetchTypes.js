@@ -76,10 +76,13 @@ export const ADD_CONCEPTOS = "ADD_CONCEPTOS";
 
 export const ADD_DOCU_EMPL = "ADD_DOCU_EMPL";
 
-<<<<<<< HEAD
 export const DISABLED_INPUTS = "DISABLED_INPUTS";
 
 export const ADD_DATOS_EXTRAS = "ADD_DATOS_EXTRAS";
 export const ADD_INSTRUM_LEGALES = "ADD_INSTRUM_LEGALES";
-=======
->>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
+
+
+export const ADD_LICENCIAS_EMPLEADOS = "ADD_LICENCIAS_EMPLEADOS"
+export const ADD_NEW_LICENCIA = "ADD_NEW_LICENCIA";
+export const UPDATE_LICENCIA = "UPDATE_LICENCIA"
+export const DELETE_LICENCIA = "DELETE_LICENCIA"

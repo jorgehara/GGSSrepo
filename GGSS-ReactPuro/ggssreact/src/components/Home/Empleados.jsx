@@ -12,13 +12,14 @@ import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
 import Extras from '../Extras/Extras';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addAgrupamientos, addBancos, addBarrios, addCalles, addCargos, addCategorias, addCentroDeCosto, addConceptos, addConvenios, addDatosExtras, addDepartamentos, addDirecciones, addDocumentacionEmpleados, addEmpleadores, addEsquemas, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addInstrumLegales, addLocalidades, addLugaresDePago, addModosContratacion, addModosLiquidacion, addNumeradores, addObrasSociales, addPaises, addParentescos, addProvincias, addSectorDepto, addSindicatos, addTareasDesempeñadas, addTiposDocumento, disabledInputs } from '../../redux/actions/fetchActions';
+import { addAgrupamientos, addBancos, addBarrios, addCalles, addCargos, addCategorias, addCentroDeCosto, addConceptos, addConvenios, addDatosExtras, addDepartamentos, addDirecciones, addDocumentacionEmpleados, addEmpleadores, addEsquemas, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addInstrumLegales, addLicenciaEmpleados, addLocalidades, addLugaresDePago, addModosContratacion, addModosLiquidacion, addNumeradores, addObrasSociales, addPaises, addParentescos, addProvincias, addSectorDepto, addSindicatos, addTareasDesempeñadas, addTiposDocumento, disabledInputs } from '../../redux/actions/fetchActions';
 import { disableFunctions } from '../../redux/actions/employeActions';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import axios from 'axios';
 import { addDomicilios } from '../../redux/actions/domiciliosActions';
 import { getTrabajosAnteriores } from '../../redux/actions/trabajosAnterioresActions';
 import { getOneDocumento } from '../../redux/actions/documentacionActions';
+import { addDetalleLicencia } from '../../redux/actions/licenciasActions';
 
 const Empleados = () => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -72,6 +73,8 @@ const Empleados = () => {
     const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
     const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/0,%201`;
     const urlInstrumLegal = "http://54.243.192.82/api/InstrumentosLegales/0?modo=1"
+    const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
+    const urlDetalleLicenciasEmpleados = "http://54.243.192.82/api/DetalleLicenciasEmpleados";
 //#endregion
     
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
@@ -107,6 +110,7 @@ const Empleados = () => {
             dispatch({type:AXIOS_ERROR});
         })
     }
+    console.log(responses)
     useEffect(()=>{
         console.log("ejecuta use effect fetchs")
         handleFetch( urlTiposDNI,addTiposDocumento);
@@ -148,7 +152,11 @@ const Empleados = () => {
         handleFetch( urlDocumentacion, getOneDocumento);
 
         handleFetch( urlDatosExtras, addDatosExtras);  
-        handleFetch( urlInstrumLegal, addInstrumLegales);   
+        handleFetch( urlInstrumLegal, addInstrumLegales); 
+        handleFetch( urlLicenciaEmpleados, addLicenciaEmpleados);  
+        
+        handleFetch( urlDetalleLicenciasEmpleados, addDetalleLicencia);  
+        
 
       },[disable])
 

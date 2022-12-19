@@ -4,7 +4,6 @@ import NavbarMenu from './components/Navbar/NavbarMenu';
 import { Routes as Switch,  Route,
   // useLocation
 } from "react-router-dom";
-import { EmpleadoContextProvider } from './context/employeContext';
 import Empleados from './components/Home/Empleados';
 
 

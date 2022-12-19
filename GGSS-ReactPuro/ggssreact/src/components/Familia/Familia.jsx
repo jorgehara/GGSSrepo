@@ -1,6 +1,4 @@
 // import axios from "axios";
-import React, { useContext } from "react";
-import { employeContext } from "../../context/employeContext";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import EmployeData from "../EmployeData/EmployeData";
 import InputChecked from "../Inputs/InputChecked/InputChecked";
@@ -18,10 +16,9 @@ import { useState } from "react";
 import InputDateFliaBaja from "../Inputs/InputDateFamilia/InputDateFliaBaja";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_FAMILIA } from "../../redux/types/familiaTypes";
-import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import axios from "axios";
 import swal from "sweetalert";
-import { addEstudios, addFamiliares, addNewFamiliar, addPaises, addParentescos, addTiposDocumento, deleteOneFamiliar } from "../../redux/actions/fetchActions";
+import { addNewFamiliar, deleteOneFamiliar } from "../../redux/actions/fetchActions";
 import { disableFunctions } from "../../redux/actions/employeActions";
 import { addFamiliar } from "../../redux/actions/familiaActions";
 
@@ -30,48 +27,29 @@ const Familia = ({responses, setResponses,disable}) => {
   //const { saveEmpl, saveNacionalidad, saveEstudio, parentescos, disable, saveFamSelect } = useContext(employeContext);
 
   const [familiarSeleccionado, setFamiliarSeleccionado] = useState({});
-
   const [ formFamilia, setFormFamilia ] = useState(responses["formFamilia"]);
-
-
-
 
   const dispatch = useDispatch();
 
-  const [familia, setFamilia] = useState({
-    inputApellidoNombres: "",
-    inputCmbDni: "",
-    inputNroDni: "",
-    idRadioBtn: "",
-    inputParentesco: "",
-    inputDateNac: "",
-    inputDateBaja: "",
-    // inputEstadosCivilesModalFem:""
-  });
-
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const urlParentescos = "http://54.243.192.82/api/Parentescos";
   const urlFamiliares = "http://54.243.192.82/api/MostrarDatosFamiliares";
-  const urlTiposDocumentos = "http://54.243.192.82/api/TiposDocumento";
-  const urlPaisesNac = "http://54.243.192.82/api/Paises";
-  const urlEstudios = "http://54.243.192.82/api/Estudios";
 
   
-function onChangeValues(e, key){
-      let newResponse = {...formFamilia};
-      newResponse[key] = e;
-      setFormFamilia({
-        ...newResponse
-      });
-    };
+  function onChangeValues(e, key){
+    let newResponse = {...formFamilia};
+    newResponse[key] = e;
+    setFormFamilia({
+      ...newResponse
+    });
+  };
 
 
-    useEffect(() => {
-        setResponses({
-          ...responses,
-          formFamilia
-        });      
-    },[formFamilia]);
+  useEffect(() => {
+      setResponses({
+        ...responses,
+        formFamilia
+      });      
+  },[formFamilia]);
 
     
 
@@ -86,14 +64,6 @@ function onChangeValues(e, key){
   const idFamiliarSelected = useSelector((state)=> state.familiaStates.familiar);
   const familiaresPorEmpleado = familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
   const familiarSeleccionadoR = useSelector((state)=> state.familiaStates.familiarSeleccionado);
-
-
-
-  function famxEmpl(){
-
-    return familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
-    
-  }
 
   //#endregion
 
@@ -124,16 +94,7 @@ function onChangeValues(e, key){
       setFamiliarSeleccionado(res);
     });
   }
-  const handleFetch = (url, action) => {
-    dispatch({ type: SET_LOADING });
-    axios.get(url)
-      .then((res) => {        
-        dispatch(action(res.data.result));
-      })
-      .catch((err) => {
-        dispatch({ type: AXIOS_ERROR });
-      })
-  }
+  
   async function sendData() {
     try {
       await axios.post(urlFamiliares, bodyPetition)
@@ -174,7 +135,6 @@ function onChangeValues(e, key){
   }
  
 
-  //console.log(responses.formFamilia.inputApellidoNombres)
   let bodyPetition = {
     "iDfamiliares": ((familiaresValue && familiaresValue[familiaresValue.length -1]  && (familiaresValue[familiaresValue.length -1].iDfamiliares))+1),
     "iDempleado": empleadoUno.iDempleado,
@@ -212,10 +172,7 @@ function onChangeValues(e, key){
     dispatch(disableFunctions(false));
      
   }
-  useEffect(()=>{
-    
-},[disable])
-
+  
 
   return (
     <div className="Lateral-Derecho">
