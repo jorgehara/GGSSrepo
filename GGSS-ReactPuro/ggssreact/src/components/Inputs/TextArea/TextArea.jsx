@@ -13,7 +13,7 @@ const TextArea = ({inputName, maxLength, value, disabled, action, onChange, inpu
                 value={value}
                 placeholder="Ingrese Observaciones" 
                 // onChange={(e) => onChange(e.target.value, inputId )} // ON CHANGE NUEVO PARA FUNCION NUEVA, NO ANDA
-                onChange={(e) => onChange(e, inputId)}
+                onChange={(e) => onChange(e.target.value, inputId)}
                 id={inputId} 
                 cols="21" 
                 rows="2"

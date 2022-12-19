@@ -25,7 +25,7 @@ const InputModal = ({
                         placeholder={placeHolder}
                         value={value}
                         // onChange={(e) => onChange(e.target.value, inputId)} // ON CHANGE NUEVO PARA LA NUEVA FUNCION (NO ANDA)
-                        onChange={(e) => onChange(e, inputId)}
+                        onChange={(e) => onChange(e.target.value, inputId)}
 
                     />
                 </div>
