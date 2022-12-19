@@ -117,14 +117,14 @@ const Empleados = () => {
         handleFetch( urlEstadosCiviles,addEstadosCiviles);
         handleFetch( urlPaisesNac,addPaises);
         handleFetch( urlEstudios,addEstudios);
-        
+
         handleFetch( urlTiposDNI,addTiposDocumento);
         handleFetch( urlParentescos,addParentescos);
         handleFetch( urlFamiliares,addFamiliares);
         handleFetch( urlNumeradores,addNumeradores);         
         handleFetch( urlFamiliares,addFamiliares);
 
-         handleFetch(urlDomicilios, addDomicilios);
+        handleFetch(urlDomicilios, addDomicilios);
         handleFetch(urlCalles, addCalles);
         handleFetch(urlDeptos, addDepartamentos);
         handleFetch(urlProvincias, addProvincias);
