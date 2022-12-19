@@ -1,10 +1,12 @@
 import React from 'react'
-import TableBasic1 from '../../../Tables/TableBasic1'
 import InputCbo from '../../InputCbo/InputCbo'
 import InputDate from '../../InputDate/InputDate'
 import InputForm from '../../InputForm/InputForm'
 
 const PorPeriodo = ({valueId,propArrayOpFem, array, onChange,valueForm }) => {
+
+
+
   return (
     <>
           <div className='row'>

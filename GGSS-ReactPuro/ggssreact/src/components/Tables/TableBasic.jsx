@@ -95,10 +95,7 @@ const TableBasic = ({
                   <td>{col && col.sexo}</td>
                   <td>{col.iDparentesco && col.iDparentesco.nombreParentesco}</td>
                   <td>
-                    {col.fechaNacimiento && col.fechaNacimiento.substring(
-                      0,
-                      col.fechaNacimiento.length - 9
-                    )}
+                    {col.fechaNacimiento && col.fechaNacimiento.substring(0, col.fechaNacimiento.length - 9)}
                   </td>
                   <td>{col.iDpaisOrigen && col.iDpaisOrigen.nombrePais}</td>
                   <td>{col.iDnacionalidad && col.iDnacionalidad.nacionalidad}</td>

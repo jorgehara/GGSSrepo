@@ -114,3 +114,11 @@ export const classesEstadosCiviles = {
     "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
+  export const inputSelectedoptionLicencias= {
+    classOne : "formulario__grupo__inputs__cbo" ,
+    classTwo : 'form__grupo__label__inp',
+    classThree : "primero",
+    classFour :  "formulario__label mt-2 mb-0",
+    classFive : "segundo",
+    classSix : "formulario-input-Estado-Licencias form-select ml-0 px-0 ",
+  }
