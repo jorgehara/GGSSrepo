@@ -11,7 +11,7 @@ const Provincias = ({ aProvincias, placeholder }) => {
                 <br />
                 <select className="form-select row mt-1 formSelectApi" multiple aria-label="multiple select example">
                     {
-                        aProvincias !== undefined && aProvincias.map((prov, i) => {
+                        aProvincias  && aProvincias.map((prov, i) => {
                             return (
                                 <option key={i} value="1">{prov}</option>
                             )

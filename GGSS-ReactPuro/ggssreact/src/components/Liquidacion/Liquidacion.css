@@ -16,7 +16,7 @@
 }
 .accordion-button::after{
     position: absolute;
-    top: 1.4rem;
+    top: 1rem;
     color: #c22031;
 }
 .accordion-button:focus{

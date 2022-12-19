@@ -5,7 +5,9 @@ import "./Buttons.css";
 
 const ButtonCallModal = ({ idModal, nameButton, useNavbar, useButton ,disabled}) => {
   const [actualClass, setActualClass] = useState("");
+
   useEffect(()=>{
+    console.log("entro al button call")
     usedClasses(useNavbar,useButton);
   },[])
 

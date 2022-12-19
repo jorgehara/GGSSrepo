@@ -1,29 +1,22 @@
 //#region Imports
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { employeContext } from "../../context/employeContext";
-import { ADD_DOMICILIOS, ADD_ONEDOMICILIO } from "../../redux/types/domiciliosTypes";
-import { getEmpleados } from "../../services/mockDataDomicilios";
+import { ADD_DOMICILIOS } from "../../redux/types/domiciliosTypes";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import InputCbo from "../Inputs/InputCbo/InputCbo";
 import InputNumero from "../Inputs/InputNumero/InputNumero";
 import TablaDomicilios from "../Tables/TablaDomicilios";
-import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import './Domicilios.css';
-import { addBarrios, addCalles, addDepartamentos, addDomicilios, addLocalidades, addProvincias } from "../../redux/actions/fetchActions";
-import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto, setPredeterminado } from "../../redux/actions/domiciliosActions";
+import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 import { inputClassProvinciasDomicilios } from "../../classes/classes";
 
 //#endregion
-const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, setFormDatosPersonales}) => {
+const Domicilios = ({ responses, disabled, onChangeValues}) => {
 
-  const [inputValue, setInputValue] = useState("");
   const [domicilios, setDomicilios] = useState([]);
-  const [domiciliosDelEmpleado, setDomiciliosDelEmpleado] = useState([]);
-  const [ idEmpleado, setIdEmpleado] = useState(0);
   const [checked, setChecked] = useState(false);
   const [ formDomicilios, setFormDomicilios ] = useState(responses["formDomicilios"]);
   const columns = [
@@ -37,61 +30,23 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
   //#region ------------------------------------------------------------------------------REDUX
-
+  const urlDomicilios = "http://54.243.192.82/api/Domicilios";
   const dispatch = useDispatch();
 
-  const handleFetch=(url, action )=>{
-    dispatch({type: SET_LOADING});
-      axios.get(url)
-      .then((res)=>{
-        dispatch( action(res.data.result));
-      })
-      .catch((err)=>{
-        dispatch({type:AXIOS_ERROR});
-      }) 
-   }
+  
   
   
   const domiciliosState = useSelector((state)=> state.domiciliosStates)
   const domicilioDelEmpleado1 = useSelector((state)=> state.generalState.domicilios);
-  const disable = useSelector((state)=> state.generalState.disabled);
   //#endregion
   
-    function onChangeValues(e, key){
-      const newResponse = {...formDatosPersonales};
-      newResponse[key] = e;
-      setFormDatosPersonales({
-        ...newResponse
-      });
-    };
-
-
-    useEffect(() => {
-        setResponses({
-          ...responses,
-          formDatosPersonales
-        });      
-    },[formDatosPersonales]);
-
+    
 
 
   //#region ------------------------------------------------------------------------------URLs
-  const urlDomicilios = "http://54.243.192.82/api/Domicilios";
-  const urlCalles = "http://54.243.192.82/api/Calles";
-  const urlDeptos = "http://54.243.192.82/api/Departamentos";
-  const urlProvincias = "http://54.243.192.82/api/Provincias";
-  const urlLocalidades = "http://54.243.192.82/api/Localidades";
-  const urlBarrios = "http://54.243.192.82/api/Barrios";
+  
   //#endregion
 
-  useEffect(()=>{
-    handleFetch(urlDomicilios, addDomicilios);
-    handleFetch(urlCalles, addCalles);
-    handleFetch(urlDeptos, addDepartamentos);
-    handleFetch(urlProvincias, addProvincias);
-    handleFetch(urlLocalidades, addLocalidades);
-    handleFetch(urlBarrios, addBarrios);
-  },[disable])
 
 
   const generalStateData = useSelector((state)=> state.generalState)
@@ -102,37 +57,17 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
  
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDomicilios, } = useContext(employeContext);
+  
+ 
 
   
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
-  useEffect(()=>{
-    setIdEmpleado(empleadoUno.iDempleado)
-  },[empleadoUno])
+
+  
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   
   const predeterminado = generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined ?  generalStateData.domicilios.map(m => {return(m.predeterminado)}) : null;
-
-
-
-  useEffect(()=>{
-    getEmpleados().then(res=> saveDomicilios(res))
-  },[])
- 
-  
-  
-  useEffect(()=>{
-    setDomiciliosDelEmpleado(domicilios.filter((dom)=> dom.idEmpleado === empleadoUno[0].iDempleado));
-  },[idEmpleado])
-  //#endregion
-
-
-
-
- 
-
-  // -----------------------------------------------------LLENAR CAMPOS 
 
  
   const arrayDepartamentos = provinciaSelected && provinciaSelected.payload && generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos.filter((departamento) => departamento.idProvincia === provinciaSelected.payload.idProvincia) : null;
@@ -143,9 +78,6 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
 
   const arrayBarrios = localidadSelected  && localidadSelected.payload &&  generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios.filter((barrio) => barrio.idLocalidad === localidadSelected.payload.idLocalidad) : null;
 
-  useEffect(()=>{
-    getDomicilioEmpleado()
-  },[empleadoUno])
 
   function getDomicilioEmpleado(){
     if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
@@ -269,7 +201,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                     type="checkbox"
                     name="inputPredeterminado"
                     checked={!checked}
-                    value ={formDatosPersonales?.inputPredeterminado && formDatosPersonales?.inputPredeterminado  }
+                    value ={formDomicilios?.inputPredeterminado && formDomicilios?.inputPredeterminado  }
                     id="inputPredeterminado"
                     onChange={(e)=>handleChangePredeterminado(e, "inputPredeterminado" )}
                   />
@@ -282,7 +214,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                 <div className="row">
                 <div className="col-xl-6">
                   <InputCbo
-                    value={formDatosPersonales?.inputCalleDomicilios ? formDatosPersonales?.inputCalleDomicilios : empleadoUno.calle}
+                    value={formDomicilios?.inputCalleDomicilios ? formDomicilios?.inputCalleDomicilios : empleadoUno.calle}
                     action={ADD_DOMICILIOS}
                     sexo=""
                     nameButton="..."
@@ -291,12 +223,12 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                     propArrayOp="calle"
                     propArrayOpFem="calle"
                     propArray={empleadoDomicilio !== undefined && empleadoDomicilio !== null ? empleadoDomicilio.idCalle : null}
-                    idSelected={formDatosPersonales?.inputCalleDomicilios ? formDatosPersonales?.inputCalleDomicilios : empleadoUno.calle}
+                    idSelected={formDomicilios?.inputCalleDomicilios ? formDomicilios?.inputCalleDomicilios : empleadoUno.calle}
                     masculinos=""
                     femeninos=""
                     display={true}
                     idModal="calles"
-                    disabled={disable}
+                    disabled={disabled}
                     nameInput="inputCalleDomicilios"
                     idInput="inputCalleDomicilios"
                     onChange={onChangeValues}
@@ -316,23 +248,23 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                     defaultChecked=""
                     display={true}
                     //value={numCalleSelected !== undefined && numCalleSelected !== null ? numCalleSelected.toString() : domiciliosState.inputNumCalle}
-                    disabled={disable}
+                    disabled={disabled}
                     idInput="inputNumCalle"
                     nameLabel="N°"
                     onChange={onChangeValues}
-                    inputValueState={formDatosPersonales?.inputNumCalle ? formDatosPersonales?.inputNumCalle : empleadoUno.nroCalle}
+                    inputValueState={formDomicilios?.inputNumCalle ? formDomicilios?.inputNumCalle : empleadoUno.nroCalle}
                   />
                 </div>
                 </div>
                   <InputFormPiso
                     value={
-                      formDatosPersonales?.inputPisoCalle ? formDatosPersonales?.inputPisoCalle : empleadoUno.pisoCalle
+                      formDomicilios?.inputPisoCalle ? formDomicilios?.inputPisoCalle : empleadoUno.pisoCalle
                     }
                     nameInput="inputPisoCalle"
                     idInput="inputPisoCalle"
                     messageError="Solo puede contener números."
                     placeHolder="Piso Dpto"
-                    disabled={disable}
+                    disabled={disabled}
                     generalState={setDomicilios}
                     action={ADD_DOMICILIOS}
                     onChange={onChangeValues}
@@ -347,7 +279,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   <InputCbo
                   clasess={inputClassProvinciasDomicilios}
                   value={
-                    formDatosPersonales?.inputProvinciaDomicilios ? formDatosPersonales?.inputProvinciaDomicilios : empleadoUno.provincia
+                    formDomicilios?.inputProvinciaDomicilios ? formDomicilios?.inputProvinciaDomicilios : empleadoUno.provincia
                   }
                   action={ADD_DOMICILIOS}
                   sexo=""
@@ -358,10 +290,10 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   propArrayOpFem="provincia"
                   masculinos=""
                   femeninos=""
-                  idSelected={formDatosPersonales?.inputProvinciaDomicilios ? formDatosPersonales?.inputProvinciaDomicilios : empleadoUno.provincia}
+                  idSelected={formDomicilios?.inputProvinciaDomicilios ? formDomicilios?.inputProvinciaDomicilios : empleadoUno.provincia}
                   display={true}
                   idModal="pdlb"
-                  disabled={disable}
+                  disabled={disabled}
                   nameInput="inputProvinciaDomicilios"
                   idInput="inputProvinciaDomicilios"
                   onChange={onChangeValues}
@@ -371,7 +303,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                 />
                   <InputCbo
                   value={
-                    formDatosPersonales?.inputDepartamentosDomicilios ? formDatosPersonales?.inputDepartamentosDomicilios : empleadoUno.departamento
+                    formDomicilios?.inputDepartamentosDomicilios ? formDomicilios?.inputDepartamentosDomicilios : empleadoUno.departamento
                   }
                   action={ADD_DOMICILIOS}
                   sexo=""
@@ -383,10 +315,10 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   //propArray={provinciaDepartamento !== undefined && provinciaDepartamento !== null ? provinciaDepartamento.toString() : null}
                   masculinos=""
                   femeninos=""
-                  idSelected={formDatosPersonales?.inputDepartamentosDomicilios ? formDatosPersonales?.inputDepartamentosDomicilios : empleadoUno.departamento}
+                  idSelected={formDomicilios?.inputDepartamentosDomicilios ? formDomicilios?.inputDepartamentosDomicilios : empleadoUno.departamento}
                   display={false}
                   idModal="pdlb"
-                  disabled={disable}
+                  disabled={disabled}
                   nameInput="inputDepartamentosDomicilios"
                   idInput="inputDepartamentosDomicilios"
                   onChange={onChangeValues}
@@ -396,7 +328,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                 />
                 <InputCbo
                   value={
-                    formDatosPersonales?.inputLocalidadesDomicilios ? formDatosPersonales?.inputLocalidadesDomicilios : empleadoUno.localidad
+                    formDomicilios?.inputLocalidadesDomicilios ? formDomicilios?.inputLocalidadesDomicilios : empleadoUno.localidad
                   }
                   action={ADD_DOMICILIOS}
                   sexo=""
@@ -407,10 +339,10 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   propArrayOpFem="localidad"
                   masculinos=""
                   femeninos=""
-                  idSelected={formDatosPersonales?.inputDepartamentosDomicilios ? formDatosPersonales?.inputDepartamentosDomicilios : empleadoUno.localidad}
+                  idSelected={formDomicilios?.inputDepartamentosDomicilios ? formDomicilios?.inputDepartamentosDomicilios : empleadoUno.localidad}
                   display={false}
                   idModal="pdlb"
-                  disabled={disable}
+                  disabled={disabled}
                   nameInput="inputLocalidadesDomicilios"
                   idInput="inputLocalidadesDomicilios"
                   onChange={onChangeValues}
@@ -420,7 +352,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                 />
                 <InputCbo
                   value={
-                    formDatosPersonales?.inputBarriosDomicilios ? formDatosPersonales?.inputBarriosDomicilios : empleadoUno.barrio
+                    formDomicilios?.inputBarriosDomicilios ? formDomicilios?.inputBarriosDomicilios : empleadoUno.barrio
                   }
                   action={ADD_DOMICILIOS}
                   sexo=""
@@ -431,10 +363,10 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   propArrayOpFem="barrio"
                   masculinos=""
                   femeninos=""
-                  idSelected={formDatosPersonales?.inputBarriosDomicilios ? formDatosPersonales?.inputBarriosDomicilios : empleadoUno.barrio}
+                  idSelected={formDomicilios?.inputBarriosDomicilios ? formDomicilios?.inputBarriosDomicilios : empleadoUno.barrio}
                   display={false}
                   idModal="pdlb"
-                  disabled={disable}
+                  disabled={disabled}
                   nameInput="inputBarriosDomicilios"
                   idInput="inputBarriosDomicilios"
                   onChange={onChangeValues}
@@ -442,7 +374,7 @@ const Domicilios = ({deshabilitar, responses, setResponses,formDatosPersonales, 
                   obligatorio ={true}
                 />
               </div>
-              <ButtonCancelarAceptar idElimiar={domicilioDelEmpleado} cancelar="-" aceptar="+"disabled={disable} functionSend={sendDataDomicilios} functionDelete={deleteDomicilio}/>
+              <ButtonCancelarAceptar idElimiar={domicilioDelEmpleado} cancelar="-" aceptar="+"disabled={disabled} functionSend={sendDataDomicilios} functionDelete={deleteDomicilio}/>
               <TablaDomicilios 
                 columns={columns} 
                 empleadoSelect={empleadoUno && empleadoUno} 

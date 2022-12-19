@@ -25,7 +25,7 @@ import { addEstudios, addFamiliares, addNewFamiliar, addPaises, addParentescos, 
 import { disableFunctions } from "../../redux/actions/employeActions";
 import { addFamiliar } from "../../redux/actions/familiaActions";
 
-const Familia = ({responses, setResponses}) => {
+const Familia = ({responses, setResponses,disable}) => {
   
   //const { saveEmpl, saveNacionalidad, saveEstudio, parentescos, disable, saveFamSelect } = useContext(employeContext);
 
@@ -51,7 +51,7 @@ const Familia = ({responses, setResponses}) => {
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   const urlParentescos = "http://54.243.192.82/api/Parentescos";
-  const urlFamiliares = "http://54.243.192.82/api/Familiares";
+  const urlFamiliares = "http://54.243.192.82/api/MostrarDatosFamiliares";
   const urlTiposDocumentos = "http://54.243.192.82/api/TiposDocumento";
   const urlPaisesNac = "http://54.243.192.82/api/Paises";
   const urlEstudios = "http://54.243.192.82/api/Estudios";
@@ -85,9 +85,9 @@ function onChangeValues(e, key){
   const familiaresValue = useSelector((state)=> state.generalState.familiares);
   const idFamiliarSelected = useSelector((state)=> state.familiaStates.familiar);
   const familiaresPorEmpleado = familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
-  const deshabilitar = useSelector((state)=> state.employeStates.disable);
-  const disable = useSelector((state)=> state.generalState.disabled);
   const familiarSeleccionadoR = useSelector((state)=> state.familiaStates.familiarSeleccionado);
+
+
 
   function famxEmpl(){
 
@@ -95,7 +95,6 @@ function onChangeValues(e, key){
     
   }
 
-    console.log(famxEmpl());
   //#endregion
 
   const propsRadioButton = {
@@ -126,7 +125,6 @@ function onChangeValues(e, key){
     });
   }
   const handleFetch = (url, action) => {
-    
     dispatch({ type: SET_LOADING });
     axios.get(url)
       .then((res) => {        
@@ -137,7 +135,6 @@ function onChangeValues(e, key){
       })
   }
   async function sendData() {
-    debugger;
     try {
       await axios.post(urlFamiliares, bodyPetition)
         .then(res => {
@@ -175,13 +172,7 @@ function onChangeValues(e, key){
     })
     }
   }
-  useEffect(()=>{
-    handleFetch( urlTiposDocumentos,addTiposDocumento);
-    handleFetch( urlPaisesNac,addPaises);
-    handleFetch( urlEstudios,addEstudios);
-    handleFetch( urlParentescos,addParentescos);
-    handleFetch( urlFamiliares,addFamiliares);
-},[deshabilitar ])
+ 
 
   //console.log(responses.formFamilia.inputApellidoNombres)
   let bodyPetition = {
@@ -221,6 +212,11 @@ function onChangeValues(e, key){
     dispatch(disableFunctions(false));
      
   }
+  useEffect(()=>{
+    
+},[disable])
+
+
   return (
     <div className="Lateral-Derecho">
       <div className="container-fluid">

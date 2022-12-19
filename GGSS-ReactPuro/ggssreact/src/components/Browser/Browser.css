@@ -7,3 +7,7 @@
     margin: 0;
     padding: 0;
 }
+.form-select:focus{
+    box-shadow: none;
+    border-color: rgba(0,0,0,.125);    
+}

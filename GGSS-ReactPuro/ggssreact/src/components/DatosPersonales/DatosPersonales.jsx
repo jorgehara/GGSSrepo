@@ -10,28 +10,20 @@ import InputFile from "../Inputs/InputFile/InputFile";
 import InputForm from "../Inputs/InputForm/InputForm";
 import InputRadio from "../Inputs/InputRadio/InputRadio";
 import "./DatosPersonales.css";
-import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import Domicilios from "../Domicilios/Domicilios";
 import generateCuil from "./funcGenerarCuil.js";
 import TextArea from "../Inputs/TextArea/TextArea";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_DATOS_PERSONALES } from "../../redux/types/datosPersonalesTypes";
 import axios from "axios";
-import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
-import { addCargos, addEmpleadores, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addModosContratacion, addModosLiquidacion, addNumeradores, addPaises, addParentescos, addTareasDesempeñadas, addTiposDocumento } from "../../redux/actions/fetchActions";
-import {  inputButtonClasessCUIL, inputRadio } from "../../classes/classes";
-import { useNavigate } from "react-router-dom";
+import {  inputButtonClasessCUIL } from "../../classes/classes";
 import { disableFunctions } from "../../redux/actions/employeActions";
 
 //#endregion
 
-const DatosPersonales = ({responses, setResponses, cancelar}) => {
+const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstado, disable, empleados}) => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
-  const [disableEstado, setDisableEstado] = useState(false);
   const [imagenSended , setImagenSended] = useState("");
-  const [empleados, setEmpleados] = useState([]);
-  const [image, setImage] = useState("");
-
   const [ formDatosPersonales, setFormDatosPersonales ] = useState(responses["formDatosPersonales"]);
  
 
@@ -46,9 +38,9 @@ const {
   //#region ------------------------------------------------------REDUX
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
-  const deshabilitar = useSelector((state)=> state.employeStates.disable);
   const datosPersonalesState = useSelector((state)=> state.generalState);
   const numeradores = useSelector((state)=> state.generalState.numeradores);
+<<<<<<< HEAD
 <<<<<<< HEAD
   const disable = useSelector((state)=> state.generalState.disabled);
   console.log(disable)
@@ -78,6 +70,12 @@ const {
   }
 
 
+=======
+  const generalStateData = useSelector((state)=> state.generalState.tiposDocumento)
+
+  console.log(generalStateData)
+  //#endregion
+>>>>>>> Rodrigo
   function onChangeValues(e, key){
       const newResponse = {...formDatosPersonales};
       newResponse[key] = e;
@@ -87,12 +85,13 @@ const {
   };
 
 
-  useEffect(() => {    
+  useEffect(() => {  
       setResponses({
         ...responses,
         formDatosPersonales
       });    
   },[formDatosPersonales]);
+// <<<<<<< HEAD
   
   const handleFetch=(url, action )=>{
     dispatch({type: SET_LOADING});
@@ -118,28 +117,31 @@ const {
      handleFetch( urlTiposDNI,addTiposDocumento);
      handleFetch( urlParentescos,addParentescos);
      handleFetch( urlFamiliares,addFamiliares);
-<<<<<<< HEAD
+// <<<<<<< HEAD
      handleFetch( urlNumeradores,addNumeradores);    
    },[disable])
-=======
+// =======
      handleFetch( urlNumeradores,addNumeradores);
     
    },[deshabilitar])
 
->>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
+// >>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
     
 
   useEffect(()=>{
     setDisableEstado(false);
   },[formDatosPersonales?.inputSexo])
+// =======
+ 
+// >>>>>>> Rodrigo
 
    function getNumeradorId(tabla){
     return numeradores && numeradores.filter((num)=>{
       return (num.tabla === tabla)
     })
   }
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
   function setImageEmpleado() {
     saveEmpl[0].obsFechaIngreso !== undefined && setImage(saveEmpl[0].obsFechaIngreso);
   }
@@ -148,89 +150,8 @@ const {
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
->>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
+// >>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
 
-  
-  let today = new Date();
-  let dd = String(today.getDate()).padStart(2, '0');
-  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  let yyyy = today.getFullYear();
-  today = mm + '/' + dd + '/' + yyyy;
-
-  
-    
-
-  let bodyPostEmploye = {
-    "iDempleado" : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
-    "legajo": datosPersonalesRedux.numLegajo,
-    "apellido": datosPersonalesRedux.apellidoInput,
-    "iDtipoDocumento": datosPersonalesRedux.dniSelected,
-    "nroDocumento": datosPersonalesRedux.documentoInput,
-    "cuil": datosPersonalesRedux.inputCuil,
-    "sexo": datosPersonalesRedux.inputSexo,
-    "iDestadoCivil": datosPersonalesRedux.estadoCivilInput,
-    "iDnacionalidad": datosPersonalesRedux.nacionalidadesInput,
-    "fechaNacimiento": datosPersonalesRedux.inputDateNac,
-    "iDestudios": datosPersonalesRedux.estudiosInput,
-    "fechaIngreso": today,
-    "fechaEfectiva": today,
-    "iDcategoria": 9,
-    "iDcargo": 11,
-    "iDtareaDesempeñada": 30,
-    "idCentrodeCosto": 26,
-    "iDsectorDpto": 1,
-    "iDmodoContratacion": 11,
-    "iDmodoLiquidacion": 1,
-    "iDformadePago": 1,
-    "idbanco": 4,
-    "nroCtaBanco": "string",
-    "cbu": "string",
-    "iDlugardePago": 1,
-    "iDobraSocial": 1,
-    "iDsindicato": 1,
-    "fechaEgreso": "2022-11-16T18:04:19.597Z",
-    "iDesquema": 1,
-    "iDempleador": 1,
-    "nombres": datosPersonalesRedux.nombresInput,
-    "idEstado": datosPersonalesRedux.estadosEmpleados,
-    "rutaFoto": "string",
-    "telFijo": datosPersonalesRedux.telefonoInput,
-    "acuerdo": 0,
-    "neto": 0,
-    "idPaisOrigen": datosPersonalesRedux.paisOrigenInput,
-    "mail": datosPersonalesRedux.email,
-    "telMovil": datosPersonalesRedux.movil,
-    "adicObraSocial": true,
-    "idConceptoAdicObraSocial": 44,
-    "adicAfjp": true,
-    "idConceptoAdicAfjp": 48,
-    "adicSindicato": true,
-    "idConceptoAdicSindicato": 49,
-    "tipoCuenta": 0,
-    "legajoAnterior": "string",
-    "imagen": imagenSended,
-    "totalRemuneracion": 0,
-    "totalNeto": 0,
-    "tieneEmbargos": true,
-    "tieneSumarioAdministrativo": true,
-    "tieneLicenciaSinGoceHaberes": true,
-    "obsEstudios": datosPersonalesRedux.observacionesEstudios,
-    "obsFechaIngreso": "string",
-    "idAgrupamiento": 1,
-    "idDireccion": 1,
-    "observacionesAdscripto": "string",
-    "idSectorAfectacion": 1,
-    "idDireccionAfectacion": 1,
-    "obsAfectacion": "string"
-  };
- 
-
- const bodyNumeradores = {
-  tabla : "Empleados",
-  ultimovalor : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1)
- }
-  
-  
   //#region ------------------------------------------------------------------------------VALIDACIONES
 
   const validateNumbers = (e) => {
@@ -276,7 +197,75 @@ const {
   //#endregion
   
   async function sendDataEmploye(){
-    
+    let bodyPostEmploye = {
+      "iDempleado" : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
+      "legajo": datosPersonalesRedux.numLegajo,
+      "apellido": datosPersonalesRedux.apellidoInput,
+      "iDtipoDocumento": datosPersonalesRedux.dniSelected,
+      "nroDocumento": datosPersonalesRedux.documentoInput,
+      "cuil": datosPersonalesRedux.inputCuil,
+      "sexo": datosPersonalesRedux.inputSexo,
+      "iDestadoCivil": datosPersonalesRedux.estadoCivilInput,
+      "iDnacionalidad": datosPersonalesRedux.nacionalidadesInput,
+      "fechaNacimiento": datosPersonalesRedux.inputDateNac,
+      "iDestudios": datosPersonalesRedux.estudiosInput,
+      "fechaIngreso": today,
+      "fechaEfectiva": today,
+      "iDcategoria": 9,
+      "iDcargo": 11,
+      "iDtareaDesempeñada": 30,
+      "idCentrodeCosto": 26,
+      "iDsectorDpto": 1,
+      "iDmodoContratacion": 11,
+      "iDmodoLiquidacion": 1,
+      "iDformadePago": 1,
+      "idbanco": 4,
+      "nroCtaBanco": "string",
+      "cbu": "string",
+      "iDlugardePago": 1,
+      "iDobraSocial": 1,
+      "iDsindicato": 1,
+      "fechaEgreso": "2022-11-16T18:04:19.597Z",
+      "iDesquema": 1,
+      "iDempleador": 1,
+      "nombres": datosPersonalesRedux.nombresInput,
+      "idEstado": datosPersonalesRedux.estadosEmpleados,
+      "rutaFoto": "string",
+      "telFijo": datosPersonalesRedux.telefonoInput,
+      "acuerdo": 0,
+      "neto": 0,
+      "idPaisOrigen": datosPersonalesRedux.paisOrigenInput,
+      "mail": datosPersonalesRedux.email,
+      "telMovil": datosPersonalesRedux.movil,
+      "adicObraSocial": true,
+      "idConceptoAdicObraSocial": 44,
+      "adicAfjp": true,
+      "idConceptoAdicAfjp": 48,
+      "adicSindicato": true,
+      "idConceptoAdicSindicato": 49,
+      "tipoCuenta": 0,
+      "legajoAnterior": "string",
+      "imagen": imagenSended,
+      "totalRemuneracion": 0,
+      "totalNeto": 0,
+      "tieneEmbargos": true,
+      "tieneSumarioAdministrativo": true,
+      "tieneLicenciaSinGoceHaberes": true,
+      "obsEstudios": datosPersonalesRedux.observacionesEstudios,
+      "obsFechaIngreso": "string",
+      "idAgrupamiento": 1,
+      "idDireccion": 1,
+      "observacionesAdscripto": "string",
+      "idSectorAfectacion": 1,
+      "idDireccionAfectacion": 1,
+      "obsAfectacion": "string"
+    };
+   
+  
+   const bodyNumeradores = {
+    tabla : "Empleados",
+    ultimovalor : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1)
+   }
     if(Object.values(bodyPostEmploye) === "" || Object.values(bodyPostEmploye) === null){
       swal({
         title: "Error",
@@ -328,13 +317,13 @@ const {
   console.log(formDatosPersonales)
 
 
-  return (
-<<<<<<< HEAD
+  return  (
       //#region Menú Principal
-
     <>
       <EmployeData />
       <div className="lateralDerecho">
+      <EmployeData image={image} /><div className="Lateral-Derecho">
+
         <div className="accordion" id="accordionExample">
           <div className="accordion-item">
             <h4 className="accordion-header" id="headingOne">
@@ -352,7 +341,7 @@ const {
               className="accordion-collapse collapse show"
               aria-labelledby="headingOne"
               data-bs-parent="#accordionExample"
-=======
+// =======
     //#region Menú Principal
     <div className="Lateral-Derecho">
       <div className="accordion" id="accordionExample">
@@ -363,7 +352,7 @@ const {
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
->>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
+{/* >>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge) */}
             >
               Datos Personales
             </button>
@@ -388,7 +377,8 @@ const {
                           value={
                             formDatosPersonales?.numLegajo ? formDatosPersonales?.numLegajo : empleadoUno.legajo
                           }
-<<<<<<< HEAD
+                          />
+
                           <InputForm
                             value={formDatosPersonales?.numLegajo ? formDatosPersonales?.numLegajo : empleadoUno.legajo}
                             idInput="numLegajo"
@@ -647,7 +637,7 @@ const {
                             idInput="inputImage"
                             action={ADD_DATOS_PERSONALES} />
                         </div>
-=======
+                        <InputForm
                           idInput="numLegajo"
                           messageError="Solo puede contener números."
                           placeHolder="N° Legajo"
@@ -791,7 +781,6 @@ const {
                           idInput="nacionalidadesInput"
                           onChange={onChangeValues}
                         />
->>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
                       </div>
                       <div className="tercera_columna col-xl-4">
                         <InputCbo
@@ -942,20 +931,17 @@ const {
               </section>
             </div>
           </div>
+          <Domicilios onChangeValues={onChangeValues} formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={disable} responses={responses} setResponses={setResponses} />
         </div>
-<<<<<<< HEAD
         <div className="d-flex justify-content-end">
-          
         </div>
-      </div></>
-=======
+      </div>
         <Domicilios formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={deshabilitar} responses={responses} setResponses={setResponses} />
       </div>
       <div className="d-flex justify-content-end">
         <ButtonCancelarAceptar cancelar="Cancelar" aceptar="Aceptar" disabled={disable} functionSend={sendDataEmploye} functionDelete={cancelButton}/>
       </div>
     </div>
->>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
   );
 };
 export default DatosPersonales;

@@ -1,9 +1,15 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING,ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_DOCU_EMPL, ADD_NUMERADORES, DISABLED_INPUTS, ADD_DATOS_EXTRAS, ADD_INSTRUM_LEGALES,ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO
 } from "../types/fetchTypes";
 =======
 import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING,ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_DOCU_EMPL, ADD_NUMERADORES} from "../types/fetchTypes";
 >>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
+=======
+import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING,ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_DOCU_EMPL, ADD_NUMERADORES, DISABLED_INPUTS, ADD_DATOS_EXTRAS, ADD_INSTRUM_LEGALES,ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_CONCEPTOS
+} from "../types/fetchTypes";
+import { GET_TANTERIORES } from "../types/trabajosAnteriores";
+>>>>>>> Rodrigo
 
 export const initialState = {
     loading: false, 
@@ -43,16 +49,22 @@ export const initialState = {
     documentacionEmpleados : "",
 <<<<<<< HEAD
     numeradores : "",
-    disabled : false,
+    disabled : true,
     datosExtras : "",
     instrumLegales : "",
     idEstadoCivil : 0,
     idEstudio : 0,
     idTipoDoc : 0,
+<<<<<<< HEAD
     idParentesco : 0
 =======
     numeradores : ""
 >>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
+=======
+    idParentesco : 0,
+    conceptos : "",
+    trabajosAnteriores : ""
+>>>>>>> Rodrigo
 }
 
 export const fetchReducer = (state = initialState, action) =>{
@@ -88,14 +100,15 @@ export const fetchReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 loading: false,
-                estudios : action.payload
+                estudios : action.payload 
             }
         }
         case ADD_TIPOSDOCUMENTO : {
+            console.log(action.payload)
             return{
                 ...state,
                 loading: false,
-                tiposDocumento : action.payload
+                tiposDocumento : action.payload 
             }
         }
         case ADD_CARGOS : {
@@ -199,7 +212,7 @@ export const fetchReducer = (state = initialState, action) =>{
         case ADD_NEW_FAMILIAR: {
             return {
                 ...state.familiares,
-                familiares : [...state.familiares, action.payload]
+                familiares :  action.payload
             }
         }
         case DELETE_ONE_FAMILIAR : {
@@ -255,10 +268,16 @@ export const fetchReducer = (state = initialState, action) =>{
                 ...state,
                 lugaresDePago : action.payload
             }
-        case ADD_BANCOS : {
+        /* case ADD_BANCOS : {
             return{
                 ...state,
                 bancos : action.payload
+            }
+        } */
+        case ADD_BANCOS : {
+            return{
+                ...state,
+                bancos : action.payload 
             }
         }
         case ADD_DIRECCIONES : {
@@ -297,12 +316,18 @@ export const fetchReducer = (state = initialState, action) =>{
                 documentacionEmpleados : action.payload
             }
         }
+        case GET_TANTERIORES : {
+            return {
+                ...state,
+                trabajosAnteriores : action.payload
+            }
+        }
 
         // --------------- POST REDUX ---------------
          case ADD_NEW_ESCI :{
             return {
                 ...state,
-                estadosCiviles : [...state.estadosCiviles, action.payload]
+                estadosCiviles :  action.payload
             }
 <<<<<<< HEAD
         }
@@ -310,14 +335,16 @@ export const fetchReducer = (state = initialState, action) =>{
         case ADD_NEW_ESTUDIO : {
             return {
                 ...state,
-                estudios: [...state.estudios, action.payload]
+                estudios: action.payload
             }
         }
 
         case ADD_NEW_TIPODOC : {
+            debugger;
+
             return {
                 ...state,
-                tiposDocumento: [...state.tiposDocumento, action.payload]
+                tiposDocumento:  action.payload
             }
         }
         case ADD_DATOS_EXTRAS : {
@@ -335,10 +362,16 @@ export const fetchReducer = (state = initialState, action) =>{
         case ADD_NEW_PARENTESCO : {
             return {
                 ...state,
-                parentescos: [...state.parentescos, action.payload]
+                parentescos:  action.payload
             }
         }
-
+        case ADD_CONCEPTOS :{
+            console.log(action.payload)
+            return{
+                ...state,
+                conceptos : action.payload
+            }
+        }
 
         // --------------- DELETE REDUX ---------------
 
@@ -424,9 +457,13 @@ export const fetchReducer = (state = initialState, action) =>{
                 parentescos : state.parentescos.filter((paren) => paren.idParentesco !== action.payload),
             }
         }
+<<<<<<< HEAD
 =======
         } 
 >>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
+=======
+        
+>>>>>>> Rodrigo
         default : return state;
     }
 }

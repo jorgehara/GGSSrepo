@@ -12,29 +12,15 @@ import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { addDocumentacionEmpleados } from '../../redux/actions/fetchActions';
 import axios from 'axios';
 import { getInputValue, getOneDocumento } from '../../redux/actions/documentacionActions';
-import { inputButtonDoc } from '../../classes/classes';
+import { inputButtonClasess, inputButtonClasessDocumentacion } from '../../classes/classes';
 import { GET_INPUT_VALUE } from '../../redux/types/documentacionTypes';
 
-const Documentacion = ({responses, setResponses}) => {
+const Documentacion = ({responses, setResponses, disable}) => {
     const columns = ["Fecha", "Vencimiento", "Documento", "Liq", "Observaciones", "Incluir Cuota"]
     const dispatch = useDispatch();
-    const [ disable, setDisable] = useState(true);
+    const [ disableI, setDisableI] = useState(true);
     const [ formDocumentacion, setFormDocumentacion ] = useState(responses["formDocumentacion"]);
 
-
-    const urlDocumentacionEmpleados = "http://54.243.192.82/api/EmpleadosDocumentacion";
-    const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
-
-    const handleFetch=(url, action )=>{
-        dispatch({type: SET_LOADING});
-            axios.get(url)
-            .then((res)=>{
-            dispatch( action(res.data.result));
-        })
-            .catch((err)=>{
-            dispatch({type:AXIOS_ERROR});
-        })
-    }
     function onChangeValues(e, key){
         const newResponse = {...formDocumentacion};
         newResponse[key] = e;
@@ -50,8 +36,7 @@ const Documentacion = ({responses, setResponses}) => {
     },[formDocumentacion]);
     
     useEffect(()=>{
-        handleFetch( urlDocumentacionEmpleados, addDocumentacionEmpleados);
-        handleFetch( urlDocumentacion, getOneDocumento);
+        
     },[])
     
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
@@ -73,11 +58,11 @@ return (
                 <InputDateDocs nameInput="Fecha Presentación" idInput="inputDatePresentacion" display={false} onChange={onChangeValues} action={GET_INPUT_VALUE} value={formDocumentacion?.inputDatePresentacion && formDocumentacion?.inputDatePresentacion} />
             </div>
             <div className='col-xl-12'>
-                <InputDate nameInput="Fecha Vencimiento" disable={disable} setDisable={setDisable} idInput="inputDateVencimiento" display={true}  onChange={onChangeValues} action={GET_INPUT_VALUE} actionReset={getInputValue} value={formDocumentacion?.inputDateVencimiento && formDocumentacion?.inputDateVencimiento} valueCheck={formDocumentacion?.inputCheckDocusDate && formDocumentacion?.inputCheckDocusDate} idInputCheck="inputCheckDocusDate" />
+                <InputDate nameInput="Fecha Vencimiento" disable={disableI} setDisable={setDisableI} idInput="inputDateVencimiento" display={true}  onChange={onChangeValues} action={GET_INPUT_VALUE} actionReset={getInputValue} value={formDocumentacion?.inputDateVencimiento && formDocumentacion?.inputDateVencimiento} valueCheck={formDocumentacion?.inputCheckDocusDate && formDocumentacion?.inputCheckDocusDate} idInputCheck="inputCheckDocusDate" />
             </div>
             <div className='col-xl-12'>
                 <InputButtonLiquidacion
-                    clasess={inputButtonDoc}
+                    clasess={inputButtonClasessDocumentacion}
                     nameButton="..."
                     nameLabel="Documentación"
                     placeholder="Documentación"

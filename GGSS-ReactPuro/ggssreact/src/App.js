@@ -9,14 +9,13 @@ import Empleados from './components/Home/Empleados';
 
 
 function App() {
+  
   return (
     <>
-    <EmpleadoContextProvider>
       <NavbarMenu />
-          <Switch>
-            <Route path="/ficha-empleados" exact element={<Empleados />} /> 
-          </Switch>        
-    </EmpleadoContextProvider>
+      <Switch>
+        <Route path="/ficha-empleados" exact element={<Empleados />} /> 
+      </Switch>        
     </>
   
 

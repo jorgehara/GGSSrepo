@@ -48,13 +48,7 @@ const Licencias = ({responses, setResponses}) => {
         });      
     },[formLicencias]);
 
-    function onChange(e, action) {
-        dispatch(
-          {
-            type: action,
-            payload : {name : e.target.name, value : e.target.value}
-          });    
-      }
+    
 
 return (
     <div className='container'>

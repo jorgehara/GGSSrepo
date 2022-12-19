@@ -11,58 +11,197 @@ import Navbar from '../Navbar/Navbar';
 import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
 import Extras from '../Extras/Extras';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { disabledInputs } from '../../redux/actions/fetchActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addAgrupamientos, addBancos, addBarrios, addCalles, addCargos, addCategorias, addCentroDeCosto, addConceptos, addConvenios, addDatosExtras, addDepartamentos, addDirecciones, addDocumentacionEmpleados, addEmpleadores, addEsquemas, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addInstrumLegales, addLocalidades, addLugaresDePago, addModosContratacion, addModosLiquidacion, addNumeradores, addObrasSociales, addPaises, addParentescos, addProvincias, addSectorDepto, addSindicatos, addTareasDesempeñadas, addTiposDocumento, disabledInputs } from '../../redux/actions/fetchActions';
 import { disableFunctions } from '../../redux/actions/employeActions';
-import './Home.css';
+import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
+import axios from 'axios';
+import { addDomicilios } from '../../redux/actions/domiciliosActions';
+import { getTrabajosAnteriores } from '../../redux/actions/trabajosAnterioresActions';
+import { getOneDocumento } from '../../redux/actions/documentacionActions';
+
 const Empleados = () => {
     const [tabIndex, setTabIndex] = useState(0);
     const [responses, setResponses] = useState({});
+    const [disable , setDisable] = useState(true);
+    const [image, setImage] = useState("");
+    const [disableEstado, setDisableEstado] = useState(false);
+    const [empleados, setEmpleados] = useState([]);
+
+    
     const dispatch = useDispatch();
 
+//#region URLs
+
+    const urlEstados = "http://54.243.192.82/api/Estados";
+    const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
+    const urlPaisesNac = "http://54.243.192.82/api/Paises";
+    const urlEstudios = "http://54.243.192.82/api/Estudios";
+    const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
+    const urlParentescos = "http://54.243.192.82/api/Parentescos"
+    const urlFamiliares = "http://54.243.192.82/api/MostrarDatosFamiliares";
+    const urlNumeradores = "http://54.243.192.82/api/Numeradores";
+
+    const urlDomicilios = "http://54.243.192.82/api/MostrarDatosDomicilios";
+    const urlCalles = "http://54.243.192.82/api/Calles";
+    const urlDeptos = "http://54.243.192.82/api/Departamentos";
+    const urlProvincias = "http://54.243.192.82/api/Provincias";
+    const urlLocalidades = "http://54.243.192.82/api/Localidades";
+    const urlBarrios = "http://54.243.192.82/api/Barrios";
+
+    const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
+    const urlConvenios = "http://54.243.192.82/api/Convenios";
+    const urlCategorias = "http://54.243.192.82/api/Categorias";
+    const urlAgrupamientos = "http://54.243.192.82/api/Agrupamientos";
+    const urlCargos = "http://54.243.192.82/api/Cargos";
+    const urlTareas = "http://54.243.192.82/api/TareasDesempeñadas";
+    const urlModosCont =  "http://54.243.192.82/api/ModosContratacion";
+    const urlModoLiq =  "http://54.243.192.82/api/ModosLiquidacion";
+    const urlCentroCosto = "http://54.243.192.82/api/CentrosDeCostos";
+    const urlSectorDepto = "http://54.243.192.82/api/SectoresDptos";
+    const urlObrasSociales = "http://54.243.192.82/api/ObrasSociales";
+    const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos";
+    const urlLugaresDePago = "http://54.243.192.82/api/LugaresdePago";
+    const urlBancos = "http://54.243.192.82/api/Bancos";
+    const urlDirecciones = "http://54.243.192.82/api/Direcciones";
+    const urlSindicatos = "http://54.243.192.82/api/Sindicatos";
+    const urlEsquemas = "http://54.243.192.82/api/Esquemas";
+    const urlConceptos = "http://54.243.192.82/api/ConceptosDatos/0,1";
+    const urlTrabajosAnteriores = "http://54.243.192.82/api/TrabajosAnteriores";
+    const urlDocumentacionEmpleados = "http://54.243.192.82/api/EmpleadosDocumentacion";
+    const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
+    const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/0,%201`;
+    const urlInstrumLegal = "http://54.243.192.82/api/InstrumentosLegales/0?modo=1"
+//#endregion
+    
+    const empleadoUno = useSelector((state)=> state.employeStates.employe);
+
+    function setImageEmpleado(){
+        empleadoUno.obsFechaIngreso !== undefined && setImage(empleadoUno.obsFechaIngreso);
+    }
     function handleTabChange(value){        
         setTabIndex(value);
     };  
     function cancelEdit(e){
         e.preventDefault();
-        dispatch(disableFunctions(false));
-
-        dispatch(disabledInputs(true));
+        setDisable(true);
     }
+
+    const handleFetch=(url, action )=>{
+        dispatch({type: SET_LOADING});
+        axios.get(url)
+        .then((res)=>{
+            dispatch( action(res.data.result));
+        })
+        .catch((err)=>{
+            dispatch({type:AXIOS_ERROR});
+        })
+    }
+    const handleFetchComun=(url, action )=>{
+        dispatch({type: SET_LOADING});
+        axios.get(url)
+        .then((res)=>{
+            dispatch( action(res.data));
+        })
+        .catch((err)=>{
+            dispatch({type:AXIOS_ERROR});
+        })
+    }
+    useEffect(()=>{
+        console.log("ejecuta use effect fetchs")
+        handleFetch( urlTiposDNI,addTiposDocumento);
+        handleFetch( urlParentescos,addParentescos);
+        handleFetch( urlFamiliares,addFamiliares);
+        handleFetch( urlNumeradores,addNumeradores);         
+        handleFetch( urlFamiliares,addFamiliares);
+
+         handleFetch(urlDomicilios, addDomicilios);
+        handleFetch(urlCalles, addCalles);
+        handleFetch(urlDeptos, addDepartamentos);
+        handleFetch(urlProvincias, addProvincias);
+        handleFetch(urlLocalidades, addLocalidades);
+        handleFetch(urlBarrios, addBarrios);
+
+        handleFetch( urlConvenios, addConvenios);
+        handleFetch( urlEmpleadores,addEmpleadores);
+        handleFetch( urlCategorias, addCategorias);
+        handleFetch( urlAgrupamientos, addAgrupamientos);
+        handleFetch( urlCargos, addCargos);
+        handleFetch( urlTareas, addTareasDesempeñadas);
+        handleFetch( urlModosCont, addModosContratacion);
+        handleFetch( urlModoLiq, addModosLiquidacion);
+        handleFetch( urlCentroCosto, addCentroDeCosto);
+        handleFetch( urlSectorDepto, addSectorDepto);
+        handleFetch( urlObrasSociales, addObrasSociales);
+        handleFetch( urlFormasDePago, addFormasPago);
+        handleFetch( urlLugaresDePago, addLugaresDePago);
+        handleFetch( urlBancos, addBancos);
+        handleFetch( urlDirecciones, addDirecciones);
+        handleFetch( urlSindicatos, addSindicatos);
+        handleFetch( urlEsquemas, addEsquemas);
+
+        handleFetchComun( urlConceptos, addConceptos);
+
+        handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores)
+
+        handleFetch( urlDocumentacionEmpleados, addDocumentacionEmpleados);
+        handleFetch( urlDocumentacion, getOneDocumento);
+
+        handleFetch( urlDatosExtras, addDatosExtras);  
+        handleFetch( urlInstrumLegal, addInstrumLegales);   
+
+      },[disable])
+
+      useEffect(() => {
+        console.log("ejecuta use effect imagen")
+        setImageEmpleado()
+      }, [empleadoUno.obsFechaIngreso]);
+
+      useEffect(()=>{
+        console.log("ejecuta use effect disable estado")
+        setDisableEstado(false);
+      },[responses?.inputSexo])
+
+      useEffect(()=>{
+        console.log("ejecuta use effect carga empleados")
+        axios.get("http://54.243.192.82/api/Empleados?records=10000")
+      .then((res) =>  setEmpleados(res.data.result));
+      
+      },[])
+
+      console.log("ejecuto empleados")
+
 return (
     <div className='container-fluid'>
         <div className='row'>
             <div className='col-xl-3'>
-                <Browser />
+                <Browser  disable={disable} setDisable={setDisable} />
             </div>
             <div className='col-xl-9 lateralDerecho'>
                 <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
                 {
-                    tabIndex === 0 && <DatosPersonales  responses={responses} setResponses={setResponses} />
+                    tabIndex === 0 && <DatosPersonales empleados={empleados} disableEstado={disableEstado} image={image} disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 } 
                 {
-                    tabIndex === 1 && <Familia  responses={responses} setResponses={setResponses} />
+                    tabIndex === 1 && <Familia disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 }
                 {
-                    tabIndex === 2 && <Liquidacion  responses={responses} setResponses={setResponses} />
+                    tabIndex === 2 && <Liquidacion disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 }
                 {
-                    tabIndex === 3 && <AdicLiquidacion  responses={responses} setResponses={setResponses} />
+                    tabIndex === 3 && <AdicLiquidacion disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 }
                 {
-                    tabIndex === 4 && <TrabajosAnteriores  responses={responses} setResponses={setResponses} />
-                    
+                    tabIndex === 4 && <TrabajosAnteriores disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
-                    tabIndex === 5 && <Documentacion  responses={responses} setResponses={setResponses} />
-                    
+                    tabIndex === 5 && <Documentacion disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
-                    tabIndex === 6 && <Licencias  responses={responses} setResponses={setResponses} />
-                    
+                    tabIndex === 6 && <Licencias disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
-                    tabIndex === 7 && <Extras  responses={responses} setResponses={setResponses} />
+                    tabIndex === 7 && <Extras disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
                 }
             </div>            
         </div>

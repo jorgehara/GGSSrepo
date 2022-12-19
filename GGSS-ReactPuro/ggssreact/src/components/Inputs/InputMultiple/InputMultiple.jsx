@@ -96,7 +96,7 @@ const InputMultiple = ({
                 {nameInputRadio}
               </label>
             </div>
-            <div className="d-flex flex-column justify-content-start align-items-center inputsSexo">
+            <div className="d-flex flex-column justify-content-start align-items-center inputsSexo mt-2">
               <div className="d-flex flex-row justify-content-start align-items-center inputSexo">
                 <input
                   className={obligatorio ? "form-check-input obligatorio" : "form-check-input"}

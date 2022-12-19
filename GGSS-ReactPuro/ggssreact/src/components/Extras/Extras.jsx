@@ -14,14 +14,13 @@ import TextArea from '../Inputs/TextArea/TextArea';
 import TableExtras from '../Tables/TableExtras';
 import "./Extras.css";
 
-const Extras = ({responses, setResponses}) => {
+const Extras = ({responses, setResponses, disable}) => {
 
     const columns = ["Fecha", "Descripción", "Observaciones"]
     const dispatch = useDispatch();
     const [ formDatosExtras, setFormDatosExtras ] = useState(responses["formDatosExtras"]);
     const deshabilitar = useSelector((state)=> state.employeStates.disable);
-    const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/0,%201`;
-    const urlInstrumLegal = "http://54.243.192.82/api/InstrumentosLegales/0?modo=1"
+    
     const datosExtras = useSelector((state)=> state.generalState.datosExtras);
     const instrumLegales = useSelector((state)=> state.generalState.instrumLegales);
 
@@ -33,20 +32,7 @@ const Extras = ({responses, setResponses}) => {
         });
     };
     console.log(instrumLegales);
-    const handleFetch=(url, action )=>{
-        dispatch({type: SET_LOADING});
-          axios.get(url)
-          .then((res)=>{
-            dispatch( action(res.data));
-          })
-          .catch((err)=>{
-            dispatch({type:AXIOS_ERROR});
-          })
-       }
-       useEffect(()=>{
-        handleFetch( urlDatosExtras, addDatosExtras);  
-        handleFetch( urlInstrumLegal, addInstrumLegales);      
-      },[deshabilitar])
+   
   
     useEffect(() => {    
         setResponses({
