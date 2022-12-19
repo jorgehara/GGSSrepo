@@ -31,10 +31,7 @@ const BasicModal = ({
   checkboxObject,
   checkboxNumObject,
   textAreaObject,
-  checkboxName,
   hasCheckBoxNum,
-  checkboxCheckName,
-  checkboxNumName,
   propArrayOp,
   propArrayId,
   action,
@@ -67,10 +64,10 @@ const BasicModal = ({
   const [toModify, setToModify] = useState(false)
 
 
-  // function onSelect(action, payload, op) {
-  //   dispatch(action(payload));
-  //   dispatch(dispatchGetID(op[propArrayId]))
-  // }
+  function onSelect(action, payload) {
+    dispatch(action(payload));
+    dispatch(dispatchGetID(payload[propArrayId]))
+  }
 
   function onCancel(e, name) {
     setDisabled(false)
@@ -116,7 +113,6 @@ const BasicModal = ({
 
 
   async function aceptar(id) {
-    debugger;
     try {
       if (!toModify) {
         await axios.post(urlApi, bodyPet)
@@ -209,8 +205,8 @@ const BasicModal = ({
                       <option
                         key={i}
                         value={op && op[propArrayId]}
-                        // onClick={() => onSelect(action, op)}
-                        onClick={() => dispatch(dispatchGetID(op[propArrayId]))}
+                        onClick={() => onSelect(action, op)}  // si se rompe el abm comentar esta linea y descomentar la de abajo
+                        // onClick={() => dispatch(dispatchGetID(op[propArrayId]))}
                       >
                         {op && op[propArrayOp]}
                       </option>
@@ -305,7 +301,7 @@ const BasicModal = ({
                         inputName={p.label}
                         onChange={onChange}
                         inputId={p.idInput}
-                        value={ p.idInput === inputIdCompare ? valueObs : valueObs}
+                        value={valueObs}
                       />
                     )
                   })

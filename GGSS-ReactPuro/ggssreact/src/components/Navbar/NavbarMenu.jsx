@@ -389,11 +389,8 @@ const Navbar = () => {
 								checkboxNumObject={checkboxNumParentescos}
 								textArea={true}
 								textAreaObject={textAreaObject}
-								hasCheckbox={true}
-								checkboxName="Genera Asignación"
+								hasCheckbox={true}							
 								hasCheckBoxNum={true}
-								checkboxCheckName="Deduce Ganancias"
-								checkboxNumName="Importe"
 								array={parentescosValue && parentescosValue}
 								propArrayOp="nombreParentesco" propArrayId="iDparentesco"
 								action={addSelectedParentesco}
@@ -449,7 +446,7 @@ const Navbar = () => {
 								placeholder={objectFormasDePago}
 								textArea={true}
 								textAreaObject={textAreaObject}
-								array={formasPagoValue}
+								array={formasPagoValue && formasPagoValue}
 								propArrayOp="nombreFormadePago" propArrayId="iDformadePago"
 								action={addSelectedFormaPago}
 								opcionSelected={formaPagoSelected}
