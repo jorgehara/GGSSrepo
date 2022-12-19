@@ -304,7 +304,7 @@ const BasicModal = ({
                         inputName={p.label}
                         onChange={onChange}
                         inputId={p.idInput}
-                        value={valueObs}
+                        value={ p.idInput === inputIdCompare ? valueObs : valueObs}
                       />
                     )
                   })
