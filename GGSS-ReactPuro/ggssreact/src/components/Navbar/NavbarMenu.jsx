@@ -103,14 +103,6 @@ const Navbar = () => {
 		})
 	}
 
-	// FUNCION NUEVA PARA APLICAR EN CHECKBOXES:
-
-	// function onChangeValues(e, key) {
-	// 	const newResponse = { modalDataInputs }
-	// 	newResponse[key] = e
-	// 	setModalDataInputs(newResponse)
-	// }  
-
 	
 	useEffect(() => {
 		setResponses({
@@ -181,22 +173,22 @@ const Navbar = () => {
 	//Parentescos
 	const idParentesco = ((parentescosValue && parentescosValue[parentescosValue.length - 1] !== undefined && (parentescosValue[parentescosValue.length - 1].iDparentesco)) + 1)
 	const bodyPetParentescos = { "iDparentesco": idParentesco ,
-								"nombreParentesco": responses.modalDataInputs.nombreParentesco,
-								"generaAsignacion": responses.modalDataInputs.generaAsignacion,
-								"obs": responses.modalDataInputs.obs,
-								"deduceGanancias": responses.modalDataInputs.deduceGanancias,
-								"importeDeduce": responses.modalDataInputs.importeDeduce }
+								"nombreParentesco": responses.modalDataInputs?.nombreParentesco,
+								"generaAsignacion": responses.modalDataInputs?.generaAsignacion,
+								"obs": responses.modalDataInputs?.obs,
+								"deduceGanancias": responses.modalDataInputs?.deduceGanancias,
+								"importeDeduce": responses.modalDataInputs?.importeDeduce }
 	// estados para los empleados
 	const idEstado = ((estadosValue && estadosValue[estadosValue.length - 1] !== undefined && (estadosValue[estadosValue.length - 1].idEstado)) + 1)
 	const bodyPetEstados = { ...responses.modalDataInputs, idEstado: idEstado }
 	// formas de pago
 	const idFormaPago = ((formasPagoValue && formasPagoValue[formasPagoValue.length - 1] !== undefined && (formasPagoValue[formasPagoValue.length - 1].iDformadePago)) + 1)
 	const bodyPetFormasPago = { "iDformadePago": idFormaPago,
-								"nombreFormadePago": responses.modalDataInputs.nombreFormadePago,
-								"obs": responses.modalDataInputs.obs
+								"nombreFormadePago": responses.modalDataInputs?.nombreFormadePago,
+								"obs": responses.modalDataInputs?.obs
 							   }
 
-	console.log(responses.modalDataInputs.inputParentesco)
+	
 	// --------------------------------------------------------------------------------------------------------------------------------------
 
 	return (
