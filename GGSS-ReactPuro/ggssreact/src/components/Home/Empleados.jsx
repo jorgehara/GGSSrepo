@@ -231,4 +231,4 @@ return (
 )
 }
 
-export default Empleados
+export default Empleados;
