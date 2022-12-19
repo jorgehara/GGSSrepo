@@ -112,7 +112,12 @@ const Empleados = () => {
     }
     console.log(responses)
     useEffect(()=>{
-        console.log("ejecuta use effect fetchs")
+        // console.log("ejecuta use effect fetchs")
+        handleFetch( urlEstados, addEstados);
+        handleFetch( urlEstadosCiviles,addEstadosCiviles);
+        handleFetch( urlPaisesNac,addPaises);
+        handleFetch( urlEstudios,addEstudios);
+        
         handleFetch( urlTiposDNI,addTiposDocumento);
         handleFetch( urlParentescos,addParentescos);
         handleFetch( urlFamiliares,addFamiliares);

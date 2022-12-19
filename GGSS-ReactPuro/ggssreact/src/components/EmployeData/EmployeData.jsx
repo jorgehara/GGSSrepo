@@ -32,9 +32,7 @@ const EmployeData = ({disabled, image}) => {
                 idInput=""
                 inputValue=
                 {
-                saveEmpl[0] !== undefined || saveEmpl[0] === null
-                ? saveEmpl[0].legajo
-                : null
+                  empleadoUno && empleadoUno.legajo
                 }
                 nameLabel="Legajo: "
                 disabled={disabled}
@@ -43,9 +41,7 @@ const EmployeData = ({disabled, image}) => {
                 idInput="apellidoInfo"
                 // className="apellido"
                 inputValue={
-                saveEmpl[0] !== undefined || saveEmpl[0] === null
-                    ? saveEmpl[0].apellido
-                    : null
+                  empleadoUno && empleadoUno.apellido
                 }
                 nameLabel="Apellido: "
                 disabled={disabled}
@@ -54,9 +50,8 @@ const EmployeData = ({disabled, image}) => {
             <InputEmpData
                   idInput="tipoDNIInfo"
                   inputValue={
-                    saveEmpl[0] !== undefined || saveEmpl[0] === null
-                      ? saveEmpl[0].nroDocumento
-                      : null}
+                    empleadoUno && empleadoUno.nroDocumento
+                  }
                   nameLabel="NroDoc:"
                   disabled={disabled}
                 />
@@ -74,9 +69,7 @@ const EmployeData = ({disabled, image}) => {
                 <InputEmpData
                   idInput="nombresInfo"
                   inputValue={
-                    saveEmpl[0] !== undefined || saveEmpl[0] === null
-                      ? saveEmpl[0].nombres
-                      : null
+                    empleadoUno && empleadoUno.nombres
                   }
                   nameLabel="Nombres: "
                   disabled={disabled}
