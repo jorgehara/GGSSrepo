@@ -69,7 +69,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
       "nroResolucion": formLicencias?.inputNuevaResolucionLic
     }
     
-    console.log(licenciaEmpleado)
+    console.log(licenciaDelEmpleado)
 
     const bodyDetalleLicencia = {
       IdDetalleLicenciaEmpleado : ((detalleLicencia && detalleLicencia[detalleLicencia.length -1]) && (detalleLicencia && detalleLicencia[detalleLicencia.length -1])+1),

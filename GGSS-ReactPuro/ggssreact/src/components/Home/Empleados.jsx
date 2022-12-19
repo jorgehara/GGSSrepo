@@ -202,7 +202,12 @@ const Empleados = () => {
           icon: "error",
         })
       }
-
+      useEffect(()=>{
+        axios.get(`http://54.243.192.82/api/MostrarDatosPorEmpleado/${empleadoUno?.iDempleado}`)
+        .then((res)=>{
+            setLicenciaEmpladoDatos(res.data)
+        })
+    },[empleadoUno?.iDempleado, refetch])
       
 return (
     <div className='container-fluid'>
