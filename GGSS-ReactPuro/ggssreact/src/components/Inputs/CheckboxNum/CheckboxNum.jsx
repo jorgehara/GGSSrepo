@@ -48,7 +48,7 @@ const CheckboxNum = ({
                     placeholder={placeHolder}
                     disabled={!checked}
                     value={valueNum}
-                    onChange={(e) => onChange(e.target.value, inputId )} // NO ANDA --> No deja modificar el input
+                    onChange={(e) => onChange(e.target.value, inputNumId )} // NO ANDA --> No deja modificar el input
                     > 
                 </input>
 

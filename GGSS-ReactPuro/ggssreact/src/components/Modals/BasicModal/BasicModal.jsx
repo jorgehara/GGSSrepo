@@ -116,6 +116,7 @@ const BasicModal = ({
 
 
   async function aceptar(id) {
+    debugger;
     try {
       if (!toModify) {
         await axios.post(urlApi, bodyPet)

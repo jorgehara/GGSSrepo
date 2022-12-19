@@ -180,15 +180,23 @@ const Navbar = () => {
 	const bodyPetTiposDoc = { ...responses.modalDataInputs, iDtipoDocumento: idTiposDocumento }
 	//Parentescos
 	const idParentesco = ((parentescosValue && parentescosValue[parentescosValue.length - 1] !== undefined && (parentescosValue[parentescosValue.length - 1].iDparentesco)) + 1)
-	const bodyPetParentescos = { ...responses.modalDataInputs, iDparentesco: idParentesco }
+	const bodyPetParentescos = { "iDparentesco": idParentesco ,
+								"nombreParentesco": responses.modalDataInputs.nombreParentesco,
+								"generaAsignacion": responses.modalDataInputs.generaAsignacion,
+								"obs": responses.modalDataInputs.obs,
+								"deduceGanancias": responses.modalDataInputs.deduceGanancias,
+								"importeDeduce": responses.modalDataInputs.importeDeduce }
 	// estados para los empleados
 	const idEstado = ((estadosValue && estadosValue[estadosValue.length - 1] !== undefined && (estadosValue[estadosValue.length - 1].idEstado)) + 1)
 	const bodyPetEstados = { ...responses.modalDataInputs, idEstado: idEstado }
 	// formas de pago
 	const idFormaPago = ((formasPagoValue && formasPagoValue[formasPagoValue.length - 1] !== undefined && (formasPagoValue[formasPagoValue.length - 1].iDformadePago)) + 1)
-	const bodyPetFormasPago = { ...responses.modalDataInputs, iDformadePago: idFormaPago }
+	const bodyPetFormasPago = { "iDformadePago": idFormaPago,
+								"nombreFormadePago": responses.modalDataInputs.nombreFormadePago,
+								"obs": responses.modalDataInputs.obs
+							   }
 
-
+	console.log(responses.modalDataInputs.inputParentesco)
 	// --------------------------------------------------------------------------------------------------------------------------------------
 
 	return (
