@@ -82,96 +82,23 @@ const Extras = ({responses, setResponses, disable}) => {
                         action={GET_INPUT_VALUES_EXTRAS} 
                         clasess={inputButtonClasessExtras} />
                     </div>
-<<<<<<< HEAD
-                </div>
-                <div className='row'>
-                    <div className='col-xl-6'>
-                        <InputDate valueCheck={true} value={formDatosExtras?.inputFechaExtras && formDatosExtras?.inputFechaExtras} onChange={onChangeValues} idInput="inputFechaExtras" nameInput="Fecha" action={GET_INPUT_VALUES_EXTRAS} />
-                    </div>
-                </div>
-                <div className='row'>
-                      <div className='col-xl-12'>
-                          <TextArea onChange={onChangeValues} idInput="inputTextExtras" value={formDatosExtras?.inputTextExtras && formDatosExtras?.inputTextExtras} inputName="Observaciones" action={GET_INPUT_VALUES_EXTRAS} />
-                          <ButtonCancelarAceptar cancelar="-" aceptar="+" />
-                          <TableExtras columns={columns} />
-                      </div>
-                </div>
-            </div>
-          </div>
-        </div>
-        <div className="accordion-item">
-            <h2 className="accordion-header" id="headingTwo">
-              <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                Adscripto
-              </button>
-            </h2>
-            <div id="collapseTwo" className="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-              <div className="accordion-body">
-                <div className='row'>
-                    <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center'>
-                        <CheckLabel idInput="inputAdscriptoExtras" nameLabel="Adscripto" value={formDatosExtras?.inputAdscriptoExtras && formDatosExtras?.inputAdscriptoExtras} onChange={onChangeValues}  />
-                        <InputButtonLiquidacion 
-                        disabled={!formDatosExtras?.inputAdscriptoExtras} 
-                        value={formDatosExtras?.inputInstrumLegal && formDatosExtras?.inputInstrumLegal} 
-                        nameButton="..." 
-                        nameLabel="Instrum. Legal" 
-                        array={instrumLegales && instrumLegales}
-                        propArrayOp="descripcion"
-                        propIdOption="idInstrumentoLegal"
-                        idInput="inputInstrumLegal" 
-                        id="inputInstrumLegal" 
-                        clasess={inputButtonClasessExtrasInstrum} 
-                        onChange={onChangeValues} 
-                        action={GET_INPUT_VALUES_EXTRAS} />
-=======
               </div>
               <div className='linea' />
               <div className='row'>
                     <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center'>
                         <CheckLabel idInput="inpútAdscriptoExtras" nameLabel="Adscripto" onChange={onChange} action={GET_INPUT_VALUES_EXTRAS} />
                         <InputButtonLiquidacion nameButton="..." nameLabel="Instrum. Legal" id="inputInstrumLegal" clasess={inputButtonClasessExtrasInstrum} onChange={onChange} action={GET_INPUT_VALUES_EXTRAS} />
->>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
                     </div>
                     <div className='divObservaciones'>
                         <TextArea idInput="inputTextExtrasAdscripto" inputName="Observaciones" onChange={onChange} action={GET_INPUT_VALUES_EXTRAS} />
                     </div>
 
               </div>
-<<<<<<< HEAD
-              </div>
-            </div>
-          </div>  
-          <div className="accordion-item">
-            <h2 className="accordion-header" id="headingThree">
-              <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                Afectaciones
-              </button>
-            </h2>
-            <div id="collapseThree" className="accordion-collapse collapse " aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-              <div className="accordion-body">
-                <div className='row'>
-                    <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center'>
-                        <CheckLabel idInput="inputAfectacionesExtras" nameLabel="Afectaciones" value={formDatosExtras?.inputAfectacionesExtras && formDatosExtras?.inputAfectacionesExtras} onChange={onChangeValues}  />
-                        <InputButtonLiquidacion 
-                        disabled={!formDatosExtras?.inputAfectacionesExtras} 
-                        value={formDatosExtras?.inputInstrumLegalAfectaciones && formDatosExtras?.inputInstrumLegalAfectaciones} 
-                        nameButton="..." 
-                        nameLabel="Instrum. Legal" 
-                        array={instrumLegales && instrumLegales}
-                        propArrayOp="descripcion"
-                        propIdOption="idInstrumentoLegal"
-                        id="inputInstrumLegalAfectaciones" 
-                        idInput="inputInstrumLegalAfectaciones" 
-                        action={GET_INPUT_VALUES_EXTRAS} 
-                        clasess={inputButtonClasessExtrasInstrum} 
-                        onChange={onChange} />
-=======
               <div className='linea' />
               <div className='row'>
                     <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center'>
                         <CheckLabel idInput="inputAfectacionesExtras" nameLabel="Afectaciones" onChange={onChange} action={GET_INPUT_VALUES_EXTRAS} />
                         <InputButtonLiquidacion nameButton="..." nameLabel="Instrum. Legal" id="inputInstrumLegalAfectaciones" action={GET_INPUT_VALUES_EXTRAS} clasess={inputButtonClasessExtrasInstrum} onChange={onChange} />
->>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
                     </div>
                     <div className='divObservacionesAfectacion'>
                         <InputButtonLiquidacion nameButton="..." nameLabel="Sector" id="inputSectorExtras" action={GET_INPUT_VALUES_EXTRAS} clasess={inputButtonClasessExtrasAfectaciones} onChange={onChange} />

@@ -276,7 +276,6 @@ export const addDatosExtras=(payload)=>{
         type: ADD_DATOS_EXTRAS,
         payload,
     };
-<<<<<<< HEAD
 }
 export const addInstrumLegales=(payload)=>{
     return{
@@ -364,17 +363,12 @@ export const putParentesco = (payload) => {
         type: PUT_PARENTESCO,
         payload
     }
-<<<<<<< HEAD
-=======
->>>>>>> parent of 003444b (Merge branch 'Rodrigo' into Jorge)
-=======
 }
 export const addConceptos=(payload)=>{
     return{
         type : ADD_CONCEPTOS,
         payload,
     };
->>>>>>> Rodrigo
 }
 export const addLicenciaEmpleados=(payload)=>{
     return {
