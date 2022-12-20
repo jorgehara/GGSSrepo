@@ -26,7 +26,7 @@ const Browser = ({disable , setDisable}) => {
   console.log("ejecuto browser")
 
 
-  useEffect(() => {
+  useEffect( () => {
     console.log("ejecuto browser fetch")
     axios.get(url).then((res) => {
       let data = res.data.result;
