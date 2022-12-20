@@ -1,5 +1,5 @@
 //#region -----------------------------------------------------------------------IMPORTS
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import './Navbar.css'
 import ButtonCallModal from '../Buttons/ButtonCallModal'
@@ -8,7 +8,7 @@ import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 
 // ------------------------ OBJECTS ------------------------
-import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, textAreaCargos } from './Objects'
+import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, textAreaCargos, urls } from './Objects'
 // -----------------------------------------------------------
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
@@ -16,7 +16,7 @@ import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago } from '../../redux/actions/fetchActions';
+import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago, addNewCargo, deleteCargo, putCargo, getIdCargo } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
 import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
 import swal from "sweetalert";
@@ -70,7 +70,6 @@ const NavbarMenu = () => {
 	//Barrios
 	const barriosValue = useSelector((state)=> state.generalState.barrios)
 	//Cargos
-	const cargosValue = useSelector((state)=> state.generalState.cargos);
 	//TareaDesempeñada
 	const tareaValues = useSelector((state)=> state.generalState.tareaDesempeñada);
 	//Formas de Pago
@@ -478,7 +477,7 @@ const NavbarMenu = () => {
 								propArrayOp="nombreCargo" propArrayId="iDcargo"
 								action={addSelectedCargo}
 								opcionSelected={cargoSelected}
-								urlApi={urlCargos}
+								urlApi={urls.urlCargo}
 								inputIdCompare="nombreCargo"
 								firstOptionCompare={inputCargo ? inputCargo : cargoSelected.nombreCargo}
 								secondOptionCompare={inputCargo ? inputCargo : cargoSelected.nombreCargo}
@@ -505,7 +504,7 @@ const NavbarMenu = () => {
 								propArrayOp="tareaDesempeñada" propArrayId="idTareaDesempeñada"
 								action={addSelectedTarea}
 								opcionSelected={tareaSelected}
-								urlApi={urlTareas}
+								urlApi={urls.urlTareas}
 								inputIdCompare="tareaDesempeñada"
 								firstOptionCompare={inputTarea ? inputTarea : tareaSelected.tareaDesempeñada}
 								secondOptionCompare={inputTarea ? inputTarea : tareaSelected.tareaDesempeñada}

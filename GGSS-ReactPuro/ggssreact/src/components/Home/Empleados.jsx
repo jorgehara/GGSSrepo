@@ -100,6 +100,7 @@ const Empleados = () => {
         dispatch({type: SET_LOADING});
         axios.get(url)
         .then((res)=>{
+            console.log(res.data);
             dispatch( action(res.data.result));
         })
         .catch((err)=>{
@@ -120,15 +121,20 @@ const Empleados = () => {
     useEffect(()=>{
         handleFetch( urlEstados, addEstados);
         handleFetch( urlEstadosCiviles,addEstadosCiviles);
-        handleFetch( urlPaisesNac,addPaises);
-        handleFetch( urlEstudios,addEstudios);
+        
+        // handleFetch( urlPaisesNac,addPaises);
+        
+        // handleFetch( urlEstudios,addEstudios);
 
         handleFetch( urlTiposDNI,addTiposDocumento);
         handleFetch( urlParentescos,addParentescos);
         handleFetch( urlFamiliares,addFamiliares);
+
         handleFetch( urlNumeradores,addNumeradores);                
 
-        handleFetch(urlDomicilios, addDomicilios);
+        // handleFetch(urlDomicilios, addDomicilios);
+
+
         handleFetch(urlCalles, addCalles);
         handleFetch(urlDeptos, addDepartamentos);
         handleFetch(urlProvincias, addProvincias);
@@ -161,10 +167,10 @@ const Empleados = () => {
         handleFetch( urlDocumentacion, getOneDocumento);
 
         handleFetch( urlDatosExtras, addDatosExtras);  
-        handleFetch( urlInstrumLegal, addInstrumLegales); 
-        handleFetch( urlLicenciaEmpleados, addLicenciaEmpleados);  
+        // handleFetch( urlInstrumLegal, addInstrumLegales); 
+        // handleFetch( urlLicenciaEmpleados, addLicenciaEmpleados);  
         
-        handleFetch( urlDetalleLicenciasEmpleados, addDetalleLicencia);  
+        // handleFetch( urlDetalleLicenciasEmpleados, addDetalleLicencia);  
         
 
       },[disable])

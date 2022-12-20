@@ -2,7 +2,8 @@
 export const urls = {
   urlParentescos : "http://54.243.192.82/api/Parentescos",
   urlEstados : "http://54.243.192.82/api/Estados",
-  urlFormasPago : "http://54.243.192.82/api/FormasdePagos"
+  urlFormasPago : "http://54.243.192.82/api/FormasdePagos",
+  urlCargo: "http://54.243.192.82/api/Cargos"
 }
 
 // -----  OBJECTS TABLA PARA EMPLEADOS -----
