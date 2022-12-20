@@ -50,8 +50,32 @@ const NavbarMenu = () => {
 		});
 	}, [modalDataInputs]);
 
-	// ------- GET DE LOS ENDPOINTS  -----
+	//Paises
+	const paisNacionalidad = useSelector((state)=> state.generalState.paises)
+	//Calles
+	const calle = useSelector((state)=> state.generalState.calles)
+	//Departamentos
+	const dptos = useSelector((state)=> state.generalState.departamentos)
+	//Provincias
+	const provinciasValue = useSelector((state)=> state.generalState.provincias)
+	//Localidades
+	const localidadesValue = useSelector((state)=> state.generalState.localidades);
+	//Barrios
+	const barriosValue = useSelector((state)=> state.generalState.barrios)
+	//Cargos
+	const cargosValue = useSelector((state)=> state.generalState.cargos);
+	//TareaDesempeñada
+	const tareaValues = useSelector((state)=> state.generalState.tareaDesempeñada);
+	//Formas de Pago
+	const formasDePagoValue = useSelector((state)=> state.generalState.formasDePago)
+	//ModosContratacion
+	const modosContratacionValue = useSelector((state)=> state.generalState.modosContratacion)
+	//Modos Liquidacion
+	const modosLiqValue = useSelector((state)=> state.generalState.modosLiquidacion);
+	//Empleadores
+	const empleadoresValue = useSelector((state)=> state.generalState.empleadores)
 
+	// ----------------------------------- ID & PETITION  -----------------------------------
 	//Estados Civiles
 	const estadosCivilesValue = useSelector((state) => state.generalState.estadosCiviles);
 	const estadoCivilSelected = useSelector((state) => state.modalState.estadoCivilSelected);
@@ -81,33 +105,21 @@ const NavbarMenu = () => {
 	const textAreaParent = useSelector((state) => state.modalState.formulario.textAreaParent)
 	const valueIdParentesco = useSelector((state) => state.generalState.idParentesco)
 
-	//Estados
-	const estadosValue = useSelector((state)=> state.generalState.estados)
+	// estados para los empleados
+	const estadosValue = useSelector((state) => state.generalState.estados)
+	const estadoSelected = useSelector((state) => state.modalState.estadoSelected)
+	const inputEstado = useSelector((state) => state.modalState.formulario.inputEstado)
+	const valueIdEstado = useSelector((state) => state.generalState.idEstado)
 
-	//Paises
-	const paisNacionalidad = useSelector((state)=> state.generalState.paises)
-	//Calles
-	const calle = useSelector((state)=> state.generalState.calles)
-	//Departamentos
-	const dptos = useSelector((state)=> state.generalState.departamentos)
-	//Provincias
-	const provinciasValue = useSelector((state)=> state.generalState.provincias)
-	//Localidades
-	const localidadesValue = useSelector((state)=> state.generalState.localidades);
-	//Barrios
-	const barriosValue = useSelector((state)=> state.generalState.barrios)
-	//Cargos
-	const cargosValue = useSelector((state)=> state.generalState.cargos);
-	//TareaDesempeñada
-	const tareaValues = useSelector((state)=> state.generalState.tareaDesempeñada);
-	//Formas de Pago
-	const formasDePagoValue = useSelector((state)=> state.generalState.formasDePago)
-	//ModosContratacion
-	const modosContratacionValue = useSelector((state)=> state.generalState.modosContratacion)
-	//Modos Liquidacion
-	const modosLiqValue = useSelector((state)=> state.generalState.modosLiquidacion);
-	//Empleadores
-	const empleadoresValue = useSelector((state)=> state.generalState.empleadores)
+	// formas de pago
+	const formasPagoValue = useSelector((state) => state.generalState.formasDePago)
+	const formaPagoSelected = useSelector((state) => state.modalState.formaPagoSelected)
+	const inputFormaDePago = useSelector((state) => state.modalState.formulario.inputFormaDePago)
+	const textAreaFormaPago = useSelector((state) => state.modalState.formulario.textAreaFormaPago)
+	const valueIdFormaPago = useSelector((state) => state.generalState.idFormaPago)
+
+
+
 
 	// ----------------------------------- ID & PETITION  -----------------------------------
 	//Estados Civiles
@@ -119,23 +131,24 @@ const NavbarMenu = () => {
 	//Tipos de documento
 	const idTiposDocumento = ((tiposDocumentoValue && tiposDocumentoValue[tiposDocumentoValue.length - 1] !== undefined && (tiposDocumentoValue[tiposDocumentoValue.length - 1].iDtipoDocumento)) + 1)
 	const bodyPetTiposDoc = { ...responses.modalDataInputs, iDtipoDocumento: idTiposDocumento }
-	const idPerentesco = ((parentescosValue && parentescosValue[parentescosValue.length - 1] !== undefined && (parentescosValue[parentescosValue.length - 1].iDParentesco)) + 1)
-	const bodyPetParentescos = {
-		"iDparentesco": idPerentesco,
-		"nombreParentesco": "string",
-		"generaAsignacion": true,
-		"obs": "string",
-		"deduceGanancias": true,
-		"importeDeduce": 0
-	}
+	//Parentescos
+	const idParentesco = ((parentescosValue && parentescosValue[parentescosValue.length - 1] !== undefined && (parentescosValue[parentescosValue.length - 1].iDparentesco)) + 1)
+	const bodyPetParentescos = { "iDparentesco": idParentesco ,
+								"nombreParentesco": responses.modalDataInputs?.nombreParentesco,
+								"generaAsignacion": responses.modalDataInputs?.generaAsignacion,
+								"obs": responses.modalDataInputs?.obs,
+								"deduceGanancias": responses.modalDataInputs?.deduceGanancias,
+								"importeDeduce": responses.modalDataInputs?.importeDeduce }
+	// estados para los empleados
+	const idEstado = ((estadosValue && estadosValue[estadosValue.length - 1] !== undefined && (estadosValue[estadosValue.length - 1].idEstado)) + 1)
+	const bodyPetEstados = { ...responses.modalDataInputs, idEstado: idEstado }
+	// formas de pago
+	const idFormaPago = ((formasPagoValue && formasPagoValue[formasPagoValue.length - 1] !== undefined && (formasPagoValue[formasPagoValue.length - 1].iDformadePago)) + 1)
+	const bodyPetFormasPago = { "iDformadePago": idFormaPago,
+								"nombreFormadePago": responses.modalDataInputs?.nombreFormadePago,
+								"obs": responses.modalDataInputs?.obs
+							   }
 
-	const estadosArray = estadosValue && estadosValue.map((m, i) => { return (m.nombreEstado) });
-	const paises = paisNacionalidad && paisNacionalidad.map((nac, i) => { return (nac.nombrePais); });
-
-	const estudios = estudiosValue && estudiosValue.map((nac, i) => { return (nac.estudiosNivel); });
-
-	const nacionalidadesMasculinas = paisNacionalidad && paisNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) ;
-	const nacionalidadesFemeninas = paisNacionalidad && paisNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) ;
 
 
 	
@@ -367,7 +380,7 @@ const NavbarMenu = () => {
 								propArrayOp="nombreEstado" propArrayId="idEstado"
 								action={addSelectedEstado}
 								opcionSelected={estadoSelected}
-								urlApi={urlEstados}
+								urlApi={urls.urlEstados}
 								inputIdCompare="nombreEstado"
 								firstOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
 								secondOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
@@ -394,7 +407,7 @@ const NavbarMenu = () => {
 								propArrayOp="nombreFormadePago" propArrayId="iDformadePago"
 								action={addSelectedFormaPago}
 								opcionSelected={formaPagoSelected}
-								urlApi={urlFormasPago}
+								urlApi={urls.urlFormasPago}
 								inputIdCompare="nombreFormadePago"
 								firstOptionCompare={inputFormaDePago ? inputFormaDePago : formaPagoSelected.nombreFormadePago}
 								secondOptionCompare={inputFormaDePago ? inputFormaDePago : formaPagoSelected.nombreFormadePago}
