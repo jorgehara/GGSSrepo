@@ -1,4 +1,7 @@
 
+export const urls = {
+  urlParentescos : "http://54.243.192.82/api/Parentescos"
+}
 
 // -----  OBJECTS TABLA PARA EMPLEADOS -----
 

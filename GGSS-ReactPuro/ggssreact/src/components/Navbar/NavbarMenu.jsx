@@ -8,7 +8,7 @@ import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 
 // ------------------------ OBJECTS ------------------------
-import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject } from './Objects'
+import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, urls } from './Objects'
 // -----------------------------------------------------------
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
@@ -19,15 +19,6 @@ import axios from 'axios';
 import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
 import { addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedParentesco, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
-import swal from "sweetalert";
-
-
-// import { getEstadosCivilesModal } from '../../services/fetchAPI';
-// import { useEffect } from 'react';
-//#endregion
-
-
-
 
 
 const NavbarMenu = () => {
@@ -118,13 +109,6 @@ const NavbarMenu = () => {
 	//Empleadores
 	const empleadoresValue = useSelector((state)=> state.generalState.empleadores)
 
-
-
-
-
-
-
-
 	// ----------------------------------- ID & PETITION  -----------------------------------
 	//Estados Civiles
 	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
@@ -135,8 +119,15 @@ const NavbarMenu = () => {
 	//Tipos de documento
 	const idTiposDocumento = ((tiposDocumentoValue && tiposDocumentoValue[tiposDocumentoValue.length - 1] !== undefined && (tiposDocumentoValue[tiposDocumentoValue.length - 1].iDtipoDocumento)) + 1)
 	const bodyPetTiposDoc = { ...responses.modalDataInputs, iDtipoDocumento: idTiposDocumento }
-
-
+	const idPerentesco = ((parentescosValue && parentescosValue[parentescosValue.length - 1] !== undefined && (parentescosValue[parentescosValue.length - 1].iDParentesco)) + 1)
+	const bodyPetParentescos = {
+		"iDparentesco": idPerentesco,
+		"nombreParentesco": "string",
+		"generaAsignacion": true,
+		"obs": "string",
+		"deduceGanancias": true,
+		"importeDeduce": 0
+	}
 
 	const estadosArray = estadosValue && estadosValue.map((m, i) => { return (m.nombreEstado) });
 	const paises = paisNacionalidad && paisNacionalidad.map((nac, i) => { return (nac.nombrePais); });
@@ -146,31 +137,6 @@ const NavbarMenu = () => {
 	const nacionalidadesMasculinas = paisNacionalidad && paisNacionalidad.map((nac, i) => { return (nac.nacionalidad_masc); }) ;
 	const nacionalidadesFemeninas = paisNacionalidad && paisNacionalidad.map((nac, i) => { return (nac.nacionalidad_fem); }) ;
 
-	const nacionalidades = nacionalidadesMasculinas && nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
-
-	const calles = calle && calle.map(res => { return res.calle }) ;
-
-	const deptos = dptos && dptos.map(res => { return res.departamento });
-
-	const provincias = provinciasValue && provinciasValue.map(res => { return res.provincia });
-
-	const localidades = localidadesValue && localidadesValue.map(res => { return res.localidad });
-
-	const barrios = barriosValue && barriosValue.map(res => { return res.barrio });
-
-	const cargosMap = cargosValue && cargosValue.map((cargo, i) => { return (cargo.nombreCargo); });
-
-	const tareasMap = tareaValues && tareaValues.map((tarea, i) => { return (tarea.tareaDesempeñada) });
-
-	const parentescosMap = parentescosValue && parentescosValue.map((parent, i) => { return parent.nombreParentesco });
-
-	const formasDePagoMap = formasDePagoValue && formasDePagoValue.map((forma, i) => { return forma.nombreFormadePago });
-
-	const modosContratacionMap = modosContratacionValue && modosContratacionValue.map((modo, i) => { return modo.modoContratacion });
-
-	const modosLiquidacionMap = modosLiqValue && modosLiqValue.map((modo, i) => { return modo.modoLiquidacion });
-
-	const empleadoresMap = empleadoresValue && empleadoresValue.map((empl, i) => { return empl.razonSocial });
 
 	
 	// --------------------------------------------------------------------------------------------------------------------------------------
@@ -373,7 +339,7 @@ const NavbarMenu = () => {
 								propArrayOp="nombreParentesco" propArrayId="iDparentesco"
 								action={addSelectedParentesco}
 								opcionSelected={parentescoSelected}
-								urlApi={urlParentescos}
+								urlApi={urls.urlParentescos}
 								inputIdCompare="nombreParentesco"
 								firstOptionCompare={inputParentesco ? inputParentesco : parentescoSelected.nombreParentesco}
 								secondOptionCompare={inputParentesco ? inputParentesco : parentescoSelected.nombreParentesco}
