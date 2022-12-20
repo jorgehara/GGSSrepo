@@ -53,7 +53,8 @@ const BasicModal = ({
   valueNumCheck,
   valueObs,
   refetch,
-  setRefetch
+  setRefetch,
+  modalDataInputs
   // setRes,
   // postFn
 }) => {
@@ -76,6 +77,7 @@ const BasicModal = ({
       payload: ""
     })
   }
+
 
 
   async function agregar() {
@@ -117,8 +119,9 @@ const BasicModal = ({
         await axios.post(urlApi, bodyPet)
           .then((res) => {
             if (res.status === 200) {
+              console.log(res)
               dispatch(dispatchAddAction(resp.modalDataInputs))
-              swal({
+              return swal({
                 title: "Ok",
                 text: "Agregado con éxito",
                 icon: "success",
@@ -153,7 +156,9 @@ const BasicModal = ({
     }
   }
 
-  
+  useEffect(() => {
+    console.log('API actualizada con éxito!')
+  }, [refetch])
 
 
   const opcionesApi = array
@@ -162,7 +167,6 @@ const BasicModal = ({
     <div>
       <div
         className="modal fade"
-        style={{background : "transparent"}}
         id={idModal}
         tabIndex="-1"
         aria-labelledby={`${idModal}Label`}
@@ -195,11 +199,10 @@ const BasicModal = ({
                 <select
                   className="form-select row mt-1 selectOptions"
                   multiple
-                  defaultValue={[]}
                   aria-label="multiple select example"
                   disabled={disabled}
                 >
-                  {(array && array) && opcionesApi && opcionesApi?.map((op, i) => {
+                  {array && array.map((op, i) => {
                     return (
                       <option
                         key={i}
@@ -236,7 +239,7 @@ const BasicModal = ({
                         placeHolder={p.placeholder}
                         nameLabel={p.label}
                         inputId={p.idInput}
-                        value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
+                        value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare) }
                         onChange={onChange}
                       // action={GET_ESTADOSCIVILES}
                       // opcionSelected={opcionSelected}

@@ -19,6 +19,7 @@ import { useEffect } from 'react';
 import { addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedParentesco, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
 
 
+
 const NavbarMenu = () => {
 	
 	const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles"
@@ -79,7 +80,8 @@ const NavbarMenu = () => {
 	const estadoCivilSelected = useSelector((state) => state.modalState.estadoCivilSelected);
 	const inputMascEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModal);
 	const inputFemEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModalFem);
-	const valueIdEstadoCivil = useSelector((state) => state.generalState.idEstadoCivil);
+	const valueIdEstadoCivil = useSelector((state) => state.modalState.estadoCivilSelected.idEstadoCivil);
+	console.log(estadosCivilesValue)
 
 	// Estudios
 	const estudiosValue = useSelector((state) => state.generalState.estudios)
@@ -118,11 +120,12 @@ const NavbarMenu = () => {
 
 
 
-
+	
 	// ----------------------------------- ID & PETITION  -----------------------------------
 	//Estados Civiles
-	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
+	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length -1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length -1].idEstadoCivil))+1)
 	const bodyPetitionEC = { ...responses.modalDataInputs, idEstadoCivil: idEstadoCivil };
+	console.log(bodyPetitionEC)
 	//Estudios
 	const idEstudio = ((estudiosValue && estudiosValue[estudiosValue.length - 1] !== undefined && (estudiosValue[estudiosValue.length - 1].iDestudios)) + 1)
 	const bodyPetEstudio = { ...responses.modalDataInputs, iDestudios: idEstudio }
@@ -269,7 +272,8 @@ const NavbarMenu = () => {
 								nameModal="Estados Civiles"
 								placeholder={objectEstadosCiviles}
 								array={estadosCivilesValue && estadosCivilesValue}
-								propArrayOp="masculino" propArrayId="idEstadoCivil"
+								propArrayOp="masculino" 
+								propArrayId="idEstadoCivil"
 								action={addSelectedEstadoCivil}
 								opcionSelected={estadoCivilSelected}
 								inputIdCompare="masculino"
@@ -286,6 +290,12 @@ const NavbarMenu = () => {
 								onChange={onChangeValues}
 								refetch={refetch}
 								setRefetch={setRefetch}
+								modalDataInputs={modalDataInputs}
+							    //onSelect={onSelect} 
+							// functionModal={getEstadosCivilesModal} 
+							// functionSaveSelected={saveEstadoCivilSelected} 
+							// selectedOption={estadoCivilSelected} 
+							// arrayCompleto={saveEstadoCivil}
 							/>
 
 							<BasicModal
@@ -453,6 +463,7 @@ const NavbarMenu = () => {
 							<ModalConvenios idModal="Convenios" nameModal="Convenios, Categorías, Básicos y Antigüedad" placeholder={objectConvenios} inputsNumConvenios={inputsNumConvenios} column={tableConvenios} placeholderCategorias={objectCategorias} inputsNumCategorias={inputsNumCategorias} />
 							<ModalTable idModal="Jerarquia" nameModal="Jerarquía de las Categorías" column={tableJerarquia} dropdown={true} jerarquia={true} />
 							<ModalTable idModal="Licencias" nameModal="Licencias por Antigüedad" licencias={true} column={tableLicencias} objectInputs={inputsNumLicencias} />
+
 
 
 							<li class="nav-item">

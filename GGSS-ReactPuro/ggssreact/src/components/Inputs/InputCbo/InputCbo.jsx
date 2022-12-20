@@ -47,7 +47,7 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
                     }) 
                     
                     :
-                        array !== undefined && array.map((op, index)=>{
+                        array  && array.map((op, index)=>{
                             return(
                               (Number(idSelected) === op[valueId]) ? <option key={index} selected onClick={(e)=>onClickOption(op)} value={op[valueId]}>
                               {op[propArrayOpFem]} 

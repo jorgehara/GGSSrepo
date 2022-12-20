@@ -339,8 +339,8 @@ export const fetchReducer = (state = initialState, action) =>{
         // --------------- POST REDUX ---------------
          case ADD_NEW_ESCI :{
             return {
-                ...state,
-                estadosCiviles :  action.payload
+                ...state.estadosCiviles,
+                estadosCiviles :  [ ...state.estadosCiviles, action.payload]
             }
         }
 
