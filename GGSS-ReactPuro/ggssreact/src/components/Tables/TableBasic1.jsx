@@ -1,9 +1,11 @@
+import { useDispatch } from "react-redux";
+import { getDocSelect } from "../../redux/actions/documentacionActions";
 import "./TableBootstrap.css";
 
-const TableBasic1 = ({columns, value,documentaciones}) => {
+const TableBasic1 = ({columns, value,documentaciones, setRefetch, refetch}) => {
   
   
-  
+  const dispatch = useDispatch();
   
   function getDocumentacion(documentaciones,id){
     let document = documentaciones && documentaciones.filter((item)=>{
@@ -31,7 +33,8 @@ const TableBasic1 = ({columns, value,documentaciones}) => {
           value && value.map((valor)=>{
             return(
               <tr>
-                <th scope="row">{valor.fecha ? valor.fecha.substring(0, valor.fecha.length -9) : "-"}</th>
+                <th scope="row"> <input type="radio" name="seleccionar" id="seleccionar" onClick={()=>{  dispatch(getDocSelect(valor))}} /> </th>
+                <td>{valor.fecha ? valor.fecha.substring(0, valor.fecha.length -9) : "-"}</td>
                 <td>{valor.fechaVencimiento ? valor.fechaVencimiento : "-"}</td>
                 <td>{getDocumentacion(documentaciones, valor.idDocumentacion).documentacion1}</td>
                 <td>{valor.generaLiquidacion === true ? "Genera" : "No genera"}</td>

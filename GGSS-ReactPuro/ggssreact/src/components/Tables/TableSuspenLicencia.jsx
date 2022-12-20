@@ -8,6 +8,7 @@ const TableSuspenLicencia = ({columns}) => {
   const detalleLicencia = useSelector((state)=> state.licenciasState.detalleLicencia);
   const licenciaEmpleado = useSelector((state)=> state.licenciasState.licenciaEmpleado);
   
+ 
   
   return (
     <>
@@ -29,7 +30,7 @@ const TableSuspenLicencia = ({columns}) => {
              return(
               licenciaEmpleado?.idLicenciaEmpleado === valor?.idLicenciaEmpleado ?
                 <tr>
-                  <th scope="row"> <input type="radio" name="inpurSelectDetalleLiq" id="inpurSelectDetalleLiq" onClick={()=> dispatch(addSelectDetalle(valor))} /> </th>
+                  <th scope="row"> <input type="radio" name="inpurSelectDetalleLiq" id="inpurSelectDetalleLiq" onClick={()=>{ dispatch(addSelectDetalle(valor))}} /> </th>
                   <td>{valor && valor.desde ? valor.desde.substring(0, valor.desde.length -9) : "-"}</td>
                   <td>{valor && valor.hasta ? valor.hasta.substring(0, valor.hasta.length -9) : "-"}</td>
                   <td>{valor && valor.fechaSuspension ? valor.fechaSuspension.substring(0, valor.fechaSuspension.length -9) : "-"}</td>

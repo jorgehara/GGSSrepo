@@ -21,8 +21,15 @@ const Licencias = ({responses, setResponses}) => {
     const [ licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
     const [ refetch , setRefectch ] =useState(false);
 
+    const licenciasDelEmpleado = licenciaDelEmpleado[0] && licenciaDelEmpleado[0] && licenciasEmplados && licenciasEmplados.filter((lic)=>{
+        return(
+            lic.idLicenciaEmpleado === licenciaDelEmpleado[0].idLicenciaEmpleado
+        )
+    })
+
     
-    
+    console.log(licenciasEmplados.filter((lic)=> {return(lic.idLicenciaEmpleado === 468)}))
+
     const opciones = [{
         opcion : "1 - Disponibles por Periodo",        
     },{

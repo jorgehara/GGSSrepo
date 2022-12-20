@@ -1,4 +1,4 @@
-import { GET_DOC_EMPL, GET_INPUT_VALUE } from "../types/documentacionTypes";
+import { ADD_NEW_DOC, GET_DOC_EMPL, GET_DOC_SELECT, GET_INPUT_VALUE } from "../types/documentacionTypes";
 
 export const initialState = {
     domiciliosDelEmpleado : "",
@@ -9,7 +9,8 @@ export const initialState = {
         textAreaDocumentacion : "",
         inputCheckLiquidacion : "",
         inputIncluirCuotaAlim : ""
-    }
+    },
+    documentacionSeleccionada : ""
 }
 
 export const documentacionReducer=(state = initialState, action)=>{
@@ -26,6 +27,12 @@ export const documentacionReducer=(state = initialState, action)=>{
         return {
             ...state,
             domiciliosDelEmpleado : payload
+        }
+    }
+    case GET_DOC_SELECT : {
+        return {
+            ...state,
+            documentacionSeleccionada : payload
         }
     }
     default : return state

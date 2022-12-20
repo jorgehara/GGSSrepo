@@ -29,13 +29,17 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
     const detalleSelected = useSelector((state)=> state.licenciasState.detalleSelect);
     const urlCreateLicencia = "http://54.243.192.82/api/InsertarNuevaLicencia";
     const urlLicencias = "http://54.243.192.82/api/ModificarDatos"
-    const urlUpdateDetalleLicencia = `http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=${detalleSelected?.idDetalleLicenciaEmpleado}&FechaSuspension=${formLicencias?.inputDateSuspLic}`
+
+                                     
+    const urlCreateDetalleLicencia = `http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=0&IdLicenciaEmpleado=${licenciaEmpleado && licenciaEmpleado.idLicenciaEmpleado}&Desde=${formLicencias?.inputDesdeSolicitaLic}&Hasta=${formLicencias?.inputHastaSolicitaLic}`
+    
     const urlDeleteLicencia = "http://54.243.192.82/api/EliminarLicenciaPorId";
     const dispatch = useDispatch();
     const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
     const [checked , setChecked ] = useState(false);
+    const detalleSeleccionado = useSelector((state)=> state.licenciasState.detalleSelect);
 
-      console.log(licenciaEmpleado)
+    console.log(detalleSeleccionado)
 
      
 
@@ -192,7 +196,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
            updateData(urlLicencias, bodyLicenciasUpdateProrroga, updateLicencia, licenciaEmpleado.idLicenciaEmpleado);
           break;
         case "4 - Suspende Licencia" :
-           updateData(urlUpdateDetalleLicencia, "", updateDetalle, detalleSelected.idDetalleLicenciaEmpleado);
+           updateData(urlCreateDetalleLicencia, "", updateDetalle, detalleSelected.idDetalleLicenciaEmpleado);
           break;
         
         default : return null;
@@ -204,10 +208,10 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
       if(licenciaEmpleado.fechaProrroga && licenciaEmpleado.fechaProrroga){
         let dateProrroga = new Date(licenciaEmpleado.fechaProrroga).setHours(0,0,0,0);
         if(dateOne.valueOf() < dateProrroga.valueOf()){
-          await axios.post(`http://54.243.192.82/api/DetalleLicenciasEmpleados`,bodyDetalleLicencia )
+          await axios.post(urlCreateDetalleLicencia )
                     .then((res)=>{
                       console.log(res)
-                      dispatch(addNewDetalle(res.data))
+                      setRefectch(!refetch);
                     });
         }else{
           return swal({
@@ -219,10 +223,10 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
         return;
       }
       if(dateOne.valueOf() < dateTwo.valueOf()){
-        await axios.post(`http://54.243.192.82/api/DetalleLicenciasEmpleados`,bodyDetalleLicencia )
+        await axios.post(urlCreateDetalleLicencia)
         .then((res)=>{
           console.log(res)
-          dispatch(addNewDetalle(res.data))
+          setRefectch(!refetch);
         });
       }else 
       return swal({
