@@ -9,18 +9,24 @@ import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
 import InputDateDocs from '../Inputs/InputDateDocs/InputDateDocs';
 import { useDispatch, useSelector } from 'react-redux';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
-import { addDocumentacionEmpleados } from '../../redux/actions/fetchActions';
+import { addDocumentacionEmpleados, addNewDoc, deleteDocu } from '../../redux/actions/fetchActions';
 import axios from 'axios';
 import { getInputValue, getOneDocumento } from '../../redux/actions/documentacionActions';
 import { inputButtonClasess, inputButtonClasessDocumentacion } from '../../classes/classes';
 import { GET_INPUT_VALUE } from '../../redux/types/documentacionTypes';
+import swal from 'sweetalert';
 
-const Documentacion = ({responses, setResponses, disable}) => {
-    const columns = ["Fecha", "Vencimiento", "Documento", "Liq", "Observaciones", "Incluir Cuota"]
+const Documentacion = ({responses, setResponses, disable, setRefectch, refetch}) => {
+    const empleadoUno = useSelector((state)=> state.employeStates.employe);
+
+    const columns = ["Seleccionar" ,"Fecha", "Vencimiento", "Documento", "Liq", "Observaciones", "Incluir Cuota"]
     const dispatch = useDispatch();
     const [ disableI, setDisableI] = useState(true);
     const [ formDocumentacion, setFormDocumentacion ] = useState(responses["formDocumentacion"]);
+    const [ body , setBody ] = useState(0);
 
+    const urlDocPost= `http://54.243.192.82/api/EmpleadosDocumentacion?id=${empleadoUno.iDempleado}`;
+    const documentacionSeleccionada = useSelector((state)=> state.documentacionState.documentacionSeleccionada);
     function onChangeValues(e, key){
         const newResponse = {...formDocumentacion};
         newResponse[key] = e;
@@ -39,15 +45,66 @@ const Documentacion = ({responses, setResponses, disable}) => {
         
     },[])
     
-    const empleadoUno = useSelector((state)=> state.employeStates.employe);
     const documentacionEmpleados = useSelector((state)=> state.generalState.documentacionEmpleados);
     const documentaciones = useSelector((state)=> state.documentacionState.domiciliosDelEmpleado);
-
+   
     //const datosFormulario = useSelector((state)=> state.documentacionState.formulario);
 
     const documentacionDelEmpleado = empleadoUno && documentacionEmpleados && documentacionEmpleados.filter((doc)=> {return(doc.idEmpleado === empleadoUno.iDempleado)});
-
-
+    let bodyPetition = {        
+        "fecha": formDocumentacion?.inputDatePresentacion,
+        "idEmpleado": empleadoUno.iDempleado,
+        "idDocumentacion": Number(formDocumentacion?.inputSelectDocumentacion),
+        "rutaAdjunto": null,
+        "obs": formDocumentacion?.textAreaDocumentacion,
+        "fechaVencimiento": (formDocumentacion?.inputDateVencimiento) ? (formDocumentacion?.inputDateVencimiento) : null,
+        "generaLiquidacion": formDocumentacion?.inputCheckLiquidacion,
+        "incluirCuotaAlimentaria": formDocumentacion?.inputIncluirCuotaAlim
+    }
+    function sendDataDoc(){
+        if(empleadoUno.iDempleado && empleadoUno.iDempleado){
+            setBody(((documentacionEmpleados && documentacionEmpleados[documentacionEmpleados.length -1] !== undefined && (documentacionEmpleados[documentacionEmpleados.length -1].idEmpleadoDocumentacion))+1))
+            try{
+                axios.post(urlDocPost, bodyPetition)
+                .then((res)=>{
+                    console.log(res.data)
+                    dispatch(addNewDoc(res.data))
+                    setRefectch(!refetch)
+                })
+            }catch(err){
+                return swal({
+                    title: "Error",
+                    text: "Error al crear la Documentacion del Empleado",
+                    icon: "error",
+                })
+            }
+        }
+        else
+        return swal({
+            title: "Error",
+            text: "Debe seleccionar un Empleado",
+            icon: "error",
+        })
+        
+    }
+    async function deleteData(id){
+        try{
+            await axios.delete(`http://54.243.192.82/api/EmpleadosDocumentacion/${id}`)
+            .then((res)=>{
+                console.log(res)
+                dispatch(deleteDocu(id))
+                return;
+            })
+        }catch(err){
+            return swal({
+                title: "Error",
+                text: "Error al eliminar la Documentación",
+                icon: "error",
+            })
+        }
+    }
+    console.log(documentacionSeleccionada.idEmpleadoDocumentacion)
+console.log(((documentacionEmpleados && documentacionEmpleados[documentacionEmpleados.length -1] !== undefined && (documentacionEmpleados[documentacionEmpleados.length -1].idEmpleadoDocumentacion))+1))
 return (
     <div className='container'>
         <div className='row'>
@@ -85,8 +142,8 @@ return (
                 <CheckLabel idInput="inputIncluirCuotaAlim" nameLabel="Incluir en cuota Alimentaria"  onChange={onChangeValues} action={GET_INPUT_VALUE} value={formDocumentacion?.inputIncluirCuotaAlim && formDocumentacion?.inputIncluirCuotaAlim} />
             </div>
             <div className='col-xl-12'>
-                <ButtonCancelarAceptar cancelar="-" aceptar="+" />
-                <TableBasic1 columns={columns} value={documentacionDelEmpleado}  documentaciones={documentaciones}/>
+                <ButtonCancelarAceptar idElimiar={documentacionSeleccionada.idEmpleadoDocumentacion ? documentacionSeleccionada.idEmpleadoDocumentacion : (body && body)} cancelar="-" aceptar="+" functionSend={sendDataDoc} functionDelete={deleteData} />
+                <TableBasic1 refetch={refetch} setRefetch={setRefectch} columns={columns} value={documentacionDelEmpleado}  documentaciones={documentaciones}/>
             </div>
         </div>
     </div>

@@ -19,8 +19,15 @@ const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaE
     const dispatch = useDispatch();
     const licenciaDelEmpleado = licenciasEmplados && licenciasEmplados.filter((lic)=> lic.idEmpleado === empleadoUno.iDempleado);
 
+    const licenciasDelEmpleado = licenciaDelEmpleado[0] && licenciaDelEmpleado[0] && licenciasEmplados && licenciasEmplados.filter((lic)=>{
+        return(
+            lic.idLicenciaEmpleado === licenciaDelEmpleado[0].idLicenciaEmpleado
+        )
+    })
+
     
-    
+    console.log(licenciasEmplados.filter((lic)=> {return(lic.idLicenciaEmpleado === 468)}))
+
     const opciones = [{
         opcion : "1 - Disponibles por Periodo",        
     },{
