@@ -8,7 +8,7 @@ import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 
 // ------------------------ OBJECTS ------------------------
-import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas } from './Objects'
+import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject } from './Objects'
 // -----------------------------------------------------------
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
@@ -16,9 +16,15 @@ import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc } from '../../redux/actions/fetchActions';
+import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
-import { addSelectedEstadoCivil, addSelectedEstudio, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
+import { addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedParentesco, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
+import swal from "sweetalert";
+
+
+// import { getEstadosCivilesModal } from '../../services/fetchAPI';
+// import { useEffect } from 'react';
+//#endregion
 
 
 
@@ -45,6 +51,7 @@ const NavbarMenu = () => {
 		})
 	}
 
+	
 	useEffect(() => {
 		setResponses({
 			...responses,
@@ -80,7 +87,7 @@ const NavbarMenu = () => {
 	const inputAsignacionParent = useSelector((state) => state.modalState.formulario.inputAsignacionParent)
 	const inputGananciaParent = useSelector((state) => state.modalState.formulario.inputGananciaParent)
 	const inputImporteParent = useSelector((state) => state.modalState.formulario.inputImporteParent)
-	const inputObsParent = useSelector((state) => state.modalState.formulario.inputObsParent)
+	const textAreaParent = useSelector((state) => state.modalState.formulario.textAreaParent)
 	const valueIdParentesco = useSelector((state) => state.generalState.idParentesco)
 
 	//Estados
@@ -118,7 +125,7 @@ const NavbarMenu = () => {
 
 
 
-	// ------- ID & PETITION  -------
+	// ----------------------------------- ID & PETITION  -----------------------------------
 	//Estados Civiles
 	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length - 1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length - 1].idEstadoCivil)) + 1)
 	const bodyPetitionEC = { ...responses.modalDataInputs, idEstadoCivil: idEstadoCivil };
@@ -165,6 +172,8 @@ const NavbarMenu = () => {
 
 	const empleadoresMap = empleadoresValue && empleadoresValue.map((empl, i) => { return empl.razonSocial });
 
+	
+	// --------------------------------------------------------------------------------------------------------------------------------------
 
 	return (
 		<nav className="row gy-3 navbar navbar-expand-lg navbar-light bg-light col-sm-12">
@@ -354,25 +363,99 @@ const NavbarMenu = () => {
 								idModal="Parentescos"
 								nameModal="Parentescos"
 								placeholder={objectParentescos}
-								hasCheckbox={true}
-								checkboxName="Genera Asignación"
-								hasCheckBoxNum={true}
-								checkboxCheckName="Deduce Ganancias"
-								checkboxNumName="Importe"
+								checkboxObject={checkboxParentescos}
+								checkboxNumObject={checkboxNumParentescos}
 								textArea={true}
-								array={parentescosMap} />
-							<BasicModal idModal="estadosEmpleados" nameModal="Estados para empleados" placeholder={objectEstado} array={estadosArray} />
-							<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} array={cargosMap} />
-							<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} array={tareasMap} />
-							<BasicModal idModal="formasDePago" nameModal="Formas de Pago" placeholder={objectFormasDePago} textArea={true} array={formasDePagoMap} />
-							<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true} array={modosContratacionMap} />
-							<BasicModal idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" placeholder={objectModosLiquidacion} dropdown={true} textArea={true} array={modosLiquidacionMap} />
+								textAreaObject={textAreaObject}
+								hasCheckbox={true}							
+								hasCheckBoxNum={true}
+								array={parentescosValue && parentescosValue}
+								propArrayOp="nombreParentesco" propArrayId="iDparentesco"
+								action={addSelectedParentesco}
+								opcionSelected={parentescoSelected}
+								urlApi={urlParentescos}
+								inputIdCompare="nombreParentesco"
+								firstOptionCompare={inputParentesco ? inputParentesco : parentescoSelected.nombreParentesco}
+								secondOptionCompare={inputParentesco ? inputParentesco : parentescoSelected.nombreParentesco}
+								valueObs={textAreaParent ? textAreaParent : parentescoSelected.obs}
+								valueCheckbox={inputAsignacionParent ? inputAsignacionParent : parentescoSelected.generaAsignacion }
+								valueCheckboxNum={inputGananciaParent ? inputGananciaParent : parentescoSelected.deduceGanancias}
+								valueNumCheck={inputImporteParent ? inputImporteParent : parentescoSelected.importeDeduce}
+								dispatchAddAction={addNewParentesco}
+								dispatchDeleteAction={deleteParentesco}
+								dispatchPutAction={putParentesco}
+								dispatchGetID={getIdParentesco}
+								bodyPet={bodyPetParentescos}
+								idApi={valueIdParentesco}
+								onChange={onChangeValues}
+								refetch={refetch}
+								setRefetch={setRefetch}
+								resp={responses}
+
+							/>
+							<BasicModal
+								idModal="estadosEmpleados"
+								nameModal="Estados para empleados"
+								placeholder={objectEstado}
+								array={estadosValue && estadosValue}
+								propArrayOp="nombreEstado" propArrayId="idEstado"
+								action={addSelectedEstado}
+								opcionSelected={estadoSelected}
+								urlApi={urlEstados}
+								inputIdCompare="nombreEstado"
+								firstOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
+								secondOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
+								dispatchAddAction={addNewEstado}
+								dispatchDeleteAction={deleteEstado}
+								dispatchPutAction={putEstado}
+								dispatchGetID={getIdEstado}
+								bodyPet={bodyPetEstados}
+								idApi={valueIdEstado}
+								onChange={onChangeValues}
+								resp={responses}
+								refetch={refetch}
+								setRefetch={setRefetch}
+
+							/>
+
+							<BasicModal
+								idModal="formasDePago"
+								nameModal="Formas de Pago"
+								placeholder={objectFormasDePago}
+								textArea={true}
+								textAreaObject={textAreaObject}
+								array={formasPagoValue && formasPagoValue}
+								propArrayOp="nombreFormadePago" propArrayId="iDformadePago"
+								action={addSelectedFormaPago}
+								opcionSelected={formaPagoSelected}
+								urlApi={urlFormasPago}
+								inputIdCompare="nombreFormadePago"
+								firstOptionCompare={inputFormaDePago ? inputFormaDePago : formaPagoSelected.nombreFormadePago}
+								secondOptionCompare={inputFormaDePago ? inputFormaDePago : formaPagoSelected.nombreFormadePago}
+								valueObs={textAreaFormaPago ? textAreaFormaPago : formaPagoSelected.obs}
+								dispatchAddAction={addNewFormaPago}
+								dispatchDeleteAction={deleteFormaPago}
+								dispatchPutAction={putFormaPago}
+								dispatchGetID={getIdFormaPago}
+								bodyPet={bodyPetFormasPago}
+								idApi={valueIdFormaPago}
+								onChange={onChangeValues}
+								resp={responses}
+								refetch={refetch}
+								setRefetch={setRefetch}
+							/>
+
+
+							<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} />
+							<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} />
+							<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true}/>
+							<BasicModal idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" placeholder={objectModosLiquidacion} dropdown={true} textArea={true} />
 							<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
-							<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} array={paises} />
-							<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} array={nacionalidades} />
-							<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" aDepartamentos={deptos} aProvincias={provincias} aLocalidades={localidades} aBarrios={barrios} />
-							<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true} array={calles} />
-							<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" array={empleadoresMap} />
+							<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} />
+							<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} />
+							<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" />
+							<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true}/>
+							<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
 							<BasicModal idModal="alicuotas" nameModal="Alicuotas" placeholder={objectAlicuotas} inputNum={true} inputNumName="Alicuota" hasCheckbox={true} checkboxName="Pide N° CUIT" />
 
 							{/* {/ MODALES TABLA PARA LIQUIDACIÓN /} */}

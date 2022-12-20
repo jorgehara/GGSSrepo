@@ -3,6 +3,18 @@
 // -----  OBJECTS TABLA PARA EMPLEADOS -----
 
 
+// TEXT AREA GENERAL PARA TODOS LOS MODALES
+export const textAreaObject = [
+  {
+    "label": "Observaciones",
+    "idInput": "obs",
+    "nameInput": "obs"
+  }
+]
+
+
+// ----------------------------------------
+
 export const objectEstadosCiviles = [
 	{
 		"label": "Masculino",
@@ -63,11 +75,22 @@ export const checkboxNumParentescos = [
     "label": "Deduce ganancias",
     "labelNum": "Importe",
     "idInput": "deduceGanancias",
-    "idInputNum": "importeDeduce"
+    "nameInput": "deduceGanancias",
+    "idInputNum": "importeDeduce",
+    "nameInputNum": "importeDeduce"
   }
 ]
 
 
+// Formas de pago
+export const objectFormasDePago = [
+  {
+    "label": "Forma de Pago",
+    "placeholder": "Débito",
+    "idInput": "nombreFormadePago",
+    "nameInput": "nombreFormadePago"
+  }
+]
 
 
 // -------------
@@ -75,16 +98,12 @@ export const checkboxNumParentescos = [
 export const objectEstado = [
   {
     "label": "Estado",
-    "placeholder": "Estado1"
+    "placeholder": "Estado1",
+    "idInput": "nombreEstado",
+    "nameInput": "nombreEstado"
   }
 ]
 
-export const objectFormasDePago = [
-  {
-    "label": "Forma de Pago",
-    "placeholder": "Débito"
-  }
-]
 
 export const objectMotivosEgreso = [
   {

@@ -33,25 +33,19 @@ const TextArea = ({inputName, maxLength, value, disabled, action, onChange, idIn
         </div>
         <form>
         <div className='form__grupo__inputs_Obs mt-1'>
-
-        <textarea 
-          value={value}
-          placeholder="Ingrese Observaciones" 
-          onChange={(e)=>onChange(e, action)}
-          maxLength={maxLength}
-          id={idInput} 
-          cols="71" 
-          rows="3"
-          name={idInput} 
-          disabled={disabled}
-          data-max-chars="255" 
-          class="input-control count-chars px-1"
-          >
-
-          </textarea>
-          <div 
-          class="input-msg text txtArea">
-          </div>
+        <input className="form-control-obs txtArea" 
+                value={value}
+                placeholder="Ingrese Observaciones" 
+                // onChange={(e) => onChange(e.target.value, inputId )} // ON CHANGE NUEVO PARA FUNCION NUEVA, NO ANDA
+                onChange={(e) => onChange(e.target.value, idInput)}
+                id={idInput} 
+                cols="21" 
+                rows="2"
+                name={idInput} 
+                maxLength={maxLength}
+                disabled={disabled}
+                >
+        </input>
         </div>
         </form>
         {/* <input 
