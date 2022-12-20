@@ -65,10 +65,10 @@ const BasicModal = ({
   const [toModify, setToModify] = useState(false)
 
 
-  function onSelect(action, payload) {
-    dispatch(action(payload));
-    dispatch(dispatchGetID(payload[propArrayId]))
-  }
+  // function onSelect(action, payload) {
+  //   dispatch(action(payload));
+  //   dispatch(dispatchGetID(payload[propArrayId]))
+  // }
 
   function onCancel(e, name) {
     setDisabled(false)
@@ -126,6 +126,7 @@ const BasicModal = ({
                 text: "Agregado con éxito",
                 icon: "success",
               })
+              setRefetch(!refetch); // resetea la lista 
 
             }
           })
@@ -141,12 +142,13 @@ const BasicModal = ({
                     text: "Modificado con éxito",
                     icon: "success",
                   })
+                  setRefetch(!refetch); // resetea la lista 
                 }
               })
           })
 
       }
-      setRefetch(!refetch); // resetea la lista 
+      
     } catch (err) {
       swal({
         title: "Error",
@@ -207,8 +209,8 @@ const BasicModal = ({
                       <option
                         key={i}
                         value={op && op[propArrayId]}
-                        onClick={() => onSelect(action, op)}  // si se rompe el abm comentar esta linea y descomentar la de abajo
-                        // onClick={() => dispatch(dispatchGetID(op[propArrayId]))}
+                        // onClick={() => onSelect(action, op)}  // si se rompe el abm comentar esta linea y descomentar la de abajo
+                        onClick={() => dispatch(dispatchGetID(op[propArrayId]))}
                       >
                         {op && op[propArrayOp]}
                       </option>

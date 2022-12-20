@@ -8,7 +8,7 @@ export const urls = {
 // -----  OBJECTS TABLA PARA EMPLEADOS -----
 
 
-// TEXT AREA GENERAL PARA TODOS LOS MODALES
+// TEXT AREA GENERAL PARA TODOS LOS MODALES CON TEXTAREA QUE USEN "OBS" DE NOMBRE
 export const textAreaObject = [
   {
     "label": "Observaciones",
@@ -97,6 +97,33 @@ export const objectFormasDePago = [
   }
 ]
 
+// cargos
+export const objectCargos = [
+  {
+    "label": "Cargos",
+    "placeholder": "Administrativo",
+    "idInput": "nombreCargo",
+    "nameInput": "nombreCargo"
+  }
+]
+export const textAreaCargos = [
+  {
+    "label": "Observaciones",
+    "idInput": "observacion",
+    "nameInput": "observacion"
+  }
+]
+
+// tareas desempeñadas
+export const objectTareas = [
+  {
+    "label": "Tarea",
+    "placeholder": "Tarea 1",
+    "idInput": "tareaDesempeñada",
+    "nameInput": "tareaDesempeñada"
+  }
+]
+
 
 // -------------
 
@@ -140,19 +167,6 @@ export const objectPaises = [
 
 ]
 
-export const objectCargos = [
-  {
-    "label": "Cargos",
-    "placeholder": "Administrativo"
-  }
-]
-
-export const objectTareas = [
-  {
-    "label": "Tarea",
-    "placeholder": "Tarea 1"
-  }
-]
 
 export const objectModosContratacion = [
   {

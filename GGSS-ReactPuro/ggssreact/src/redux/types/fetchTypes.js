@@ -48,6 +48,8 @@ export const ADD_NEW_TIPODOC = "ADD_NEW_TIPODOC"
 export const ADD_NEW_PARENTESCO = "ADD_NEW_PARENTESCO"
 export const ADD_NEW_ESTADO = "ADD_NEW_ESTADO"
 export const ADD_NEW_FORMAPAGO = "ADD_NEW_FORMAPAGO"
+export const ADD_NEW_CARGO = "ADD_NEW_CARGO"
+export const ADD_NEW_TAREA = "ADD_NEW_TAREA"
 
 
 // DELETE TYPES
@@ -74,6 +76,15 @@ export const DELETE_ESTADO = "DELETE_ESTADO"
 export const GET_ID_FORMAPAGO = "GET_ID_FORMAPAGO"
 export const DELETE_FORMAPAGO = "DELETE_FORMAPAGO"
 
+// cargos
+export const GET_ID_CARGO = "GET_ID_CARGO"
+export const DELETE_CARGO = "DELETE_CARGO"
+
+// tareas desempeñadas
+
+export const GET_ID_TAREA = "GET_ID_TAREA"
+export const DELETE_TAREA = "DELETE_TAREA"
+
 // PUT TYPES
 
 export const PUT_ESCI = "PUT_ESCI"
@@ -82,6 +93,8 @@ export const PUT_TIPODOC = "PUT_TIPODOC"
 export const PUT_PARENTESCO = "PUT_PARENTESCO"
 export const PUT_ESTADO = "PUT_ESTADO"
 export const PUT_FORMAPAGO = "PUT_FORMAPAGO"
+export const PUT_CARGO = "PUT_CARGO"
+export const PUT_TAREA = "PUT_TAREA"
 
 
 export const ADD_CONCEPTOS = "ADD_CONCEPTOS";
