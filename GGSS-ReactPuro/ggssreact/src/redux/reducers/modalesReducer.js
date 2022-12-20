@@ -9,6 +9,7 @@ export const initialState = {
     formaPagoSelected: "",
     cargoSelected: "",
     tareaSelected: "",
+    calleSelected: "",
     formulario: {
         // estados civiles
         inputEstadosCivilesModal: "",
@@ -32,7 +33,8 @@ export const initialState = {
         inputCargo : "",
         textAreaCargo : "",
         // tareas desempeñadas
-        inputTarea : ""
+        inputTarea : "",
+        textAreaTarea : ""
     }
 }
 

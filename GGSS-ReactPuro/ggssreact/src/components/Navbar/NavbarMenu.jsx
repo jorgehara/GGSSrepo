@@ -193,6 +193,7 @@ const Navbar = () => {
 		"deduceGanancias": responses.modalDataInputs?.deduceGanancias,
 		"importeDeduce": responses.modalDataInputs?.importeDeduce
 	}
+	
 	// estados para los empleados
 	const idEstado = ((estadosValue && estadosValue[estadosValue.length - 1] !== undefined && (estadosValue[estadosValue.length - 1].idEstado)) + 1)
 	const bodyPetEstados = { ...responses.modalDataInputs, idEstado: idEstado }

@@ -505,6 +505,14 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
 
+        // case PUT_CALLES : {
+        //     return {
+        //         ...state,
+        //         calles: state.calles.filter((calle) => calle.idCalle !== action.payload ),
+        //         calles: [...state.calles, action.payload]
+        //     }
+        // }
+
         default : return state;
     }
 }

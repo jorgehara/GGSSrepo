@@ -124,6 +124,7 @@ const BasicModal = ({
                 text: "Agregado con éxito",
                 icon: "success",
               })
+              setRefetch(!refetch); // resetea la lista 
 
             }
           })
@@ -139,12 +140,13 @@ const BasicModal = ({
                     text: "Modificado con éxito",
                     icon: "success",
                   })
+                  setRefetch(!refetch); // resetea la lista 
                 }
               })
           })
 
       }
-      setRefetch(!refetch); // resetea la lista 
+      
     } catch (err) {
       swal({
         title: "Error",
