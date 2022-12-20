@@ -1,4 +1,4 @@
-import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, ADD_PETITION_VALUE, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS } from "../types/modalesTypes"
+import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS, ADD_SELECTED_ESTADO, GET_ESTADOS, ADD_SELECTED_FORMAPAGO, GET_FORMASPAGO } from "../types/modalesTypes"
 
 export const addSelectedEstadoCivil = (payload) => {
     return {
@@ -54,6 +54,31 @@ export const getParentescos = (payload) => {
     }
 }
 
+export const addSelectedEstado = (payload) => {
+    return {
+        type: ADD_SELECTED_ESTADO,
+        payload
+    }
+}
+export const getEstados = (payload) => {
+    return {
+        type: GET_ESTADOS,
+        payload
+    }
+}
+
+export const addSelectedFormaPago = (payload) => {
+    return {
+        type: ADD_SELECTED_FORMAPAGO,
+        payload
+    }
+}
+export const getFormasPago = (payload) => {
+    return {
+        type: GET_FORMASPAGO,
+        payload
+    }
+}
 
 
 

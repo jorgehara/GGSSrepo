@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react';
 import InputDate from '../../InputDate/InputDate'
 import "./Childs.css";
 
 
-const FechaSuspencion = ({valueForm, onChange}) => {
+const FechaSuspencion = ({valueForm, onChange, setCheckeds}) => {
   const [checked, setChecked] = useState(false);
   const [disable, setDisable] = useState(false);
+
+  useEffect(()=>{
+    setCheckeds(false)
+  },[])
 
   return (
     <div className='row'>

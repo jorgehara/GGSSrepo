@@ -1,8 +1,11 @@
 import React from 'react'
+import { useEffect } from 'react'
 import InputDate from '../../InputDate/InputDate'
 
-const NuevaLicencia = ({idInput, nameLAbel, onChange, valueForm}) => {
-
+const NuevaLicencia = ({idInput, nameLAbel, onChange, valueForm, checked, setChecked}) => {
+  useEffect(()=>{
+    setChecked(false)
+  },[])
 
   const fechaInicio = new Date(valueForm?.inputDesdeSolicitaLic && valueForm?.inputDesdeSolicitaLic).getTime();
   const fechaFin = new Date(valueForm?.inputHastaSolicitaLic && valueForm?.inputHastaSolicitaLic).getTime();

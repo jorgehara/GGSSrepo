@@ -33,7 +33,11 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
     const urlDeleteLicencia = "http://54.243.192.82/api/EliminarLicenciaPorId";
     const dispatch = useDispatch();
     const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
-      console.log(empleadoUno.iDempleado)
+    const [checked , setChecked ] = useState(false);
+
+      console.log(licenciaEmpleado)
+
+     
 
     let bodyLicencias = {
       "idEmpleado": empleadoUno.iDempleado,
@@ -71,12 +75,13 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
     console.log(licenciaEmpleado)
 
     const bodyDetalleLicencia = {
-      IdDetalleLicenciaEmpleado : ((detalleLicencia && detalleLicencia[detalleLicencia.length -1]) && (detalleLicencia && detalleLicencia[detalleLicencia.length -1])+1),
+      IdDetalleLicenciaEmpleado : 0,
       IdLicenciaEmpleado : licenciaEmpleado && licenciaEmpleado.idLicenciaEmpleado,
       Desde :formLicencias && formLicencias.inputDesdeSolicitaLic,
       Hasta :formLicencias && formLicencias.inputHastaSolicitaLic,
       FechaSuspencion : null
     }
+    
 
     let dateOne = new Date(formLicencias?.inputDesdeSolicitaLic).setHours(0,0,0,0);
     let dateTwo = new Date(licenciaEmpleado?.fechaVencimiento && licenciaEmpleado?.fechaVencimiento.substring(0,licenciaEmpleado?.fechaVencimiento.length -9)).setHours(0,0,0,0);
@@ -164,7 +169,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
     }
       function deleteWithOptions(){
         switch(selectedOption){
-          case  "1 - Disponibles por Periodo" ||  "3 - Prorroga Vencimiento" : 
+          case  "1 - Disponibles por Periodo" ||  "3 - Prorroga Vencimiento" || "2 - Solicita Nueva Licencia" : 
           deleteLicenciaAxios(urlDeleteLicencia, deleteLicencia ,licenciaEmpleado?.idLicenciaEmpleado );
             break;
           case "4 - Suspende Licencia":
@@ -194,8 +199,39 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
       }
     }
 
-    return (  
-        
+    async function solicitanuevaLic(bodyDetalleLicencia){
+      debugger;
+      if(licenciaEmpleado.fechaProrroga && licenciaEmpleado.fechaProrroga){
+        let dateProrroga = new Date(licenciaEmpleado.fechaProrroga).setHours(0,0,0,0);
+        if(dateOne.valueOf() < dateProrroga.valueOf()){
+          await axios.post(`http://54.243.192.82/api/DetalleLicenciasEmpleados`,bodyDetalleLicencia )
+                    .then((res)=>{
+                      console.log(res)
+                      dispatch(addNewDetalle(res.data))
+                    });
+        }else{
+          return swal({
+                        title: "Error",
+                        text: `La fecha de nueva Licencia no puede ser superior a la Fecha de Prórroga`,
+                        icon: "error",
+                      })
+        }
+        return;
+      }
+      if(dateOne.valueOf() < dateTwo.valueOf()){
+        await axios.post(`http://54.243.192.82/api/DetalleLicenciasEmpleados`,bodyDetalleLicencia )
+        .then((res)=>{
+          console.log(res)
+          dispatch(addNewDetalle(res.data))
+        });
+      }else 
+      return swal({
+        title: "Error",
+        text: `La fecha de nueva Licencia no puede ser superior a la Fecha de Vencimiento`,
+        icon: "error",
+      })
+    }
+    return (          
         <>
           <div>
             <fieldset className='border p-2'>
@@ -218,16 +254,16 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
                   
               </div>
                {
-                selectedOption && selectedOption === "1 - Disponibles por Periodo" && <PorPeriodo sendData={sendData} valueForm={valueForm} onChange={onChange} valueId={valueId} array={array} propArrayOpFem={propArrayOpFem} />
+                selectedOption && selectedOption === "1 - Disponibles por Periodo" && <PorPeriodo setChecked={setChecked} checked={checked} sendData={sendData} valueForm={valueForm} onChange={onChange} valueId={valueId} array={array} propArrayOpFem={propArrayOpFem} /> 
                }
                {
-                selectedOption && selectedOption === "2 - Solicita Nueva Licencia" && <NuevaLicencia valueForm={valueForm} onChange={onChange} valueId={valueId} array={array} propArrayOpFem={propArrayOpFem} />
+                selectedOption && selectedOption === "2 - Solicita Nueva Licencia" && <NuevaLicencia setChecked={setChecked} checked={checked} valueForm={valueForm} onChange={onChange} valueId={valueId} array={array} propArrayOpFem={propArrayOpFem} /> 
                }
                {
-                selectedOption && selectedOption === "3 - Prorroga Vencimiento" && <Prorroga valueForm={valueForm} onChange={onChange} />
+                selectedOption && selectedOption === "3 - Prorroga Vencimiento" && <Prorroga setChecked={setChecked} checked={checked} valueForm={valueForm} onChange={onChange} /> 
                }
                {
-                 selectedOption && selectedOption === "4 - Suspende Licencia" && <FechaSuspencion valueForm={valueForm} onChange={onChange} />
+                 selectedOption && selectedOption === "4 - Suspende Licencia" && <FechaSuspencion setCheckeds={setChecked} checked={checked} valueForm={valueForm} onChange={onChange} />
                }
            </div>
            </fieldset>
@@ -235,7 +271,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
              <button className='btn btn-outline-danger btnAgregar'  onClick={deleteWithOptions} >-</button>
              <button className='btn btn-outline-success btnAgregar' onClick={fetchApiWithOptions}>+</button>
           </div>
-          <TableLicencias licenciaDelEmpleado={licenciaDelEmpleado} columns={columns1} value={[]} />
+          <TableLicencias setChecked={setChecked} checked={checked} licenciaDelEmpleado={licenciaDelEmpleado} columns={columns1} value={[]} />
           <div className='col-xl-12 d-flex flex-row-reverse mt-2'>
              <button className='btn btn-outline-danger btnAgregar '>-</button>
           </div>

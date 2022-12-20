@@ -184,6 +184,14 @@ const Empleados = () => {
 
       console.log("ejecuto empleados")
 
+      
+      useEffect(()=>{
+        axios.get(`http://54.243.192.82/api/MostrarDatosPorEmpleado/${empleadoUno?.iDempleado}`)
+        .then((res)=>{
+            setLicenciaEmpladoDatos(res.data)
+        })
+    },[empleadoUno?.iDempleado, refetch])
+      
 return (
     <div className='container-fluid'>
         <div className='row'>
@@ -211,7 +219,7 @@ return (
                     tabIndex === 5 && <Documentacion disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
-                    tabIndex === 6 && <Licencias disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
+                    tabIndex === 6 && <Licencias  setRefectch={setRefectch} refetch={refetch} setLicenciaEmpladoDatos={setLicenciaEmpladoDatos} licenciaEmpleadoDatos={licenciaEmpleadoDatos} disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
                     tabIndex === 7 && <Extras disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
@@ -222,7 +230,7 @@ return (
             <button className='btn btn-danger ' onClick={(e)=>cancelEdit(e)}>
                 Cancelar
             </button>
-            <button className='btn btn-success '>
+            <button className='btn btn-success'  >
                 Aceptar
             </button>
         </div>
