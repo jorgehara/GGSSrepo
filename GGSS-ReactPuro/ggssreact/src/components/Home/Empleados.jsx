@@ -13,13 +13,13 @@ import Extras from '../Extras/Extras';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAgrupamientos, addBancos, addBarrios, addCalles, addCargos, addCategorias, addCentroDeCosto, addConceptos, addConvenios, addDatosExtras, addDepartamentos, addDirecciones, addDocumentacionEmpleados, addEmpleadores, addEsquemas, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addInstrumLegales, addLicenciaEmpleados, addLocalidades, addLugaresDePago, addModosContratacion, addModosLiquidacion, addNumeradores, addObrasSociales, addPaises, addParentescos, addProvincias, addSectorDepto, addSindicatos, addTareasDesempeñadas, addTiposDocumento, disabledInputs } from '../../redux/actions/fetchActions';
-import { disableFunctions } from '../../redux/actions/employeActions';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import axios from 'axios';
 import { addDomicilios } from '../../redux/actions/domiciliosActions';
 import { getTrabajosAnteriores } from '../../redux/actions/trabajosAnterioresActions';
 import { getOneDocumento } from '../../redux/actions/documentacionActions';
 import { addDetalleLicencia } from '../../redux/actions/licenciasActions';
+import swal from 'sweetalert';
 
 const Empleados = () => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -28,9 +28,16 @@ const Empleados = () => {
     const [image, setImage] = useState("");
     const [disableEstado, setDisableEstado] = useState(false);
     const [empleados, setEmpleados] = useState([]);
+    const [ licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
+    const [ refetch , setRefectch ] =useState(false);
+    const empleadoUno = useSelector((state)=> state.employeStates.employe);
 
-    
+
+    const licenciaEmpleado = useSelector((state)=> state.licenciasState.licenciaEmpleado);
     const dispatch = useDispatch();
+
+
+
 
 //#region URLs
 
@@ -77,7 +84,6 @@ const Empleados = () => {
     const urlDetalleLicenciasEmpleados = "http://54.243.192.82/api/DetalleLicenciasEmpleados";
 //#endregion
     
-    const empleadoUno = useSelector((state)=> state.employeStates.employe);
 
     function setImageEmpleado(){
         empleadoUno.obsFechaIngreso !== undefined && setImage(empleadoUno.obsFechaIngreso);
@@ -112,7 +118,6 @@ const Empleados = () => {
     }
     console.log(responses)
     useEffect(()=>{
-        // console.log("ejecuta use effect fetchs")
         handleFetch( urlEstados, addEstados);
         handleFetch( urlEstadosCiviles,addEstadosCiviles);
         handleFetch( urlPaisesNac,addPaises);
@@ -121,8 +126,7 @@ const Empleados = () => {
         handleFetch( urlTiposDNI,addTiposDocumento);
         handleFetch( urlParentescos,addParentescos);
         handleFetch( urlFamiliares,addFamiliares);
-        handleFetch( urlNumeradores,addNumeradores);         
-        handleFetch( urlFamiliares,addFamiliares);
+        handleFetch( urlNumeradores,addNumeradores);                
 
         handleFetch(urlDomicilios, addDomicilios);
         handleFetch(urlCalles, addCalles);
@@ -166,23 +170,19 @@ const Empleados = () => {
       },[disable])
 
       useEffect(() => {
-        console.log("ejecuta use effect imagen")
         setImageEmpleado()
       }, [empleadoUno.obsFechaIngreso]);
 
       useEffect(()=>{
-        console.log("ejecuta use effect disable estado")
         setDisableEstado(false);
       },[responses?.inputSexo])
 
       useEffect(()=>{
-        console.log("ejecuta use effect carga empleados")
         axios.get("http://54.243.192.82/api/Empleados?records=10000")
       .then((res) =>  setEmpleados(res.data.result));
       
       },[])
 
-      console.log("ejecuto empleados")
 
       
       useEffect(()=>{
@@ -198,7 +198,7 @@ return (
             <div className='col-xl-3'>
                 <Browser  disable={disable} setDisable={setDisable} />
             </div>
-            <div className='col-xl-9 lateralDerecho'>
+            <div className='col-xl-9 '>
                 <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
                 {
                     tabIndex === 0 && <DatosPersonales empleados={empleados} disableEstado={disableEstado} image={image} disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
@@ -239,4 +239,4 @@ return (
 )
 }
 
-export default Empleados;
+export default Empleados
