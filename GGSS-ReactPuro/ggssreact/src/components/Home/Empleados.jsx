@@ -184,24 +184,7 @@ const Empleados = () => {
       },[])
 
 
-      let dateOne = new Date(responses.formLicencias?.inputDesdeSolicitaLic).setHours(0,0,0,0);
-      let dateTwo = new Date(licenciaEmpleado?.fechaVencimiento && licenciaEmpleado?.fechaVencimiento.substring(0,licenciaEmpleado?.fechaVencimiento.length -9)).setHours(0,0,0,0);
-
-
-      async function solicitanuevaLic(bodyDetalleLicencia){
-        if(dateOne.valueOf() < dateTwo.valueOf()){
-          await axios.post(`http://54.243.192.82/api/DetalleLicenciasEmpleados`,bodyDetalleLicencia )
-          .then((res)=>{
-            console.log(res)
-            //dispatch(addNewDetalle(res.data))
-          });
-        }else 
-        swal({
-          title: "Error",
-          text: `La fecha de nueva Licencia no puede ser superior a la Fecha de Vencimiento`,
-          icon: "error",
-        })
-      }
+      
       useEffect(()=>{
         axios.get(`http://54.243.192.82/api/MostrarDatosPorEmpleado/${empleadoUno?.iDempleado}`)
         .then((res)=>{
@@ -236,7 +219,7 @@ return (
                     tabIndex === 5 && <Documentacion disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
-                    tabIndex === 6 && <Licencias solicitanuevaLic={solicitanuevaLic} setRefectch={setRefectch} refetch={refetch} setLicenciaEmpladoDatos={setLicenciaEmpladoDatos} licenciaEmpleadoDatos={licenciaEmpleadoDatos} disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
+                    tabIndex === 6 && <Licencias  setRefectch={setRefectch} refetch={refetch} setLicenciaEmpladoDatos={setLicenciaEmpladoDatos} licenciaEmpleadoDatos={licenciaEmpleadoDatos} disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />                    
                 }
                 {
                     tabIndex === 7 && <Extras disable={disable} setDisable={setDisable} responses={responses} setResponses={setResponses} />
@@ -247,7 +230,7 @@ return (
             <button className='btn btn-danger ' onClick={(e)=>cancelEdit(e)}>
                 Cancelar
             </button>
-            <button className='btn btn-success '>
+            <button className='btn btn-success'  >
                 Aceptar
             </button>
         </div>

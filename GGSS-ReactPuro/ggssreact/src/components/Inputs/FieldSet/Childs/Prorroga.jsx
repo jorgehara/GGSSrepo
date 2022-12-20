@@ -1,8 +1,12 @@
 import React from 'react'
+import { useEffect } from 'react'
 import InputDate from '../../InputDate/InputDate'
 import InputForm from '../../InputForm/InputForm'
 
-const Prorroga = ({valueForm, onChange}) => {
+const Prorroga = ({valueForm, onChange, checked, setChecked}) => {
+  useEffect(()=>{
+    setChecked(false)
+  },[])
   return (
     <div className='row'>
         <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center'>
