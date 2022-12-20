@@ -11,15 +11,13 @@ import EmployeData from '../EmployeData/EmployeData'
 import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
 
-const Licencias = ({responses, setResponses}) => {
-    const cantidadDias = 10;
+const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaEmpladoDatos,setRefectch, refetch}) => {
+    
     const [ formLicencias, setFormLicencias ] = useState(responses["formLicencias"]);
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
     const licenciasEmplados = useSelector((state)=> state.generalState.licenciasEmpleados);
     const dispatch = useDispatch();
     const licenciaDelEmpleado = licenciasEmplados && licenciasEmplados.filter((lic)=> lic.idEmpleado === empleadoUno.iDempleado);
-    const [ licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
-    const [ refetch , setRefectch ] =useState(false);
 
     
     
@@ -39,18 +37,8 @@ const Licencias = ({responses, setResponses}) => {
     const licenciaEmpleado = useSelector((state)=> state.licenciasState.licenciaEmpleado);
     const detalleLicencia = useSelector((state)=> state.licenciasState.detalleLicencia);
     const detalleSelected = useSelector((state)=> state.licenciasState.detalleSelect);
-    const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
-    console.log(licenciaEmpleado?.idLicenciaEmpleado);
-    const handleFetch=(url, action )=>{
-        dispatch({type: SET_LOADING});
-        axios.get(url)
-        .then((res)=>{
-            dispatch( action(res.data.result));
-        })
-        .catch((err)=>{
-            dispatch({type:AXIOS_ERROR});
-        })
-    }
+    
+    
     const newAños = años && años.map((año)=>{
         return (
             {
@@ -58,14 +46,9 @@ const Licencias = ({responses, setResponses}) => {
             }
         )
     })
-    useEffect(()=>{
-        axios.get(`http://54.243.192.82/api/MostrarDatosPorEmpleado/${empleadoUno?.iDempleado}`)
-        .then((res)=>{
-            setLicenciaEmpladoDatos(res.data)
-        })
-    },[empleadoUno?.iDempleado, refetch])
+    
 
-    console.log(licenciaEmpleadoDatos)
+   
 
     function onChangeValues(e, key){
         const newResponse = {...formLicencias};
@@ -74,6 +57,7 @@ const Licencias = ({responses, setResponses}) => {
             ...newResponse
         });
     };
+
     useEffect(() => {
         setResponses({
           ...responses,

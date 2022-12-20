@@ -20,7 +20,7 @@ import PorPeriodo from './Childs/PorPeriodo'
 import Prorroga from './Childs/Prorroga'
 import "./FieldSet.css";
 
-const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onChange, valueForm, licenciaDelEmpleado, detalleLicencia, sendData, formLicencias, setLicenciaEmpladoDatos, setRefectch, refetch}) => {
+const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onChange, valueForm, licenciaDelEmpleado, detalleLicencia, sendData, formLicencias, setLicenciaEmpladoDatos, setRefectch, refetch, solicitanuevaLic}) => {
     const columns1 =["Seleccionar","Año", "Días Totales", "Tomados", "Restan", "Vto", "Prórroga", "Resolución", "Disponibles"]
     const columns2 =["Seleccionar" ,"Desde", "Hasta", "Fecha Suspensión"]
 
@@ -33,7 +33,8 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
     const urlDeleteLicencia = "http://54.243.192.82/api/EliminarLicenciaPorId";
     const dispatch = useDispatch();
     const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
-      console.log(empleadoUno.iDempleado)
+
+      console.log(licenciaDelEmpleado)
 
     let bodyLicencias = {
       "idEmpleado": empleadoUno.iDempleado,
@@ -68,7 +69,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
       "nroResolucion": formLicencias?.inputNuevaResolucionLic
     }
     
-    console.log(licenciaEmpleado)
+    console.log(licenciaDelEmpleado)
 
     const bodyDetalleLicencia = {
       IdDetalleLicenciaEmpleado : ((detalleLicencia && detalleLicencia[detalleLicencia.length -1]) && (detalleLicencia && detalleLicencia[detalleLicencia.length -1])+1),
@@ -79,33 +80,11 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
     }
 
     let dateOne = new Date(formLicencias?.inputDesdeSolicitaLic).setHours(0,0,0,0);
-    let dateTwo = new Date(licenciaEmpleado?.fechaVencimiento && licenciaEmpleado?.fechaVencimiento.substring(0,licenciaEmpleado?.fechaVencimiento.length -9)).setHours(0,0,0,0);
-    let dateProrroga = new Date(formLicencias?.inputNuevaFechaLic).setHours(0,0,0,0);
+      let dateTwo = new Date(licenciaEmpleado?.fechaVencimiento && licenciaEmpleado?.fechaVencimiento.substring(0,licenciaEmpleado?.fechaVencimiento.length -9)).setHours(0,0,0,0);
 
-    const handleFetch=(url, action )=>{
-      dispatch({type: SET_LOADING});
-      axios.get(url)
-      .then((res)=>{
-          dispatch( action(res.data.result));
-      })
-      .catch((err)=>{
-          dispatch({type:AXIOS_ERROR});
-      })
-    }
-    async function solicitanuevaLic(){
-      if(dateOne.valueOf() < dateTwo.valueOf()){
-        axios.post(`http://54.243.192.82/api/DetalleLicenciasEmpleados`,bodyDetalleLicencia )
-        .then((res)=>{
-          console.log(res)
-          //dispatch(addNewDetalle(res.data))
-        });
-      }else 
-      swal({
-        title: "Error",
-        text: `La fecha de nueva Licencia no puede ser superior a la Fecha de Vencimiento`,
-        icon: "error",
-      })
-    }
+      let dateProrroga = new Date(formLicencias?.inputNuevaFechaLic).setHours(0,0,0,0);
+    
+    
     async function updateData(url, bodyPetition, action, id){
       if(dateTwo.valueOf() > dateProrroga){
         return swal({
@@ -181,7 +160,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
            sendData(urlCreateLicencia,bodyLicencias, addNewLicencia);
           break;
         case "2 - Solicita Nueva Licencia":
-          solicitanuevaLic();
+          solicitanuevaLic(bodyDetalleLicencia);
           break;
         case "3 - Prorroga Vencimiento"  :
            updateData(urlLicencias, bodyLicenciasUpdateProrroga, updateLicencia, licenciaEmpleado.idLicenciaEmpleado);
@@ -189,13 +168,11 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
         case "4 - Suspende Licencia" :
            updateData(urlUpdateDetalleLicencia, "", updateDetalle, detalleSelected.idDetalleLicenciaEmpleado);
           break;
-        
         default : return null;
       }
     }
 
-    return (  
-        
+    return (          
         <>
           <div>
             <fieldset className='border p-2'>
