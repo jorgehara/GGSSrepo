@@ -24,7 +24,7 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
       console.log(value)
       dispatch(provinciaAction(value))
     }
-   
+   console.log(array)
   return (
         clasess ? <div className={`${clasess.classOne}`}>
         <div className={`${clasess.classTwo}`}>
@@ -95,7 +95,7 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
                                                          </option> 
                         )
                     }) :
-                        array !== undefined && array.map((op, index)=>{
+                        array  && array.map((op, index)=>{
                             return(
                               (Number(idSelected) === op[valueId]) ? <option key={index} selected onClick={(e)=>onClickOption(op)} value={op[valueId]}>
                                                                 {op[propArrayOpFem]} 

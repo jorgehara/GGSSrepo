@@ -199,7 +199,7 @@ const BasicModal = ({
                   aria-label="multiple select example"
                   disabled={disabled}
                 >
-                  {array && opcionesApi.map((op, i) => {
+                  {(array && array) && opcionesApi && opcionesApi?.map((op, i) => {
                     return (
                       <option
                         key={i}
