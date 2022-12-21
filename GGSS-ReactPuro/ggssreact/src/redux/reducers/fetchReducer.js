@@ -1,4 +1,6 @@
-import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING, ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, ADD_NEW_CARGO, GET_ID_CARGO, DELETE_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_INSTRUM_LEGALES, ADD_CONCEPTOS, ADD_DATOS_EXTRAS, UPDATE_LICENCIA, DELETE_LICENCIA, ADD_NEW_LICENCIA, ADD_DOCU_EMPL, ADD_NUMERADORES, DISABLED_INPUTS, ADD_LICENCIAS_EMPLEADOS} from "../types/fetchTypes";
+import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING, ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, ADD_NEW_CARGO, GET_ID_CARGO, DELETE_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_INSTRUM_LEGALES, ADD_CONCEPTOS, ADD_DATOS_EXTRAS, UPDATE_LICENCIA, DELETE_LICENCIA, ADD_NEW_LICENCIA, ADD_DOCU_EMPL, ADD_NUMERADORES, DISABLED_INPUTS, ADD_LICENCIAS_EMPLEADOS,  ADD_NEW_DOC, DELETE_DOC} from "../types/fetchTypes";
+
+
 import { GET_TANTERIORES } from "../types/trabajosAnteriores";
 
 export const initialState = {
@@ -48,7 +50,11 @@ export const initialState = {
     idEstado : 0,
     idFormaPago : 0,
     idCargo : 0,
-    idTarea : 0
+    idTarea : 0,
+    conceptos : "",
+    trabajosAnteriores : "",
+    licenciasEmpleados : "",
+    
 }
 
 export const fetchReducer = (state = initialState, action) =>{
@@ -335,11 +341,23 @@ export const fetchReducer = (state = initialState, action) =>{
                 licenciasEmpleados : state.licenciasEmpleados.filter((lic)=> lic.idLicenciaEmpleado !== action.payload)
             }
         }
+        case ADD_NEW_DOC : {
+        return{
+            ...state.documentacionEmpleados,
+            documentacionEmpleados : [ ...state.documentacionEmpleados, action.payload]
+        }
+        }
+        case DELETE_DOC : {
+            return{
+                ...state,
+                documentacionEmpleados : state.documentacionEmpleados.filter((docu)=> docu.idEmpleadoDocumentacion !== action.payload)
+            }
+        }
         // --------------- POST REDUX ---------------
          case ADD_NEW_ESCI :{
             return {
-                ...state,
-                estadosCiviles :  action.payload
+                ...state.estadosCiviles,
+                estadosCiviles :  [ ...state.estadosCiviles, action.payload]
             }
         }
 
@@ -381,6 +399,20 @@ export const fetchReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 conceptos : action.payload
+            }
+        }
+
+        case ADD_NEW_ESTADO : {
+            return {
+                ...state,
+                estados: [...state.estados, action.payload]
+            }
+        }
+
+        case ADD_NEW_FORMAPAGO : {
+            return {
+                ...state,
+                formasDePago: [...state.formasDePago, action.payload]
             }
         }
 
@@ -519,6 +551,13 @@ export const fetchReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 parentescos : state.parentescos.filter((paren) => paren.idParentesco !== action.payload),
+            }
+        }
+
+        case PUT_ESTADO : {
+            return {
+                ...state,
+                estados: [...state.estados, action.payload]
             }
         }
 

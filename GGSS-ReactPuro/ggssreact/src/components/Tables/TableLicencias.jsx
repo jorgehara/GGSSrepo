@@ -2,13 +2,14 @@ import { useDispatch } from "react-redux";
 import { addOneLicencia } from "../../redux/actions/licenciasActions";
 import "./TableBootstrap.css";
 
-const TableLicencias = ({columns, value,documentaciones, licenciaDelEmpleado}) => {
+const TableLicencias = ({columns, value,documentaciones, licenciaDelEmpleado, checked, setChecked}) => {
   const dispatch = useDispatch();
   
   function getDetalleLicencia(valueDet, valueLic){
       let result = valueDet && valueDet.filter((item)=> item.idLicenciaEmpleado === valueLic);
       return result;
   }
+  console.log(checked)
 const date = new Date("2022-12-31T00:00:00");
   return (
     <>
@@ -29,7 +30,7 @@ const date = new Date("2022-12-31T00:00:00");
           licenciaDelEmpleado && licenciaDelEmpleado.map((valor)=>{
             return(
               <tr>
-                <th scope="row"> <input type="radio" name="inputSelectTableLic" id="inputSelectTableLic" onClick={()=>{ dispatch(addOneLicencia(valor))}} /> </th>
+                <th scope="row"> <input defaultChecked={false} type="radio" name="" id="" onClick={()=>{ setChecked(true); dispatch(addOneLicencia(valor))}} /> </th>
                 <td>{valor.año ? valor.año : "-"}</td>
                 <td>{valor?.diasDisponiblesTotales ? valor?.diasDisponiblesTotales : "-" }</td>
                 <td>{valor?.diasTomados}</td>

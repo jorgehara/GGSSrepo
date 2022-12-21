@@ -1,11 +1,14 @@
 import React from 'react'
+import { useEffect } from 'react'
 import InputCbo from '../../InputCbo/InputCbo'
 import InputDate from '../../InputDate/InputDate'
 import InputForm from '../../InputForm/InputForm'
 
-const PorPeriodo = ({valueId,propArrayOpFem, array, onChange,valueForm }) => {
+const PorPeriodo = ({valueId,propArrayOpFem, array, onChange,valueForm, checked, setChecked }) => {
 
-
+    useEffect(()=>{
+        setChecked(false)
+      },[])
 
   return (
     <>
