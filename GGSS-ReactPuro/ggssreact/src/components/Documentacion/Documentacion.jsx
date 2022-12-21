@@ -103,8 +103,7 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
             })
         }
     }
-    console.log(documentacionSeleccionada.idEmpleadoDocumentacion)
-console.log(((documentacionEmpleados && documentacionEmpleados[documentacionEmpleados.length -1] !== undefined && (documentacionEmpleados[documentacionEmpleados.length -1].idEmpleadoDocumentacion))+1))
+    
 return (
     <div className='container'>
         <div className='row'>

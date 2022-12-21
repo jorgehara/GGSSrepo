@@ -1,5 +1,5 @@
 import { UPDATE_LICENCIA } from "../types/fetchTypes";
-import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_NEW_LICENCIA, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, OPTIONS_FORMULARIO, SELECTED_OPTION, UPDATE_DETALLE } from "../types/LicenciasTypes"
+import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_NEW_LICENCIA, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, DELETE_DET_LIC, OPTIONS_FORMULARIO, SELECTED_OPTION, UPDATE_DETALLE } from "../types/LicenciasTypes"
 
 export const selectedOption=(payload)=>{
     return{
@@ -42,6 +42,12 @@ export const updateDetalle=(payload)=>{
 export const addNewDetalle=(payload)=>{
     return{
         type: ADD_NEW_DETALLE,
+        payload,
+    };
+}
+export const deleteDetLic=(payload)=>{
+    return{
+        type : DELETE_DET_LIC,
         payload,
     };
 }

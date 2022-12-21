@@ -73,6 +73,7 @@ export const DELETE_ESTADO = "DELETE_ESTADO"
 // formas de pago
 export const GET_ID_FORMAPAGO = "GET_ID_FORMAPAGO"
 export const DELETE_FORMAPAGO = "DELETE_FORMAPAGO"
+export const ADD_ADIC_LIQUIDACION = "ADD_ADIC_LIQUIDACION"
 
 // PUT TYPES
 

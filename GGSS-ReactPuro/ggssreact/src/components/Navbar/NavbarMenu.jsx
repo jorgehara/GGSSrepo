@@ -81,7 +81,7 @@ const NavbarMenu = () => {
 	const inputMascEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModal);
 	const inputFemEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModalFem);
 	const valueIdEstadoCivil = useSelector((state) => state.modalState.estadoCivilSelected.idEstadoCivil);
-	console.log(estadosCivilesValue)
+	
 
 	// Estudios
 	const estudiosValue = useSelector((state) => state.generalState.estudios)
@@ -125,7 +125,6 @@ const NavbarMenu = () => {
 	//Estados Civiles
 	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length -1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length -1].idEstadoCivil))+1)
 	const bodyPetitionEC = { ...responses.modalDataInputs, idEstadoCivil: idEstadoCivil };
-	console.log(bodyPetitionEC)
 	//Estudios
 	const idEstudio = ((estudiosValue && estudiosValue[estudiosValue.length - 1] !== undefined && (estudiosValue[estudiosValue.length - 1].iDestudios)) + 1)
 	const bodyPetEstudio = { ...responses.modalDataInputs, iDestudios: idEstudio }
@@ -179,15 +178,15 @@ const NavbarMenu = () => {
 									<li><Link className="dropdown-item" to="#">Busqueda de Datos</Link></li>
 								</ul>
 							</li>
-							<li className="nav-item">
+							{/* <li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Liquidación</a>
-							</li>
+							</li> 
 							<li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Esquemas y Conceptos</a>
 							</li>
 							<li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Períodos</a>
-							</li>
+							</li>*/}
 							<li className="nav-item dropdown">
 								<a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Tabla de Datos
@@ -256,7 +255,7 @@ const NavbarMenu = () => {
 									</li>
 								</ul>
 							</li>
-							<li className="nav-item">
+							{/* <li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Informes y Listados</a>
 							</li>
 							<li className="nav-item">
@@ -264,7 +263,7 @@ const NavbarMenu = () => {
 							</li>
 							<li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Acerca de...</a>
-							</li>
+							</li> */}
 
 							{/* {/ MODALES TABLA PARA EMPLEADOS /} */}
 							<BasicModal
