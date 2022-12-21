@@ -27,7 +27,6 @@ const domicilioReducer = (state = initialState, action) =>{
             
             return {
                 ...state,
-                inputPredeterminado : false,
                 [payload.name]:payload.value
                 
             };

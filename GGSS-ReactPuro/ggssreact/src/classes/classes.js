@@ -1,4 +1,4 @@
-const classesEstadosCiviles = [{
+export const classesEstadosCiviles = {
     "id" : "class1",
     "classOne" : "formulario__grupo__inputs",
     "classTwo" : 'formulario__grupo',
@@ -9,26 +9,26 @@ const classesEstadosCiviles = [{
     "classSeven" : "fas fa-times-circle form__grupo__icon",
     "classEight" : "form__grupo__errors",
     "classNine" : "form__grupo__error"
-  }]
-  const inputButtonClasess= {
+  }
+  export const inputButtonClasess= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_convenio',
-    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const inputButtonClasessEmpleador= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label',
-    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
-  const inputButtonClasessAsidePagos= {
+  export const inputButtonClasessAsidePagos= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_AsidePagos',
-    "classFour" : 'formulario-input-InpButton-Pagos form-select ml-0 px-0',
+    "classFour" : 'formulario-input-InpButton-Pagos form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
   export const inputButtonClasessDireccion= {
@@ -38,16 +38,87 @@ const classesEstadosCiviles = [{
     "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
+  export const inputButtonClasessExtras= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button_extras',
+    "classThree" : 'formulario__label_Extras',
+    "classFour" : 'formulario-input-InpButton-Extras form-select ml-0 px-0 obligatorio',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+  export const inputButtonClasessExtrasInstrum= {
+    "classOne" : "formulario__grupo__inputs-Button-Extras mt-2",
+    "classTwo" : 'fomulario__container__button_extras',
+    "classThree" : 'formulario__label_Extras-Instrum ',
+    "classFour" : 'formulario-input-InpButton-Extras form-select ml-0 px-0 obligatorio',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+  export const inputButtonClasessExtrasAfectaciones= {
+    "classOne" : "formulario__grupo__inputs-Button-Extras mt-2",
+    "classTwo" : 'fomulario__container__button_extras',
+    "classThree" : 'formulario__label_Extras-Afectaciones ',
+    "classFour" : 'formulario-input-InpButton-Extras-Af form-select ml-0 px-0',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
   export const classesRadioLiquidacion = {
-    classOne : "formulario__grupo__inputs__radio_AsidePagos mt-2" ,
-    classTwo : 'formulario-label-Sexo',
-    classThree : "formulario-input-Sexo-AsidePagos",
-    classFour :  "form-check-input",
-    classFive : "form-check-label",
-    classSix : "formulario-input-Sexo-AsidePagos",
-    classSeven : "form-check-input",
-    classEigth : "form-check-label",
-    classNine : 'form__grupo__label'
+    "classOne" : "formulario__grupo__inputs__radio_AsidePagos mt-2" ,
+    "classTwo" : 'formulario-label-Sexo',
+    "classThree": "formulario-input-Sexo-AsidePagos",
+    "classFour" :  "form-check-input",
+    "classFive" : "form-check-label",
+    "classSix" : "formulario-input-Sexo-AsidePagos",
+    "classSeven" : "form-check-input",
+    "classEigth" : "form-check-label",
+    "classNine" : "form__grupo__label",
+  }
+  export const inputClassProvinciasDomicilios = {
+    classOne : "formulario__grupo__inputs__cbo" ,
+    classTwo : 'form__grupo__label__inp',
+    classThree : "primero",
+    classFour :  "formulario__label mt-2 mb-0",
+    classFive : "segundo",
+    classSix : "formulario-input-Estado-Provincias form-select ml-0 px-0 obligatorio",
+  }
+  export const inputButtonClasessCUIL= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
+    "classThree" : 'formulario__label_convenio',
+    "classFour" : 'formulario-input-Button-Cuil form-select ml-0 px-0 obligatorio',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
 
-  export { classesEstadosCiviles, inputButtonClasess,inputButtonClasessAsidePagos }
+  export const inputCbo= {
+    "classOne" : "formulario__grupo__inputs__cbo",
+    "classTwo" : "form__grupo__label__inp",
+    "classThree" : "primero",
+    "classFour" : "formulario__label mt-2 mb-0",
+    "classFive" : "segundo",
+    "classSix" : "formulario-input-Estado form-select ml-0 px-0",
+    "classSeven" : "tercero btn btn-validacion btn-outline-danger btn-sm ml-2",
+  }
+
+  export const inputRadio= {
+    "classOne" : "formulario__grupo__inputs__radio",
+    "classTwo" : "formulario-label-Sexo",
+    "classThree" : "formulario-input-Sexo",
+    "classFour" : "form-check-input",
+    "classFive" : "form-check-label",
+    "classSix" : "formulario-input-SexoF",
+    "classSeven" : "form-check-input",
+    "classEigth" : "form-check-label",
+    "classNine" : "form__grupo__label",
+  }
+  export const inputButtonClasessDocumentacion= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
+    "classThree" : 'formulario__label',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
+  export const inputSelectedoptionLicencias= {
+    classOne : "formulario__grupo__inputs__cbo" ,
+    classTwo : 'form__grupo__label__inp',
+    classThree : "primero",
+    classFour :  "formulario__label mt-2 mb-0",
+    classFive : "segundo",
+    classSix : "formulario-input-Estado-Licencias form-select ml-0 px-0 ",
+  }

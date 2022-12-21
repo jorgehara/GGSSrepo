@@ -1,4 +1,4 @@
-import { ADD_TRABAJO_ANTERIOR, DELETE_ONE_TRABAJO, GET_ID_TRABAJO, GET_INPUT, GET_TANTERIORES } from "../types/trabajosAnteriores"
+import { ADD_TRABAJO_ANTERIOR, DELETE_ONE_TRABAJO, GET_ID_TRABAJO, GET_INPUT, GET_TANTERIORES, GET_TRABAJO } from "../types/trabajosAnteriores"
 
 export const getTrabajosAnteriores=(payload)=>{
     return{
@@ -31,4 +31,10 @@ export const deleteOneTrabajo =(payload)=>{
         type : DELETE_ONE_TRABAJO,
         payload
     }
+}
+export const addTrabajo=(payload)=>{
+    return{
+        type : GET_TRABAJO,
+        payload,
+    };
 }

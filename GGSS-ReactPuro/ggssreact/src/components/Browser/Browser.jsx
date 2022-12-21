@@ -1,109 +1,135 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
-import { employeContext } from '../../context/employeContext';
-import {  getEmployeByLegajo, getEmployeByName } from '../../services/fetchAPI';
-import { getDomicilioEmpleado } from '../../services/mockDataDomicilios';
+import React, { useEffect } from 'react'
+import {  getEmployeById, getEmployeByLegajo, getEmployeByName } from '../../services/fetchAPI';
 import { useDispatch, useSelector } from "react-redux";
 import ButtonLarge from '../Buttons/ButtonLarge'
 import "./Browser.css";
-import { addEmploye, addOneEmploye, selectedEmploye } from '../../redux/actions/employeActions';
+import {  addOneEmploye, disableFunctions, getEmployes  } from '../../redux/actions/employeActions';
+import {  GET_INPUT_VALU_BROWSER } from '../../redux/types/employeTypes';
+import swal from 'sweetalert';
+import { disabledInputs } from '../../redux/actions/fetchActions';
+import "./Browser.css"
 
-const Browser = () => {
-  const [listEmpleados, setListEmpleados] = useState([]);
-  const { saveEmploye, saveDomicilio } = useContext(employeContext);
-  const [empData, setEmpData] = useState({
-    legajo: "",
-    apellido: "",
-  });
+const Browser = ({disable , setDisable}) => {
+    
   const url = "http://54.243.192.82/api/Empleados?records=10000";
 
   const dispatch = useDispatch();
-  const empleados = useSelector((state)=> state.employeStates.employes)
+
+  const empleados = useSelector((state)=> state.employeStates.empleados);
+  const valueInputLegajo = useSelector((state)=> state.employeStates.formulario.inpurLegajoBrowser);
+  const valueInputApellido = useSelector((state)=> state.employeStates.formulario.inputApellidoNombreBrowser);
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
+  const deshabilitado = useSelector((state)=> state.employeStates.disable);
 
 
+  console.log("ejecuto browser")
 
-
-  const {  saveDisable, disable} = useContext(employeContext);
 
   useEffect(() => {
+    console.log("ejecuto browser fetch")
     axios.get(url).then((res) => {
       let data = res.data.result;
 
-      if (empData.apellido.length > 0) {
-        getEmployeByName(data, empData.apellido).then((res) =>
-          setListEmpleados(res)
+      if (valueInputApellido.length > 0) {
+        getEmployeByName(data, valueInputApellido).then((res) =>
+            dispatch(getEmployes(res))
         );
         return;
       }
-      if (empData.legajo.length > 0) {
-        getEmployeByLegajo(data, empData.legajo).then((res) =>
-          setListEmpleados(res)
+      if (valueInputLegajo.length > 0) {
+        getEmployeByLegajo(data, valueInputLegajo).then((res) =>
+            dispatch(getEmployes(res))
         );
         return;
       }
-      dispatch(addEmploye(res.data.result))
-      setListEmpleados(res.data.result);
+      dispatch(getEmployes(res.data.result))
     });
-  }, [empData.apellido, empData.legajo]);
+
+  }, [valueInputLegajo, valueInputApellido]);
   
+ 
+
+
   function onSelect(e, name, idEmpleado) {
-    getEmployeByName(empleados[0], name).then((res) => {
-      
-      dispatch(addOneEmploye(res[0].iDempleado));
-      saveEmploye(res);
-    });
-    getDomicilioEmpleado(idEmpleado).then((res) => {
-      saveDomicilio(res);
+    
+    getEmployeById(empleados, idEmpleado).then((res) => {  
+      console.log(res[0].iDempleado)    
+      dispatch(addOneEmploye(res[0]));
     });
   }
 
-  function onInputChange(evt) {
-    const name = evt.target.name;
-    const value = (evt.target.value).toUpperCase();
-
-    let newEmpData = { ...empData };
-    newEmpData[name] = value;
-    setEmpData(newEmpData);
+  function onChange(e, action) {
+    dispatch(
+      {
+        type: action,
+        payload : {name : e.target.name, value : e.target.value}
+      });    
   }
 
-  function habilitaEdit(e){
+  function habilitaEdit(){
+
+    Array.from(document.querySelectorAll("input.deshabilita")).forEach(
+      input => (input.value = "")
+    );
+    let employeData = {...empleadoUno};
+
+    const inputsArray = Object.entries(employeData);
+
+    const clearInputs = inputsArray.map(([key])=> [key, '']);
+
+    const inputsJson = Object.fromEntries(clearInputs);
+    setDisable(false);
+    dispatch(addOneEmploye(inputsJson));
+  }
+
+  function habilitaUpdate(e){
     e.preventDefault();
-    saveDisable(false)
+    if(empleadoUno.iDempleado && empleadoUno.iDempleado){
+      return setDisable(false);;
+    }
+    swal({
+          title: "Error",
+          text: `Debe seleccionar un empleado`,
+          icon: "error",
+    })
   }
-  
   return (
 <>
-<div className='row gy-1 container-fluid '>
+<div className='row gy-1 container-flex p-0 m-o '>
         {/* <InputForm nameInput="Legajo:" messageError="Solo puede contener números." placeHolder="N° Legajo" value={empData.legajo} inputId="legajo" onChange={onInputChange}/>
         <InputForm nameInput="Nombre:" messageError="Solo puede contener letras." placeHolder="Buscar Nombres" value={empData.apellido} inputId="nombreApellido"  onChange={onInputChange}/> */}
-      <div className="row mt-1 w-100">
+      <div className="row mt-1 p-0 m-0 ">
+        <div className="container m-0 p-0">
+          <input
+            onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
+            value={valueInputLegajo && valueInputLegajo}
+            className="form__grupo__input__browser "
+            type="number"
+            name="inpurLegajoBrowser"
+            id="inpurLegajoBrowser"
+            placeholder="Ingrese Legajo "
+          />
+      
+      <div className="row mt-1 m-0 p-0  w-100">
         <input
-          onChange={(e) => onInputChange(e)}
-          value={empData.legajo}
-          className="form__grupo__input__browser mr-2"
-          type="number"
-          name="legajo"
-          id="legajos"
-          placeholder="Ingrese Legajo "
-        />
-      </div>
-      <div className="row mt-1 mr-2 w-100">
-        <input
-          onChange={(e) => onInputChange(e)}
-          value={empData.apellido}
-          className="form__grupo__input__browser mr-2"
+          onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
+          value={valueInputApellido && valueInputApellido}
+          className="form__grupo__input__browser "
           type="text"
-          name="apellido"
-          id="nombres"
+          name="inputApellidoNombreBrowser"
+          id="inputApellidoNombreBrowser"
           placeholder="Ingrese Nombre "
         />
       </div>
       <select
-        className="form-select row mt-1 selectMenu ml-4"
+        defaultValue={[]}
+        className="form-select  mt-1 selectMenu "
         multiple
         aria-label="multiple select example"
+        disabled={!disable}
       >
-        { listEmpleados  && listEmpleados.map((emp, i) => {
+        {  empleados && empleados.map((emp, i) => {
           return (
             <option
             key={i}
@@ -111,37 +137,29 @@ const Browser = () => {
               value="1"
             >{`${emp.apellido}, ${emp.nombres}`}</option>
           );
-        })}
+        }) }
       </select>
+        </div>
+        </div>
         
-<div class="container text-center d-inline-flex">
-  <div class="row align-items-start">
-    <div class="col">
-        <ButtonLarge
-          color="danger"
-          tamaño="sm"
-          justyfy="center m-1"
-          align=""
-          nameButton="Agregar"
-          onClick={habilitaEdit}
-        />
+<div className="container ">
+  <div className="row align-items-start">
+    <div className="col">
+      <button className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`} onClick={habilitaEdit}>
+        Agregar
+      </button>
     </div>
-    <div class="col">
-        <ButtonLarge
-          color="danger"
-          tamaño="sm"
-          justyfy="center m-1"
-          nameButton="Modificar"
-          onClick={habilitaEdit}
-        />
+    <div className="col">
+      <button className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`} onClick={(e)=>habilitaUpdate(e)}>
+        Modificar
+      </button>
+       
     </div>
-    <div class="col">
-        <ButtonLarge
-          color="danger"
-          tamaño="sm"
-          justyfy="center m-1"
-          nameButton="Eliminar"
-        />
+    <div className="col">
+      <button className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`} onClick={(e)=>habilitaUpdate(e)}>
+          Eliminar
+      </button>
+        
     </div>
 
       </div>

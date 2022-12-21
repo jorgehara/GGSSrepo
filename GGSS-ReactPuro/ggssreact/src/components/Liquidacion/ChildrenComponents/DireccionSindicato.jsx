@@ -8,16 +8,9 @@ import InputButtonLiquidacion from '../../Inputs/InputButton/InputButtonLiquidac
 import SindicatoLiquidacion from '../../SindicatoLiquidacion/SindicatoLiquidacion';
 import '../../SindicatoLiquidacion/SindicatoLiquidacion.css';
 
-const DireccionSindicato = ({direcciones, sindicatos}) => {
-  const dispatch = useDispatch();
+const DireccionSindicato = ({direcciones, sindicatos, onChange, formLiquidacion}) => {
 
-  function onChange(e, action) {
-    dispatch(
-      {
-        type: action,
-        payload : {name : e.target.name, value : e.target.value}
-      });    
-  }
+ 
 
   
 return (
@@ -27,6 +20,7 @@ return (
             nameButton="..."
             nameLabel="Dirección"
             placeholder="Dirección"
+            value={formLiquidacion?.inputDireccionLiquidacion && formLiquidacion?.inputDireccionLiquidacion}
             array={direcciones && direcciones}
             propArrayOp="direccion"
             propIdOption="idDireccion"
@@ -35,7 +29,7 @@ return (
             action={GET_INPUTS_VALUE}
         />
     <SindicatoLiquidacion  nameLabel="Sindicato:" nameButton="..."
-    array={sindicatos && sindicatos} porpArrayOp="nombreSindicato" propArrayId="idSindicato" idInput="sindicatosLiquidacion" action={GET_INPUTS_VALUE} />
+    array={sindicatos && sindicatos} onChange={onChange} formLiquidacion={formLiquidacion} porpArrayOp="nombreSindicato" propArrayId="idSindicato" idInput="sindicatosLiquidacion" action={GET_INPUTS_VALUE} />
     </div>  
   )
 }

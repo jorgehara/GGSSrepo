@@ -12,3 +12,9 @@ export const addNewFamiliar=(payload)=>{
         payload
     }
 }
+export const addFamiliar=(payload)=>{
+    return{
+        type : ADD_FAMILIAR,
+        payload,
+    };
+}

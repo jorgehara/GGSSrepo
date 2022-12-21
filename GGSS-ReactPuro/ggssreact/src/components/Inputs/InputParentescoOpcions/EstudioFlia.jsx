@@ -19,7 +19,8 @@ const EstudioFlia = ({
   setGeneralState,
   action,
   namePropOp,
-  idSelect
+  idSelect,
+  obligatorio
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -36,18 +37,18 @@ const EstudioFlia = ({
         
         <div className="col">
           <select
-            className="form-select ml-4 mt-1 selectFormFlia"
+            className={obligatorio ? "form-select ml-4 mt-1 selectFormFlia obligatorio" : "form-select ml-4 mt-1 selectFormFlia"}
             disabled={disable}
             name={idInput}
             id={idInput}
             value={valueInputEstudios}
             onChange={
-            (e)=> onChange(e, action)
+            (e)=> onChange(e.target.value, idInput)
           }
           >
             <option value="">Seleccionar</option>
             {array && array.map((op, i) => {
-              return propArray == op ? (
+              return propArray === op[idSelect] ? (
                 <option key={i} 
                 value={op[idSelect]}
                 selected defaultValue>

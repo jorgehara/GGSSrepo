@@ -10,8 +10,6 @@ const InputDateDocs = ({
   idInput,
   onChange,
   datosPersonalesValue,
-  generalState,
-  setGeneralState,
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [mostrarComponente2, setMostrarComponente2] = useState(true);
@@ -68,9 +66,9 @@ const InputDateDocs = ({
           className={mostrarComponente2 ? "secondCheck2" : "secondCheckDocs"}
           name={idInput}
           type="date"
-          value={valor}
+          value={value}
           disabled={disabled}
-          onChange={(e) => onChange(e, generalState, setGeneralState)}
+          onChange={(e) => onChange(e.target.value, idInput )}
         />
       </div>
     </div>

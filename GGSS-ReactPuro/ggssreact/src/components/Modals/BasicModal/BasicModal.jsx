@@ -53,7 +53,8 @@ const BasicModal = ({
   valueNumCheck,
   valueObs,
   refetch,
-  setRefetch
+  setRefetch,
+  modalDataInputs
   // setRes,
   // postFn
 }) => {
@@ -118,8 +119,9 @@ const BasicModal = ({
         await axios.post(urlApi, bodyPet)
           .then((res) => {
             if (res.status === 200) {
+              console.log(res)
               dispatch(dispatchAddAction(resp.modalDataInputs))
-              swal({
+              return swal({
                 title: "Ok",
                 text: "Agregado con éxito",
                 icon: "success",
@@ -202,7 +204,7 @@ const BasicModal = ({
                   aria-label="multiple select example"
                   disabled={disabled}
                 >
-                  {array && opcionesApi.map((op, i) => {
+                  {array && array.map((op, i) => {
                     return (
                       <option
                         key={i}
@@ -239,7 +241,7 @@ const BasicModal = ({
                         placeHolder={p.placeholder}
                         nameLabel={p.label}
                         inputId={p.idInput}
-                        value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
+                        value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare) }
                         onChange={onChange}
                       // action={GET_ESTADOSCIVILES}
                       // opcionSelected={opcionSelected}

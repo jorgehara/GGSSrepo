@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./DNICboBox.css";
-const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabled, idInput, nameLabel, onChange, selectedId, datosPersonalesValue, propArray, datosPersonalesValue2, generalState, action, validateNumbersDNI,propArrayOp}) => {
+const DNICboBox = ({  messageError, placeHolder, array, value , disabled, idInput, nameLabel, onChange, selectedId, propArray, action, validateNumbersDNI,propArrayOp,propArrayId, idSelected, obligatorio}) => {
 
 
   const [valor, setValor] = useState("");
   
-
-  useEffect(()=>{
-    setValor(datosPersonalesValue)
-  },[datosPersonalesValue])
   
   useEffect(()=>{
     setValor(value);
@@ -21,9 +17,12 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabl
         <label className="formulario-label-DNI mt-2 ml-4">{nameLabel}</label>
       </div>
       <div className="">
-        <select disabled={disabled} className="formulario-input-DNI form-select ml-0 px-0" id={selectedId} value={datosPersonalesValue2} name={selectedId} onChange={(e)=> onChange(e, action)}>
-          {array !== undefined && array.map((op, i) => {
-            return (propArray === op[propArrayOp] ? <option selected key={i} value={op[propArrayOp]}>{op[propArrayOp]}</option> : <option key={i} value={op[propArrayOp]}>{op[propArrayOp]}</option>);
+        <select disabled={disabled} defaultValue="" className={obligatorio ? "formulario-input-DNI form-select ml-0 px-0 obligatorio" : "formulario-input-DNI form-select ml-0 px-0"} id={selectedId} name={selectedId} onChange={(e)=> onChange(e.target.value, selectedId)}>
+          <option value="">Seleccionar</option>
+          {array && array.map((op, i) => {
+
+
+            return (Number(idSelected) === op[propArrayId] ? <option selected key={i} value={op[propArrayId]}>{op[propArrayOp]}</option> : <option key={i} value={op[propArrayId]}>{op[propArrayOp]}</option>);
           })}
         </select>
       </div>
@@ -32,12 +31,12 @@ const DNICboBox = ({ nameInput, messageError, placeHolder, array, value , disabl
           type="text"
           id={idInput}
           maxLength="8"
-          name={nameInput}
-          className="formulario-input-DNI  mx-1"
+          name={idInput}
+          className={obligatorio && !valor ? "formulario-input-DNI  mx-1 obligatorio" : "formulario-input-DNI  mx-1"}
           placeholder={placeHolder}
           value={ valor}
           disabled={disabled}
-          onChange={(e)=> onChange(e,action)}
+          onChange={(e)=> onChange(e.target.value,idInput)}
           onKeyPress={(e)=>validateNumbersDNI(e)}
         ></input>
       </div>

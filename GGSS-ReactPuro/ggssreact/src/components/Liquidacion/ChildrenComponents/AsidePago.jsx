@@ -7,17 +7,11 @@ import InputButtonLiquidacion from '../../Inputs/InputButton/InputButtonLiquidac
 import InputRadio from '../../Inputs/InputRadio/InputRadio'
 
 
-const AsidePago = ({formasPAgo, lugaresDePago, bancos}) => {
+const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion}) => {
 
   const dispatch = useDispatch();
 
-  function onChange(e, action) {
-    dispatch(
-      {
-        type: action,
-        payload : {name : e.target.name, value : e.target.value}
-      });    
-  }
+  
   return (
   <>
       <div className="border border-3 p-2 col mt-2">
@@ -27,6 +21,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos}) => {
                   nameButton="..."
                   nameLabel="Forma de Pago"
                   placeholder="Forma de Pago"
+                  value = {formLiquidacion?.inputFormaDePago && formLiquidacion?.inputFormaDePago}
                   array={formasPAgo && formasPAgo}
                   propArrayOp="nombreFormadePago"
                   propIdOption="iDformadePago"
@@ -41,6 +36,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos}) => {
                   nameButton="..."
                   nameLabel="Lugar de Pago"
                   placeholder="Lugar de Pago"
+                  value = {formLiquidacion?.inputLugaresDePago && formLiquidacion?.inputLugaresDePago}
                   array={lugaresDePago && lugaresDePago}
                   propArrayOp="lugardePago"
                   propIdOption="idLugardePago"
@@ -56,6 +52,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos}) => {
                   nameLabel="Banco"
                   placeholder=""
                   display={true}
+                  value = {formLiquidacion?.inputBanco && formLiquidacion?.inputBanco}
                   array={bancos && bancos}
                   propArrayOp="nombreBanco"
                   propIdOption="idBanco"
@@ -68,11 +65,12 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos}) => {
                 <InputButton
                 clasess={inputButtonClasessAsidePagos}
                 nameButton="..."
-                  nameLabel="N° Cuenta"
-                  placeholder="N° Cuenta"
-                  onChange={onChange}
-                  action={GET_INPUTS_VALUE}
-                  id="inputNumCta"
+                nameLabel="N° Cuenta"
+                placeholder="N° Cuenta"
+                value = {formLiquidacion?.inputNumCta && formLiquidacion?.inputNumCta}
+                onChange={onChange}
+                action={GET_INPUTS_VALUE}
+                id="inputNumCta"
                 />
               </div>
               <div >
@@ -84,6 +82,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos}) => {
                 onChange={onChange}
                 action={GET_INPUTS_VALUE}
                 idInput="inputRadioAsidePagos"
+                asidePagos={true}
               />
               </div>
               <div>
@@ -92,6 +91,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos}) => {
                 nameButton="..."
                   nameLabel="C.B.U."
                   placeholder="C.B.U"
+                  value = {formLiquidacion?.inputCBU && formLiquidacion?.inputCBU}
                   onChange={onChange}
                   action={GET_INPUTS_VALUE}
                   id="inputCBU"

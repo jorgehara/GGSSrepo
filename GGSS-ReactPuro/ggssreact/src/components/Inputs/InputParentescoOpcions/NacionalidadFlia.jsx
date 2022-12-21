@@ -21,7 +21,8 @@ const NacionalidadFlia = ({
   namePropOp,
   propArrayOpMasc,
   propArrayOpFem,
-  propIdSelect
+  propIdSelect,
+  obligatorio
 }) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
   const [returnBySexo, setReturnBySexo] = useState([]);
@@ -48,17 +49,17 @@ const NacionalidadFlia = ({
   return (
     <div className="formulario__grupo mt-2">
       <div className="">
-        <label className="formulario-label-ParentescoFliaOpcions mt-2 ">
+        <label className="formulario-label-ParentescoFliaOpcions mt-3 ">
           {nameInput}
         </label>
       </div>
       <div className="SelectedFlia px-0">
         <select
-          className="form-select mt-1 "
+          className={obligatorio ? "form-select mt-1 form-input-PaisDeOrigenFlia obligatorio" : "form-select mt-1 "}
           disabled={disable}
           id={idInput}
           name={idInput}
-          onChange={(e)=> onChange(e, action)}
+          onChange={(e)=> onChange(e.target.value, idInput)}
         >
           <option value="">Seleccionar</option>
             {/* {
@@ -69,7 +70,7 @@ const NacionalidadFlia = ({
 
           {sexo  && sexo.length > 0 && returnBySexo 
             ? returnBySexo.map((op, index) => {
-                return propArray === op ? (
+                return propArray === op[propIdSelect] ? (
                   <option key={index} selected defaultValue value={op[propIdSelect]}>
                     {sexo && sexo === "M" ? op[namePropOp] : op[propArrayOpFem] } 
                   </option>
@@ -78,7 +79,8 @@ const NacionalidadFlia = ({
                 );
               })
             : array && array.map((op, i) => {
-                return <option value={op[propIdSelect]} key={i}>{op[namePropOp]}</option>;
+                return propArray === op[propIdSelect] ? <option selected value={op[propIdSelect]} key={i}>{op[namePropOp]}</option> :
+                <option value={op[propIdSelect]} key={i}>{op[namePropOp]}</option>
               })}
         </select>
       </div>

@@ -28,7 +28,7 @@
 }
 .tercero{
     grid-area: tercer;
-
+    
 }
 .cuarto{
    /* margin-left: 100px;  */
@@ -91,6 +91,32 @@
 	height: 42px;
 	transition: .3s ease all;
 	border-bottom: 1px solid rgb(78, 6, 6);
+}
+.btn-validacion{
+    margin-left: 0.5rem;
+
+}
+.formulario-input-Estado-Provincias{
+    width: 167px;
+	text-align: start;
+	margin-left: 0rem;
+    margin-right: 0px;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	transition: .3s ease all;
+    border-bottom: 1px solid rgb(78, 6, 6);
+}
+.formulario-input-Estado-Licencias{
+    width: 15rem;
+	text-align: start;
+	margin-left: 0rem;
+    margin-right: 0px;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	transition: .3s ease all;
+    border-bottom: 1px solid rgb(78, 6, 6);
 }
 /* input:focus, select:focus, select, .form-select, input.form-control:focus {
 
