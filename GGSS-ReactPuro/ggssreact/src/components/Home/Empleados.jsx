@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import Browser from '../Browser/Browser'
 import DatosPersonales from '../DatosPersonales/DatosPersonales'
 import Documentacion from '../Documentacion/Documentacion';
@@ -10,12 +11,9 @@ import AdicLiquidacion from "../AdicLiquidacion/AdicLiquidacion";
 import Navbar from '../Navbar/Navbar';
 import TrabajosAnteriores from '../TrabajosAnteriores/TrabajosAnteriores';
 import Extras from '../Extras/Extras';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAgrupamientos, addBancos, addBarrios, addCalles, addCargos, addCategorias, addCentroDeCosto, addConceptos, addConvenios, addDatosExtras, addDepartamentos, addDirecciones, addDocumentacionEmpleados, addEmpleadores, addEsquemas, addEstados, addEstadosCiviles, addEstudios, addFamiliares, addFormasPago, addInstrumLegales, addLicenciaEmpleados, addLocalidades, addLugaresDePago, addModosContratacion, addModosLiquidacion, addNumeradores, addObrasSociales, addPaises, addParentescos, addProvincias, addSectorDepto, addSindicatos, addTareasDesempeñadas, addTiposDocumento, disabledInputs } from '../../redux/actions/fetchActions';
-import { disableFunctions } from '../../redux/actions/employeActions';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
-import axios from 'axios';
 import { addDomicilios } from '../../redux/actions/domiciliosActions';
 import { getTrabajosAnteriores } from '../../redux/actions/trabajosAnterioresActions';
 import { getOneDocumento } from '../../redux/actions/documentacionActions';
@@ -28,8 +26,6 @@ const Empleados = () => {
     const [image, setImage] = useState("");
     const [disableEstado, setDisableEstado] = useState(false);
     const [empleados, setEmpleados] = useState([]);
-
-    
     const dispatch = useDispatch();
 
 //#region URLs
@@ -226,7 +222,7 @@ return (
                 Aceptar
             </button>
         </div>
-        <Footer /> 
+        <Footer/> 
     </div>
 )
 }
