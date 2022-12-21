@@ -3,6 +3,18 @@
 // -----  OBJECTS TABLA PARA EMPLEADOS -----
 
 
+// TEXT AREA GENERAL PARA TODOS LOS MODALES CON TEXTAREA QUE USEN "OBS" DE NOMBRE
+export const textAreaObject = [
+  {
+    "label": "Observaciones",
+    "idInput": "obs",
+    "nameInput": "obs"
+  }
+]
+
+
+// ----------------------------------------
+
 export const objectEstadosCiviles = [
 	{
 		"label": "Masculino",
@@ -63,11 +75,49 @@ export const checkboxNumParentescos = [
     "label": "Deduce ganancias",
     "labelNum": "Importe",
     "idInput": "deduceGanancias",
-    "idInputNum": "importeDeduce"
+    "nameInput": "deduceGanancias",
+    "idInputNum": "importeDeduce",
+    "nameInputNum": "importeDeduce"
   }
 ]
 
 
+// Formas de pago
+export const objectFormasDePago = [
+  {
+    "label": "Forma de Pago",
+    "placeholder": "Débito",
+    "idInput": "nombreFormadePago",
+    "nameInput": "nombreFormadePago"
+  }
+]
+
+// cargos
+export const objectCargos = [
+  {
+    "label": "Cargos",
+    "placeholder": "Administrativo",
+    "idInput": "nombreCargo",
+    "nameInput": "nombreCargo"
+  }
+]
+export const textAreaCargos = [
+  {
+    "label": "Observaciones",
+    "idInput": "observacion",
+    "nameInput": "observacion"
+  }
+]
+
+// tareas desempeñadas
+export const objectTareas = [
+  {
+    "label": "Tarea",
+    "placeholder": "Tarea 1",
+    "idInput": "tareaDesempeñada",
+    "nameInput": "tareaDesempeñada"
+  }
+]
 
 
 // -------------
@@ -75,16 +125,12 @@ export const checkboxNumParentescos = [
 export const objectEstado = [
   {
     "label": "Estado",
-    "placeholder": "Estado1"
+    "placeholder": "Estado1",
+    "idInput": "nombreEstado",
+    "nameInput": "nombreEstado"
   }
 ]
 
-export const objectFormasDePago = [
-  {
-    "label": "Forma de Pago",
-    "placeholder": "Débito"
-  }
-]
 
 export const objectMotivosEgreso = [
   {
@@ -116,19 +162,6 @@ export const objectPaises = [
 
 ]
 
-export const objectCargos = [
-  {
-    "label": "Cargos",
-    "placeholder": "Administrativo"
-  }
-]
-
-export const objectTareas = [
-  {
-    "label": "Tarea",
-    "placeholder": "Tarea 1"
-  }
-]
 
 export const objectModosContratacion = [
   {

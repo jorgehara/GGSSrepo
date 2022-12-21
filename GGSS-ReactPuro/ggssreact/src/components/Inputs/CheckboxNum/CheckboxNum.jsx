@@ -7,9 +7,11 @@ const CheckboxNum = ({
     nameInputNum,
     messageError,
     placeHolder,
-    onChange,
     inputId,
-    inputNumId
+    inputNumId,
+    onChange,
+    valueCheck,
+    valueNum,
 }) => {
 
     const [checked, setChecked] = useState(false);
@@ -24,9 +26,9 @@ const CheckboxNum = ({
                     id={inputId}
                     placeholder={placeHolder}
                     checked={checked}
-                    onChange={() => {
-                        setChecked(!checked)
-                    }}>
+                    value={valueCheck}
+                    onChange={(e) => { setChecked(!checked); onChange(e.target.checked, inputId) }} // NO ANDA
+                >
                 </input>
 
                 <label style={{ marginLeft: "15px" }} className='labelModal' htmlFor={inputId}>{nameCheckbox} </label>
@@ -38,14 +40,16 @@ const CheckboxNum = ({
 
             <div className="inputModalContainer">
 
-                <label style={{ marginRight: "6px", marginBottom: "8px" }} className='labelModal' htmlFor={inputId}>{nameInputNum}: </label>
+                <label style={{ marginRight: "6px", marginBottom: "8px" }} className='labelModal' htmlFor={inputNumId}>{nameInputNum}: </label>
 
                 <input style={{ width: "50px", marginRight: "7px", textAlign: "center" }} type="number" min={"0"} max={"100"}
                     className='inputModal'
-                    id={inputId}
+                    id={inputNumId}
                     placeholder={placeHolder}
                     disabled={!checked}
-                    onChange={(e) => onChange(e)}>
+                    value={valueNum}
+                    onChange={(e) => onChange(e.target.value, inputNumId )} // NO ANDA --> No deja modificar el input
+                    > 
                 </input>
 
                 <br />

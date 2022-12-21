@@ -1,6 +1,4 @@
-import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING,ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_DOCU_EMPL, ADD_NUMERADORES, DISABLED_INPUTS, ADD_DATOS_EXTRAS, ADD_INSTRUM_LEGALES,ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_CONCEPTOS, ADD_LICENCIAS_EMPLEADOS, UPDATE_LICENCIA, ADD_NEW_LICENCIA, DELETE_LICENCIA
-} from "../types/fetchTypes";
-import { GET_TANTERIORES } from "../types/trabajosAnteriores";
+import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING, ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, ADD_NEW_CARGO, GET_ID_CARGO, DELETE_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA} from "../types/fetchTypes";
 
 export const initialState = {
     loading: false, 
@@ -46,9 +44,10 @@ export const initialState = {
     idEstudio : 0,
     idTipoDoc : 0,
     idParentesco : 0,
-    conceptos : "",
-    trabajosAnteriores : "",
-    licenciasEmpleados : ""
+    idEstado : 0,
+    idFormaPago : 0,
+    idCargo : 0,
+    idTarea : 0
 }
 
 export const fetchReducer = (state = initialState, action) =>{
@@ -384,6 +383,7 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
 
+
         // --------------- DELETE REDUX ---------------
 
         case GET_ID_ESCI : {
@@ -438,6 +438,58 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
 
+        case GET_ID_ESTADO : {
+            return {
+                ...state,
+                idEstado : action.payload
+            }
+        }
+        case DELETE_ESTADO : {
+            return {
+                ...state,
+                estados: state.estados.filter((estado) => estado.idEstado !== action.payload)
+            }
+        } 
+
+        case GET_ID_FORMAPAGO : {
+            return {
+                ...state,
+                idFormaPago : action.payload
+            }
+        }
+        case DELETE_FORMAPAGO : {
+            return {
+                ...state,
+                formasDePago: state.formasDePago.filter((forma) => forma.idFormaPago !== action.payload)
+            }
+        }
+
+        case GET_ID_CARGO : {
+            return {
+                ...state,
+                idCargo : action.payload
+            }
+        }
+        case DELETE_CARGO : {
+            return {
+                ...state,
+                cargos: state.cargos.filter((cargo) => cargo.idCargo !== action.payload)
+            }
+        }
+
+        case GET_ID_TAREA : {
+            return {
+                ...state,
+                idTarea: action.payload
+            }
+        }
+        case DELETE_TAREA : {
+            return {
+                ...state,
+                tareasDesempeñadas: state.tareasDesempeñadas.filter((tarea) => tarea.idTarea !== action.payload)
+            }
+        }
+
         
         // --------------- PUT REDUX ---------------
 
@@ -468,7 +520,7 @@ export const fetchReducer = (state = initialState, action) =>{
                 parentescos : state.parentescos.filter((paren) => paren.idParentesco !== action.payload),
             }
         }
-        
+
         default : return state;
     }
 }
