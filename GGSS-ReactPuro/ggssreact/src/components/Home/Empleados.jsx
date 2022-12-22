@@ -46,47 +46,55 @@ const Empleados = () => {
 
 //#region URLs
 
-    const urlEstados = "http://54.243.192.82/api/Estados";
-    const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
-    const urlPaisesNac = "http://54.243.192.82/api/Paises";
-    const urlEstudios = "http://54.243.192.82/api/Estudios";
-    const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
-    const urlParentescos = "http://54.243.192.82/api/Parentescos"
-    const urlFamiliares = "http://54.243.192.82/api/MostrarDatosFamiliares";
-    const urlNumeradores = "http://54.243.192.82/api/Numeradores";
 
-    const urlDomicilios = "http://54.243.192.82/api/MostrarDatosDomicilios";
-    const urlCalles = "http://54.243.192.82/api/Calles";
-    const urlDeptos = "http://54.243.192.82/api/Departamentos";
-    const urlProvincias = "http://54.243.192.82/api/Provincias";
-    const urlLocalidades = "http://54.243.192.82/api/Localidades";
-    const urlBarrios = "http://54.243.192.82/api/Barrios";
+const urlEstados = "http://54.243.192.82/api/Estados";
+  const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles";
+  const urlPaisesNac = "http://54.243.192.82/api/Paises";
+  const urlEstudios = "http://54.243.192.82/api/Estudios";
+  const urlTiposDNI = "http://54.243.192.82/api/TiposDocumento";
+  const urlParentescos = "http://54.243.192.82/api/Parentescos";
+  const urlFamiliares = "http://54.243.192.82/api/MostrarDatosFamiliares";
+  const urlNumeradores = "http://54.243.192.82/api/Numeradores";
 
-    const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
-    const urlConvenios = "http://54.243.192.82/api/Convenios";
-    const urlCategorias = "http://54.243.192.82/api/Categorias";
-    const urlAgrupamientos = "http://54.243.192.82/api/Agrupamientos";
-    const urlCargos = "http://54.243.192.82/api/Cargos";
-    const urlTareas = "http://54.243.192.82/api/TareasDesempeñadas";
-    const urlModosCont =  "http://54.243.192.82/api/ModosContratacion";
-    const urlModoLiq =  "http://54.243.192.82/api/ModosLiquidacion";
-    const urlCentroCosto = "http://54.243.192.82/api/CentrosDeCostos";
-    const urlSectorDepto = "http://54.243.192.82/api/SectoresDptos";
-    const urlObrasSociales = "http://54.243.192.82/api/ObrasSociales";
-    const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos";
-    const urlLugaresDePago = "http://54.243.192.82/api/LugaresdePago";
-    const urlBancos = "http://54.243.192.82/api/Bancos";
-    const urlDirecciones = "http://54.243.192.82/api/Direcciones";
-    const urlSindicatos = "http://54.243.192.82/api/Sindicatos";
-    const urlEsquemas = "http://54.243.192.82/api/Esquemas";
-    const urlConceptos = "http://54.243.192.82/api/ConceptosDatos/0,1";
-    const urlTrabajosAnteriores = "http://54.243.192.82/api/TrabajosAnteriores";
-    const urlDocumentacionEmpleados = "http://54.243.192.82/api/EmpleadosDocumentacion";
-    const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
-    const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/0,%201`;
-    const urlInstrumLegal = "http://54.243.192.82/api/InstrumentosLegales/0?modo=1"
-    const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
-    const urlDetalleLicenciasEmpleados = "http://54.243.192.82/api/DetalleLicenciasEmpleados";
+  const urlDomicilios = "http://54.243.192.82/api/MostrarDatosDomicilios";
+  const urlCalles = "http://54.243.192.82/api/Calles";
+  const urlDeptos = "http://54.243.192.82/api/Departamentos";
+  const urlProvincias = "http://54.243.192.82/api/Provincias";
+  const urlLocalidades = "http://54.243.192.82/api/Localidades";
+  const urlBarrios = "http://54.243.192.82/api/Barrios";
+
+  const urlEmpleadores = "http://54.243.192.82/api/Empleadores";
+  const urlConvenios = "http://54.243.192.82/api/Convenios";
+  const urlCategorias = "http://54.243.192.82/api/Categorias";
+  const urlAgrupamientos = "http://54.243.192.82/api/Agrupamientos";
+  const urlCargos = "http://54.243.192.82/api/Cargos";
+  const urlTareas = "http://54.243.192.82/api/TareasDesempeñadas";
+  const urlModosCont = "http://54.243.192.82/api/ModosContratacion";
+  const urlModoLiq = "http://54.243.192.82/api/ModosLiquidacion";
+  const urlCentroCosto = "http://54.243.192.82/api/CentrosDeCostos";
+  const urlSectorDepto = "http://54.243.192.82/api/SectoresDptos/0,%201";
+  const urlObrasSociales = "http://54.243.192.82/api/ObrasSociales";
+  const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos";
+  const urlLugaresDePago = "http://54.243.192.82/api/LugaresdePago";
+  const urlBancos = "http://54.243.192.82/api/Bancos";
+  const urlDirecciones =
+    "http://54.243.192.82/api/Direcciones/DireccionesDatos/1,1";
+  const urlSindicatos = "http://54.243.192.82/api/Sindicatos";
+  const urlEsquemas = "http://54.243.192.82/api/Esquemas";
+  const urlConceptos = "http://54.243.192.82/api/ConceptosDatos/0,1";
+  const urlTrabajosAnteriores = "http://54.243.192.82/api/TrabajosAnteriores";
+  const urlDocumentacionEmpleados =
+    "http://54.243.192.82/api/EmpleadosDocumentacion";
+  const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
+  const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/0,%201`;
+  const urlInstrumLegal =
+    "http://54.243.192.82/api/InstrumentosLegales/0?modo=1";
+  const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
+  const urlDetalleLicenciasEmpleados =
+    "http://54.243.192.82/api/DetalleLicenciasEmpleados";
+  const urlEsquemasConceptos = "http://54.243.192.82/api/ConceptosEsquemas";
+
+    
 //#endregion
     
 
