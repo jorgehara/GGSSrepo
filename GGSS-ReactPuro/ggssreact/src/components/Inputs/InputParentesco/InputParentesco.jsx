@@ -23,7 +23,7 @@ const InputParentesco = ({
   propIdSelect,
   obligatorio
 }) => {
-  const [mostrarComponente, setMostrarComponente] = useState(true);
+  const [mostrarComponente, setMostrarComponente] = useState(false);
 
   useEffect(() => {
     setMostrarComponente(display);
@@ -80,7 +80,7 @@ const InputParentesco = ({
 
 
         <div className="col d-flex justify-content-end align-items-center btn-modal-miau">
-          <ButtonCallModal
+          {/* <ButtonCallModal
             idModal={idModal}
             className={
               mostrarComponente
@@ -89,9 +89,10 @@ const InputParentesco = ({
             }
             nameButton={nameButton}
             useNavbar={false}
-            useButton={true}
+            disableButton={true}
+            useButton={false}
             disabled={disable}
-          />
+          /> */}
         </div>
         <div className="col form-inputs-radioFijar">
         <div 

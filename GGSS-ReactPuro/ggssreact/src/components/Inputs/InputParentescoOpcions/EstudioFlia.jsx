@@ -65,18 +65,19 @@ const EstudioFlia = ({
           </select>
         </div>
         <div className="col-xl-3 d-flex justify-content-end align-items-center btn-modal-estu">
-          <ButtonCallModal
+          {/* <ButtonCallModal
             idModal={idModal}
             className={
               mostrarComponente
-                ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 "
+                ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2"
                 : "none"
             }
             nameButton={nameButton}
             useNavbar={false}
-            useButton={true}
+            disableButton={true}
+            useButton={false}
             disabled={disable}
-          />
+          /> */}
         </div>
         <div className="col-xl-2 radio-Fijar-estu mt-2">
         <div

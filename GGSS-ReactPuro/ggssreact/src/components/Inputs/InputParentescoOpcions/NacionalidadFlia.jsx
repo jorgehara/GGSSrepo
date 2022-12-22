@@ -86,18 +86,19 @@ const NacionalidadFlia = ({
       </div>
       <div className="btn-modal-nacio">
       <div className="d-flex justify-content-center align-items-center mt-1">
-        <ButtonCallModal
+        {/* <ButtonCallModal
           idModal={idModal}
           className={
             mostrarComponente
-              ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2 "
+              ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2"
               : "none"
           }
           nameButton={nameButton}
           useNavbar={false}
-          useButton={true}
+          disableButton={true}
+          useButton={false}
           disabled={disable}
-        />
+          /> */}
       </div>
 
       </div>

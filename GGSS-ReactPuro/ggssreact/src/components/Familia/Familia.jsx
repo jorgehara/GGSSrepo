@@ -229,7 +229,8 @@ const Familia = ({responses, setResponses,disable}) => {
                 nameButton="..."
                 nameCheck="Fijar"
                 checked=""
-                display={true}
+                useButton={false}
+                display={false}
                 idModal="Parentescos"
                 propArray={formFamilia?.inputParentesco && formFamilia?.inputParentesco}
                 disable={disable}
@@ -253,24 +254,26 @@ const Familia = ({responses, setResponses,disable}) => {
                 familiarSeleccionado={familiarSeleccionado && familiarSeleccionado }
                 
               />
-              <EstudioFlia
-                nameInput="Estudios"
-                array={estudiosValue && estudiosValue}                
-                namePropOp="estudiosNivel"
-                idSelect="iDestudios"
-                propArray={ formFamilia?.idInputEstudios && formFamilia?.idInputEstudios }
-                placeHolder="Estudios"
-                nameButton="..."
-                nameCheck="Fijar"
-                checked=""
-                display={false}
-                idModal="Estudios"
-                disable={disable}
-                idInput="idInputEstudios"
-                onChange={onChangeValues}
-                valueInputEstudios={ formFamilia?.idInputEstudios && formFamilia?.idInputEstudios }
-                obligatorio ={true}
-              />
+                <EstudioFlia
+                  nameInput="Estudios"
+                  array={estudiosValue && estudiosValue}                
+                  namePropOp="estudiosNivel"
+                  idSelect="iDestudios"
+                  propArray={ formFamilia?.idInputEstudios && formFamilia?.idInputEstudios }
+                  placeHolder="Estudios"
+                  nameButton="..."
+                  nameCheck="Fijar"
+                  checked=""
+                  useButton={false}
+                  display={false}
+                  idModal="Estudios"
+                  disable={disable}
+                  idInput="idInputEstudios"
+                  onChange={onChangeValues}
+                  valueInputEstudios={ formFamilia?.idInputEstudios && formFamilia?.idInputEstudios }
+                  action={ADD_FAMILIA}
+                  obligatorio ={true}
+                />
             </div>
             <div className="col-xl-6 p-2">
 
@@ -284,6 +287,7 @@ const Familia = ({responses, setResponses,disable}) => {
                 nameButton="..."
                 nameCheck="Fijar"
                 checked=""
+                useButton={false}
                 display={false}
                 propArray={formFamilia?.nombrePais && formFamilia?.nombrePais }
                 idModal="paises"
@@ -309,6 +313,7 @@ const Familia = ({responses, setResponses,disable}) => {
                 sexo={formFamilia?.idRadioBtn && formFamilia?.idRadioBtn}
                 propArray={formFamilia?.idRadioBtn && formFamilia?.idRadioBtn}
                 idModal="nacionalidades"
+                useButton={false}
                 disable={disable}
                 onChange={onChangeValues}
                 idInput="nacionalidadFamilia"

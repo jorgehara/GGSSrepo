@@ -1,4 +1,4 @@
-//#region Imports
+  //#region Imports
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -226,7 +226,7 @@ const Domicilios = ({ responses, disabled, onChangeValues}) => {
                     idSelected={formDomicilios?.inputCalleDomicilios ? formDomicilios?.inputCalleDomicilios : empleadoUno.calle}
                     masculinos=""
                     femeninos=""
-                    display={true}
+                    display={false}
                     idModal="calles"
                     disabled={disabled}
                     nameInput="inputCalleDomicilios"
@@ -291,7 +291,7 @@ const Domicilios = ({ responses, disabled, onChangeValues}) => {
                   masculinos=""
                   femeninos=""
                   idSelected={formDomicilios?.inputProvinciaDomicilios ? formDomicilios?.inputProvinciaDomicilios : empleadoUno.provincia}
-                  display={true}
+                  display={false}
                   idModal="pdlb"
                   disabled={disabled}
                   nameInput="inputProvinciaDomicilios"
