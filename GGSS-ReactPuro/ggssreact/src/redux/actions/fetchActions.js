@@ -416,13 +416,24 @@ export const getIdTarea = (payload) => {
         payload
     }
 }
+export const addDocumentacionEmpleados=(payload)=>{
+    return{
+        type : ADD_DOCU_EMPL,
+        payload
+    };
+}
 export const deleteTarea = (payload) => {
     return {
         type: DELETE_TAREA,
         payload
     }
 }
-
+export const addNumeradores=(payload)=>{
+    return {
+        type :ADD_NUMERADORES,
+        payload,
+    }
+}
 // -------- PUT ACTIONS -----------
 
 export const putEstadoCivil = (payload) => {

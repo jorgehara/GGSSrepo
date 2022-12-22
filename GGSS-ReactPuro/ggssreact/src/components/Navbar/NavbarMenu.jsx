@@ -33,7 +33,8 @@ const NavbarMenu = () => {
 	const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles"
 	const urlEstudios = "http://54.243.192.82/api/Estudios"
 	const urlTiposDocumento = "http://54.243.192.82/api/TiposDocumento"
-
+	const urlCargos = "http://54.243.192.82/api/Cargos";
+	const urlTareas = "http://54.243.192.82/api/TareasDesempeñadas";
 	const [refetch, setRefetch] = useState(true); // estado para recargar cada vez que se ejecute un post/put/delete
 
 	
@@ -127,7 +128,6 @@ const NavbarMenu = () => {
 	const valueIdFormaPago = useSelector((state) => state.generalState.idFormaPago)
 
 	// cargos
-	const cargosValue = useSelector((state) => state.generalState.cargos)
 	const cargoSelected = useSelector((state) => state.modalState.cargoSelected)
 	const inputCargo = useSelector((state) => state.modalState.formulario.inputCargo)
 	const textAreaCargo = useSelector((state) => state.modalState.formulario.textAreaCargo)
