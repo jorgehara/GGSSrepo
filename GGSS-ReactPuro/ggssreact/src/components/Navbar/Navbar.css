@@ -48,7 +48,14 @@ h6{
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
-.navbar-nav :focus{
+.dropdown-menu :focus{
+    background-color: rgba(220, 53, 70, 0.24);
+    color: black;
+    border-radius: 10px;
+    border-bottom-left-radius : 0;
+    border-bottom-right-radius : 0 ;
+}
+.navbar-button :focus{
     background-color: rgba(220, 53, 70, 0.24);
     color: black;
     border-radius: 10px;
