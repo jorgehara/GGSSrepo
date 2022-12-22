@@ -296,7 +296,7 @@ const BasicModal = ({
                 {inputDate && <InputDate nameInput="Vencimiento" />}
 
                 <br />
-                {/* {textArea &&
+                {textArea &&
                   textAreaObject?.map((p, i) => {
                     console.log(textAreaObject)
                     return (
@@ -309,7 +309,7 @@ const BasicModal = ({
                       />
                     )
                   })
-                } */}
+                }
                 
                 <hr />
 
