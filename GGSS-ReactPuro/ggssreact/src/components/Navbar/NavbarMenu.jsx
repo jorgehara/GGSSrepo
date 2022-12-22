@@ -103,7 +103,7 @@ const NavbarMenu = () => {
 	const valueIdEstadoCivil = useSelector((state) => state.modalState.estadoCivilSelected.idEstadoCivil);
 	// console.log(estadosCivilesValue)
 
-	// Estudios
+	// Estudios s
 	const estudiosValue = useSelector((state) => state.generalState.estudios)
 	const estudioSelected = useSelector((state) => state.modalState.estudioSelected);
 	const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio)
