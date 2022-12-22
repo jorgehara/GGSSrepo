@@ -17,7 +17,10 @@ import { GET_INPUT_VALU_BROWSER } from "../../redux/types/employeTypes";
 import swal from "sweetalert";
 import { disabledInputs } from "../../redux/actions/fetchActions";
 import "./Browser.css";
-import { deleteDetLic } from "../../redux/actions/licenciasActions";
+import {
+  clearLicSelect,
+  deleteDetLic,
+} from "../../redux/actions/licenciasActions";
 
 const Browser = ({ disable, setDisable }) => {
   const url = "http://54.243.192.82/api/Empleados?records=10000";
@@ -61,7 +64,8 @@ const Browser = ({ disable, setDisable }) => {
     (state) => state.licenciasState.detalleSelect
   );
   function onSelect(e, name, idEmpleado) {
-    dispatch(deleteDetLic(detalleSeleccionado.idDetalleLicenciaEmpleado));
+    //dispatch(deleteDetLic(detalleSeleccionado.idDetalleLicenciaEmpleado));
+    //dispatch(clearLicSelect());
     getEmployeById(empleados, idEmpleado).then((res) => {
       console.log(res[0].iDempleado);
       dispatch(addOneEmploye(res[0]));

@@ -1,6 +1,5 @@
 import axios from "axios";
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
@@ -8,20 +7,9 @@ import {
   addNewLicencia,
   updateLicencia,
   deleteLicencia,
-  addLicenciaEmpleados,
 } from "../../../redux/actions/fetchActions";
-import {
-  addNewDetalle,
-  updateDetalle,
-} from "../../../redux/actions/licenciasActions";
-import { AXIOS_ERROR, SET_LOADING } from "../../../redux/types/fetchTypes";
-import ButtonCancelarAceptar from "../../Buttons/ButtonCancelarAceptar";
-import TableBasic1 from "../../Tables/TableBasic1";
 import TableLicencias from "../../Tables/TableLicencias";
 import TableSuspenLicencia from "../../Tables/TableSuspenLicencia";
-import InputCbo from "../InputCbo/InputCbo";
-import InputDate from "../InputDate/InputDate";
-import InputForm from "../InputForm/InputForm";
 import FechaSuspencion from "./Childs/FechaSuspencion";
 import NuevaLicencia from "./Childs/NuevaLicencia";
 import PorPeriodo from "./Childs/PorPeriodo";
@@ -64,7 +52,12 @@ const FieldSet = ({
   const detalleSelected = useSelector(
     (state) => state.licenciasState.detalleSelect
   );
-  const urlCreateLicencia = "http://54.243.192.82/api/InsertarNuevaLicencia";
+
+  
+
+  const url = `http://54.243.192.82/api/ActualizaDisponibles/0?idEmpleado=${empleadoUno.iDempleado}&anio=${formLicencias?.inputCboAñosLicencia}&diasDisponiblesTotales=${formLicencias?.inputCantDiasDispLicencia}&fechaVencimiento=${formLicencias?.inputVencimientoLicencias}&newId=0`
+  const urlCreateLicencia = `http://54.243.192.82/api/ActualizaDisponibles/0?idEmpleado=${empleadoUno.iDempleado}&anio=${formLicencias?.inputCboAñosLicencia}&diasDisponiblesTotales=${formLicencias?.inputCantDiasDispLicencia}&fechaVencimiento=${formLicencias?.inputVencimientoLicencias}&newId=0`;
+
   const urlLicencias = "http://54.243.192.82/api/ModificarDatos";
   const detalleSeleccionado = useSelector(
     (state) => state.licenciasState.detalleSelect
@@ -157,11 +150,16 @@ const FieldSet = ({
 
   let dateHasta = new Date();
 
+    const bodyDeleteSusp = {
+      "idDetalleLicenciaEmpleado": detalleSeleccionado.idDetalleLicenciaEmpleado,
+      "fechaSuspension": null
+    }
+
   async function deleteSuspencion() {
     try {
       axios
         .put(
-          `http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=${detalleSeleccionado.idDetalleLicenciaEmpleado}`
+          `http://54.243.192.82/api/DetalleLicenciasEmpleados`, bodyDeleteSusp
         )
         .then((res) => {
           setRefectch(!refetch);
@@ -204,7 +202,7 @@ const FieldSet = ({
         try {
           axios
             .put(
-              `http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=${detalleSeleccionado.idDetalleLicenciaEmpleado}&FechaSuspension=""`
+              `http://54.243.192.82/api/DetalleLicenciasEmpleados`, bodyDeleteSusp
             )
             .then((res) => {
               setRefectch(!refetch);
@@ -323,7 +321,7 @@ const FieldSet = ({
   function fetchApiWithOptions() {
     switch (selectedOption) {
       case "1 - Disponibles por Periodo":
-        sendData(urlCreateLicencia, bodyLicencias, addNewLicencia);
+        sendData(urlCreateLicencia, addNewLicencia);
         break;
       case "2 - Solicita Nueva Licencia":
         solicitanuevaLic(bodyDetalleLicencia);

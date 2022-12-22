@@ -9,3 +9,5 @@ export const UPDATE_DETALLE = "UPDATE_DETALLE";
 
 export const ADD_NEW_DETALLE = "ADD_NEW_DETALLE";
 export const DELETE_DET_LIC = "DELETE_DET_LIC";
+
+export const CLEAR_LIC_SELECT = "CLEAR_LIC_SELECT"

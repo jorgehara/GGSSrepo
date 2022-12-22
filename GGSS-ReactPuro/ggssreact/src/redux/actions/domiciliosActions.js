@@ -1,7 +1,7 @@
 import { Action } from "@remix-run/router";
 import { ADD_DOMICILIOS, ADD_NEW_DOMICILIO, ADD_ONEDOMICILIO, DELETE_ONE_DOMICILIO, SELECT_BARRIO, SELECT_DEPARTAMENTO, SELECT_ID_DOMICILIO, SELECT_PROVINCIA, SET_PREDETERMINADO } from "../types/domiciliosTypes";
 
-export const addDomicilios = (payload) =>{
+export const addDomiciliosForm = (payload) =>{
     return {
         type : ADD_DOMICILIOS,
         payload,

@@ -22,7 +22,7 @@ import { addNewFamiliar, deleteOneFamiliar } from "../../redux/actions/fetchActi
 import { disableFunctions } from "../../redux/actions/employeActions";
 import { addFamiliar } from "../../redux/actions/familiaActions";
 
-const Familia = ({responses, setResponses,disable}) => {
+const Familia = ({responses, setResponses,disable, setRefetch, refetch}) => {
   
   //const { saveEmpl, saveNacionalidad, saveEstudio, parentescos, disable, saveFamSelect } = useContext(employeContext);
 
@@ -32,8 +32,8 @@ const Familia = ({responses, setResponses,disable}) => {
   const dispatch = useDispatch();
 
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
-  const urlFamiliares = "http://54.243.192.82/api/MostrarDatosFamiliares";
-
+  const urlFamiliares = "http://54.243.192.82/api/EliminarFamiliarPorId";
+const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
   
   function onChangeValues(e, key){
     let newResponse = {...formFamilia};
@@ -65,6 +65,7 @@ const Familia = ({responses, setResponses,disable}) => {
   const familiaresPorEmpleado = familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
   const familiarSeleccionadoR = useSelector((state)=> state.familiaStates.familiarSeleccionado);
 
+  console.log(familiaresValue)
   //#endregion
 
   const propsRadioButton = {
@@ -97,9 +98,10 @@ const Familia = ({responses, setResponses,disable}) => {
   
   async function sendData() {
     try {
-      await axios.post(urlFamiliares, bodyPetition)
+      await axios.post(urlCreateFamiliar, bodyPetition)
         .then(res => {
-          dispatch(addNewFamiliar(res.data));
+          //dispatch(addNewFamiliar(res.data));
+          setRefetch(!refetch)
           swal({
             title: "Ok",
             text: "Familiar cargado correctamente",
@@ -134,6 +136,7 @@ const Familia = ({responses, setResponses,disable}) => {
     }
   }
  
+  console.log(empleadoUno.iDempleado)
 
   let bodyPetition = {
     "iDfamiliares": ((familiaresValue && familiaresValue[familiaresValue.length -1]  && (familiaresValue[familiaresValue.length -1].iDfamiliares))+1),

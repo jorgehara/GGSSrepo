@@ -72,9 +72,9 @@ const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaE
         });      
     },[formLicencias]);
 
-    function sendData(url, bodyPetition, action){
+    function sendData(url,  action){
         try{
-            axios.post(url, bodyPetition)
+            axios.post(url)
         .then((res)=>{
             console.log(res.data)
             dispatch(action(res.data));

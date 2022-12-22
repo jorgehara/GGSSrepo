@@ -58,7 +58,8 @@ const TrabajosAnteriores = ({responses, setResponses}) => {
     const valueIdTrabajoAnterior = useSelector((state)=> state.trabajosAnteriores.idTrabajoAnterior);    
 
     const columns = ["Seleccionar" , "Desde" , "Hasta", "Descripción"];
-    const urlTrabajosAnteriores = "http://54.243.192.82/api/TrabajosAnteriores";
+    const urlTrabajosAnteriores = `http://54.243.192.82/api/TrabajosAnteriores?IdTrabajoAnterior=0&IdEmpleado=${empleadoUno.iDempleado}&Desde=${formTrabajosAnteriores?.idDateDesde}&Hasta=${formTrabajosAnteriores?.idDateHasta}&Actualidad=${formTrabajosAnteriores?.idCheckTrabajos ? formTrabajosAnteriores?.idCheckTrabajos : false}&Descripcion=${formTrabajosAnteriores?.idDescripcionTrabajos}`;
+    const urlTrabajosAnterioresDelete = "http://54.243.192.82/api/TrabajosAnteriores";
     const trabajosAnterioresDelEmpleado = trabajosAnteriores && trabajosAnteriores.filter((trabajo)=> trabajo.idEmpleado === empleadoUno.iDempleado);
 
     const bodyPetition = {
@@ -124,7 +125,7 @@ const TrabajosAnteriores = ({responses, setResponses}) => {
     }
     const deleteTRabajoAnterior= async (id)=>{
         try{
-            await axios.delete(`${urlTrabajosAnteriores}/${id}`)
+            await axios.delete(`${urlTrabajosAnterioresDelete}/${id}`)
             .then((res)=> {
                 dispatch(deleteOneTrabajo(Number(id)));
                 swal({

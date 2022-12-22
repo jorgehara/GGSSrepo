@@ -220,7 +220,7 @@ const NavbarMenu = () => {
 										</ul>
 									</li>
 
-									<hr />
+									{/* <hr />
 									<li class="dropdown-submenu">
 										<a className='dropdown-item' tabindex="-1" href="#">Para Liquidación</a>
 										<ul class="dropdown-menu">
@@ -252,7 +252,7 @@ const NavbarMenu = () => {
 												<ButtonCallModal idModal="Plan" nameButton="Plan de Cuentas" useNavbar={true} />
 											</div>
 										</ul>
-									</li>
+									</li> */}
 								</ul>
 							</li>
 							{/* <li className="nav-item">

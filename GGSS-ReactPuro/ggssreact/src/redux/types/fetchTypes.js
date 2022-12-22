@@ -102,3 +102,5 @@ export const DELETE_LICENCIA = "DELETE_LICENCIA"
 
 export const ADD_NEW_DOC = "ADD_NEW_DOC";
 export const DELETE_DOC = "DELETE_DOC";
+
+export const ADD_ONE_DE = "ADD_ONE_DE"

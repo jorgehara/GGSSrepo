@@ -74,6 +74,7 @@ const EstudioFlia = ({
             }
             nameButton={nameButton}
             useNavbar={false}
+            disableButton={true}
             useButton={true}
             disabled={disable}
           />

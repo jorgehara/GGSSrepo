@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import swal from 'sweetalert';
 import { inputButtonClasessExtras, inputButtonClasessExtrasAfectaciones, inputButtonClasessExtrasInstrum } from '../../classes/classes'
-import { addDatosExtras, addInstrumLegales } from '../../redux/actions/fetchActions';
+import { addDatosExtras, addInstrumLegales, addOneDatoExtra } from '../../redux/actions/fetchActions';
 import { GET_INPUT_VALUES_EXTRAS } from '../../redux/types/extrasTypes';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import ButtonCancelarAceptar from '../Buttons/ButtonCancelarAceptar';
@@ -14,15 +15,69 @@ import TextArea from '../Inputs/TextArea/TextArea';
 import TableExtras from '../Tables/TableExtras';
 import "./Extras.css";
 
-const Extras = ({responses, setResponses, disable}) => {
+const Extras = ({responses, setResponses, disable, datosExtraEmpleado, setRefetch, refetch}) => {
 
-    const columns = ["Fecha", "Descripción", "Observaciones"]
+    const columns = ["Seleccionar","Fecha", "Descripción", "Observaciones"]
     const dispatch = useDispatch();
     const [ formDatosExtras, setFormDatosExtras ] = useState(responses["formDatosExtras"]);
     const deshabilitar = useSelector((state)=> state.employeStates.disable);
-    
+    const empleadoUno = useSelector((state) => state.employeStates.employe);
     const datosExtras = useSelector((state)=> state.generalState.datosExtras);
     const instrumLegales = useSelector((state)=> state.generalState.instrumLegales);
+    const datoExtraSelected = useSelector((state)=> state.extrasState.datoExtra);
+
+    console.log(datoExtraSelected)
+
+  console.log(empleadoUno.iDempleado)
+    const urlPetition = `http://54.243.192.82/api/GuardarDatosExtras/0?Fecha=${formDatosExtras?.inputFechaExtras}&IdEmpleado=${empleadoUno.iDempleado}&IdDatoExtra=${formDatosExtras?.inputDatosExtrasCbo}&Obs=${formDatosExtras?.inputTextExtras}`
+
+
+    async function sendData(){
+      if(empleadoUno){
+        try{
+          await axios.post(urlPetition)
+          .then((res)=>{
+            console.log(res)
+            setRefetch(!refetch)
+          })
+        }catch(err){
+          return swal({
+              title: "Error",
+              text: `Error al insertar el Dato Extra, error: ${err}`,
+              icon: "error",
+        })
+        }
+      }else{
+        return swal({
+          title: "Error",
+          text: `Debe seleccionar un Empleado`,
+          icon: "error",
+        })
+      }
+      
+      
+    }
+    async function deleteDatoExtra(id){
+
+      try{
+        axios.delete(`http://54.243.192.82/api/EliminarDatosExtras/${id}`)
+        .then((res)=>{
+          setRefetch(!refetch);
+          return swal({
+            title: "Ok",
+            text: `Dato Extra borrado con éxito`,
+            icon: "success",
+          })
+        })
+      }catch(err){
+        return swal({
+          title: "Error",
+          text: `Error al eliminar el Dato Extra`,
+          icon: "error",
+        })
+      }
+    }
+    console.log(datosExtraEmpleado)
 
     function onChangeValues(e, key){
         const newResponse = {...formDatosExtras};
@@ -91,14 +146,14 @@ const Extras = ({responses, setResponses, disable}) => {
                 <div className='row'>
                       <div className='col-xl-12'>
                           <TextArea onChange={onChangeValues} idInput="inputTextExtras" value={formDatosExtras?.inputTextExtras && formDatosExtras?.inputTextExtras} inputName="Observaciones" action={GET_INPUT_VALUES_EXTRAS} />
-                          <ButtonCancelarAceptar cancelar="-" aceptar="+" />
-                          <TableExtras columns={columns} />
+                          <ButtonCancelarAceptar cancelar="-" aceptar="+" idElimiar={datoExtraSelected.idEmpleadoDatoExtra} functionDelete={deleteDatoExtra} functionSend={sendData} />
+                          <TableExtras datosExtraEmpleado={datosExtraEmpleado && datosExtraEmpleado} columns={columns} />
                       </div>
                 </div>
             </div>
           </div>
         </div>
-        <div className="accordion-item">
+       {/*  <div className="accordion-item">
             <h2 className="accordion-header" id="headingTwo">
               <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 Adscripto
@@ -186,7 +241,7 @@ const Extras = ({responses, setResponses, disable}) => {
               </div>
               </div>
             </div>
-          </div>         
+          </div>  */}        
         </div>
       </div>
       </section>  

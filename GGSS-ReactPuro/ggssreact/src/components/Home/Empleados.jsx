@@ -27,6 +27,7 @@ import {
   addDepartamentos,
   addDirecciones,
   addDocumentacionEmpleados,
+  addDomicilios,
   addEmpleadores,
   addEsquemas,
   addEstados,
@@ -53,7 +54,6 @@ import {
 } from "../../redux/actions/fetchActions";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import axios from "axios";
-import { addDomicilios } from "../../redux/actions/domiciliosActions";
 import { getTrabajosAnteriores } from "../../redux/actions/trabajosAnterioresActions";
 import { getOneDocumento } from "../../redux/actions/documentacionActions";
 import {
@@ -71,6 +71,8 @@ const Empleados = () => {
   const [disableEstado, setDisableEstado] = useState(false);
   const [empleados, setEmpleados] = useState([]);
   const [licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
+  const [datosExtraEmpleado, setDatosExtraEmpleado ] = useState([]);
+
   const [refetch, setRefectch] = useState(false);
   const empleadoUno = useSelector((state) => state.employeStates.employe);
   const detalleSeleccionado = useSelector(
@@ -118,7 +120,8 @@ const Empleados = () => {
   const urlFormasDePago = "http://54.243.192.82/api/FormasdePagos";
   const urlLugaresDePago = "http://54.243.192.82/api/LugaresdePago";
   const urlBancos = "http://54.243.192.82/api/Bancos";
-  const urlDirecciones = "http://54.243.192.82/api/Direcciones";
+  const urlDirecciones =
+    "http://54.243.192.82/api/Direcciones/DireccionesDatos/1,1";
   const urlSindicatos = "http://54.243.192.82/api/Sindicatos";
   const urlEsquemas = "http://54.243.192.82/api/Esquemas";
   const urlConceptos = "http://54.243.192.82/api/ConceptosDatos/0,1";
@@ -126,9 +129,9 @@ const Empleados = () => {
   const urlDocumentacionEmpleados =
     "http://54.243.192.82/api/EmpleadosDocumentacion";
   const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
-  const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/0,%201`;
+  const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/1,%201`;
   const urlInstrumLegal =
-    "http://54.243.192.82/api/InstrumentosLegales/0?modo=1";
+    "http://54.243.192.82/api/InstrumentosLegales/1?modo=1";
   const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
   const urlDetalleLicenciasEmpleados =
     "http://54.243.192.82/api/DetalleLicenciasEmpleados";
@@ -147,9 +150,9 @@ const Empleados = () => {
     setDisable(true);
   }
 
-  const handleFetch = (url, action) => {
+  const handleFetch = async (url, action) => {
     dispatch({ type: SET_LOADING });
-    axios
+    await axios
       .get(url)
       .then((res) => {
         dispatch(action(res.data.result));
@@ -158,36 +161,28 @@ const Empleados = () => {
         dispatch({ type: AXIOS_ERROR });
       });
   };
-  const handleFetchParams = (url, action, paramOne) => {
+  const handleFetchParams = async (url, action, paramOne) => {
+
     dispatch({ type: SET_LOADING });
-    if (paramOne) {
-      console.log(`${url}/${paramOne},%201`);
-      axios
+    if (paramOne && paramOne) {
+      await axios
         .get(`${url}/${paramOne},%201`)
         .then((res) => {
-          console.log(res);
+          console.log(res)
           dispatch(action(res.data));
         })
         .catch((err) => {
           dispatch({ type: AXIOS_ERROR });
         });
-    } else {
-      axios
-        .get(`${url}/0,%201`)
-        .then((res) => {
-          console.log(res);
-          dispatch(action(res.data));
-        })
-        .catch((err) => {
-          dispatch({ type: AXIOS_ERROR });
-        });
-    }
+    } 
+    return;
   };
-  const handleFetchComun = (url, action) => {
+  const handleFetchComun = async (url, action) => {
     dispatch({ type: SET_LOADING });
-    axios
+    await axios
       .get(url)
       .then((res) => {
+        console.log(res.data)
         dispatch(action(res.data));
       })
       .catch((err) => {
@@ -196,17 +191,16 @@ const Empleados = () => {
   };
   console.log(responses);
   useEffect(() => {
-    handleFetch(urlEstados, addEstados);
+     handleFetch(urlEstados, addEstados);
     handleFetch(urlEstadosCiviles, addEstadosCiviles);
     handleFetch(urlPaisesNac, addPaises);
     handleFetch(urlEstudios, addEstudios);
 
-    handleFetch(urlTiposDNI, addTiposDocumento);
+     handleFetch(urlTiposDNI, addTiposDocumento);
     handleFetch(urlParentescos, addParentescos);
     handleFetch(urlFamiliares, addFamiliares);
     handleFetch(urlNumeradores, addNumeradores);
 
-    handleFetch(urlDomicilios, addDomicilios);
     handleFetch(urlCalles, addCalles);
     handleFetch(urlDeptos, addDepartamentos);
     handleFetch(urlProvincias, addProvincias);
@@ -238,8 +232,15 @@ const Empleados = () => {
     handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
     handleFetch(urlDocumentacion, getOneDocumento);
 
-    handleFetch(urlDatosExtras, addDatosExtras);
-    handleFetch(urlInstrumLegal, addInstrumLegales);
+
+    handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);  
+
+
+    handleFetchComun(urlDatosExtras, addDatosExtras);
+    handleFetchComun(urlInstrumLegal, addInstrumLegales); 
+
+    handleFetch(urlDomicilios, addDomicilios);
+
   }, [disable]);
 
   useEffect(() => {
@@ -269,18 +270,19 @@ const Empleados = () => {
       .then((res) => {
         setLicenciaEmpladoDatos(res.data);
       });
+      axios
+      .get(
+        `http://54.243.192.82/api/MostrarDatosExtrasPorEmpleado/${empleadoUno?.iDempleado}`
+      )
+      .then((res) => {
+        setDatosExtraEmpleado(res.data);
+      });
   }, [empleadoUno?.iDempleado, refetch]);
   useEffect(() => {
     dispatch(deleteDetLic(detalleSeleccionado.idDetalleLicenciaEmpleado));
   }, [empleadoUno?.iDempleado]);
 
-  useEffect(() => {
-    handleFetchParams(
-      urlEsquemasConceptos,
-      getAdicLiq,
-      empleadoUno && empleadoUno?.iDesquema
-    );
-  }, [empleadoUno?.iDempleado]);
+ 
 
   console.log(licenciaEmpleadoDatos);
   return (
@@ -308,6 +310,8 @@ const Empleados = () => {
               setDisable={setDisable}
               responses={responses}
               setResponses={setResponses}
+              setRefetch={setRefectch}
+              refetch={refetch}
             />
           )}
           {tabIndex === 2 && (
@@ -358,10 +362,14 @@ const Empleados = () => {
           )}
           {tabIndex === 7 && (
             <Extras
+            setDatosExtraEmpleado={setDatosExtraEmpleado}
+            datosExtraEmpleado={datosExtraEmpleado}
               disable={disable}
               setDisable={setDisable}
               responses={responses}
               setResponses={setResponses}
+              refetch={refetch}
+              setRefetch={setRefectch}
             />
           )}
         </div>

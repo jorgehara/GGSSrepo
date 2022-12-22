@@ -1,5 +1,5 @@
 import { UPDATE_LICENCIA } from "../types/fetchTypes";
-import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_NEW_LICENCIA, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, DELETE_DET_LIC, OPTIONS_FORMULARIO, SELECTED_OPTION, UPDATE_DETALLE } from "../types/LicenciasTypes"
+import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_NEW_LICENCIA, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAR_LIC_SELECT, DELETE_DET_LIC, OPTIONS_FORMULARIO, SELECTED_OPTION, UPDATE_DETALLE } from "../types/LicenciasTypes"
 
 export const selectedOption=(payload)=>{
     return{
@@ -50,4 +50,11 @@ export const deleteDetLic=(payload)=>{
         type : DELETE_DET_LIC,
         payload,
     };
+}
+
+export const clearLicSelect =(payload)=>{
+    return{
+        type: CLEAR_LIC_SELECT,
+        payload
+    }
 }
