@@ -132,6 +132,8 @@ return (
                             propIdOption="iDconvenio"
                             idInput="inputConvenio"
                             onChange={onChangeValues}
+                            useButton={false}
+                            display={false}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}

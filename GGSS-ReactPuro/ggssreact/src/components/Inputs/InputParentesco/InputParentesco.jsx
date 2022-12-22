@@ -80,7 +80,7 @@ const InputParentesco = ({
 
 
         <div className="col d-flex justify-content-end align-items-center btn-modal-miau">
-          {/* <ButtonCallModal
+          <ButtonCallModal
             idModal={idModal}
             className={
               mostrarComponente
@@ -92,7 +92,7 @@ const InputParentesco = ({
             disableButton={true}
             useButton={false}
             disabled={disable}
-          /> */}
+          />
         </div>
         <div className="col form-inputs-radioFijar">
         <div 

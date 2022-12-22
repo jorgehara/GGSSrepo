@@ -1,9 +1,20 @@
 import React from 'react';
+import {useEffect, useState} from 'react';
 import "./InputButton.css";
 
-const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, swal , clasess, array,propArrayOp, propIdOption, idInput, obligatorio}) => {
+const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, swal , clasess, array,propArrayOp, propIdOption, idInput, obligatorio, display, useButton}) => {
 
-  
+
+    const [mostrarComponente, setMostrarComponente] = useState (false);
+
+  useEffect(() => {
+    setMostrarComponente(display);
+  }, [display]);
+
+
+    // useEffect(()=>{
+    //     usaBotton(useButton);
+    //   },[])
 
 
   return (
@@ -48,8 +59,14 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
                     disabled={disabled}
                     onChange={(e)=> onChange(e.target.value, idInput )}
                     />
-            <button  type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal)}
-                  className="btn btn-validacion btn-outline-danger" disabled={disabled}>
+            <button  type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal, useButton )}
+                  className={
+                    mostrarComponente
+                    ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2"
+                    : "none"
+                    } 
+                    useButton={false}
+                    disabled={disabled}>
                   {nameButton}
             </button>
         </div>
