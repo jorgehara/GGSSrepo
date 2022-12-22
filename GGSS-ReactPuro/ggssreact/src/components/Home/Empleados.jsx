@@ -26,6 +26,8 @@ const Empleados = () => {
     const [image, setImage] = useState("");
     const [disableEstado, setDisableEstado] = useState(false);
     const [empleados, setEmpleados] = useState([]);
+    const [licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
+
     const dispatch = useDispatch();
 
 //#region URLs
