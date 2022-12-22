@@ -28,6 +28,20 @@ const Empleados = () => {
     const [empleados, setEmpleados] = useState([]);
     const [licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
 
+  const [refetch, setRefectch] = useState(false);
+  const empleadoUno = useSelector((state) => state.employeStates.employe);
+  const detalleSeleccionado = useSelector(
+    (state) => state.licenciasState.detalleSelect
+  );
+
+  const licenciaEmpleado = useSelector(
+    (state) => state.licenciasState.licenciaEmpleado
+  );
+
+  const conceptosPorEmpelado = useSelector(
+    (state) => state.generalState.conceptosXesquemas
+  );
+
     const dispatch = useDispatch();
 
 //#region URLs
@@ -75,7 +89,6 @@ const Empleados = () => {
     const urlDetalleLicenciasEmpleados = "http://54.243.192.82/api/DetalleLicenciasEmpleados";
 //#endregion
     
-    const empleadoUno = useSelector((state)=> state.employeStates.employe);
 
     function setImageEmpleado(){
         empleadoUno.obsFechaIngreso !== undefined && setImage(empleadoUno.obsFechaIngreso);

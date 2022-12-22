@@ -272,49 +272,49 @@ const NavbarMenu = () => {
 //     iDtipoDocumento: idTiposDocumento,
 //   };
 
-  const estadosArray =
-    estadosValue &&
-    estadosValue.map((m, i) => {
-      return m.nombreEstado;
-    });
-  const paises =
-    paisNacionalidad &&
-    paisNacionalidad.map((nac, i) => {
-      return nac.nombrePais;
-    });
+//   const estadosArray =
+//     estadosValue &&
+//     estadosValue.map((m, i) => {
+//       return m.nombreEstado;
+//     });
+//   const paises =
+//     paisNacionalidad &&
+//     paisNacionalidad.map((nac, i) => {
+//       return nac.nombrePais;
+//     });
 
-  const estudios =
-    estudiosValue &&
-    estudiosValue.map((nac, i) => {
-      return nac.estudiosNivel;
-    });
+//   const estudios =
+//     estudiosValue &&
+//     estudiosValue.map((nac, i) => {
+//       return nac.estudiosNivel;
+//     });
 
-  const nacionalidadesMasculinas =
-    paisNacionalidad &&
-    paisNacionalidad.map((nac, i) => {
-      return nac.nacionalidad_masc;
-    });
-  const nacionalidadesFemeninas =
-    paisNacionalidad &&
-    paisNacionalidad.map((nac, i) => {
-      return nac.nacionalidad_fem;
-    });
+//   const nacionalidadesMasculinas =
+//     paisNacionalidad &&
+//     paisNacionalidad.map((nac, i) => {
+//       return nac.nacionalidad_masc;
+//     });
+//   const nacionalidadesFemeninas =
+//     paisNacionalidad &&
+//     paisNacionalidad.map((nac, i) => {
+//       return nac.nacionalidad_fem;
+//     });
 
-  const nacionalidades =
-    nacionalidadesMasculinas &&
-    nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
+//   const nacionalidades =
+//     nacionalidadesMasculinas &&
+//     nacionalidadesMasculinas.concat(nacionalidadesFemeninas);
 
-  const calles =
-    calle &&
-    calle.map((res) => {
-      return res.calle;
-    });
+//   const calles =
+//     calle &&
+//     calle.map((res) => {
+//       return res.calle;
+//     });
 
-  const deptos =
-    dptos &&
-    dptos.map((res) => {
-      return res.departamento;
-    });
+//   const deptos =
+//     dptos &&
+//     dptos.map((res) => {
+//       return res.departamento;
+//     });
 	//Paises
 	const paisNacionalidad = useSelector((state)=> state.generalState.paises)
 	//Calles
