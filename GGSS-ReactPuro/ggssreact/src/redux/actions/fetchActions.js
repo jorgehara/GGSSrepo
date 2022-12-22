@@ -1,4 +1,4 @@
-import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, ADD_LICENCIAS_EMPLEADOS, UPDATE_LICENCIA, ADD_NEW_LICENCIA, DELETE_LICENCIA, DISABLED_INPUTS, ADD_NUMERADORES, ADD_DOCU_EMPL, ADD_DATOS_EXTRAS, ADD_INSTRUM_LEGALES, ADD_CONCEPTOS, ADD_NEW_DOC, DELETE_DOC, ADD_ADIC_LIQUIDACION, ADD_ONE_DE } from "../types/fetchTypes";
+import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, GET_ID_CARGO, DELETE_CARGO, ADD_NEW_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_LICENCIAS_EMPLEADOS, UPDATE_LICENCIA, ADD_NEW_LICENCIA, DELETE_LICENCIA, DISABLED_INPUTS, ADD_NUMERADORES, ADD_DOCU_EMPL, ADD_DATOS_EXTRAS, ADD_INSTRUM_LEGALES, ADD_CONCEPTOS, ADD_NEW_DOC, DELETE_DOC, ADD_ADIC_LIQUIDACION, ADD_ONE_DE } from "../types/fetchTypes";
 
 
 export const setLoading = (payload) =>{
@@ -214,25 +214,9 @@ export const addEsquemas=(payload)=>{
         payload,
     };
 }
-export const disabledInputs=(payload)=>{
-    return {
-        type : DISABLED_INPUTS,
-        payload,
-    };
-}
-export const addNumeradores=(payload)=>{
-    return{
-        type : ADD_NUMERADORES,
-        payload,
-    };
-}
-export const addDocumentacionEmpleados=(payload)=>{
-    return{
-        type : ADD_DOCU_EMPL,
-        payload,
-    };
-}
-// --------- POST ACTIONS ---------
+
+
+// --------- POST ACTIONS --------- ,,,,,,,,,,,,,,,,,,,,,,,,,
 export const addNewEstadoCivil = (payload) => {
     return {
         type : ADD_NEW_ESCI,
@@ -274,6 +258,20 @@ export const addNewFormaPago = (payload) => {
         payload
     }
 }
+
+export const addNewCargo = (payload) => {
+    return {
+        type: ADD_NEW_CARGO,
+        payload
+    }
+}
+
+export const addNewTarea = (payload) => {
+    return {
+        type: ADD_NEW_TAREA,
+        payload
+    }
+}
 export const addNewDoc=(payload)=>{
     return{
         type : ADD_NEW_DOC,
@@ -292,6 +290,8 @@ export const addAdicLiquidacion=(payload)=>{
         payload
     }
 }
+
+
 // -------- DELETE ACTIONS -----------
 
 //estados civiles
@@ -395,6 +395,34 @@ export const deleteFormaPago = (payload) => {
     }
 }
 
+// cargos
+export const getIdCargo = (payload) => {
+    return {
+        type: GET_ID_CARGO,
+        payload
+    }
+}
+export const deleteCargo = (payload) => {
+    return {
+        type: DELETE_CARGO,
+        payload
+    }
+}
+
+// tareas desempeñadas
+export const getIdTarea = (payload) => {
+    return {
+        type: GET_ID_TAREA,
+        payload
+    }
+}
+export const deleteTarea = (payload) => {
+    return {
+        type: DELETE_TAREA,
+        payload
+    }
+}
+
 // -------- PUT ACTIONS -----------
 
 export const putEstadoCivil = (payload) => {
@@ -471,5 +499,18 @@ export const addOneDatoExtra=(payload)=>{
     return {
         type : ADD_ONE_DE,
         payload
+    }
+}
+export const putCargo = (payload) => {
+    return {
+        type: PUT_CARGO,
+        payload
+    }
+}
+
+export const putTarea = (payload) => {
+    return {
+        type: PUT_TAREA,
+        payload,
     }
 }
