@@ -131,9 +131,6 @@
     -webkit-box-shadow: none;
 
 } */
-
-/* 
-.btn:active { background-color: red }
-.btn.btn-primary:hover { background-color: green }
-.accordion:active { background-color: red }
-.btn.btn-primary:hover { background-color: green } */
+/* .options:focus{
+    background-color: #bb2929;
+} */

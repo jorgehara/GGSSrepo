@@ -17,6 +17,13 @@ export const classesEstadosCiviles = {
     "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
+  export const inputButtonDoc= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
+    "classThree" : 'formulario__label',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
   export const inputButtonClasessEmpleador= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
@@ -81,8 +88,8 @@ export const classesEstadosCiviles = {
   export const inputButtonClasessCUIL= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
-    "classThree" : 'formulario__label_convenio',
-    "classFour" : 'formulario-input-Button-Cuil form-select ml-0 px-0 obligatorio',
+    "classThree" : 'formulario__label',
+    "classFour" : 'formulario-input-Button-Cuil ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
 

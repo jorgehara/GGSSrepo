@@ -1,8 +1,15 @@
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+
+
+
+
+
 
 .formulario__grupo{
 	display: flex;
@@ -56,4 +63,25 @@
 }
 .accordion-button::after{
     margin-left: 92%;
+}
+.form-control:focus {
+    box-shadow: none !important;
+  }
+.form-select:focus{
+    outline: none !important;
+    box-shadow: none;
+    border-color: #bb2929 !important;
+}
+.select {
+    background: #333333;
+ }
+.acordion:focus{
+    outline: none !important;
+    box-shadow: none;
+    border-color: #bb2929 !important;
+}
+
+
+.select option[selected]{
+    background-color: #bb2929;
 }

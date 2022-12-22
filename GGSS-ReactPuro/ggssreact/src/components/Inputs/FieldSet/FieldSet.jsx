@@ -36,10 +36,11 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
     const urlDeleteLicencia = "http://54.243.192.82/api/EliminarLicenciaPorId";
     const dispatch = useDispatch();
     const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
+      console.log(empleadoUno.iDempleado)
     const [checked , setChecked ] = useState(false);
     const detalleSeleccionado = useSelector((state)=> state.licenciasState.detalleSelect);
 
-    console.log(detalleSeleccionado)
+    // console.log(detalleSeleccionado)
 
      
 
@@ -76,7 +77,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
       "nroResolucion": formLicencias?.inputNuevaResolucionLic
     }
     
-    console.log(licenciaDelEmpleado)
+    // console.log(licenciaEmpleado)
 
     const bodyDetalleLicencia = {
       IdDetalleLicenciaEmpleado : 0,
@@ -88,11 +89,33 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
     
 
     let dateOne = new Date(formLicencias?.inputDesdeSolicitaLic).setHours(0,0,0,0);
-      let dateTwo = new Date(licenciaEmpleado?.fechaVencimiento && licenciaEmpleado?.fechaVencimiento.substring(0,licenciaEmpleado?.fechaVencimiento.length -9)).setHours(0,0,0,0);
+    let dateTwo = new Date(licenciaEmpleado?.fechaVencimiento && licenciaEmpleado?.fechaVencimiento.substring(0,licenciaEmpleado?.fechaVencimiento.length -9)).setHours(0,0,0,0);
+    let dateProrroga = new Date(formLicencias?.inputNuevaFechaLic).setHours(0,0,0,0);
 
-      let dateProrroga = new Date(formLicencias?.inputNuevaFechaLic).setHours(0,0,0,0);
-    
-    
+    const handleFetch=(url, action )=>{
+      dispatch({type: SET_LOADING});
+      axios.get(url)
+      .then((res)=>{
+          dispatch( action(res.data.result));
+      })
+      .catch((err)=>{
+          dispatch({type:AXIOS_ERROR});
+      })
+    }
+    async function solicitanuevaLic(){
+      if(dateOne.valueOf() < dateTwo.valueOf()){
+        axios.post(`http://54.243.192.82/api/DetalleLicenciasEmpleados`,bodyDetalleLicencia )
+        .then((res)=>{
+          // console.log(res)
+          //dispatch(addNewDetalle(res.data))
+        });
+      }else 
+      swal({
+        title: "Error",
+        text: `La fecha de nueva Licencia no puede ser superior a la Fecha de Vencimiento`,
+        icon: "error",
+      })
+    }
     async function updateData(url, bodyPetition, action, id){
       if(dateTwo.valueOf() > dateProrroga){
         return swal({
@@ -105,7 +128,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
         try{
           await axios.put(url, bodyPetition)
           .then((res)=>{
-            console.log(res.data.result)
+            // console.log(res.data.result)
               dispatch(action(res.data.result));
               setRefectch(!refetch)
           })
@@ -146,7 +169,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
           })
         })
       }catch(err){
-        console.log(err)
+        // console.log(err)
       }
     }
       function deleteWithOptions(){
@@ -168,7 +191,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
            sendData(urlCreateLicencia,bodyLicencias, addNewLicencia);
           break;
         case "2 - Solicita Nueva Licencia":
-          solicitanuevaLic(bodyDetalleLicencia);
+          solicitanuevaLic();
           break;
         case "3 - Prorroga Vencimiento"  :
            updateData(urlLicencias, bodyLicenciasUpdateProrroga, updateLicencia, licenciaEmpleado.idLicenciaEmpleado);
@@ -176,12 +199,15 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
         case "4 - Suspende Licencia" :
            updateData(urlCreateDetalleLicencia, "", updateDetalle, detalleSelected.idDetalleLicenciaEmpleado);
           break;
+        
         default : return null;
       }
     }
 
+    return (  
+        
     async function solicitanuevaLic(bodyDetalleLicencia){
-      debugger;
+      // debugger;
       if(licenciaEmpleado.fechaProrroga && licenciaEmpleado.fechaProrroga){
         let dateProrroga = new Date(licenciaEmpleado.fechaProrroga).setHours(0,0,0,0);
         if(dateOne.valueOf() < dateProrroga.valueOf()){
@@ -212,7 +238,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
         icon: "error",
       })
     }
-    return (          
+     (          
         <>
           <div>
             <fieldset className='border p-2'>
@@ -261,9 +287,7 @@ const FieldSet = ({array,valueId, propArrayOpFem, opciones, selectedOption, onCh
          
       </div>
        </>
-    
-    
-  )
-}
-
+      )
+    )
+  }
 export default FieldSet

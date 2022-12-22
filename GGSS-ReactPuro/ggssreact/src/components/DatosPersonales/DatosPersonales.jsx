@@ -357,6 +357,9 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                             
                             />
                           <InputCbo
+                            value={empleadoUno && empleadoUno
+                              ? empleadoUno.iDestadoCivil
+                              : null}
                             action={ADD_DATOS_PERSONALES}
                             sexo={empleadoUno && empleadoUno ? empleadoUno.sexo : formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo}
                             nameButton="..."
@@ -366,6 +369,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                             propArrayOpFem="femenino"
                             idSelected={formDatosPersonales?.estadoCivilInput ? formDatosPersonales?.estadoCivilInput : empleadoUno.iDestadoCivil}
                             valueId="idEstadoCivil"
+                            propArray="Casado"
                             display={true}
                             idModal="EstadoCivil"
                             disabled={(formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo === "") ? disableEstado : disable}
