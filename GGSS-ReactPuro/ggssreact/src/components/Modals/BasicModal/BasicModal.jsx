@@ -121,12 +121,12 @@ const BasicModal = ({
             if (res.status === 200) {
               console.log(res)
               dispatch(dispatchAddAction(resp.modalDataInputs))
+              setRefetch(!refetch); // resetea la lista 
               return swal({
                 title: "Ok",
                 text: "Agregado con éxito",
                 icon: "success",
               })
-              setRefetch(!refetch); // resetea la lista 
 
             }
           })
