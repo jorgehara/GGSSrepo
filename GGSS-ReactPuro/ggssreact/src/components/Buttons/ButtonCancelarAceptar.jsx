@@ -2,11 +2,6 @@
 const ButtonCancelarAceptar = ({cancelar, aceptar, disabled,functionSend,functionDelete, idElimiar}) => {
 
   
-
-  function deshabilitaEdit(e){
-    e.preventDefault();
-  }
-  
   return (
     <div className="d-flex flex-row">
          <div className='form__grupo__icons d-flex flex-row-reverse w-100 '>

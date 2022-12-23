@@ -14,11 +14,19 @@ import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 import { inputClassProvinciasDomicilios } from "../../classes/classes";
 
 //#endregion
-const Domicilios = ({ responses, disabled, onChangeValues}) => {
+const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, setFormDatosPersonales}) => {
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
 
   const [domicilios, setDomicilios] = useState([]);
   const [checked, setChecked] = useState(false);
   const [ formDomicilios, setFormDomicilios ] = useState(responses["formDomicilios"]);
+  const generalStateData = useSelector((state)=> state.generalState)
+  const provinciaSelected = useSelector((state)=> state.domiciliosStates.provinciaSelected);
+  const departamentoSelected = useSelector((state)=> state.domiciliosStates.departamentoSelected);
+  const localidadSelected = useSelector((state)=> state.domiciliosStates.localidadSelected);
+  const domicilioDelEmpleado = useSelector((state)=> state.domiciliosStates.idDomicilioSelected);
+  const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
+  const listDomicilios = useSelector((state)=> state.generalState.domicilios); 
   const columns = [
     "Predeterminado",
     "Calle",
@@ -30,7 +38,8 @@ const Domicilios = ({ responses, disabled, onChangeValues}) => {
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
   //#region ------------------------------------------------------------------------------REDUX
-  const urlDomicilios = "http://54.243.192.82/api/Domicilios";
+  const urlDomicilios = `http://54.243.192.82/api/InsertarNuevoDomicilio?idDomicilio=0&idCalle=${formDatosPersonales?.inputCalleDomicilios}&Numero=${formDatosPersonales?.inputNumCalle}&idBarrio=${formDatosPersonales?.inputBarriosDomicilios}&Dpto=${formDatosPersonales?.inputDepartamentosDomicilios}&Predeterminado=${formDatosPersonales?.inputPredeterminado}&IdEmpleado=${empleadoUno.iDempleado}&IdEmpleador=1&NewId=0`;
+
   const dispatch = useDispatch();
 
   
@@ -49,19 +58,16 @@ const Domicilios = ({ responses, disabled, onChangeValues}) => {
 
 
 
-  const generalStateData = useSelector((state)=> state.generalState)
-  const provinciaSelected = useSelector((state)=> state.domiciliosStates.provinciaSelected);
-  const departamentoSelected = useSelector((state)=> state.domiciliosStates.departamentoSelected);
-  const localidadSelected = useSelector((state)=> state.domiciliosStates.localidadSelected);
-  const domicilioDelEmpleado = useSelector((state)=> state.domiciliosStates.idDomicilioSelected);
-  const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
  
+
+  console.log(listDomicilios)
+
+
   //#region ------------------------------------------------------------------------------CONTEXT
   
  
 
   
-  const empleadoUno = useSelector((state)=> state.employeStates.employe);
 
   
   //#endregion
@@ -88,33 +94,23 @@ const Domicilios = ({ responses, disabled, onChangeValues}) => {
     }
   }
   let idDomicilio = generalStateData.domicilios && generalStateData.domicilios[generalStateData.domicilios.length -1] ? ((generalStateData.domicilios[generalStateData.domicilios.length -1].idDomicilio)+1) : null;
+  
+  
 
 
-  let bodyPetition = {
-    "idDomicilio": idDomicilio,
-    "idBarrio": domiciliosState.inputBarriosDomicilios,
-    "idCalle": domiciliosState.inputCalleDomicilios,
-    "numero": domiciliosState.inputNumCalle,
-    "dpto": domiciliosState.inputPisoCalle,
-    "predeterminado": domiciliosState && domiciliosState.inputPredeterminado,
-    "idEmpleado": empleadoUno && empleadoUno.iDempleado,
-    "idEmpleador": null
-  }
   const sendDataDomicilios= async ()=>{
     try{
     let predeterminadoExiste = empleadoDomicilio && empleadoDomicilio.filter((dom) => dom.predeterminado === true );
-    if(predeterminadoExiste && bodyPetition.predeterminado === true){
+    if(predeterminadoExiste && formDatosPersonales?.inputPredeterminado === true){
       return swal({
         title: "Error",
         text: "No puede tener más de un domicilio Predeterminado",
         icon: "error",
       }) 
     }
-    
-      if(domiciliosState.inputCalleDomicilios && domiciliosState.inputCalleDomicilios !== "" && domiciliosState.inputNumCalle !== "" && domiciliosState.inputPisoCalle !== "" && domiciliosState.inputProvinciaDomicilios !== "" && domiciliosState.inputDepartamentosDomicilios && domiciliosState.inputLocalidadesDomicilios !== "" && domiciliosState.inputBarriosDomicilios !== ""){
-          await axios.post(urlDomicilios, bodyPetition)
-          .then((res)=> {
 
+    await axios.post(urlDomicilios)
+          .then((res)=> {            
             if(res.status === 200){ 
               dispatch(addNewDomicilio(res.data))  
               swal({
@@ -124,14 +120,6 @@ const Domicilios = ({ responses, disabled, onChangeValues}) => {
               })          
             };            
           })
-          
-          return;
-      }
-      return swal({
-        title: "Error",
-        text: "Debe completar todos los campos",
-        icon: "error",
-      })
     }catch(err){
       return swal({
         title: "Error",
@@ -160,9 +148,9 @@ const Domicilios = ({ responses, disabled, onChangeValues}) => {
 
   const handleChangePredeterminado=(e, key)=>{
     setChecked(!checked)
-    const newResponse = {...formDomicilios};
+    const newResponse = {...formDatosPersonales};
       newResponse[key] = e.target.checked;
-      setFormDomicilios({
+      setFormDatosPersonales({
         ...newResponse
       });
   }

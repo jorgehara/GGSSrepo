@@ -30,9 +30,9 @@ const Navbar = ({handleTabChange, tabIndex}) => {
 				<li className="nav-item">
 					<Link className={  "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(2)}>Liquidación</Link>
 				</li>
-				<li className="nav-item">
+				{/* <li className="nav-item">
 					<Link className={ "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(3)}>Adic. Liquidación</Link>
-				</li>
+				</li> */}
 				<li className="nav-item">
 					<Link className={ "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(4)}>Trabajos Anteriores</Link>
 				</li>

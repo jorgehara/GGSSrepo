@@ -21,10 +21,8 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
       
     },[display])
     const onClickOption=(value)=>{
-      console.log(value)
       dispatch(provinciaAction(value))
     }
-   console.log(array)
   return (
         clasess ? <div className={`${clasess.classOne}`}>
         <div className={`${clasess.classTwo}`}>

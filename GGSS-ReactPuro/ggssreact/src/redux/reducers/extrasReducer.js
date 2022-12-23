@@ -1,4 +1,4 @@
-import { GET_INPUT_VALUES_EXTRAS } from "../types/extrasTypes";
+import {  GET_DE_SELECTED, GET_INPUT_VALUES_EXTRAS } from "../types/extrasTypes";
 
 export const initialState = {
     formulario : {
@@ -13,7 +13,8 @@ export const initialState = {
         inputDireccionesExtras : "",
         inputTextExtrasAdscripto : "",
         inputTextExtrasAfectaciones : ""
-    }
+    },
+    datoExtra : ""
 }
 
 export const extrasReducer =(state = initialState, action)=>{
@@ -24,6 +25,12 @@ export const extrasReducer =(state = initialState, action)=>{
             return {
                 ...state,
                 formulario : {...state.formulario, [payload.name]:payload.value}
+            }
+        }
+        case GET_DE_SELECTED : {
+            return {
+                ...state,
+                datoExtra : payload
             }
         }
         default : return state;

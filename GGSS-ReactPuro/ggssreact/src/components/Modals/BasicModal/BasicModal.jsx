@@ -298,7 +298,6 @@ const BasicModal = ({
                 <br />
                 {textArea &&
                   textAreaObject?.map((p, i) => {
-                    console.log(textAreaObject)
                     return (
                       <TextArea
                         key={i}

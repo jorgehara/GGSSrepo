@@ -8,7 +8,9 @@ import BasicModal from "../Modals/BasicModal/BasicModal";
 import ModalPDLB from "../Modals/ModalPDLB/ModalPDLB";
 import ModalEmpleadores from "../Modals/ModalEmpleadores/ModalEmpleadores";
 
-import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, urls } from './Objects'
+// ------------------------ OBJECTS ------------------------
+import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, textAreaCargos,urls } from './Objects'
+// -----------------------------------------------------------
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
 import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
@@ -19,12 +21,17 @@ import axios from 'axios';
 import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
 
 //#endregion
-import { addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago } from '../../redux/actions/fetchActions';
 
 
 const NavbarMenu = () => {
 	
-  const [refetch, setRefetch] = useState(true); // estado para recargar cada vez que se ejecute un post/put/delete
+	const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles"
+	const urlEstudios = "http://54.243.192.82/api/Estudios"
+	const urlTiposDocumento = "http://54.243.192.82/api/TiposDocumento"
+	const urlCargos = "http://54.243.192.82/api/Cargos";
+	const urlTareas = "http://54.243.192.82/api/TareasDesempeñadas";
+	const [refetch, setRefetch] = useState(true); // estado para recargar cada vez que se ejecute un post/put/delete
+
 	
 	// ESTADOS QUE GUARDAN EL VALOR DE LOS INPUTS
 	const [responses, setResponses] = useState({});
@@ -46,27 +53,27 @@ const NavbarMenu = () => {
 	
 	
 //   const cargosValue = useSelector((state) => state.generalState.cargos);
-  const cargoSelected = useSelector((state) => state.modalState.cargoSelected);
-  const inputCargo = useSelector(
-    (state) => state.modalState.formulario.inputCargo
-  );
-  const textAreaCargo = useSelector(
-    (state) => state.modalState.formulario.textAreaCargo
-  );
-  const valueIdCargo = useSelector((state) => state.generalState.idCargo);
+//   const cargoSelected = useSelector((state) => state.modalState.cargoSelected);
+//   const inputCargo = useSelector(
+//     (state) => state.modalState.formulario.inputCargo
+//   );
+//   const textAreaCargo = useSelector(
+//     (state) => state.modalState.formulario.textAreaCargo
+//   );
+//   const valueIdCargo = useSelector((state) => state.generalState.idCargo);
 
-  // tareas desempeñadas
-  const tareasValue = useSelector(
-    (state) => state.generalState.tareasDesempeñadas
-  );
-  const tareaSelected = useSelector((state) => state.modalState.tareaSelected);
-  const inputTarea = useSelector(
-    (state) => state.modalState.formulario.inputTarea
-  );
-  const textAreaTarea = useSelector(
-    (state) => state.modalState.formulario.textAreaTarea
-  );
-  const valueIdTarea = useSelector((state) => state.generalState.idTarea);
+//   // tareas desempeñadas
+//   const tareasValue = useSelector(
+//     (state) => state.generalState.tareasDesempeñadas
+//   );
+//   const tareaSelected = useSelector((state) => state.modalState.tareaSelected);
+//   const inputTarea = useSelector(
+//     (state) => state.modalState.formulario.inputTarea
+//   );
+//   const textAreaTarea = useSelector(
+//     (state) => state.modalState.formulario.textAreaTarea
+//   );
+//   const valueIdTarea = useSelector((state) => state.generalState.idTarea);
 
 
 	//Paises
@@ -101,7 +108,7 @@ const NavbarMenu = () => {
 	const inputMascEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModal);
 	const inputFemEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModalFem);
 	const valueIdEstadoCivil = useSelector((state) => state.modalState.estadoCivilSelected.idEstadoCivil);
-	// console.log(estadosCivilesValue)
+	
 
 	// Estudios s
 	const estudiosValue = useSelector((state) => state.generalState.estudios)
@@ -138,6 +145,18 @@ const NavbarMenu = () => {
 	const textAreaFormaPago = useSelector((state) => state.modalState.formulario.textAreaFormaPago)
 	const valueIdFormaPago = useSelector((state) => state.generalState.idFormaPago)
 
+	// cargos
+	const cargoSelected = useSelector((state) => state.modalState.cargoSelected)
+	const inputCargo = useSelector((state) => state.modalState.formulario.inputCargo)
+	const textAreaCargo = useSelector((state) => state.modalState.formulario.textAreaCargo)
+	const valueIdCargo = useSelector((state) => state.generalState.idCargo)
+
+	// tareas desempeñadas
+	const tareasValue = useSelector((state) => state.generalState.tareasDesempeñadas)
+	const tareaSelected = useSelector((state) => state.modalState.tareaSelected)
+	const inputTarea = useSelector((state) => state.modalState.formulario.inputTarea)
+	const textAreaTarea = useSelector((state) => state.modalState.formulario.textAreaTarea)
+	const valueIdTarea = useSelector((state) => state.generalState.idTarea)
 
 
 	
@@ -145,7 +164,6 @@ const NavbarMenu = () => {
 	//Estados Civiles
 	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length -1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length -1].idEstadoCivil))+1)
 	const bodyPetitionEC = { ...responses.modalDataInputs, idEstadoCivil: idEstadoCivil };
-	// console.log(bodyPetitionEC)
 	//Estudios
 	const idEstudio = ((estudiosValue && estudiosValue[estudiosValue.length - 1] !== undefined && (estudiosValue[estudiosValue.length - 1].iDestudios)) + 1)
 	const bodyPetEstudio = { ...responses.modalDataInputs, iDestudios: idEstudio }
@@ -186,7 +204,8 @@ const NavbarMenu = () => {
 		"obs": responses.modalDataInputs?.obs
 	}
 
-	
+
+
 	// --------------------------------------------------------------------------------------------------------------------------------------
 
 	return (
@@ -214,15 +233,15 @@ const NavbarMenu = () => {
 									<li><Link className="dropdown-item" to="#">Busqueda de Datos</Link></li>
 								</ul>
 							</li>
-							<li className="nav-item">
+							{/* <li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Liquidación</a>
-							</li>
+							</li> 
 							<li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Esquemas y Conceptos</a>
 							</li>
 							<li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Períodos</a>
-							</li>
+							</li>*/}
 							<li className="nav-item dropdown">
 								<a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Tabla de Datos
@@ -256,7 +275,7 @@ const NavbarMenu = () => {
 										</ul>
 									</li>
 
-									<hr />
+									{/* <hr />
 									<li class="dropdown-submenu">
 										<a className='dropdown-item' tabindex="-1" href="#">Para Liquidación</a>
 										{/* <ul class="dropdown-menu"> */}
@@ -293,11 +312,11 @@ const NavbarMenu = () => {
 												<ButtonCallModal idModal="Plan" nameButton="Plan de Cuentas" useNavbar={true} /> */}
 {/* //------------------------------------------------------------------------------------------------------------------------------------------------ */}
 											</div>
-										{/* </ul> */}
-									</li>
+										</ul>
+									</li> 
 								</ul>
-							</li>
-							<li className="nav-item">
+								<ul> 
+							{/* <li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Informes y Listados</a>
 							</li>
 							<li className="nav-item">
@@ -305,7 +324,7 @@ const NavbarMenu = () => {
 							</li>
 							<li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Acerca de...</a>
-							</li>
+							</li> */}
 
 							{/* {/ MODALES TABLA PARA EMPLEADOS /} */}
 							<BasicModal

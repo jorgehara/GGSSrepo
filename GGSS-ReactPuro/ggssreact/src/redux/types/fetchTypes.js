@@ -75,6 +75,7 @@ export const DELETE_ESTADO = "DELETE_ESTADO"
 // formas de pago
 export const GET_ID_FORMAPAGO = "GET_ID_FORMAPAGO"
 export const DELETE_FORMAPAGO = "DELETE_FORMAPAGO"
+export const ADD_ADIC_LIQUIDACION = "ADD_ADIC_LIQUIDACION"
 
 // cargos
 export const GET_ID_CARGO = "GET_ID_CARGO"
@@ -114,3 +115,5 @@ export const DELETE_LICENCIA = "DELETE_LICENCIA"
 
 export const ADD_NEW_DOC = "ADD_NEW_DOC";
 export const DELETE_DOC = "DELETE_DOC";
+
+export const ADD_ONE_DE = "ADD_ONE_DE"

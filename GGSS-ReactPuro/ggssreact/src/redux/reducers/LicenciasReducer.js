@@ -1,4 +1,4 @@
-import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, OPTIONS_FORMULARIO, SELECTED_OPTION, UPDATE_DETALLE,  } from "../types/LicenciasTypes";
+import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAR_LIC_SELECT, DELETE_DET_LIC, OPTIONS_FORMULARIO, SELECTED_OPTION, UPDATE_DETALLE,  } from "../types/LicenciasTypes";
 
 export const initialState = {
     selectedOptionLicencia : "",
@@ -44,7 +44,13 @@ export const licenciasReducer=(state = initialState, action)=>{
                 detalleSelect : payload
             }
         }
-       
+       case DELETE_DET_LIC : {
+        console.log(payload)
+        return {
+            ...state,
+            detalleLicencia : state.detalleLicencia && state.detalleLicencia.filter((det)=> det.idDetalleLicenciaEmpleado !== payload)
+        }
+       }
         
         case UPDATE_DETALLE : {
             const newDetalle = {...payload}
@@ -59,6 +65,12 @@ export const licenciasReducer=(state = initialState, action)=>{
                 detalleLicencia : [...state.detalleLicencia, payload]
             }
         }
+        case CLEAR_LIC_SELECT : {
+            return{
+                ...state,
+                licenciaEmpleado: {}
+            }
+           }
         default :
         return state;
     }
