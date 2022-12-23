@@ -26,6 +26,7 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
     const [ body , setBody ] = useState(0);
 
     const urlDocPost= `http://54.243.192.82/api/EmpleadosDocumentacion?id=${empleadoUno.iDempleado}`;
+    const urlPost = "http://54.243.192.82/api/EmpleadosDocumentacion"
     const documentacionSeleccionada = useSelector((state)=> state.documentacionState.documentacionSeleccionada);
     function onChangeValues(e, key){
         const newResponse = {...formDocumentacion};
@@ -55,17 +56,20 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
         "fecha": formDocumentacion?.inputDatePresentacion,
         "idEmpleado": empleadoUno.iDempleado,
         "idDocumentacion": Number(formDocumentacion?.inputSelectDocumentacion),
-        "rutaAdjunto": null,
+        "rutaAdjunto": "",
         "obs": formDocumentacion?.textAreaDocumentacion,
         "fechaVencimiento": (formDocumentacion?.inputDateVencimiento) ? (formDocumentacion?.inputDateVencimiento) : null,
         "generaLiquidacion": formDocumentacion?.inputCheckLiquidacion,
         "incluirCuotaAlimentaria": formDocumentacion?.inputIncluirCuotaAlim
     }
+   
+    console.log(documentacionDelEmpleado)
+
     function sendDataDoc(){
         if(empleadoUno.iDempleado && empleadoUno.iDempleado){
             setBody(((documentacionEmpleados && documentacionEmpleados[documentacionEmpleados.length -1] !== undefined && (documentacionEmpleados[documentacionEmpleados.length -1].idEmpleadoDocumentacion))+1))
             try{
-                axios.post(urlDocPost, bodyPetition)
+                axios.post(urlPost, bodyPetition)
                 .then((res)=>{
                     console.log(res.data)
                     dispatch(addNewDoc(res.data))

@@ -60,7 +60,6 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
 
  
 
-  console.log(listDomicilios)
 
 
   //#region ------------------------------------------------------------------------------CONTEXT

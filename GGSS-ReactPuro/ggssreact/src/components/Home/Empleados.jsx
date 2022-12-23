@@ -62,6 +62,7 @@ import {
 } from "../../redux/actions/licenciasActions";
 import swal from "sweetalert";
 import { getAdicLiq } from "../../redux/actions/liquidacionActions";
+import { addOneEmploye } from "../../redux/actions/employeActions";
 
 const Empleados = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -72,6 +73,7 @@ const Empleados = () => {
   const [empleados, setEmpleados] = useState([]);
   const [licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
   const [datosExtraEmpleado, setDatosExtraEmpleado ] = useState([]);
+  const [ inCancel, setInCancel ] = useState(false);
 
   const [refetch, setRefectch] = useState(false);
   const empleadoUno = useSelector((state) => state.employeStates.employe);
@@ -145,10 +147,24 @@ const Empleados = () => {
   function handleTabChange(value) {
     setTabIndex(value);
   }
-  function cancelEdit(e) {
-    e.preventDefault();
+  function cancelEdit() {
+    Array.from(document.querySelectorAll("input[type=text]")).forEach(
+      (input) => (input.value = "")
+    );
+    
+    setResponses({
+      ...responses,
+      formDatosPersonales : Object.fromEntries(Object.entries(responses.formDatosPersonales).map(([key]) => [key, ""]))
+    })
     setDisable(true);
   }
+ /*  useEffect(()=>{
+    document.getElementById("accordionExample").reset()
+    setResponses({
+      ...responses,
+      formDatosPersonales : responses?.formDatosPersonales && Object?.fromEntries(Object?.entries(responses?.formDatosPersonales).map(([key]) => [key, ""]))
+    }); 
+  },[inCancel]) */
 
   const handleFetch = async (url, action) => {
     dispatch({ type: SET_LOADING });
@@ -189,9 +205,11 @@ const Empleados = () => {
         dispatch({ type: AXIOS_ERROR });
       });
   };
+
   console.log(responses);
+
   useEffect(() => {
-     handleFetch(urlEstados, addEstados);
+    handleFetch(urlEstados, addEstados);
     handleFetch(urlEstadosCiviles, addEstadosCiviles);
     handleFetch(urlPaisesNac, addPaises);
     handleFetch(urlEstudios, addEstudios);
@@ -229,14 +247,12 @@ const Empleados = () => {
 
     handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
 
-    handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
     handleFetch(urlDocumentacion, getOneDocumento);
 
 
     handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);  
 
 
-    handleFetchComun(urlDatosExtras, addDatosExtras);
     handleFetchComun(urlInstrumLegal, addInstrumLegales); 
 
     handleFetch(urlDomicilios, addDomicilios);
@@ -244,6 +260,9 @@ const Empleados = () => {
   }, [disable]);
 
   useEffect(() => {
+    handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
+
+    handleFetchComun(urlDatosExtras, addDatosExtras);
     handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);
     handleFetch(urlDetalleLicenciasEmpleados, addDetalleLicencia);
   }, [refetch]);
@@ -278,6 +297,7 @@ const Empleados = () => {
         setDatosExtraEmpleado(res.data);
       });
   }, [empleadoUno?.iDempleado, refetch]);
+
   useEffect(() => {
     dispatch(deleteDetLic(detalleSeleccionado.idDetalleLicenciaEmpleado));
   }, [empleadoUno?.iDempleado]);
@@ -375,7 +395,7 @@ const Empleados = () => {
         </div>
       </div>
       <div className="d-flex flex-row-reverse  w-100 ">
-        <button className="btn btn-danger " onClick={(e) => cancelEdit(e)}>
+        <button className="btn btn-danger " onClick={ cancelEdit}>
           Cancelar
         </button>
         <button className="btn btn-success">Aceptar</button>

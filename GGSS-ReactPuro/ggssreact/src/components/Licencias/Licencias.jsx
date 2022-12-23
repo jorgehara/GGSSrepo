@@ -43,7 +43,6 @@ const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaE
     const selectedOptions = useSelector((state)=> state.licenciasState.selectedOptionLicencia);
     const licenciaEmpleado = useSelector((state)=> state.licenciasState.licenciaEmpleado);
     const detalleLicencia = useSelector((state)=> state.licenciasState.detalleLicencia);
-    const detalleSelected = useSelector((state)=> state.licenciasState.detalleSelect);
     
     
     const newAños = años && años.map((año)=>{
