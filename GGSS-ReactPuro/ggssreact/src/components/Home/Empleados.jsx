@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough */
 import React, { useEffect } from "react";
 import Browser from "../Browser/Browser";
 import DatosPersonales from "../DatosPersonales/DatosPersonales";
@@ -54,8 +55,8 @@ import {
 } from "../../redux/actions/fetchActions";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import axios from "axios";
-import { getTrabajosAnteriores } from "../../redux/actions/trabajosAnterioresActions";
-import { getOneDocumento } from "../../redux/actions/documentacionActions";
+import { cleanIds, getTrabajosAnteriores, reloadItem } from "../../redux/actions/trabajosAnterioresActions";
+import { cleanIdsDoc, getOneDocumento } from "../../redux/actions/documentacionActions";
 import {
   addDetalleLicencia,
   deleteDetLic,
@@ -101,7 +102,7 @@ const Empleados = () => {
   const urlFamiliares = "http://54.243.192.82/api/MostrarDatosFamiliares";
   const urlNumeradores = "http://54.243.192.82/api/Numeradores";
 
-  const urlDomicilios = "http://54.243.192.82/api/MostrarDatosDomicilios";
+  const urlDomicilios = "http://54.243.192.82/api/Domicilios/MostrarDatosDomicilios";
   const urlCalles = "http://54.243.192.82/api/Calles";
   const urlDeptos = "http://54.243.192.82/api/Departamentos";
   const urlProvincias = "http://54.243.192.82/api/Provincias";
@@ -147,16 +148,27 @@ const Empleados = () => {
   function handleTabChange(value) {
     setTabIndex(value);
   }
-  function cancelEdit() {
-    Array.from(document.querySelectorAll("input[type=text]")).forEach(
+  function cancelEdit(e) {
+    //Accion de redux que haga un state.domicilios.psuh(payload)... payload=[los items que se "borraron"]... Esos items guardarlso en un estado.
+    Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );
-    
+    dispatch(cleanIds());
+    setRefectch(!refetch);
+
+    let formData = { ...responses.formDatosPersonales };
+
+    const inputsArray = Object.entries(formData);
+
+    const formDatosPersonales = inputsArray.map(([key]) => [key, ""]);
+
+    const inputsJson = Object.fromEntries(formDatosPersonales);
     setResponses({
       ...responses,
-      formDatosPersonales : Object.fromEntries(Object.entries(responses.formDatosPersonales).map(([key]) => [key, ""]))
-    })
+      inputsJson})
+    
     setDisable(true);
+    
   }
  /*  useEffect(()=>{
     document.getElementById("accordionExample").reset()
@@ -245,7 +257,6 @@ const Empleados = () => {
 
     handleFetchComun(urlConceptos, addConceptos);
 
-    handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
 
     handleFetch(urlDocumentacion, getOneDocumento);
 
@@ -265,6 +276,8 @@ const Empleados = () => {
     handleFetchComun(urlDatosExtras, addDatosExtras);
     handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);
     handleFetch(urlDetalleLicenciasEmpleados, addDetalleLicencia);
+    handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
+
   }, [refetch]);
 
   useEffect(() => {
@@ -302,7 +315,73 @@ const Empleados = () => {
     dispatch(deleteDetLic(detalleSeleccionado.idDetalleLicenciaEmpleado));
   }, [empleadoUno?.iDempleado]);
 
- 
+
+  const idsTrabajosAnterioresDelete = useSelector((state)=> state.trabajosAnteriores.ids);
+  const documentacionDelte = useSelector((state)=> state.documentacionState.ids);
+  const urlTRabajoDelete = "http://54.243.192.82/api/TrabajosAnteriores?IdTrabajoAnterior=";
+  const urlDocDelte = "http://54.243.192.82/api/EmpleadosDocumentacion/"
+
+  const objectRequest = {
+    urls : {
+      urlTRabajoDelete : urlTRabajoDelete,
+      urlDocDelte : urlDocDelte
+
+    },
+    arrays : [
+      idsTrabajosAnterioresDelete,
+      documentacionDelte
+    ]
+  }
+  const { urls, arrays } = objectRequest;
+  console.log(arrays)
+
+
+  function cleanIdsGeneral(){
+    dispatch(cleanIds())
+    dispatch(cleanIdsDoc())
+    setRefectch(!refetch);
+  }
+
+  function deleteItems(objectRequest){
+    const { urls, arrays } = objectRequest;
+    console.log(arrays)
+    debugger;
+    
+    try{
+      
+        switch(urls){
+          case urls.urlTRabajoDelete : {
+              arrays.idsTrabajosAnterioresDelete.map(async (id)=>{
+                await axios.delete(`${urls.urlTRabajoDelete}${id}`)
+                .then((res) => console.log(res))
+              })
+          }
+          case urls.urlDocDelte : {
+            arrays.documentacionDelte.map(async (id)=>{
+              await axios.delete(`${urls.urlDocDelte}${id}`)
+              .then((res) => console.log(res))
+            })
+        }
+          default : {
+              arrays[0].map(async (id)=>{
+                await axios.delete(`${urls.urlTRabajoDelete}${id}`)
+                .then((res) => console.log(res))
+            });
+            arrays[1].map(async (id)=>{
+              await axios.delete(`${urls.urlDocDelte}${id}`)
+              .then((res) => console.log(res))
+            });
+          }
+        }
+    }catch(err){
+        //codigo de error
+        swal({
+            title: "Error",
+            text: "Error al eliminar el trabajo anterior",
+            icon: "error",
+        })
+    }
+}
 
   console.log(licenciaEmpleadoDatos);
   return (
@@ -352,6 +431,8 @@ const Empleados = () => {
           )}
           {tabIndex === 4 && (
             <TrabajosAnteriores
+              setRefetch={setRefectch}
+              refetch={refetch}
               disable={disable}
               setDisable={setDisable}
               responses={responses}
@@ -395,10 +476,10 @@ const Empleados = () => {
         </div>
       </div>
       <div className="d-flex flex-row-reverse  w-100 ">
-        <button className="btn btn-danger " onClick={ cancelEdit}>
+        <button className="btn btn-danger " onClick={()=> cleanIdsGeneral()}>
           Cancelar
         </button>
-        <button className="btn btn-success">Aceptar</button>
+        <button className="btn btn-success" onClick={()=> deleteItems( objectRequest)}>Aceptar</button>
       </div>
       <Footer />
     </div>

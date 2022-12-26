@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
-import { addTrabajoAnterior, deleteOneTrabajo, getInput, getTrabajosAnteriores } from '../../redux/actions/trabajosAnterioresActions';
+import { addTrabajoAnterior, deleteOneTrabajo, getInput, getTrabajosAnteriores, saveId } from '../../redux/actions/trabajosAnterioresActions';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { GET_INPUT } from '../../redux/types/trabajosAnteriores';
 import EmployeData from '../EmployeData/EmployeData';
@@ -12,7 +12,7 @@ import InputTextTrabajos from '../Inputs/InputTextTrabajos/InputTextTrabajos';
 import TableTrabajosAnteriores from '../Tables/TableTrabajosAnteriores';
 import "./TrabajosAnteriores.css";
 
-const TrabajosAnteriores = ({responses, setResponses}) => {
+const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch}) => {
     const [checked , setChecked] = useState(false);
     const [disabled , setDisabled] = useState(false);
     const [ modificar, setModificar ] = useState(false);
@@ -60,6 +60,7 @@ const TrabajosAnteriores = ({responses, setResponses}) => {
     const columns = ["Seleccionar" , "Desde" , "Hasta", "Descripción"];
     const urlTrabajosAnteriores = `http://54.243.192.82/api/TrabajosAnteriores?IdTrabajoAnterior=0&IdEmpleado=${empleadoUno.iDempleado}&Desde=${formTrabajosAnteriores?.idDateDesde}&Hasta=${formTrabajosAnteriores?.idDateHasta}&Actualidad=${formTrabajosAnteriores?.idCheckTrabajos ? formTrabajosAnteriores?.idCheckTrabajos : false}&Descripcion=${formTrabajosAnteriores?.idDescripcionTrabajos}`;
     const urlTrabajosAnterioresDelete = "http://54.243.192.82/api/TrabajosAnteriores";
+
     const trabajosAnterioresDelEmpleado = trabajosAnteriores && trabajosAnteriores.filter((trabajo)=> trabajo.idEmpleado === empleadoUno.iDempleado);
 
     const bodyPetition = {
@@ -97,6 +98,12 @@ const TrabajosAnteriores = ({responses, setResponses}) => {
             return;
         }
 
+        const ids = useSelector((state)=> state.trabajosAnteriores.ids);
+        console.log(ids)
+
+    
+
+
 
     const sendData=async()=>{
         try{
@@ -128,6 +135,7 @@ const TrabajosAnteriores = ({responses, setResponses}) => {
             await axios.delete(`${urlTrabajosAnterioresDelete}/${id}`)
             .then((res)=> {
                 dispatch(deleteOneTrabajo(Number(id)));
+                dispatch(saveId(id))
                 swal({
                     title: "Ok",
                     text: "Trabajo anterior eliminado con éxito",

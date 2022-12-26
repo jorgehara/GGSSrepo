@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { addDocumentacionEmpleados, addNewDoc, deleteDocu } from '../../redux/actions/fetchActions';
 import axios from 'axios';
-import { getInputValue, getOneDocumento } from '../../redux/actions/documentacionActions';
+import { cleanIdsDoc, getInputValue, getOneDocumento, saveIds } from '../../redux/actions/documentacionActions';
 import { inputButtonClasess, inputButtonClasessDocumentacion } from '../../classes/classes';
 import { GET_INPUT_VALUE } from '../../redux/types/documentacionTypes';
 import swal from 'sweetalert';
@@ -28,6 +28,7 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
     const urlDocPost= `http://54.243.192.82/api/EmpleadosDocumentacion?id=${empleadoUno.iDempleado}`;
     const urlPost = "http://54.243.192.82/api/EmpleadosDocumentacion"
     const documentacionSeleccionada = useSelector((state)=> state.documentacionState.documentacionSeleccionada);
+
     function onChangeValues(e, key){
         const newResponse = {...formDocumentacion};
         newResponse[key] = e;
@@ -63,7 +64,6 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
         "incluirCuotaAlimentaria": formDocumentacion?.inputIncluirCuotaAlim
     }
    
-    console.log(documentacionDelEmpleado)
 
     function sendDataDoc(){
         if(empleadoUno.iDempleado && empleadoUno.iDempleado){
@@ -91,21 +91,11 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
         })
         
     }
+    console.log(documentacionSeleccionada.idEmpleadoDocumentacion)
     async function deleteData(id){
-        try{
-            await axios.delete(`http://54.243.192.82/api/EmpleadosDocumentacion/${id}`)
-            .then((res)=>{
-                console.log(res)
-                dispatch(deleteDocu(id))
-                return;
-            })
-        }catch(err){
-            return swal({
-                title: "Error",
-                text: "Error al eliminar la Documentación",
-                icon: "error",
-            })
-        }
+        console.log(id)
+        dispatch(deleteDocu(id))
+        dispatch(saveIds(id))
     }
     
 return (
@@ -145,7 +135,7 @@ return (
                 <CheckLabel idInput="inputIncluirCuotaAlim" nameLabel="Incluir en cuota Alimentaria"  onChange={onChangeValues} action={GET_INPUT_VALUE} value={formDocumentacion?.inputIncluirCuotaAlim && formDocumentacion?.inputIncluirCuotaAlim} />
             </div>
             <div className='col-xl-12'>
-                <ButtonCancelarAceptar idElimiar={documentacionSeleccionada.idEmpleadoDocumentacion ? documentacionSeleccionada.idEmpleadoDocumentacion : (body && body)} cancelar="-" aceptar="+" functionSend={sendDataDoc} functionDelete={deleteData} />
+                <ButtonCancelarAceptar idElimiar={documentacionSeleccionada.idEmpleadoDocumentacion && documentacionSeleccionada.idEmpleadoDocumentacion} cancelar="-" aceptar="+" functionSend={sendDataDoc} functionDelete={deleteData} />
                 <TableBasic1 refetch={refetch} setRefetch={setRefectch} columns={columns} value={documentacionDelEmpleado}  documentaciones={documentaciones}/>
             </div>
         </div>

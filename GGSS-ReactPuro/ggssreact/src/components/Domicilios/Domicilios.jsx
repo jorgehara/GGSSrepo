@@ -38,7 +38,9 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
   //#region ------------------------------------------------------------------------------REDUX
-  const urlDomicilios = `http://54.243.192.82/api/InsertarNuevoDomicilio?idDomicilio=0&idCalle=${formDatosPersonales?.inputCalleDomicilios}&Numero=${formDatosPersonales?.inputNumCalle}&idBarrio=${formDatosPersonales?.inputBarriosDomicilios}&Dpto=${formDatosPersonales?.inputDepartamentosDomicilios}&Predeterminado=${formDatosPersonales?.inputPredeterminado}&IdEmpleado=${empleadoUno.iDempleado}&IdEmpleador=1&NewId=0`;
+  const urlDomicilios = `http://54.243.192.82/api/Domicilios?idDomicilio=0&idCalle=${formDatosPersonales?.inputCalleDomicilios}&Numero=${formDatosPersonales?.inputNumCalle}&idBarrio=${formDatosPersonales?.inputBarriosDomicilios}&Dpto=${formDatosPersonales?.inputDepartamentosDomicilios}&Predeterminado=${formDatosPersonales?.inputPredeterminado}&IdEmpleado=${empleadoUno.iDempleado}&IdEmpleador=1&NewId=0`;
+
+  console.log(empleadoUno.iDempleado)
 
   const dispatch = useDispatch();
 
@@ -108,7 +110,12 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
       }) 
     }
 
-    await axios.post(urlDomicilios)
+    await axios.post(urlDomicilios, {
+      headers: {
+        'Access-Control-Allow-Origin' : '*', 
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        'Access-Control-Allow-Credentials':true
+      }})
           .then((res)=> {            
             if(res.status === 200){ 
               dispatch(addNewDomicilio(res.data))  
