@@ -75,6 +75,7 @@ const Empleados = () => {
   const [licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
   const [datosExtraEmpleado, setDatosExtraEmpleado ] = useState([]);
   const [ inCancel, setInCancel ] = useState(false);
+  const [ valueempl, setValueEmpl ] = useState(false);
 
   const [refetch, setRefectch] = useState(false);
   const empleadoUno = useSelector((state) => state.employeStates.employe);
@@ -217,8 +218,8 @@ const Empleados = () => {
         dispatch({ type: AXIOS_ERROR });
       });
   };
-
-  console.log(responses);
+const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
+  console.log(domiciliosEmpleados);
 
   useEffect(() => {
     handleFetch(urlEstados, addEstados);
@@ -268,7 +269,7 @@ const Empleados = () => {
 
     handleFetch(urlDomicilios, addDomicilios);
 
-  }, [disable]);
+  }, [disable, refetch]);
 
   useEffect(() => {
     handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
@@ -337,9 +338,11 @@ const Empleados = () => {
 
 
   function cleanIdsGeneral(){
+    setDisable(true);
     dispatch(cleanIds())
     dispatch(cleanIdsDoc())
     setRefectch(!refetch);
+    setValueEmpl(false)
   }
 
   function deleteItems(objectRequest){
@@ -388,7 +391,7 @@ const Empleados = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-xl-3">
-          <Browser disable={disable} setDisable={setDisable} />
+          <Browser disable={disable} setDisable={setDisable} setValueEmpl={setValueEmpl} />
         </div>
         <div className="col-xl-9 ">
           <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
@@ -401,6 +404,8 @@ const Empleados = () => {
               setDisable={setDisable}
               responses={responses}
               setResponses={setResponses}
+              valueempl ={valueempl}
+              domiciliosEmpleados={domiciliosEmpleados}
             />
           )}
           {tabIndex === 1 && (
