@@ -1,4 +1,4 @@
-import { GET_INPUT, GET_TANTERIORES, ADD_TRABAJO_ANTERIOR, GET_ID_TRABAJO,DELETE_ONE_TRABAJO, GET_TRABAJO } from "../types/trabajosAnteriores";
+import { GET_INPUT, GET_TANTERIORES, ADD_TRABAJO_ANTERIOR, GET_ID_TRABAJO,DELETE_ONE_TRABAJO, GET_TRABAJO, RELOAD_ITEM, SAVE_ID, CLEAN_IDS } from "../types/trabajosAnteriores";
 
 
 const initialState = {
@@ -10,7 +10,8 @@ const initialState = {
         idCheckTrabajos : false
     },
     idTrabajoAnterior : 0,
-    trabajoAnterior : ""
+    trabajoAnterior : "",
+    ids : []
 }
 
 const trabajosAnterioresReducer = (state = initialState, action) =>{
@@ -51,10 +52,29 @@ const trabajosAnterioresReducer = (state = initialState, action) =>{
                 trabajosAnteriores : state.trabajosAnteriores.filter((trab)=> trab.idTrabajoAnterior !== payload)
             }
         }
+        case RELOAD_ITEM:{
+            return {
+                ...state,
+                trabajosAnteriores : state.trabajosAnteriores.push(payload)
+            }
+        }
         case GET_TRABAJO : {
             return{
                 ...state,
                 trabajoAnterior : payload
+            }
+        }
+        case SAVE_ID : {
+            console.log(payload)
+            return {
+                ...state,
+                ids : [...state.ids.push(payload)]
+            }
+        }
+        case CLEAN_IDS : {
+            return{
+                ...state,
+                ids : state.ids = []
             }
         }
         default :

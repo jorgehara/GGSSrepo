@@ -318,15 +318,12 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
         case ADD_NEW_LICENCIA : {
-            debugger;
-            console.log(action.payload)
             return {
                 ...state,
                 licenciasEmpleados : [...state.licenciasEmpleados, action.payload]
             }
         }
         case UPDATE_LICENCIA : {
-            debugger;
             const newLicencia = {...action.payload}
             return{
                 ...state.licenciasEmpleados,
@@ -334,7 +331,6 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
         case DELETE_LICENCIA : {
-            debugger;
             return{
                 ...state,
                 licenciasEmpleados : state.licenciasEmpleados.filter((lic)=> lic.idLicenciaEmpleado !== action.payload)

@@ -45,19 +45,8 @@ const Licencias = ({responses, setResponses}) => {
     const selectedOptions = useSelector((state)=> state.licenciasState.selectedOptionLicencia);
     const licenciaEmpleado = useSelector((state)=> state.licenciasState.licenciaEmpleado);
     const detalleLicencia = useSelector((state)=> state.licenciasState.detalleLicencia);
-    const detalleSelected = useSelector((state)=> state.licenciasState.detalleSelect);
-    const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
-    console.log(licenciaEmpleado?.idLicenciaEmpleado);
-    const handleFetch=(url, action )=>{
-        dispatch({type: SET_LOADING});
-        axios.get(url)
-        .then((res)=>{
-            dispatch( action(res.data.result));
-        })
-        .catch((err)=>{
-            dispatch({type:AXIOS_ERROR});
-        })
-    }
+    
+    
     const newAños = años && años.map((año)=>{
         return (
             {
