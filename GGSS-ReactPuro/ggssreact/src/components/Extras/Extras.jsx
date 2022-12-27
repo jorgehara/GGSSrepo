@@ -88,7 +88,7 @@ const Extras = ({responses, setResponses, disable, datosExtraEmpleado, setRefetc
         });
     };
     console.log(instrumLegales);
-   
+  
   
     useEffect(() => {    
         setResponses({

@@ -346,7 +346,6 @@ const Empleados = () => {
   function deleteItems(objectRequest){
     const { urls, arrays } = objectRequest;
     console.log(arrays)
-    debugger;
     
     try{
       

@@ -76,13 +76,13 @@ export const licenciasReducer=(state = initialState, action)=>{
         case DELETE_ONE_LICENCIA : {
             return{
                 ...state,
-                LicenciaLicencia : state.LicenciaLicencia.filter((lic)=> lic.LicenciaLicencia !== payload)
+                licenciasState : state.licenciasState.filter((lic)=> lic.licenciasState !== payload)
             }
         }
         case RELOAD_ITEM : {
             return {
                 ...state,
-                LicenciaLicencia : state.LicenciaLicencia.push(payload)
+                licenciasState : state.licenciasState.push(payload)
             }
         }
         case SAVE_ID : {

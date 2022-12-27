@@ -12,7 +12,8 @@ import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
 
 const Licencias = ({responses, setResponses}) => {
-    const ids = useSelector((state)=> state.licenciaLic.ids);
+
+    const ids = useSelector((state)=> state.licenciasState.ids);
     console.log(ids)
 
 
