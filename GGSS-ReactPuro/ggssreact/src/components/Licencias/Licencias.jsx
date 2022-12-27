@@ -13,8 +13,8 @@ import InputCbo from '../Inputs/InputCbo/InputCbo';
 
 const Licencias = ({responses, setResponses}) => {
 
-    const ids = useSelector((state)=> state.licenciasState.ids);
-    console.log(ids)
+    const idsLic = useSelector((state)=> state.licenciasState.idsLic);
+    console.log(idsLic)
     const idSelected = useSelector((state)=> state.licenciasState.idSelected);
     console.log(idSelected)
 
