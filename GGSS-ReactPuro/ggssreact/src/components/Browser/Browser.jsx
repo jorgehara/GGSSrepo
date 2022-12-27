@@ -22,7 +22,7 @@ import {
   deleteDetLic,
 } from "../../redux/actions/licenciasActions";
 
-const Browser = ({ disable, setDisable, setValueEmpl }) => {
+const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses }) => {
   const url = "http://54.243.192.82/api/Empleados?records=10000";
 
   const dispatch = useDispatch();
@@ -81,7 +81,22 @@ const Browser = ({ disable, setDisable, setValueEmpl }) => {
 
   function habilitaEdit() {
     setValueEmpl(true)
+
     Array.from(document.querySelectorAll("input")).forEach(
+      (input) => (input.value = "")
+    );
+
+    let formData = { ...responses.formDatosPersonales };
+
+    const inputsArray = Object.entries(formData);
+
+    const formDatosPersonale = inputsArray.map(([key]) => [key, ""]);
+
+    const formDatosPersonales = Object.fromEntries(formDatosPersonale);
+    setResponses({
+      ...responses,
+      formDatosPersonales})
+   /*  Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );
     let employeData = { ...empleadoUno };
@@ -93,7 +108,7 @@ const Browser = ({ disable, setDisable, setValueEmpl }) => {
     const inputsJson = Object.fromEntries(clearInputs);
 
 
-    dispatch(addOneEmploye(inputsJson));
+    dispatch(addOneEmploye(inputsJson)); */
     setDisable(false);
 
   }

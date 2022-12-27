@@ -344,6 +344,23 @@ const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
 
 
   function cleanIdsGeneral(){
+    Array.from(document.querySelectorAll("input")).forEach(
+      (input) => (input.value = "")
+    );
+    dispatch(cleanIds());
+    setRefectch(!refetch);
+
+    let formData = { ...responses.formDatosPersonales };
+
+    const inputsArray = Object.entries(formData);
+
+    const formDatosPersonale = inputsArray.map(([key]) => [key, ""]);
+
+    const formDatosPersonales = Object.fromEntries(formDatosPersonale);
+    setResponses({
+      ...responses,
+      formDatosPersonales})
+
     setDisable(true);
     dispatch(cleanIds())
     dispatch(cleanIdsDoc())
@@ -356,58 +373,58 @@ const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
     const { urls, arrays } = objectRequest;
     let bodyPetitionEmpleadoGuarda = {
       "iDempleado": ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
-      "legajo": responses.formDatosPersonales,
-      "apellido": "string",
-      "iDtipoDocumento": 0,
-      "nroDocumento": "string",
-      "cuil": "string",
-      "sexo": "string",
-      "iDestadoCivil": 0,
-      "idNacionalidad": 0,
-      "fechaNacimiento": "2022-12-27T15:45:01.030Z",
-      "iDEstudios": 0,
-      "fechaIngreso": "2022-12-27T15:45:01.031Z",
-      "fechaEfectiva": "2022-12-27T15:45:01.031Z",
-      "iDCategoria": 0,
-      "iDCargo": 0,
-      "iDTareaDesempeñada": 0,
-      "idCentrodeCosto": 0,
-      "iDSectorDpto": 0,
-      "iDModoContratacion": 0,
-      "iDModoLiquidacion": 0,
-      "iDFormadePago": 0,
-      "idBanco": 0,
-      "nroCtaBanco": "string",
-      "cbu": "string",
-      "iDLugardePago": 0,
+      "legajo": responses.formDatosPersonales?.numLegajo,
+      "apellido":  responses.formDatosPersonales?.apellidoInput,
+      "iDtipoDocumento":  responses.formDatosPersonales?.dniSelected,
+      "nroDocumento":  responses.formDatosPersonales?.documentoInput,
+      "cuil":  responses.formDatosPersonales?.inputCuil,
+      "sexo": responses.formDatosPersonales?.inputSexo,
+      "iDestadoCivil": responses.formDatosPersonales?.estadoCivilInput,
+      "idNacionalidad": responses.formDatosPersonales?.nacionalidadesInput,
+      "fechaNacimiento": responses.formDatosPersonales?.inputDateNac,
+      "iDEstudios": responses.formDatosPersonales?.estudiosInput,
+      "fechaIngreso": responses.formLiquidacion?.ingresoDateInput,
+      "fechaEfectiva": responses.formLiquidacion?.inputDateEfectivo,
+      "iDCategoria": responses.formLiquidacion?.inputCategoria,
+      "iDCargo": responses.formLiquidacion?.inputCargo,
+      "iDTareaDesempeñada": responses.formLiquidacion?.inputTareaDesempeñada,
+      "idCentrodeCosto": responses.formLiquidacion?.inputCentroCosto,
+      "iDSectorDpto": responses.formLiquidacion?.inputSectorDepto,
+      "iDModoContratacion": responses.formLiquidacion?.inputModoCOntratacion,
+      "iDModoLiquidacion": responses.formLiquidacion?.inputModoLiquidacion,
+      "iDFormadePago": responses.formLiquidacion?.inputFormaDePago,
+      "idBanco": responses.formLiquidacion?.inputBanco,
+      "nroCtaBanco": responses.formLiquidacion?.inputNumCta,
+      "cbu": responses.formLiquidacion?.inputCBU,
+      "iDLugardePago": responses.formLiquidacion?.inputLugaresDePago,
       "iDAFJP": 0,
-      "idObraSocial": 0,
-      "iDSindicato": 0,
+      "idObraSocial": responses.formLiquidacion?.inputObraSocial,
+      "iDSindicato": responses.formLiquidacion?.sindicatosLiquidacion,
       "fechaEgreso": "2022-12-27T15:45:01.031Z",
       "iDMotivoEgreso": 0,
-      "iDEsquema": 0,
-      "iDEmpleador": 0,
-      "nombres": "string",
-      "idEstado": 0,
+      "iDEsquema": responses.formLiquidacion?.selectOptionsId,
+      "iDEmpleador": responses.formLiquidacion?.inputEmpleadorLiquidacion,
+      "nombres": responses.formDatosPersonales?.nombresInput,
+      "idEstado": responses.formDatosPersonales?.estadosEmpleado,
       "idEmpresadeTelefonia": 0,
-      "imagen": "string",
-      "rutaFoto": "string",
-      "telFijo": "string",
+      "imagen": responses.formDatosPersonales?.inputImagen,
+      "rutaFoto": null,
+      "telFijo": responses.formDatosPersonales?.telefonoInput,
       "acuerdo": 0,
-      "neto": true,
-      "idPaisOrigen": 0,
-      "mail": "string",
-      "telMovil": "string",
-      "tipoCuenta": 0,
-      "totalRemuneracion": 0,
-      "totalNeto": 0,
-      "tieneEmbargos": true,
-      "tieneSumarioAdministrativo": true,
-      "tieneLicenciaSinGoceHaberes": true,
-      "obsEstudios": "string",
+      "neto": responses.formLiquidacion?.inputTotalNeto,
+      "idPaisOrigen": responses.formDatosPersonales?.paisOrigenInput,
+      "mail": responses.formDatosPersonales?.email,
+      "telMovil": responses.formDatosPersonales?.movil,
+      "tipoCuenta": responses.formDatosPersonales?.inputRadioAsidePagos,
+      "totalRemuneracion": responses.formLiquidacion?.inputTotalRemu,
+      "totalNeto": responses.formLiquidacion?.inputTotalNeto,
+      "tieneEmbargos": responses.formLiquidacion?.inputCheckEmbargo,
+      "tieneSumarioAdministrativo": responses.formLiquidacion?.inputCheckSumAdministrativo,
+      "tieneLicenciaSinGoceHaberes": responses.formLiquidacion?.inputCheckLicSinGoce,
+      "obsEstudios": responses.formDatosPersonales?.observacionesEstudios,
       "obsFechaIngreso": "string",
-      "idAgrupamiento": 0,
-      "idDireccion": 0,
+      "idAgrupamiento": responses.formDatosPersonales?.inputAgrupamiento,
+      "idDireccion": responses.formLiquidacion?.inputDireccionLiquidacion,
       "idInstrumentoLegal": 0
     }
     console.log(arrays)
@@ -463,7 +480,7 @@ const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
     <div className="container-fluid">
       <div className="row">
         <div className="col-xl-3">
-          <Browser disable={disable} setDisable={setDisable} setValueEmpl={setValueEmpl} />
+          <Browser disable={disable} setDisable={setDisable} setValueEmpl={setValueEmpl} responses={responses} setResponses={setResponses} />
         </div>
         <div className="col-xl-9 ">
           <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
