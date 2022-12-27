@@ -80,7 +80,7 @@ const Browser = ({ disable, setDisable }) => {
   }
 
   function habilitaEdit() {
-    Array.from(document.querySelectorAll("input.deshabilita")).forEach(
+    Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );
     let employeData = { ...empleadoUno };
@@ -90,8 +90,11 @@ const Browser = ({ disable, setDisable }) => {
     const clearInputs = inputsArray.map(([key]) => [key, ""]);
 
     const inputsJson = Object.fromEntries(clearInputs);
-    setDisable(false);
+
+
     dispatch(addOneEmploye(inputsJson));
+    setDisable(false);
+
   }
 
   function habilitaUpdate(e) {

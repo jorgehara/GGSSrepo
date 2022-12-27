@@ -76,7 +76,10 @@ const FieldSet = ({
 
   const urlUpdateDetalle = `http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=${detalleSeleccionado.idDetalleLicenciaEmpleado}&FechaSuspension=${formLicencias?.inputDateSuspLic}`;
 
+
   const [checked, setChecked] = useState(false);
+
+  let urlNueva = "http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=0&IdLicenciaEmpleado=${}&Desde=2017-07-21T17%3A32%3A28Z&Hasta=2017-07-21T17%3A32%3A28Z&NewId=0"
 
   console.log(detalleSeleccionado);
 
@@ -154,6 +157,10 @@ const FieldSet = ({
       "idDetalleLicenciaEmpleado": detalleSeleccionado.idDetalleLicenciaEmpleado,
       "fechaSuspension": null
     }
+    const bodyCreateSusp = {
+      "idDetalleLicenciaEmpleado": detalleSeleccionado.idDetalleLicenciaEmpleado,
+      "fechaSuspension": formLicencias?.inputDateSuspLic
+    }
 
   async function deleteSuspencion() {
     try {
@@ -188,7 +195,7 @@ const FieldSet = ({
         !formLicencias?.inputQuitaSusp
       ) {
         try {
-          await axios.put(url).then((res) => {
+          await axios.put(`http://54.243.192.82/api/DetalleLicenciasEmpleados`, bodyCreateSusp).then((res) => {
             setRefectch(!refetch);
           });
         } catch (err) {

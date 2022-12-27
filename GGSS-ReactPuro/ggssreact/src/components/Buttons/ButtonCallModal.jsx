@@ -7,7 +7,6 @@ const ButtonCallModal = ({ idModal, nameButton, useNavbar, useButton ,disabled, 
   const [actualClass, setActualClass] = useState("");
 
   useEffect(()=>{
-    console.log("entro al button call")
     usedClasses(useNavbar,useButton, disableButton);
   },[])
 
@@ -23,7 +22,6 @@ const ButtonCallModal = ({ idModal, nameButton, useNavbar, useButton ,disabled, 
         return setActualClass("btn btn-danger btnCallModal");
       }
   }
-console.log(actualClass)
   return (
     <>
       <button type="button" className={actualClass }  data-bs-toggle="modal" data-bs-target={`#${idModal}`} disabled={disabled}>

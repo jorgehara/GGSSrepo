@@ -27,9 +27,10 @@ const InputForm = ({
           obligatorio ? 
           <input
           type="text"
-          className="formulario-input-Legajo obligatorio"
+          className="legajo__limpia formulario-input-Legajo obligatorio"
           id={idInput}
           data-bs-toggle="tooltip" 
+          autocomplete="off"
           data-bs-placement="top"
           data-bs-title="Campo obligario"
           placeholder={placeHolder}
@@ -43,6 +44,7 @@ const InputForm = ({
           type="text"
           className="formulario-input-Legajo"
           id={idInput}
+          autocomplete="off"
           placeholder={placeHolder}
           value={ cancelar ? null : value  }
           onChange={(e)=>onChange(e.target.value, idInput)}

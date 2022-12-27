@@ -1,4 +1,4 @@
-import { ADD_NEW_DOC, GET_DOC_EMPL, GET_DOC_SELECT, GET_INPUT_VALUE } from "../types/documentacionTypes";
+import { ADD_NEW_DOC, CLEAN_IDS_DOC, GET_DOC_EMPL, GET_DOC_SELECT, GET_INPUT_VALUE, SAVE_IDS } from "../types/documentacionTypes";
 
 export const initialState = {
     domiciliosDelEmpleado : "",
@@ -10,7 +10,8 @@ export const initialState = {
         inputCheckLiquidacion : "",
         inputIncluirCuotaAlim : ""
     },
-    documentacionSeleccionada : ""
+    documentacionSeleccionada : "",
+    ids : []
 }
 
 export const documentacionReducer=(state = initialState, action)=>{
@@ -33,6 +34,18 @@ export const documentacionReducer=(state = initialState, action)=>{
         return {
             ...state,
             documentacionSeleccionada : payload
+        }
+    }
+    case SAVE_IDS : {
+        return {
+            ...state,
+            ids : [...state.ids.push(payload)]
+        }
+    }
+    case CLEAN_IDS_DOC : {
+        return{
+            ...state,
+            ids : state.ids = []
         }
     }
     default : return state
