@@ -12,6 +12,11 @@ import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
 
 const Licencias = ({responses, setResponses}) => {
+    const ids = useSelector((state)=> state.licenciaLic.ids);
+    console.log(ids)
+
+
+
     const cantidadDias = 10;
     const [ formLicencias, setFormLicencias ] = useState(responses["formLicencias"]);
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
@@ -94,6 +99,40 @@ const Licencias = ({responses, setResponses}) => {
         }
         
     }
+
+    const deleteLicencias= async (id)=>{
+        try{
+            await axios.delete(`${urlLicenciaLicDelete}/${id}`)
+            .then((res)=> {
+                dispatch(deleteOneLicencia(Number(id)));
+                dispatch(saveId(id))
+                swal({
+                    title: "Ok",
+                    text: "Licencia eliminada con éxito",
+                    icon: "success",
+                })
+            })
+        }catch(err){
+            swal({
+                title: "Error",
+                text: err,
+                icon: "error",
+            })
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 return (
     <div className='container'>
