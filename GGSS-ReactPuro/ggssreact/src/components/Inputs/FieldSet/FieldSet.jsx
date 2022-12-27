@@ -31,6 +31,7 @@ const FieldSet = ({
   setLicenciaEmpladoDatos,
   setRefectch,
   refetch,
+  deleteLicencias
 }) => {
   const columns1 = [
     "Seleccionar",
@@ -49,6 +50,8 @@ const FieldSet = ({
   const licenciaEmpleado = useSelector(
     (state) => state.licenciasState.licenciaEmpleado
   );
+  const idSelected = useSelector((state)=> state.licenciasState.idSelected);
+
   const detalleSelected = useSelector(
     (state) => state.licenciasState.detalleSelect
   );
@@ -301,16 +304,22 @@ const FieldSet = ({
       });
     }
   }
+  console.log(idSelected)
+
   function deleteWithOptions() {
     switch (selectedOption) {
-      case "1 - Disponibles por Periodo" ||
+      case 
+
+        "1 - Disponibles por Periodo" ||
         "3 - Prorroga Vencimiento" ||
         "2 - Solicita Nueva Licencia":
-        deleteLicenciaAxios(
-          urlDeleteLicencia,
-          deleteLicencia,
-          licenciaEmpleado?.idLicenciaEmpleado
-        );
+
+        deleteLicencias(idSelected);
+        // deleteLicenciaAxios(
+        //   urlDeleteLicencia,
+        //   deleteLicencia,
+        //   licenciaEmpleado?.idLicenciaEmpleado
+        // );
         break;
       case "4 - Suspende Licencia":
         updateData(

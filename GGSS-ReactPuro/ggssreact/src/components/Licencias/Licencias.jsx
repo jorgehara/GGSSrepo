@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { inputSelectedoptionLicencias } from '../../classes/classes';
-import { addLicenciaEmpleados } from '../../redux/actions/fetchActions';
+import { addLicenciaEmpleados, deleteLicencia } from '../../redux/actions/fetchActions';
 import { deleteOneLicencia, saveId, selectedOption } from '../../redux/actions/licenciasActions';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { OPTIONS_FORMULARIO } from '../../redux/types/LicenciasTypes';
@@ -15,7 +15,8 @@ const Licencias = ({responses, setResponses}) => {
 
     const ids = useSelector((state)=> state.licenciasState.ids);
     console.log(ids)
-
+    const idSelected = useSelector((state)=> state.licenciasState.idSelected);
+    console.log(idSelected)
 
 
     const cantidadDias = 10;
@@ -68,8 +69,6 @@ const Licencias = ({responses, setResponses}) => {
         })
     },[empleadoUno?.iDempleado, refetch])
 
-    console.log(licenciaEmpleadoDatos)
-
     function onChangeValues(e, key){
         const newResponse = {...formLicencias};
         newResponse[key] = e;
@@ -102,25 +101,10 @@ const Licencias = ({responses, setResponses}) => {
         
     }
 
-    const deleteLicencias= async (id)=>{
-        try{
-            await axios.delete(`${urlLicenciaLicDelete}/${id}`)
-            .then((res)=> {
-                dispatch(deleteOneLicencia(Number(id)));
-                dispatch(saveId(id))
-                swal({
-                    title: "Ok",
-                    text: "Licencia eliminada con éxito",
-                    icon: "success",
-                })
-            })
-        }catch(err){
-            swal({
-                title: "Error",
-                text: err,
-                icon: "error",
-            })
-        }
+    const deleteLicencias= (id)=>{
+        dispatch(deleteLicencia(Number(id)));
+        dispatch(saveId(id))
+
     }
 
 
@@ -148,7 +132,7 @@ return (
                 idSelected = {formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} />
             </div>
             <div className='col-xl-12 mt-2'>
-                <FieldSet refetch={refetch} setRefectch={setRefectch} setLicenciaEmpladoDatos={setLicenciaEmpladoDatos} formLicencias={formLicencias} sendData={sendData} detalleLicencia={detalleLicencia} licenciaDelEmpleado={licenciaEmpleadoDatos} array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} onChange={onChangeValues} valueForm={formLicencias && formLicencias} />
+                <FieldSet deleteLicencias={deleteLicencias} refetch={refetch} setRefectch={setRefectch} setLicenciaEmpladoDatos={setLicenciaEmpladoDatos} formLicencias={formLicencias} sendData={sendData} detalleLicencia={detalleLicencia} licenciaDelEmpleado={licenciaEmpleadoDatos} array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} onChange={onChangeValues} valueForm={formLicencias && formLicencias} />
             </div>            
         </div>
     </div>

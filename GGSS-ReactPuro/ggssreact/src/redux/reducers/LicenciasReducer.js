@@ -1,6 +1,7 @@
-import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAN_IDS, CLEAR_LIC_SELECT, DELETE_DET_LIC, DELETE_ONE_LICENCIA, OPTIONS_FORMULARIO, RELOAD_ITEM, SAVE_ID, SELECTED_OPTION, UPDATE_DETALLE,  } from "../types/LicenciasTypes";
+import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAN_IDS, CLEAR_LIC_SELECT, DELETE_DET_LIC, DELETE_ONE_LICENCIA, GET_ID, OPTIONS_FORMULARIO, RELOAD_ITEM, SAVE_ID_LIC, SELECTED_OPTION, UPDATE_DETALLE,  } from "../types/LicenciasTypes";
 
 export const initialState = {
+
     selectedOptionLicencia : "",
     formulario : {
         inputOpcionsLicencias : ""
@@ -8,7 +9,8 @@ export const initialState = {
     licenciaEmpleado : "",
     detalleLicencia : "",
     detalleSelect : "",
-    ids : ""
+    idsLic : [],
+    idSelected: 0
 
 }
 
@@ -31,7 +33,7 @@ export const licenciasReducer=(state = initialState, action)=>{
         case ADD_ONE_LICENCIA : {
             return{
                 ...state,
-                licenciaEmpleado : payload
+                payload
             }
         }
         case ADD_DETALLE_LICENCIA : {
@@ -76,26 +78,33 @@ export const licenciasReducer=(state = initialState, action)=>{
         case DELETE_ONE_LICENCIA : {
             return{
                 ...state,
-                licenciasState : state.licenciasState.filter((lic)=> lic.licenciasState !== payload)
+                licenciaEmpleado : state.licenciaEmpleado.filter((lic)=> lic.idLicenciaEmpleado !== payload)
             }
         }
         case RELOAD_ITEM : {
             return {
                 ...state,
-                licenciasState : state.licenciasState.push(payload)
+                licenciaEmpleado : state.licenciaEmpleado.push(payload)
             }
         }
-        case SAVE_ID : {
+        case SAVE_ID_LIC : {
             console.log(payload)
             return {
                 ...state,
-                ids : [...state.ids.push(payload)]
+                idsLic : [...state.idsLic.push(payload)]
             }
         }
         case CLEAN_IDS : {
             return{
                 ...state,
                 ids : state.ids = []
+            }
+        }
+
+        case GET_ID : {
+            return{
+                ...state,
+                idSelected : payload
             }
         }
         default :

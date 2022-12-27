@@ -336,6 +336,8 @@ export const fetchReducer = (state = initialState, action) =>{
                 licenciasEmpleados : state.licenciasEmpleados.filter((lic)=> lic.idLicenciaEmpleado !== action.payload)
             }
         }
+
+        
         case ADD_NEW_DOC : {
         return{
             ...state.documentacionEmpleados,

@@ -1,5 +1,5 @@
 import { UPDATE_LICENCIA } from "../types/fetchTypes";
-import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_NEW_LICENCIA, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAN_IDS, CLEAR_LIC_SELECT, DELETE_DET_LIC, DELETE_LIST_ITEM, DELETE_ONE_LICENCIA, OPTIONS_FORMULARIO, RELOAD_ITEM, SAVE_ID, SELECTED_OPTION, UPDATE_DETALLE } from "../types/LicenciasTypes"
+import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_NEW_LICENCIA, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAN_IDS, CLEAR_LIC_SELECT, DELETE_DET_LIC, DELETE_LIST_ITEM, DELETE_ONE_LICENCIA, GET_ID, OPTIONS_FORMULARIO, RELOAD_ITEM, SAVE_ID, SAVE_ID_LIC, SELECTED_OPTION, UPDATE_DETALLE } from "../types/LicenciasTypes"
 
 export const selectedOption=(payload)=>{
     return{
@@ -79,7 +79,7 @@ export const reloadItem=(payload)=>{
 }
 export const saveId=(payload)=>{
     return {
-        type: SAVE_ID,
+        type: SAVE_ID_LIC,
         payload
     }
 }
@@ -88,4 +88,11 @@ export const cleanIds=(payload)=>{
         type : CLEAN_IDS,
         payload
     }
+}
+
+export const getId=(payload)=>{
+        return{
+            type : GET_ID,
+            payload
+        }
 }

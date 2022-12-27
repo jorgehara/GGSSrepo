@@ -16,5 +16,7 @@ export const DELETE_ONE_LICENCIA = "DELETE_ONE_LICENCIA";
 
 export const DELETE_LIST_ITEM = "DELETE_LIST_ITEM"
 export const RELOAD_ITEM = "RELOAD_ITEM"
-export const SAVE_ID = "SAVE_ID"
+export const SAVE_ID_LIC = "SAVE_ID_LIC"
 export const CLEAN_IDS = "CLEAN_IDS"
+
+export const GET_ID = "GET_ID"
