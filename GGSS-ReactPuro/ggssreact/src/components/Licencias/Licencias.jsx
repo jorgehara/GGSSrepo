@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { inputSelectedoptionLicencias } from '../../classes/classes';
 import { addLicenciaEmpleados } from '../../redux/actions/fetchActions';
-import { selectedOption } from '../../redux/actions/licenciasActions';
+import { deleteOneLicencia, saveId, selectedOption } from '../../redux/actions/licenciasActions';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { OPTIONS_FORMULARIO } from '../../redux/types/LicenciasTypes';
 import EmployeData from '../EmployeData/EmployeData'
@@ -34,6 +34,7 @@ const Licencias = ({responses, setResponses}) => {
 
     
     //console.log(licenciasEmplados.filter((lic)=> {return(lic.idLicenciaEmpleado === 468)}))
+    const urlLicenciaLicDelete = "http://54.243.192.82/api/EliminarLicenciaPorId";
 
     const opciones = [{
         opcion : "1 - Disponibles por Periodo",        
@@ -120,18 +121,6 @@ const Licencias = ({responses, setResponses}) => {
             })
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 return (

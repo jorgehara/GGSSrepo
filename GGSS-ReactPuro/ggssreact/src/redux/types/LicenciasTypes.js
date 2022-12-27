@@ -11,3 +11,10 @@ export const ADD_NEW_DETALLE = "ADD_NEW_DETALLE";
 export const DELETE_DET_LIC = "DELETE_DET_LIC";
 
 export const CLEAR_LIC_SELECT = "CLEAR_LIC_SELECT"
+
+export const DELETE_ONE_LICENCIA = "DELETE_ONE_LICENCIA";
+
+export const DELETE_LIST_ITEM = "DELETE_LIST_ITEM"
+export const RELOAD_ITEM = "RELOAD_ITEM"
+export const SAVE_ID = "SAVE_ID"
+export const CLEAN_IDS = "CLEAN_IDS"

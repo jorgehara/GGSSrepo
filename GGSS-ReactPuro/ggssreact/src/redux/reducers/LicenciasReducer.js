@@ -1,4 +1,4 @@
-import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAR_LIC_SELECT, DELETE_DET_LIC, OPTIONS_FORMULARIO, SELECTED_OPTION, UPDATE_DETALLE,  } from "../types/LicenciasTypes";
+import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAN_IDS, CLEAR_LIC_SELECT, DELETE_DET_LIC, DELETE_ONE_LICENCIA, OPTIONS_FORMULARIO, RELOAD_ITEM, SAVE_ID, SELECTED_OPTION, UPDATE_DETALLE,  } from "../types/LicenciasTypes";
 
 export const initialState = {
     selectedOptionLicencia : "",
@@ -7,7 +7,9 @@ export const initialState = {
     },
     licenciaEmpleado : "",
     detalleLicencia : "",
-    detalleSelect : ""
+    detalleSelect : "",
+    ids : ""
+
 }
 
 export const licenciasReducer=(state = initialState, action)=>{
@@ -70,7 +72,32 @@ export const licenciasReducer=(state = initialState, action)=>{
                 ...state,
                 licenciaEmpleado: {}
             }
-           }
+        }
+        case DELETE_ONE_LICENCIA : {
+            return{
+                ...state,
+                LicenciaLicencia : state.LicenciaLicencia.filter((lic)=> lic.LicenciaLicencia !== payload)
+            }
+        }
+        case RELOAD_ITEM : {
+            return {
+                ...state,
+                LicenciaLicencia : state.LicenciaLicencia.push(payload)
+            }
+        }
+        case SAVE_ID : {
+            console.log(payload)
+            return {
+                ...state,
+                ids : [...state.ids.push(payload)]
+            }
+        }
+        case CLEAN_IDS : {
+            return{
+                ...state,
+                ids : state.ids = []
+            }
+        }
         default :
         return state;
     }
