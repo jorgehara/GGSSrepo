@@ -279,7 +279,7 @@ console.log(empleadoUno)
                             obligatorio ={true}
                             />
                           <InputForm
-                            value={formDatosPersonales?.apellidoInput ? formDatosPersonales?.apellidoInput : empleadoUno.apellido}
+                            value={valueempl ? formDatosPersonales?.apellidoInput  : empleadoUno.apellido}
                             idInput="apellidoInput"
                             messageError="Solo puede contener letras."
                             placeHolder="Ingrese Apellidos"
@@ -431,7 +431,7 @@ console.log(empleadoUno)
                             obligatorio ={true}
                             />
                           <InputDate
-                            value={formDatosPersonales?.inputDateNac ? formDatosPersonales?.inputDateNac : empleadoUno.fechaNacimiento.substring(0, empleadoUno.fechaNacimiento.length -9)}
+                            value={formDatosPersonales?.inputDateNac ? formDatosPersonales?.inputDateNac : empleadoUno?.fechaNacimiento?.substring(0, empleadoUno.fechaNacimiento.length -9)}
                             action={ADD_DATOS_PERSONALES}
                             nameInput="Nacimiento"
                             disabled={disable}

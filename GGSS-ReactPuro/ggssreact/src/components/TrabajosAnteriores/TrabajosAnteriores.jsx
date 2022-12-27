@@ -131,24 +131,10 @@ const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch}) => {
         }
     }
     const deleteTRabajoAnterior= async (id)=>{
-        try{
-            await axios.delete(`${urlTrabajosAnterioresDelete}/${id}`)
-            .then((res)=> {
-                dispatch(deleteOneTrabajo(Number(id)));
-                dispatch(saveId(id))
-                swal({
-                    title: "Ok",
-                    text: "Trabajo anterior eliminado con éxito",
-                    icon: "success",
-                })
-            })
-        }catch(err){
-            swal({
-                title: "Error",
-                text: err,
-                icon: "error",
-            })
-        }
+        
+        dispatch(deleteOneTrabajo(Number(id)));
+        dispatch(saveId(id))
+        
     }
 
 

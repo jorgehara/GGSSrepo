@@ -1,4 +1,4 @@
-import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAR_LIC_SELECT, DELETE_DET_LIC, OPTIONS_FORMULARIO, SELECTED_OPTION, UPDATE_DETALLE,  } from "../types/LicenciasTypes";
+import { ADD_DETALLE_LICENCIA, ADD_LIC_EMPLEADOS, ADD_NEW_DETALLE, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAR_IDS_LIC, CLEAR_LIC_SELECT, DELETE_DET_LIC, DELETE_LIC_EMPLEADO, ID_SELECT, OPTIONS_FORMULARIO, SAVE_IDS_LIC, SELECTED_OPTION, UPDATE_DETALLE,  } from "../types/LicenciasTypes";
 
 export const initialState = {
     selectedOptionLicencia : "",
@@ -7,7 +7,10 @@ export const initialState = {
     },
     licenciaEmpleado : "",
     detalleLicencia : "",
-    detalleSelect : ""
+    detalleSelect : "",
+    idsLic : [],
+    idSelected : 0,
+    licenciasEmpleado : ""
 }
 
 export const licenciasReducer=(state = initialState, action)=>{
@@ -71,6 +74,36 @@ export const licenciasReducer=(state = initialState, action)=>{
                 licenciaEmpleado: {}
             }
            }
+        case SAVE_IDS_LIC : {
+            return {
+                ...state,
+                idsLic : [...state.idsLic.push(payload)]
+            }
+        }
+        case CLEAR_IDS_LIC : {
+            return {
+                ...state,
+                idsLic : state.idsLic = []
+            }
+        }
+        case ID_SELECT : {
+            return{
+                ...state,
+                idSelected : payload
+            }
+        }
+        case ADD_LIC_EMPLEADOS : {
+            return{
+                ...state,
+                licenciasEmpleado : payload
+            }
+        }
+        case DELETE_LIC_EMPLEADO : {
+            return {
+                ...state,
+                licenciasEmpleado : state.licenciasEmpleado.filter((lic)=> lic.idLicenciaEmpleado !== payload)
+            }
+        }
         default :
         return state;
     }

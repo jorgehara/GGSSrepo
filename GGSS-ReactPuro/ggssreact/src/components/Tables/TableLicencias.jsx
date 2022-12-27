@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import {
   addDetalleLicencia,
   addOneLicencia,
+  idSelect,
 } from "../../redux/actions/licenciasActions";
 import "./TableBootstrap.css";
 
@@ -35,7 +36,7 @@ const TableLicencias = ({
         <tbody>
           {licenciaDelEmpleado &&
             licenciaDelEmpleado.map((valor, i) => {
-              console.log(valor);
+           
               return (
                 <tr key={i}>
                   <th scope="row">
@@ -46,9 +47,9 @@ const TableLicencias = ({
                       name="seleccionar"
                       id="seleccionar"
                       onClick={() => {
-                        setRefectch(!refetch);
                         setChecked(true);
                         dispatch(addOneLicencia(valor));
+                        dispatch(idSelect(valor.idLicenciaEmpleado))
                       }}
                     />{" "}
                   </th>

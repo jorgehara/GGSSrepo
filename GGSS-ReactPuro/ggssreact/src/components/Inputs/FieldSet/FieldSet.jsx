@@ -8,6 +8,7 @@ import {
   updateLicencia,
   deleteLicencia,
 } from "../../../redux/actions/fetchActions";
+import { deleteLicEmpleado, saveIdsLic } from "../../../redux/actions/licenciasActions";
 import TableLicencias from "../../Tables/TableLicencias";
 import TableSuspenLicencia from "../../Tables/TableSuspenLicencia";
 import FechaSuspencion from "./Childs/FechaSuspencion";
@@ -73,6 +74,10 @@ const FieldSet = ({
   const urlDeleteLicencia = "http://54.243.192.82/api/EliminarLicenciaPorId";
   const dispatch = useDispatch();
   const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
+  const idSelected = useSelector((state)=> state.licenciasState.idSelected);
+  const licenciasDelEmpleado = useSelector((state)=> state.licenciasState.licenciasEmpleado);
+
+  console.log(licenciasDelEmpleado)
 
   const urlUpdateDetalle = `http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=${detalleSeleccionado.idDetalleLicenciaEmpleado}&FechaSuspension=${formLicencias?.inputDateSuspLic}`;
 
@@ -119,8 +124,10 @@ const FieldSet = ({
     fechaProrroga: formLicencias?.inputNuevaFechaLic,
     nroResolucion: formLicencias?.inputNuevaResolucionLic,
   };
+  const arrayIds = useSelector((state)=> state.licenciasState.idsLic);
 
-  console.log(licenciaDelEmpleado);
+  console.log(arrayIds);
+  console.log(idSelected)
 
   const bodyDetalleLicencia = {
     IdDetalleLicenciaEmpleado: 0,
@@ -264,28 +271,11 @@ const FieldSet = ({
         icon: "error",
       });
   }
-  async function deleteLicenciaAxios(url, action, id) {
-    try {
-      console.log(`${url}/${id}`);
-      await axios.delete(`${url}/${id}`).then((res) => {
-        if (res.status === 200) {
-          dispatch(action(id));
-          setRefectch(!refetch);
-          return swal({
-            title: "Ok",
-            text: `Licencia borrada con éxito`,
-            icon: "success",
-          });
-        }
-        swal({
-          title: "Error",
-          text: `${res.displayMessage}`,
-          icon: "error",
-        });
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  function deleteLicenciaAxios(id) {
+    debugger;
+      dispatch(deleteLicEmpleado(id))     
+      dispatch(saveIdsLic(id))
+          
   }
   function deleteDetalleLicencia(urlDetalleLicenciaEmpleados, id) {
     try {
@@ -306,11 +296,7 @@ const FieldSet = ({
       case "1 - Disponibles por Periodo" ||
         "3 - Prorroga Vencimiento" ||
         "2 - Solicita Nueva Licencia":
-        deleteLicenciaAxios(
-          urlDeleteLicencia,
-          deleteLicencia,
-          licenciaEmpleado?.idLicenciaEmpleado
-        );
+        deleteLicenciaAxios(idSelected);
         break;
       case "4 - Suspende Licencia":
         updateData(
@@ -467,7 +453,7 @@ const FieldSet = ({
           setRefectch={setRefectch}
           setChecked={setChecked}
           checked={checked}
-          licenciaDelEmpleado={licenciaDelEmpleado}
+          licenciaDelEmpleado={licenciasDelEmpleado}
           columns={columns1}
           value={[]}
         />
