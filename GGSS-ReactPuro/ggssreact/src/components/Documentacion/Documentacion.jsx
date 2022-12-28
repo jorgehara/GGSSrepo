@@ -48,11 +48,14 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
     },[])
     
     const documentacionEmpleados = useSelector((state)=> state.generalState.documentacionEmpleados);
+
     const documentaciones = useSelector((state)=> state.documentacionState.domiciliosDelEmpleado);
    
     //const datosFormulario = useSelector((state)=> state.documentacionState.formulario);
 
     const documentacionDelEmpleado = empleadoUno && documentacionEmpleados && documentacionEmpleados.filter((doc)=> {return(doc.idEmpleado === empleadoUno.iDempleado)});
+
+console.log(documentacionDelEmpleado)
     let bodyPetition = {        
         "fecha": formDocumentacion?.inputDatePresentacion,
         "idEmpleado": empleadoUno.iDempleado,
@@ -91,8 +94,8 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
         })
         
     }
-    console.log(documentacionSeleccionada.idEmpleadoDocumentacion)
-     function deleteData(id){
+
+    function deleteData(id){
         dispatch(deleteDocu(id))
         dispatch(saveIds(id))
     }
