@@ -43,7 +43,7 @@ return (
             </div>
         </div>
         <div className='col-xl-2'>
-            <button className='btn btn-outline-danger btn-sm buttonSpace'>{nameButton}</button>
+            {/* <button className='btn btn-outline-danger btn-sm buttonSpace'>{nameButton}</button> */}
         </div>
     </div>
 )

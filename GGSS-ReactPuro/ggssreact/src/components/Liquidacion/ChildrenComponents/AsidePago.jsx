@@ -91,17 +91,17 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
               />
               </div>
               <div>
-                <InputButton
+              <InputButton
                 clasess={inputButtonClasessAsidePagos}
                 nameButton="..."
-                  nameLabel="C.B.U."
-                  placeholder="C.B.U"
-                  value = {formLiquidacion?.inputCBU && formLiquidacion?.inputCBU}
-                  onChange={onChange}
-                  action={GET_INPUTS_VALUE}
-                  id="inputCBU"
-                  disabled={disabled}
-                />
+                nameLabel="C.B.U."
+                placeholder="C.B.U"
+                value = {formLiquidacion?.inputCBU && formLiquidacion?.inputCBU}
+                onChange={onChange}
+                action={GET_INPUTS_VALUE}
+                id="inputCBU"
+                disabled={disabled}
+              />
               </div>
 
               <div className='mt-2'>

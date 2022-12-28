@@ -216,6 +216,8 @@ const Empleados = () => {
   };
 const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
   
+
+//#region useEffect handleFetch
 useEffect(()=>{
   handleFetch(urlEstados, addEstados);
   handleFetch(urlEstadosCiviles, addEstadosCiviles);
@@ -283,6 +285,7 @@ useEffect(()=>{
     handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
 
   }, [refetch]);
+//#endregion
 
   useEffect(() => {
     setImageEmpleado();

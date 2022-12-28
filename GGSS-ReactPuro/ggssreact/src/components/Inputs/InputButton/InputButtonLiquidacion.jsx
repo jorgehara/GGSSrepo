@@ -38,10 +38,10 @@ console.log(disabled)
             })
         }
        </select>
-        <button type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal)}
+        {/* <button type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal)}
               className={`${clasess.classFive}`} disabled={disabled}>
               {nameButton}
-        </button>
+        </button> */}
     </div>
     
 </div>

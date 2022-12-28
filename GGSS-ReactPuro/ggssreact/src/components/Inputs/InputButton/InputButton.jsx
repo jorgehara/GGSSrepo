@@ -60,12 +60,11 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     disabled={disabled}
                     onChange={(e)=> onChange(e.target.value,id )}
                     />
-            <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
+            {/* <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
                   className="btn btn-validacion btn-outline-danger" disabled={disabled}>
                   {nameButton}
-            </button>
+            </button> */}
         </div>
-			  
     </div>
   );
 };
