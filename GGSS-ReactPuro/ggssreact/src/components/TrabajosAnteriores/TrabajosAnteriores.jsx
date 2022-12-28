@@ -12,7 +12,7 @@ import InputTextTrabajos from '../Inputs/InputTextTrabajos/InputTextTrabajos';
 import TableTrabajosAnteriores from '../Tables/TableTrabajosAnteriores';
 import "./TrabajosAnteriores.css";
 
-const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch}) => {
+const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch,disable}) => {
     const [checked , setChecked] = useState(false);
     const [disabled , setDisabled] = useState(false);
     const [ modificar, setModificar ] = useState(false);
@@ -147,7 +147,7 @@ const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch}) => {
             <div className='col-xl-4'>
                 <div className='d-flex flex-row justify-content-start align-items-center mt-2 '>
                     <label htmlFor="idDateDesde">Desde:</label>
-                    <input type="date" onChange={(e)=> onChangeValues(e.target.value, "idDateDesde")} value={ modificar ? (formTrabajosAnteriores?.idDateDesde ? formTrabajosAnteriores?.idDateDesde : trabajoAnterior?.desde.substring(0, trabajoAnterior?.desde.length - 9)) : formTrabajosAnteriores?.idDateDesde && formTrabajosAnteriores?.idDateDesde} name="idDateDesde" id="idDateDesde" className='dateTrabajos '/>
+                    <input type="date" disabled={disable} onChange={(e)=> onChangeValues(e.target.value, "idDateDesde")} value={ modificar ? (formTrabajosAnteriores?.idDateDesde ? formTrabajosAnteriores?.idDateDesde : trabajoAnterior?.desde.substring(0, trabajoAnterior?.desde.length - 9)) : formTrabajosAnteriores?.idDateDesde && formTrabajosAnteriores?.idDateDesde} name="idDateDesde" id="idDateDesde" className='dateTrabajos '/>
                 </div>
             </div>        
         </div>
@@ -155,17 +155,17 @@ const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch}) => {
             <div className='col-xl-4'>
                 <div className='d-flex flex-row justify-content-start align-items-center mt-2 '>
                     <label htmlFor="idDateDesde">Hasta:</label>
-                    <input type="date" onChange={(e)=> onChangeValues(e.target.value, "idDateHasta")} disabled={disabled} value={modificar ? (checked ? null : formTrabajosAnteriores?.idDateHasta ? formTrabajosAnteriores?.idDateHasta : trabajoAnterior?.hasta.substring(0, trabajoAnterior?.desde.length - 9)) : formTrabajosAnteriores?.idDateHasta && formTrabajosAnteriores?.idDateHasta} name="idDateHasta" id="idDateHasta" className='dateTrabajos2 '/>
-                    <input type="checkbox" checked={modificar ? (checked ? checked : trabajoAnterior?.actualidad) : checked && checked} name="idCheckTrabajos" id="idCheckTrabajos" className='checkTrabajos' onChange={(e)=>{ setChecked(!checked); onCheckActualidad(e.target.checked , "idCheckTrabajos", "idDateHasta")}} />
+                    <input type="date"  onChange={(e)=> onChangeValues(e.target.value, "idDateHasta")} disabled={disable ? disable : disabled} value={modificar ? (checked ? null : formTrabajosAnteriores?.idDateHasta ? formTrabajosAnteriores?.idDateHasta : trabajoAnterior?.hasta.substring(0, trabajoAnterior?.desde.length - 9)) : formTrabajosAnteriores?.idDateHasta && formTrabajosAnteriores?.idDateHasta} name="idDateHasta" id="idDateHasta" className='dateTrabajos2 '/>
+                    <input type="checkbox" disabled={disable} checked={modificar ? (checked ? checked : trabajoAnterior?.actualidad) : checked && checked} name="idCheckTrabajos" id="idCheckTrabajos" className='checkTrabajos' onChange={(e)=>{ setChecked(!checked); onCheckActualidad(e.target.checked , "idCheckTrabajos", "idDateHasta")}} />
                     <label htmlFor="idDateDesde" className='labelTrabajos'>Hasta la Actualidad:</label>
                 </div>
             </div>        
         </div>
         <div className='row'>
-            <InputTextTrabajos nameLabel="Descripción" inputId="idDescripcionTrabajos" onChange={onChangeValues} value={modificar ? (formTrabajosAnteriores?.idDescripcionTrabajos ? formTrabajosAnteriores?.idDescripcionTrabajos : trabajoAnterior?.descripcion) : formTrabajosAnteriores?.idDescripcionTrabajos && formTrabajosAnteriores?.idDescripcionTrabajos} action={GET_INPUT} onSend={sendData} onDelete={deleteTRabajoAnterior} id={valueIdTrabajoAnterior} />
+            <InputTextTrabajos disable={disable} nameLabel="Descripción" inputId="idDescripcionTrabajos" onChange={onChangeValues} value={modificar ? (formTrabajosAnteriores?.idDescripcionTrabajos ? formTrabajosAnteriores?.idDescripcionTrabajos : trabajoAnterior?.descripcion) : formTrabajosAnteriores?.idDescripcionTrabajos && formTrabajosAnteriores?.idDescripcionTrabajos} action={GET_INPUT} onSend={sendData} onDelete={deleteTRabajoAnterior} id={valueIdTrabajoAnterior} />
         </div>
         <div className='row'>
-            <TableTrabajosAnteriores setModificar={setModificar} nameLabel="Historial:" columns={columns} array={trabajosAnterioresDelEmpleado}/>
+            <TableTrabajosAnteriores disable={disable} setModificar={setModificar} nameLabel="Historial:" columns={columns} array={trabajosAnterioresDelEmpleado}/>
         </div>
     </div>
   )

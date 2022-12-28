@@ -54,6 +54,8 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
       });    
   },[formDatosPersonales]);
  
+ 
+
 
    function getNumeradorId(tabla){
     return numeradores && numeradores.filter((num)=>{
@@ -291,7 +293,7 @@ console.log(empleadoUno)
                             obligatorio ={true}
                             />
                           <InputForm
-                            value={formDatosPersonales?.nombresInput ? formDatosPersonales?.nombresInput : empleadoUno.nombres}
+                            value={valueempl ? formDatosPersonales?.nombresInput  : empleadoUno.nombres}
                             action={ADD_DATOS_PERSONALES}
                             idInput="nombresInput"
                             messageError="Solo puede contener letras."
@@ -304,7 +306,7 @@ console.log(empleadoUno)
                             obligatorio ={true}
                             />
                           <DNICboBox
-                            value={formDatosPersonales?.documentoInput ? formDatosPersonales?.documentoInput : empleadoUno.nroDocumento}
+                            value={valueempl ? formDatosPersonales?.documentoInput  : empleadoUno.nroDocumento}
                             action={ADD_DATOS_PERSONALES}
                             idInput="documentoInput"
                             messageError="Solo puede contener números, sin puntos."
@@ -321,7 +323,7 @@ console.log(empleadoUno)
                             obligatorio ={true}
                             />
                           <InputButton
-                            value={formDatosPersonales?.inputCuil ? formDatosPersonales?.inputCuil : empleadoUno.cuil}
+                            value={valueempl ? formDatosPersonales?.inputCuil  : empleadoUno.cuil}
                             action={ADD_DATOS_PERSONALES}
                             id="inputCuil"
                             clasess={inputButtonClasessCUIL}
@@ -341,7 +343,7 @@ console.log(empleadoUno)
                             obligatorio ={true}
                             />
                           <InputForm
-                            value={formDatosPersonales?.telefonoInput ? formDatosPersonales?.telefonoInput : empleadoUno.telFijo}
+                            value={valueempl ? formDatosPersonales?.telefonoInput  : empleadoUno.telFijo}
                             action={ADD_DATOS_PERSONALES}
                             nameInput="telefonoInput"
                             idInput="telefonoInput"

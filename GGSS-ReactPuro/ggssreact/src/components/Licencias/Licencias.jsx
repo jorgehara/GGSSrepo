@@ -11,31 +11,20 @@ import EmployeData from '../EmployeData/EmployeData'
 import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
 
-const Licencias = ({responses, setResponses}) => {
+const Licencias = ({responses, setResponses, 
 
-    const idsLic = useSelector((state)=> state.licenciasState.idsLic);
-    console.log(idsLic)
-    const idSelected = useSelector((state)=> state.licenciasState.idSelected);
-    console.log(idSelected)
-
-
-    const cantidadDias = 10;
-    const [ formLicencias, setFormLicencias ] = useState(responses["formLicencias"]);
-    const empleadoUno = useSelector((state)=> state.employeStates.employe);
-    const licenciasEmplados = useSelector((state)=> state.generalState.licenciasEmpleados);
-    const dispatch = useDispatch();
-    const licenciaDelEmpleado = licenciasEmplados && licenciasEmplados.filter((lic)=> lic.idEmpleado === empleadoUno.iDempleado);
-    const [ licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
-    const [ refetch , setRefectch ] =useState(false);
-
-   /*  const licenciasDelEmpleado = licenciaDelEmpleado && licenciaDelEmpleado[0] && licenciaDelEmpleado[0] && licenciasEmplados && licenciasEmplados.filter((lic)=>{
-        return(
-            lic.idLicenciaEmpleado === licenciaDelEmpleado[0].idLicenciaEmpleado
-        )
-    }) */
-
+    licenciaEmpleadoDatos,
+    setLicenciaEmpladoDatos,
+    setRefectch, 
+    refetch, 
     
-    //console.log(licenciasEmplados.filter((lic)=> {return(lic.idLicenciaEmpleado === 468)}))
+    disable}) => {
+
+        const [ formLicencias, setFormLicencias ] = useState(responses["formLicencias"]);
+        const empleadoUno = useSelector((state)=> state.employeStates.employe);
+        const licenciasEmplados = useSelector((state)=> state.generalState.licenciasEmpleados);
+        const dispatch = useDispatch();
+
     const urlLicenciaLicDelete = "http://54.243.192.82/api/EliminarLicenciaPorId";
 
     const opciones = [{
@@ -129,10 +118,11 @@ return (
                 onChange={onChangeValues} 
                 provinciaAction={selectedOption} 
                 action={OPTIONS_FORMULARIO} 
-                idSelected = {formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} />
+                idSelected = {formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias}
+                disabled={disable} />
             </div>
             <div className='col-xl-12 mt-2'>
-                <FieldSet deleteLicencias={deleteLicencias} refetch={refetch} setRefectch={setRefectch} setLicenciaEmpladoDatos={setLicenciaEmpladoDatos} formLicencias={formLicencias} sendData={sendData} detalleLicencia={detalleLicencia} licenciaDelEmpleado={licenciaEmpleadoDatos} array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} onChange={onChangeValues} valueForm={formLicencias && formLicencias} />
+                <FieldSet refetch={refetch} setRefectch={setRefectch} setLicenciaEmpladoDatos={setLicenciaEmpladoDatos} formLicencias={formLicencias} sendData={sendData} detalleLicencia={detalleLicencia} licenciaDelEmpleado={licenciaEmpleadoDatos} array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} onChange={onChangeValues} valueForm={formLicencias && formLicencias} disabled={disable} />
             </div>            
         </div>
     </div>

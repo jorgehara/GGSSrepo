@@ -16,8 +16,12 @@ import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago, addNewCargo, deleteCargo, putCargo, getIdCargo, addNewTarea, deleteTarea, putTarea, getIdTarea } from '../../redux/actions/fetchActions';
+import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu, setRefetch } from '../../redux/actions/modalesActions';
 
-import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
+
+// import { getEstadosCivilesModal } from '../../services/fetchAPI';
+// import { useEffect } from 'react';
 //#endregion
 
 const NavbarMenu = () => {
@@ -27,8 +31,9 @@ const NavbarMenu = () => {
 	const urlTiposDocumento = "http://54.243.192.82/api/TiposDocumento"
 	const urlCargos = "http://54.243.192.82/api/Cargos";
 	const urlTareas = "http://54.243.192.82/api/TareasDesempeñadas";
-	const [refetch, setRefetch] = useState(true); // estado para recargar cada vez que se ejecute un post/put/delete
-	
+	// estado para recargar cada vez que se ejecute un post/put/delete
+
+	const refetch = useSelector((state)=> state.modalState.refetch);
 	// ESTADOS QUE GUARDAN EL VALOR DE LOS INPUTS
 	const [responses, setResponses] = useState({});
 	const [modalDataInputs, setModalDataInputs] = useState(responses["modalDataInputs"])
@@ -77,8 +82,10 @@ const NavbarMenu = () => {
 	const estadoCivilSelected = useSelector((state) => state.modalState.estadoCivilSelected);
 	const inputMascEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModal);
 	const inputFemEstadosCiviles = useSelector((state) => state.modalState.formulario.inputEstadosCivilesModalFem);
-	const valueIdEstadoCivil = useSelector((state) => state.modalState.estadoCivilSelected.idEstadoCivil);
-	// Estudios s
+	const valueIdEstadoCivil = useSelector((state) => state.generalState.idEstadoCivil);
+	
+
+	// Estudios
 	const estudiosValue = useSelector((state) => state.generalState.estudios)
 	const estudioSelected = useSelector((state) => state.modalState.estudioSelected);
 	const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio)

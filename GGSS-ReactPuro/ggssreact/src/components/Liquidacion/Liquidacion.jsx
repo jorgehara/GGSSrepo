@@ -15,14 +15,14 @@ import DireccionSindicato from "./ChildrenComponents/DireccionSindicato";
 import IngresoContrato from "./ChildrenComponents/IngresoContrato";
 import "./Liquidacion.css"
 
-const Liquidacion = ({responses, setResponses}) => {
+const Liquidacion = ({responses, setResponses, disable, setDisable}) => {
 
     
     const [ formLiquidacion, setFormLiquidacion ] = useState(responses["formLiquidacion"]);
 
     const dispatch = useDispatch();
     const deshabilitar = useSelector((state)=> state.employeStates.disable);
-    const disable = useSelector((state)=> state.generalState.disabled);
+    
     //#region ------------------------------------------------------------------------------------URLs
    
 //#endregion
@@ -116,6 +116,7 @@ return (
                         onChange={onChangeValues}
                         action={GET_INPUTS_VALUE}
                         obligatorio = {true}
+                        disabled={disable}
                         />
                     </div>        
                 </div>
@@ -132,8 +133,7 @@ return (
                             propIdOption="iDconvenio"
                             idInput="inputConvenio"
                             onChange={onChangeValues}
-                            useButton={false}
-                            display={false}
+                            disabled={disable}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -147,6 +147,7 @@ return (
                             idInput="inputCategoria"
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE}
+                            disabled={disable}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -160,6 +161,7 @@ return (
                             idInput="inputAgrupamiento"
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE}
+                            disabled={disable}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -173,6 +175,7 @@ return (
                             idInput="inputCargo"
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE}
+                            disabled={disable}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -185,7 +188,8 @@ return (
                             propIdOption="idTareaDesempeñada"
                             idInput="inputTareaDesempeñada"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE}
+                            action={GET_INPUTS_VALUE} 
+                            disabled={disable}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -198,7 +202,8 @@ return (
                             propIdOption="iDmodoContratacion"
                             idInput="inputModoCOntratacion"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE}
+                            action={GET_INPUTS_VALUE} 
+                            disabled={disable}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -211,7 +216,8 @@ return (
                             propIdOption="iDmodoLiquidacion"
                             idInput="inputModoLiquidacion"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE}
+                            action={GET_INPUTS_VALUE} 
+                            disabled={disable}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -224,7 +230,8 @@ return (
                             propIdOption="idCentrodeCosto"
                             idInput="inputCentroCosto"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE}
+                            action={GET_INPUTS_VALUE} 
+                            disabled={disable}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -237,7 +244,8 @@ return (
                             propIdOption="iDsectorDpto"
                             idInput="inputSectorDepto"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE}
+                            action={GET_INPUTS_VALUE} 
+                            disabled={disable}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -250,12 +258,15 @@ return (
                             propIdOption="iDobraSocial"
                             idInput="inputObraSocial"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE}
+                            action={GET_INPUTS_VALUE} 
+                            disabled={disable}
                         />
                     </div>
                     <div className="col-xl-6">
-                        <AsidePago formLiquidacion={formLiquidacion && formLiquidacion} formasPAgo ={formasPago && formasPago} onChange={onChangeValues} lugaresDePago={lugaresDePago && lugaresDePago} bancos={bancos && bancos}/>
-                        <DireccionSindicato formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} direcciones={direcciones && direcciones} sindicatos={sindicatos} />
+                        <AsidePago formLiquidacion={formLiquidacion && formLiquidacion} formasPAgo ={formasPago && formasPago} onChange={onChangeValues} lugaresDePago={lugaresDePago && lugaresDePago} bancos={bancos && bancos} 
+                        disabled={disable}/>
+                        <DireccionSindicato formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} direcciones={direcciones && direcciones} sindicatos={sindicatos} 
+                        disabled={disable} />
                     </div>
                 </div>
             </div>
@@ -271,12 +282,12 @@ return (
               <div className="accordion-body">
                 <div className="row">
                     <div className="col-xl-12 mt-2">
-                        <IngresoContrato  formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} ingresoDate={ingresoDate && ingresoDate} ingresoTextInput={ingresoTextInput && ingresoTextInput} esquemas={esquemas}/>
+                        <IngresoContrato  formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} ingresoDate={ingresoDate && ingresoDate} ingresoTextInput={ingresoTextInput && ingresoTextInput} esquemas={esquemas} disabled={disable}/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xl-12 ">
-                        <DatosCertificado formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} nameLabel="Datos para Certificado de Oficio" inputTotalRemu={inputTotalRemu && inputTotalRemu} inputTotalNeto={inputTotalNeto && inputTotalNeto} inputCheckEmbargos={inputCheckEmbargos && inputCheckEmbargos} inputCheckSumAdministrativo={inputCheckSumAdministrativo && inputCheckSumAdministrativo} inputCheckLicSinGoce = {inputCheckLicSinGoce && inputCheckLicSinGoce} />
+                        <DatosCertificado formLiquidacion={formLiquidacion && formLiquidacion} onChange={onChangeValues} nameLabel="Datos para Certificado de Oficio" inputTotalRemu={inputTotalRemu && inputTotalRemu} inputTotalNeto={inputTotalNeto && inputTotalNeto} inputCheckEmbargos={inputCheckEmbargos && inputCheckEmbargos} inputCheckSumAdministrativo={inputCheckSumAdministrativo && inputCheckSumAdministrativo} inputCheckLicSinGoce = {inputCheckLicSinGoce && inputCheckLicSinGoce} disabled={disable} />
                     </div>
                 </div>
               </div>
