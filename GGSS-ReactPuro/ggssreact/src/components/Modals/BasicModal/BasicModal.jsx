@@ -8,7 +8,7 @@ import InputDate from "../../Inputs/InputDate/InputDate";
 import InputNumModal from "../../Inputs/InputsModal/InputNumModal/InputNumModal";
 import Checkbox from "../../Inputs/Checkbox/Checkbox";
 import CheckboxNum from "../../Inputs/CheckboxNum/CheckboxNum";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CANCEL_MODALS } from "../../../redux/types/modalesTypes";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -64,7 +64,7 @@ const BasicModal = ({
 
   const [toModify, setToModify] = useState(false)
 
-
+  
   // function onSelect(action, payload) {
   //   dispatch(action(payload));
   //   dispatch(dispatchGetID(payload[propArrayId]))
@@ -121,12 +121,13 @@ const BasicModal = ({
             if (res.status === 200) {
               console.log(res)
               dispatch(dispatchAddAction(resp.modalDataInputs))
-              return swal({
+              setRefetch(!refetch); // resetea la lista 
+
+      return               swal({
                 title: "Ok",
                 text: "Agregado con éxito",
                 icon: "success",
               })
-              setRefetch(!refetch); // resetea la lista 
 
             }
           })
@@ -226,7 +227,7 @@ const BasicModal = ({
                   <button type="button" className="btn btn-danger crudBtn" onClick={modificar}>
                     MODIFICAR
                   </button>
-                  <button type="button" className="btn btn-danger crudBtn" onClick={() => deleteOption(idApi)}>
+                  <button type="button" className="btn btn-danger crudBtn" onClick={() =>{ dispatch(setRefetch(!refetch)); deleteOption(idApi)}}>
                     ELIMINAR
                   </button>
                 </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import "./SindicatoLiquidacion.css";
 
-const SindicatoLiquidacion = ({idInput,nameLabel, array, nameButton, porpArrayOp, propArrayId, action, onChange, value}) => {
+const SindicatoLiquidacion = ({idInput,nameLabel, array, nameButton, porpArrayOp, propArrayId, action, onChange, value, disabled}) => {
 
 
     const [ checked, setChecked] = useState(new Array(array && array.length).fill(false));
@@ -25,14 +25,14 @@ return (
             <label htmlFor={idInput}>{nameLabel}</label>
         </div>
         <div className='col-xl-6'>
-            <div className='selectMenuSindicatos border border-1'>
+            <div className='selectMenuSindicatos border border-1' >
                 {
                     array && array.map((op, i)=>{
                         return(
                             <>    
                                 
                                 <div class="d-flex flex-row justify-context-center align-items-center" key={i} >
-                                    <input type="checkbox" name={idInput} id={`${idInput}${i}`} checked={checked[i]} onChange={(e)=> {onChange(e.target.value, idInput);const updateChecked = checked.map((item, index)=> index === i ? !item : item);
+                                    <input disabled={disabled} type="checkbox" name={idInput} id={`${idInput}${i}`} checked={checked[i]} onChange={(e)=> {onChange(e.target.value, idInput);const updateChecked = checked.map((item, index)=> index === i ? !item : item);
                                     setChecked(updateChecked); }} value={op[propArrayId]} className='form-check-input checkList'/>
                                     <label class="form-check-label " htmlFor="checkOption">{op[porpArrayOp]}</label>
                                 </div>

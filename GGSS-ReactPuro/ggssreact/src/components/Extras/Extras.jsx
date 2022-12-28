@@ -105,8 +105,7 @@ const Extras = ({responses, setResponses, disable, datosExtraEmpleado, setRefetc
       });    
   }
 
-
-
+  
 
   return (
     <section className='sectionExtras'><div className='container'>
@@ -136,19 +135,20 @@ const Extras = ({responses, setResponses, disable, datosExtraEmpleado, setRefetc
                         propIdOption="idDatoExtra"
                         nameLabel="Datos Extras" 
                         action={GET_INPUT_VALUES_EXTRAS} 
-                        clasess={inputButtonClasessExtras} />
+                        clasess={inputButtonClasessExtras}
+                        disabled={disable} />
                     </div>
                 </div>
                 <div className='row'>
                     <div className='col-xl-6'>
-                        <InputDate valueCheck={true} value={formDatosExtras?.inputFechaExtras && formDatosExtras?.inputFechaExtras} onChange={onChangeValues} idInput="inputFechaExtras" nameInput="Fecha" action={GET_INPUT_VALUES_EXTRAS} />
+                        <InputDate valueCheck={true} value={formDatosExtras?.inputFechaExtras && formDatosExtras?.inputFechaExtras} onChange={onChangeValues} idInput="inputFechaExtras" nameInput="Fecha" action={GET_INPUT_VALUES_EXTRAS} disabled={disable} />
                     </div>
                 </div>
                 <div className='row'>
                       <div className='col-xl-12'>
-                          <TextArea onChange={onChangeValues} idInput="inputTextExtras" value={formDatosExtras?.inputTextExtras && formDatosExtras?.inputTextExtras} inputName="Observaciones" action={GET_INPUT_VALUES_EXTRAS} />
-                          <ButtonCancelarAceptar cancelar="-" aceptar="+" idElimiar={datoExtraSelected.idEmpleadoDatoExtra} functionDelete={deleteDatoExtra} functionSend={sendData} />
-                          <TableExtras datosExtraEmpleado={datosExtraEmpleado && datosExtraEmpleado} columns={columns} />
+                          <TextArea onChange={onChangeValues} idInput="inputTextExtras" value={formDatosExtras?.inputTextExtras && formDatosExtras?.inputTextExtras} inputName="Observaciones" action={GET_INPUT_VALUES_EXTRAS} disabled={disable} />
+                          <ButtonCancelarAceptar cancelar="-" aceptar="+" idElimiar={datoExtraSelected.idEmpleadoDatoExtra} functionDelete={deleteDatoExtra} functionSend={sendData} disabled={disable} />
+                          <TableExtras disabled={disable} datosExtraEmpleado={datosExtraEmpleado && datosExtraEmpleado} columns={columns} />
                       </div>
                 </div>
             </div>

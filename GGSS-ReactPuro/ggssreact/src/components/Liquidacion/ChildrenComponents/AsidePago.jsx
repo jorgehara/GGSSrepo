@@ -7,7 +7,7 @@ import InputButtonLiquidacion from '../../Inputs/InputButton/InputButtonLiquidac
 import InputRadio from '../../Inputs/InputRadio/InputRadio'
 
 
-const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion}) => {
+const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion, disabled}) => {
 
   const dispatch = useDispatch();
 
@@ -28,6 +28,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                   idInput="inputFormaDePago"
                   onChange={onChange}
                   action={GET_INPUTS_VALUE}
+                  disabled={disabled}
                 />
               </div>
               <div>
@@ -43,6 +44,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                   idInput="inputLugaresDePago"
                   onChange={onChange}
                   action={GET_INPUTS_VALUE}
+                  disabled={disabled}
                 />
               </div>
               <div>
@@ -59,6 +61,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                   idInput="inputBanco"
                   onChange={onChange}
                   action={GET_INPUTS_VALUE}
+                  disabled={disabled}
                 />
               </div>
                 <div>
@@ -71,6 +74,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                 onChange={onChange}
                 action={GET_INPUTS_VALUE}
                 id="inputNumCta"
+                disabled={disabled}
                 />
               </div>
               <div >
@@ -83,6 +87,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                 action={GET_INPUTS_VALUE}
                 idInput="inputRadioAsidePagos"
                 asidePagos={true}
+                disabled={disabled}
               />
               </div>
               <div>
@@ -95,6 +100,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                   onChange={onChange}
                   action={GET_INPUTS_VALUE}
                   id="inputCBU"
+                  disabled={disabled}
                 />
               </div>
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addTrabajo, getIdTrabajoAnterior } from '../../redux/actions/trabajosAnterioresActions'
 
-const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp, setModificar}) => {
+const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp, setModificar, disable}) => {
     const dispatch = useDispatch();
 
   return (
@@ -10,7 +10,7 @@ const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp, setModi
         <label htmlFor="">{nameLabel}</label>   
 
     <div className='d-flex flex-row justify-content-start align-items-start'> 
-        <table class="table table-danger ml-2">
+        <table class="table table-danger ml-2" disabled={disable}>
             <thead>
                 {
                     columns && columns.map((col,i)=>{
@@ -42,7 +42,7 @@ const TableTrabajosAnteriores = ({nameLabel, columns, array, propItemOp, setModi
         </table>
     </div>
     <div className='col-xl-3'>
-        <button className="btn btn-danger btn-sm " onClick={()=> setModificar(true)}>
+        <button disabled={disable} className="btn btn-danger btn-sm " onClick={()=> setModificar(true)}>
             Modificar Datos
         </button>
     </div>

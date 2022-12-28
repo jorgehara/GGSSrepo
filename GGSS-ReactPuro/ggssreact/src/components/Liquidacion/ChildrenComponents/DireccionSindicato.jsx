@@ -8,7 +8,7 @@ import InputButtonLiquidacion from '../../Inputs/InputButton/InputButtonLiquidac
 import SindicatoLiquidacion from '../../SindicatoLiquidacion/SindicatoLiquidacion';
 import '../../SindicatoLiquidacion/SindicatoLiquidacion.css';
 
-const DireccionSindicato = ({direcciones, sindicatos, onChange, formLiquidacion}) => {
+const DireccionSindicato = ({direcciones, sindicatos, onChange, formLiquidacion, disabled}) => {
 
  
 
@@ -27,9 +27,10 @@ return (
             idInput="inputDireccionLiquidacion"
             onChange={onChange}
             action={GET_INPUTS_VALUE}
+            disabled={disabled}
         />
     <SindicatoLiquidacion  nameLabel="Sindicato:" nameButton="..."
-    array={sindicatos && sindicatos} onChange={onChange} formLiquidacion={formLiquidacion} porpArrayOp="nombreSindicato" propArrayId="idSindicato" idInput="sindicatosLiquidacion" action={GET_INPUTS_VALUE} />
+    array={sindicatos && sindicatos} onChange={onChange} formLiquidacion={formLiquidacion} porpArrayOp="nombreSindicato" propArrayId="idSindicato" idInput="sindicatosLiquidacion" action={GET_INPUTS_VALUE} disabled={disabled} />
     </div>  
   )
 }

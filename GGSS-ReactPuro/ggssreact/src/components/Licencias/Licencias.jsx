@@ -11,7 +11,7 @@ import EmployeData from '../EmployeData/EmployeData'
 import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
 
-const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaEmpladoDatos,setRefectch, refetch}) => {
+const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaEmpladoDatos,setRefectch, refetch, disable}) => {
     
     const [ formLicencias, setFormLicencias ] = useState(responses["formLicencias"]);
     const empleadoUno = useSelector((state)=> state.employeStates.employe);
@@ -110,10 +110,11 @@ return (
                 onChange={onChangeValues} 
                 provinciaAction={selectedOption} 
                 action={OPTIONS_FORMULARIO} 
-                idSelected = {formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} />
+                idSelected = {formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias}
+                disabled={disable} />
             </div>
             <div className='col-xl-12 mt-2'>
-                <FieldSet refetch={refetch} setRefectch={setRefectch} setLicenciaEmpladoDatos={setLicenciaEmpladoDatos} formLicencias={formLicencias} sendData={sendData} detalleLicencia={detalleLicencia} licenciaDelEmpleado={licenciaEmpleadoDatos} array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} onChange={onChangeValues} valueForm={formLicencias && formLicencias} />
+                <FieldSet refetch={refetch} setRefectch={setRefectch} setLicenciaEmpladoDatos={setLicenciaEmpladoDatos} formLicencias={formLicencias} sendData={sendData} detalleLicencia={detalleLicencia} licenciaDelEmpleado={licenciaEmpleadoDatos} array={newAños} valueId="año" propArrayOpFem="año" opciones={opciones} selectedOption={formLicencias?.inputOpcionsLicencias && formLicencias?.inputOpcionsLicencias} onChange={onChangeValues} valueForm={formLicencias && formLicencias} disabled={disable} />
             </div>            
         </div>
     </div>

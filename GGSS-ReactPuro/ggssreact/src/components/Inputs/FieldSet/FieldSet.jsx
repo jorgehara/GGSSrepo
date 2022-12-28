@@ -32,6 +32,7 @@ const FieldSet = ({
   setLicenciaEmpladoDatos,
   setRefectch,
   refetch,
+  disabled
 }) => {
   const columns1 = [
     "Seleccionar",
@@ -438,12 +439,14 @@ const FieldSet = ({
           <button
             className="btn btn-outline-danger btnAgregar"
             onClick={deleteWithOptions}
+            disabled={disabled}
           >
             -
           </button>
           <button
             className="btn btn-outline-success btnAgregar"
             onClick={fetchApiWithOptions}
+            disabled={disabled}
           >
             +
           </button>
@@ -460,6 +463,7 @@ const FieldSet = ({
         <div className="col-xl-12 d-flex flex-row-reverse mt-2">
           <button
             className="btn btn-outline-danger btnAgregar"
+            disabled={disabled}
             onClick={() =>
               deleteDetalleLicencia(
                 urlDetalleLicenciaEmpleados,

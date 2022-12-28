@@ -1,4 +1,4 @@
-import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS, ADD_SELECTED_ESTADO, GET_ESTADOS, ADD_SELECTED_FORMAPAGO, GET_FORMASPAGO, ADD_SELECTED_CARGO, GET_CARGOS, ADD_SELECTED_TAREA, GET_TAREAS } from "../types/modalesTypes";
+import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS, ADD_SELECTED_ESTADO, GET_ESTADOS, ADD_SELECTED_FORMAPAGO, GET_FORMASPAGO, ADD_SELECTED_CARGO, GET_CARGOS, ADD_SELECTED_TAREA, GET_TAREAS, SET_REFETCH } from "../types/modalesTypes";
 
 export const initialState = {
     estadoCivilSelected: "",
@@ -34,7 +34,8 @@ export const initialState = {
         textAreaCargo : "",
         // tareas desempeñadas
         inputTarea : "",
-        textAreaTarea : ""
+        textAreaTarea : "",
+        refetch : false
     }
 }
 
@@ -150,7 +151,12 @@ const modalesReducer = (state = initialState, action) => {
             }
         }
 
-
+        case SET_REFETCH : {
+            return{
+                ...state,
+                refetch : !payload
+            }
+        }
         /// -------------- BTN CANCELAR
         case CANCEL_MODALS: {
             debugger;
