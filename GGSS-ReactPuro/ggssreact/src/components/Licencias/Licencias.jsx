@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { inputSelectedoptionLicencias } from '../../classes/classes';
+import { deleteLicencia } from '../../redux/actions/fetchActions';
 import { selectedOption } from '../../redux/actions/licenciasActions';
 import { OPTIONS_FORMULARIO } from '../../redux/types/LicenciasTypes';
 import EmployeData from '../EmployeData/EmployeData';

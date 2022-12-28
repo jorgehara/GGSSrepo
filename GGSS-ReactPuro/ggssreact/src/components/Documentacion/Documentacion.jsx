@@ -112,7 +112,7 @@ return (
             <div className='col-xl-12'>
                 <InputButtonLiquidacion
                     clasess={inputButtonClasessDocumentacion}
-                    nameButton="..."
+                    // nameButton="..."
                     nameLabel="Documentación"
                     placeholder="Documentación"
                     array={documentaciones && documentaciones}

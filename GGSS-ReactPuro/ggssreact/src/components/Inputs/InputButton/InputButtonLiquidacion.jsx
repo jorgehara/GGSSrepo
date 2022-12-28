@@ -59,7 +59,7 @@ console.log(disabled)
                     disabled={disabled}
                     onChange={(e)=> onChange(e.target.value, idInput )}
                     />
-            <button  type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal, useButton )}
+            {/* <button  type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal, useButton )}
                   className={
                     mostrarComponente
                     ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2"
@@ -68,7 +68,7 @@ console.log(disabled)
                     useButton={false}
                     disabled={disabled}>
                   {nameButton}
-            </button>
+            </button> */}
         </div>
     </div>
   );
