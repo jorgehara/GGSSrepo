@@ -82,7 +82,7 @@ export const classesEstadosCiviles = {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_convenio',
-    "classFour" : 'formulario-input-Button-Cuil form-select ml-0 px-0 obligatorio',
+    "classFour" : 'formulario-input-Button-Cuil select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
 
