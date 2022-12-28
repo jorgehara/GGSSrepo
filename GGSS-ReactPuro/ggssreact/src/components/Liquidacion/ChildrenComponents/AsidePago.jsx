@@ -68,7 +68,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                 <InputButton
                 clasess={inputButtonClasessAsidePagos}
                 // mostrarAsidePagos={false}
-                nameButton={false}
+                // nameButton={false}
                 nameLabel="N° Cuenta"
                 placeholder="N° Cuenta"
                 value = {formLiquidacion?.inputNumCta && formLiquidacion?.inputNumCta}
@@ -94,7 +94,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
               <div>
               <InputButton
                 clasess={inputButtonClasessAsidePagos}
-                nameButton={false}
+                // nameButton={false}
                 nameLabel="C.B.U."
                 placeholder="C.B.U"
                 value = {formLiquidacion?.inputCBU && formLiquidacion?.inputCBU}

@@ -60,7 +60,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     placeholder={placeholder} 
                     id={id} 
                     name={id}
-                    disabled={true}
+                    disabled={disabled}
                     onChange={(e)=> onChange(e.target.value,id )}
                     />
             {/* <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}

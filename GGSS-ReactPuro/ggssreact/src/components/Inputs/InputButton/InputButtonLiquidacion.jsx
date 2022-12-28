@@ -16,7 +16,7 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
     //     usaBotton(useButton);
     //   },[])
 
-console.log(disabled)
+// console.log(disabled)
   return (
     clasess ? <div className={`${clasess.classOne}`}>      
     <div className={`${clasess.classTwo}`}>
