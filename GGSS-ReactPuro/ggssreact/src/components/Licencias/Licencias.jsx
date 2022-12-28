@@ -103,7 +103,7 @@ const Licencias = ({responses, setResponses}) => {
 
     const deleteLicencias= (id)=>{
         dispatch(deleteLicencia(Number(id)));
-        dispatch(saveId(id))
+        // dispatch(saveId(id))
 
     }
 

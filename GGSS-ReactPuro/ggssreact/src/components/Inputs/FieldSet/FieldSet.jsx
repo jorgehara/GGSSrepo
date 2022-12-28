@@ -51,7 +51,6 @@ const FieldSet = ({
   const licenciaEmpleado = useSelector(
     (state) => state.licenciasState.licenciaEmpleado
   );
-  const idSelected = useSelector((state)=> state.licenciasState.idSelected);
 
   const detalleSelected = useSelector(
     (state) => state.licenciasState.detalleSelect
@@ -275,7 +274,6 @@ const FieldSet = ({
       });
   }
   function deleteLicenciaAxios(id) {
-    debugger;
       dispatch(deleteLicEmpleado(id))     
       dispatch(saveIdsLic(id))
           

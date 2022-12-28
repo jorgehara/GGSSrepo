@@ -75,12 +75,12 @@ export const licenciasReducer=(state = initialState, action)=>{
                 licenciaEmpleado: {}
             }
            }
-        case SAVE_IDS_LIC : {
-            return {
-                ...state,
-                idsLic : [...state.idsLic.push(payload)]
-            }
-        }
+        // case SAVE_IDS_LIC : {
+        //     return {
+        //         ...state,
+        //         idsLic : [...state.idsLic.push(payload)]
+        //     }
+        // }
         case CLEAR_IDS_LIC : {
             return {
                 ...state,
