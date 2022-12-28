@@ -92,8 +92,7 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
         
     }
     console.log(documentacionSeleccionada.idEmpleadoDocumentacion)
-    async function deleteData(id){
-        console.log(id)
+     function deleteData(id){
         dispatch(deleteDocu(id))
         dispatch(saveIds(id))
     }

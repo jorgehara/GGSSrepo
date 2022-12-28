@@ -12,14 +12,16 @@ import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, s
 import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 import { inputClassProvinciasDomicilios } from "../../classes/classes";
+import { useEffect } from "react";
 
 //#endregion
-const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, setFormDatosPersonales}) => {
+const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, setFormDatosPersonales, domiciliosEmpleados}) => {
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
 
   const [domicilios, setDomicilios] = useState([]);
   const [checked, setChecked] = useState(false);
   const [ formDomicilios, setFormDomicilios ] = useState(responses["formDomicilios"]);
+
   const generalStateData = useSelector((state)=> state.generalState)
   const provinciaSelected = useSelector((state)=> state.domiciliosStates.provinciaSelected);
   const departamentoSelected = useSelector((state)=> state.domiciliosStates.departamentoSelected);
@@ -40,7 +42,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   //#region ------------------------------------------------------------------------------REDUX
   const urlDomicilios = `http://54.243.192.82/api/Domicilios?idDomicilio=0&idCalle=${formDatosPersonales?.inputCalleDomicilios}&Numero=${formDatosPersonales?.inputNumCalle}&idBarrio=${formDatosPersonales?.inputBarriosDomicilios}&Dpto=${formDatosPersonales?.inputDepartamentosDomicilios}&Predeterminado=${formDatosPersonales?.inputPredeterminado}&IdEmpleado=${empleadoUno.iDempleado}&IdEmpleador=1&NewId=0`;
 
-  console.log(empleadoUno.iDempleado)
+  console.log(empleadoDomicilio)
 
   const dispatch = useDispatch();
 
@@ -74,7 +76,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   //#endregion
   //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   
-  const predeterminado = generalStateData.domicilios !== "" && generalStateData.domicilios !== undefined ?  generalStateData.domicilios.map(m => {return(m.predeterminado)}) : null;
+  const predeterminado = domiciliosEmpleados && domiciliosEmpleados.map(m => {return(m.predeterminado)});
 
  
   const arrayDepartamentos = provinciaSelected && provinciaSelected.payload && generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos.filter((departamento) => departamento.idProvincia === provinciaSelected.payload.idProvincia) : null;
@@ -85,16 +87,20 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
 
   const arrayBarrios = localidadSelected  && localidadSelected.payload &&  generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios.filter((barrio) => barrio.idLocalidad === localidadSelected.payload.idLocalidad) : null;
 
+  useEffect(()=>{
+    getDomicilioEmpleado()
+  },[empleadoUno])
 
   function getDomicilioEmpleado(){
     if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
-      let domicilioDelEmpleado = generalStateData.domicilios && generalStateData.domicilios.filter((domicilio)=> domicilio.idEmpleado === empleadoUno.iDempleado ) 
+      let domicilioDelEmpleado = domiciliosEmpleados && domiciliosEmpleados.filter((domicilio)=> domicilio.idEmpleado === empleadoUno.iDempleado ) 
 
 
       return dispatch(addOneDomicilio(domicilioDelEmpleado));     
     }
   }
-  let idDomicilio = generalStateData.domicilios && generalStateData.domicilios[generalStateData.domicilios.length -1] ? ((generalStateData.domicilios[generalStateData.domicilios.length -1].idDomicilio)+1) : null;
+  
+  let idDomicilio = domiciliosEmpleados && domiciliosEmpleados[domiciliosEmpleados.length -1] ? ((domiciliosEmpleados[domiciliosEmpleados.length -1].idDomicilio)+1) : null;
   
   
 
@@ -373,11 +379,11 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
                 columns={columns} 
                 empleadoSelect={empleadoUno && empleadoUno} 
                 value={ empleadoDomicilio && empleadoDomicilio }
-                provincias={generalStateData.provincias !== undefined && generalStateData.provincias !== ""  ? generalStateData.provincias : []}
-                departamentos={generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos : []}
-                localidades={generalStateData.localidades !== undefined && generalStateData.localidades !== "" ? generalStateData.localidades : []}
-                barrios={generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios : []}
-                calles={generalStateData.calles !== null && generalStateData.calles !== "" ? generalStateData.calles : ["calle", "calle"]}
+                provincias={generalStateData.provincias && generalStateData.provincias }
+                departamentos={generalStateData.departamentos  && generalStateData.departamentos }
+                localidades={generalStateData.localidades && generalStateData.localidades }
+                barrios={generalStateData.barrios  && generalStateData.barrios}
+                calles={generalStateData.calles  && generalStateData.calles }
               />
 
               
