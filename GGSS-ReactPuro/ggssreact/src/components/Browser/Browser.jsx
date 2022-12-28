@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
-import { employeContext } from '../../context/employeContext';
+// import { employeContext } from '../../context/employeContext';
 import {  getEmployeByLegajo, getEmployeByName } from '../../services/fetchAPI';
 import { getDomicilioEmpleado } from '../../services/mockDataDomicilios';
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import { addEmploye, addOneEmploye, selectedEmploye } from '../../redux/actions/
 
 const Browser = () => {
   const [listEmpleados, setListEmpleados] = useState([]);
-  const { saveEmploye, saveDomicilio } = useContext(employeContext);
+  // const { saveEmploye, saveDomicilio } = useContext(employeContext);
   const [empData, setEmpData] = useState({
     legajo: "",
     apellido: "",
@@ -23,7 +23,7 @@ const Browser = () => {
 
 
 
-  const {  saveDisable, disable} = useContext(employeContext);
+  // const {  saveDisable, disable} = useContext(employeContext);
 
   useEffect(() => {
     axios.get(url).then((res) => {
@@ -50,10 +50,10 @@ const Browser = () => {
     getEmployeByName(empleados[0], name).then((res) => {
       
       dispatch(addOneEmploye(res[0].iDempleado));
-      saveEmploye(res);
+      // saveEmploye(res);
     });
     getDomicilioEmpleado(idEmpleado).then((res) => {
-      saveDomicilio(res);
+      // saveDomicilio(res);
     });
   }
 
@@ -68,7 +68,7 @@ const Browser = () => {
 
   function habilitaEdit(e){
     e.preventDefault();
-    saveDisable(false)
+    // saveDisable(false)
   }
   
   return (

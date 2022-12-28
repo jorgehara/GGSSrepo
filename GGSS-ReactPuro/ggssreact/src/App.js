@@ -6,14 +6,12 @@ import { Routes as Switch,  Route,
 } from "react-router-dom";
 import DatosPersonales from './components/DatosPersonales/DatosPersonales';
 import Domicilios from './components/Domicilios/Domicilios';
-import { EmpleadoContextProvider } from './context/employeContext';
 import Home from './components/Home/Home';
 
 
 function App() {
   return (
     <>
-    <EmpleadoContextProvider>
       <NavbarMenu />
           <Switch>
             <Route path="/home" exact element={<Home />} /> 
@@ -25,7 +23,6 @@ function App() {
             <Route path="/home/adic-liquidacion" exact element={<Home />} /> 
             <Route path="/home/trabajos-anteriores" exact element={<Home />} /> 
           </Switch>        
-    </EmpleadoContextProvider>
     </>
   
 

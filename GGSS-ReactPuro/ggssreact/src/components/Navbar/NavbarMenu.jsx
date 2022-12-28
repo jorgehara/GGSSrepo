@@ -17,9 +17,9 @@ import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago, addNewCargo, deleteCargo, putCargo, getIdCargo, addNewTarea, deleteTarea, putTarea, getIdTarea } from '../../redux/actions/fetchActions';
+import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago, addNewCargo, deleteCargo, putCargo, getIdCargo, addNewTarea, deleteTarea, putTarea, getIdTarea, addNewModoLiq, deleteModoLiq, putModoLiq, getIdModoLiq } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
-import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
+import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedModoLiq, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
 import swal from "sweetalert";
 
 
@@ -30,10 +30,7 @@ import swal from "sweetalert";
 
 
 const Navbar = () => {
-	//#region --------------------------------- CONSTANTES DE DATOS -------------------------------
-	const { empleadores, modosLiquidacion, modosContratacion, formasDePago, parentescos, tareasDesempeñadas, cargos, saveEstado, saveEstadoCivil, saveNacionalidad, saveEstudio, saveTipoDNI, saveCalle, saveDoms, saveProvincia, saveLocalidad, saveDetpo, saveBarrio } = useContext(employeContext);
 
-	//#endregion
 	const dispatch = useDispatch();
 
 	const urlEstadosCiviles = "http://54.243.192.82/api/EstadosCiviles"
@@ -171,6 +168,13 @@ const Navbar = () => {
 	const textAreaTarea = useSelector((state) => state.modalState.formulario.textAreaTarea)
 	const valueIdTarea = useSelector((state) => state.generalState.idTarea)
 
+	// modos de liquidación
+	const modosLiqValue = useSelector((state) => state.generalState.modosLiquidacion)
+	const modoLiqSelected = useSelector((state) => state.modalState.modoLiqSelected)
+	const inputModoLiquidacion = useSelector((state) => state.modalState.formulario.inputModoLiquidacion)
+	const textAreaModoLiq = useSelector((state) => state.modalState.formulario.textAreaModoLiq)
+	const valueIdModoLiq = useSelector((state) => state.generalState.idModoLiq)
+
 
 
 	// ----------------------------------- ID & PETITION  -----------------------------------
@@ -193,7 +197,7 @@ const Navbar = () => {
 		"deduceGanancias": responses.modalDataInputs?.deduceGanancias,
 		"importeDeduce": responses.modalDataInputs?.importeDeduce
 	}
-	
+
 	// estados para los empleados
 	const idEstado = ((estadosValue && estadosValue[estadosValue.length - 1] !== undefined && (estadosValue[estadosValue.length - 1].idEstado)) + 1)
 	const bodyPetEstados = { ...responses.modalDataInputs, idEstado: idEstado }
@@ -209,8 +213,8 @@ const Navbar = () => {
 	const idCargo = ((cargosValue && cargosValue[cargosValue.length - 1] !== undefined && (cargosValue[cargosValue.length - 1].iDcargo)) + 1)
 	const bodyPetCargos = {
 		"iDcargo": idCargo,
-      	"nombreCargo": responses.modalDataInputs?.nombreCargo,
-      	"observacion": responses.modalDataInputs?.observacion
+		"nombreCargo": responses.modalDataInputs?.nombreCargo,
+		"observacion": responses.modalDataInputs?.observacion
 	}
 
 	// tareas desempeñadas
@@ -221,6 +225,13 @@ const Navbar = () => {
 		"obs": responses.modalDataInputs?.obs
 	}
 
+	// modos de liquidación
+	const idModoLiq = ((modosLiqValue && modosLiqValue[modosLiqValue.length - 1] !== undefined && (modosLiqValue[modosLiqValue.length - 1].iDmodoLiquidacion)) + 1)
+	const bodyPetModosLiq = {
+		"iDmodoLiquidacion": idModoLiq,
+		"modoLiquidacion": responses.modalDataInputs?.modoLiquidacion,
+		"obs": responses.modalDataInputs?.obs
+	}
 
 
 	// --------------------------------------------------------------------------------------------------------------------------------------
@@ -537,7 +548,7 @@ const Navbar = () => {
 								inputIdCompare="tareaDesempeñada"
 								firstOptionCompare={inputTarea ? inputTarea : tareaSelected.tareaDesempeñada}
 								secondOptionCompare={inputTarea ? inputTarea : tareaSelected.tareaDesempeñada}
-								valueObs={textAreaTarea ? textAreaTarea: tareaSelected.obs}
+								valueObs={textAreaTarea ? textAreaTarea : tareaSelected.obs}
 								dispatchAddAction={addNewTarea}
 								dispatchDeleteAction={deleteTarea}
 								dispatchPutAction={putTarea}
@@ -549,8 +560,36 @@ const Navbar = () => {
 								refetch={refetch}
 								setRefetch={setRefetch}
 							/>
+
+							<BasicModal
+								idModal="modosDeLiquidacion"
+								nameModal="Modos de Liquidacion"
+								placeholder={objectModosLiquidacion}
+								// dropdown={true}
+								textArea={true}
+								textAreaObject={textAreaObject}
+								array={modosLiqValue && modosLiqValue}
+								propArrayOp="modoLiquidacion" propArrayId="iDmodoLiquidacion"
+								action={addSelectedModoLiq}
+								opcionSelected={modoLiqSelected}
+								urlApi={urlModosLiquidacion}
+								inputIdCompare="modoLiquidacion"
+								firstOptionCompare={inputModoLiquidacion ? inputModoLiquidacion : modoLiqSelected.modoLiquidacion}
+								secondOptionCompare={inputModoLiquidacion ? inputModoLiquidacion : modoLiqSelected.modoLiquidacion}
+								valueObs={textAreaModoLiq ? textAreaModoLiq : modoLiqSelected.obs}
+								dispatchAddAction={addNewModoLiq}
+								dispatchDeleteAction={deleteModoLiq}
+								dispatchPutAction={putModoLiq}
+								dispatchGetID={getIdModoLiq}
+								bodyPet={bodyPetModosLiq}
+								idApi={valueIdModoLiq}
+								onChange={onChangeValues}
+								resp={responses}
+								refetch={refetch}
+								setRefetch={setRefetch}
+							/>
+
 							<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true} />
-							<BasicModal idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" placeholder={objectModosLiquidacion} dropdown={true} textArea={true} />
 							<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
 							<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} />
 							<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} />

@@ -119,6 +119,15 @@ export const objectTareas = [
   }
 ]
 
+export const objectModosLiquidacion = [
+  {
+    "label": "Modo de liquidación",
+    "placeholder": "Diario",
+    "idInput": "modoLiquidacion",
+    "nameInput": "modoLiquidacion"
+  }
+]
+
 
 // -------------
 
@@ -167,13 +176,6 @@ export const objectModosContratacion = [
   {
     "label": "Modo de contratación",
     "placeholder": "Contratado"
-  }
-]
-
-export const objectModosLiquidacion = [
-  {
-    "label": "Modo de liquidación",
-    "placeholder": "Diario"
   }
 ]
 

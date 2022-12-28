@@ -1,4 +1,4 @@
-import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, GET_ID_CARGO, DELETE_CARGO, ADD_NEW_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA } from "../types/fetchTypes";
+import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, GET_ID_CARGO, DELETE_CARGO, ADD_NEW_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_NEW_MODOLIQ, GET_ID_MODOLIQ, DELETE_MODOLIQ, PUT_MODOLIQ } from "../types/fetchTypes";
 
 
 export const setLoading = (payload) =>{
@@ -273,6 +273,13 @@ export const addNewTarea = (payload) => {
     }
 }
 
+export const addNewModoLiq = (payload) => {
+    return {
+        type: ADD_NEW_MODOLIQ,
+        payload
+    }
+}
+
 
 // -------- DELETE ACTIONS -----------
 
@@ -292,7 +299,6 @@ export const deleteEstadoCivil = (payload) => {
 }
 
 //estudios
-
 export const getIdEstudio = (payload) => {
     return{
         type : GET_ID_ESTUDIO,
@@ -307,7 +313,6 @@ export const deleteEstudio = (payload) => {
 }
 
 // tipos de documento
-
 export const getIdTipoDoc = (payload) => {
     return{
         type: GET_ID_TIPODOC,
@@ -322,7 +327,6 @@ export const deleteTipoDoc = (payload) => {
 }
 
 // parentescos
-
 export const getIdParentesco = (payload) => {
     return {
         type: GET_ID_PARENTESCO,
@@ -337,7 +341,6 @@ export const deleteParentesco = (payload) => {
 }
 
 // estados para los empleados
-
 export const getIdEstado = (payload) => {
     return {
         type: GET_ID_ESTADO,
@@ -352,7 +355,6 @@ export const deleteEstado = (payload) => {
 }
 
 // formas de pago
-
 export const getIdFormaPago = (payload) => {
     return {
         type: GET_ID_FORMAPAGO,
@@ -390,6 +392,20 @@ export const getIdTarea = (payload) => {
 export const deleteTarea = (payload) => {
     return {
         type: DELETE_TAREA,
+        payload
+    }
+}
+
+// modos de liquidación
+export const getIdModoLiq = (payload) => {
+    return {
+        type: GET_ID_MODOLIQ,
+        payload
+    }
+}
+export const deleteModoLiq = (payload) => {
+    return {
+        type: DELETE_MODOLIQ,
         payload
     }
 }
@@ -448,6 +464,13 @@ export const putCargo = (payload) => {
 export const putTarea = (payload) => {
     return {
         type: PUT_TAREA,
+        payload
+    }
+}
+
+export const putModoLiq = (payload) => {
+    return {
+        type: PUT_MODOLIQ,
         payload
     }
 }
