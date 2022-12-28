@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { getDocSelect } from "../../redux/actions/documentacionActions";
 import "./TableBootstrap.css";
 
-const TableBasic1 = ({columns, value,documentaciones, setRefetch, refetch}) => {
+const TableBasic1 = ({columns, value,documentaciones, setRefetch, refetch, disabled}) => {
   
   
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const TableBasic1 = ({columns, value,documentaciones, setRefetch, refetch}) => {
   console.log(documentaciones);
   return (
     <>
-    <table class="table table-danger">
+    <table class="table table-danger" disabled={disabled} >
       <thead>
         <tr>
           {

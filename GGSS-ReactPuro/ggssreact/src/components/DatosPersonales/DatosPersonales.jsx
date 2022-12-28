@@ -54,6 +54,8 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
       });    
   },[formDatosPersonales]);
  
+ 
+
 
    function getNumeradorId(tabla){
     return numeradores && numeradores.filter((num)=>{

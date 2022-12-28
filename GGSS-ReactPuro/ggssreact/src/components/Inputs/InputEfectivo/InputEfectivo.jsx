@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { GET_INPUTS_VALUE } from '../../../redux/types/liquidacionTypes';
 import "./InputEfectivo.css";
 
-const InputEfectivo = ({nameLabel, idInputCheck,idInputDate, idInputCheckAsigna, nameLabelAsigna, idSelect, esquemas, propArrayId, propArrayOp, onChange, obligatorio}) => {
+const InputEfectivo = ({nameLabel, idInputCheck,idInputDate, idInputCheckAsigna, nameLabelAsigna, idSelect, esquemas, propArrayId, propArrayOp, onChange, obligatorio, disableds}) => {
 
   const [ disabled , setDisabled] = useState(true);
   const [ disabled2 , setDisabled2] = useState(true);
@@ -37,9 +37,9 @@ const InputEfectivo = ({nameLabel, idInputCheck,idInputDate, idInputCheckAsigna,
   return (
     <div className='col-xl-12 d-flex flex-row justify-content-start align-items-center mt-2'>
         <label className='' htmlFor="">{nameLabel}</label>
-        <input onChange={(e)=> onChangeChecks(e, GET_INPUTS_VALUE)} checked={checked} className='checkEfectivo' type="checkbox" name={idInputCheck} id={idInputCheck}  />
+        <input onChange={(e)=> onChangeChecks(e, GET_INPUTS_VALUE)} disabled={disableds} checked={checked} className='checkEfectivo' type="checkbox" name={idInputCheck} id={idInputCheck}  />
         <input onChange={(e)=> onChange(e.target.value, idInputDate)} disabled={disabled} className='inputdates' type="date" name={idInputDate} id={idInputDate} />
-        <input onChange={(e)=> onChangeCheck2s(e, GET_INPUTS_VALUE)} className=' checkAsigna' type="checkbox" name={idInputCheckAsigna} id={idInputCheckAsigna}  />
+        <input onChange={(e)=> onChangeCheck2s(e, GET_INPUTS_VALUE)} disabled={disableds} className=' checkAsigna' type="checkbox" name={idInputCheckAsigna} id={idInputCheckAsigna}  />
         <label className='labelAsigna' htmlFor="">{nameLabelAsigna}</label>
         <select className={obligatorio ? 'selectAsigna obligatorio' : 'selectAsigna'} disabled={disabled2} onChange={(e)=> onChange(e.target.value, idSelect)} name={idSelect} id={idSelect}>
           <option value="">Seleccionar</option>

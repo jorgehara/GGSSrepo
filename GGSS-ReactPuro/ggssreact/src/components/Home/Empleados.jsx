@@ -79,6 +79,8 @@ const Empleados = () => {
   const [ inCancel, setInCancel ] = useState(false);
   const [ valueempl, setValueEmpl ] = useState(false);
 
+
+  const refetching = useSelector((state)=> state.modalState.refetch);
   const [refetch, setRefectch] = useState(false);
   const empleadoUno = useSelector((state) => state.employeStates.employe);
   const detalleSeleccionado = useSelector(
@@ -222,6 +224,12 @@ const Empleados = () => {
   };
 const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
   
+useEffect(()=>{
+  handleFetch(urlEstados, addEstados);
+  handleFetch(urlEstadosCiviles, addEstadosCiviles);
+  handleFetch(urlPaisesNac, addPaises);
+  handleFetch(urlEstudios, addEstudios);
+},[refetching])
 
   useEffect(() => {
     handleFetch(urlEstados, addEstados);
