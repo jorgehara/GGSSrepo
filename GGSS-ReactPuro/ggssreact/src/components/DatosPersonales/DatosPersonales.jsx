@@ -22,7 +22,7 @@ import EmployeData from "../EmployeData/EmployeData";
 
 //#endregion
 
-const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstado, disable, empleados}) => {
+const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstado, disable, empleados, valueempl, domiciliosEmpleados}) => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
   const [imagenSended , setImagenSended] = useState("");
   const [ formDatosPersonales, setFormDatosPersonales ] = useState(responses["formDatosPersonales"]);
@@ -231,7 +231,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
      
   }
 
-
+console.log(empleadoUno)
   return (
       //#region Menú Principal
 
@@ -266,7 +266,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                             //#endregion
                           }
                           <InputForm
-                            value={formDatosPersonales?.numLegajo ? formDatosPersonales?.numLegajo : empleadoUno.legajo}
+                            value={valueempl ? formDatosPersonales?.numLegajo : empleadoUno.legajo}
                             idInput="numLegajo"
                             messageError="Solo puede contener números."
                             placeHolder="N° Legajo"
@@ -279,7 +279,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                             obligatorio ={true}
                             />
                           <InputForm
-                            value={formDatosPersonales?.apellidoInput ? formDatosPersonales?.apellidoInput : empleadoUno.apellido}
+                            value={valueempl ? formDatosPersonales?.apellidoInput  : empleadoUno.apellido}
                             idInput="apellidoInput"
                             messageError="Solo puede contener letras."
                             placeHolder="Ingrese Apellidos"
@@ -316,7 +316,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                             nameLabel="D.N.I."
                             onChange={onChangeValues}
                             selectedId="dniSelected"
-                            idSelected={formDatosPersonales?.dniSelected && formDatosPersonales?.dniSelected}
+                            idSelected={formDatosPersonales?.dniSelected ? formDatosPersonales?.dniSelected && formDatosPersonales?.dniSelected : empleadoUno.iDtipoDocumento}
                             validateNumbersDNI={validateNumbersDNI}
                             obligatorio ={true}
                             />
@@ -435,7 +435,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                             obligatorio ={true}
                             />
                           <InputDate
-                            value={formDatosPersonales?.inputDateNac ? formDatosPersonales?.inputDateNac : empleadoUno.fechaNacimiento}
+                            value={formDatosPersonales?.inputDateNac ? formDatosPersonales?.inputDateNac : empleadoUno?.fechaNacimiento?.substring(0, empleadoUno.fechaNacimiento.length -9)}
                             action={ADD_DATOS_PERSONALES}
                             nameInput="Nacimiento"
                             disabled={disable}
@@ -534,7 +534,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
               </div>
             </div>
           </div>
-          <Domicilios onChangeValues={onChangeValues} formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={disable} responses={responses} setResponses={setResponses} />
+          <Domicilios domiciliosEmpleados={domiciliosEmpleados} onChangeValues={onChangeValues} formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={disable} responses={responses} setResponses={setResponses} />
         </div>
         <div className="d-flex justify-content-end">
           

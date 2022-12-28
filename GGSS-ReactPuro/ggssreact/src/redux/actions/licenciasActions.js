@@ -1,5 +1,5 @@
 import { UPDATE_LICENCIA } from "../types/fetchTypes";
-import { ADD_DETALLE_LICENCIA, ADD_NEW_DETALLE, ADD_NEW_LICENCIA, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAN_IDS, CLEAR_LIC_SELECT, DELETE_DET_LIC, DELETE_LIST_ITEM, DELETE_ONE_LICENCIA, GET_ID, OPTIONS_FORMULARIO, RELOAD_ITEM, SAVE_ID, SAVE_ID_LIC, SELECTED_OPTION, UPDATE_DETALLE } from "../types/LicenciasTypes"
+import { ADD_DETALLE_LICENCIA, ADD_LIC_EMPLEADOS, ADD_NEW_DETALLE, ADD_NEW_LICENCIA, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAR_IDS_LIC, CLEAR_LIC_SELECT, DELETE_DET_LIC, DELETE_LIC_EMPLEADO, ID_SELECT, OPTIONS_FORMULARIO, SAVE_IDS_LIC, SELECTED_OPTION, UPDATE_DETALLE } from "../types/LicenciasTypes"
 
 export const selectedOption=(payload)=>{
     return{
@@ -58,41 +58,33 @@ export const clearLicSelect =(payload)=>{
         payload
     }
 }
-
-export const deleteListItem=(payload)=>{
+export const saveIdsLic=(payload)=>{
     return{
-        type : DELETE_LIST_ITEM,
-        payload,
-    }
-}
-export const deleteOneLicencia =(payload)=>{
-    return{
-        type : DELETE_ONE_LICENCIA,
+        type: SAVE_IDS_LIC,
         payload
     }
 }
-export const reloadItem=(payload)=>{
+export const clearIdsLic=(payload)=>{
     return{
-        type : RELOAD_ITEM,
+        type : CLEAR_IDS_LIC,
         payload
     }
 }
-export const saveId=(payload)=>{
-    return {
-        type: SAVE_ID_LIC,
-        payload
-    }
-}
-export const cleanIds=(payload)=>{
+export const idSelect=(payload)=>{
     return{
-        type : CLEAN_IDS,
+        type: ID_SELECT,
         payload
     }
 }
-
-export const getId=(payload)=>{
-        return{
-            type : GET_ID,
-            payload
-        }
+export const addLicEmpleado=(payload)=>{
+    return{
+        type: ADD_LIC_EMPLEADOS,
+        payload
+    }
+}
+export const deleteLicEmpleado=(payload)=>{
+    return{
+        type : DELETE_LIC_EMPLEADO,
+        payload
+    }
 }

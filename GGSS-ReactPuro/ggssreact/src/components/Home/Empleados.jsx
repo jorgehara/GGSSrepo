@@ -59,6 +59,8 @@ import { cleanIds, getTrabajosAnteriores, reloadItem } from "../../redux/actions
 import { cleanIdsDoc, getOneDocumento } from "../../redux/actions/documentacionActions";
 import {
   addDetalleLicencia,
+  addLicEmpleado,
+  clearIdsLic,
   deleteDetLic,
 } from "../../redux/actions/licenciasActions";
 import swal from "sweetalert";
@@ -75,6 +77,7 @@ const Empleados = () => {
   const [licenciaEmpleadoDatos, setLicenciaEmpladoDatos] = useState([]);
   const [datosExtraEmpleado, setDatosExtraEmpleado ] = useState([]);
   const [ inCancel, setInCancel ] = useState(false);
+  const [ valueempl, setValueEmpl ] = useState(false);
 
   const [refetch, setRefectch] = useState(false);
   const empleadoUno = useSelector((state) => state.employeStates.employe);
@@ -210,15 +213,15 @@ const Empleados = () => {
     await axios
       .get(url)
       .then((res) => {
-        console.log(res.data)
+        
         dispatch(action(res.data));
       })
       .catch((err) => {
         dispatch({ type: AXIOS_ERROR });
       });
   };
-
-  console.log(responses);
+const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
+  
 
   useEffect(() => {
     handleFetch(urlEstados, addEstados);
@@ -301,6 +304,7 @@ const Empleados = () => {
         `http://54.243.192.82/api/MostrarDatosPorEmpleado/${empleadoUno?.iDempleado}`
       )
       .then((res) => {
+        dispatch(addLicEmpleado(res.data));
         setLicenciaEmpladoDatos(res.data);
       });
       axios
@@ -319,18 +323,21 @@ const Empleados = () => {
 
   const idsTrabajosAnterioresDelete = useSelector((state)=> state.trabajosAnteriores.ids);
   const documentacionDelte = useSelector((state)=> state.documentacionState.ids);
+  const licenciasDelete = useSelector((state)=> state.licenciasState.idsLic);
   const urlTRabajoDelete = "http://54.243.192.82/api/TrabajosAnteriores?IdTrabajoAnterior=";
   const urlDocDelte = "http://54.243.192.82/api/EmpleadosDocumentacion/"
-
+  const urlLicDelete = "http://54.243.192.82/api/EliminarLicenciaPorId/"
   const objectRequest = {
     urls : {
       urlTRabajoDelete : urlTRabajoDelete,
-      urlDocDelte : urlDocDelte
+      urlDocDelte : urlDocDelte,
+      urlLicDelete : urlLicDelete
 
     },
     arrays : [
       idsTrabajosAnterioresDelete,
-      documentacionDelte
+      documentacionDelte,
+      licenciasDelete
     ]
   }
   const { urls, arrays } = objectRequest;
@@ -338,13 +345,72 @@ const Empleados = () => {
 
 
   function cleanIdsGeneral(){
+    setDisable(true);
     dispatch(cleanIds())
     dispatch(cleanIdsDoc())
+    dispatch(clearIdsLic())
     setRefectch(!refetch);
+    setValueEmpl(false)
   }
-
+  console.log(responses)
   function deleteItems(objectRequest){
     const { urls, arrays } = objectRequest;
+    let bodyPetitionEmpleadoGuarda = {
+      "iDempleado": ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
+      "legajo": responses.formDatosPersonales,
+      "apellido": "string",
+      "iDtipoDocumento": 0,
+      "nroDocumento": "string",
+      "cuil": "string",
+      "sexo": "string",
+      "iDestadoCivil": 0,
+      "idNacionalidad": 0,
+      "fechaNacimiento": "2022-12-27T15:45:01.030Z",
+      "iDEstudios": 0,
+      "fechaIngreso": "2022-12-27T15:45:01.031Z",
+      "fechaEfectiva": "2022-12-27T15:45:01.031Z",
+      "iDCategoria": 0,
+      "iDCargo": 0,
+      "iDTareaDesempeñada": 0,
+      "idCentrodeCosto": 0,
+      "iDSectorDpto": 0,
+      "iDModoContratacion": 0,
+      "iDModoLiquidacion": 0,
+      "iDFormadePago": 0,
+      "idBanco": 0,
+      "nroCtaBanco": "string",
+      "cbu": "string",
+      "iDLugardePago": 0,
+      "iDAFJP": 0,
+      "idObraSocial": 0,
+      "iDSindicato": 0,
+      "fechaEgreso": "2022-12-27T15:45:01.031Z",
+      "iDMotivoEgreso": 0,
+      "iDEsquema": 0,
+      "iDEmpleador": 0,
+      "nombres": "string",
+      "idEstado": 0,
+      "idEmpresadeTelefonia": 0,
+      "imagen": "string",
+      "rutaFoto": "string",
+      "telFijo": "string",
+      "acuerdo": 0,
+      "neto": true,
+      "idPaisOrigen": 0,
+      "mail": "string",
+      "telMovil": "string",
+      "tipoCuenta": 0,
+      "totalRemuneracion": 0,
+      "totalNeto": 0,
+      "tieneEmbargos": true,
+      "tieneSumarioAdministrativo": true,
+      "tieneLicenciaSinGoceHaberes": true,
+      "obsEstudios": "string",
+      "obsFechaIngreso": "string",
+      "idAgrupamiento": 0,
+      "idDireccion": 0,
+      "idInstrumentoLegal": 0
+    }
     console.log(arrays)
     
     try{
@@ -360,6 +426,11 @@ const Empleados = () => {
             arrays.documentacionDelte.map(async (id)=>{
               await axios.delete(`${urls.urlDocDelte}${id}`)
               .then((res) => console.log(res))
+            })}
+          case urls.urlLicDelete : {
+             arrays.licenciasDelete.map(async (id)=>{
+               await axios.delete(`${urls.urlLicDelete}${id}`)
+               .then((res) => console.log(res))
             })
         }
           default : {
@@ -371,6 +442,10 @@ const Empleados = () => {
               await axios.delete(`${urls.urlDocDelte}${id}`)
               .then((res) => console.log(res))
             });
+            arrays[2].map(async (id)=>{
+              await axios.delete(`${urls.urlLicDelete}${id}`)
+              .then((res) => console.log(res))
+           });
           }
         }
     }catch(err){
@@ -383,12 +458,12 @@ const Empleados = () => {
     }
 }
 
-  console.log(licenciaEmpleadoDatos);
+
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col-xl-3">
-          <Browser disable={disable} setDisable={setDisable} />
+          <Browser disable={disable} setDisable={setDisable} setValueEmpl={setValueEmpl} />
         </div>
         <div className="col-xl-9 ">
           <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
@@ -401,6 +476,8 @@ const Empleados = () => {
               setDisable={setDisable}
               responses={responses}
               setResponses={setResponses}
+              valueempl ={valueempl}
+              domiciliosEmpleados={domiciliosEmpleados}
             />
           )}
           {tabIndex === 1 && (

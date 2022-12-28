@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addSelectDetalle } from "../../redux/actions/licenciasActions";
+import { addSelectDetalle, idSelect } from "../../redux/actions/licenciasActions";
 import "./TableBootstrap.css";
 
 const TableSuspenLicencia = ({ columns }) => {
@@ -39,6 +39,7 @@ const TableSuspenLicencia = ({ columns }) => {
                       id="inpurSelectDetalleLiq"
                       onClick={() => {
                         dispatch(addSelectDetalle(valor));
+                        
                       }}
                     />{" "}
                   </th>

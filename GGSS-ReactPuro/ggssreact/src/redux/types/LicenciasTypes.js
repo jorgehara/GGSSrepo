@@ -12,11 +12,9 @@ export const DELETE_DET_LIC = "DELETE_DET_LIC";
 
 export const CLEAR_LIC_SELECT = "CLEAR_LIC_SELECT"
 
-export const DELETE_ONE_LICENCIA = "DELETE_ONE_LICENCIA";
+export const SAVE_IDS_LIC = "SAVE_IDS_LIC"
+export const CLEAR_IDS_LIC = "CLEAR_IDS_LIC"
+export const ID_SELECT = "ID_SELECT"
 
-export const DELETE_LIST_ITEM = "DELETE_LIST_ITEM"
-export const RELOAD_ITEM = "RELOAD_ITEM"
-export const SAVE_ID_LIC = "SAVE_ID_LIC"
-export const CLEAN_IDS = "CLEAN_IDS"
-
-export const GET_ID = "GET_ID"
+export const ADD_LIC_EMPLEADOS = "ADD_LIC_EMPLEADOS"
+export const DELETE_LIC_EMPLEADO = "DELETE_LIC_EMPLEADO"
