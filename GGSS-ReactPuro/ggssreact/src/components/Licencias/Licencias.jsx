@@ -1,13 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { inputSelectedoptionLicencias } from '../../classes/classes';
-import { addLicenciaEmpleados } from '../../redux/actions/fetchActions';
 import { selectedOption } from '../../redux/actions/licenciasActions';
-import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { OPTIONS_FORMULARIO } from '../../redux/types/LicenciasTypes';
-import EmployeData from '../EmployeData/EmployeData'
+import EmployeData from '../EmployeData/EmployeData';
 import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
 
@@ -19,14 +17,7 @@ const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaE
     const dispatch = useDispatch();
     const licenciaDelEmpleado = licenciasEmplados && licenciasEmplados.filter((lic)=> lic.idEmpleado === empleadoUno.iDempleado);
 
-   /*  const licenciasDelEmpleado = licenciaDelEmpleado && licenciaDelEmpleado[0] && licenciaDelEmpleado[0] && licenciasEmplados && licenciasEmplados.filter((lic)=>{
-        return(
-            lic.idLicenciaEmpleado === licenciaDelEmpleado[0].idLicenciaEmpleado
-        )
-    }) */
-
-    
-    //console.log(licenciasEmplados.filter((lic)=> {return(lic.idLicenciaEmpleado === 468)}))
+  
 
     const opciones = [{
         opcion : "1 - Disponibles por Periodo",        
