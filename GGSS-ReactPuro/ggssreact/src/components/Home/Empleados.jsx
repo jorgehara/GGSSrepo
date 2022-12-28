@@ -105,7 +105,7 @@ const Empleados = () => {
   const urlFamiliares = "http://54.243.192.82/api/MostrarDatosFamiliares";
   const urlNumeradores = "http://54.243.192.82/api/Numeradores";
 
-  const urlDomicilios = "http://54.243.192.82/api/Domicilios/MostrarDatosDomicilios";
+  const urlDomicilios = "http://54.243.192.82/api/MostrarDatosDomicilios";
   const urlCalles = "http://54.243.192.82/api/Calles";
   const urlDeptos = "http://54.243.192.82/api/Departamentos";
   const urlProvincias = "http://54.243.192.82/api/Provincias";
@@ -127,7 +127,7 @@ const Empleados = () => {
   const urlLugaresDePago = "http://54.243.192.82/api/LugaresdePago";
   const urlBancos = "http://54.243.192.82/api/Bancos";
   const urlDirecciones =
-    "http://54.243.192.82/api/Direcciones/DireccionesDatos/1,1";
+    "http://54.243.192.82/api/Direcciones/DireccionesDatos/0,1";
   const urlSindicatos = "http://54.243.192.82/api/Sindicatos";
   const urlEsquemas = "http://54.243.192.82/api/Esquemas";
   const urlConceptos = "http://54.243.192.82/api/ConceptosDatos/0,1";
@@ -135,7 +135,7 @@ const Empleados = () => {
   const urlDocumentacionEmpleados =
     "http://54.243.192.82/api/EmpleadosDocumentacion";
   const urlDocumentacion = "http://54.243.192.82/api/Documentacion";
-  const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/1,%201`;
+  const urlDatosExtras = `http://54.243.192.82/api/DatosExtras/0,%201`;
   const urlInstrumLegal =
     "http://54.243.192.82/api/InstrumentosLegales/1?modo=1";
   const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
@@ -207,7 +207,7 @@ const Empleados = () => {
     await axios
       .get(url)
       .then((res) => {
-        
+       
         dispatch(action(res.data));
       })
       .catch((err) => {
@@ -216,71 +216,69 @@ const Empleados = () => {
   };
 const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
   
-  useEffect(()=>{
-    debugger
-    handleFetch(urlEstados, addEstados);
-    handleFetch(urlEstadosCiviles, addEstadosCiviles);
-    handleFetch(urlPaisesNac, addPaises);
-    handleFetch(urlEstudios, addEstudios);
-  },[refetching])
+useEffect(()=>{
+   handleFetch(urlEstados, addEstados);
+   handleFetch(urlEstadosCiviles, addEstadosCiviles);
+   handleFetch(urlPaisesNac, addPaises);
+   handleFetch(urlEstudios, addEstudios);
+},[refetching])
 
   useEffect(() => {
-    handleFetch(urlEstados, addEstados);
-    handleFetch(urlEstadosCiviles, addEstadosCiviles);
-    handleFetch(urlPaisesNac, addPaises);
-    handleFetch(urlEstudios, addEstudios);
+     handleFetch(urlEstados, addEstados);
+     handleFetch(urlEstadosCiviles, addEstadosCiviles);
+     handleFetch(urlPaisesNac, addPaises);
+     handleFetch(urlEstudios, addEstudios);
 
      handleFetch(urlTiposDNI, addTiposDocumento);
-    handleFetch(urlParentescos, addParentescos);
-    handleFetch(urlFamiliares, addFamiliares);
-    handleFetch(urlNumeradores, addNumeradores);
+     handleFetch(urlParentescos, addParentescos);
+     handleFetch(urlFamiliares, addFamiliares);
+     handleFetch(urlNumeradores, addNumeradores);
 
-    handleFetch(urlCalles, addCalles);
-    handleFetch(urlDeptos, addDepartamentos);
-    handleFetch(urlProvincias, addProvincias);
-    handleFetch(urlLocalidades, addLocalidades);
-    handleFetch(urlBarrios, addBarrios);
+     handleFetch(urlCalles, addCalles);
+     handleFetch(urlDeptos, addDepartamentos);
+     handleFetch(urlProvincias, addProvincias);
+     handleFetch(urlLocalidades, addLocalidades);
+     handleFetch(urlBarrios, addBarrios);
 
-    handleFetch(urlConvenios, addConvenios);
-    handleFetch(urlEmpleadores, addEmpleadores);
-    handleFetch(urlCategorias, addCategorias);
-    handleFetch(urlAgrupamientos, addAgrupamientos);
-    handleFetch(urlCargos, addCargos);
-    handleFetch(urlTareas, addTareasDesempeñadas);
-    handleFetch(urlModosCont, addModosContratacion);
-    handleFetch(urlModoLiq, addModosLiquidacion);
-    handleFetch(urlCentroCosto, addCentroDeCosto);
-    handleFetch(urlSectorDepto, addSectorDepto);
-    handleFetch(urlObrasSociales, addObrasSociales);
-    handleFetch(urlFormasDePago, addFormasPago);
-    handleFetch(urlLugaresDePago, addLugaresDePago);
-    handleFetch(urlBancos, addBancos);
-    handleFetch(urlDirecciones, addDirecciones);
-    handleFetch(urlSindicatos, addSindicatos);
-    handleFetch(urlEsquemas, addEsquemas);
+     handleFetch(urlConvenios, addConvenios);
+     handleFetch(urlEmpleadores, addEmpleadores);
+     handleFetch(urlCategorias, addCategorias);
+     handleFetch(urlAgrupamientos, addAgrupamientos);
+     handleFetch(urlCargos, addCargos);
+     handleFetch(urlTareas, addTareasDesempeñadas);
+     handleFetch(urlModosCont, addModosContratacion);
+     handleFetch(urlModoLiq, addModosLiquidacion);
+     handleFetch(urlCentroCosto, addCentroDeCosto);
+     handleFetch(urlObrasSociales, addObrasSociales);
+     handleFetch(urlFormasDePago, addFormasPago);
+     handleFetch(urlLugaresDePago, addLugaresDePago);
+     handleFetch(urlBancos, addBancos);
+     handleFetchComun(urlDirecciones, addDirecciones);
+     handleFetch(urlSindicatos, addSindicatos);
+     handleFetch(urlEsquemas, addEsquemas);
 
-    handleFetchComun(urlConceptos, addConceptos);
-
+     handleFetchComun(urlConceptos, addConceptos);
 
 
+     handleFetch(urlDocumentacion, getOneDocumento);
 
-    handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);  
 
+   handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);  
+   
 
-    handleFetchComun(urlInstrumLegal, addInstrumLegales); 
-
-    handleFetch(urlDomicilios, addDomicilios);
+   handleFetchComun(urlSectorDepto, addSectorDepto);
+     handleFetchComun(urlInstrumLegal, addInstrumLegales); 
+     handleFetchComun(urlDatosExtras, addDatosExtras);
 
   }, [disable]);
 
   useEffect(() => {
     handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
-    handleFetch(urlDocumentacion, getOneDocumento);
-
+    
     handleFetchComun(urlDatosExtras, addDatosExtras);
-    handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);
-    handleFetch(urlDetalleLicenciasEmpleados, addDetalleLicencia);
-    handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
+     handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);
+     handleFetch(urlDetalleLicenciasEmpleados, addDetalleLicencia);
+     handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
 
   }, [refetch]);
 
@@ -315,6 +313,7 @@ const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
       .then((res) => {
         setDatosExtraEmpleado(res.data);
       });
+      handleFetch(urlDomicilios, addDomicilios);
   }, [empleadoUno?.iDempleado, refetch]);
 
   useEffect(() => {

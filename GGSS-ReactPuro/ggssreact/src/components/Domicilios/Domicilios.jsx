@@ -29,6 +29,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   const domicilioDelEmpleado = useSelector((state)=> state.domiciliosStates.idDomicilioSelected);
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
   const listDomicilios = useSelector((state)=> state.generalState.domicilios); 
+
   const columns = [
     "Predeterminado",
     "Calle",
@@ -51,30 +52,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   
   const domiciliosState = useSelector((state)=> state.domiciliosStates)
   const domicilioDelEmpleado1 = useSelector((state)=> state.generalState.domicilios);
-  //#endregion
   
-    
-
-
-  //#region ------------------------------------------------------------------------------URLs
-  
-  //#endregion
-
-
-
- 
-
-
-
-  //#region ------------------------------------------------------------------------------CONTEXT
-  
- 
-
-  
-
-  
-  //#endregion
-  //#region ------------------------------------------------------------------------------CONSTANTES DE DATOS
   
   const predeterminado = domiciliosEmpleados && domiciliosEmpleados.map(m => {return(m.predeterminado)});
 
@@ -86,13 +64,15 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
 
 
   const arrayBarrios = localidadSelected  && localidadSelected.payload &&  generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios.filter((barrio) => barrio.idLocalidad === localidadSelected.payload.idLocalidad) : null;
-
+  const refetching = useSelector((state)=> state.modalState.refetch);
   useEffect(()=>{
     getDomicilioEmpleado()
   },[empleadoUno])
 
+  console.log(generalStateData.domicilios)
+
   function getDomicilioEmpleado(){
-    if(generalStateData.domicilios !== "" && empleadoUno !== undefined){
+    if(generalStateData.domicilios !== "" && empleadoUno){
       let domicilioDelEmpleado = domiciliosEmpleados && domiciliosEmpleados.filter((domicilio)=> domicilio.idEmpleado === empleadoUno.iDempleado ) 
 
 
