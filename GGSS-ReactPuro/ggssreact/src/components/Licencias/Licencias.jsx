@@ -1,31 +1,23 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { inputSelectedoptionLicencias } from '../../classes/classes';
-import { addLicenciaEmpleados, deleteLicencia } from '../../redux/actions/fetchActions';
-import { deleteOneLicencia, saveId, selectedOption } from '../../redux/actions/licenciasActions';
-import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
+import { selectedOption } from '../../redux/actions/licenciasActions';
 import { OPTIONS_FORMULARIO } from '../../redux/types/LicenciasTypes';
-import EmployeData from '../EmployeData/EmployeData'
+import EmployeData from '../EmployeData/EmployeData';
 import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
 
-const Licencias = ({responses, setResponses, 
-
-    licenciaEmpleadoDatos,
-    setLicenciaEmpladoDatos,
-    setRefectch, 
-    refetch, 
+const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaEmpladoDatos,setRefectch, refetch, disable}) => {
     
-    disable}) => {
+    const [ formLicencias, setFormLicencias ] = useState(responses["formLicencias"]);
+    const empleadoUno = useSelector((state)=> state.employeStates.employe);
+    const licenciasEmplados = useSelector((state)=> state.generalState.licenciasEmpleados);
+    const dispatch = useDispatch();
+    const licenciaDelEmpleado = licenciasEmplados && licenciasEmplados.filter((lic)=> lic.idEmpleado === empleadoUno.iDempleado);
 
-        const [ formLicencias, setFormLicencias ] = useState(responses["formLicencias"]);
-        const empleadoUno = useSelector((state)=> state.employeStates.employe);
-        const licenciasEmplados = useSelector((state)=> state.generalState.licenciasEmpleados);
-        const dispatch = useDispatch();
-
-    const urlLicenciaLicDelete = "http://54.243.192.82/api/EliminarLicenciaPorId";
+  
 
     const opciones = [{
         opcion : "1 - Disponibles por Periodo",        

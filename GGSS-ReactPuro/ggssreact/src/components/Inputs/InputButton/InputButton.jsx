@@ -29,7 +29,6 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
     clasess ? <div className={`${clasess.classOne}`}>      
     <div className={`${clasess.classTwo}`}>
         <label className={`${clasess.classThree}`} htmlFor={nameInput}>{nameLabel}</label>
-
         <input type="text" 
                 value={ datosPersonalesValue && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
                 maxLength={maxLeght}
@@ -45,7 +44,6 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
               {nameButton}
         </button>
     </div>
-    
 </div>
         : 
 <div className="formulario__grupo__inputs-Button mt-2">      

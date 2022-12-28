@@ -175,13 +175,6 @@ const Empleados = () => {
     setDisable(true);
     
   }
- /*  useEffect(()=>{
-    document.getElementById("accordionExample").reset()
-    setResponses({
-      ...responses,
-      formDatosPersonales : responses?.formDatosPersonales && Object?.fromEntries(Object?.entries(responses?.formDatosPersonales).map(([key]) => [key, ""]))
-    }); 
-  },[inCancel]) */
 
   const handleFetch = async (url, action) => {
     dispatch({ type: SET_LOADING });
@@ -201,7 +194,6 @@ const Empleados = () => {
       await axios
         .get(`${url}/${paramOne},%201`)
         .then((res) => {
-          console.log(res)
           dispatch(action(res.data));
         })
         .catch((err) => {
@@ -349,7 +341,6 @@ useEffect(()=>{
     ]
   }
   const { urls, arrays } = objectRequest;
-  console.log(arrays)
 
 
   function cleanIdsGeneral(){
@@ -377,7 +368,6 @@ useEffect(()=>{
     setRefectch(!refetch);
     setValueEmpl(false)
   }
-  console.log(responses)
   function deleteItems(objectRequest){
     const { urls, arrays } = objectRequest;
     let bodyPetitionEmpleadoGuarda = {
@@ -453,9 +443,9 @@ useEffect(()=>{
               .then((res) => console.log(res))
             })}
           case urls.urlLicDelete : {
-             arrays.licenciasDelete.map(async (id)=>{
-               await axios.delete(`${urls.urlLicDelete}${id}`)
-               .then((res) => console.log(res))
+            arrays.licenciasDelete.map(async (id)=>{
+              await axios.delete(`${urls.urlLicDelete}${id}`)
+              .then((res) => console.log(res))
             })
         }
           default : {
@@ -470,7 +460,7 @@ useEffect(()=>{
             arrays[2].map(async (id)=>{
               await axios.delete(`${urls.urlLicDelete}${id}`)
               .then((res) => console.log(res))
-           });
+          });
           }
         }
     }catch(err){
