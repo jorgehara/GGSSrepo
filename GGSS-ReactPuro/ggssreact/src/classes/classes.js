@@ -36,7 +36,7 @@ export const classesEstadosCiviles = {
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_AsidePagos',
     "classFour" : 'formulario-input-InpButton-Pagos form-select ml-0 px-0 obligatorio',
-    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+    "classFive" : "btn btn-validacion btn-outline-white btn-sm",
   }
   export const inputButtonClasessDireccion= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",

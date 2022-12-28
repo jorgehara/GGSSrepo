@@ -371,6 +371,10 @@ useEffect(()=>{
     setRefectch(!refetch);
     setValueEmpl(false)
   }
+
+
+
+
   function deleteItems(objectRequest){
     const { urls, arrays } = objectRequest;
     let bodyPetitionEmpleadoGuarda = {
@@ -429,7 +433,6 @@ useEffect(()=>{
       "idDireccion": responses.formLiquidacion?.inputDireccionLiquidacion,
       "idInstrumentoLegal": 0
     }
-    console.log(arrays)
     
     try{
       
@@ -475,8 +478,6 @@ useEffect(()=>{
         })
     }
 }
-
-
   return (
     <div className="container-fluid">
       <div className="row">
@@ -580,5 +581,4 @@ useEffect(()=>{
     </div>
   );
 };
-
 export default Empleados;

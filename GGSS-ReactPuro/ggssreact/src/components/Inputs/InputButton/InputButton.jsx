@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import "./InputButton.css";
 
-const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal , clasess, obligatorio}) => {
+const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal , clasess, obligatorio, mostrarAsidePagos}) => {
 
   const [valor, setValor] = useState();
   const dispatch = useDispatch();
@@ -40,7 +40,10 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                 onChange={(e)=> onChange(e.target.value, id)}
                 />
         <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
-              className={`${clasess.classFive}`} disabled={disabled}>
+              className={`${clasess.classFive}`} 
+              disabled={disabled}
+              // disabled={mostrarAsidePagos}
+              >
               {nameButton}
         </button>
     </div>
@@ -57,7 +60,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     placeholder={placeholder} 
                     id={id} 
                     name={id}
-                    disabled={disabled}
+                    disabled={true}
                     onChange={(e)=> onChange(e.target.value,id )}
                     />
             {/* <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
