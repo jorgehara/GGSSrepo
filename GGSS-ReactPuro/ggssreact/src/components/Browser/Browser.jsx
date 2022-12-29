@@ -24,7 +24,7 @@ import {
 } from "../../redux/actions/licenciasActions";
 
 const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, setRefectch, refetch }) => {
-  const url = "http://54.243.192.82/api/Empleados?records=10000";
+  const url = "http://54.243.192.82/api/Empleados?records=100";
 
   const dispatch = useDispatch();
 

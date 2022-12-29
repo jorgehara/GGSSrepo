@@ -297,9 +297,11 @@ useEffect(()=>{
 
   useEffect(() => {
     axios
-      .get("http://54.243.192.82/api/Empleados?records=10000")
+      .get("http://54.243.192.82/api/Empleados?records=10")
       .then((res) => setEmpleados(res.data.result));
   }, []);
+
+  console.log(responses)
 
   useEffect(() => {
     axios
@@ -320,7 +322,7 @@ useEffect(()=>{
       });
       handleFetch(urlDomicilios, addDomicilios);
       handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
-   handleFetch(urlFamiliares, addFamiliares);
+    handleFetch(urlFamiliares, addFamiliares);
 
   }, [empleadoUno?.iDempleado, refetch]);
 
