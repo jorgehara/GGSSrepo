@@ -222,7 +222,8 @@ useEffect(()=>{
    handleFetch(urlEstadosCiviles, addEstadosCiviles);
    handleFetch(urlPaisesNac, addPaises);
    handleFetch(urlEstudios, addEstudios);
-},[refetching])
+   handleFetch(urlTiposDNI, addTiposDocumento);
+},[refetching, empleadoUno])
 
   useEffect(() => {
      handleFetch(urlEstados, addEstados);
@@ -329,7 +330,7 @@ useEffect(()=>{
   const licenciasDelete = useSelector((state)=> state.licenciasState.idsLic);
   const urlTRabajoDelete = "http://54.243.192.82/api/TrabajosAnteriores?IdTrabajoAnterior=";
   const urlDocDelte = "http://54.243.192.82/api/EmpleadosDocumentacion/"
-  const urlLicDelete = "http://54.243.192.82/api/EliminarLicenciaPorId/"
+  const urlLicDelete = "http://54.243.192.82/api/"
     const urlEmpleadoGuarda = "http://54.243.192.82/api/Empleados/Guardar"
   const objectRequest = {
     urls : {
@@ -346,7 +347,7 @@ useEffect(()=>{
     ]
   }
   const { urls, arrays } = objectRequest;
-  console.log(empleadoUno)
+  console.log(arrays)
 
 
   function cleanIdsGeneral(){
@@ -374,7 +375,64 @@ useEffect(()=>{
     setRefectch(!refetch);
     setValueEmpl(false)
   }
-  console.log(responses)
+ 
+  let bodyPetitionEmpleadoUpdate = {
+    "iDempleado": empleadoUno.iDempleado && empleadoUno.iDempleado,
+    "legajo": responses.formDatosPersonales?.numLegajo ?  responses.formDatosPersonales?.numLegajo : empleadoUno.legajo,
+    "apellido":  responses.formDatosPersonales?.apellidoInput ? responses.formDatosPersonales?.apellidoInput  : empleadoUno.apellido,
+    "iDtipoDocumento":  responses.formDatosPersonales?.dniSelected ? responses.formDatosPersonales?.dniSelected  : empleadoUno.iDtipoDocumento,
+    "nroDocumento":  responses.formDatosPersonales?.documentoInput ? responses.formDatosPersonales?.documentoInput  : empleadoUno.nroDocumento,
+    "cuil":  responses.formDatosPersonales?.inputCuil ? responses.formDatosPersonales?.inputCuil  : empleadoUno.cuil,
+    "sexo": responses.formDatosPersonales?.inputSexo ? responses.formDatosPersonales?.inputSexo  : empleadoUno.sexo,
+    "iDestadoCivil": responses.formDatosPersonales?.estadoCivilInput ? responses.formDatosPersonales?.estadoCivilInput  : empleadoUno.iDestadoCivil,
+    "idNacionalidad": responses.formDatosPersonales?.nacionalidadesInput ? responses.formDatosPersonales?.nacionalidadesInput  : empleadoUno.idNacionalidad,
+    "fechaNacimiento": responses.formDatosPersonales?.inputDateNac ? responses.formDatosPersonales?.inputDateNac  : empleadoUno.fechaNacimiento,
+    "iDEstudios": responses.formDatosPersonales?.estudiosInput ?  responses.formDatosPersonales?.estudiosInput : empleadoUno.iDEstudios,
+    "fechaIngreso": responses.formLiquidacion?.ingresoDateInput ? responses.formLiquidacion?.ingresoDateInput  : empleadoUno.fechaIngreso,
+    "fechaEfectiva": responses.formLiquidacion?.inputDateEfectivo ? responses.formLiquidacion?.inputDateEfectivo  : empleadoUno.fechaEfectiva,
+    "iDCategoria": responses.formLiquidacion?.inputCategoria ?  responses.formLiquidacion?.inputCategoria : empleadoUno.iDCategoria,
+    "iDCargo": responses.formLiquidacion?.inputCargo ?  responses.formLiquidacion?.inputCargo : empleadoUno.iDCargo,
+    "iDTareaDesempeñada": responses.formLiquidacion?.inputTareaDesempeñada ? responses.formLiquidacion?.inputTareaDesempeñada  : empleadoUno.iDTareaDesempeñada,
+    "idCentrodeCosto": responses.formLiquidacion?.inputCentroCosto ?  responses.formLiquidacion?.inputCentroCosto  : empleadoUno.idCentrodeCosto,
+    "iDSectorDpto": responses.formLiquidacion?.inputSectorDepto ? responses.formLiquidacion?.inputSectorDepto  : empleadoUno.iDSectorDpto,
+    "iDModoContratacion": responses.formLiquidacion?.inputModoCOntratacion ? responses.formLiquidacion?.inputModoCOntratacion  : empleadoUno.iDModoContratacion,
+    "iDModoLiquidacion": responses.formLiquidacion?.inputModoLiquidacion ? responses.formLiquidacion?.inputModoLiquidacion  : empleadoUno.iDModoLiquidacion,
+    "iDFormadePago": responses.formLiquidacion?.inputFormaDePago ? responses.formLiquidacion?.inputFormaDePago  : empleadoUno.iDFormadePago,
+    "idBanco": responses.formLiquidacion?.inputBanco ? responses.formLiquidacion?.inputBanco  : empleadoUno.idBanco,
+    "nroCtaBanco": responses.formLiquidacion?.inputNumCta ?  responses.formLiquidacion?.inputNumCta : empleadoUno.nroCtaBanco,
+    "cbu": responses.formLiquidacion?.inputCBU ? responses.formLiquidacion?.inputCBU  : empleadoUno.cbu,
+    "iDLugardePago": responses.formLiquidacion?.inputLugaresDePago ? responses.formLiquidacion?.inputLugaresDePago  : empleadoUno.iDLugardePago,
+    "iDAFJP": 1,
+    "idObraSocial": responses.formLiquidacion?.inputObraSocial ? responses.formLiquidacion?.inputObraSocial  : empleadoUno.idObraSocial,
+    "iDSindicato": responses.formLiquidacion?.sindicatosLiquidacion ? responses.formLiquidacion?.sindicatosLiquidacion  : empleadoUno.iDSindicato,
+    "fechaEgreso": "2022-12-27T15:45:01.031Z",
+    "iDMotivoEgreso": 4,
+    "iDEsquema": responses.formLiquidacion?.selectOptionsId ? responses.formLiquidacion?.selectOptionsId  : empleadoUno.iDEsquema,
+    "iDEmpleador": responses.formLiquidacion?.inputEmpleadorLiquidacion ? responses.formLiquidacion?.inputEmpleadorLiquidacion  : empleadoUno.iDEmpleador,
+    "nombres": responses.formDatosPersonales?.nombresInput ? responses.formDatosPersonales?.nombresInput  : empleadoUno.nombres,
+    "idEstado": responses.formDatosPersonales?.estadosEmpleados ? responses.formDatosPersonales?.estadosEmpleados  : empleadoUno.idEstado,
+    "idEmpresadeTelefonia": 2,
+    "imagen": responses.formDatosPersonales?.inputImagen ? responses.formDatosPersonales?.inputImagen  : empleadoUno.imagen,
+    "rutaFoto": null,
+    "telFijo": responses.formDatosPersonales?.telefonoInput ? responses.formDatosPersonales?.telefonoInput  : empleadoUno.telFijo,
+    "acuerdo": 0,
+    "neto": responses.formLiquidacion?.inputTotalNeto ? responses.formLiquidacion?.inputTotalNeto  : empleadoUno.neto,
+    "idPaisOrigen": responses.formDatosPersonales?.paisOrigenInput ? responses.formDatosPersonales?.paisOrigenInput  : empleadoUno.idPaisOrigen,
+    "mail": responses.formDatosPersonales?.email ? responses.formDatosPersonales?.email  : empleadoUno.mail,
+    "telMovil": responses.formDatosPersonales?.movil ? responses.formDatosPersonales?.movil  : empleadoUno.telMovil,
+    "tipoCuenta": responses.formDatosPersonales?.inputRadioAsidePagos ? responses.formDatosPersonales?.inputRadioAsidePagos  : empleadoUno.tipoCuenta,
+    "totalRemuneracion": responses.formLiquidacion?.inputTotalRemu ? responses.formLiquidacion?.inputTotalRemu  : empleadoUno.totalRemuneracion,
+    "totalNeto": responses.formLiquidacion?.inputTotalNeto ? responses.formLiquidacion?.inputTotalNeto   : empleadoUno.totalNeto,
+    "tieneEmbargos": responses.formLiquidacion?.inputCheckEmbargo ? responses.formLiquidacion?.inputCheckEmbargo  : empleadoUno.tieneEmbargos,
+    "tieneSumarioAdministrativo": responses.formLiquidacion?.inputCheckSumAdministrativo ? responses.formLiquidacion?.inputCheckSumAdministrativo  : empleadoUno.tieneSumarioAdministrativo,
+    "tieneLicenciaSinGoceHaberes": responses.formLiquidacion?.inputCheckLicSinGoce ? responses.formLiquidacion?.inputCheckLicSinGoce  : empleadoUno.tieneLicenciaSinGoceHaberes,
+    "obsEstudios": responses.formDatosPersonales?.observacionesEstudios ? responses.formDatosPersonales?.observacionesEstudios  : empleadoUno.obsEstudios,
+    "obsFechaIngreso": "string",
+    "idAgrupamiento": responses.formDatosPersonales?.inputAgrupamiento ?  responses.formDatosPersonales?.inputAgrupamiento : empleadoUno.idAgrupamiento,
+    "idDireccion": responses.formLiquidacion?.inputDireccionLiquidacion ? responses.formLiquidacion?.inputDireccionLiquidacion  : empleadoUno.idDireccion,
+    "idInstrumentoLegal": 2
+  }
+  console.log(bodyPetitionEmpleadoUpdate)
   async function deleteItems(objectRequest){
     const { urls, arrays } = objectRequest;
     let bodyPetitionEmpleadoGuarda = {
@@ -403,17 +461,17 @@ useEffect(()=>{
       "nroCtaBanco": responses.formLiquidacion?.inputNumCta,
       "cbu": responses.formLiquidacion?.inputCBU,
       "iDLugardePago": responses.formLiquidacion?.inputLugaresDePago,
-      "iDAFJP": 0,
+      "iDAFJP": 1,
       "idObraSocial": responses.formLiquidacion?.inputObraSocial,
       "iDSindicato": responses.formLiquidacion?.sindicatosLiquidacion,
       "fechaEgreso": "2022-12-27T15:45:01.031Z",
-      "iDMotivoEgreso": 0,
+      "iDMotivoEgreso": 4,
       "iDEsquema": responses.formLiquidacion?.selectOptionsId,
       "iDEmpleador": responses.formLiquidacion?.inputEmpleadorLiquidacion,
       "nombres": responses.formDatosPersonales?.nombresInput,
       "idEstado": responses.formDatosPersonales?.estadosEmpleados,
-      "idEmpresadeTelefonia": 0,
-      "imagen": null,
+      "idEmpresadeTelefonia": 2,
+      //"imagen": null,
       "rutaFoto": null,
       "telFijo": responses.formDatosPersonales?.telefonoInput,
       "acuerdo": 0,
@@ -431,7 +489,7 @@ useEffect(()=>{
       "obsFechaIngreso": responses.formDatosPersonales?.inputImagen,
       "idAgrupamiento": responses.formLiquidacion?.inputAgrupamiento,
       "idDireccion": responses.formLiquidacion?.inputDireccionLiquidacion,
-      "idInstrumentoLegal": 0
+      "idInstrumentoLegal": 2
     }
     console.log(bodyPetitionEmpleadoGuarda)
     let bodyPetitionEmpleadoUpdate = {
@@ -443,33 +501,33 @@ useEffect(()=>{
       "cuil":  responses.formDatosPersonales?.inputCuil ? responses.formDatosPersonales?.inputCuil  : empleadoUno.cuil,
       "sexo": responses.formDatosPersonales?.inputSexo ? responses.formDatosPersonales?.inputSexo  : empleadoUno.sexo,
       "iDestadoCivil": responses.formDatosPersonales?.estadoCivilInput ? responses.formDatosPersonales?.estadoCivilInput  : empleadoUno.iDestadoCivil,
-      "idNacionalidad": responses.formDatosPersonales?.nacionalidadesInput ? responses.formDatosPersonales?.nacionalidadesInput  : empleadoUno.idNacionalidad,
+      "idNacionalidad": responses.formDatosPersonales?.nacionalidadesInput ? responses.formDatosPersonales?.nacionalidadesInput  : empleadoUno.iDnacionalidad,
       "fechaNacimiento": responses.formDatosPersonales?.inputDateNac ? responses.formDatosPersonales?.inputDateNac  : empleadoUno.fechaNacimiento,
-      "iDEstudios": responses.formDatosPersonales?.estudiosInput ?  responses.formDatosPersonales?.estudiosInput : empleadoUno.iDEstudios,
+      "iDEstudios": responses.formDatosPersonales?.estudiosInput ?  responses.formDatosPersonales?.estudiosInput : empleadoUno.iDestudios,
       "fechaIngreso": responses.formLiquidacion?.ingresoDateInput ? responses.formLiquidacion?.ingresoDateInput  : empleadoUno.fechaIngreso,
       "fechaEfectiva": responses.formLiquidacion?.inputDateEfectivo ? responses.formLiquidacion?.inputDateEfectivo  : empleadoUno.fechaEfectiva,
-      "iDCategoria": responses.formLiquidacion?.inputCategoria ?  responses.formLiquidacion?.inputCategoria : empleadoUno.iDCategoria,
-      "iDCargo": responses.formLiquidacion?.inputCargo ?  responses.formLiquidacion?.inputCargo : empleadoUno.iDCargo,
-      "iDTareaDesempeñada": responses.formLiquidacion?.inputTareaDesempeñada ? responses.formLiquidacion?.inputTareaDesempeñada  : empleadoUno.iDTareaDesempeñada,
+      "iDCategoria": responses.formLiquidacion?.inputCategoria ?  responses.formLiquidacion?.inputCategoria : empleadoUno.iDcategoria,
+      "iDCargo": responses.formLiquidacion?.inputCargo ?  responses.formLiquidacion?.inputCargo : empleadoUno.iDcargo,
+      "iDTareaDesempeñada": responses.formLiquidacion?.inputTareaDesempeñada ? responses.formLiquidacion?.inputTareaDesempeñada  : empleadoUno.iDtareaDesempeñada,
       "idCentrodeCosto": responses.formLiquidacion?.inputCentroCosto ?  responses.formLiquidacion?.inputCentroCosto  : empleadoUno.idCentrodeCosto,
-      "iDSectorDpto": responses.formLiquidacion?.inputSectorDepto ? responses.formLiquidacion?.inputSectorDepto  : empleadoUno.iDSectorDpto,
-      "iDModoContratacion": responses.formLiquidacion?.inputModoCOntratacion ? responses.formLiquidacion?.inputModoCOntratacion  : empleadoUno.iDModoContratacion,
-      "iDModoLiquidacion": responses.formLiquidacion?.inputModoLiquidacion ? responses.formLiquidacion?.inputModoLiquidacion  : empleadoUno.iDModoLiquidacion,
-      "iDFormadePago": responses.formLiquidacion?.inputFormaDePago ? responses.formLiquidacion?.inputFormaDePago  : empleadoUno.iDFormadePago,
-      "idBanco": responses.formLiquidacion?.inputBanco ? responses.formLiquidacion?.inputBanco  : empleadoUno.idBanco,
+      "iDSectorDpto": responses.formLiquidacion?.inputSectorDepto ? responses.formLiquidacion?.inputSectorDepto  : empleadoUno.iDsectorDpto,
+      "iDModoContratacion": responses.formLiquidacion?.inputModoCOntratacion ? responses.formLiquidacion?.inputModoCOntratacion  : empleadoUno.iDmodoContratacion,
+      "iDModoLiquidacion": responses.formLiquidacion?.inputModoLiquidacion ? responses.formLiquidacion?.inputModoLiquidacion  : empleadoUno.iDmodoLiquidacion,
+      "iDFormadePago": responses.formLiquidacion?.inputFormaDePago ? responses.formLiquidacion?.inputFormaDePago  : empleadoUno.iDformadePago,
+      "idBanco": responses.formLiquidacion?.inputBanco ? responses.formLiquidacion?.inputBanco  : empleadoUno.idbanco,
       "nroCtaBanco": responses.formLiquidacion?.inputNumCta ?  responses.formLiquidacion?.inputNumCta : empleadoUno.nroCtaBanco,
       "cbu": responses.formLiquidacion?.inputCBU ? responses.formLiquidacion?.inputCBU  : empleadoUno.cbu,
-      "iDLugardePago": responses.formLiquidacion?.inputLugaresDePago ? responses.formLiquidacion?.inputLugaresDePago  : empleadoUno.iDLugardePago,
-      "iDAFJP": 0,
-      "idObraSocial": responses.formLiquidacion?.inputObraSocial ? responses.formLiquidacion?.inputObraSocial  : empleadoUno.idObraSocial,
-      "iDSindicato": responses.formLiquidacion?.sindicatosLiquidacion ? responses.formLiquidacion?.sindicatosLiquidacion  : empleadoUno.iDSindicato,
+      "iDLugardePago": responses.formLiquidacion?.inputLugaresDePago ? responses.formLiquidacion?.inputLugaresDePago  : empleadoUno.iDlugardePago,
+      "iDAFJP": 1,
+      "idObraSocial": responses.formLiquidacion?.inputObraSocial ? responses.formLiquidacion?.inputObraSocial  : empleadoUno.iDobraSocial,
+      "iDSindicato": responses.formLiquidacion?.sindicatosLiquidacion ? responses.formLiquidacion?.sindicatosLiquidacion  : empleadoUno.iDsindicato,
       "fechaEgreso": "2022-12-27T15:45:01.031Z",
-      "iDMotivoEgreso": 0,
-      "iDEsquema": responses.formLiquidacion?.selectOptionsId ? responses.formLiquidacion?.selectOptionsId  : empleadoUno.iDEsquema,
-      "iDEmpleador": responses.formLiquidacion?.inputEmpleadorLiquidacion ? responses.formLiquidacion?.inputEmpleadorLiquidacion  : empleadoUno.iDEmpleador,
+      "iDMotivoEgreso": 4,
+      "iDEsquema": responses.formLiquidacion?.selectOptionsId ? responses.formLiquidacion?.selectOptionsId  : empleadoUno.iDesquema,
+      "iDEmpleador": responses.formLiquidacion?.inputEmpleadorLiquidacion ? responses.formLiquidacion?.inputEmpleadorLiquidacion  : empleadoUno.iDempleador,
       "nombres": responses.formDatosPersonales?.nombresInput ? responses.formDatosPersonales?.nombresInput  : empleadoUno.nombres,
       "idEstado": responses.formDatosPersonales?.estadosEmpleados ? responses.formDatosPersonales?.estadosEmpleados  : empleadoUno.idEstado,
-      "idEmpresadeTelefonia": 0,
+      "idEmpresadeTelefonia": 2,
       "imagen": responses.formDatosPersonales?.inputImagen ? responses.formDatosPersonales?.inputImagen  : empleadoUno.imagen,
       "rutaFoto": null,
       "telFijo": responses.formDatosPersonales?.telefonoInput ? responses.formDatosPersonales?.telefonoInput  : empleadoUno.telFijo,
@@ -488,287 +546,528 @@ useEffect(()=>{
       "obsFechaIngreso": "string",
       "idAgrupamiento": responses.formDatosPersonales?.inputAgrupamiento ?  responses.formDatosPersonales?.inputAgrupamiento : empleadoUno.idAgrupamiento,
       "idDireccion": responses.formLiquidacion?.inputDireccionLiquidacion ? responses.formLiquidacion?.inputDireccionLiquidacion  : empleadoUno.idDireccion,
-      "idInstrumentoLegal": 0
+      "idInstrumentoLegal": 2
     }
-    
-    debugger;
     try{
-      if(!bodyPetitionEmpleadoGuarda.legajo){
-          return swal({
-            title: "Error",
-            text: "Debe escribir el legajo del Empleado",
-            icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.apellido){
-        return swal({
-          title: "Error",
-          text: "Debe escribir el/los Apellido/s del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.nombres){
-        return swal({
-          title: "Error",
-          text: "Debe escribir el/los Apellido/s del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDtipoDocumento){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el tipo de DNI del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.nroDocumento){
-        return swal({
-          title: "Error",
-          text: "Debe escribir el N° de DNI del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.cuil){
-        return swal({
-          title: "Error",
-          text: "Debe escribir el N° de CUIL del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.telFijo){
-        return swal({
-          title: "Error",
-          text: "Debe escribir el N° de Telefono del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDestadoCivil){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Estado Civil del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.idNacionalidad){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar la Nacionalidad del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.idEstado){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Estado del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.sexo){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Sexo del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.idPaisOrigen){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el País de Origen del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDEstudios){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Nivel de Estudios del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDEmpleador){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Empleador del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDCategoria){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar la Categoría del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.idAgrupamiento){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Agrupamiento del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDCargo){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Cargo del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDTareaDesempeñada){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar la Tarea Desempeñada del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDModoContratacion){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Modo de Contratación del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDModoLiquidacion){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Modo de Liquidación del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.idCentrodeCosto){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Centro de Costo del Empleado",
-          icon: "error",
-        })
-      }
-      /* if(!bodyPetitionEmpleadoGuarda.iDSectorDpto){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Sector del Empleado",
-          icon: "error",
-        })
-      } */
-      if(!bodyPetitionEmpleadoGuarda.idObraSocial){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar la Obra Social del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDFormadePago){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar la Forma de Pago del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.iDLugardePago){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Lugar de Pago del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.idBanco){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Banco del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.nroCtaBanco){
-        return swal({
-          title: "Error",
-          text: "Debe escribir el N° de Cuenta del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.tipoCuenta){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Tipo de Cuenta del Empleado",
-          icon: "error",
-        })
-      }
-      if(!bodyPetitionEmpleadoGuarda.cbu){
-        return swal({
-          title: "Error",
-          text: "Debe escribir el CBU del Empleado",
-          icon: "error",
-        })
-      }
-      if(responses.fomrLiquidacion?.inputCheckAsigna && !bodyPetitionEmpleadoGuarda.iDEsquema){
-        return swal({
-          title: "Error",
-          text: "Debe seleccionar el Esquema del Empleado",
-          icon: "error",
-        })
-      }
+    debugger;
+    if(tabIndex === 0 || tabIndex === 2){
+      if(empleadoUno.iDempleado === 0 || empleadoUno.iDempleado === undefined){
+        //#region Validation alerts
+       
+          if(!bodyPetitionEmpleadoGuarda.legajo){
+              return swal({
+                title: "Error",
+                text: "Debe escribir el legajo del Empleado",
+                icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.apellido){
+            return swal({
+              title: "Error",
+              text: "Debe escribir el/los Apellido/s del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.nombres){
+            return swal({
+              title: "Error",
+              text: "Debe escribir el/los Apellido/s del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDtipoDocumento){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el tipo de DNI del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.nroDocumento){
+            return swal({
+              title: "Error",
+              text: "Debe escribir el N° de DNI del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.cuil){
+            return swal({
+              title: "Error",
+              text: "Debe escribir el N° de CUIL del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.telFijo){
+            return swal({
+              title: "Error",
+              text: "Debe escribir el N° de Telefono del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDestadoCivil){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Estado Civil del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.idNacionalidad){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar la Nacionalidad del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.idEstado){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Estado del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.sexo){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Sexo del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.idPaisOrigen){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el País de Origen del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDEstudios){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Nivel de Estudios del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDEmpleador){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Empleador del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDCategoria){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar la Categoría del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.idAgrupamiento){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Agrupamiento del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDCargo){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Cargo del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDTareaDesempeñada){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar la Tarea Desempeñada del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDModoContratacion){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Modo de Contratación del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDModoLiquidacion){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Modo de Liquidación del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.idCentrodeCosto){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Centro de Costo del Empleado",
+              icon: "error",
+            })
+          }
+          /* if(!bodyPetitionEmpleadoGuarda.iDSectorDpto){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Sector del Empleado",
+              icon: "error",
+            })
+          } */
+          if(!bodyPetitionEmpleadoGuarda.idObraSocial){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar la Obra Social del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDFormadePago){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar la Forma de Pago del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.iDLugardePago){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Lugar de Pago del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.idBanco){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Banco del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.nroCtaBanco){
+            return swal({
+              title: "Error",
+              text: "Debe escribir el N° de Cuenta del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.tipoCuenta){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Tipo de Cuenta del Empleado",
+              icon: "error",
+            })
+          }
+          if(!bodyPetitionEmpleadoGuarda.cbu){
+            return swal({
+              title: "Error",
+              text: "Debe escribir el CBU del Empleado",
+              icon: "error",
+            })
+          }
+          if(responses.fomrLiquidacion?.inputCheckAsigna && !bodyPetitionEmpleadoGuarda.iDEsquema){
+            return swal({
+              title: "Error",
+              text: "Debe seleccionar el Esquema del Empleado",
+              icon: "error",
+            })
+          }
+        //#endregion
       
-        if(empleadoUno.iDempleado === 0 || empleadoUno.iDempleado === undefined){
-           await axios.post(urls.urlEmpleadoGuarda, bodyPetitionEmpleadoGuarda, {
-            headers: {
-              'Access-Control-Allow-Origin' : '*'
-            }})
-           .then((res)=>{
-            setRefectch(!refetch);
-            console.log(res)
-             swal({
-              title: "Ok",
-              text: "Empleado Guardado con éxito",
-              icon: "success",
-          })
-
-           })
-        }else{
-          await axios.put(urls.urlEmpleadoGuarda, bodyPetitionEmpleadoUpdate)
-          .then((res)=>{
-            console.log(res);
-            setRefectch(!refetch);
-             swal({
-              title: "Ok",
-              text: "Empleado Modificado con éxito",
-              icon: "success",
-          })
+      }else{
+          //#region validation Updates
+          if(!bodyPetitionEmpleadoUpdate.legajo){
+            return swal({
+              title: "Error",
+              text: "Debe escribir el legajo del Empleado",
+              icon: "error",
           })
         }
-        switch(urls){
-          case urls.urlTRabajoDelete : {
-              arrays.idsTrabajosAnterioresDelete.map(async (id)=>{
-                await axios.delete(`${urls.urlTRabajoDelete}${id}`)
-                .then((res) => console.log(res))
-              })
+        if(!bodyPetitionEmpleadoUpdate.apellido){
+          return swal({
+            title: "Error",
+            text: "Debe escribir el/los Apellido/s del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.nombres){
+          return swal({
+            title: "Error",
+            text: "Debe escribir el/los Apellido/s del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDtipoDocumento){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el tipo de DNI del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.nroDocumento){
+          return swal({
+            title: "Error",
+            text: "Debe escribir el N° de DNI del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.cuil){
+          return swal({
+            title: "Error",
+            text: "Debe escribir el N° de CUIL del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.telFijo){
+          return swal({
+            title: "Error",
+            text: "Debe escribir el N° de Telefono del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDestadoCivil){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Estado Civil del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.idNacionalidad){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar la Nacionalidad del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.idEstado){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Estado del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.sexo){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Sexo del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.idPaisOrigen){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el País de Origen del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDEstudios){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Nivel de Estudios del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDEmpleador){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Empleador del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDCategoria){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar la Categoría del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.idAgrupamiento){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Agrupamiento del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDCargo){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Cargo del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDTareaDesempeñada){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar la Tarea Desempeñada del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDModoContratacion){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Modo de Contratación del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDModoLiquidacion){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Modo de Liquidación del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.idCentrodeCosto){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Centro de Costo del Empleado",
+            icon: "error",
+          })
+        }
+        /* if(!bodyPetitionEmpleadoUpdate.iDSectorDpto){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Sector del Empleado",
+            icon: "error",
+          })
+        } */
+        if(!bodyPetitionEmpleadoUpdate.idObraSocial){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar la Obra Social del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDFormadePago){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar la Forma de Pago del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.iDLugardePago){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Lugar de Pago del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.idBanco){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Banco del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.nroCtaBanco){
+          return swal({
+            title: "Error",
+            text: "Debe escribir el N° de Cuenta del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.tipoCuenta){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Tipo de Cuenta del Empleado",
+            icon: "error",
+          })
+        }
+        if(!bodyPetitionEmpleadoUpdate.cbu){
+          return swal({
+            title: "Error",
+            text: "Debe escribir el CBU del Empleado",
+            icon: "error",
+          })
+        }
+        if(responses.fomrLiquidacion?.inputCheckAsigna && !bodyPetitionEmpleadoGuarda.iDEsquema){
+          return swal({
+            title: "Error",
+            text: "Debe seleccionar el Esquema del Empleado",
+            icon: "error",
+          })
+        }
+          //#endregion
+      }
+      
+        
+          if(empleadoUno.iDempleado === 0 || empleadoUno.iDempleado === undefined){
+             await axios.post(urls.urlEmpleadoGuarda, bodyPetitionEmpleadoGuarda, {
+              headers: {
+                'Access-Control-Allow-Origin' : '*'
+              }})
+             .then((res)=>{
+              setRefectch(!refetch);
+              console.log(res)
+               swal({
+                title: "Ok",
+                text: "Empleado Guardado con éxito",
+                icon: "success",
+            })
+  
+             })
+          }else{
+            await axios.put(urls.urlEmpleadoGuarda, bodyPetitionEmpleadoUpdate)
+            .then((res)=>{
+              console.log(res);
+              setRefectch(!refetch);
+               swal({
+                title: "Ok",
+                text: "Empleado Modificado con éxito",
+                icon: "success",
+            })
+            })
           }
-          case urls.urlDocDelte : {
-            arrays.documentacionDelte.map(async (id)=>{
-              await axios.delete(`${urls.urlDocDelte}${id}`)
+    }else{
+      switch(urls){
+        case urls.urlTRabajoDelete : {
+            arrays.idsTrabajosAnterioresDelete.map(async (id)=>{
+              await axios.delete(`${urls.urlTRabajoDelete}${id}`)
               .then((res) => console.log(res))
+<<<<<<< Updated upstream
             })}
           case urls.urlLicDelete : {
             arrays.licenciasDelete.map(async (id)=>{
               await axios.delete(`${urls.urlLicDelete}${id}`)
               .then((res) => console.log(res))
+=======
+>>>>>>> Stashed changes
             })
         }
-          default : {
-              arrays[0].map(async (id)=>{
-                await axios.delete(`${urls.urlTRabajoDelete}${id}`)
-                .then((res) => console.log(res))
-            });
-            arrays[1].map(async (id)=>{
-              await axios.delete(`${urls.urlDocDelte}${id}`)
-              .then((res) => console.log(res))
-            });
-            arrays[2].map(async (id)=>{
-              await axios.delete(`${urls.urlLicDelete}${id}`)
+        case urls.urlDocDelte : {
+          arrays.documentacionDelte.map(async (id)=>{
+            await axios.delete(`${urls.urlDocDelte}${id}`)
+            .then((res) => console.log(res))
+          })}
+        case urls.urlLicDelete : {
+           arrays.licenciasDelete.map(async (id)=>{
+             await axios.delete(`${urls.urlLicDelete}${id}`)
+             .then((res) => console.log(res))
+          })
+      }
+        default : {
+            arrays[0].map(async (id)=>{
+              await axios.delete(`${urls.urlTRabajoDelete}${id}`)
               .then((res) => console.log(res))
           });
+<<<<<<< Updated upstream
           }
+=======
+          arrays[1].map(async (id)=>{
+            await axios.delete(`${urls.urlDocDelte}${id}`)
+            .then((res) => console.log(res))
+          });
+          arrays[2].map(async (id)=>{
+            let array = {
+              "arrayList": [
+                id
+              ]
+            }
+            console.log(array)
+            await axios.delete(`${urls.urlLicDelete}0`, {data : array, headers : {'Content-Type': 'application/json;'}})
+            .then((res) => console.log(res))
+         });
+>>>>>>> Stashed changes
         }
+      }
+    }
+       
     }catch(err){
         //codigo de error
         swal({
             title: "Error",
-            text: "Error al eliminar el trabajo anterior",
+            text: "Error al guardar/actualizar el empleado",
             icon: "error",
         })
     }

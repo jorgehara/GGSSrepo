@@ -117,6 +117,7 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
 
   function habilitaUpdate(e) {
     e.preventDefault();
+    setValueEmpl(true)
     setRefectch(!refetch)
     if (empleadoUno.iDempleado && empleadoUno.iDempleado) {
       return setDisable(false);

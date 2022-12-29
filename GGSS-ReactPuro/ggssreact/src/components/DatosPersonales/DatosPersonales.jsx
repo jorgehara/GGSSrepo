@@ -112,109 +112,9 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
       e.preventDefault();
     }
   };
-  //#endregion
+
   
-  async function sendDataEmploye(){
-    let bodyPostEmploye = {
-      "iDempleado" : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1),
-      "legajo": datosPersonalesRedux.numLegajo,
-      "apellido": datosPersonalesRedux.apellidoInput,
-      "iDtipoDocumento": datosPersonalesRedux.dniSelected,
-      "nroDocumento": datosPersonalesRedux.documentoInput,
-      "cuil": datosPersonalesRedux.inputCuil,
-      "sexo": datosPersonalesRedux.inputSexo,
-      "iDestadoCivil": datosPersonalesRedux.estadoCivilInput,
-      "iDnacionalidad": datosPersonalesRedux.nacionalidadesInput,
-      "fechaNacimiento": datosPersonalesRedux.inputDateNac,
-      "iDestudios": datosPersonalesRedux.estudiosInput,
-      "fechaIngreso": today,
-      "fechaEfectiva": today,
-      "iDcategoria": 9,
-      "iDcargo": 11,
-      "iDtareaDesempeñada": 30,
-      "idCentrodeCosto": 26,
-      "iDsectorDpto": 1,
-      "iDmodoContratacion": 11,
-      "iDmodoLiquidacion": 1,
-      "iDformadePago": 1,
-      "idbanco": 4,
-      "nroCtaBanco": "string",
-      "cbu": "string",
-      "iDlugardePago": 1,
-      "iDobraSocial": 1,
-      "iDsindicato": 1,
-      "fechaEgreso": "2022-11-16T18:04:19.597Z",
-      "iDesquema": 1,
-      "iDempleador": 1,
-      "nombres": datosPersonalesRedux.nombresInput,
-      "idEstado": datosPersonalesRedux.estadosEmpleados,
-      "rutaFoto": "string",
-      "telFijo": datosPersonalesRedux.telefonoInput,
-      "acuerdo": 0,
-      "neto": 0,
-      "idPaisOrigen": datosPersonalesRedux.paisOrigenInput,
-      "mail": datosPersonalesRedux.email,
-      "telMovil": datosPersonalesRedux.movil,
-      "adicObraSocial": true,
-      "idConceptoAdicObraSocial": 44,
-      "adicAfjp": true,
-      "idConceptoAdicAfjp": 48,
-      "adicSindicato": true,
-      "idConceptoAdicSindicato": 49,
-      "tipoCuenta": 0,
-      "legajoAnterior": "string",
-      "imagen": imagenSended,
-      "totalRemuneracion": 0,
-      "totalNeto": 0,
-      "tieneEmbargos": true,
-      "tieneSumarioAdministrativo": true,
-      "tieneLicenciaSinGoceHaberes": true,
-      "obsEstudios": datosPersonalesRedux.observacionesEstudios,
-      "obsFechaIngreso": "string",
-      "idAgrupamiento": 1,
-      "idDireccion": 1,
-      "observacionesAdscripto": "string",
-      "idSectorAfectacion": 1,
-      "idDireccionAfectacion": 1,
-      "obsAfectacion": "string"
-    };
-   
   
-   const bodyNumeradores = {
-    tabla : "Empleados",
-    ultimovalor : ((empleados && empleados[empleados.length -1] !== undefined && (empleados[empleados.length -1].iDempleado))+1)
-   }
-    if(Object.values(bodyPostEmploye) === "" || Object.values(bodyPostEmploye) === null){
-      swal({
-        title: "Error",
-        text: "Debe llenar todos los campos",
-        icon: "error",
-      })
-      return;
-    }
-    await axios
-    .post('http://54.243.192.82/api/Empleados', bodyPostEmploye)
-    .then((res)=> {
-      try{
-        if(res.status === 200){
-          const idEmpleado = getNumeradorId("Empleados");
-          axios.put(`http://54.243.192.82/api/Numeradores/${idEmpleado[0].tabla}`, bodyNumeradores)
-          .then((res)=> console.log(res));
-          return (swal({
-            title: "Ok",
-            text: "Empleado guardado con exito",
-            icon: "success",
-          }))
-        }
-      }catch(ex){
-        return (swal({
-          title: "Error",
-          text: `Error: ${ex}`,
-          icon: "error",
-        }))
-      }  
-    }) 
-  }
 
   function cancelButton(){
     Array.from(document.querySelectorAll("input")).forEach(
@@ -233,7 +133,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
      
   }
 
-console.log(empleadoUno)
+console.log(formDatosPersonales?.dniSelected )
   return (
       //#region Menú Principal
 
@@ -318,7 +218,7 @@ console.log(empleadoUno)
                             nameLabel="D.N.I."
                             onChange={onChangeValues}
                             selectedId="dniSelected"
-                            idSelected={formDatosPersonales?.dniSelected ? formDatosPersonales?.dniSelected && formDatosPersonales?.dniSelected : empleadoUno.iDtipoDocumento}
+                            idSelected={formDatosPersonales?.dniSelected && formDatosPersonales?.dniSelected  !== "" ? formDatosPersonales?.dniSelected && formDatosPersonales?.dniSelected : empleadoUno.iDtipoDocumento}
                             validateNumbersDNI={validateNumbersDNI}
                             obligatorio ={true}
                             />
