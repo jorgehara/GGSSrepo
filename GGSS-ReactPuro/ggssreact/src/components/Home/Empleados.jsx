@@ -320,6 +320,8 @@ useEffect(()=>{
       });
       handleFetch(urlDomicilios, addDomicilios);
       handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
+   handleFetch(urlFamiliares, addFamiliares);
+
   }, [empleadoUno?.iDempleado, refetch]);
 
   useEffect(() => {
@@ -334,6 +336,9 @@ useEffect(()=>{
   const urlDocDelte = "http://54.243.192.82/api/EmpleadosDocumentacion/"
   const urlLicDelete = "http://54.243.192.82/api/"
     const urlEmpleadoGuarda = "http://54.243.192.82/api/Empleados/Guardar"
+
+
+
   const objectRequest = {
     urls : {
       urlTRabajoDelete : urlTRabajoDelete,
@@ -348,6 +353,9 @@ useEffect(()=>{
       licenciasDelete
     ]
   }
+
+
+
   const { urls, arrays } = objectRequest;
   console.log(arrays)
 
