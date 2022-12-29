@@ -1,12 +1,12 @@
 //#region -----------------------------------------------------------------------IMPORTS
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import './Navbar.css'
-import ButtonCallModal from '../Buttons/ButtonCallModal'
-import BasicModal from '../Modals/BasicModal/BasicModal'
-import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
-import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
-
+import swal from "sweetalert";
+import "./Navbar.css";
+import ButtonCallModal from "../Buttons/ButtonCallModal";
+import BasicModal from "../Modals/BasicModal/BasicModal";
+import ModalPDLB from "../Modals/ModalPDLB/ModalPDLB";
+import ModalEmpleadores from "../Modals/ModalEmpleadores/ModalEmpleadores";
 // ------------------------ OBJECTS ------------------------
 import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, textAreaCargos,urls } from './Objects'
 // -----------------------------------------------------------
@@ -17,16 +17,12 @@ import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago, addNewCargo, deleteCargo, putCargo, getIdCargo, addNewTarea, deleteTarea, putTarea, getIdTarea } from '../../redux/actions/fetchActions';
-import { useEffect } from 'react';
 import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu, setRefetch } from '../../redux/actions/modalesActions';
-import swal from "sweetalert";
 
 
 // import { getEstadosCivilesModal } from '../../services/fetchAPI';
 // import { useEffect } from 'react';
 //#endregion
-
-
 
 const NavbarMenu = () => {
 	
@@ -42,22 +38,20 @@ const NavbarMenu = () => {
 	const [responses, setResponses] = useState({});
 	const [modalDataInputs, setModalDataInputs] = useState(responses["modalDataInputs"])
 
-	function onChangeValues(e, key) {
-		const newResponse = { ...modalDataInputs }
-		newResponse[key] = e
-		setModalDataInputs({
-			...newResponse
-		})
-	}
-
-
-	useEffect(() => {
-		setResponses({
-			...responses,
-			modalDataInputs
-		});
-	}, [modalDataInputs]);
-
+  function onChangeValues(e, key) {
+    const newResponse = { ...modalDataInputs };
+    newResponse[key] = e;
+    setModalDataInputs({
+      ...newResponse,
+    });
+  }
+  useEffect(() => {
+    setResponses({
+      ...responses,
+      modalDataInputs,
+    });
+  }, [modalDataInputs]);
+	
 	//Paises
 	const paisNacionalidad = useSelector((state)=> state.generalState.paises)
 	//Calles
@@ -82,7 +76,6 @@ const NavbarMenu = () => {
 	const modosLiqValue = useSelector((state)=> state.generalState.modosLiquidacion);
 	//Empleadores
 	const empleadoresValue = useSelector((state)=> state.generalState.empleadores)
-
 	// ----------------------------------- ID & PETITION  -----------------------------------
 	//Estados Civiles
 	const estadosCivilesValue = useSelector((state) => state.generalState.estadosCiviles);
@@ -97,13 +90,11 @@ const NavbarMenu = () => {
 	const estudioSelected = useSelector((state) => state.modalState.estudioSelected);
 	const inputNivelEstudio = useSelector((state) => state.modalState.formulario.inputNivelEstudio)
 	const valueIdEstudio = useSelector((state) => state.generalState.idEstudio);
-
 	// Tipos de documento
 	const tiposDocumentoValue = useSelector((state) => state.generalState.tiposDocumento)
 	const tipoDocumentoSelected = useSelector((state) => state.modalState.tipoDocumentoSelected)
 	const inputTipoDocumento = useSelector((state) => state.modalState.formulario.inputTipoDocumento)
 	const valueIdTipoDoc = useSelector((state) => state.generalState.idTipoDoc)
-
 	// Parentescos
 	const parentescosValue = useSelector((state) => state.generalState.parentescos)
 	const parentescoSelected = useSelector((state) => state.modalState.parentescoSelected)
@@ -113,26 +104,22 @@ const NavbarMenu = () => {
 	const inputImporteParent = useSelector((state) => state.modalState.formulario.inputImporteParent)
 	const textAreaParent = useSelector((state) => state.modalState.formulario.textAreaParent)
 	const valueIdParentesco = useSelector((state) => state.generalState.idParentesco)
-
 	// estados para los empleados
 	const estadosValue = useSelector((state) => state.generalState.estados)
 	const estadoSelected = useSelector((state) => state.modalState.estadoSelected)
 	const inputEstado = useSelector((state) => state.modalState.formulario.inputEstado)
 	const valueIdEstado = useSelector((state) => state.generalState.idEstado)
-
 	// formas de pago
 	const formasPagoValue = useSelector((state) => state.generalState.formasDePago)
 	const formaPagoSelected = useSelector((state) => state.modalState.formaPagoSelected)
 	const inputFormaDePago = useSelector((state) => state.modalState.formulario.inputFormaDePago)
 	const textAreaFormaPago = useSelector((state) => state.modalState.formulario.textAreaFormaPago)
 	const valueIdFormaPago = useSelector((state) => state.generalState.idFormaPago)
-
 	// cargos
 	const cargoSelected = useSelector((state) => state.modalState.cargoSelected)
 	const inputCargo = useSelector((state) => state.modalState.formulario.inputCargo)
 	const textAreaCargo = useSelector((state) => state.modalState.formulario.textAreaCargo)
 	const valueIdCargo = useSelector((state) => state.generalState.idCargo)
-
 	// tareas desempeñadas
 	const tareasValue = useSelector((state) => state.generalState.tareasDesempeñadas)
 	const tareaSelected = useSelector((state) => state.modalState.tareaSelected)
@@ -140,8 +127,6 @@ const NavbarMenu = () => {
 	const textAreaTarea = useSelector((state) => state.modalState.formulario.textAreaTarea)
 	const valueIdTarea = useSelector((state) => state.generalState.idTarea)
 
-
-	
 	// ----------------------------------- ID & PETITION  -----------------------------------
 	//Estados Civiles
 	const idEstadoCivil = ((estadosCivilesValue && estadosCivilesValue[estadosCivilesValue.length -1] !== undefined && (estadosCivilesValue[estadosCivilesValue.length -1].idEstadoCivil))+1)
@@ -154,34 +139,28 @@ const NavbarMenu = () => {
 	const bodyPetTiposDoc = { ...responses.modalDataInputs, iDtipoDocumento: idTiposDocumento }
 	//Parentescos
 	const idParentesco = ((parentescosValue && parentescosValue[parentescosValue.length - 1] !== undefined && (parentescosValue[parentescosValue.length - 1].iDparentesco)) + 1)
-	const bodyPetParentescos = {
-		"iDparentesco": idParentesco,
-		"nombreParentesco": responses.modalDataInputs?.nombreParentesco,
-		"generaAsignacion": responses.modalDataInputs?.generaAsignacion,
-		"obs": responses.modalDataInputs?.obs,
-		"deduceGanancias": responses.modalDataInputs?.deduceGanancias,
-		"importeDeduce": responses.modalDataInputs?.importeDeduce
-	}
-	
+	const bodyPetParentescos = { "iDparentesco": idParentesco ,
+								"nombreParentesco": responses.modalDataInputs?.nombreParentesco,
+								"generaAsignacion": responses.modalDataInputs?.generaAsignacion,
+								"obs": responses.modalDataInputs?.obs,
+								"deduceGanancias": responses.modalDataInputs?.deduceGanancias,
+								"importeDeduce": responses.modalDataInputs?.importeDeduce }
 	// estados para los empleados
 	const idEstado = ((estadosValue && estadosValue[estadosValue.length - 1] !== undefined && (estadosValue[estadosValue.length - 1].idEstado)) + 1)
 	const bodyPetEstados = { ...responses.modalDataInputs, idEstado: idEstado }
 	// formas de pago
 	const idFormaPago = ((formasPagoValue && formasPagoValue[formasPagoValue.length - 1] !== undefined && (formasPagoValue[formasPagoValue.length - 1].iDformadePago)) + 1)
-	const bodyPetFormasPago = {
-		"iDformadePago": idFormaPago,
-		"nombreFormadePago": responses.modalDataInputs?.nombreFormadePago,
-		"obs": responses.modalDataInputs?.obs
-	}
-
+	const bodyPetFormasPago = { "iDformadePago": idFormaPago,
+								"nombreFormadePago": responses.modalDataInputs?.nombreFormadePago,
+								"obs": responses.modalDataInputs?.obs
+							}
 	// cargos
 	const idCargo = ((cargosValue && cargosValue[cargosValue.length - 1] !== undefined && (cargosValue[cargosValue.length - 1].iDcargo)) + 1)
 	const bodyPetCargos = {
-		"iDcargo": idCargo,
-      	"nombreCargo": responses.modalDataInputs?.nombreCargo,
-      	"observacion": responses.modalDataInputs?.observacion
-	}
-
+							"iDcargo": idCargo,
+							"nombreCargo": responses.modalDataInputs?.nombreCargo,
+							"observacion": responses.modalDataInputs?.observacion
+						}
 	// tareas desempeñadas
 	const idTarea = ((tareasValue && tareasValue[tareasValue.length - 1] !== undefined && (tareasValue[tareasValue.length - 1].idTareaDesempeñada)) + 1)
 	const bodyPetTareas = {
@@ -189,11 +168,7 @@ const NavbarMenu = () => {
 		"tareaDesempeñada": responses.modalDataInputs?.tareaDesempeñada,
 		"obs": responses.modalDataInputs?.obs
 	}
-
-
-
 	// --------------------------------------------------------------------------------------------------------------------------------------
-
 	return (
 		<nav className="row gy-3 navbar navbar-expand-lg navbar-light bg-light col-sm-12">
 			<div className="container-sm">
@@ -231,7 +206,6 @@ const NavbarMenu = () => {
 								<a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Tabla de Datos
 								</a>
-
 								<ul className="dropdown-menu">
 									<li class="dropdown-submenu">
 										<a className='dropdown-item' tabindex="-1" href="#">Para Empleados</a>
@@ -263,9 +237,14 @@ const NavbarMenu = () => {
 									{/* <hr />
 									<li class="dropdown-submenu">
 										<a className='dropdown-item' tabindex="-1" href="#">Para Liquidación</a>
-										<ul class="dropdown-menu">
+										{/* <ul class="dropdown-menu"> */}
 											<div className="datosLiquidacion" style={{ fontSize: "13px" }}>
-												<ButtonCallModal idModal="Bancos" nameButton="Bancos" useNavbar={true} />
+											
+											
+
+
+{/* //-------------------------VERSION 2---------------------------------------------------------------------------------------------------------- */}
+												{/* <ButtonCallModal idModal="Bancos" nameButton="Bancos" useNavbar={true} />
 												<ButtonCallModal idModal="Telefonia" nameButton="Empresas de telefonia celular" useNavbar={true} />
 												<hr />
 												<ButtonCallModal idModal="Sindicatos" nameButton="Sindicatos" useNavbar={true} />
@@ -289,12 +268,13 @@ const NavbarMenu = () => {
 												<ButtonCallModal idModal="Jerarquia" nameButton="Jerarquía de Categorías" useNavbar={true} />
 												<ButtonCallModal idModal="Licencias" nameButton="Licencias por Antigüedad" useNavbar={true} />
 												<hr />
-												<ButtonCallModal idModal="Plan" nameButton="Plan de Cuentas" useNavbar={true} />
+												<ButtonCallModal idModal="Plan" nameButton="Plan de Cuentas" useNavbar={true} /> */}
+{/* //------------------------------------------------------------------------------------------------------------------------------------------------ */}
 											</div>
 										</ul>
-									</li> */}
+									</li> 
 								</ul>
-							</li>
+								<ul> 
 							{/* <li className="nav-item">
 								<a className="nav-link" href="/some/valid/uri">Informes y Listados</a>
 							</li>
@@ -318,11 +298,11 @@ const NavbarMenu = () => {
 								inputIdCompare="masculino"
 								firstOptionCompare={inputMascEstadosCiviles ? inputMascEstadosCiviles : estadoCivilSelected.masculino}
 								secondOptionCompare={inputFemEstadosCiviles ? inputFemEstadosCiviles : estadoCivilSelected.femenino}
-								urlApi={urlEstadosCiviles}
-								dispatchAddAction={addNewEstadoCivil}
-								dispatchDeleteAction={deleteEstadoCivil}
-								dispatchPutAction={putEstadoCivil}
-								dispatchGetID={getIdEstadoCivil}
+								urlApi={urls.urlEstados}
+								// dispatchAddAction={addNewEstadoCivil}
+								// dispatchDeleteAction={deleteEstadoCivil}
+								// dispatchPutAction={putEstadoCivil}
+								// dispatchGetID={getIdEstadoCivil}
 								bodyPet={bodyPetitionEC}
 								idApi={valueIdEstadoCivil}
 								resp={responses}
@@ -348,11 +328,11 @@ const NavbarMenu = () => {
 								inputIdCompare="estudiosNivel"
 								firstOptionCompare={inputNivelEstudio ? inputNivelEstudio : estudioSelected.estudiosNivel}
 								secondOptionCompare={inputNivelEstudio ? inputNivelEstudio : estudioSelected.estudiosNivel}
-								urlApi={urlEstudios}
-								dispatchAddAction={addNewEstudio}
-								dispatchDeleteAction={deleteEstudio}
-								dispatchPutAction={putEstudio}
-								dispatchGetID={getIdEstudio}
+								urlApi={urls.urlEstados}
+								// dispatchAddAction={addNewEstudio}
+								// dispatchDeleteAction={deleteEstudio}
+								// dispatchPutAction={putEstudio}
+								// dispatchGetID={getIdEstudio}
 								bodyPet={bodyPetEstudio}
 								idApi={valueIdEstudio}
 								resp={responses}
@@ -360,7 +340,6 @@ const NavbarMenu = () => {
 								refetch={refetch}
 								setRefetch={setRefetch}
 							/>
-
 							<BasicModal
 								idModal="TipoDocumento"
 								nameModal="Tipo de Documento"
@@ -372,11 +351,11 @@ const NavbarMenu = () => {
 								inputIdCompare="tipoDocumento"
 								firstOptionCompare={inputTipoDocumento ? inputTipoDocumento : tipoDocumentoSelected.tipoDocumento}
 								secondOptionCompare={inputTipoDocumento ? inputTipoDocumento : tipoDocumentoSelected.tipoDocumento}
-								urlApi={urlTiposDocumento}
-								dispatchAddAction={addNewTipoDoc}
-								dispatchDeleteAction={deleteTipoDoc}
-								dispatchPutAction={putTipoDoc}
-								dispatchGetID={getIdTipoDoc}
+								urlApi={urls.urlEstados}
+								// dispatchAddAction={addNewTipoDoc}
+								// dispatchDeleteAction={deleteTipoDoc}
+								// dispatchPutAction={putTipoDoc}
+								// dispatchGetID={getIdTipoDoc}
 								bodyPet={bodyPetTiposDoc}
 								idApi={valueIdTipoDoc}
 								resp={responses}
@@ -384,7 +363,6 @@ const NavbarMenu = () => {
 								refetch={refetch}
 								setRefetch={setRefetch}
 							/>
-
 							<BasicModal
 								idModal="Parentescos"
 								nameModal="Parentescos"
@@ -393,7 +371,7 @@ const NavbarMenu = () => {
 								checkboxNumObject={checkboxNumParentescos}
 								textArea={true}
 								textAreaObject={textAreaObject}
-								hasCheckbox={true}
+								hasCheckbox={true}							
 								hasCheckBoxNum={true}
 								array={parentescosValue && parentescosValue}
 								propArrayOp="nombreParentesco" propArrayId="iDparentesco"
@@ -404,20 +382,19 @@ const NavbarMenu = () => {
 								firstOptionCompare={inputParentesco ? inputParentesco : parentescoSelected.nombreParentesco}
 								secondOptionCompare={inputParentesco ? inputParentesco : parentescoSelected.nombreParentesco}
 								valueObs={textAreaParent ? textAreaParent : parentescoSelected.obs}
-								valueCheckbox={inputAsignacionParent ? inputAsignacionParent : parentescoSelected.generaAsignacion}
+								valueCheckbox={inputAsignacionParent ? inputAsignacionParent : parentescoSelected.generaAsignacion }
 								valueCheckboxNum={inputGananciaParent ? inputGananciaParent : parentescoSelected.deduceGanancias}
 								valueNumCheck={inputImporteParent ? inputImporteParent : parentescoSelected.importeDeduce}
-								dispatchAddAction={addNewParentesco}
-								dispatchDeleteAction={deleteParentesco}
-								dispatchPutAction={putParentesco}
-								dispatchGetID={getIdParentesco}
+								// dispatchAddAction={addNewParentesco}
+								// dispatchDeleteAction={deleteParentesco}
+								// dispatchPutAction={putParentesco}
+								// dispatchGetID={getIdParentesco}
 								bodyPet={bodyPetParentescos}
 								idApi={valueIdParentesco}
 								onChange={onChangeValues}
 								refetch={refetch}
 								setRefetch={setRefetch}
 								resp={responses}
-
 							/>
 							<BasicModal
 								idModal="estadosEmpleados"
@@ -431,19 +408,17 @@ const NavbarMenu = () => {
 								inputIdCompare="nombreEstado"
 								firstOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
 								secondOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
-								dispatchAddAction={addNewEstado}
-								dispatchDeleteAction={deleteEstado}
-								dispatchPutAction={putEstado}
-								dispatchGetID={getIdEstado}
+								// dispatchAddAction={addNewEstado}
+								// dispatchDeleteAction={deleteEstado}
+								// dispatchPutAction={putEstado}
+								// dispatchGetID={getIdEstado}
 								bodyPet={bodyPetEstados}
 								idApi={valueIdEstado}
 								onChange={onChangeValues}
 								resp={responses}
 								refetch={refetch}
 								setRefetch={setRefetch}
-
 							/>
-
 							<BasicModal
 								idModal="formasDePago"
 								nameModal="Formas de Pago"
@@ -459,10 +434,10 @@ const NavbarMenu = () => {
 								firstOptionCompare={inputFormaDePago ? inputFormaDePago : formaPagoSelected.nombreFormadePago}
 								secondOptionCompare={inputFormaDePago ? inputFormaDePago : formaPagoSelected.nombreFormadePago}
 								valueObs={textAreaFormaPago ? textAreaFormaPago : formaPagoSelected.obs}
-								dispatchAddAction={addNewFormaPago}
-								dispatchDeleteAction={deleteFormaPago}
-								dispatchPutAction={putFormaPago}
-								dispatchGetID={getIdFormaPago}
+								// dispatchAddAction={addNewFormaPago}
+								// dispatchDeleteAction={deleteFormaPago}
+								// dispatchPutAction={putFormaPago}
+								// dispatchGetID={getIdFormaPago}
 								bodyPet={bodyPetFormasPago}
 								idApi={valueIdFormaPago}
 								onChange={onChangeValues}
@@ -470,73 +445,18 @@ const NavbarMenu = () => {
 								refetch={refetch}
 								setRefetch={setRefetch}
 							/>
-
-
-							<BasicModal
-								idModal="cargos"
-								nameModal="Cargos"
-								placeholder={objectCargos}
-								// dropdown={true}
-								textArea={true}
-								textAreaObject={textAreaCargos}
-								array={cargosValue && cargosValue}
-								propArrayOp="nombreCargo" propArrayId="iDcargo"
-								action={addSelectedCargo}
-								opcionSelected={cargoSelected}
-								urlApi={urlCargos}
-								inputIdCompare="nombreCargo"
-								firstOptionCompare={inputCargo ? inputCargo : cargoSelected.nombreCargo}
-								secondOptionCompare={inputCargo ? inputCargo : cargoSelected.nombreCargo}
-								valueObs={textAreaCargo ? textAreaCargo : cargoSelected.observacion}
-								dispatchAddAction={addNewCargo}
-								dispatchDeleteAction={deleteCargo}
-								dispatchPutAction={putCargo}
-								dispatchGetID={getIdCargo}
-								bodyPet={bodyPetCargos}
-								idApi={valueIdCargo}
-								onChange={onChangeValues}
-								resp={responses}
-								refetch={refetch}
-								setRefetch={setRefetch}
-							/>
-							<BasicModal
-								idModal="tareasDesempeñadas"
-								nameModal="Tareas Desempeñadas"
-								placeholder={objectTareas}
-								// dropdown={true}
-								textArea={true}
-								textAreaObject={textAreaObject}
-								array={tareasValue && tareasValue}
-								propArrayOp="tareaDesempeñada" propArrayId="idTareaDesempeñada"
-								action={addSelectedTarea}
-								opcionSelected={tareaSelected}
-								urlApi={urlTareas}
-								inputIdCompare="tareaDesempeñada"
-								firstOptionCompare={inputTarea ? inputTarea : tareaSelected.tareaDesempeñada}
-								secondOptionCompare={inputTarea ? inputTarea : tareaSelected.tareaDesempeñada}
-								valueObs={textAreaTarea ? textAreaTarea: tareaSelected.obs}
-								dispatchAddAction={addNewTarea}
-								dispatchDeleteAction={deleteTarea}
-								dispatchPutAction={putTarea}
-								dispatchGetID={getIdTarea}
-								bodyPet={bodyPetTareas}
-								idApi={valueIdTarea}
-								onChange={onChangeValues}
-								resp={responses}
-								refetch={refetch}
-								setRefetch={setRefetch}
-							/>
-							<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true} />
+							<BasicModal idModal="cargos" nameModal="Cargos" placeholder={objectCargos} dropdown={true} textArea={true} />
+							<BasicModal idModal="tareasDesempeñadas" nameModal="Tareas Desempeñadas" placeholder={objectTareas} dropdown={true} />
+							<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true}/>
 							<BasicModal idModal="modosDeLiquidacion" nameModal="Modos de Liquidacion" placeholder={objectModosLiquidacion} dropdown={true} textArea={true} />
 							<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
 							<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} />
 							<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} />
 							<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" />
-							<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true} />
+							<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true}/>
 							<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
 							<BasicModal idModal="alicuotas" nameModal="Alicuotas" placeholder={objectAlicuotas} inputNum={true} inputNumName="Alicuota" hasCheckbox={true} checkboxName="Pide N° CUIT" />
-
-							{/* {/ MODALES TABLA PARA LIQUIDACIÓN /} */}
+							{/* {/ MODALES TABLA PARA LIQUIDACIÓN PARA PROXIMA VERSION /} */}
 							<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true} />
 							<BasicModal idModal="Telefonia" nameModal="Empresas de Telefonia" placeholder={objectEmpresasTelefonia} />
 							<BasicModal idModal="Sindicatos" nameModal="Sindicatos" placeholder={objectSindicatos} dropdown={true} />
@@ -554,19 +474,15 @@ const NavbarMenu = () => {
 							<ModalConvenios idModal="Convenios" nameModal="Convenios, Categorías, Básicos y Antigüedad" placeholder={objectConvenios} inputsNumConvenios={inputsNumConvenios} column={tableConvenios} placeholderCategorias={objectCategorias} inputsNumCategorias={inputsNumCategorias} />
 							<ModalTable idModal="Jerarquia" nameModal="Jerarquía de las Categorías" column={tableJerarquia} dropdown={true} jerarquia={true} />
 							<ModalTable idModal="Licencias" nameModal="Licencias por Antigüedad" licencias={true} column={tableLicencias} objectInputs={inputsNumLicencias} />
-
-
-
+							</ul>
 							<li class="nav-item">
 								<a class="nav-link" href="/">Salir</a>
 							</li>
-						</ul>
-					</div>
-				</div>
-
-			</div>
-		</nav>
-	)
-}
+			
+			</div> 
+			</div> 
+			</div> 
+			</nav>
+)}
 
 export default NavbarMenu;

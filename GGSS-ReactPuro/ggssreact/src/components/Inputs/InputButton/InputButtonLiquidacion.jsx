@@ -1,11 +1,22 @@
 import React from 'react';
+import {useEffect, useState} from 'react';
 import "./InputButton.css";
 
-const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, swal , clasess, array,propArrayOp, propIdOption, idInput, obligatorio}) => {
+const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, swal , clasess, array,propArrayOp, propIdOption, idInput, obligatorio, display, useButton}) => {
 
-  
 
-console.log(disabled)
+    const [mostrarComponente, setMostrarComponente] = useState (false);
+
+  useEffect(() => {
+    setMostrarComponente(display);
+  }, [display]);
+
+
+    // useEffect(()=>{
+    //     usaBotton(useButton);
+    //   },[])
+
+// console.log(disabled)
   return (
     clasess ? <div className={`${clasess.classOne}`}>      
     <div className={`${clasess.classTwo}`}>
@@ -27,10 +38,10 @@ console.log(disabled)
             })
         }
        </select>
-        <button type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal)}
+        {/* <button type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal)}
               className={`${clasess.classFive}`} disabled={disabled}>
               {nameButton}
-        </button>
+        </button> */}
     </div>
     
 </div>
@@ -48,10 +59,16 @@ console.log(disabled)
                     disabled={disabled}
                     onChange={(e)=> onChange(e.target.value, idInput )}
                     />
-            <button  type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal)}
-                  className="btn btn-validacion btn-outline-danger" disabled={disabled}>
+            {/* <button  type="button" onClick={()=>funcionCuil(nroDocumento,genre, swal, useButton )}
+                  className={
+                    mostrarComponente
+                    ? "tercero btn btn-validacion btn-outline-danger btn-sm ml-2"
+                    : "none"
+                    } 
+                    useButton={false}
+                    disabled={disabled}>
                   {nameButton}
-            </button>
+            </button> */}
         </div>
     </div>
   );

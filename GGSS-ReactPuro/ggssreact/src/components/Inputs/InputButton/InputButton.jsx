@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import "./InputButton.css";
 
-const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal , clasess, obligatorio}) => {
+const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, usaCuil,datosPersonalesValue, action,swal , clasess, obligatorio, mostrarAsidePagos}) => {
 
   const [valor, setValor] = useState();
   const dispatch = useDispatch();
@@ -29,7 +29,6 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
     clasess ? <div className={`${clasess.classOne}`}>      
     <div className={`${clasess.classTwo}`}>
         <label className={`${clasess.classThree}`} htmlFor={nameInput}>{nameLabel}</label>
-
         <input type="text" 
                 value={ datosPersonalesValue && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
                 maxLength={maxLeght}
@@ -41,16 +40,18 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                 onChange={(e)=> onChange(e.target.value, id)}
                 />
         <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
-              className={`${clasess.classFive}`} disabled={disabled}>
+              className={`${clasess.classFive}`} 
+              disabled={disabled}
+              // disabled={mostrarAsidePagos}
+              >
               {nameButton}
         </button>
     </div>
-    
 </div>
         : 
 <div className="formulario__grupo__inputs-Button mt-2">      
         <div className='fomulario__container__button'>
-            <label className='formulario__label ' htmlFor={nameInput}>{nameLabel}</label>
+            <label className='formulario__label' htmlFor={nameInput}>{nameLabel}</label>
 
             <input type="text" 
                     value={ datosPersonalesValue !== undefined && datosPersonalesValue !== "" ? datosPersonalesValue : valor }
@@ -62,12 +63,11 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
                     disabled={disabled}
                     onChange={(e)=> onChange(e.target.value,id )}
                     />
-            <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
+            {/* <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
                   className="btn btn-validacion btn-outline-danger" disabled={disabled}>
                   {nameButton}
-            </button>
+            </button> */}
         </div>
-			  
     </div>
   );
 };

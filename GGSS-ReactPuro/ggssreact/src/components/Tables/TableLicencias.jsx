@@ -36,7 +36,6 @@ const TableLicencias = ({
         <tbody>
           {licenciaDelEmpleado &&
             licenciaDelEmpleado.map((valor, i) => {
-           
               return (
                 <tr key={i}>
                   <th scope="row">

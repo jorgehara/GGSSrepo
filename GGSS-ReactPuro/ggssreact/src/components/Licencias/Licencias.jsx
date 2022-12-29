@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { inputSelectedoptionLicencias } from '../../classes/classes';
+import { deleteLicencia } from '../../redux/actions/fetchActions';
 import { selectedOption } from '../../redux/actions/licenciasActions';
 import { OPTIONS_FORMULARIO } from '../../redux/types/LicenciasTypes';
 import EmployeData from '../EmployeData/EmployeData';
@@ -43,9 +44,12 @@ const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaE
             }
         )
     })
-    
-
-   
+    useEffect(()=>{
+        axios.get(`http://54.243.192.82/api/MostrarDatosPorEmpleado/${empleadoUno?.iDempleado}`)
+        .then((res)=>{
+            setLicenciaEmpladoDatos(res.data)
+        })
+    },[empleadoUno?.iDempleado, refetch])
 
     function onChangeValues(e, key){
         const newResponse = {...formLicencias};
@@ -54,7 +58,6 @@ const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaE
             ...newResponse
         });
     };
-
     useEffect(() => {
         setResponses({
           ...responses,
@@ -79,6 +82,13 @@ const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaE
         }
         
     }
+
+    const deleteLicencias= (id)=>{
+        dispatch(deleteLicencia(Number(id)));
+        // dispatch(saveId(id))
+
+    }
+
 
 return (
     <div className='container'>

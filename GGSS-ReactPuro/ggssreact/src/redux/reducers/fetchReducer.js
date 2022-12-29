@@ -45,14 +45,15 @@ export const initialState = {
     idEstudio : 0,
     idTipoDoc : 0,
     idParentesco : 0,
-    conceptos : "",
-    trabajosAnteriores : "",
-    licenciasEmpleados : "",
     idEstado : 0,
     idFormaPago : 0,
     conceptosXesquemas : "",
     idCargo : 0,
-    idTarea : 0
+    idTarea : 0,
+    conceptos : "",
+    trabajosAnteriores : "",
+    licenciasEmpleados : "",
+    
 }
 
 export const fetchReducer = (state = initialState, action) =>{
@@ -335,6 +336,8 @@ export const fetchReducer = (state = initialState, action) =>{
                 licenciasEmpleados : state.licenciasEmpleados.filter((lic)=> lic.idLicenciaEmpleado !== action.payload)
             }
         }
+
+        
         case ADD_NEW_DOC : {
         return{
             ...state.documentacionEmpleados,
@@ -421,21 +424,6 @@ export const fetchReducer = (state = initialState, action) =>{
                 formasDePago: [...state.formasDePago, action.payload]
             }
         }
-
-        case ADD_NEW_CARGO : {
-            return {
-                ...state,
-                cargos: [...state.cargos, action.payload]
-            }
-        }
-
-        case ADD_NEW_TAREA : {
-            return {
-                ...state,
-                tareasDesempeñadas: [...state.tareasDesempeñadas, action.payload]
-            }
-        }
-
 
 
         // --------------- DELETE REDUX ---------------
@@ -581,38 +569,6 @@ export const fetchReducer = (state = initialState, action) =>{
                 estados: [...state.estados, action.payload]
             }
         }
-
-        case PUT_FORMAPAGO : {
-            return {
-                ...state,
-                formasDePago: state.formasDePago.filter((forma) => forma.idFormaPago !== action.payload),
-                formasDePago: [...state.formasDePago, action.payload]
-            }
-        }
-
-        case PUT_CARGO : {
-            return {
-                ...state,
-                cargos: state.cargos.filter((cargo) => cargo.idCargo !== action.payload),
-                cargos: [...state.cargos, action.payload]
-            }
-        }
-
-        case PUT_TAREA : {
-            return {
-                ...state,
-                tareasDesempeñadas: state.tareasDesempeñadas.filter((tarea) => tarea.idTarea !== action.payload),
-                tareasDesempeñadas: [...state.tareasDesempeñadas, action.payload]
-            }
-        }
-
-        // case PUT_CALLES : {
-        //     return {
-        //         ...state,
-        //         calles: state.calles.filter((calle) => calle.idCalle !== action.payload ),
-        //         calles: [...state.calles, action.payload]
-        //     }
-        // }
 
         default : return state;
     }

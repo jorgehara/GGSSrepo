@@ -1,6 +1,7 @@
 import { ADD_DETALLE_LICENCIA, ADD_LIC_EMPLEADOS, ADD_NEW_DETALLE, ADD_ONE_LICENCIA, ADD_SELECT_DETALLE, CLEAR_IDS_LIC, CLEAR_LIC_SELECT, DELETE_DET_LIC, DELETE_LIC_EMPLEADO, ID_SELECT, OPTIONS_FORMULARIO, SAVE_IDS_LIC, SELECTED_OPTION, UPDATE_DETALLE,  } from "../types/LicenciasTypes";
 
 export const initialState = {
+
     selectedOptionLicencia : "",
     formulario : {
         inputOpcionsLicencias : ""
@@ -32,7 +33,7 @@ export const licenciasReducer=(state = initialState, action)=>{
         case ADD_ONE_LICENCIA : {
             return{
                 ...state,
-                licenciaEmpleado : payload
+                payload
             }
         }
         case ADD_DETALLE_LICENCIA : {
@@ -74,12 +75,12 @@ export const licenciasReducer=(state = initialState, action)=>{
                 licenciaEmpleado: {}
             }
            }
-        case SAVE_IDS_LIC : {
-            return {
-                ...state,
-                idsLic : [...state.idsLic.push(payload)]
-            }
-        }
+        // case SAVE_IDS_LIC : {
+        //     return {
+        //         ...state,
+        //         idsLic : [...state.idsLic.push(payload)]
+        //     }
+        // }
         case CLEAR_IDS_LIC : {
             return {
                 ...state,

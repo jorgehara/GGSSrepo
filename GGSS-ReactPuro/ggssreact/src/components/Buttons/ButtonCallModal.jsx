@@ -24,7 +24,7 @@ const ButtonCallModal = ({ idModal, nameButton, useNavbar, useButton ,disabled, 
   }
   return (
     <>
-      <button type="button" className={actualClass }  data-bs-toggle="modal" data-bs-target={`#${idModal}`} disabled={disabled}>
+      <button type="button" className={actualClass}  data-bs-toggle="modal" data-bs-target={`#${idModal}`} disabled={disabled}>
         {nameButton.toString()}
       </button>
     </>

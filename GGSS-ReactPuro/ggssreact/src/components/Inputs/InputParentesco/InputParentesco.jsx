@@ -23,7 +23,7 @@ const InputParentesco = ({
   propIdSelect,
   obligatorio
 }) => {
-  const [mostrarComponente, setMostrarComponente] = useState(true);
+  const [mostrarComponente, setMostrarComponente] = useState(false);
 
   useEffect(() => {
     setMostrarComponente(display);
@@ -89,7 +89,8 @@ const InputParentesco = ({
             }
             nameButton={nameButton}
             useNavbar={false}
-            useButton={true}
+            disableButton={true}
+            useButton={false}
             disabled={disable}
           />
         </div>

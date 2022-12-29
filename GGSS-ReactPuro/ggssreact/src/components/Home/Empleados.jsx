@@ -193,7 +193,6 @@ const Empleados = () => {
       await axios
         .get(`${url}/${paramOne},%201`)
         .then((res) => {
-          console.log(res)
           dispatch(action(res.data));
         })
         .catch((err) => {
@@ -216,6 +215,8 @@ const Empleados = () => {
   };
 const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
   
+
+//#region useEffect handleFetch
 useEffect(()=>{
    handleFetch(urlEstados, addEstados);
    handleFetch(urlEstadosCiviles, addEstadosCiviles);
@@ -262,6 +263,7 @@ useEffect(()=>{
 
      handleFetch(urlDocumentacion, getOneDocumento);
 
+      console.log("ejecuto empleados")
 
    handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);  
    
@@ -281,6 +283,7 @@ useEffect(()=>{
      handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
 
   }, [refetch]);
+//#endregion
 
   useEffect(() => {
     setImageEmpleado();
@@ -741,9 +744,9 @@ useEffect(()=>{
               .then((res) => console.log(res))
             })}
           case urls.urlLicDelete : {
-             arrays.licenciasDelete.map(async (id)=>{
-               await axios.delete(`${urls.urlLicDelete}${id}`)
-               .then((res) => console.log(res))
+            arrays.licenciasDelete.map(async (id)=>{
+              await axios.delete(`${urls.urlLicDelete}${id}`)
+              .then((res) => console.log(res))
             })
         }
           default : {
@@ -758,7 +761,7 @@ useEffect(()=>{
             arrays[2].map(async (id)=>{
               await axios.delete(`${urls.urlLicDelete}${id}`)
               .then((res) => console.log(res))
-           });
+          });
           }
         }
     }catch(err){
@@ -770,8 +773,6 @@ useEffect(()=>{
         })
     }
 }
-
-
   return (
     <div className="container-fluid">
       <div className="row">
@@ -875,5 +876,4 @@ useEffect(()=>{
     </div>
   );
 };
-
 export default Empleados;

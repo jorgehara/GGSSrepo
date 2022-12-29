@@ -1,6 +1,6 @@
 //#region Imports
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import swal from "sweetalert";
 import DNICboBox from "../Inputs/DNICboBox/DNICboBox";
 import InputButton from "../Inputs/InputButton/InputButton";
@@ -358,6 +358,9 @@ console.log(empleadoUno)
                             
                             />
                           <InputCbo
+                            value={empleadoUno && empleadoUno
+                              ? empleadoUno.iDestadoCivil
+                              : null}
                             action={ADD_DATOS_PERSONALES}
                             sexo={empleadoUno && empleadoUno ? empleadoUno.sexo : formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo}
                             nameButton="..."
@@ -367,7 +370,8 @@ console.log(empleadoUno)
                             propArrayOpFem="femenino"
                             idSelected={formDatosPersonales?.estadoCivilInput ? formDatosPersonales?.estadoCivilInput : empleadoUno.iDestadoCivil}
                             valueId="idEstadoCivil"
-                            display={true}
+                            propArray="Casado"
+                            display={false}
                             idModal="EstadoCivil"
                             disabled={(formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo === "") ? disableEstado : disable}
                             nameInput="estadoCivilInput"
@@ -389,7 +393,7 @@ console.log(empleadoUno)
                             idSelected={formDatosPersonales?.nacionalidadesInput ? formDatosPersonales?.nacionalidadesInput : empleadoUno.iDnacionalidad}
                             valueId="idPais"
                             propArray="Casado"
-                            display={true}
+                            display={false}
                             idModal="nacionalidades"
                             disabled={disable}
                             idInput="nacionalidadesInput"
@@ -414,7 +418,7 @@ console.log(empleadoUno)
                             masculinos=""
                             femeninos=""
                             onChange={onChangeValues}
-                            display={true}
+                            display={false}
                             idInput="estadosEmpleados"
                             idModal="estadosEmpleados"
                             disabled={disable} 
@@ -477,7 +481,7 @@ console.log(empleadoUno)
                             valueId="idPais"
                             masculinos=""
                             femeninos=""
-                            display={true}
+                            display={false}
                             idModal="paisOrigenInput"
                             disabled={disable}
                             idInput="paisOrigenInput"
@@ -497,7 +501,7 @@ console.log(empleadoUno)
                             valueId="iDestudios"
                             masculinos=""
                             femeninos=""
-                            display={true}
+                            display={false}
                             idModal="Estudios"
                             disabled={disable}
                             idInput="estudiosInput"

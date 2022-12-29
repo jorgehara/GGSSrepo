@@ -31,11 +31,11 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
             </div>
             <div className={`${clasess.classFive}`}>
                 <select className={`${clasess.classSix}`} defaultValue="" onChange={(e)=>onChange(e.target.value, idInput)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>
-                <option selected value="">Seleccionar</option>                    
+                <option className="options" selected value="">Seleccionar</option>                    
                     {
                     sexo  && sexo  && sexo.length > 0  && sexo === "M" ? array !== undefined && array.map((op, index)=>{
                         return(
-                      ( Number(idSelected) === op[valueId]) ? <option key={index}  onClick={(e)=>onClickOption(op)} selected value={op[valueId]}>
+                      ( Number(idSelected) === op[valueId]) ? <option className="options" key={index}  onClick={(e)=>onClickOption(op)} selected value={op[valueId]}>
                         {op[propArrayOp]} 
                       </option> :
                       <option defaultValue={op[propArrayOp]} onClick={(e)=>onClickOption(op)} value={op[valueId]} key={index}>                                                          

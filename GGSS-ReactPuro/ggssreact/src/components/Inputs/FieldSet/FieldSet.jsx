@@ -51,6 +51,7 @@ const FieldSet = ({
   const licenciaEmpleado = useSelector(
     (state) => state.licenciasState.licenciaEmpleado
   );
+
   const detalleSelected = useSelector(
     (state) => state.licenciasState.detalleSelect
   );
@@ -273,7 +274,6 @@ const FieldSet = ({
       });
   }
   function deleteLicenciaAxios(id) {
-    debugger;
       dispatch(deleteLicEmpleado(id))     
       dispatch(saveIdsLic(id))
           
@@ -292,9 +292,13 @@ const FieldSet = ({
       });
     }
   }
+  console.log(idSelected)
+
   function deleteWithOptions() {
     switch (selectedOption) {
-      case "1 - Disponibles por Periodo" ||
+      case 
+
+        "1 - Disponibles por Periodo" ||
         "3 - Prorroga Vencimiento" ||
         "2 - Solicita Nueva Licencia":
         deleteLicenciaAxios(idSelected);

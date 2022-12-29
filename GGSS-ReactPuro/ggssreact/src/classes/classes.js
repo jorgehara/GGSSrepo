@@ -17,6 +17,13 @@ export const classesEstadosCiviles = {
     "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
     "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
   }
+  export const inputButtonDoc= {
+    "classOne" : "formulario__grupo__inputs-Button mt-2",
+    "classTwo" : 'fomulario__container__button',
+    "classThree" : 'formulario__label',
+    "classFour" : 'formulario-input-InpButton form-select ml-0 px-0',
+    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+  }
   export const inputButtonClasessEmpleador= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
     "classTwo" : 'fomulario__container__button',
@@ -29,7 +36,7 @@ export const classesEstadosCiviles = {
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label_AsidePagos',
     "classFour" : 'formulario-input-InpButton-Pagos form-select ml-0 px-0 obligatorio',
-    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+    "classFive" : "btn btn-validacion btn-outline-white btn-sm",
   }
   export const inputButtonClasessDireccion= {
     "classOne" : "formulario__grupo__inputs-Button mt-2",
@@ -112,7 +119,8 @@ export const classesEstadosCiviles = {
     "classTwo" : 'fomulario__container__button',
     "classThree" : 'formulario__label',
     "classFour" : 'formulario-input-InpButton form-select ml-0 px-0 obligatorio',
-    "classFive" : "btn btn-validacion btn-outline-danger btn-sm",
+    //luego de la DEMO PASAR EL BTN OUTLINE-WHITE a DANGER
+    "classFive" : "btn btn-validacion btn-outline-white btn-sm",
   }
   export const inputSelectedoptionLicencias= {
     classOne : "formulario__grupo__inputs__cbo" ,

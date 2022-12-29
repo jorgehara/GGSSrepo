@@ -7,7 +7,7 @@ import InputButtonLiquidacion from '../../Inputs/InputButton/InputButtonLiquidac
 import InputRadio from '../../Inputs/InputRadio/InputRadio'
 
 
-const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion, disabled}) => {
+const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion, disabled, mostrarComponente}) => {
 
   const dispatch = useDispatch();
 
@@ -67,7 +67,8 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                 <div>
                 <InputButton
                 clasess={inputButtonClasessAsidePagos}
-                nameButton="..."
+                // mostrarAsidePagos={false}
+                // nameButton={false}
                 nameLabel="N° Cuenta"
                 placeholder="N° Cuenta"
                 value = {formLiquidacion?.inputNumCta && formLiquidacion?.inputNumCta}
@@ -91,17 +92,17 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
               />
               </div>
               <div>
-                <InputButton
+              <InputButton
                 clasess={inputButtonClasessAsidePagos}
-                nameButton="..."
-                  nameLabel="C.B.U."
-                  placeholder="C.B.U"
-                  value = {formLiquidacion?.inputCBU && formLiquidacion?.inputCBU}
-                  onChange={onChange}
-                  action={GET_INPUTS_VALUE}
-                  id="inputCBU"
-                  disabled={disabled}
-                />
+                // nameButton={false}
+                nameLabel="C.B.U."
+                placeholder="C.B.U"
+                value = {formLiquidacion?.inputCBU && formLiquidacion?.inputCBU}
+                onChange={onChange}
+                action={GET_INPUTS_VALUE}
+                id="inputCBU"
+                disabled={disabled}
+              />
               </div>
 
               <div className='mt-2'>

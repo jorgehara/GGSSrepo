@@ -490,9 +490,10 @@ export const updateLicencia=(payload)=>{
 export const deleteLicencia=(payload)=>{
     return{
         type: DELETE_LICENCIA,
-        payload,
-    };
+
+    }
 }
+
 export const putEstado = (payload) => {
     return {
         type: PUT_ESTADO,
@@ -503,6 +504,7 @@ export const putEstado = (payload) => {
 export const putFormaPago = (payload) => {
     return {
         type: PUT_FORMAPAGO,
+
         payload
     }
 }

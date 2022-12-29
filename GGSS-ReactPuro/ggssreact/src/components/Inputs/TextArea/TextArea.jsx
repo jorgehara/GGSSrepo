@@ -36,6 +36,7 @@ const TextArea = ({inputName, maxLength, value, disabled, action, onChange, idIn
         <input className="form-control-obs txtArea" 
                 value={value}
                 placeholder="Ingrese Observaciones" 
+                // onChange={(e)=>onChange(e, action)}
                 // onChange={(e) => onChange(e.target.value, inputId )} // ON CHANGE NUEVO PARA FUNCION NUEVA, NO ANDA
                 onChange={(e) => onChange(e.target.value, idInput)}
                 id={idInput} 
