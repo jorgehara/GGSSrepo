@@ -975,7 +975,12 @@ useEffect(()=>{
       }
         default : {
             arrays[0].map(async (id)=>{
-              await axios.delete(`${urls.urlTRabajoDelete}${id}`)
+              let array = {
+                "arrayList": [
+                  id
+                ]
+              }
+              await axios.delete(`${urls.urlTRabajoDelete}${id}`, {data : array, headers : {'Content-Type': 'application/json;'}})
               .then((res) => console.log(res))
           });
           arrays[1].map(async (id)=>{
