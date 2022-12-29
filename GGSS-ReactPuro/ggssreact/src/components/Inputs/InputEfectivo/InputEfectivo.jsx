@@ -39,7 +39,7 @@ const InputEfectivo = ({nameLabel, idInputCheck,idInputDate, idInputCheckAsigna,
         <label className='' htmlFor="">{nameLabel}</label>
         <input onChange={(e)=> onChangeChecks(e, GET_INPUTS_VALUE)} disabled={disableds} checked={checked} className='checkEfectivo' type="checkbox" name={idInputCheck} id={idInputCheck}  />
         <input onChange={(e)=> onChange(e.target.value, idInputDate)} disabled={disabled} className='inputdates' type="date" name={idInputDate} id={idInputDate} />
-        <input onChange={(e)=> onChangeCheck2s(e, GET_INPUTS_VALUE)} disabled={disableds} className=' checkAsigna' type="checkbox" name={idInputCheckAsigna} id={idInputCheckAsigna}  />
+        <input onChange={(e)=> {onChange(e.target.checked, idInputCheckAsigna);setChecked2(!checked2); setDisabled2(!disabled2)}} disabled={disableds} className=' checkAsigna' type="checkbox" name={idInputCheckAsigna} id={idInputCheckAsigna} checked={checked2}  />
         <label className='labelAsigna' htmlFor="">{nameLabelAsigna}</label>
         <select className={obligatorio ? 'selectAsigna obligatorio' : 'selectAsigna'} disabled={disabled2} onChange={(e)=> onChange(e.target.value, idSelect)} name={idSelect} id={idSelect}>
           <option value="">Seleccionar</option>

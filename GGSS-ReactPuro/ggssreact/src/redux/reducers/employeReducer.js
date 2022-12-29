@@ -1,4 +1,4 @@
-import { ADD_EMPLOYE, REMOVE_EMPLOYE, SELECTED_EMPLOYE, UPDATE_EMPLOYE,ADD_ONE_EMPLOYE, GET_INPUT_VALU_BROWSER, GET_EMPLOYES, DISABLE_FUNCTIONS } from "../types/employeTypes";
+import { ADD_EMPLOYE, REMOVE_EMPLOYE, SELECTED_EMPLOYE, UPDATE_EMPLOYE,ADD_ONE_EMPLOYE, GET_INPUT_VALU_BROWSER, GET_EMPLOYES, DISABLE_FUNCTIONS, CLEAN_EMPLOYE } from "../types/employeTypes";
 
 const initialState = {
     //Este estado inicial lo llamamos en el Browser a partir de nuestro estado General (que era employeStates).
@@ -68,6 +68,12 @@ const employeReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 disable: payload
+            }
+        }
+        case CLEAN_EMPLOYE : {
+            return{
+                ...state,
+                employe : state.employe = {}
             }
         }
         default :

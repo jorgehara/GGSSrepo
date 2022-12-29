@@ -10,6 +10,7 @@ import ButtonLarge from "../Buttons/ButtonLarge";
 import "./Browser.css";
 import {
   addOneEmploye,
+  cleanEmploye,
   disableFunctions,
   getEmployes,
 } from "../../redux/actions/employeActions";
@@ -22,7 +23,7 @@ import {
   deleteDetLic,
 } from "../../redux/actions/licenciasActions";
 
-const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses }) => {
+const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, setRefectch, refetch }) => {
   const url = "http://54.243.192.82/api/Empleados?records=10000";
 
   const dispatch = useDispatch();
@@ -81,7 +82,8 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses })
 
   function habilitaEdit() {
     setValueEmpl(true)
-
+    setRefectch(!refetch)
+    dispatch(cleanEmploye())
     Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );
@@ -115,6 +117,7 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses })
 
   function habilitaUpdate(e) {
     e.preventDefault();
+    setRefectch(!refetch)
     if (empleadoUno.iDempleado && empleadoUno.iDempleado) {
       return setDisable(false);
     }

@@ -1,4 +1,4 @@
-import { ADD_EMPLOYE, REMOVE_EMPLOYE, SELECTED_EMPLOYE,UPDATE_EMPLOYE,ADD_ONE_EMPLOYE, GET_INPUT_VALU_BROWSER, GET_EMPLOYES, DISABLE_FUNCTIONS } from "../types/employeTypes";
+import { ADD_EMPLOYE, REMOVE_EMPLOYE, SELECTED_EMPLOYE,UPDATE_EMPLOYE,ADD_ONE_EMPLOYE, GET_INPUT_VALU_BROWSER, GET_EMPLOYES, DISABLE_FUNCTIONS, CLEAN_EMPLOYE } from "../types/employeTypes";
 
 export const addEmploye = (payload) =>{
     return {
@@ -45,6 +45,12 @@ export const getEmployes=(payload)=>{
 export const disableFunctions=(payload)=>{
     return {
         type :  DISABLE_FUNCTIONS,
+        payload
+    }
+}
+export const cleanEmploye=(payload)=>{
+    return{
+        type: CLEAN_EMPLOYE,
         payload
     }
 }
