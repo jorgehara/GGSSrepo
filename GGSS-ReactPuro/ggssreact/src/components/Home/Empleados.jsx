@@ -223,6 +223,7 @@ useEffect(()=>{
    handleFetch(urlPaisesNac, addPaises);
    handleFetch(urlEstudios, addEstudios);
    handleFetch(urlTiposDNI, addTiposDocumento);
+   handleFetch(urlDomicilios, addDomicilios);
 },[refetching, empleadoUno])
 
   useEffect(() => {
@@ -272,7 +273,7 @@ useEffect(()=>{
    handleFetchComun(urlSectorDepto, addSectorDepto);
      handleFetchComun(urlInstrumLegal, addInstrumLegales); 
      handleFetchComun(urlDatosExtras, addDatosExtras);
-
+     handleFetch(urlDomicilios, addDomicilios);
   }, [disable]);
 
   useEffect(() => {
@@ -1029,6 +1030,8 @@ useEffect(()=>{
               setResponses={setResponses}
               valueempl ={valueempl}
               domiciliosEmpleados={domiciliosEmpleados}
+              setRefectch={setRefectch}
+              refetch={refetch}
             />
           )}
           {tabIndex === 1 && (

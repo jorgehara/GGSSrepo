@@ -1,4 +1,4 @@
-import { ADD_DOMICILIOS,ADD_ONEDOMICILIO,SELECT_BARRIO,SELECT_DEPARTAMENTO,SELECT_ID_DOMICILIO,SELECT_PROVINCIA, ADD_NEW_DOMICILIO, DELETE_ONE_DOMICILIO, SET_PREDETERMINADO, ADD_DOM_TABLE } from "../types/domiciliosTypes";
+import { ADD_DOMICILIOS,ADD_ONEDOMICILIO,SELECT_BARRIO,SELECT_DEPARTAMENTO,SELECT_ID_DOMICILIO,SELECT_PROVINCIA, ADD_NEW_DOMICILIO, DELETE_ONE_DOMICILIO, SET_PREDETERMINADO, ADD_DOM_TABLE, SAVE_IDS_DOM } from "../types/domiciliosTypes";
 
 
 export const initialState = {
@@ -16,7 +16,8 @@ export const initialState = {
     departamentoSelected : {},
     localidadSelected : {},
     idDomicilioSelected : 0,
-    domTable : []
+    domTable : [],
+    idsDom : []
 };
 
 const domicilioReducer = (state = initialState, action) =>{
@@ -52,7 +53,7 @@ const domicilioReducer = (state = initialState, action) =>{
         }
         case DELETE_ONE_DOMICILIO : {
             return{
-                ...state.domicilioEmpleado,
+                ...state,
                 domicilioEmpleado : state.domicilioEmpleado.filter((dom)=> dom.idDomicilio !== payload)
             }
         }
@@ -87,6 +88,12 @@ const domicilioReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 domTable : [...state.domTable, state.domTable.push(payload)]
+            }
+        }
+        case SAVE_IDS_DOM : {
+            return{
+                ...state,
+                idsDom : [...state.idsDom.push(payload)]
             }
         }
         default :

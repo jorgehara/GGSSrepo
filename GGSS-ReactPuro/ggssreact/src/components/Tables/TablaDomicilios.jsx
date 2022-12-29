@@ -11,7 +11,7 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
   const [domicilios, setDomicilios] = useState([]);
   const [valueInitial, setValueInitial ] = useState([]);
   const [dataTable, setDataTable] = useState([]);
-
+  const refetching = useSelector((state)=> state.modalState.refetch);
    
    useEffect(()=>{
     setValueInitial(value);
@@ -21,7 +21,8 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     setInputValor();
     getDataTable();
     setDomicilios( getDataTable());
-  },[valueInitial])
+  },[valueInitial,refetching])
+
   console.log(valueInitial)
 
   const domiciliosTable = useSelector((state)=> state.domiciliosStates.domTable);

@@ -8,14 +8,14 @@ import InputCbo from "../Inputs/InputCbo/InputCbo";
 import InputNumero from "../Inputs/InputNumero/InputNumero";
 import TablaDomicilios from "../Tables/TablaDomicilios";
 import './Domicilios.css';
-import { addNewDomicilio, addOneDomicilio, deleteOneDomicilio, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
+import { addNewDomicilio, addOneDomicilio, deleteOneDomicilioSelect, saveIdsDom, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 import { inputClassProvinciasDomicilios } from "../../classes/classes";
 import { useEffect } from "react";
 
 //#endregion
-const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, setFormDatosPersonales, domiciliosEmpleados}) => {
+const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, setFormDatosPersonales, domiciliosEmpleados, setRefectch, refetch}) => {
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
 
   const [domicilios, setDomicilios] = useState([]);
@@ -120,21 +120,9 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
       })
     }
   }
-  const deleteDomicilio =async (id)=>{
-    
-    await axios.delete(`http://54.243.192.82/api/Domicilios/${id}`)
-    .then((res)=> {
-      if(res.status === 200){  
-        console.log(res)
-        dispatch(deleteOneDomicilio(Number(id)))
-        return swal({
-          title: "Ok",
-          text: "Domicilio eliminado con éxito",
-          icon: "success",
-        })
-      }
-    }    
-    )   
+  const deleteDomicilio = (id)=>{
+    dispatch(deleteOneDomicilioSelect(Number(id)))
+    dispatch(saveIdsDom(id));   
   }
 
 

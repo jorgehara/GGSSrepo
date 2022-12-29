@@ -22,7 +22,7 @@ import EmployeData from "../EmployeData/EmployeData";
 
 //#endregion
 
-const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstado, disable, empleados, valueempl, domiciliosEmpleados}) => {
+const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstado, disable, empleados, valueempl, domiciliosEmpleados, setRefectch, refetch}) => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
   const [imagenSended , setImagenSended] = useState("");
   const [ formDatosPersonales, setFormDatosPersonales ] = useState(responses["formDatosPersonales"]);
@@ -436,7 +436,7 @@ console.log(formDatosPersonales?.dniSelected )
               </div>
             </div>
           </div>
-          <Domicilios domiciliosEmpleados={domiciliosEmpleados} onChangeValues={onChangeValues} formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={disable} responses={responses} setResponses={setResponses} />
+          <Domicilios setRefectch={setRefectch} refetch={refetch} domiciliosEmpleados={domiciliosEmpleados} onChangeValues={onChangeValues} formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={disable} responses={responses} setResponses={setResponses} />
         </div>
         <div className="d-flex justify-content-end">
           
