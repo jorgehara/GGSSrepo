@@ -1,4 +1,4 @@
-import { ADD_DOMICILIOS,ADD_ONEDOMICILIO,SELECT_BARRIO,SELECT_DEPARTAMENTO,SELECT_ID_DOMICILIO,SELECT_PROVINCIA, ADD_NEW_DOMICILIO, DELETE_ONE_DOMICILIO, SET_PREDETERMINADO } from "../types/domiciliosTypes";
+import { ADD_DOMICILIOS,ADD_ONEDOMICILIO,SELECT_BARRIO,SELECT_DEPARTAMENTO,SELECT_ID_DOMICILIO,SELECT_PROVINCIA, ADD_NEW_DOMICILIO, DELETE_ONE_DOMICILIO, SET_PREDETERMINADO, ADD_DOM_TABLE } from "../types/domiciliosTypes";
 
 
 export const initialState = {
@@ -15,7 +15,8 @@ export const initialState = {
     provinciaSelected : {},
     departamentoSelected : {},
     localidadSelected : {},
-    idDomicilioSelected : 0
+    idDomicilioSelected : 0,
+    domTable : []
 };
 
 const domicilioReducer = (state = initialState, action) =>{
@@ -80,6 +81,12 @@ const domicilioReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 idDomicilioSelected : payload
+            }
+        }
+        case ADD_DOM_TABLE : {
+            return{
+                ...state,
+                domTable : [...state.domTable, state.domTable.push(payload)]
             }
         }
         default :

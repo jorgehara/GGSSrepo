@@ -1,5 +1,5 @@
 import { Action } from "@remix-run/router";
-import { ADD_DOMICILIOS, ADD_NEW_DOMICILIO, ADD_ONEDOMICILIO, DELETE_ONE_DOMICILIO, SELECT_BARRIO, SELECT_DEPARTAMENTO, SELECT_ID_DOMICILIO, SELECT_PROVINCIA, SET_PREDETERMINADO } from "../types/domiciliosTypes";
+import { ADD_DOMICILIOS, ADD_DOM_TABLE, ADD_NEW_DOMICILIO, ADD_ONEDOMICILIO, DELETE_ONE_DOMICILIO, SELECT_BARRIO, SELECT_DEPARTAMENTO, SELECT_ID_DOMICILIO, SELECT_PROVINCIA, SET_PREDETERMINADO } from "../types/domiciliosTypes";
 
 export const addDomiciliosForm = (payload) =>{
     return {
@@ -53,5 +53,11 @@ export const setPredeterminado=(payload)=>{
     return {
         type : SET_PREDETERMINADO,
         payload,
+    }
+}
+export const addDomTable=(payload)=>{
+    return{
+        type : ADD_DOM_TABLE,
+        payload
     }
 }

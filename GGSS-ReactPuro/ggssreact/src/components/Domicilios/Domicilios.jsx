@@ -69,7 +69,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
     getDomicilioEmpleado()
   },[empleadoUno])
 
-  console.log(generalStateData.domicilios)
+  console.log(empleadoDomicilio)
 
   function getDomicilioEmpleado(){
     if(generalStateData.domicilios !== "" && empleadoUno){
