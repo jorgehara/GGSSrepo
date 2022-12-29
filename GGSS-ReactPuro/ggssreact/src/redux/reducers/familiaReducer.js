@@ -1,4 +1,4 @@
-import { ADD_FAMILIA, ADD_FAMILIAR, ADD_FAMILIAR_ID } from "../types/familiaTypes";
+import { ADD_FAMILIA, ADD_FAMILIAR, ADD_FAMILIAR_ID, DATOS_FAMILIAR_X_EMPLEADO } from "../types/familiaTypes";
 
 
 export const initialState = {
@@ -16,7 +16,8 @@ export const initialState = {
         nacionalidadFamilia : "",
         textAreaObservacionesFamilia : "",
         tiposDocumento : []
-    }
+    },
+    familiarPorEmpleado : ""
 };
 
 const familiaReducer = (state = initialState, action) =>{
@@ -40,6 +41,12 @@ const familiaReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 familiarSeleccionado : payload
+            }
+        }
+        case DATOS_FAMILIAR_X_EMPLEADO : {
+            return{
+                ...state,
+                familiarPorEmpleado : payload
             }
         }
         default :

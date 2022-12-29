@@ -133,7 +133,6 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
      
   }
 
-console.log(formDatosPersonales?.dniSelected )
   return (
       //#region Menú Principal
 

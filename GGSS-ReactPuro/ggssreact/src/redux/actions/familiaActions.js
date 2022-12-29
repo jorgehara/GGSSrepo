@@ -1,4 +1,4 @@
-import { ADD_FAMILIA, ADD_FAMILIAR, ADD_FAMILIAR_ID } from "../types/familiaTypes";
+import { ADD_FAMILIA, ADD_FAMILIAR, ADD_FAMILIAR_ID, DATOS_FAMILIAR_X_EMPLEADO } from "../types/familiaTypes";
 
 export const addFamilia = (payload) =>{
     return {
@@ -17,4 +17,10 @@ export const addFamiliar=(payload)=>{
         type : ADD_FAMILIAR,
         payload,
     };
+}
+export const getDAtosFamiliaresEmpleado=(payload)=>{
+    return{
+        type: DATOS_FAMILIAR_X_EMPLEADO,
+        payload
+    }
 }

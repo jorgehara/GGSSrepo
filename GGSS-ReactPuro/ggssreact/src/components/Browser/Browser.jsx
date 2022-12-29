@@ -38,28 +38,9 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
   const empleadoUno = useSelector((state) => state.employeStates.employe);
   const deshabilitado = useSelector((state) => state.employeStates.disable);
 
-  console.log("ejecuto browser");
+  
 
-  useEffect(() => {
-    console.log("ejecuto browser fetch");
-    axios.get(url).then((res) => {
-      let data = res.data.result;
-
-      if (valueInputApellido.length > 0) {
-        getEmployeByName(data, valueInputApellido).then((res) =>
-          dispatch(getEmployes(res))
-        );
-        return;
-      }
-      if (valueInputLegajo.length > 0) {
-        getEmployeByLegajo(data, valueInputLegajo).then((res) =>
-          dispatch(getEmployes(res))
-        );
-        return;
-      }
-      dispatch(getEmployes(res.data.result));
-    });
-  }, [valueInputLegajo, valueInputApellido]);
+ 
 
   const detalleSeleccionado = useSelector(
     (state) => state.licenciasState.detalleSelect

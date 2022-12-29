@@ -9,46 +9,9 @@ const TableBasic = ({
   seleccionado,
 }) => {
   const [inputCheck, setInputCheck] = useState({});
-  const [familiares, setFamiliares ] = useState([]);
   const dispatch = useDispatch();
-  const estudios = useSelector((state)=> state.generalState.estudios);
-  const parentescos = useSelector((state)=> state.generalState.parentescos);
-  const paisOrigenNac = useSelector((state) => state.generalState.paises);
-  const tiposDni = useSelector((state) => state.generalState.tiposDocumento);
-  
-  
-  useEffect(() => {
-    setInputCheck({});
-    setFamiliares(inputValueDom(array));
-  }, [array]);
+ 
 
-
-  const inputValueDom=(valor)=>{
-    
-    let estudioSelect = "";
-    let nacionalidadSelected = "";
-    let paisOrigenSelect = "";
-    let parentescosSelect = "";
-    let tipoDniSelec = "";
-
-    return valor && valor.map((valor,index)=>{
-      
-        estudioSelect = estudios && estudios.find((est) => valor.iDestudios === est.iDestudios);
-
-        nacionalidadSelected =paisOrigenNac && paisOrigenNac.find((nac)=> valor.iDnacionalidad === nac.nacionalidad_masc || valor.iDnacionalidad === nac.nacionalidad_fem);
-      
-        paisOrigenSelect = paisOrigenNac && paisOrigenNac.find((pais)=> valor.iDpaisOrigen === pais.idPais);
-
-        parentescosSelect = parentescos && parentescos.find((paren)=> valor.iDparentesco === paren.iDparentesco);
-
-        tipoDniSelec = tiposDni && tiposDni.find((tipoDni)=> valor.iDtipoDocumento === tipoDni.iDtipoDocumento);
-
-        const newDomicilios = {...valor, iDestudios : estudioSelect, iDnacionalidad : nacionalidadSelected, iDpaisOrigen : paisOrigenSelect, iDparentesco  : parentescosSelect, iDtipoDocumento : tipoDniSelec}
-        return( newDomicilios)
-      })
-      
-
-  }
 
 
 
@@ -71,7 +34,46 @@ const TableBasic = ({
             </tr>
           </thead>
           <tbody className="table-group-divider" id="cuerpodetabla">
-            { familiares && familiares.map((col, i) => {
+            { 
+                array && array.map((item,i)=>{
+                  return(
+                    <tr className="px-5" key={i}>
+                      <th scope="row">
+                        {" "}
+                        <input
+                          type="radio"
+                          checked={inputCheck[`selected${i}`]}
+                          name="imputRadio"
+                          value={item.idFamiliares}
+                          id={`selected${i}`}
+                          onClick={(e) => dispatch(addNewFamiliar(item.idFamiliares))}
+                        />
+                      </th>
+                      <td
+                      className=""
+                      key={item.iDfamiliares}>{item.apellidoyNombres}
+                      </td>
+                      <td>{item.tipoDocumento && item.tipoDocumento}</td>
+                      <td>{item && item.nroDocumento}</td>
+                      <td>{item && item.sexo}</td>
+                      <td>{item.nombreParentesco && item.nombreParentesco}</td>
+                      <td>
+                        {item.fechaNacimiento && item.fechaNacimiento.substring(0, item.fechaNacimiento.length - 9)}
+                      </td>
+                      <td>{item.paisOrigen && item.paisOrigen}</td>
+                      <td>{item.nacionalidad && item.nacionalidad}</td>
+                      <td>{item.estudiosNivel && item.estudiosNivel}</td>
+                      <td>{item?.f_Baja && item.f_Baja?.substring(
+                          0,
+                          item?.fBaja?.length - 9
+                        )}</td>
+                      <td>{item.noDeducirGanancias === false ? "No deduce" : "Si deduce"}</td>
+                      <td>{item.inlcuirCuotaAlimentaria === false ? "No incluye" : "Incluye"}</td>
+                      <td>{item.obs}</td>
+                    </tr>
+                  )
+                })
+            /* familiares && familiares.map((col, i) => {
               
               return (
                 <tr className="px-5" key={i}>
@@ -109,7 +111,8 @@ const TableBasic = ({
                   <td>{col.obs}</td>
                 </tr>
               );
-            })}
+            }) */
+            }
           </tbody>
         </table>
       </div>

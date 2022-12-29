@@ -49,7 +49,7 @@ export const licenciasReducer=(state = initialState, action)=>{
             }
         }
        case DELETE_DET_LIC : {
-        console.log(payload)
+        
         return {
             ...state,
             detalleLicencia : state.detalleLicencia && state.detalleLicencia.filter((det)=> det.idDetalleLicenciaEmpleado !== payload)

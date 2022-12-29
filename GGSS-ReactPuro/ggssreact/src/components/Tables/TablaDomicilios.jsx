@@ -23,10 +23,10 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
     setDomicilios( getDataTable());
   },[valueInitial,refetching])
 
-  console.log(valueInitial)
+  
 
   const domiciliosTable = useSelector((state)=> state.domiciliosStates.domTable);
-  console.log(dataTable)
+  
 
   async function getDataTable(){
     if(valueInitial.length > 0){

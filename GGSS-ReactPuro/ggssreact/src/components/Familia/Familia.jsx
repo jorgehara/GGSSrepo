@@ -64,8 +64,10 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
   const idFamiliarSelected = useSelector((state)=> state.familiaStates.familiar);
   const familiaresPorEmpleado = familiaresValue && familiaresValue.filter((familiar)=> familiar.iDempleado === empleadoUno.iDempleado);
   const familiarSeleccionadoR = useSelector((state)=> state.familiaStates.familiarSeleccionado);
+  const familiaresPorEmplado = useSelector((state)=> state.familiaStates.familiarPorEmpleado);
 
-  console.log(familiaresValue)
+
+  console.log(familiaresPorEmplado)
   //#endregion
 
   const propsRadioButton = {
@@ -344,7 +346,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
           onSelect={onSelect} 
           columns={columns} 
           disabled={disable} 
-          array={familiaresPorEmpleado &&  familiaresPorEmpleado } 
+          array={familiaresPorEmplado &&  familiaresPorEmplado } 
           seleccionado={familiarSeleccionadoR} 
           
           />

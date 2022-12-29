@@ -43,7 +43,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   //#region ------------------------------------------------------------------------------REDUX
   const urlDomicilios = `http://54.243.192.82/api/Domicilios?idDomicilio=0&idCalle=${formDatosPersonales?.inputCalleDomicilios}&Numero=${formDatosPersonales?.inputNumCalle}&idBarrio=${formDatosPersonales?.inputBarriosDomicilios}&Dpto=${formDatosPersonales?.inputDepartamentosDomicilios}&Predeterminado=${formDatosPersonales?.inputPredeterminado}&IdEmpleado=${empleadoUno.iDempleado}&IdEmpleador=1&NewId=0`;
 
-  console.log(empleadoDomicilio)
+
 
   const dispatch = useDispatch();
 
@@ -69,7 +69,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
     getDomicilioEmpleado()
   },[empleadoUno])
 
-  console.log(empleadoDomicilio)
+  
 
   function getDomicilioEmpleado(){
     if(generalStateData.domicilios !== "" && empleadoUno){

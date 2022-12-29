@@ -64,6 +64,9 @@ import {
   deleteDetLic,
 } from "../../redux/actions/licenciasActions";
 import swal from "sweetalert";
+import { getEmployeByLegajo, getEmployeByName } from "../../services/fetchAPI";
+import { getEmployes } from "../../redux/actions/employeActions";
+import { getDAtosFamiliaresEmpleado } from "../../redux/actions/familiaActions";
 
 const Empleados = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -174,7 +177,6 @@ const Empleados = () => {
     
   }
  
-  console.log(responses.formDatosPersonales?.inputImage)
   const handleFetch = async (url, action) => {
     dispatch({ type: SET_LOADING });
     await axios
@@ -319,7 +321,12 @@ useEffect(()=>{
       )
       .then((res) => {
         setDatosExtraEmpleado(res.data);
-      });
+      });//
+      axios.get(`http://54.243.192.82/api/MostrarDatosFamiliarPorEmpleado/${empleadoUno?.iDempleado}`)
+      .then((res)=>{
+        console.log(res)
+        dispatch(getDAtosFamiliaresEmpleado(res.data))
+      })
       handleFetch(urlDomicilios, addDomicilios);
       handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
     handleFetch(urlFamiliares, addFamiliares);
@@ -330,6 +337,33 @@ useEffect(()=>{
     dispatch(deleteDetLic(detalleSeleccionado.idDetalleLicenciaEmpleado));
   }, [empleadoUno?.iDempleado]);
 
+  const valueInputLegajo = useSelector(
+    (state) => state.employeStates.formulario.inpurLegajoBrowser
+  );
+  const valueInputApellido = useSelector(
+    (state) => state.employeStates.formulario.inputApellidoNombreBrowser
+  );
+  const url = "http://54.243.192.82/api/Empleados?records=100";
+  useEffect(() => {
+    
+    axios.get(url).then((res) => {
+      let data = res.data.result;
+
+      if (valueInputApellido.length > 0) {
+        getEmployeByName(data, valueInputApellido).then((res) =>
+          dispatch(getEmployes(res))
+        );
+        return;
+      }
+      if (valueInputLegajo.length > 0) {
+        getEmployeByLegajo(data, valueInputLegajo).then((res) =>
+          dispatch(getEmployes(res))
+        );
+        return;
+      }
+      dispatch(getEmployes(res.data.result));
+    });
+  }, [valueInputLegajo, valueInputApellido]);
 
   const idsTrabajosAnterioresDelete = useSelector((state)=> state.trabajosAnteriores.ids);
   const documentacionDelte = useSelector((state)=> state.documentacionState.ids);
@@ -359,7 +393,7 @@ useEffect(()=>{
 
 
   const { urls, arrays } = objectRequest;
-  console.log(arrays)
+  
 
 
   function cleanIdsGeneral(){

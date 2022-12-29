@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import "./Navbar.css"
 const Navbar = ({handleTabChange, tabIndex}) => {
 
-		console.log("ejecuto navbar")
+		
 
   return (
 	    <nav className="row gy-3 navbar navbar-expand-lg navbar-light bg-light p-0 m-0 ">
