@@ -1015,14 +1015,6 @@ useEffect(()=>{
             arrays.idsTrabajosAnterioresDelete.map(async (id)=>{
               await axios.delete(`${urls.urlTRabajoDelete}${id}`)
               .then((res) => console.log(res))
-<<<<<<< Updated upstream
-            })}
-          case urls.urlLicDelete : {
-            arrays.licenciasDelete.map(async (id)=>{
-              await axios.delete(`${urls.urlLicDelete}${id}`)
-              .then((res) => console.log(res))
-=======
->>>>>>> Stashed changes
             })
         }
         case urls.urlDocDelte : {
@@ -1041,9 +1033,6 @@ useEffect(()=>{
               await axios.delete(`${urls.urlTRabajoDelete}${id}`)
               .then((res) => console.log(res))
           });
-<<<<<<< Updated upstream
-          }
-=======
           arrays[1].map(async (id)=>{
             await axios.delete(`${urls.urlDocDelte}${id}`)
             .then((res) => console.log(res))
@@ -1058,7 +1047,6 @@ useEffect(()=>{
             await axios.delete(`${urls.urlLicDelete}0`, {data : array, headers : {'Content-Type': 'application/json;'}})
             .then((res) => console.log(res))
          });
->>>>>>> Stashed changes
         }
       }
     }
