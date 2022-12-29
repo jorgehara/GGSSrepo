@@ -8,7 +8,7 @@ import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
 import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 
 // ------------------------ OBJECTS ------------------------
-import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, textAreaCargos } from './Objects'
+import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, textAreaCargos, inputVtoObject } from './Objects'
 // -----------------------------------------------------------
 import { employeContext } from '../../context/employeContext';
 import ModalTable from '../Modals/ModalTable/ModalTable';
@@ -17,9 +17,9 @@ import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago, addNewCargo, deleteCargo, putCargo, getIdCargo, addNewTarea, deleteTarea, putTarea, getIdTarea, addNewModoLiq, deleteModoLiq, putModoLiq, getIdModoLiq } from '../../redux/actions/fetchActions';
+import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago, addNewCargo, deleteCargo, putCargo, getIdCargo, addNewTarea, deleteTarea, putTarea, getIdTarea, addNewModoLiq, deleteModoLiq, putModoLiq, getIdModoLiq, addNewModoCont, deleteModoCont, putModoCont, getIdModoCont } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
-import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedModoLiq, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
+import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedModoCont, addSelectedModoLiq, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
 import swal from "sweetalert";
 
 
@@ -168,6 +168,13 @@ const Navbar = () => {
 	const textAreaTarea = useSelector((state) => state.modalState.formulario.textAreaTarea)
 	const valueIdTarea = useSelector((state) => state.generalState.idTarea)
 
+	// modos de contratación
+	const modosContValue = useSelector((state) => state.generalState.modosContratacion)
+	const modoContSelected = useSelector((state) => state.modalState.modoContSelected)
+	const inputModoCont = useSelector((state) => state.modalState.formulario.inputModoCont)
+	const inputVtoModoCont = useSelector((state) => state.modalState.formulario.inputVtoModoCont)
+	const valueIdModoCont = useSelector((state) => state.generalState.idModoCont)
+
 	// modos de liquidación
 	const modosLiqValue = useSelector((state) => state.generalState.modosLiquidacion)
 	const modoLiqSelected = useSelector((state) => state.modalState.modoLiqSelected)
@@ -223,6 +230,14 @@ const Navbar = () => {
 		"idTareaDesempeñada": idTarea,
 		"tareaDesempeñada": responses.modalDataInputs?.tareaDesempeñada,
 		"obs": responses.modalDataInputs?.obs
+	}
+
+	// modos de contratación
+	const idModoCont = ((modosContValue && modosContValue[modosContValue.length - 1] !== undefined && (modosContValue[modosContValue.length - 1].iDmodoContratacion)) + 1)
+	const bodyPetModosCont = {
+		"iDmodoContratacion": idModoCont,
+		"modoContratacion": responses.modalDataInputs?.modoContratacion,
+		"fechaVto": responses.modalDataInputs?.fechaVto
 	}
 
 	// modos de liquidación
@@ -562,6 +577,36 @@ const Navbar = () => {
 							/>
 
 							<BasicModal
+								idModal="modosDeContratacion"
+								nameModal="Modos de Contratacion"
+								placeholder={objectModosContratacion}
+								// dropdown={true}
+								inputDate={true}
+								inputVtoObject={inputVtoObject}
+								valueInputDate={inputVtoModoCont ? inputVtoModoCont : modoContSelected.fechaVto}
+								array={modosContValue && modosContValue}
+								propArrayOp="modoContratacion" propArrayId="iDmodoContratacion"
+								action={addSelectedModoCont}
+								opcionSelected={modoContSelected}
+								urlApi={urlModosContratacion}
+								inputIdCompare="modoContratacion"
+								firstOptionCompare={inputModoCont ? inputModoCont : modoContSelected.modoContratacion}
+								secondOptionCompare={inputModoCont ? inputModoCont : modoContSelected.modoContratacion}
+								dispatchAddAction={addNewModoCont}
+								dispatchDeleteAction={deleteModoCont}
+								dispatchPutAction={putModoCont}
+								dispatchGetID={getIdModoCont}
+								bodyPet={bodyPetModosCont}
+								idApi={valueIdModoCont}
+								onChange={onChangeValues}
+								resp={responses}
+								refetch={refetch}
+								setRefetch={setRefetch}
+								
+							/>
+
+
+							<BasicModal
 								idModal="modosDeLiquidacion"
 								nameModal="Modos de Liquidacion"
 								placeholder={objectModosLiquidacion}
@@ -589,7 +634,6 @@ const Navbar = () => {
 								setRefetch={setRefetch}
 							/>
 
-							<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true} />
 							<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
 							<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} />
 							<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} />

@@ -1,4 +1,4 @@
-import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS, ADD_SELECTED_ESTADO, GET_ESTADOS, ADD_SELECTED_FORMAPAGO, GET_FORMASPAGO, ADD_SELECTED_CARGO, GET_CARGOS, ADD_SELECTED_TAREA, GET_TAREAS, ADD_SELECTED_MODOLIQ, GET_MODOSLIQ } from "../types/modalesTypes";
+import { ADD_SELECTED_EC, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, CANCEL_MODALS, GET_ESTADOSCIVILES, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS, ADD_SELECTED_ESTADO, GET_ESTADOS, ADD_SELECTED_FORMAPAGO, GET_FORMASPAGO, ADD_SELECTED_CARGO, GET_CARGOS, ADD_SELECTED_TAREA, GET_TAREAS, ADD_SELECTED_MODOLIQ, GET_MODOSLIQ, ADD_SELECTED_MODOCONT, GET_MODOSCONT } from "../types/modalesTypes";
 
 export const initialState = {
     estadoCivilSelected: "",
@@ -10,6 +10,7 @@ export const initialState = {
     cargoSelected: "",
     tareaSelected: "",
     calleSelected: "",
+    modoContSelected: "",
     modoLiqSelected: "",
     formulario: {
         // estados civiles
@@ -36,6 +37,9 @@ export const initialState = {
         // tareas desempeñadas
         inputTarea : "",
         textAreaTarea : "",
+        // modos de contratación
+        inputModoCont: "",
+        inputVtoModoCont: "",
         // modos de liquidación
         inputModoLiquidacion : "",
         textAreaModosLiq : ""
@@ -153,6 +157,20 @@ const modalesReducer = (state = initialState, action) => {
                 formulario: {...state.formulario, [payload.name]: payload.value}
             }
         }
+
+        case ADD_SELECTED_MODOCONT : {
+            return {
+                ...state,
+                modoContSelected: payload
+            }
+        }
+        case GET_MODOSCONT : {
+            return {
+                ...state,
+                formulario: {...state.formulario, [payload.name]: payload.value}
+            }
+        }
+
 
         case ADD_SELECTED_MODOLIQ : {
             return {

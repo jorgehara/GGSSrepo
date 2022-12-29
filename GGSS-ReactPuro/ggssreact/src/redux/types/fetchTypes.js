@@ -49,6 +49,7 @@ export const ADD_NEW_ESTADO = "ADD_NEW_ESTADO"
 export const ADD_NEW_FORMAPAGO = "ADD_NEW_FORMAPAGO"
 export const ADD_NEW_CARGO = "ADD_NEW_CARGO"
 export const ADD_NEW_TAREA = "ADD_NEW_TAREA"
+export const ADD_NEW_MODOCONT = "ADD_NEW_MODOCONT"
 export const ADD_NEW_MODOLIQ = "ADD_NEW_MODOLIQ"
 
 
@@ -84,6 +85,10 @@ export const DELETE_CARGO = "DELETE_CARGO"
 export const GET_ID_TAREA = "GET_ID_TAREA"
 export const DELETE_TAREA = "DELETE_TAREA"
 
+// modos de contratación
+export const GET_ID_MODOCONT = "GET_ID_MODOCONT"
+export const DELETE_MODOCONT = "DELETE_MODOCONT"
+
 // modos de liquidación
 export const GET_ID_MODOLIQ = "GET_ID_MODOLIQ"
 export const DELETE_MODOLIQ = "DELETE_MODOLIQ"
@@ -98,6 +103,7 @@ export const PUT_ESTADO = "PUT_ESTADO"
 export const PUT_FORMAPAGO = "PUT_FORMAPAGO"
 export const PUT_CARGO = "PUT_CARGO"
 export const PUT_TAREA = "PUT_TAREA"
+export const PUT_MODOCONT = "PUT_MODOCONT"
 export const PUT_MODOLIQ = "PUT_MODOLIQ"
 
 

@@ -1,4 +1,4 @@
-import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS, ADD_SELECTED_ESTADO, GET_ESTADOS, ADD_SELECTED_FORMAPAGO, GET_FORMASPAGO, ADD_SELECTED_CARGO, GET_CARGO, GET_CARGOS, ADD_SELECTED_TAREA, GET_TAREAS, ADD_SELECTED_MODOLIQ, GET_MODOSLIQ } from "../types/modalesTypes"
+import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS, ADD_SELECTED_ESTADO, GET_ESTADOS, ADD_SELECTED_FORMAPAGO, GET_FORMASPAGO, ADD_SELECTED_CARGO, GET_CARGO, GET_CARGOS, ADD_SELECTED_TAREA, GET_TAREAS, ADD_SELECTED_MODOLIQ, GET_MODOSLIQ, ADD_SELECTED_MODOCONT, GET_MODOSCONT } from "../types/modalesTypes"
 
 export const addSelectedEstadoCivil = (payload) => {
     return {
@@ -105,6 +105,20 @@ export const getTareas = (payload) => {
         payload
     }
 }
+
+export const addSelectedModoCont = (payload) => {
+    return {
+        type: ADD_SELECTED_MODOCONT,
+        payload
+    }
+}
+export const getModosCont = (payload) => {
+    return {
+        type: GET_MODOSCONT,
+        payload
+    }
+}
+
 
 export const addSelectedModoLiq = (payload) => {
     return {

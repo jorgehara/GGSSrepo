@@ -12,6 +12,16 @@ export const textAreaObject = [
   }
 ]
 
+// INPUT DE VENCIMIENTO GENERAL
+export const inputVtoObject = [
+  {
+    "label": "Vencimiento",
+    "idInput": "fechaVto",
+    "nameInput": "fechaVto"
+  }
+]
+
+
 
 // ----------------------------------------
 
@@ -51,7 +61,6 @@ export const objectTipoDocumento = [
 ]
 
 
-
 // parentescos
 export const objectParentescos = [
   {
@@ -80,6 +89,8 @@ export const checkboxNumParentescos = [
     "nameInputNum": "importeDeduce"
   }
 ]
+
+// ------
 
 
 // Formas de pago
@@ -119,6 +130,15 @@ export const objectTareas = [
   }
 ]
 
+export const objectModosContratacion = [
+  {
+    "label": "Modo de contratación",
+    "placeholder": "Contratado",
+    "idInput": "modoContratacion",
+    "nameInput": "modoContratacion"
+  }
+]
+
 export const objectModosLiquidacion = [
   {
     "label": "Modo de liquidación",
@@ -127,9 +147,6 @@ export const objectModosLiquidacion = [
     "nameInput": "modoLiquidacion"
   }
 ]
-
-
-// -------------
 
 export const objectEstado = [
   {
@@ -147,6 +164,11 @@ export const objectMotivosEgreso = [
     "placeholder": "Renuncia"
   }
 ]
+
+
+// --------------------------------------------------------------------------------------------------
+
+
 
 export const objectCalles = [
   {
@@ -172,12 +194,6 @@ export const objectPaises = [
 ]
 
 
-export const objectModosContratacion = [
-  {
-    "label": "Modo de contratación",
-    "placeholder": "Contratado"
-  }
-]
 
 export const objectProvincias = [
   {

@@ -23,6 +23,8 @@ const BasicModal = ({
   placeholder,
   dropdown,
   inputDate,
+  inputVtoObject,
+  valueInputDate,
   inputNum,
   inputNumName,
   relacion,
@@ -146,7 +148,7 @@ const BasicModal = ({
           })
 
       }
-      
+
     } catch (err) {
       swal({
         title: "Error",
@@ -291,7 +293,21 @@ const BasicModal = ({
                 {dropdown && <Dropdown nameDropdown="Partida" />}
 
                 {/* HAY ALGO DEL INPUTDATE QUE ESTA DESACOMODANDO LA ALINEACION, CAMBIAR */}
-                {inputDate && <InputDate nameInput="Vencimiento" />}
+                {inputDate &&
+                  inputVtoObject?.map((p, i) => {
+                    return (
+                      <InputDate
+                        key={i}
+                        nameInput={p.label}
+                        idInput={p.idInput}
+                        onChange={onChange}
+                        value={valueInputDate}
+                        // value, disabled, idInput, onChange,
+                      />
+                    )
+                  })
+                }
+
 
                 <br />
                 {textArea &&
@@ -308,7 +324,7 @@ const BasicModal = ({
                     )
                   })
                 }
-                
+
                 <hr />
 
                 <div className="btnInputs">
