@@ -1,4 +1,4 @@
-import {  GET_DE_SELECTED, GET_INPUT_VALUES_EXTRAS } from "../types/extrasTypes";
+import { ADD_DATOSE_EMP, CLEAN_ID_DE, GET_DE_SELECTED, GET_INPUT_VALUES_EXTRAS, SAVE_ID_DE } from "../types/extrasTypes";
 
 export const initialState = {
     formulario : {
@@ -14,7 +14,9 @@ export const initialState = {
         inputTextExtrasAdscripto : "",
         inputTextExtrasAfectaciones : ""
     },
-    datoExtra : ""
+    datoExtra : "",
+    idsDe : [],
+    datosExtrasEmp : ""
 }
 
 export const extrasReducer =(state = initialState, action)=>{
@@ -33,6 +35,27 @@ export const extrasReducer =(state = initialState, action)=>{
                 datoExtra : payload
             }
         }
+        case ADD_DATOSE_EMP : {
+            console.log(payload)
+            debugger;
+            return{
+                ...state,
+                datosExtrasEmp : payload
+            }
+        }
+        case SAVE_ID_DE : {
+            return {
+                ...state,
+                idsDe : [...state.idsDe.push(payload)]
+            }
+        }
+        case CLEAN_ID_DE : {
+            return {
+                ...state,
+                idsDe : state.idsDe = []
+            }
+        }
+        
         default : return state;
     }
 }

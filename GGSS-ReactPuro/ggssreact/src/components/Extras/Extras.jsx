@@ -15,7 +15,7 @@ import TextArea from '../Inputs/TextArea/TextArea';
 import TableExtras from '../Tables/TableExtras';
 import "./Extras.css";
 
-const Extras = ({responses, setResponses, disable, datosExtraEmpleado, setRefetch, refetch}) => {
+const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
 
     const columns = ["Seleccionar","Fecha", "Descripción", "Observaciones"]
     const dispatch = useDispatch();
@@ -25,8 +25,8 @@ const Extras = ({responses, setResponses, disable, datosExtraEmpleado, setRefetc
     const datosExtras = useSelector((state)=> state.generalState.datosExtras);
     const instrumLegales = useSelector((state)=> state.generalState.instrumLegales);
     const datoExtraSelected = useSelector((state)=> state.extrasState.datoExtra);
-
-    console.log(datoExtraSelected)
+    const datosExtraEmpleado = useSelector((state)=>state.extrasState.datosExtrasEmp);
+    console.log(datosExtraEmpleado)
 
   console.log(empleadoUno.iDempleado)
     const urlPetition = `http://54.243.192.82/api/GuardarDatosExtras/0?Fecha=${formDatosExtras?.inputFechaExtras}&IdEmpleado=${empleadoUno.iDempleado}&IdDatoExtra=${formDatosExtras?.inputDatosExtrasCbo}&Obs=${formDatosExtras?.inputTextExtras}`
@@ -60,25 +60,9 @@ const Extras = ({responses, setResponses, disable, datosExtraEmpleado, setRefetc
     }
     async function deleteDatoExtra(id){
 
-      try{
-        axios.delete(`http://54.243.192.82/api/EliminarDatosExtras/${id}`)
-        .then((res)=>{
-          setRefetch(!refetch);
-          return swal({
-            title: "Ok",
-            text: `Dato Extra borrado con éxito`,
-            icon: "success",
-          })
-        })
-      }catch(err){
-        return swal({
-          title: "Error",
-          text: `Error al eliminar el Dato Extra`,
-          icon: "error",
-        })
-      }
+      
     }
-    console.log(datosExtraEmpleado)
+    
 
     function onChangeValues(e, key){
         const newResponse = {...formDatosExtras};

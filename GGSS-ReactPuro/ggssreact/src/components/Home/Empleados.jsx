@@ -68,6 +68,7 @@ import { getEmployeByLegajo, getEmployeByName } from "../../services/fetchAPI";
 import { getEmployes } from "../../redux/actions/employeActions";
 import { cleanIdFam, getDAtosFamiliaresEmpleado } from "../../redux/actions/familiaActions";
 import { addOneDomicilio, cleanIdsDom } from "../../redux/actions/domiciliosActions";
+import { addDatosExtraPorEmpleado } from "../../redux/actions/extrasActions";
 
 const Empleados = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -245,6 +246,15 @@ useEffect(()=>{
 },[refetching, empleadoUno])
 
 useEffect(()=>{
+  axios
+      .get(
+        `http://54.243.192.82/api/MostrarDatosExtrasPorEmpleado/${empleadoUno?.iDempleado}`
+      )
+      .then((res) => {
+        debugger;
+        console.log(res.data)
+        addDatosExtraPorEmpleado(res.data);
+      });//
 },[empleadoUno, recharge])
 
   useEffect(() => {
@@ -334,16 +344,9 @@ useEffect(()=>{
         dispatch(addLicEmpleado(res.data));
         setLicenciaEmpladoDatos(res.data);
       });
-      axios
-      .get(
-        `http://54.243.192.82/api/MostrarDatosExtrasPorEmpleado/${empleadoUno?.iDempleado}`
-      )
-      .then((res) => {
-        setDatosExtraEmpleado(res.data);
-      });//
+      
       axios.get(`http://54.243.192.82/api/MostrarDatosFamiliarPorEmpleado/${empleadoUno?.iDempleado}`)
       .then((res)=>{
-        console.log(res)
         dispatch(getDAtosFamiliaresEmpleado(res.data))
       })
       handleFetch(urlDomicilios, addDomicilios);
