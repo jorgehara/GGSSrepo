@@ -22,6 +22,8 @@ import {
   clearLicSelect,
   deleteDetLic,
 } from "../../redux/actions/licenciasActions";
+import { setRefetch } from "../../redux/actions/modalesActions";
+import { recharge } from "../../redux/actions/domiciliosActions";
 
 const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, setRefectch, refetch }) => {
   const url = "http://54.243.192.82/api/Empleados?records=100";
@@ -37,7 +39,7 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
   );
   const empleadoUno = useSelector((state) => state.employeStates.employe);
   const deshabilitado = useSelector((state) => state.employeStates.disable);
-
+  const recharged = useSelector((state)=> state.domiciliosStates.recharge);
   
 
  
@@ -48,6 +50,7 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
   function onSelect(e, name, idEmpleado) {
     //dispatch(deleteDetLic(detalleSeleccionado.idDetalleLicenciaEmpleado));
     //dispatch(clearLicSelect());
+    dispatch(recharge(!recharged))
     getEmployeById(empleados, idEmpleado).then((res) => {
       console.log(res[0].iDempleado);
       dispatch(addOneEmploye(res[0]));

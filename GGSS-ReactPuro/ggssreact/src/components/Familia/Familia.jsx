@@ -20,7 +20,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import { addNewFamiliar, deleteOneFamiliar } from "../../redux/actions/fetchActions";
 import { disableFunctions } from "../../redux/actions/employeActions";
-import { addFamiliar } from "../../redux/actions/familiaActions";
+import { addFamiliar, deleteFam, saveIdFam } from "../../redux/actions/familiaActions";
 
 const Familia = ({responses, setResponses,disable, setRefetch, refetch}) => {
   
@@ -116,26 +116,10 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
     }
   }
   const deleteFamiliar = (id) => {
-    try{
-      axios.delete(`${urlFamiliares}/${id}`)
-      .then((res)=>{
-        if(res.status === 200){
-          dispatch(deleteOneFamiliar(id));
-          swal({
-            title: "Ok",
-            text: "Familiar eliminado correctamente",
-            icon: "success",
-        })
-        }
-        return;
-      })
-    }catch(err){
-      swal({
-        title: "Error",
-        text: err,
-        icon: "error",
-    })
-    }
+    
+      dispatch(deleteFam(id));
+      dispatch(saveIdFam(id))
+         
   }
  
   console.log(empleadoUno.iDempleado)

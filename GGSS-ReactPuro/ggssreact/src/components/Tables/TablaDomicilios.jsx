@@ -10,8 +10,8 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
   const [checkPredeterminado, setCheckPredeterminado] = useState("");
   const [domicilios, setDomicilios] = useState([]);
   const [valueInitial, setValueInitial ] = useState([]);
-  const [dataTable, setDataTable] = useState([]);
-  const refetching = useSelector((state)=> state.modalState.refetch);
+  //const [dataTable, setDataTable] = useState([]);
+  const recharge = useSelector((state)=> state.domiciliosStates.recharge);
    
    useEffect(()=>{
     setValueInitial(value);
@@ -19,57 +19,16 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
 
    useEffect(()=>{
     setInputValor();
-    getDataTable();
-    setDomicilios( getDataTable());
-  },[valueInitial,refetching])
+  },[recharge])
 
   
-
+  const dataTable = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
   const domiciliosTable = useSelector((state)=> state.domiciliosStates.domTable);
   
 
-  async function getDataTable(){
-    if(valueInitial.length > 0){
-      let array = []
-      valueInitial && valueInitial.map(async (item)=>{
-     
-          await axios.get(`http://54.243.192.82/api/MostrarDatosPorIdDomicilio/${item.idDomicilio}`)
-          .then((res)=> array.push(res.data[0]))
-          console.log(array)
-        
-      })
-      setDataTable(array)
-    }
-     
-    
-  } 
+  console.log(dataTable)
 
-  //  const inputValueDom=(valor)=>{
-    
-  //   let calleSelect = "";
-  //   let barrioSelect = "";
-  //   let localidadSelect = "";
-  //   let provinciaSelect = "";
-  //   let departamentoSelect = "";
-  //   return valor && valor.map((valor,index)=>{
-      
-  //       calleSelect = calles && calles.find((calle) => valor.idCalle === calle.idCalle);
-
-  //       barrioSelect = barrios && calleSelect && barrios.find((barrio)=> valor.idBarrio === barrio.idBarrio);
-      
-  //       localidadSelect = localidades && barrioSelect && localidades.find((localidad)=> barrioSelect.idLocalidad === localidad.idLocalidad);
-
-  //       departamentoSelect = departamentos && localidadSelect && departamentos.find((dpto)=> localidadSelect.idDepartamento === dpto.idDepartamento);
-
-  //       provinciaSelect = provincias && departamentoSelect && provincias.find((provincia)=> departamentoSelect.idProvincia === provincia.idProvincia);
-
-  //       const newDomicilios = {...valor, idCalle : calleSelect, idBarrio : barrioSelect, localidad : localidadSelect, provincia  : provinciaSelect, departamento : departamentoSelect}
-
-  //       return( newDomicilios)
-  //     })
-      
-
-  // }
+ 
   const valor = valueInitial && valueInitial.map((item)=>{return(item.predeterminado)});
    
  
@@ -120,23 +79,7 @@ const dispatch = useDispatch();
                   </tr>                  
                 )
               })
-              /* domicilios && domicilios.map((valor, index)=>{
-                return(
-                  <tr>
-                    <th>
-                      <input type="radio" name="seleccionar" id="seleccionar" value={valor.idDomicilio} onClick={(e)=> dispatch(selectedIdDomicilio(e.target.value))} />
-                    </th>
-                    <th>
-                      <input  type="checkbox" disabled="disabled" className="border-0 px-2" id="capitulo"  value={valor.predeterminado} checked={valor.predeterminado === null ? false : valor.predeterminado}/>
-                    </th>
-                    <td>{valor && valor.idCalle !== undefined? valor.idCalle.calle : null}</td>
-                    <td>{valor && valor.idBarrio !== undefined? valor.idBarrio.barrio : null}</td>
-                    <td>{valor && valor.localidad !== undefined? valor.localidad.localidad : null}</td>
-                    <td>{valor && valor.dpto !== undefined? valor.dpto : null}</td>
-                    <td>{valor && valor.provincia !== undefined? valor.provincia.provincia : null}</td>
-                  </tr>                  
-                  )
-              }) */
+             
             }     
           </tbody>
         </table>        

@@ -1,4 +1,4 @@
-import { ADD_FAMILIA, ADD_FAMILIAR, ADD_FAMILIAR_ID, DATOS_FAMILIAR_X_EMPLEADO } from "../types/familiaTypes";
+import { ADD_FAMILIA, ADD_FAMILIAR, ADD_FAMILIAR_ID, CLEAN_ID_FAM, DATOS_FAMILIAR_X_EMPLEADO, DELETE_FAM, SAVE_ID_FAM } from "../types/familiaTypes";
 
 
 export const initialState = {
@@ -17,7 +17,8 @@ export const initialState = {
         textAreaObservacionesFamilia : "",
         tiposDocumento : []
     },
-    familiarPorEmpleado : ""
+    familiarPorEmpleado : "",
+    idsFAm : []
 };
 
 const familiaReducer = (state = initialState, action) =>{
@@ -47,6 +48,24 @@ const familiaReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 familiarPorEmpleado : payload
+            }
+        }
+        case DELETE_FAM : {
+            return{
+                ...state,
+                familiarPorEmpleado : state.familiarPorEmpleado.filter((fam)=> fam.idFamiliares !== payload)
+            }
+        }
+        case SAVE_ID_FAM : {
+            return{
+                ...state,
+                idsFAm : [...state.idsFAm.push(payload)]
+            }
+        }
+        case CLEAN_ID_FAM : {
+            return{
+                ...state,
+                idsFAm : state.idsFAm = []
             }
         }
         default :

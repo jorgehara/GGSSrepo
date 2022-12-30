@@ -9,3 +9,6 @@ export const DELETE_ONE_DOMICILIO = "DELETE_ONE_DOMICILIO";
 export const SET_PREDETERMINADO = "SET_PREDETERMINADO";
 export const ADD_DOM_TABLE = "ADD_DOM_TABLE"
 export const SAVE_IDS_DOM = "SAVE_IDS_DOM"
+
+export const RECHARGE = "RECHARGE"
+export const CLEAR_ID_DOM = "CLEAR_ID_DOM"

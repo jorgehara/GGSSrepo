@@ -79,7 +79,10 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
       return dispatch(addOneDomicilio(domicilioDelEmpleado));     
     }
   }
-  
+    const idDomiciliosArray = useSelector((state)=> state.domiciliosStates.idsDom);
+
+  console.log(idDomiciliosArray)
+
   let idDomicilio = domiciliosEmpleados && domiciliosEmpleados[domiciliosEmpleados.length -1] ? ((domiciliosEmpleados[domiciliosEmpleados.length -1].idDomicilio)+1) : null;
   
   
@@ -122,7 +125,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   }
   const deleteDomicilio = (id)=>{
     dispatch(deleteOneDomicilioSelect(Number(id)))
-    dispatch(saveIdsDom(id));   
+    dispatch(saveIdsDom(Number(id)));   
   }
 
 
@@ -347,11 +350,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
                 columns={columns} 
                 empleadoSelect={empleadoUno && empleadoUno} 
                 value={ empleadoDomicilio && empleadoDomicilio }
-                provincias={generalStateData.provincias && generalStateData.provincias }
-                departamentos={generalStateData.departamentos  && generalStateData.departamentos }
-                localidades={generalStateData.localidades && generalStateData.localidades }
-                barrios={generalStateData.barrios  && generalStateData.barrios}
-                calles={generalStateData.calles  && generalStateData.calles }
+               
               />
 
               

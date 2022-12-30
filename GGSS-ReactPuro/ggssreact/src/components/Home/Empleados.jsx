@@ -66,7 +66,8 @@ import {
 import swal from "sweetalert";
 import { getEmployeByLegajo, getEmployeByName } from "../../services/fetchAPI";
 import { getEmployes } from "../../redux/actions/employeActions";
-import { getDAtosFamiliaresEmpleado } from "../../redux/actions/familiaActions";
+import { cleanIdFam, getDAtosFamiliaresEmpleado } from "../../redux/actions/familiaActions";
+import { addOneDomicilio, cleanIdsDom } from "../../redux/actions/domiciliosActions";
 
 const Empleados = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -216,7 +217,22 @@ const Empleados = () => {
       });
   };
 const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
+const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
+const recharge = useSelector((state)=> state.domiciliosStates.recharge);
+
+async function getDataTable(){
+  if(empleadoDomicilio.length > 0){
+    let array = []
+    empleadoDomicilio && empleadoDomicilio.map(async (item)=>{
+      console.log(item)
+        await axios.get(`http://54.243.192.82/api/MostrarDatosPorIdDomicilio/${item.idDomicilio}`)
+        .then((res)=> array.push(res.data[0]))
+    })
+    dispatch(addOneDomicilio(array))
+  }
+   
   
+} 
 
 //#region useEffect handleFetch
 useEffect(()=>{
@@ -227,6 +243,9 @@ useEffect(()=>{
    handleFetch(urlTiposDNI, addTiposDocumento);
    handleFetch(urlDomicilios, addDomicilios);
 },[refetching, empleadoUno])
+
+useEffect(()=>{
+},[empleadoUno, recharge])
 
   useEffect(() => {
      handleFetch(urlEstados, addEstados);
@@ -330,6 +349,7 @@ useEffect(()=>{
       handleFetch(urlDomicilios, addDomicilios);
       handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
     handleFetch(urlFamiliares, addFamiliares);
+    getDataTable()
 
   }, [empleadoUno?.iDempleado, refetch]);
 
@@ -368,11 +388,14 @@ useEffect(()=>{
   const idsTrabajosAnterioresDelete = useSelector((state)=> state.trabajosAnteriores.ids);
   const documentacionDelte = useSelector((state)=> state.documentacionState.ids);
   const licenciasDelete = useSelector((state)=> state.licenciasState.idsLic);
+  const idDomiciliosArray = useSelector((state)=> state.domiciliosStates.idsDom);
+  const arraysFamiliares = useSelector((state)=> state.familiaStates.idsFAm);
   const urlTRabajoDelete = "http://54.243.192.82/api/TrabajosAnteriores?IdTrabajoAnterior=";
   const urlDocDelte = "http://54.243.192.82/api/EmpleadosDocumentacion/"
   const urlLicDelete = "http://54.243.192.82/api/"
     const urlEmpleadoGuarda = "http://54.243.192.82/api/Empleados/Guardar"
-
+    const urlDOmicilioElimina = `http://54.243.192.82/api/sp_DomiciliosElimina/1?IdEmpleador=0`
+  const urlDeleteFAmiliar = "http://54.243.192.82/api/EliminarFamiliarPorId/"
 
 
   const objectRequest = {
@@ -380,13 +403,16 @@ useEffect(()=>{
       urlTRabajoDelete : urlTRabajoDelete,
       urlDocDelte : urlDocDelte,
       urlLicDelete : urlLicDelete,
-      urlEmpleadoGuarda : urlEmpleadoGuarda
-
+      urlEmpleadoGuarda : urlEmpleadoGuarda,
+      urlDOmicilioElimina : urlDOmicilioElimina,
+      urlDeleteFAmiliar : urlDeleteFAmiliar
     },
     arrays : [
       idsTrabajosAnterioresDelete,
       documentacionDelte,
-      licenciasDelete
+      licenciasDelete,
+      idDomiciliosArray,
+      arraysFamiliares
     ]
   }
 
@@ -418,6 +444,8 @@ useEffect(()=>{
     dispatch(cleanIds())
     dispatch(cleanIdsDoc())
     dispatch(clearIdsLic())
+    dispatch(cleanIdsDom())
+    dispatch(cleanIdFam())
     setRefectch(!refetch);
     setValueEmpl(false)
   }
@@ -481,7 +509,6 @@ useEffect(()=>{
       "idDireccion": responses.formLiquidacion?.inputDireccionLiquidacion,
       "idInstrumentoLegal": 2
     }
-    console.log(bodyPetitionEmpleadoGuarda)
     let bodyPetitionEmpleadoUpdate = {
       "iDempleado": empleadoUno.iDempleado && empleadoUno.iDempleado,
       "legajo": responses.formDatosPersonales?.numLegajo ?  responses.formDatosPersonales?.numLegajo : empleadoUno.legajo,
@@ -998,6 +1025,16 @@ useEffect(()=>{
                 icon: "success",
             })
             })
+            arrays[3].map(async (id)=>{
+              let array = {
+                "arrayList": [
+                  id
+                ]
+              }
+              console.log(array)
+              await axios.delete(`${urls.urlDOmicilioElimina}`, {data : array, headers : {'Content-Type': 'application/json;'}})
+              .then((res) => console.log(res))
+           });
           }
     }else{
       switch(urls){
@@ -1016,7 +1053,17 @@ useEffect(()=>{
            arrays.licenciasDelete.map(async (id)=>{
              await axios.delete(`${urls.urlLicDelete}${id}`)
              .then((res) => console.log(res))
-          })
+          })}
+        case urls.urlDOmicilioElimina : {
+          arrays.idDomiciliosArray.map(async (id)=>{
+            await axios.delete(`${urls.urlDOmicilioElimina}`)
+            .then((res) => console.log(res))
+          })}
+          case urls.urlDeleteFAmiliar : {
+            arrays.arraysFamiliares.map(async (id)=>{
+              await axios.delete(`${urls.urlDeleteFAmiliar}${id}`)
+              .then((res) => console.log(res))
+            })
       }
         default : {
             arrays[0].map(async (id)=>{
@@ -1042,6 +1089,10 @@ useEffect(()=>{
             await axios.delete(`${urls.urlLicDelete}0`, {data : array, headers : {'Content-Type': 'application/json;'}})
             .then((res) => console.log(res))
          });
+         arrays[4].map(async (id)=>{    
+          await axios.delete(`${urls.urlDeleteFAmiliar}${id}`)
+          .then((res) => console.log(res))
+       });
         }
       }
     }
