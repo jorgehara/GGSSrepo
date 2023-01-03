@@ -273,6 +273,13 @@ export const addNewTarea = (payload) => {
     }
 }
 
+export const addNewModoCont = (payload) => {
+    return {
+        type: ADD_NEW_MODOCONT,
+        payload
+    }
+}
+
 export const addNewModoLiq = (payload) => {
     return {
         type: ADD_NEW_MODOLIQ,
@@ -444,6 +451,20 @@ export const deleteTarea = (payload) => {
     }
 }
 
+// modos de contratación
+export const getIdModoCont = (payload) => {
+    return {
+        type: GET_ID_MODOCONT,
+        payload
+    }
+}
+export const deleteModoCont = (payload) => {
+    return {
+        type: DELETE_MODOCONT,
+        payload
+    }
+}
+
 // modos de liquidación
 export const getIdModoLiq = (payload) => {
     return {
@@ -609,6 +630,13 @@ export const putCargo = (payload) => {
 export const putTarea = (payload) => {
     return {
         type: PUT_TAREA,
+        payload
+    }
+}
+
+export const putModoCont = (payload) => {
+    return {
+        type: PUT_MODOCONT,
         payload
     }
 }

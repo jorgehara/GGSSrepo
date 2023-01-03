@@ -10,6 +10,7 @@ export const initialState = {
     cargoSelected: "",
     tareaSelected: "",
     calleSelected: "",
+    modoContSelected: "",
     modoLiqSelected: "",
     provinciaSelected: "",
     deptoSelected: "",
@@ -43,6 +44,9 @@ export const initialState = {
         // tareas desempeñadas
         inputTarea : "",
         textAreaTarea : "",
+        // modos de contratación
+        inputModoCont: "",
+        inputVtoModoCont: "",
         // modos de liquidación
         inputModoLiquidacion : "",
         textAreaModosLiq : "",
@@ -187,6 +191,20 @@ const modalesReducer = (state = initialState, action) => {
                 formulario: {...state.formulario, [payload.name]: payload.value}
             }
         }
+
+        case ADD_SELECTED_MODOCONT : {
+            return {
+                ...state,
+                modoContSelected: payload
+            }
+        }
+        case GET_MODOSCONT : {
+            return {
+                ...state,
+                formulario: {...state.formulario, [payload.name]: payload.value}
+            }
+        }
+
 
         case ADD_SELECTED_MODOLIQ : {
             return {

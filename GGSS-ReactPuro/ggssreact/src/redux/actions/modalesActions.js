@@ -106,6 +106,20 @@ export const getTareas = (payload) => {
     }
 }
 
+export const addSelectedModoCont = (payload) => {
+    return {
+        type: ADD_SELECTED_MODOCONT,
+        payload
+    }
+}
+export const getModosCont = (payload) => {
+    return {
+        type: GET_MODOSCONT,
+        payload
+    }
+}
+
+
 export const addSelectedModoLiq = (payload) => {
     return {
         type: ADD_SELECTED_MODOLIQ,

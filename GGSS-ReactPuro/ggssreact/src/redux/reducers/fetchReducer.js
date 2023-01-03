@@ -675,6 +675,14 @@ export const fetchReducer = (state = initialState, action) => {
                 tareasDesempeñadas: [...state.tareasDesempeñadas, action.payload]
             }
         }
+        
+        case PUT_MODOCONT : {
+            return {
+                ...state,
+                modosContratacion: [...state.modosContratacion, action.payload],
+                modosContratacion: state.modosContratacion.filter((modoCont) => modoCont.idModoCont !== action.payload)
+            }
+        }
 
         case PUT_MODOLIQ: {
             return {
