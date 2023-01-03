@@ -17,9 +17,10 @@ export const ADD_EMPLEADORES = "ADD_EMPLEADORES";
 
 export const ADD_DOMICLIOS = "ADD_DOMICLIOS";
 export const ADD_CALLES = "ADD_CALLES";
+
+export const ADD_PROVINCIAS = "ADD_PROVINCIAS";
 export const ADD_DEPARTAMENTOS = "ADD_DEPARTAMENTOS";
 export const ADD_LOCALIDADES = "ADD_LOCALIDADES";
-export const ADD_PROVINCIAS = "ADD_PROVINCIAS";
 export const ADD_BARRIOS = "ADD_BARRIOS";
 
 export const ADD_FAMILIARES = "ADD_FAMILIARES";
@@ -40,6 +41,7 @@ export const ADD_SINDICATOS = "ADD_SINDICATOS";
 export const ADD_ESQUEMAS = "ADD_ESQUEMAS";
 
 
+
 // ESTOS SON PARA POSTEAR EN LA API
 export const ADD_NEW_ESCI = "ADD_NEW_ESCI";
 export const ADD_NEW_ESTUDIO = "ADD_NEW_ESTUDIO";
@@ -50,6 +52,15 @@ export const ADD_NEW_FORMAPAGO = "ADD_NEW_FORMAPAGO"
 export const ADD_NEW_CARGO = "ADD_NEW_CARGO"
 export const ADD_NEW_TAREA = "ADD_NEW_TAREA"
 export const ADD_NEW_MODOLIQ = "ADD_NEW_MODOLIQ"
+
+export const ADD_NEW_PROVINCIA = "ADD_NEW_PROVINCIA"
+export const ADD_NEW_DEPTO = "ADD_NEW_DEPTO"
+export const ADD_NEW_LOCALIDAD = "ADD_NEW_LOCALIDAD"
+export const ADD_NEW_BARRIO = "ADD_NEW_BARRIO"
+
+export const ADD_NEW_BANCO = "ADD_NEW_BANCO"
+export const ADD_NEW_SINDICATO = "ADD_NEW_SINDICATO"
+export const ADD_NEW_CENTROCOSTO = "ADD_NEW_CENTROCOSTO"
 
 
 // DELETE TYPES
@@ -88,6 +99,37 @@ export const DELETE_TAREA = "DELETE_TAREA"
 export const GET_ID_MODOLIQ = "GET_ID_MODOLIQ"
 export const DELETE_MODOLIQ = "DELETE_MODOLIQ"
 
+// provincias deptos localidades barrios
+export const GET_ID_PROVINCIA = "GET_ID_PROVINCIA"
+export const DELETE_PROVINCIA = "DELETE_PROVINCIA"
+
+export const GET_ID_DEPTO = "GET_ID_DEPTO"
+export const DELETE_DEPTO = "DELETE_DEPTO"
+
+export const GET_ID_LOCALIDAD = "GET_ID_LOCALIDAD"
+export const DELETE_LOCALIDAD = "DELETE_LOCALIDAD"
+
+export const GET_ID_BARRIO = "GET_ID_BARRIO"
+export const DELETE_BARRIO = "DELETE_BARRIO"
+
+
+
+// PARA LIQUIDACION (NO VAN) --------------------------------------------------------------------------------
+
+// bancos
+export const GET_ID_BANCO = "GET_ID_BANCO"
+export const DELETE_BANCO = "DELETE_BANCO"
+
+// obras sociales
+export const GET_ID_SINDICATO = "GET_ID_SINDICATO"
+export const DELETE_SINDICATO = "DELETE_SINDICATO"
+
+// centros de costo
+export const GET_ID_CENTROCOSTO = "GET_ID_CENTROCOSTO"
+export const DELETE_CENTROCOSTO = "DELETE_CENTROCOSTO"
+
+///////////////////////
+
 // PUT TYPES
 
 export const PUT_ESCI = "PUT_ESCI"
@@ -99,6 +141,19 @@ export const PUT_FORMAPAGO = "PUT_FORMAPAGO"
 export const PUT_CARGO = "PUT_CARGO"
 export const PUT_TAREA = "PUT_TAREA"
 export const PUT_MODOLIQ = "PUT_MODOLIQ"
+
+export const PUT_PROVINCIA = "PUT_PROVINCIA"
+export const PUT_DEPTO = "PUT_DEPTO"
+export const PUT_LOCALIDAD = "PUT_LOCALIDAD"
+export const PUT_BARRIO = "PUT_BARRIO"
+
+
+
+
+// PARA LIQUIDACION (NO VAN)
+export const PUT_BANCO = "PUT_BANCO"
+export const PUT_SINDICATO = "PUT_SINDICATO"
+export const PUT_CENTROCOSTO = "PUT_CENTROCOSTO"
 
 
 

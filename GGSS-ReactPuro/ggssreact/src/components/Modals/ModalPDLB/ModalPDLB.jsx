@@ -1,17 +1,24 @@
 import React from 'react'
 import { useState, useEffect } from "react"
-import Barrios from './SubmodalesPDLB/Barrios'
+// footers
 import BarriosFooter from './SubmodalesPDLB/BarriosFooter'
-import Departamentos from './SubmodalesPDLB/Departamentos'
 import DepartamentosFooter from './SubmodalesPDLB/DepartamentosFooter'
-import Localidades from './SubmodalesPDLB/Localidades'
 import LocalidadesFooter from './SubmodalesPDLB/LocalidadesFooter'
-import Provincias from './SubmodalesPDLB/Provincias'
 import ProvinciasFooter from './SubmodalesPDLB/ProvinciasFooter'
+// ---
 import './ModalPDLB.css'
-import { objectProvincias, objectDeptos, objectLocalidades, objectBarrios } from '../../Navbar/Objects'
+import { objectProvincias, objectDeptos, objectLocalidades, objectBarrios, textAreaObject } from '../../Navbar/Objects'
+import { useDispatch, useSelector } from 'react-redux';
+import PDLBBody from './SubmodalesPDLB/PDLBBody' // body general, varían los footers
 
-const ModalPDLB = ({idModal, nameModal, array,aDepartamentos,aProvincias,aLocalidades,aBarrios}) => {
+const ModalPDLB = ({
+    idModal,
+    nameModal,
+    urlProv,
+    urlDeptos,
+    urlLocalidades,
+    urlBarrios
+}) => {
 
     const [provincias, setProvincias] = useState()
     const [localidades, setLocalidades] = useState()
@@ -21,13 +28,13 @@ const ModalPDLB = ({idModal, nameModal, array,aDepartamentos,aProvincias,aLocali
     useEffect(() => {
         setProvincias(true)
     }, []) // SIEMPRE QUE ENTREMOS AL MODAL DE PROVINCIAS-LOCALIDADES-BARRIOS-DEPARTAMENTOS VA A INICIAR CON LA SOLAPA DE PROVINCIAS.
-    
+
 
     const handleProvincias = () => {
-      setProvincias(true)
-      setLocalidades(false)
-      setDepartamentos(false)
-      setBarrios(false)
+        setProvincias(true)
+        setLocalidades(false)
+        setDepartamentos(false)
+        setBarrios(false)
     }
 
     const handleLocalidades = () => {
@@ -53,9 +60,39 @@ const ModalPDLB = ({idModal, nameModal, array,aDepartamentos,aProvincias,aLocali
 
 
 
-  return (
-    <div>
-        
+    // provincias
+	const provinciasValue = useSelector((state) => state.generalState.provincias)
+	const provinciaSelected = useSelector((state) => state.modalState.provinciaSelected)
+	const inputProvincia = useSelector((state) => state.modalState.formulario.inputProvincia)
+	const textAreaProvincia = useSelector((state) => state.modalState.formulario.textAreaProvincia)
+	const valueIdProvincia = useSelector((state) => state.generalState.idProvincia) 
+
+	// departamentos
+	const deptosValue = useSelector((state) => state.generalState.departamentos)
+	const deptoSelected = useSelector((state) => state.modalState.deptoSelected)
+	const inputDepto = useSelector((state) => state.modalState.formulario.inputDepto)
+	const textAreaDeptos = useSelector((state) => state.modalState.formulario.textAreaDeptos)
+	const valueIdDeptos = useSelector((state) => state.generalState.idDepto) 
+
+	// localidades
+	const localidadesValue = useSelector((state) => state.generalState.localidades)
+	const localidadSelected = useSelector((state) => state.modalState.localidadSelected)
+	const inputLocalidad = useSelector((state) => state.modalState.formulario.inputLocalidad)
+	const textAreaLocalidades = useSelector((state) => state.modalState.formulario.textAreaLocalidades)
+	const valueIdLocalidades = useSelector((state) => state.generalState.idLocalidad) 
+
+	// barrios
+	const barriosValue = useSelector((state) => state.generalState.barrios)
+	const barrioSelected = useSelector((state) => state.modalState.barrioSelected)
+	const inputBarrio = useSelector((state) => state.modalState.formulario.inputBarrio)
+	const textAreaBarrios = useSelector((state) => state.modalState.formulario.textAreaBarrios)
+	const valueIdBarrios = useSelector((state) => state.generalState.idBarrio) 
+
+
+
+    return (
+        <div>
+
             {/* <!-- Modal --> */}
             <div className="modal fade" id={idModal} tabIndex="-1" aria-labelledby={`${idModal}Label`} aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-xl">
@@ -77,58 +114,79 @@ const ModalPDLB = ({idModal, nameModal, array,aDepartamentos,aProvincias,aLocali
                         <div className="modal-body">
 
                             {
-                                provincias && 
-                                <Provincias aProvincias={aProvincias} placeholder={objectProvincias}/>
+                                provincias &&
+                                <PDLBBody
+                                    array={provinciasValue}
+                                    placeholder={objectProvincias}
+                                    textArea={true}
+                                    textAreaObject={textAreaObject}
+
+                                />
                             }
 
                             {
                                 departamentos &&
-                                <Departamentos aDepartamentos={aDepartamentos} placeholder={objectDeptos}/>
+                                <PDLBBody
+                                    array={deptosValue}
+                                    placeholder={objectDeptos}
+                                    textArea={true}
+                                    textAreaObject={textAreaObject}
+                                />
                             }
 
-                            { 
+                            {
                                 localidades &&
-                                <Localidades aLocalidades={aLocalidades} placeholder={objectLocalidades}/>
+                                <PDLBBody
+                                    array={localidadesValue}
+                                    placeholder={objectLocalidades}
+                                    textArea={true}
+                                    textAreaObject={textAreaObject}
+                                />
                             }
 
-                            
+
                             {
                                 barrios &&
-                                <Barrios aBarrios={aBarrios} placeholder={objectBarrios}/>
+                                <PDLBBody
+                                    array={barriosValue}
+                                    placeholder={objectBarrios}
+                                    textArea={true}
+                                    textAreaObject={textAreaObject}
+                                />
                             }
 
-                            
+
 
 
                         </div>
 
                         {/* POR AHORA RENDERIZO LOS BODY Y LOS FOOTER POR SEPARADO PORQUE SINO SE ROMPE TODO */}
 
-                            {
-                                provincias &&
-                                <ProvinciasFooter/>
-                            }
+                        {
+                            provincias &&
+                            <ProvinciasFooter />
+                        }
 
-                            { 
-                                localidades &&
-                                <LocalidadesFooter/>
-                            }
+                        {
+                            localidades &&
+                            <LocalidadesFooter />
+                        }
 
-                            {
-                                departamentos &&
-                                <DepartamentosFooter/>
-                            }
+                        {
+                            departamentos &&
+                            <DepartamentosFooter />
+                        }
 
-                            {
-                                barrios &&
-                                <BarriosFooter/>
-                            }
-                        
+                        {
+                            barrios &&
+                            <BarriosFooter />
+                        }
+
                     </div>
                 </div>
             </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default ModalPDLB

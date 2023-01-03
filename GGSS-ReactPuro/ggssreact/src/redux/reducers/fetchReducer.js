@@ -1,340 +1,395 @@
-import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING, ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, ADD_NEW_CARGO, GET_ID_CARGO, DELETE_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_NEW_MODOLIQ, GET_ID_MODOLIQ, DELETE_MODOLIQ, PUT_MODOLIQ} from "../types/fetchTypes";
+import { ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, SET_LOADING, ADD_TAREASDESEMPEÑADAS, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_LOCALIDADES, ADD_PROVINCIAS, ADD_BARRIOS, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, DELETE_ESCI, GET_ID_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, ADD_NEW_CARGO, GET_ID_CARGO, DELETE_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_NEW_MODOLIQ, GET_ID_MODOLIQ, DELETE_MODOLIQ, PUT_MODOLIQ, ADD_NEW_BANCO, ADD_NEW_OBRASOCIAL, ADD_NEW_CENTROCOSTO, GET_ID_BANCO, DELETE_BANCO, GET_ID_OBRASOCIAL, DELETE_OBRASOCIAL, GET_ID_CENTROCOSTO, DELETE_CENTROCOSTO, PUT_BANCO, PUT_OBRASOCIAL, PUT_CENTROCOSTO, ADD_NEW_SINDICATO, GET_ID_SINDICATO, DELETE_SINDICATO, PUT_SINDICATO, ADD_NEW_PROVINCIA, ADD_NEW_DEPTO, ADD_NEW_LOCALIDAD, ADD_NEW_BARRIO, GET_ID_PROVINCIA, DELETE_PROVINCIA, GET_ID_DEPTO, DELETE_DEPTO, GET_ID_LOCALIDAD, DELETE_LOCALIDAD, GET_ID_BARRIO, DELETE_BARRIO, PUT_PROVINCIA, PUT_DEPTO, PUT_LOCALIDAD, PUT_BARRIO } from "../types/fetchTypes";
 
 export const initialState = {
-    loading: false, 
-    data : "",   
-    estados : "",
-    estadosCiviles : "",
-    nacionalidades : "",
-    paises : "",
-    estudios : "",
-    tiposDocumento : "",
+    loading: false,
+    data: "",
+    estados: "",
+    estadosCiviles: "",
+    nacionalidades: "",
+    paises: "",
+    estudios: "",
+    tiposDocumento: "",
     cargos: "",
-    tareasDesempeñadas : "",
-    parentescos : "",
-    formasDePago : "",
-    modosContratacion : "",
-    modosLiquidacion : "",
-    empleadores : "",
-    domicilios : "",
-    calles : "",
-    departamentos : "",
-    provincias : "",
-    localidades : "",
-    barrios : "",    
-    error : false,
-    familiares : "",
-    convenios : "",
-    categorias : "",
-    agrupamientos : "",
-    centroCosto : "",
-    sectorDepto : "",
-    obrasSociales : "",
-    lugaresDePago : "",
-    bancos : "",
-    direcciones : "",
-    sindicatos : "",
-    esquemas : "",
+    tareasDesempeñadas: "",
+    parentescos: "",
+    formasDePago: "",
+    modosContratacion: "",
+    modosLiquidacion: "",
+    empleadores: "",
+    domicilios: "",
+    calles: "",
+    provincias: "",
+    departamentos: "",
+    localidades: "",
+    barrios: "",
+    error: false,
+    familiares: "",
+    convenios: "",
+    categorias: "",
+    agrupamientos: "",
+    centroCosto: "",
+    sectorDepto: "",
+    obrasSociales: "",
+    lugaresDePago: "",
+    bancos: "",
+    direcciones: "",
+    sindicatos: "",
+    esquemas: "",
     //////////////
-    idEstadoCivil : 0,
-    idEstudio : 0,
-    idTipoDoc : 0,
-    idParentesco : 0,
-    idEstado : 0,
-    idFormaPago : 0,
-    idCargo : 0,
-    idTarea : 0,
-    idModoLiq : 0
+    idEstadoCivil: 0,
+    idEstudio: 0,
+    idTipoDoc: 0,
+    idParentesco: 0,
+    idEstado: 0,
+    idFormaPago: 0,
+    idCargo: 0,
+    idTarea: 0,
+    idModoLiq: 0,
+    idBanco: 0,
+    idSindicato: 0,
+    idCentroCosto: 0,
+    idProvincia: 0,
+    idDepto: 0,
+    idLocalidad: 0,
+    idBarrio: 0
 }
 
-export const fetchReducer = (state = initialState, action) =>{
-    switch(action.type){
-        case SET_LOADING :
-            return{
-                loading : true,
+export const fetchReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SET_LOADING:
+            return {
+                loading: true,
                 error: false,
-                data : {}
+                data: {}
             };
-        case ADD_ESTADOS : {
-            return{
+        case ADD_ESTADOS: {
+            return {
                 ...state,
                 loading: false,
-                estados : action.payload
+                estados: action.payload
             }
         }
-        case ADD_ESTADOSCIVILES : {
-            return{
+        case ADD_ESTADOSCIVILES: {
+            return {
                 ...state,
                 loading: false,
-                estadosCiviles : action.payload
+                estadosCiviles: action.payload
             }
         }
-        case ADD_PAISES : {
-            return{
+        case ADD_PAISES: {
+            return {
                 ...state,
                 loading: false,
-                paises : action.payload
+                paises: action.payload
             }
         }
-        case ADD_ESTUDIOS : {
-            return{
+        case ADD_ESTUDIOS: {
+            return {
                 ...state,
                 loading: false,
-                estudios : action.payload
+                estudios: action.payload
             }
         }
-        case ADD_TIPOSDOCUMENTO : {
-            return{
+        case ADD_TIPOSDOCUMENTO: {
+            return {
                 ...state,
                 loading: false,
-                tiposDocumento : action.payload
+                tiposDocumento: action.payload
             }
         }
-        case ADD_CARGOS : {
-            return{
+        case ADD_CARGOS: {
+            return {
                 ...state,
                 loading: false,
-                cargos : action.payload
+                cargos: action.payload
             }
         }
-        case ADD_TAREASDESEMPEÑADAS : {
-            return{
+        case ADD_TAREASDESEMPEÑADAS: {
+            return {
                 ...state,
                 loading: false,
-                tareasDesempeñadas : action.payload
+                tareasDesempeñadas: action.payload
             }
         }
-        case ADD_PARENTESCOS : {
-            return{
+        case ADD_PARENTESCOS: {
+            return {
                 ...state,
                 loading: false,
-                parentescos : action.payload
+                parentescos: action.payload
             }
         }
-        case ADD_FORMASPAGO : {
-            return{
+        case ADD_FORMASPAGO: {
+            return {
                 ...state,
                 loading: false,
-                formasDePago : action.payload
+                formasDePago: action.payload
             }
         }
-        case ADD_MODOSCONTRATACION : {
-            return{
+        case ADD_MODOSCONTRATACION: {
+            return {
                 ...state,
                 loading: false,
-                modosContratacion : action.payload
+                modosContratacion: action.payload
             }
         }
-        case ADD_MODOSLIQUIDACION : {
-            return{
+        case ADD_MODOSLIQUIDACION: {
+            return {
                 ...state,
                 loading: false,
-                modosLiquidacion : action.payload
+                modosLiquidacion: action.payload
             }
         }
-        case ADD_EMPLEADORES : {
-            return{
+        case ADD_EMPLEADORES: {
+            return {
                 ...state,
                 loading: false,
-                empleadores : action.payload
+                empleadores: action.payload
             }
         }
-        case ADD_BARRIOS : {
-            return{
+        case ADD_BARRIOS: {
+            return {
                 ...state,
                 loading: false,
-                barrios : action.payload
+                barrios: action.payload
             }
         }
-        case ADD_DOMICLIOS : {
-            return{
+        case ADD_DOMICLIOS: {
+            return {
                 ...state,
                 loading: false,
-                domicilios : action.payload
+                domicilios: action.payload
             }
         }
-        case ADD_CALLES : {
-            return{
+        case ADD_CALLES: {
+            return {
                 ...state,
                 loading: false,
-                calles : action.payload
+                calles: action.payload
             }
         }
-        case ADD_DEPARTAMENTOS : {
-            return{
+        case ADD_DEPARTAMENTOS: {
+            return {
                 ...state,
                 loading: false,
-                departamentos : action.payload
+                departamentos: action.payload
             }
         }
-        case ADD_LOCALIDADES : {
-            return{
+        case ADD_LOCALIDADES: {
+            return {
                 ...state,
                 loading: false,
-                localidades : action.payload
+                localidades: action.payload
             }
         }
-        case ADD_PROVINCIAS : {
-            return{
+        case ADD_PROVINCIAS: {
+            return {
                 ...state,
                 loading: false,
-                provincias : action.payload
+                provincias: action.payload
             }
         }
         case ADD_FAMILIARES: {
-            return{
+            return {
                 ...state,
                 loading: false,
-                familiares : action.payload
+                familiares: action.payload
             }
         }
         case ADD_NEW_FAMILIAR: {
             return {
                 ...state.familiares,
-                familiares : [...state.familiares, action.payload]
+                familiares: [...state.familiares, action.payload]
             }
         }
-        case DELETE_ONE_FAMILIAR : {
-            return{
+        case DELETE_ONE_FAMILIAR: {
+            return {
                 ...state.familiares,
-                familiares : state.familiares.filter((fam)=> fam.iDfamiliares !== action.payload)
+                familiares: state.familiares.filter((fam) => fam.iDfamiliares !== action.payload)
             }
         }
-        case ADD_CONVENIOS : {
+        case ADD_CONVENIOS: {
             return {
                 ...state,
-                convenios : action.payload
+                convenios: action.payload
             }
         }
-        case ADD_CATEGORIAS : {
+        case ADD_CATEGORIAS: {
             return {
                 ...state,
-                categorias : action.payload
+                categorias: action.payload
             }
         }
-        case AXIOS_ERROR : 
-            return{
+        case AXIOS_ERROR:
+            return {
                 error: true,
-                loading : false,
+                loading: false,
                 data: {}
-            } 
-        case ADD_AGRUPAMIENTOS : {
+            }
+        case ADD_AGRUPAMIENTOS: {
             return {
                 ...state,
-                agrupamientos : action.payload
+                agrupamientos: action.payload
             }
         }
-        case ADD_CENTRO_COSTO : {
+        case ADD_CENTRO_COSTO: {
             return {
                 ...state,
-                centroCosto : action.payload
+                centroCosto: action.payload
             }
         }
-        case ADD_SECTOR_DEPTO : {
+        case ADD_SECTOR_DEPTO: {
             return {
                 ...state,
-                sectorDepto : action.payload
+                sectorDepto: action.payload
             }
         }
-        case ADD_OBRAS_SOCIALES : {
+        case ADD_OBRAS_SOCIALES: {
             return {
                 ...state,
-                obrasSociales : action.payload
+                obrasSociales: action.payload
             }
         }
-        case ADD_LUGARES_DE_PAGO :
+        case ADD_LUGARES_DE_PAGO:
             return {
                 ...state,
-                lugaresDePago : action.payload
+                lugaresDePago: action.payload
             }
-        case ADD_BANCOS : {
-            return{
-                ...state,
-                bancos : action.payload
-            }
-        }
-        case ADD_DIRECCIONES : {
+        case ADD_BANCOS: {
             return {
                 ...state,
-                direcciones : action.payload
+                bancos: action.payload
             }
         }
-        case ADD_SINDICATOS : {
+        case ADD_DIRECCIONES: {
             return {
                 ...state,
-                sindicatos : action.payload
+                direcciones: action.payload
             }
         }
-        case ADD_ESQUEMAS : {
+        case ADD_SINDICATOS: {
             return {
                 ...state,
-                esquemas : action.payload
+                sindicatos: action.payload
+            }
+        }
+        case ADD_ESQUEMAS: {
+            return {
+                ...state,
+                esquemas: action.payload
             }
         }
 
 
 
         // --------------- POST REDUX ---------------
-         case ADD_NEW_ESCI :{
+        case ADD_NEW_ESCI: {
             return {
                 ...state,
-                estadosCiviles : [...state.estadosCiviles, action.payload]
+                estadosCiviles: [...state.estadosCiviles, action.payload]
             }
         }
 
-        case ADD_NEW_ESTUDIO : {
+        case ADD_NEW_ESTUDIO: {
             return {
                 ...state,
                 estudios: [...state.estudios, action.payload]
             }
         }
 
-        case ADD_NEW_TIPODOC : {
+        case ADD_NEW_TIPODOC: {
             return {
                 ...state,
                 tiposDocumento: [...state.tiposDocumento, action.payload]
             }
         }
 
-        case ADD_NEW_PARENTESCO : {
+        case ADD_NEW_PARENTESCO: {
             return {
                 ...state,
                 parentescos: [...state.parentescos, action.payload]
             }
         }
 
-        case ADD_NEW_ESTADO : {
+        case ADD_NEW_ESTADO: {
             return {
                 ...state,
                 estados: [...state.estados, action.payload]
             }
         }
 
-        case ADD_NEW_FORMAPAGO : {
+        case ADD_NEW_FORMAPAGO: {
             return {
                 ...state,
                 formasDePago: [...state.formasDePago, action.payload]
             }
         }
 
-        case ADD_NEW_CARGO : {
+        case ADD_NEW_CARGO: {
             return {
                 ...state,
                 cargos: [...state.cargos, action.payload]
             }
         }
 
-        case ADD_NEW_TAREA : {
+        case ADD_NEW_TAREA: {
             return {
                 ...state,
                 tareasDesempeñadas: [...state.tareasDesempeñadas, action.payload]
             }
         }
 
-        case ADD_NEW_MODOLIQ : {
+        case ADD_NEW_MODOLIQ: {
             return {
                 ...state,
                 modosLiquidacion: [...state.modosLiquidacion, action.payload]
+            }
+        }
+
+        case ADD_NEW_PROVINCIA : {
+            return {
+                ...state,
+                provincias: [...state.provincias, action.payload]
+            }
+        }
+        case ADD_NEW_DEPTO : {
+            return {
+                ...state,
+                departamentos: [...state.departamentos, action.payload]
+            }
+        }
+        case ADD_NEW_LOCALIDAD : {
+            return {
+                ...state,
+                localidades: [...state.localidades, action.payload]
+            }
+        }
+        case ADD_NEW_BARRIO : {
+            return {
+                ...state,
+                barrios: [...state.barrios, action.payload]
+            }
+        }
+
+
+        // PARA LIQUIDACION (NO VAN)
+        case ADD_NEW_BANCO: {
+            return {
+                ...state,
+                bancos: [...state.bancos, action.payload]
+            }
+        }
+
+        case ADD_NEW_SINDICATO: {
+            return {
+                ...state,
+                sindicatos: [...state.sindicatos, action.payload]
+            }
+        }
+
+        case ADD_NEW_CENTROCOSTO: {
+            return {
+                ...state,
+                centroCosto: [...state.centroCosto, action.payload]
             }
         }
 
@@ -342,159 +397,254 @@ export const fetchReducer = (state = initialState, action) =>{
 
         // --------------- DELETE REDUX ---------------
 
-        case GET_ID_ESCI : {
+        case GET_ID_ESCI: {
             return {
                 ...state,
-                idEstadoCivil : action.payload
+                idEstadoCivil: action.payload
             }
         }
-        case DELETE_ESCI : {
+        case DELETE_ESCI: {
             return {
                 ...state,
-                estadosCiviles : state.estadosCiviles.filter((esCi) => esCi.idEstadoCivil !== action.payload)
-            } 
-        }
-        
-        case GET_ID_ESTUDIO : {
-            return {
-                ...state,
-                idEstudio : action.payload
-            }
-        }
-        case DELETE_ESTUDIO : {
-            return {
-                ...state,
-                estudios : state.estudios.filter((estudio) => estudio.idEstudio !== action.payload)
+                estadosCiviles: state.estadosCiviles.filter((esCi) => esCi.idEstadoCivil !== action.payload)
             }
         }
 
-        case GET_ID_TIPODOC : {
+        case GET_ID_ESTUDIO: {
             return {
                 ...state,
-                idTipoDoc : action.payload
+                idEstudio: action.payload
             }
         }
-        case DELETE_TIPODOC : {
+        case DELETE_ESTUDIO: {
             return {
                 ...state,
-                tiposDocumento : state.tiposDocumento.filter((doc) => doc.idTipoDoc !== action.payload)
-            }
-        }
-
-        case GET_ID_PARENTESCO : {
-            return {
-                ...state,
-                idParentesco : action.payload
-            }
-        }
-        case DELETE_PARENTESCO : {
-            return {
-                ...state,
-                parentescos: state.parentescos.filter((parent) => parent.idParentesco !== action.payload )
+                estudios: state.estudios.filter((estudio) => estudio.idEstudio !== action.payload)
             }
         }
 
-        case GET_ID_ESTADO : {
+        case GET_ID_TIPODOC: {
             return {
                 ...state,
-                idEstado : action.payload
+                idTipoDoc: action.payload
             }
         }
-        case DELETE_ESTADO : {
+        case DELETE_TIPODOC: {
+            return {
+                ...state,
+                tiposDocumento: state.tiposDocumento.filter((doc) => doc.idTipoDoc !== action.payload)
+            }
+        }
+
+        case GET_ID_PARENTESCO: {
+            return {
+                ...state,
+                idParentesco: action.payload
+            }
+        }
+        case DELETE_PARENTESCO: {
+            return {
+                ...state,
+                parentescos: state.parentescos.filter((parent) => parent.idParentesco !== action.payload)
+            }
+        }
+
+        case GET_ID_ESTADO: {
+            return {
+                ...state,
+                idEstado: action.payload
+            }
+        }
+        case DELETE_ESTADO: {
             return {
                 ...state,
                 estados: state.estados.filter((estado) => estado.idEstado !== action.payload)
             }
-        } 
+        }
 
-        case GET_ID_FORMAPAGO : {
+        case GET_ID_FORMAPAGO: {
             return {
                 ...state,
-                idFormaPago : action.payload
+                idFormaPago: action.payload
             }
         }
-        case DELETE_FORMAPAGO : {
+        case DELETE_FORMAPAGO: {
             return {
                 ...state,
                 formasDePago: state.formasDePago.filter((forma) => forma.idFormaPago !== action.payload)
             }
         }
 
-        case GET_ID_CARGO : {
+        case GET_ID_CARGO: {
             return {
                 ...state,
-                idCargo : action.payload
+                idCargo: action.payload
             }
         }
-        case DELETE_CARGO : {
+        case DELETE_CARGO: {
             return {
                 ...state,
                 cargos: state.cargos.filter((cargo) => cargo.idCargo !== action.payload)
             }
         }
 
-        case GET_ID_TAREA : {
+        case GET_ID_TAREA: {
             return {
                 ...state,
                 idTarea: action.payload
             }
         }
-        case DELETE_TAREA : {
+        case DELETE_TAREA: {
             return {
                 ...state,
                 tareasDesempeñadas: state.tareasDesempeñadas.filter((tarea) => tarea.idTarea !== action.payload)
             }
         }
 
-        case GET_ID_MODOLIQ : {
+        case GET_ID_MODOLIQ: {
             return {
                 ...state,
                 idModoLiq: action.payload
             }
         }
-        case DELETE_MODOLIQ : {
+        case DELETE_MODOLIQ: {
             return {
                 ...state,
                 modosLiquidacion: state.modosLiquidacion.filter((modoliq) => modoliq.idModoLiq !== action.payload)
             }
         }
 
-        
-        // --------------- PUT REDUX ---------------
-
-        case PUT_ESCI : {
+        case GET_ID_PROVINCIA : {
             return {
                 ...state,
-                estadosCiviles : state.estadosCiviles.filter((esCi) => esCi.idEstadoCivil !== action.payload),
-                estadosCiviles : [...state.estadosCiviles, action.payload]
+                idProvincia: action.payload
+            }
+        }
+        case DELETE_PROVINCIA : {
+            return {
+                ...state,
+                provincias: state.provincias.filter((provincia) => provincia.idProvincia !== action.payload)
             }
         }
 
-        case PUT_ESTUDIO : {
+        case GET_ID_DEPTO : {
             return {
                 ...state,
-                estudios : state.estudios.filter((estudio) => estudio.idEstudio !== action.payload),
+                idDepto: action.payload
+            }
+        }
+        case DELETE_DEPTO : {
+            return {
+                ...state,
+                departamentos: state.departamentos.filter((depto) => depto.idDepto !== action.payload)
+            }
+        }
+
+        case GET_ID_LOCALIDAD : {
+            return {
+                ...state,
+                idLocalidad: action.payload
+            }
+        }
+        case DELETE_LOCALIDAD : {
+            return {
+                ...state,
+                localidades: state.localidades.filter((localidad) => localidad.idLocalidad !== action.payload)
+            }
+        }
+
+        case GET_ID_BARRIO : {
+            return {
+                ...state,
+                idBarrio: action.payload
+            }
+        }
+        case DELETE_BARRIO : {
+            return {
+                ...state,
+                barrios: state.barrios.filter((barrio) => barrio.idBarrio !== action.payload)
+            }
+        }
+
+
+        // PARA LIQUIDACION (NO VAN)
+        case GET_ID_BANCO: {
+            return {
+                ...state,
+                idBanco: action.payload
+            }
+        }
+        case DELETE_BANCO: {
+            return {
+                ...state,
+                bancos: state.bancos.filter((banco) => banco.idBanco !== action.payload)
+            }
+        }
+
+        case GET_ID_SINDICATO: {
+            return {
+                ...state,
+                idSindicato: action.payload
+            }
+        }
+        case DELETE_SINDICATO: {
+            return {
+                ...state,
+                sindicatos: state.sindicatos.filter((sindicato) => sindicato.idSindicato !== action.payload)
+            }
+        }
+
+        case GET_ID_CENTROCOSTO: {
+            return {
+                ...state,
+                idCentroCosto: action.payload
+            }
+        }
+        case DELETE_CENTROCOSTO: {
+            return {
+                ...state,
+                centroCosto: state.centroCosto.filter((centro) => centro.idCentroCosto !== action.payload)
+            }
+        }
+
+
+
+
+        // --------------- PUT REDUX ---------------
+
+        case PUT_ESCI: {
+            return {
+                ...state,
+                estadosCiviles: state.estadosCiviles.filter((esCi) => esCi.idEstadoCivil !== action.payload),
+                estadosCiviles: [...state.estadosCiviles, action.payload]
+            }
+        }
+
+        case PUT_ESTUDIO: {
+            return {
+                ...state,
+                estudios: state.estudios.filter((estudio) => estudio.idEstudio !== action.payload),
                 estudios: [...state.estudios, action.payload]
             }
         }
 
-        case PUT_TIPODOC : {
+        case PUT_TIPODOC: {
             return {
                 ...state,
-                tiposDocumento : state.tiposDocumento.filter((doc) => doc.idTipoDoc !== action.payload),
+                tiposDocumento: state.tiposDocumento.filter((doc) => doc.idTipoDoc !== action.payload),
                 tiposDocumento: [...state.tiposDocumento, action.payload]
             }
         }
 
-        case PUT_PARENTESCO : {
+        case PUT_PARENTESCO: {
             return {
                 ...state,
-                parentescos : state.parentescos.filter((paren) => paren.idParentesco !== action.payload),
+                parentescos: state.parentescos.filter((paren) => paren.idParentesco !== action.payload),
                 parentescos: [...state.parentescos, action.payload]
             }
         }
 
-        case PUT_ESTADO : {
+        case PUT_ESTADO: {
             return {
                 ...state,
                 estados: state.estados.filter((estado) => estado.idEstado !== action.payload),
@@ -502,7 +652,7 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
 
-        case PUT_FORMAPAGO : {
+        case PUT_FORMAPAGO: {
             return {
                 ...state,
                 formasDePago: state.formasDePago.filter((forma) => forma.idFormaPago !== action.payload),
@@ -510,7 +660,7 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
 
-        case PUT_CARGO : {
+        case PUT_CARGO: {
             return {
                 ...state,
                 cargos: state.cargos.filter((cargo) => cargo.idCargo !== action.payload),
@@ -518,7 +668,7 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
 
-        case PUT_TAREA : {
+        case PUT_TAREA: {
             return {
                 ...state,
                 tareasDesempeñadas: state.tareasDesempeñadas.filter((tarea) => tarea.idTarea !== action.payload),
@@ -526,11 +676,67 @@ export const fetchReducer = (state = initialState, action) =>{
             }
         }
 
-        case PUT_MODOLIQ : {
+        case PUT_MODOLIQ: {
             return {
                 ...state,
                 modosLiquidacion: state.modosLiquidacion.filter((modoliq) => modoliq.idModoLiq !== action.payload),
                 modosLiquidacion: [...state.modosLiquidacion, action.payload]
+            }
+        }
+
+        case PUT_PROVINCIA : {
+            return {
+                ...state,
+                provincias: state.provincias.filter((provincia) => provincia.idProvincia !== action.payload),
+                provincias: [...state.provincias, action.payload]
+            }
+        }
+        case PUT_DEPTO : {
+            return {
+                ...state,
+                departamentos: state.departamentos.filter((depto) => depto.idDepto !== action.payload),
+                departamentos: [...state.departamentos, action.payload]
+            }
+        }
+        case PUT_LOCALIDAD : {
+            return {
+                ...state,
+                localidades: state.localidades.filter((localidad) => localidad.idLocalidad !== action.payload),
+                localidades: [...state.localidades, action.payload]
+            }
+        }
+        case PUT_BARRIO : {
+            return {
+                ...state,
+                barrios: state.barrios.filter((barrio) => barrio.idBarrio !== action.payload),
+                barrios: [...state.barrios, action.payload]
+            }
+        }
+
+
+        // PARA LIQUIDACION (NO VAN)
+        case PUT_BANCO: {
+            return {
+                ...state,
+                bancos: state.bancos.filter((banco) => banco.idBanco !== action.payload),
+                bancos: [...state.bancos, action.payload]
+            }
+        }
+
+        case PUT_SINDICATO: {
+            return {
+                ...state,
+                sindicatos: state.sindicatos.filter((sindicato) => sindicato.idSindicato !== action.payload),
+                sindicatos: [...state.sindicatos, action.payload]
+            }
+        }
+
+        case PUT_CENTROCOSTO: {
+            return {
+                ...state,
+                centroCosto: state.centroCosto.filter((centro) => centro.idCentroCosto !== action.payload),
+                centroCosto: [...state.centroCosto, action.payload]
+
             }
         }
 
@@ -542,6 +748,6 @@ export const fetchReducer = (state = initialState, action) =>{
         //     }
         // }
 
-        default : return state;
+        default: return state;
     }
 }

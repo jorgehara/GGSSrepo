@@ -129,6 +129,7 @@ export const objectModosLiquidacion = [
 ]
 
 
+
 // -------------
 
 export const objectEstado = [
@@ -182,7 +183,9 @@ export const objectModosContratacion = [
 export const objectProvincias = [
   {
     "label": "Provincia",
-    "placeholder": "Córdoba"
+    "placeholder": "Córdoba",
+    "idInput": "provincia",
+    "nameInput": "provincia"
   }
 ]
 
@@ -232,7 +235,33 @@ export const objectAlicuotas = [
 export const objectBancos = [
   {
     "label": "Banco",
-    "placeholder": "Macro"
+    "placeholder": "Macro",
+    "idInput": "nombreBanco",
+    "nameInput": "nombreBanco"
+  }
+]
+
+export const objectSindicatos = [
+  {
+		"label": "Sindicato",
+		"placeholder": "Luz y Fuerza",
+    "idInput": "nombreSindicato",
+    "nameInput": "nombreSindicato"
+	},
+	{
+		"label": "Abreviatura",
+		"placeholder": "LyFIV",
+    "idInput": "abreviaturaSigla",
+    "nameInput": "abreviaturaSigla"
+	}
+]
+
+export const objectCentrosCosto = [
+  {
+    "label": "Centro de costo",
+    "placeholder": "AAFF Gobierno",
+    "idInput": "centrodeCosto",
+    "nameInput": "centrodeCosto"
   }
 ]
 
@@ -247,16 +276,6 @@ export const objectEmpresasTelefonia = [
 	}
 ]
 
-export const objectSindicatos = [
-  {
-		"label": "Sindicato",
-		"placeholder": "Luz y Fuerza"
-	},
-	{
-		"label": "Abreviatura",
-		"placeholder": "LyFIV"
-	}
-]
 
 export const objectObrasSociales = [
   {
@@ -276,12 +295,6 @@ export const objectAFJP = [
   }
 ]
 
-export const objectCentrosCosto = [
-  {
-    "label": "Centro de costo",
-    "placeholder": "AAFF Gobierno"
-  }
-]
 
 export const objectSectoresDptos = [
   {

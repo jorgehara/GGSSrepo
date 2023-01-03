@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago, addNewCargo, deleteCargo, putCargo, getIdCargo, addNewTarea, deleteTarea, putTarea, getIdTarea, addNewModoLiq, deleteModoLiq, putModoLiq, getIdModoLiq } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
-import { addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedModoLiq, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
+import { addSelectedBanco, addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedModoLiq, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
 import swal from "sweetalert";
 
 
@@ -50,6 +50,11 @@ const Navbar = () => {
 	const urlBarrios = "http://54.243.192.82/api/Barrios"
 	const urlCalles = "http://54.243.192.82/api/Calles"
 	const urlEmpleadores = "http://54.243.192.82/api/Empleadores"
+
+	// liquidación
+	const urlBancos = "http://54.243.192.82/api/Bancos"
+	const urlObrasSociales = "http://54.243.192.82/api/ObrasSociales"
+	const urlCentrosCostos = "http://54.243.192.82/api/CentrosDeCostos"
 
 
 	const handleFetch = (url, action) => {
@@ -110,7 +115,7 @@ const Navbar = () => {
 		console.log(modalDataInputs)
 	}, [modalDataInputs]);
 
-	// ------- GET DE LOS ENDPOINTS  -----
+	// ------- GET DE LOS ENDPOINTS (PARA EMPLEADOS) -----
 
 	//Estados Civiles
 	const estadosCivilesValue = useSelector((state) => state.generalState.estadosCiviles);
@@ -175,6 +180,57 @@ const Navbar = () => {
 	const textAreaModoLiq = useSelector((state) => state.modalState.formulario.textAreaModoLiq)
 	const valueIdModoLiq = useSelector((state) => state.generalState.idModoLiq)
 
+	// // provincias
+	// const provinciasValue = useSelector((state) => state.generalState.provincias)
+	// const provinciaSelected = useSelector((state) => state.modalState.provinciaSelected)
+	// const inputProvincia = useSelector((state) => state.modalState.formulario.inputProvincia)
+	// const textAreaProvincia = useSelector((state) => state.modalState.formulario.textAreaProvincia)
+	// const valueIdProvincia = useSelector((state) => state.generalState.idProvincia) 
+
+	// // departamentos
+	// const deptosValue = useSelector((state) => state.generalState.departamentos)
+	// const deptoSelected = useSelector((state) => state.modalState.deptoSelected)
+	// const inputDepto = useSelector((state) => state.modalState.formulario.inputDepto)
+	// const textAreaDeptos = useSelector((state) => state.modalState.formulario.textAreaDeptos)
+	// const valueIdDeptos = useSelector((state) => state.generalState.idDepto) 
+
+	// // localidades
+	// const localidadesValue = useSelector((state) => state.generalState.localidades)
+	// const localidadSelected = useSelector((state) => state.modalState.localidadSelected)
+	// const inputLocalidad = useSelector((state) => state.modalState.formulario.inputLocalidad)
+	// const textAreaLocalidades = useSelector((state) => state.modalState.formulario.textAreaLocalidades)
+	// const valueIdLocalidades = useSelector((state) => state.generalState.idLocalidad) 
+
+	// // barrios
+	// const barriosValue = useSelector((state) => state.generalState.barrios)
+	// const barrioSelected = useSelector((state) => state.modalState.barrioSelected)
+	// const inputBarrio = useSelector((state) => state.modalState.formulario.inputBarrio)
+	// const textAreaBarrios = useSelector((state) => state.modalState.formulario.textAreaBarrios)
+	// const valueIdBarrios = useSelector((state) => state.generalState.idBarrio) 
+
+	// ------- GET DE LOS ENDPOINTS (PARA LIQUIDACIÓN)  NO VAN POR AHORA  -----
+
+	// bancos
+	const bancosValue = useSelector((state) => state.generalState.bancos)
+	const bancoSelected = useSelector((state) => state.modalState.bancoSelected)
+	const inputBanco = useSelector((state) => state.modalState.formulario.inputBanco)
+	const textAreaBanco = useSelector((state) => state.modalState.formulario.textAreaBanco)
+	const valueIdBanco = useSelector((state) => state.generalState.idBanco)
+
+	// sindicatos
+	const sindicatosValue = useSelector((state) => state.generalState.sindicatos)
+	const sindicatoSelected = useSelector((state) => state.modalState.sindicatoSelected)
+	const inputSindicato = useSelector((state) => state.modalState.formulario.inputSindicato)
+	const inputAbreviaturaSindicato = useSelector((state) => state.modalState.formulario.inputAbreviaturaSindicato)
+	const textAreaSindicato = useSelector((state) => state.modalState.formulario.textAreaSindicato)
+	const valueIdSindicato = useSelector((state) => state.generalState.idSindicato)
+
+	// centros de costos
+	const centrosCostosValue = useSelector((state) => state.generalState.centrosCosto)
+	const centroCostoSelected = useSelector((state) => state.modalState.centroCostoSelected)
+	const inputCentroCosto = useSelector((state) => state.modalState.formulario.inputCentroCosto)
+	const textAreaCentroCosto = useSelector((state) => state.modalState.formulario.textAreaCentroCosto)
+	const valueIdCentroCosto = useSelector((state) => state.generalState.idCentroCosto)
 
 
 	// ----------------------------------- ID & PETITION  -----------------------------------
@@ -233,6 +289,35 @@ const Navbar = () => {
 		"obs": responses.modalDataInputs?.obs
 	}
 
+
+
+
+
+	// PARA LIQUIDACION (NO VAN) ----------------------------------------
+	// bancos
+	const idBanco = ((bancosValue && bancosValue[bancosValue.length - 1] !== undefined && (bancosValue[bancosValue.length - 1].idBanco)) + 1)
+	const bodyPetBancos = {
+		"idBanco": idBanco,
+		"nombreBanco": responses.modalDataInputs?.nombreBanco,
+		"obs": responses.modalDataInputs?.obs
+	}
+
+	// sindicatos
+	const idSindicato = ((sindicatosValue && sindicatosValue[sindicatosValue.length - 1] !== undefined && (sindicatosValue[sindicatosValue.length - 1].idSindicato)) + 1)
+	const bodyPetSindicatos = {
+		"idSindicato": idSindicato,
+		"nombreSindicato": responses.modalDataInputs?.nombreSindicato,
+		"abreviaturaSigla": responses.modalDataInputs?.abreviaturaSigla,
+		"obs": responses.modalDataInputs?.obs
+	}
+
+	// centros de costo
+	const idCentroCosto = ((centrosCostosValue && centrosCostosValue[centrosCostosValue.length - 1] !== undefined && (centrosCostosValue[centrosCostosValue.length - 1].idCentrodeCosto)) + 1)
+	const bodyPetCentrosCosto = {
+		"idCentrodeCosto": idCentroCosto,
+		"centrodeCosto": responses.modalDataInputs?.centrodeCosto,
+		"obs": responses.modalDataInputs?.obs
+	}
 
 	// --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -592,14 +677,37 @@ const Navbar = () => {
 							<BasicModal idModal="modosDeContratacion" nameModal="Modos de Contratacion" placeholder={objectModosContratacion} dropdown={true} inputDate={true} />
 							<BasicModal idModal="motivosEgreso" nameModal="Motivos de Egreso" placeholder={objectMotivosEgreso} textArea={true} />
 							<BasicModal idModal="paises" nameModal="Paises" placeholder={objectPaises} />
-							<BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} />
-							<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" />
+							{/* <BasicModal idModal="nacionalidades" nameModal="Nacionalidades" placeholder={objectPaises} /> */}
+							<ModalPDLB
+								idModal="pdlb"
+								nameModal="Provincias - Departamentos - Localidades - Barrios"
+								urlProv={urlProvincias}
+								urlDeptos={urlDepartamentos}
+								urlLocalidades={urlLocalidades}
+								urlBarrios={urlBarrios}
+							/>
 							<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true} />
 							<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
 							<BasicModal idModal="alicuotas" nameModal="Alicuotas" placeholder={objectAlicuotas} inputNum={true} inputNumName="Alicuota" hasCheckbox={true} checkboxName="Pide N° CUIT" />
 
 							{/* {/ MODALES TABLA PARA LIQUIDACIÓN /} */}
-							<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true} />
+							<BasicModal
+								idModal="Bancos"
+								nameModal="Bancos"
+								placeholder={objectBancos}
+								textArea={true}
+								textAreaObject={textAreaObject}
+								array={bancosValue && bancosValue}
+							// propArrayOp="nombreBanco" propArrayId="idBanco"
+							// action={addSelectedBanco}
+							// opcionSelected={bancoSelected}
+							// urlApi={urlBancos}
+							// inputIdCompare="nombreBanco"
+							// firstOptionCompare={inputBanco ? inputBanco : bancoSelected.nombreBanco}
+							// secondOptionCompare={inputBanco ? inputBanco : bancoSelected.nombreBanco}
+
+
+							/>
 							<BasicModal idModal="Telefonia" nameModal="Empresas de Telefonia" placeholder={objectEmpresasTelefonia} />
 							<BasicModal idModal="Sindicatos" nameModal="Sindicatos" placeholder={objectSindicatos} dropdown={true} />
 							<BasicModal idModal="ObrasSociales" nameModal="Obras Sociales" placeholder={objectObrasSociales} inputNum={true} inputNumName="Porcentaje Patronal" textArea={true} />

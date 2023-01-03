@@ -1,4 +1,4 @@
-import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS, ADD_SELECTED_ESTADO, GET_ESTADOS, ADD_SELECTED_FORMAPAGO, GET_FORMASPAGO, ADD_SELECTED_CARGO, GET_CARGO, GET_CARGOS, ADD_SELECTED_TAREA, GET_TAREAS, ADD_SELECTED_MODOLIQ, GET_MODOSLIQ } from "../types/modalesTypes"
+import { CANCEL_MODALS, ADD_SELECTED_EC, GET_ESTADOSCIVILES, ADD_SELECTED_ESTUDIO, GET_ESTUDIOS, ADD_SELECTED_TIPODOC, GET_TIPOSDOC, ADD_SELECTED_PARENTESCO, GET_PARENTESCOS, ADD_SELECTED_ESTADO, GET_ESTADOS, ADD_SELECTED_FORMAPAGO, GET_FORMASPAGO, ADD_SELECTED_CARGO, GET_CARGO, GET_CARGOS, ADD_SELECTED_TAREA, GET_TAREAS, ADD_SELECTED_MODOLIQ, GET_MODOSLIQ, ADD_SELECTED_BANCO, GET_BANCOS, ADD_SELECTED_OBRASOCIAL, GET_OBRASSOCIALES, ADD_SELECTED_CENTROCOSTO, GET_CENTROSCOSTO, ADD_SELECTED_SINDICATO, GET_SINDICATOS, ADD_SELECTED_PROVINCIA, GET_PROVINCIAS, ADD_SELECTED_DEPTO, GET_DEPTOS, ADD_SELECTED_LOCALIDAD, GET_LOCALIDADES, ADD_SELECTED_BARRIO, GET_BARRIOS } from "../types/modalesTypes"
 
 export const addSelectedEstadoCivil = (payload) => {
     return {
@@ -119,6 +119,107 @@ export const getModosLiq = (payload) => {
     }
 }
 
+export const addSelectedProvincia = (payload) => {
+    return {
+        type: ADD_SELECTED_PROVINCIA,
+        payload
+    }
+}
+export const getProvincias = (payload) => {
+    return {
+        type: GET_PROVINCIAS,
+        payload
+    }
+}
+
+export const addSelectedDepto = (payload) => {
+    return {
+        type: ADD_SELECTED_DEPTO,
+        payload
+    }
+}
+export const getDeptos = (payload) => {
+    return {
+        type: GET_DEPTOS,
+        payload
+    }
+}
+
+export const addSelectedLocalidad = (payload) => {
+    return {
+        type: ADD_SELECTED_LOCALIDAD,
+        payload
+    }
+}
+export const getLocalidades = (payload) => {
+    return {
+        type: GET_LOCALIDADES,
+        payload
+    }
+}
+
+export const addSelectedBarrio = (payload) => {
+    return {
+        type: ADD_SELECTED_BARRIO,
+        payload
+    }
+}
+export const getBarrios = (payload) => {
+    return {
+        type: GET_BARRIOS,
+        payload
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+// PARA LIQUIDACION (NO VAN)
+export const addSelectedBanco = (payload) => {
+    return {
+        type: ADD_SELECTED_BANCO,
+        payload
+    }
+}
+export const getBancos = (payload) => {
+    return {
+        type: GET_BANCOS,
+        payload
+    }
+}
+
+export const addSelectedSindicato = (payload) => {
+    return {
+        type: ADD_SELECTED_SINDICATO,
+        payload
+    }
+}
+export const getSindicatos = (payload) => {
+    return {
+        type: GET_SINDICATOS,
+        payload
+    }
+}
+
+export const addSelectedCentroCosto = (payload) => {
+    return {
+        type: ADD_SELECTED_CENTROCOSTO,
+        payload
+    }
+}
+export const getCentrosCosto = (payload) => {
+    return {
+        type: GET_CENTROSCOSTO,
+        payload
+    }
+}
 
 
 

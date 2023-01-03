@@ -1,4 +1,4 @@
-import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, GET_ID_CARGO, DELETE_CARGO, ADD_NEW_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_NEW_MODOLIQ, GET_ID_MODOLIQ, DELETE_MODOLIQ, PUT_MODOLIQ } from "../types/fetchTypes";
+import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, GET_ID_CARGO, DELETE_CARGO, ADD_NEW_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_NEW_MODOLIQ, GET_ID_MODOLIQ, DELETE_MODOLIQ, PUT_MODOLIQ, ADD_NEW_BANCO, ADD_NEW_OBRASOCIAL, ADD_NEW_CENTROCOSTO, GET_ID_BANCO, DELETE_BANCO, GET_ID_OBRASOCIAL, DELETE_OBRASOCIAL, GET_ID_CENTROCOSTO, DELETE_CENTROCOSTO, PUT_BANCO, PUT_OBRASOCIAL, PUT_CENTROCOSTO, ADD_NEW_SINDICATO, GET_ID_SINDICATO, DELETE_SINDICATO, PUT_SINDICATO, ADD_NEW_PROVINCIA, ADD_NEW_DEPTO, ADD_NEW_LOCALIDAD, ADD_NEW_BARRIO, GET_ID_PROVINCIA, DELETE_PROVINCIA, GET_ID_DEPTO, DELETE_DEPTO, GET_ID_LOCALIDAD, DELETE_LOCALIDAD, GET_ID_BARRIO, DELETE_BARRIO, PUT_PROVINCIA, PUT_DEPTO, PUT_LOCALIDAD, PUT_BARRIO } from "../types/fetchTypes";
 
 
 export const setLoading = (payload) =>{
@@ -280,6 +280,54 @@ export const addNewModoLiq = (payload) => {
     }
 }
 
+export const addNewProvincia = (payload) => {
+    return {
+        type: ADD_NEW_PROVINCIA,
+        payload
+    }
+}
+export const addNewDepto = (payload) => {
+    return {
+        type: ADD_NEW_DEPTO,
+        payload
+    }
+}
+export const addNewLocalidad = (payload) => {
+    return {
+        type: ADD_NEW_LOCALIDAD,
+        payload
+    }
+}
+export const addNewBarrio = (payload) => {
+    return {
+        type: ADD_NEW_BARRIO,
+        payload
+    }
+}
+
+// PARA LIQUIDACION (NO VAN)
+
+export const addNewBanco = (payload) => {
+    return {
+        type: ADD_NEW_BANCO,
+        payload
+    }
+}
+
+export const addNewSindicato = (payload) => {
+    return {
+        type: ADD_NEW_SINDICATO,
+        payload
+    }
+}
+
+export const addNewCentroCosto = (payload) => {
+    return {
+        type: ADD_NEW_CENTROCOSTO,
+        payload
+    }
+}
+
 
 // -------- DELETE ACTIONS -----------
 
@@ -410,6 +458,103 @@ export const deleteModoLiq = (payload) => {
     }
 }
 
+export const getIdProvincia = (payload) => {
+    return {
+        type: GET_ID_PROVINCIA,
+        payload
+    }
+}
+export const deleteProvincia = (payload) => {
+    return {
+        type: DELETE_PROVINCIA,
+        payload
+    }
+}
+
+export const getIdDepto = (payload) => {
+    return {
+        type: GET_ID_DEPTO,
+        payload
+    }
+}
+export const deleteDepto = (payload) => {
+    return {
+        type: DELETE_DEPTO,
+        payload
+    }
+}
+
+export const getIdLocalidad = (payload) => {
+    return {
+        type: GET_ID_LOCALIDAD,
+        payload
+    }
+}
+export const deleteLocalidad = (payload) => {
+    return {
+        type: DELETE_LOCALIDAD,
+        payload
+    }
+}
+
+export const getIdBarrio = (payload) => {
+    return {
+        type: GET_ID_BARRIO,
+        payload
+    }
+}
+export const deleteBarrio = (payload) => {
+    return {
+        type: DELETE_BARRIO,
+        payload
+    }
+}
+
+
+
+//// PARA LIQUIDACION (NO VAN)
+// bancos
+export const getIdBanco = (payload) => {
+    return {
+        type: GET_ID_BANCO,
+        payload
+    }
+}
+export const deleteBanco = (payload) => {
+    return {
+        type: DELETE_BANCO,
+        payload
+    }
+}
+
+// obras sociales
+export const getIdSindicato = (payload) => {
+    return {
+        type: GET_ID_SINDICATO,
+        payload
+    }
+}
+export const deleteObraSocial = (payload) => {
+    return {
+        type: DELETE_SINDICATO,
+        payload
+    }
+}
+
+// centros de costo
+export const getIdCentroCosto = (payload) => {
+    return {
+        type: GET_ID_CENTROCOSTO,
+        payload
+    }
+}
+export const deleteCentroCosto = (payload) => {
+    return {
+        type: DELETE_CENTROCOSTO,
+        payload
+    }
+}
+
 // -------- PUT ACTIONS -----------
 
 export const putEstadoCivil = (payload) => {
@@ -471,6 +616,59 @@ export const putTarea = (payload) => {
 export const putModoLiq = (payload) => {
     return {
         type: PUT_MODOLIQ,
+        payload
+    }
+}
+
+export const putProvincia = (payload) => {
+    return {
+        type: PUT_PROVINCIA,
+        payload
+    }
+}
+export const putDepartamento = (payload) => {
+    return {
+        type: PUT_DEPTO,
+        payload
+    }
+}
+export const putLocalidad = (payload) => {
+    return {
+        type: PUT_LOCALIDAD,
+        payload
+    }
+}
+export const putBarrio = (payload) => {
+    return {
+        type: PUT_BARRIO,
+        payload
+    }
+}
+
+
+
+
+
+
+
+// PARA LIQUIDACION (NO VAN)
+export const putBanco = (payload) => {
+    return {
+        type: PUT_BANCO,
+        payload
+    }
+}
+
+export const putSindicato = (payload) => {
+    return {
+        type: PUT_SINDICATO,
+        payload
+    }
+}
+
+export const putCentrosCosto = (payload) => {
+    return {
+        type: PUT_CENTROCOSTO,
         payload
     }
 }
