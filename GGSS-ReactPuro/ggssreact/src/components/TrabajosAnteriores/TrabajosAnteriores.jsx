@@ -140,18 +140,22 @@ const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch,disabl
 
   return (
     <div className='container-flex'>
-        <div className='row'>
+        <div className="container-flex border border-1">
             <EmployeData />
         </div>
-        <div className='row'>
-            <div className='col-xl-4'>
+
+        <div className="container-flex  ">
+
+
+        {/* <div className='row '> */}
+            <div className='col-xl-4 px-3'>
                 <div className='d-flex flex-row justify-content-start align-items-center mt-2 '>
                     <label htmlFor="idDateDesde">Desde:</label>
                     <input type="date" disabled={disable} onChange={(e)=> onChangeValues(e.target.value, "idDateDesde")} value={ modificar ? (formTrabajosAnteriores?.idDateDesde ? formTrabajosAnteriores?.idDateDesde : trabajoAnterior?.desde.substring(0, trabajoAnterior?.desde.length - 9)) : formTrabajosAnteriores?.idDateDesde && formTrabajosAnteriores?.idDateDesde} name="idDateDesde" id="idDateDesde" className='dateTrabajos '/>
                 </div>
             </div>        
         </div>
-        <div className='row'>
+        <div className='row px-3'>
             <div className='col-xl-4'>
                 <div className='d-flex flex-row justify-content-start align-items-center mt-2 '>
                     <label htmlFor="idDateDesde">Hasta:</label>
@@ -161,10 +165,10 @@ const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch,disabl
                 </div>
             </div>        
         </div>
-        <div className='row'>
+        <div className='row px-3'>
             <InputTextTrabajos disable={disable} nameLabel="Descripción" inputId="idDescripcionTrabajos" onChange={onChangeValues} value={modificar ? (formTrabajosAnteriores?.idDescripcionTrabajos ? formTrabajosAnteriores?.idDescripcionTrabajos : trabajoAnterior?.descripcion) : formTrabajosAnteriores?.idDescripcionTrabajos && formTrabajosAnteriores?.idDescripcionTrabajos} action={GET_INPUT} onSend={sendData} onDelete={deleteTRabajoAnterior} id={valueIdTrabajoAnterior} />
         </div>
-        <div className='row'>
+        <div className='row px-3'>
             <TableTrabajosAnteriores disable={disable} setModificar={setModificar} nameLabel="Historial:" columns={columns} array={trabajosAnterioresDelEmpleado}/>
         </div>
     </div>
