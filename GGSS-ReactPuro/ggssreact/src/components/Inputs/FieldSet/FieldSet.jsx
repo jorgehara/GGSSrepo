@@ -324,7 +324,11 @@ const FieldSet = ({
         break;
 
       default:
-        return null;
+        return swal({
+          title: "Error",
+          text: `Debe seleccionar "1 - Disponibles por Periodo" para eliminar Licencia`,
+          icon: "error",
+        });
     }
   }
   function fetchApiWithOptions() {

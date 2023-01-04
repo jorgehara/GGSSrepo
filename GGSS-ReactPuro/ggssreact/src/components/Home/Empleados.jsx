@@ -335,8 +335,8 @@ useEffect(()=>{
       axios.get(`http://54.243.192.82/api/MostrarDatosFamiliarPorEmpleado/${empleadoUno?.iDempleado}`)
       .then((res)=>{
         dispatch(getDAtosFamiliaresEmpleado(res.data))
-      })
-      axios.get(`http://54.243.192.82/api/sp_DomiciliosDatosxIdEmpleado/${empleadoUno?.iDempleado}`)
+      })        
+      axios.get(`http://54.243.192.82/api/sp_DomiciliosDatosxIdEmpleado?IdEmpleado=${empleadoUno?.iDempleado}`)
       .then((res)=>{
         dispatch(addOneDomicilio(res.data))
       })
@@ -1034,7 +1034,7 @@ useEffect(()=>{
               }
               console.log(array)
               await axios.delete(`${urls.urlDOmicilioElimina}`, {data : array, headers : {'Content-Type': 'application/json;'}})
-              .then((res) => console.log(res))
+              .then((res) => setRefectch(!refetch))
            });
           }
     }else{
@@ -1083,11 +1083,19 @@ useEffect(()=>{
                 ]
               }
               await axios.delete(`${urls.urlTRabajoDelete}${id}`, {data : array, headers : {'Content-Type': 'application/json;'}})
-              .then((res) => console.log(res))
+              .then((res) => swal({
+                title: "Ok",
+                text: "Trabajo Anterior eliminado con éxito",
+                icon: "success",
+            }))
           });
           arrays[1].map(async (id)=>{
             await axios.delete(`${urls.urlDocDelte}${id}`)
-            .then((res) => console.log(res))
+            .then((res) => { if(res.status === 200){swal({
+              title: "Ok",
+              text: "Documentacion eliminada con éxito",
+              icon: "success",
+          })}})
           });
           arrays[2].map(async (id)=>{
             let array = {
@@ -1096,16 +1104,49 @@ useEffect(()=>{
               ]
             }
             console.log(array)
-            await axios.delete(`${urls.urlLicDelete}0`, {data : array, headers : {'Content-Type': 'application/json;'}})
-            .then((res) => console.log(res))
+            try{
+              await axios.delete(`${urls.urlLicDelete}0`, {data : array, headers : {'Content-Type': 'application/json;'}})
+            .then((res) => {
+                  console.log(res.status)
+                  if(res.status === 200){
+                  return swal({
+                    title: "Ok",
+                    text: "Licencia eliminada con éxito",
+                    icon: "success",
+                })
+                }                
+              }  
+            )
+            }catch(err){
+              setRefectch(!refetch);
+              return swal({
+                title: "Error",
+                text: "No se puede elimiar una Licencia que tiene asignado un Detalle",
+                icon: "error",
+            })
+            }
+            
          });
             arrays[4].map(async (id)=>{    
               await axios.delete(`${urls.urlDeleteFAmiliar}${id}`)
-              .then((res) => console.log(res))
+              .then((res) => {
+                if(res.status === 200){
+                swal({
+                  title: "Ok",
+                  text: "Familiar eliminado con éxito",
+                  icon: "success",
+              })
+              }} )
           });
             arrays[5].map(async (id)=>{    
               await axios.delete(`${urls.urlDatoExtraElimina}${id}`)
-              .then((res) => console.log(res))
+              .then((res) => {if(res.status === 200){
+                swal({
+                  title: "Ok",
+                  text: "Dato Extra eliminado con éxito",
+                  icon: "success",
+              })
+              }} )
           });
         }
       }

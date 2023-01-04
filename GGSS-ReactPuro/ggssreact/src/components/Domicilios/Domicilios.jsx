@@ -29,6 +29,8 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   const domicilioDelEmpleado = useSelector((state)=> state.domiciliosStates.idDomicilioSelected);
 
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
+
+  console.log(empleadoDomicilio)
   
   const listDomicilios = useSelector((state)=> state.generalState.domicilios); 
 
