@@ -58,3 +58,31 @@
 .input-control{
 	width: 32.5rem;
 }
+
+.textarea:active{
+	background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+	transition: .3s ease all;
+}
+.text-red{
+	color: red;
+}
+.text-orange{
+	color: orange;
+}
+.formulario-input-TextArea{
+	padding: 0%;
+	margin-bottom: 3px;
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+	border: none;
+	/* border-radius: 3px; */
+	height: 40px;
+	transition: .3s ease all;
+	border-bottom: 1px solid rgb(78, 6, 6);
+}
+
+.formulario-input-TextArea:focus{
+    background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3));
+    outline: none;
+}
