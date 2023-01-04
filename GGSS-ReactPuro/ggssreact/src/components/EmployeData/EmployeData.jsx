@@ -1,17 +1,21 @@
 // import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import InputEmpData from "../Inputs/InputEmpData/InputEmpData";
 import "./EmployeData.css";
 
-const EmployeData = ({disabled}) => {
-  const [image, setImage] = useState("");
+const EmployeData = ({disabled, image}) => {
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
+  const estadosCiviles = useSelector((state)=> state.generalState.estadosCiviles);
 
+  const idEstadoSelec = empleadoUno && empleadoUno.idEstado;
+  const estadoSEleccionado = estadosCiviles && estadosCiviles.find(est => est.idEstado === idEstadoSelec); 
 
   
+
+    
   return (
-    <div className="container-fluid p-0">
-      <div className="container-fluid border-3 border-bottom ">
-        <div className="container text-start py-2">
+        <div className="container-flex border border-3 p-2 text-start py-2">
             <div className="row">
               <div className="col-2 d-flex align-items-center">
                 <img
@@ -26,21 +30,28 @@ const EmployeData = ({disabled}) => {
               <div className="row">
             <InputEmpData
                 idInput=""
-           
+                inputValue=
+                {
+                  empleadoUno && empleadoUno.legajo
+                }
                 nameLabel="Legajo: "
                 disabled={disabled}
                 />
             <InputEmpData
                 idInput="apellidoInfo"
                 // className="apellido"
-               
+                inputValue={
+                  empleadoUno && empleadoUno.apellido
+                }
                 nameLabel="Apellido: "
                 disabled={disabled}
                 />
           
             <InputEmpData
                   idInput="tipoDNIInfo"
-                
+                  inputValue={
+                    empleadoUno && empleadoUno.nroDocumento
+                  }
                   nameLabel="NroDoc:"
                   disabled={disabled}
                 />
@@ -55,7 +66,9 @@ const EmployeData = ({disabled}) => {
                 />
                 <InputEmpData
                   idInput="nombresInfo"
-                 
+                  inputValue={
+                    empleadoUno && empleadoUno.nombres
+                  }
                   nameLabel="Nombres: "
                   disabled={disabled}
                 />
@@ -64,8 +77,6 @@ const EmployeData = ({disabled}) => {
           </div>
           </div>
           
-        </div>
-      </div>
   );
 };
 export default EmployeData;

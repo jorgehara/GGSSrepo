@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import "./InputForm.css";
 
 const InputForm = ({
-  nameInput,
   messageError,
   placeHolder,
   inputId,
@@ -10,25 +8,13 @@ const InputForm = ({
   disabled,
   onChange,
   nameLabel,
-  datosPersonalesValue,
-  generalState,
-  action,
   validateNumbers,
   validateLetters,
-  validateEmails,
   numbers,
-  email
+  idInput,
+  cancelar,
+  obligatorio
 }) => {
-  const [valor, setValor] = useState("");
-
-  useEffect(() => {
-    setValor(datosPersonalesValue);
-  }, [datosPersonalesValue]);
-
-  useEffect(() => {
-    setValor(value);
-  }, [value]);
-
   return (
     <div className="formulario__grupo__inputs">
       <div className="formulario__grupo">
@@ -37,17 +23,36 @@ const InputForm = ({
         </label>
       </div>
       <div className="form__grupo-input">
+        {
+          obligatorio ? 
+          <input
+          type="text"
+          className="legajo__limpia formulario-input-Legajo obligatorio"
+          id={idInput}
+          data-bs-toggle="tooltip" 
+          autocomplete="off"
+          data-bs-placement="top"
+          data-bs-title="Campo obligario"
+          placeholder={placeHolder}
+          value={ cancelar ? null : value  }
+          onChange={(e)=>onChange(e.target.value, idInput)}
+          disabled={disabled}
+          name={idInput}
+          onKeyPress={(numbers && validateNumbers) || (!numbers && validateLetters)}
+        /> :
         <input
           type="text"
           className="formulario-input-Legajo"
-          id={inputId}
+          id={idInput}
+          autocomplete="off"
           placeholder={placeHolder}
-          value={ valor  }
-          onChange={(e) => onChange(e,action)}
+          value={ cancelar ? null : value  }
+          onChange={(e)=>onChange(e.target.value, idInput)}
           disabled={disabled}
-          name={nameInput}
+          name={idInput}
           onKeyPress={(numbers && validateNumbers) || (!numbers && validateLetters)}
         />
+        }
       </div>
       <div className="form__grupo__icons">
         <i className="fas fa-times-circle form__grupo__icon"></i>

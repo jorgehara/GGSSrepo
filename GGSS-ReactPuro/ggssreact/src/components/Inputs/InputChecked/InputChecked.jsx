@@ -11,26 +11,27 @@ const InputChecked = ({
   idInput,
   nameInput,
   onChange,
-  action
+  action,
+  obligatorio
 }) => {
   return (
     <>
     <div className="formulario__grupo__inputs">
     <div className="formulario__grupo">
-            <label className="form__labelFlia w-100 mt-2" htmlFor={idInput}>
+            <label className="form__labelFlia mt-2" htmlFor={idInput}>
               {nameLabel}
             </label>
         
           <div className="d-flex align-items-center col-xl-4 px-0">
             <input
               type="text"
-              className="formulario-input-Familia"
+              className={obligatorio ? "formulario-input-Familia obligatorio" : "formulario-input-Familia"}
               id={idInput}
               placeholder={placeHolder}
               value={value}
               name={nameInput}
               onChange={(e) => 
-                onChange(e,action)}
+                onChange(e.target.value,idInput)}
               disabled={disabled}
             />
 

@@ -12,7 +12,6 @@ const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,
   },[display])
 
   function updateFecha(){
-    setGeneralState({ idInput : ""});
     setValor(fecha);
     return;
   }
@@ -34,9 +33,9 @@ const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,
               className='inputDateBaja' 
               id={idInput} 
               name={idInput}
-              onChange={(e)=> onChange(e, action)}
+              onChange={(e)=> onChange(e.target.value, idInput)}
               type="date" 
-              value={valueGeneral !== null && valueGeneral.length > 0 ? valueGeneral : valor} 
+              value={valueGeneral && valueGeneral  ?  valueGeneral : valor} 
               disabled={disable}
               />
           </div>

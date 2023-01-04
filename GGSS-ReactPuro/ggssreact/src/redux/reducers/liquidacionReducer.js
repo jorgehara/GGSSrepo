@@ -1,4 +1,4 @@
-import { GET_INPUTS_VALUE } from "../types/liquidacionTypes";
+import { GET_ADIC_LIQ, GET_INPUTS_VALUE } from "../types/liquidacionTypes";
 
 
 export const initialState = {
@@ -33,7 +33,8 @@ export const initialState = {
         inputCheckEmbargo : "",
         inputCheckSumAdministrativo : "",
         inputCheckLicSinGoce : ""
-    }
+    },
+    adicionalLiquidacion : ""
 }
 
 export const liquidacionReducer =(state = initialState, action)=>{
@@ -41,10 +42,15 @@ export const liquidacionReducer =(state = initialState, action)=>{
 
     switch(type){
         case GET_INPUTS_VALUE : {
-            console.log(payload)
             return{
                 ...state,
                 formulario : {...state.formulario, [payload.name]:payload.value}
+            }
+        }
+        case GET_ADIC_LIQ : {
+            return {
+                ...state,
+                adicionalLiquidacion : payload
             }
         }
         default : return  state;

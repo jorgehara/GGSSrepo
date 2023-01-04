@@ -26,8 +26,8 @@
 
 .form-input-ParentsFlia{
     margin-bottom: 3px;
-	width: 115%;
-	margin-left: 275%;
+	width: 7rem;
+	margin-left: 5rem;
     margin-right: 0px;
 	background: #fff;
 	border: 3px solid transparent;
@@ -40,12 +40,12 @@
 
 .form-inputs-radioFijar{
 	position: absolute;
-	margin-left: 26.4%;
+	margin-left:  24.2rem;
 }
 
 .btn-modal-miau{
 	position: absolute;
-	margin-left: 16.5%;
+	margin-left: 17.3rem;
 }
 .label_FijarParents{
 	position: relative;
@@ -53,4 +53,7 @@
 .input-parentesco{
 	position: absolute;
 	right: 110%;
+}
+.obligatorio{
+	background-color: rgb(253, 237, 216);
 }

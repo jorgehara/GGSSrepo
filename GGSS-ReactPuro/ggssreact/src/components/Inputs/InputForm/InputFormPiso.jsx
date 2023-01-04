@@ -5,7 +5,7 @@ const InputFormPiso = ({
   nameInput,
   messageError,
   placeHolder,
-  inputId,
+  idInput,
   value,
   disabled,
   onChange,
@@ -32,7 +32,7 @@ const InputFormPiso = ({
   return (
     <div className="formulario__grupo__inputs">
       <div className="formulario__grupo">
-        <label className="formulario__label" htmlFor={inputId}>
+        <label className="formulario__label" htmlFor={idInput}>
           {nameLabel}
         </label>
       </div>
@@ -40,10 +40,10 @@ const InputFormPiso = ({
         <input
           type="text"
           className="form-input-Piso"
-          id={inputId}
+          id={idInput}
           placeholder={placeHolder}
           value={ valor  }
-          onChange={(e) => onChange(e,action)}
+          onChange={(e) => onChange(e.target.value,idInput)}
           disabled={disabled}
           name={nameInput}
           onKeyPress={(numbers && validateNumbers) || (!numbers && validateLetters)}

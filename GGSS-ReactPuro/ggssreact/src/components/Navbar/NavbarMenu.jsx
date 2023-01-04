@@ -1,14 +1,14 @@
 //#region -----------------------------------------------------------------------IMPORTS
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import './Navbar.css'
-import ButtonCallModal from '../Buttons/ButtonCallModal'
-import BasicModal from '../Modals/BasicModal/BasicModal'
-import ModalPDLB from '../Modals/ModalPDLB/ModalPDLB'
-import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
-
+import swal from "sweetalert";
+import "./Navbar.css";
+import ButtonCallModal from "../Buttons/ButtonCallModal";
+import BasicModal from "../Modals/BasicModal/BasicModal";
+import ModalPDLB from "../Modals/ModalPDLB/ModalPDLB";
+import ModalEmpleadores from "../Modals/ModalEmpleadores/ModalEmpleadores";
 // ------------------------ OBJECTS ------------------------
-import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, textAreaCargos, inputVtoObject } from './Objects'
+import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, textAreaCargos,urls, inputVtoObject } from './Objects'
 // -----------------------------------------------------------
 
 import ModalTable from '../Modals/ModalTable/ModalTable';
@@ -20,7 +20,7 @@ import axios from 'axios';
 import { addEstadosCiviles, addEstados, addPaises, addEstudios, addTiposDocumento, addCargos, addTareasDesempeñadas, addParentescos, addFormasPago, addModosContratacion, addModosLiquidacion, addEmpleadores, addDomicilios, addCalles, addDepartamentos, addBarrios, addProvincias, addLocalidades, addNewEstadoCivil, addNewEstudio, getIdEstadoCivil, deleteEstadoCivil, getIdEstudio, deleteEstudio, addNewTipoDoc, deleteTipoDoc, getIdTipoDoc, putEstadoCivil, putEstudio, putTipoDoc, addNewParentesco, deleteParentesco, putParentesco, getIdParentesco, addNewEstado, deleteEstado, putEstado, getIdEstado, addNewFormaPago, deleteFormaPago, putFormaPago, getIdFormaPago, addNewCargo, deleteCargo, putCargo, getIdCargo, addNewTarea, deleteTarea, putTarea, getIdTarea, addNewModoLiq, deleteModoLiq, putModoLiq, getIdModoLiq, addNewModoCont, deleteModoCont, putModoCont, getIdModoCont } from '../../redux/actions/fetchActions';
 import { useEffect } from 'react';
 import { addSelectedBanco, addSelectedCargo, addSelectedEstado, addSelectedEstadoCivil, addSelectedEstudio, addSelectedFormaPago, addSelectedModoCont, addSelectedModoLiq, addSelectedParentesco, addSelectedTarea, addSelectedTipoDocu } from '../../redux/actions/modalesActions';
-import swal from "sweetalert";
+
 
 
 // import { getEstadosCivilesModal } from '../../services/fetchAPI';

@@ -70,13 +70,13 @@ function InputFile({ disabled, imagen,onChange, idInput,action }) {
             ></input>
             <div className="imageSelect d-flex justify-content-center align-items-center center ml-1 mr-6 ">
               <img
-                className="imageSelect "
+                className="imagenFile "
                 src={
                   ImageSelectedPrevious === null ||
                   ImageSelectedPrevious === undefined
                     ? imagen : ImageSelectedPrevious
                 }
-                alt="ImageNotFound"
+                alt=""
               />
             </div>
           </div>

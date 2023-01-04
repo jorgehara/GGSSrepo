@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TableAdicLiquidacion = () => {
+const TableAdicLiquidacion = ({conceptos}) => {
   return (
     <>
     <div>    

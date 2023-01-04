@@ -20,9 +20,10 @@ const InputParentesco = ({
   onChange,
   action,
   propArrayOp,
-  propIdSelect
+  propIdSelect,
+  obligatorio
 }) => {
-  const [mostrarComponente, setMostrarComponente] = useState(true);
+  const [mostrarComponente, setMostrarComponente] = useState(false);
 
   useEffect(() => {
     setMostrarComponente(display);
@@ -37,7 +38,7 @@ const InputParentesco = ({
         </div>
         <div className="col-xl-3">
           <select
-            className="form-select px-0 form-input-ParentsFlia"
+            className={obligatorio ? "form-select px-0 form-input-ParentsFlia obligatorio" : "form-select px-0 form-input-ParentsFlia"}
             disabled={disable}
             //name={idInput}
             //id={idInput}
@@ -47,12 +48,12 @@ const InputParentesco = ({
             name={idInput}
             id={idInput}
             value={value}
-            onChange={(e)=> onChange(e, action)}
+            onChange={(e)=> onChange(e.target.value, idInput)}
           >
             <option value="">Seleccionar</option>
             {array  &&
               array.map((op, i) => {
-                return propArray === op[propArrayOp] ? (
+                return propArray === op[propIdSelect] ? (
                   <option selected key={i}
                   value={op[propIdSelect]}
                   >
@@ -88,7 +89,8 @@ const InputParentesco = ({
             }
             nameButton={nameButton}
             useNavbar={false}
-            useButton={true}
+            disableButton={true}
+            useButton={false}
             disabled={disable}
           />
         </div>

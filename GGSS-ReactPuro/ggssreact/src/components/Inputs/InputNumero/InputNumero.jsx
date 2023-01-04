@@ -35,7 +35,7 @@ const InputNumero = ({
                       id={idInput}
                       name={idInput}
                       value={inputValueState !== undefined || inputValueState !== null ? inputValueState : value }
-                      onChange={(e)=> onChange(e,action)}      
+                      onChange={(e)=> onChange(e.target.value,idInput)}      
                       />
         </div>
            

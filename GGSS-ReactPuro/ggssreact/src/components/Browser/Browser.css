@@ -1,3 +1,13 @@
 .selectMenu{
-    height: 530px;
+    height: 42rem;
+    
+}
+.form__grupo__input__browser{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.form-select:focus{
+    box-shadow: none;
+    border-color: rgba(0,0,0,.125);    
 }

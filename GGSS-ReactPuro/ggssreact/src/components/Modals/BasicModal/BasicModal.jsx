@@ -8,7 +8,7 @@ import InputDate from "../../Inputs/InputDate/InputDate";
 import InputNumModal from "../../Inputs/InputsModal/InputNumModal/InputNumModal";
 import Checkbox from "../../Inputs/Checkbox/Checkbox";
 import CheckboxNum from "../../Inputs/CheckboxNum/CheckboxNum";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CANCEL_MODALS } from "../../../redux/types/modalesTypes";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -55,7 +55,8 @@ const BasicModal = ({
   valueNumCheck,
   valueObs,
   refetch,
-  setRefetch
+  setRefetch,
+  modalDataInputs
   // setRes,
   // postFn
 }) => {
@@ -65,7 +66,7 @@ const BasicModal = ({
 
   const [toModify, setToModify] = useState(false)
 
-
+  
   // function onSelect(action, payload) {
   //   dispatch(action(payload));
   //   dispatch(dispatchGetID(payload[propArrayId]))
@@ -120,13 +121,15 @@ const BasicModal = ({
         await axios.post(urlApi, bodyPet)
           .then((res) => {
             if (res.status === 200) {
+              console.log(res)
               dispatch(dispatchAddAction(resp.modalDataInputs))
-              swal({
+              setRefetch(!refetch); // resetea la lista 
+
+      return               swal({
                 title: "Ok",
                 text: "Agregado con éxito",
                 icon: "success",
               })
-              setRefetch(!refetch); // resetea la lista 
 
             }
           })
@@ -204,7 +207,7 @@ const BasicModal = ({
                   aria-label="multiple select example"
                   disabled={disabled}
                 >
-                  {array && opcionesApi.map((op, i) => {
+                  {array && array.map((op, i) => {
                     return (
                       <option
                         key={i}
@@ -226,7 +229,7 @@ const BasicModal = ({
                   <button type="button" className="btn btn-danger crudBtn" onClick={modificar}>
                     MODIFICAR
                   </button>
-                  <button type="button" className="btn btn-danger crudBtn" onClick={() => deleteOption(idApi)}>
+                  <button type="button" className="btn btn-danger crudBtn" onClick={() =>{ dispatch(setRefetch(!refetch)); deleteOption(idApi)}}>
                     ELIMINAR
                   </button>
                 </div>
@@ -241,7 +244,7 @@ const BasicModal = ({
                         placeHolder={p.placeholder}
                         nameLabel={p.label}
                         inputId={p.idInput}
-                        value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare)}
+                        value={(p.idInput === inputIdCompare ? firstOptionCompare : secondOptionCompare) }
                         onChange={onChange}
                       // action={GET_ESTADOSCIVILES}
                       // opcionSelected={opcionSelected}
@@ -312,7 +315,6 @@ const BasicModal = ({
                 <br />
                 {textArea &&
                   textAreaObject?.map((p, i) => {
-                    console.log(textAreaObject)
                     return (
                       <TextArea
                         key={i}

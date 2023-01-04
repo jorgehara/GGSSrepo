@@ -1,13 +1,6 @@
-import React, { useContext } from 'react'
-import { useSelector } from 'react-redux';
 
 const ButtonCancelarAceptar = ({cancelar, aceptar, disabled,functionSend,functionDelete, idElimiar}) => {
 
-  
-
-  function deshabilitaEdit(e){
-    e.preventDefault();
-  }
   
   return (
     <div className="d-flex flex-row">

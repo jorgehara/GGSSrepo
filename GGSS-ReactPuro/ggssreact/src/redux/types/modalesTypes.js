@@ -62,4 +62,6 @@ export const GET_CENTROSCOSTO = "GET_CENTROSCOSTO"
 
 export const CANCEL_MODALS = "CANCEL_MODALS";
 
+export const SET_REFETCH = "SET_REFETCH"
+
 

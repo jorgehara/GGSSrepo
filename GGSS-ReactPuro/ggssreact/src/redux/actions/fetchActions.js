@@ -1,4 +1,4 @@
-import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, GET_ID_CARGO, DELETE_CARGO, ADD_NEW_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_NEW_MODOLIQ, GET_ID_MODOLIQ, DELETE_MODOLIQ, PUT_MODOLIQ, ADD_NEW_BANCO, ADD_NEW_OBRASOCIAL, ADD_NEW_CENTROCOSTO, GET_ID_BANCO, DELETE_BANCO, GET_ID_OBRASOCIAL, DELETE_OBRASOCIAL, GET_ID_CENTROCOSTO, DELETE_CENTROCOSTO, PUT_BANCO, PUT_OBRASOCIAL, PUT_CENTROCOSTO, ADD_NEW_SINDICATO, GET_ID_SINDICATO, DELETE_SINDICATO, PUT_SINDICATO, ADD_NEW_PROVINCIA, ADD_NEW_DEPTO, ADD_NEW_LOCALIDAD, ADD_NEW_BARRIO, GET_ID_PROVINCIA, DELETE_PROVINCIA, GET_ID_DEPTO, DELETE_DEPTO, GET_ID_LOCALIDAD, DELETE_LOCALIDAD, GET_ID_BARRIO, DELETE_BARRIO, PUT_PROVINCIA, PUT_DEPTO, PUT_LOCALIDAD, PUT_BARRIO, ADD_NEW_MODOCONT, GET_ID_MODOCONT, DELETE_MODOCONT, PUT_MODOCONT } from "../types/fetchTypes";
+import { ADD_TAREASDESEMPEÑADAS, ADD_CARGOS, ADD_ESTADOS, ADD_ESTADOSCIVILES, ADD_ESTUDIOS, ADD_PAISES, ADD_TIPOSDOCUMENTO, AXIOS_ERROR, AXIOS_SUCCESS, SET_LOADING, ADD_PARENTESCOS, ADD_FORMASPAGO, ADD_MODOSCONTRATACION, ADD_MODOSLIQUIDACION, ADD_EMPLEADORES, ADD_DOMICLIOS, ADD_CALLES, ADD_DEPARTAMENTOS, ADD_BARRIOS, ADD_PROVINCIAS, ADD_LOCALIDADES, ADD_FAMILIARES, ADD_NEW_FAMILIAR, DELETE_ONE_FAMILIAR, ADD_CONVENIOS, ADD_CATEGORIAS, ADD_AGRUPAMIENTOS, ADD_CENTRO_COSTO, ADD_SECTOR_DEPTO, ADD_OBRAS_SOCIALES, ADD_LUGARES_DE_PAGO, ADD_BANCOS, ADD_DIRECCIONES, ADD_SINDICATOS, ADD_ESQUEMAS, ADD_NEW_ESCI, ADD_NEW_ESTUDIO, GET_ID_ESCI, DELETE_ESCI, GET_ID_ESTUDIO, DELETE_ESTUDIO, ADD_NEW_TIPODOC, GET_ID_TIPODOC, DELETE_TIPODOC, PUT_ESCI, PUT_ESTUDIO, PUT_TIPODOC, ADD_NEW_PARENTESCO, GET_ID_PARENTESCO, DELETE_PARENTESCO, PUT_PARENTESCO, ADD_NEW_ESTADO, GET_ID_ESTADO, DELETE_ESTADO, PUT_ESTADO, ADD_NEW_FORMAPAGO, GET_ID_FORMAPAGO, DELETE_FORMAPAGO, PUT_FORMAPAGO, GET_ID_CARGO, DELETE_CARGO, ADD_NEW_CARGO, PUT_CARGO, ADD_NEW_TAREA, GET_ID_TAREA, DELETE_TAREA, PUT_TAREA, ADD_NEW_MODOLIQ, GET_ID_MODOLIQ, DELETE_MODOLIQ, PUT_MODOLIQ, ADD_NEW_BANCO, ADD_NEW_OBRASOCIAL, ADD_NEW_CENTROCOSTO, GET_ID_BANCO, DELETE_BANCO, GET_ID_OBRASOCIAL, DELETE_OBRASOCIAL, GET_ID_CENTROCOSTO, DELETE_CENTROCOSTO, PUT_BANCO, PUT_OBRASOCIAL, PUT_CENTROCOSTO, ADD_NEW_SINDICATO, GET_ID_SINDICATO, DELETE_SINDICATO, PUT_SINDICATO, ADD_NEW_PROVINCIA, ADD_NEW_DEPTO, ADD_NEW_LOCALIDAD, ADD_NEW_BARRIO, GET_ID_PROVINCIA, DELETE_PROVINCIA, GET_ID_DEPTO, DELETE_DEPTO, GET_ID_LOCALIDAD, DELETE_LOCALIDAD, GET_ID_BARRIO, DELETE_BARRIO, PUT_PROVINCIA, PUT_DEPTO, PUT_LOCALIDAD, PUT_BARRIO, ADD_NEW_MODOCONT, GET_ID_MODOCONT, DELETE_MODOCONT, PUT_MODOCONT, ADD_LICENCIAS_EMPLEADOS, UPDATE_LICENCIA, ADD_NEW_LICENCIA, DELETE_LICENCIA, DISABLED_INPUTS, ADD_NUMERADORES, ADD_DOCU_EMPL, ADD_DATOS_EXTRAS, ADD_INSTRUM_LEGALES, ADD_CONCEPTOS, ADD_NEW_DOC, DELETE_DOC, ADD_ADIC_LIQUIDACION, ADD_ONE_DE, DELETE_DOMICILIO, SAVE_DATOS_EXTRAS_EMPLEADOS } from "../types/fetchTypes";
 
 
 export const setLoading = (payload) =>{
@@ -178,6 +178,12 @@ export const addSectorDepto=(payload)=>{
         payload,
     };
 }
+export const deleteDomicilio=(payload)=>{
+    return{
+        type : DELETE_DOMICILIO,
+        payload
+    }
+}
 export const addObrasSociales=(payload)=>{
     return {
         type : ADD_OBRAS_SOCIALES,
@@ -272,6 +278,24 @@ export const addNewTarea = (payload) => {
         payload
     }
 }
+export const addNewDoc=(payload)=>{
+    return{
+        type : ADD_NEW_DOC,
+        payload,
+    }
+}
+export const deleteDocu=(payload)=>{
+    return{
+        type : DELETE_DOC,
+        payload
+    }
+}
+export const addAdicLiquidacion=(payload)=>{
+    return{
+        type: ADD_ADIC_LIQUIDACION,
+        payload
+    }
+}
 
 export const addNewModoCont = (payload) => {
     return {
@@ -343,9 +367,20 @@ export const getIdEstadoCivil = (payload) => {
     return{
         type : GET_ID_ESCI,
         payload,
-    }
+    };
 }
-
+export const addDatosExtras=(payload)=>{
+    return {
+        type: ADD_DATOS_EXTRAS,
+        payload,
+    };
+}
+export const addInstrumLegales=(payload)=>{
+    return{
+        type : ADD_INSTRUM_LEGALES,
+        payload,
+    };
+}
 export const deleteEstadoCivil = (payload) => {
     return{
         type : DELETE_ESCI,
@@ -443,6 +478,12 @@ export const getIdTarea = (payload) => {
         type: GET_ID_TAREA,
         payload
     }
+}
+export const addDocumentacionEmpleados=(payload)=>{
+    return{
+        type : ADD_DOCU_EMPL,
+        payload
+    };
 }
 export const deleteTarea = (payload) => {
     return {
@@ -576,6 +617,12 @@ export const deleteCentroCosto = (payload) => {
     }
 }
 
+export const addNumeradores=(payload)=>{
+    return {
+        type :ADD_NUMERADORES,
+        payload,
+    }
+}
 // -------- PUT ACTIONS -----------
 
 export const putEstadoCivil = (payload) => {
@@ -605,6 +652,36 @@ export const putParentesco = (payload) => {
         payload
     }
 }
+export const addConceptos=(payload)=>{
+    return{
+        type : ADD_CONCEPTOS,
+        payload,
+    };
+}
+export const addLicenciaEmpleados=(payload)=>{
+    return {
+        type : ADD_LICENCIAS_EMPLEADOS,
+        payload,
+    };
+}
+export const addNewLicencia=(payload)=>{
+    return{
+        type: ADD_NEW_LICENCIA,
+        payload,
+    };
+}
+export const updateLicencia=(payload)=>{
+    return{
+        type: UPDATE_LICENCIA,
+        payload,
+    };
+}
+export const deleteLicencia=(payload)=>{
+    return{
+        type: DELETE_LICENCIA,
+
+    }
+}
 
 export const putEstado = (payload) => {
     return {
@@ -616,10 +693,16 @@ export const putEstado = (payload) => {
 export const putFormaPago = (payload) => {
     return {
         type: PUT_FORMAPAGO,
+
         payload
     }
 }
-
+export const addOneDatoExtra=(payload)=>{
+    return {
+        type : ADD_ONE_DE,
+        payload
+    }
+}
 export const putCargo = (payload) => {
     return {
         type: PUT_CARGO,
@@ -630,6 +713,12 @@ export const putCargo = (payload) => {
 export const putTarea = (payload) => {
     return {
         type: PUT_TAREA,
+        payload,
+    }
+}
+export const saveDatosExtrasEmpleados=(payload)=>{
+    return{
+        type : SAVE_DATOS_EXTRAS_EMPLEADOS,
         payload
     }
 }
