@@ -190,7 +190,6 @@ const NavbarMenu = () => {
 								<ul className=" dropdown-menu">
 									
 									<li><Link className="dropdown-item" to="/ficha-empleados">Ficha Empleados</Link></li>
-									<li><Link className="dropdown-item" to="#">Busqueda de Datos</Link></li>
 								</ul>
 							</li>
 							{/* <li className="nav-item">
@@ -273,6 +272,9 @@ const NavbarMenu = () => {
 											</div>
 										</ul>
 									</li> 
+									<li className="nav-item ">
+										<a class="nav-link " href="/">Salir</a>
+									</li>
 								</ul>
 								<ul> 
 							{/* <li className="nav-item">
@@ -475,9 +477,8 @@ const NavbarMenu = () => {
 							<ModalTable idModal="Jerarquia" nameModal="Jerarquía de las Categorías" column={tableJerarquia} dropdown={true} jerarquia={true} />
 							<ModalTable idModal="Licencias" nameModal="Licencias por Antigüedad" licencias={true} column={tableLicencias} objectInputs={inputsNumLicencias} />
 							</ul>
-							<li class="nav-item">
-								<a class="nav-link" href="/">Salir</a>
-							</li>
+							
+							
 			
 			</div> 
 			</div> 
