@@ -102,7 +102,7 @@ console.log(documentacionDelEmpleado)
     
 return (
     <div className='container'>
-        <div className='row'>
+        <div className='row containerContainer'>
             <EmployeData />
         </div>
         <div className='row'>
