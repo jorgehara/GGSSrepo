@@ -18,32 +18,32 @@ const Navbar = ({handleTabChange, tabIndex}) => {
 			<div className="collapse navbar-collapse" id="navbarNav">
 			<ul className="navbar-nav navbarNavSub"  >
 				<li >
-                    <Link className={ "nav-link"} value="1" onClick={(e)=>handleTabChange(0)} >
+                    <Link className={ tabIndex === 0? "nav-link actived" : "nav-link"} value="1" onClick={(e)=>handleTabChange(0)} >
 						Personales
                     </Link>
                 </li>
 				<li className="nav-item">
-					<Link className={ "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(1)} >
+					<Link className={ tabIndex === 1? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(1)} >
 						Familia
 					</Link>
 				</li>
 				<li className="nav-item">
-					<Link className={  "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(2)}>Liquidación</Link>
+					<Link className={ tabIndex === 2?  "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(2)}>Liquidación</Link>
 				</li>
 				{/* <li className="nav-item">
 					<Link className={ "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(3)}>Adic. Liquidación</Link>
 				</li> */}
 				<li className="nav-item">
-					<Link className={ "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(4)}>Trabajos Anteriores</Link>
+					<Link className={ tabIndex === 3? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(4)}>Trabajos Anteriores</Link>
 				</li>
 				<li className="nav-item">
-					<Link className={ "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(5)}>Documentación</Link>
+					<Link className={ tabIndex === 4? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(5)}>Documentación</Link>
 				</li>
 				<li className="nav-item">
-					<Link className={ "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(6)}>Licencias</Link>
+					<Link className={ tabIndex === 5? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(6)}>Licencias</Link>
 				</li>
 				<li className="nav-item">
-					<Link className={ "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(7)}>Extras</Link>
+					<Link className={ tabIndex === 6? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(7)}>Extras</Link>
 				</li>
 			</ul>
 		</div>
