@@ -34,16 +34,16 @@ const Navbar = ({handleTabChange, tabIndex}) => {
 					<Link className={ "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(3)}>Adic. Liquidación</Link>
 				</li> */}
 				<li className="nav-item">
-					<Link className={ tabIndex === 3? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(4)}>Trabajos Anteriores</Link>
+					<Link className={ tabIndex === 4? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(4)}>Trabajos Anteriores</Link>
 				</li>
 				<li className="nav-item">
-					<Link className={ tabIndex === 4? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(5)}>Documentación</Link>
+					<Link className={ tabIndex === 5? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(5)}>Documentación</Link>
 				</li>
 				<li className="nav-item">
-					<Link className={ tabIndex === 5? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(6)}>Licencias</Link>
+					<Link className={ tabIndex === 6? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(6)}>Licencias</Link>
 				</li>
 				<li className="nav-item">
-					<Link className={ tabIndex === 6? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(7)}>Extras</Link>
+					<Link className={ tabIndex === 7? "nav-link actived" : "nav-link"} to="" value="2" onClick={(e)=>handleTabChange(7)}>Extras</Link>
 				</li>
 			</ul>
 		</div>
