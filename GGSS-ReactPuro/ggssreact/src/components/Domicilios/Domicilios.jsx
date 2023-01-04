@@ -2,7 +2,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { employeContext } from "../../context/employeContext";
 import { ADD_DOMICILIOS, ADD_ONEDOMICILIO } from "../../redux/types/domiciliosTypes";
 import { getEmpleados } from "../../services/mockDataDomicilios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
@@ -90,7 +89,7 @@ const Domicilios = () => {
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
  
   //#region ------------------------------------------------------------------------------CONTEXT
-  const { saveDom,saveDomicilios, saveEmpl, disable } = useContext(employeContext);
+ 
 
   
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
@@ -111,9 +110,7 @@ const Domicilios = () => {
   //#endregion
   //#region ------------------------------------------------------------------------------USEEFFECTS (Queda mejorarlos para que no sean muchos)
   const predeterminadoValue = predeterminado !== null ? predeterminado.toString() : "";
-  useEffect(()=>{
-    getEmpleados().then(res=> saveDomicilios(res))
-  },[])
+
  
   
   
@@ -281,7 +278,6 @@ const Domicilios = () => {
                 <div className="row">
                 <div className="col-xl-6">
                   <InputCbo
-                    value={saveDom[0] !== undefined ? saveDom[0].calle : null}
                     generalState = {domicilios}
                     setGeneralState = {setDomicilios}
                     action={ADD_DOMICILIOS}
@@ -297,7 +293,6 @@ const Domicilios = () => {
                     femeninos=""
                     display={true}
                     idModal="calles"
-                    disabled={disable}
                     nameInput="inputCalleDomicilios"
                     idInput="inputCalleDomicilios"
                     onChange={onChange}
@@ -316,7 +311,7 @@ const Domicilios = () => {
                     defaultChecked=""
                     display={true}
                     //value={numCalleSelected !== undefined && numCalleSelected !== null ? numCalleSelected.toString() : domiciliosState.inputNumCalle}
-                    disabled={disable}
+             
                     idInput="inputNumCalle"
                     nameLabel="N°"
                     onChange={onChange}
@@ -332,7 +327,6 @@ const Domicilios = () => {
                     idInput="inputPisoCalle"
                     messageError="Solo puede contener números."
                     placeHolder="Piso Dpto"
-                    disabled={disable}
                     generalState={setDomicilios}
                     action={ADD_DOMICILIOS}
                     onChange={onChange}
@@ -348,9 +342,6 @@ const Domicilios = () => {
               <div className="col-xl-6">
                 
                   <InputCbo
-                  value={
-                    saveEmpl[0] !== undefined ? saveEmpl[0].idProvincia : null
-                  }
                   action={ADD_DOMICILIOS}
                   sexo=""
                   nameButton="..."
@@ -363,7 +354,6 @@ const Domicilios = () => {
                           femeninos=""
                   display={true}
                   idModal="pdlb"
-                  disabled={disable}
                   nameInput="inputProvinciaDomicilios"
                   idInput="inputProvinciaDomicilios"
                   onChange={onChange}
@@ -371,11 +361,6 @@ const Domicilios = () => {
                   valueId="provincia"
                 />
                   <InputCbo
-                  value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Provincia
-                      : null
-                  }
                   action={ADD_DOMICILIOS}
                   generalState = {domicilios}
                   setGeneralState = {setDomicilios}
@@ -390,7 +375,6 @@ const Domicilios = () => {
                           femeninos=""
                   display={false}
                   idModal="pdlb"
-                  disabled={disable}
                   nameInput="inputDepartamentosDomicilios"
                   idInput="inputDepartamentosDomicilios"
                   onChange={onChange}
@@ -398,11 +382,6 @@ const Domicilios = () => {
                   valueId="departamento"
                 />
                 <InputCbo
-                  value={
-                  saveDom[0] !== undefined || saveDom[0] === null
-                  ? saveDom[0].Provincia
-                  : null
-                  }
                   action={ADD_DOMICILIOS}
                   generalState = {domicilios}
                   setGeneralState = {setDomicilios}
@@ -417,7 +396,6 @@ const Domicilios = () => {
                           femeninos=""
                   display={false}
                   idModal="pdlb"
-                  disabled={disable}
                   nameInput="inputLocalidadesDomicilios"
                   idInput="inputLocalidadesDomicilios"
                   onChange={onChange}
@@ -425,11 +403,6 @@ const Domicilios = () => {
                   valueId="localidad"
                 />
                 <InputCbo
-                  value={
-                    saveDom[0] !== undefined || saveDom[0] === null
-                      ? saveDom[0].Provincia
-                      : null
-                  }
                   action={ADD_DOMICILIOS}
                   generalState = {domicilios}
                   setGeneralState = {setDomicilios}
@@ -444,14 +417,13 @@ const Domicilios = () => {
                           femeninos=""
                   display={false}
                   idModal="pdlb"
-                  disabled={disable}
                   nameInput="inputBarriosDomicilios"
                   idInput="inputBarriosDomicilios"
                   onChange={onChange}
                   valueId="idBarrio"
                 />
               </div>
-              <ButtonCancelarAceptar idElimiar={domicilioDelEmpleado} cancelar="-" aceptar="+"disabled={disable} functionSend={sendDataDomicilios} functionDelete={deleteDomicilio}/>
+              <ButtonCancelarAceptar idElimiar={domicilioDelEmpleado} cancelar="-" aceptar="+" functionSend={sendDataDomicilios} functionDelete={deleteDomicilio}/>
               <TablaDomicilios 
                 columns={columns} 
                 empleadoSelect={empleadoUno !== undefined ? empleadoUno : null} 

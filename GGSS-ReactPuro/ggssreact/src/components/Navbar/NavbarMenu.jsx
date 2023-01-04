@@ -10,7 +10,7 @@ import ModalEmpleadores from '../Modals/ModalEmpleadores/ModalEmpleadores'
 // ------------------------ OBJECTS ------------------------
 import { objectParentescos, objectCategorias, inputsNumCategorias, objectConvenios, inputsNumConvenios, inputNumDataValores, tableValoresHeadings, inputNumDataEscala, inputDateDataEscala, inputNumDataDeducciones, inputDateDataDeducciones, objectBancos, objectEmpresasTelefonia, objectSindicatos, objectTareas, objectEstadosCiviles, objectEstudios, objectTipoDocumento, objectEstado, objectFormasDePago, objectMotivosEgreso, objectCalles, objectPaises, objectModosLiquidacion, objectModosContratacion, objectCargos, objectObrasSociales, objectAFJP, objectCentrosCosto, objectSectoresDptos, objectDirecciones, objectLugaresPago, objectDocumentacion, tableReduccionHeadings, tableConvenios, tableJerarquia, tableLicencias, inputsNumLicencias, objectAlicuotas, checkboxParentescos, checkboxNumParentescos, textAreaObject, textAreaCargos, inputVtoObject } from './Objects'
 // -----------------------------------------------------------
-import { employeContext } from '../../context/employeContext';
+
 import ModalTable from '../Modals/ModalTable/ModalTable';
 import ModalEscala from '../Modals/ModalEscala/ModalEscala';
 import ModalConvenios from '../Modals/ModalConvenios/ModalConvenios';
