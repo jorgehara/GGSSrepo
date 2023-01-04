@@ -31,13 +31,23 @@ const PDLBBody = ({
     onChange,
     valueObs,
     refetch,
-    setRefetch
+    setRefetch,
+    modalState
+
 }) => {
+
+    // URLS PARA POSTEAR / MODIFICAR EN LA API
+    const urlPostProvincias = `http://54.243.192.82/api/Provincias?IdProvincia=0&Provincia=${modalState?.provincia}&Obs=${modalState?.obs}&NewId=0`
+    const urlPostDeptos=`http://54.243.192.82/api/Departamentos?IdDepartamento=0&Departamento=${modalState?.departamento}&Obs=${modalState?.obs}&NewId=0`
+    const urlPostLocalidades=`http://54.243.192.82/api/Localidades?IdLocalidad=0&Localidad=${modalState?.localidad}&Obs=${modalState?.obs}&NewId=0`
+    const urlPostBarrios=`http://54.243.192.82/api/Barrios?IdBarrio=0&Barrio=${modalState?.barrio}&Obs=${modalState?.obs}&NewId=0`
+    // ---------------------------------------
+
+    const opcionesApi = array
 
     const dispatch = useDispatch();
 
     const [disabled, setDisabled] = useState(false);
-
     const [toModify, setToModify] = useState(false)
 
     // function onSelect(action, payload) {
@@ -53,7 +63,6 @@ const PDLBBody = ({
         })
     }
 
-
     async function agregar() {
         setDisabled(!disabled);
     }
@@ -62,6 +71,53 @@ const PDLBBody = ({
         setToModify(!toModify)
     }
 
+
+    // FUNCION PARA POST Y PUT
+    async function aceptar(id) {
+      try {
+        if (!toModify) {
+          await axios.post(urlPostProvincias)
+            .then((res) => {
+              if (res.status === 200) {
+                dispatch(dispatchAddAction(resp.modalDataInputs))
+                swal({
+                  title: "Ok",
+                  text: "Agregado con éxito",
+                  icon: "success",
+                })
+                setRefetch(!refetch); // resetea la lista 
+  
+              }
+            })
+        } else {
+          await axios.delete(`${urlApi}/${id}`) // elimina el valor seleccionado
+            .then((res) => {
+              axios.post(urlPostProvincias)
+                .then((res) => {
+                  if (res.status === 200) {
+                    dispatch(dispatchPutAction(resp.modalDataInputs))
+                    swal({
+                      title: "Ok",
+                      text: "Modificado con éxito",
+                      icon: "success",
+                    })
+                    setRefetch(!refetch); // resetea la lista 
+                  }
+                })
+            })
+  
+        }
+        
+      } catch (err) {
+        swal({
+          title: "Error",
+          text: err.toString(),
+          icon: "error",
+        })
+      }
+    }
+
+    // FUNCIÓN DELETE
     const deleteOption = async (id) => { // le pasamos de param el idApi cuando ejecutamos la funcion en el boton delete
         try {
           await axios.delete(`${urlApi}/${id}`)
@@ -83,51 +139,7 @@ const PDLBBody = ({
         }
       }
     
-    
-    
-      async function aceptar(id) {
-        try {
-          if (!toModify) {
-            await axios.post(urlApi, bodyPet)
-              .then((res) => {
-                if (res.status === 200) {
-                  dispatch(dispatchAddAction(resp.modalDataInputs))
-                  swal({
-                    title: "Ok",
-                    text: "Agregado con éxito",
-                    icon: "success",
-                  })
-                  setRefetch(!refetch); // resetea la lista 
-    
-                }
-              })
-          } else {
-            await axios.delete(`${urlApi}/${id}`) // elimina el valor seleccionado
-              .then((res) => {
-                axios.post(urlApi, bodyPet) // y agrega otro con otro nombre
-                  .then((res) => {
-                    if (res.status === 200) {
-                      dispatch(dispatchPutAction(resp.modalDataInputs))
-                      swal({
-                        title: "Ok",
-                        text: "Modificado con éxito",
-                        icon: "success",
-                      })
-                      setRefetch(!refetch); // resetea la lista 
-                    }
-                  })
-              })
-    
-          }
-          
-        } catch (err) {
-          swal({
-            title: "Error",
-            text: err.toString(),
-            icon: "error",
-          })
-        }
-      }
+
     
       useEffect(() => {
         console.log('API actualizada con éxito!')
@@ -141,17 +153,14 @@ const PDLBBody = ({
 
                 <label htmlFor="data">Datos: </label>
                 <br />
-                <select className="form-select row mt-1 formSelectApi" multiple aria-label="multiple select example">
-                    {/* {
-                        aProvincias && aProvincias.map((prov, i) => {
-                            return (
-                                <option key={i} value="1">{prov}</option>
-                            )
-                        })
-                    } */}
-
-
-                    {array && array.map((op, i) => {
+                <select
+                  className="form-select row mt-1 selectOptions"
+                  multiple
+                  aria-label="multiple select example"
+                  disabled={disabled}
+                >
+                    
+                    {array && opcionesApi.map((op, i) => {
                         return (
                             <option
                                 key={i}
@@ -167,15 +176,15 @@ const PDLBBody = ({
                 </select>
 
                 <div className="crudBtns">
-                    <button type="button" className="btn btn-danger crudBtn">
+                    <button type="button" className="btn btn-danger crudBtn" onClick={agregar}>
                         AGREGAR
                     </button>
 
-                    <button type="button" className="btn btn-danger crudBtn">
+                    <button type="button" className="btn btn-danger crudBtn" onClick={modificar}>
                         MODIFICAR
                     </button>
 
-                    <button type="button" className="btn btn-danger crudBtn">
+                    <button type="button" className="btn btn-danger crudBtn" onClick={() => deleteOption(idApi)}>
                         ELIMINAR
                     </button>
                 </div>
@@ -205,7 +214,6 @@ const PDLBBody = ({
 
                 {textArea &&
                     textAreaObject?.map((p, i) => {
-                        console.log(textAreaObject)
                         return (
                             <TextArea
                                 key={i}
