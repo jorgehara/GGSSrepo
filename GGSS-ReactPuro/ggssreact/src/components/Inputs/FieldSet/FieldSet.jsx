@@ -25,7 +25,6 @@ const FieldSet = ({
   selectedOption,
   onChange,
   valueForm,
-  licenciaDelEmpleado,
   detalleLicencia,
   sendData,
   formLicencias,
@@ -55,7 +54,8 @@ const FieldSet = ({
   const detalleSelected = useSelector(
     (state) => state.licenciasState.detalleSelect
   );
-
+    const licenciaDelEmpleado = useSelector((state)=> state.licenciasState.licenciasEmpleado);
+  console.log(licenciaDelEmpleado)
   
 
   const url = `http://54.243.192.82/api/ActualizaDisponibles/0?idEmpleado=${empleadoUno.iDempleado}&anio=${formLicencias?.inputCboAñosLicencia}&diasDisponiblesTotales=${formLicencias?.inputCantDiasDispLicencia}&fechaVencimiento=${formLicencias?.inputVencimientoLicencias}&newId=0`
@@ -279,18 +279,29 @@ const FieldSet = ({
           
   }
   function deleteDetalleLicencia(urlDetalleLicenciaEmpleados, id) {
-    try {
-      axios.delete(`${urlDetalleLicenciaEmpleados}/${id}`).then((res) => {
-        console.log(res);
-        setRefectch(!refetch);
+    swal({
+        title: "¿Desea eliminar el Detalle de Licencia?",
+        text: "Si acepta, el detalle se eliminará de la Base de Datos",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          axios.delete(`${urlDetalleLicenciaEmpleados}/${id}`).then((res) => {
+            console.log(res);
+            setRefectch(!refetch);
+            return swal("Detalle eliminado con éxito", {
+                    icon: "success",
+                  });
+            
+          });
+          
+        } else {
+          return swal("Cancelado, puede seguir operando");
+        }
       });
-    } catch (err) {
-      swal({
-        title: "Error",
-        text: `${err}`,
-        icon: "error",
-      });
-    }
+    
   }
   console.log(idSelected)
 

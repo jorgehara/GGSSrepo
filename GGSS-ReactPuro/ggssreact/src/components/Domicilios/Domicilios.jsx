@@ -27,7 +27,9 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   const departamentoSelected = useSelector((state)=> state.domiciliosStates.departamentoSelected);
   const localidadSelected = useSelector((state)=> state.domiciliosStates.localidadSelected);
   const domicilioDelEmpleado = useSelector((state)=> state.domiciliosStates.idDomicilioSelected);
+
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
+  
   const listDomicilios = useSelector((state)=> state.generalState.domicilios); 
 
   const columns = [
@@ -41,7 +43,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
   //#region ------------------------------------------------------------------------------REDUX
-  const urlDomicilios = `http://54.243.192.82/api/Domicilios?idDomicilio=0&idCalle=${formDatosPersonales?.inputCalleDomicilios}&Numero=${formDatosPersonales?.inputNumCalle}&idBarrio=${formDatosPersonales?.inputBarriosDomicilios}&Dpto=${formDatosPersonales?.inputDepartamentosDomicilios}&Predeterminado=${formDatosPersonales?.inputPredeterminado}&IdEmpleado=${empleadoUno.iDempleado}&IdEmpleador=1&NewId=0`;
+  const urlDomicilios = `http://54.243.192.82/api/sp_DomiciliosGuarda?idDomicilio=0&idCalle=${formDatosPersonales?.inputCalleDomicilios}&Numero=${formDatosPersonales?.inputNumCalle}&idBarrio=${formDatosPersonales?.inputBarriosDomicilios}&Dpto=${formDatosPersonales?.inputDepartamentosDomicilios}&Predeterminado=${formDatosPersonales?.inputPredeterminado}&IdEmpleado=${empleadoUno.iDempleado}&IdEmpleador=1&NewId=0`;
 
 
 
@@ -108,6 +110,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
           .then((res)=> {            
             if(res.status === 200){ 
               dispatch(addNewDomicilio(res.data))  
+              setRefectch(!refetch)
               swal({
                 title: "Domicilio Agregado",
                 text: "Domicilio agregado con éxito",

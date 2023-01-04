@@ -1,4 +1,5 @@
-import { ADD_DATOSE_EMP, CLEAN_ID_DE, GET_DE_SELECTED, GET_INPUT_VALUES_EXTRAS, SAVE_ID_DE } from "../types/extrasTypes"
+import { ADD_DATOSE_EMP, CLEAN_ID_DE, DELETE_DE_EMP, GET_DE_SELECTED, GET_INPUT_VALUES_EXTRAS, SAVE_ID_DE } from "../types/extrasTypes"
+
 
 export const getInputValuesExtras =(payload)=>{
     return {
@@ -25,9 +26,15 @@ export const cleanIdDe=(payload)=>{
     }
 }
 export const addDatosExtraPorEmpleado=(payload)=>{
-    console.log(payload)
+    
     return {
         type: ADD_DATOSE_EMP,
         payload,
+    }
+}
+export const deleteDatoExtraEmpl=(payload)=>{
+    return{
+        type : DELETE_DE_EMP,
+        payload
     }
 }

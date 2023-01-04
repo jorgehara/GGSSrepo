@@ -52,11 +52,12 @@ import {
   addTareasDesempeñadas,
   addTiposDocumento,
   disabledInputs,
+  saveDatosExtrasEmpleados,
 } from "../../redux/actions/fetchActions";
 import { AXIOS_ERROR, SET_LOADING } from "../../redux/types/fetchTypes";
 import axios from "axios";
 import { cleanIds, getTrabajosAnteriores, reloadItem } from "../../redux/actions/trabajosAnterioresActions";
-import { cleanIdsDoc, getOneDocumento } from "../../redux/actions/documentacionActions";
+import { cleanIdsDoc, documentacionDelEmpleado, getOneDocumento } from "../../redux/actions/documentacionActions";
 import {
   addDetalleLicencia,
   addLicEmpleado,
@@ -68,7 +69,7 @@ import { getEmployeByLegajo, getEmployeByName } from "../../services/fetchAPI";
 import { getEmployes } from "../../redux/actions/employeActions";
 import { cleanIdFam, getDAtosFamiliaresEmpleado } from "../../redux/actions/familiaActions";
 import { addOneDomicilio, cleanIdsDom } from "../../redux/actions/domiciliosActions";
-import { addDatosExtraPorEmpleado } from "../../redux/actions/extrasActions";
+import { addDatosExtraPorEmpleado, cleanIdDe } from "../../redux/actions/extrasActions";
 
 const Empleados = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -221,19 +222,6 @@ const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
 const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
 const recharge = useSelector((state)=> state.domiciliosStates.recharge);
 
-async function getDataTable(){
-  if(empleadoDomicilio.length > 0){
-    let array = []
-    empleadoDomicilio && empleadoDomicilio.map(async (item)=>{
-      console.log(item)
-        await axios.get(`http://54.243.192.82/api/MostrarDatosPorIdDomicilio/${item.idDomicilio}`)
-        .then((res)=> array.push(res.data[0]))
-    })
-    dispatch(addOneDomicilio(array))
-  }
-   
-  
-} 
 
 //#region useEffect handleFetch
 useEffect(()=>{
@@ -251,11 +239,10 @@ useEffect(()=>{
         `http://54.243.192.82/api/MostrarDatosExtrasPorEmpleado/${empleadoUno?.iDempleado}`
       )
       .then((res) => {
-        debugger;
         console.log(res.data)
-        addDatosExtraPorEmpleado(res.data);
+        dispatch(saveDatosExtrasEmpleados(res.data));
       });//
-},[empleadoUno, recharge])
+},[empleadoUno, refetch])
 
   useEffect(() => {
      handleFetch(urlEstados, addEstados);
@@ -330,7 +317,7 @@ useEffect(()=>{
     axios
       .get("http://54.243.192.82/api/Empleados?records=10")
       .then((res) => setEmpleados(res.data.result));
-  }, []);
+  }, [refetch]);
 
   console.log(responses)
 
@@ -349,10 +336,22 @@ useEffect(()=>{
       .then((res)=>{
         dispatch(getDAtosFamiliaresEmpleado(res.data))
       })
+      axios.get(`http://54.243.192.82/api/sp_DomiciliosDatosxIdEmpleado/${empleadoUno?.iDempleado}`)
+      .then((res)=>{
+        dispatch(addOneDomicilio(res.data))
+      })
+      axios.get(`http://54.243.192.82/api/Documentacion/sp_DocumentacionDatosXIdEmpleado?IdEmpleado=${empleadoUno?.iDempleado}`)
+      .then((res)=>{
+        dispatch(documentacionDelEmpleado(res.data))
+      })
+      axios.get(`http://54.243.192.82/api/MostrarDatosExtras/0,${empleadoUno?.iDempleado},1,`)
+      .then((res)=>{
+        dispatch(addDatosExtraPorEmpleado(res.data))
+      })
       handleFetch(urlDomicilios, addDomicilios);
       handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
     handleFetch(urlFamiliares, addFamiliares);
-    getDataTable()
+    
 
   }, [empleadoUno?.iDempleado, refetch]);
 
@@ -393,12 +392,15 @@ useEffect(()=>{
   const licenciasDelete = useSelector((state)=> state.licenciasState.idsLic);
   const idDomiciliosArray = useSelector((state)=> state.domiciliosStates.idsDom);
   const arraysFamiliares = useSelector((state)=> state.familiaStates.idsFAm);
+  const arrayIdsDatoExtra = useSelector((state)=> state.extrasState.idsDe);
+
   const urlTRabajoDelete = "http://54.243.192.82/api/TrabajosAnteriores?IdTrabajoAnterior=";
   const urlDocDelte = "http://54.243.192.82/api/EmpleadosDocumentacion/"
   const urlLicDelete = "http://54.243.192.82/api/"
     const urlEmpleadoGuarda = "http://54.243.192.82/api/Empleados/Guardar"
     const urlDOmicilioElimina = `http://54.243.192.82/api/sp_DomiciliosElimina/1?IdEmpleador=0`
   const urlDeleteFAmiliar = "http://54.243.192.82/api/EliminarFamiliarPorId/"
+  const urlDatoExtraElimina = "http://54.243.192.82/api/EliminarDatosExtras/"
 
 
   const objectRequest = {
@@ -408,17 +410,19 @@ useEffect(()=>{
       urlLicDelete : urlLicDelete,
       urlEmpleadoGuarda : urlEmpleadoGuarda,
       urlDOmicilioElimina : urlDOmicilioElimina,
-      urlDeleteFAmiliar : urlDeleteFAmiliar
+      urlDeleteFAmiliar : urlDeleteFAmiliar,
+      urlDatoExtraElimina : urlDatoExtraElimina
     },
     arrays : [
       idsTrabajosAnterioresDelete,
       documentacionDelte,
       licenciasDelete,
       idDomiciliosArray,
-      arraysFamiliares
+      arraysFamiliares,
+      arrayIdsDatoExtra
     ]
   }
-
+  console.log(arrayIdsDatoExtra)
 
 
   const { urls, arrays } = objectRequest;
@@ -449,6 +453,7 @@ useEffect(()=>{
     dispatch(clearIdsLic())
     dispatch(cleanIdsDom())
     dispatch(cleanIdFam())
+    dispatch(cleanIdDe())
     setRefectch(!refetch);
     setValueEmpl(false)
   }
@@ -830,13 +835,6 @@ useEffect(()=>{
             icon: "error",
           })
         }
-        if(!bodyPetitionEmpleadoUpdate.telFijo){
-          return swal({
-            title: "Error",
-            text: "Debe escribir el N° de Telefono del Empleado",
-            icon: "error",
-          })
-        }
         if(!bodyPetitionEmpleadoUpdate.iDestadoCivil){
           return swal({
             title: "Error",
@@ -1050,7 +1048,11 @@ useEffect(()=>{
         case urls.urlDocDelte : {
           arrays.documentacionDelte.map(async (id)=>{
             await axios.delete(`${urls.urlDocDelte}${id}`)
-            .then((res) => console.log(res))
+            .then((res) =>  swal({
+              title: "Ok",
+              text: "Documentacion eliminada con éxito",
+              icon: "success",
+          }))
           })}
         case urls.urlLicDelete : {
            arrays.licenciasDelete.map(async (id)=>{
@@ -1066,7 +1068,12 @@ useEffect(()=>{
             arrays.arraysFamiliares.map(async (id)=>{
               await axios.delete(`${urls.urlDeleteFAmiliar}${id}`)
               .then((res) => console.log(res))
-            })
+            })}
+            case urls.urlDatoExtraElimina : {
+              arrays.arrayIdsDatoExtra.map(async (id)=>{
+                await axios.delete(`${urls.urlDatoExtraElimina}${id}`)
+                .then((res) => console.log(res))
+              })
       }
         default : {
             arrays[0].map(async (id)=>{
@@ -1092,10 +1099,14 @@ useEffect(()=>{
             await axios.delete(`${urls.urlLicDelete}0`, {data : array, headers : {'Content-Type': 'application/json;'}})
             .then((res) => console.log(res))
          });
-         arrays[4].map(async (id)=>{    
-          await axios.delete(`${urls.urlDeleteFAmiliar}${id}`)
-          .then((res) => console.log(res))
-       });
+            arrays[4].map(async (id)=>{    
+              await axios.delete(`${urls.urlDeleteFAmiliar}${id}`)
+              .then((res) => console.log(res))
+          });
+            arrays[5].map(async (id)=>{    
+              await axios.delete(`${urls.urlDatoExtraElimina}${id}`)
+              .then((res) => console.log(res))
+          });
         }
       }
     }

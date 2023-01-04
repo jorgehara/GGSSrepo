@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
 import { addDocumentacionEmpleados, addNewDoc, deleteDocu } from '../../redux/actions/fetchActions';
 import axios from 'axios';
-import { cleanIdsDoc, getInputValue, getOneDocumento, saveIds } from '../../redux/actions/documentacionActions';
+import { cleanIdsDoc, deleteDocuEmpleado, getInputValue, getOneDocumento, saveIds } from '../../redux/actions/documentacionActions';
 import { inputButtonClasess, inputButtonClasessDocumentacion } from '../../classes/classes';
 import { GET_INPUT_VALUE } from '../../redux/types/documentacionTypes';
 import swal from 'sweetalert';
@@ -53,9 +53,12 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
    
     //const datosFormulario = useSelector((state)=> state.documentacionState.formulario);
 
-    const documentacionDelEmpleado = empleadoUno && documentacionEmpleados && documentacionEmpleados.filter((doc)=> {return(doc.idEmpleado === empleadoUno.iDempleado)});
+    /* const documentacionDelEmpleado = empleadoUno && documentacionEmpleados && documentacionEmpleados.filter((doc)=> {return(doc.idEmpleado === empleadoUno.iDempleado)}); */
 
-console.log(documentacionDelEmpleado)
+    const documentacionDelEmpleado = useSelector((state)=> state.documentacionState.documentacionDelEmpleado);
+
+    console.log(documentacionDelEmpleado)
+
     let bodyPetition = {        
         "fecha": formDocumentacion?.inputDatePresentacion,
         "idEmpleado": empleadoUno.iDempleado,
@@ -66,7 +69,7 @@ console.log(documentacionDelEmpleado)
         "generaLiquidacion": formDocumentacion?.inputCheckLiquidacion,
         "incluirCuotaAlimentaria": formDocumentacion?.inputIncluirCuotaAlim
     }
-   
+    
 
     function sendDataDoc(){
         if(empleadoUno.iDempleado && empleadoUno.iDempleado){
@@ -96,7 +99,7 @@ console.log(documentacionDelEmpleado)
     }
 
     function deleteData(id){
-        dispatch(deleteDocu(id))
+        dispatch(deleteDocuEmpleado(id))
         dispatch(saveIds(id))
     }
     

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { inputButtonClasessExtras, inputButtonClasessExtrasAfectaciones, inputButtonClasessExtrasInstrum } from '../../classes/classes'
+import { deleteDatoExtraEmpl, saveIdDe } from '../../redux/actions/extrasActions';
 import { addDatosExtras, addInstrumLegales, addOneDatoExtra } from '../../redux/actions/fetchActions';
 import { GET_INPUT_VALUES_EXTRAS } from '../../redux/types/extrasTypes';
 import { AXIOS_ERROR, SET_LOADING } from '../../redux/types/fetchTypes';
@@ -25,7 +26,9 @@ const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
     const datosExtras = useSelector((state)=> state.generalState.datosExtras);
     const instrumLegales = useSelector((state)=> state.generalState.instrumLegales);
     const datoExtraSelected = useSelector((state)=> state.extrasState.datoExtra);
-    const datosExtraEmpleado = useSelector((state)=>state.extrasState.datosExtrasEmp);
+    //const datosExtraEmpleado = useSelector((state)=>state.generalState.datosExtrasPorEmpleadosSelect);
+    const datosExtraEmpleado = useSelector((state)=> state.extrasState.datosExtrasEmp);
+
     console.log(datosExtraEmpleado)
 
   console.log(empleadoUno.iDempleado)
@@ -58,8 +61,11 @@ const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
       
       
     }
-    async function deleteDatoExtra(id){
 
+
+    async function deleteDatoExtra(id){
+        dispatch(deleteDatoExtraEmpl(id));
+        dispatch(saveIdDe(id));
       
     }
     
