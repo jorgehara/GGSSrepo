@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getEmployeById,
   getEmployeByLegajo,
@@ -26,6 +26,25 @@ import { setRefetch } from "../../redux/actions/modalesActions";
 import { recharge } from "../../redux/actions/domiciliosActions";
 
 const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, setRefectch, refetch }) => {
+  const [checked, setChecked] = useState(false);
+  const [ browser, setBrowser ] = useState(responses["browser"]);
+
+  function onChangeValues(e, key){
+    const newResponse = {...browser};
+    newResponse[key] = e;
+    setBrowser({
+      ...newResponse
+    });
+};
+  
+  useEffect(() => {  
+    setResponses({
+      ...responses,
+      browser
+    });    
+},[browser]);
+
+
   const url = "http://54.243.192.82/api/Empleados?records=100";
 
   const dispatch = useDispatch();
@@ -120,8 +139,8 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
         <div className="row mt-1 p-0 m-0 ">
           <div className="container m-0 p-0">
             <input
-              onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
-              value={valueInputLegajo && valueInputLegajo}
+              onChange={(e) => onChangeValues(e.target.value, "inpurLegajoBrowser")}
+              value={browser?.inpurLegajoBrowser}
               className="form__grupo__input__browser "
               type="number"
               name="inpurLegajoBrowser"
@@ -131,15 +150,19 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
 
             <div className="row mt-1 m-0 p-0  w-100">
               <input
-                onChange={(e) => onChange(e, GET_INPUT_VALU_BROWSER)}
-                value={valueInputApellido && valueInputApellido}
+                onChange={(e) => onChangeValues(e.target.value, "inputApellidoNombreBrowser")}
+                value={browser?.inputApellidoNombreBrowser}
                 className="form__grupo__input__browser "
                 type="text"
                 name="inputApellidoNombreBrowser"
                 id="inputApellidoNombreBrowser"
                 placeholder="Ingrese Nombre "
-              />
+              />              
             </div>
+            {/* <div className="wor mt-1 m-0 p-0 w-100">
+              <label htmlFor="ordered">Ordenar:</label>
+              <input type="checkbox" name="ordered" id="ordered" onChange={(e) => { setChecked(!checked); onChangeValues(e.target.checked, "ordered")}} checked={checked} />
+            </div> */}
             <select
               defaultValue={[]}
               className="form-select  mt-1 selectMenu "

@@ -66,7 +66,7 @@ import {
 } from "../../redux/actions/licenciasActions";
 import swal from "sweetalert";
 import { getEmployeByLegajo, getEmployeByName } from "../../services/fetchAPI";
-import { getEmployes } from "../../redux/actions/employeActions";
+import { cleanEmploye, getEmployes } from "../../redux/actions/employeActions";
 import { cleanIdFam, getDAtosFamiliaresEmpleado } from "../../redux/actions/familiaActions";
 import { addOneDomicilio, cleanIdsDom } from "../../redux/actions/domiciliosActions";
 import { addDatosExtraPorEmpleado, cleanIdDe } from "../../redux/actions/extrasActions";
@@ -366,27 +366,57 @@ useEffect(()=>{
   const valueInputApellido = useSelector(
     (state) => state.employeStates.formulario.inputApellidoNombreBrowser
   );
-  const url = "http://54.243.192.82/api/Empleados?records=100";
-  useEffect(() => {
-    
-    axios.get(url).then((res) => {
-      let data = res.data.result;
+  const url = `http://54.243.192.82/api/Empleados?page=2000&ordered=true`;
+    const urlEmpleadoPorApellido = `http://54.243.192.82/api/Empleados?records=10000&filter=${responses?.browser?.inputApellidoNombreBrowser ? responses?.browser?.inputApellidoNombreBrowser : null}`;
+    const urlEmpleadoPorLegajo = `http://54.243.192.82/api/Empleados?records=10000&legajo=${responses?.browser?.inpurLegajoBrowser ? responses?.browser?.inpurLegajoBrowser : null}`;
+    const urlEmpleadoApYLegajo = `http://54.243.192.82/api/Empleados?records=10000&filter=${responses?.browser?.inputApellidoNombreBrowser ? responses?.browser.inputApellidoNombreBrowser : null}&legajo=${responses?.browser?.inpurLegajoBrowser ? responses?.browser?.inpurLegajoBrowser : null}`;
+    const urlApeLegOrdered = `http://54.243.192.82/api/Empleados?records=10000&filter=${responses?.browser?.inputApellidoNombreBrowser ? responses?.browser?.inputApellidoNombreBrowser : null}&legajo=${responses?.browser?.inpurLegajoBrowser ? responses?.browser?.inpurLegajoBrowser : null}&ordered=true`;
+    async function getEmpleados(){
+      if(responses.browser.inputApellidoNombreBrowser){
+        await axios({method: 'get',
+                      url: urlEmpleadoPorApellido,
+                      timeout: 1000}).then((res) => {
+          dispatch(getEmployes(res.data.result));    
+        });
+        return;
+      }
+      else if(responses.browser.inpurLegajoBrowser){
+        await axios({method: 'get',
+                    url: urlEmpleadoPorLegajo,
+                    timeout: 1000}).then((res) => {
+          dispatch(getEmployes(res.data.result));    
+        });
+        return;
+      }else if(responses.browser.inputApellidoNombreBrowser && responses.browser.inpurLegajoBrowser){
+        await axios({method: 'get',
+                    url: urlEmpleadoApYLegajo,
+                    timeout: 1000}).then((res) => {
+            dispatch(getEmployes(res.data.result));    
+        });
+        return;
+      }else if(responses.browser.inputApellidoNombreBrowser && responses.browser.inpurLegajoBrowser && responses?.browser.ordered){
+        await axios.get({method: 'get',
+                        url: urlApeLegOrdered,
+                        timeout: 1000}).then((res) => {
+          dispatch(getEmployes(res.data.result));    
+        });
+        return;
+      }else{
+        await axios.get(url).then((res) => {
 
-      if (valueInputApellido.length > 0) {
-        getEmployeByName(data, valueInputApellido).then((res) =>
-          dispatch(getEmployes(res))
-        );
-        return;
+          dispatch(getEmployes(res.data.result));
+    
+        });
       }
-      if (valueInputLegajo.length > 0) {
-        getEmployeByLegajo(data, valueInputLegajo).then((res) =>
-          dispatch(getEmployes(res))
-        );
-        return;
-      }
-      dispatch(getEmployes(res.data.result));
-    });
-  }, [valueInputLegajo, valueInputApellido, saveEmpleado]);
+      
+    }
+
+      console.log(responses?.browser?.inputApellidoNombreBrowser)
+
+  useEffect(() => {
+    getEmpleados();
+    
+  }, [responses?.browser?.inputApellidoNombreBrowser,responses?.browser?.inpurLegajoBrowser,responses?.browser?.ordered, saveEmpleado]);
 
   const idsTrabajosAnterioresDelete = useSelector((state)=> state.trabajosAnteriores.ids);
   const documentacionDelte = useSelector((state)=> state.documentacionState.ids);
@@ -431,11 +461,12 @@ useEffect(()=>{
 
 
   function cleanIdsGeneral(){
+    
+    setRefectch(!refetch)
+    dispatch(cleanEmploye())
     Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );
-    dispatch(cleanIds());
-    setRefectch(!refetch);
 
     let formData = { ...responses.formDatosPersonales };
 
@@ -455,7 +486,6 @@ useEffect(()=>{
     dispatch(cleanIdsDom())
     dispatch(cleanIdFam())
     dispatch(cleanIdDe())
-    setRefectch(!refetch);
     setValueEmpl(false)
   }
  
