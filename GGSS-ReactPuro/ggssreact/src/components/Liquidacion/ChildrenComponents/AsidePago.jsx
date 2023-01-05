@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { classesRadioLiquidacion, inputButtonClasessAsidePagos } from '../../../classes/classes'
 import { GET_INPUTS_VALUE } from '../../../redux/types/liquidacionTypes'
 import InputButton from '../../Inputs/InputButton/InputButton'
@@ -10,7 +10,7 @@ import InputRadio from '../../Inputs/InputRadio/InputRadio'
 const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion, disabled, mostrarComponente}) => {
 
   const dispatch = useDispatch();
-
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
   
   return (
   <>
@@ -29,6 +29,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                   onChange={onChange}
                   action={GET_INPUTS_VALUE}
                   disabled={disabled}
+                  idSelected={empleadoUno?.iDformadePago}
                 />
               </div>
               <div>
@@ -45,6 +46,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                   onChange={onChange}
                   action={GET_INPUTS_VALUE}
                   disabled={disabled}
+                  idSelected={empleadoUno?.iDlugardePago}
                 />
               </div>
               <div>
@@ -62,6 +64,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                   onChange={onChange}
                   action={GET_INPUTS_VALUE}
                   disabled={disabled}
+                  idSelected={empleadoUno?.idbanco}
                 />
               </div>
                 <div>
@@ -89,6 +92,7 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
                 idInput="inputRadioAsidePagos"
                 asidePagos={true}
                 disabled={disabled}
+                value={formLiquidacion?.inputRadioAsidePagos && formLiquidacion?.inputRadioAsidePagos}
               />
               </div>
               <div>

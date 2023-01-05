@@ -232,6 +232,8 @@ useEffect(()=>{
    handleFetch(urlEstudios, addEstudios);
    handleFetch(urlTiposDNI, addTiposDocumento);
    handleFetch(urlDomicilios, addDomicilios);
+   handleFetch(urlParentescos, addParentescos);
+   handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
 },[refetching, empleadoUno])
 
 useEffect(()=>{
@@ -252,7 +254,6 @@ useEffect(()=>{
      handleFetch(urlEstudios, addEstudios);
 
      handleFetch(urlTiposDNI, addTiposDocumento);
-     handleFetch(urlParentescos, addParentescos);
      handleFetch(urlFamiliares, addFamiliares);
      handleFetch(urlNumeradores, addNumeradores);
 
@@ -464,7 +465,7 @@ useEffect(()=>{
     
     setRefectch(!refetch)
     dispatch(cleanEmploye())
-    Array.from(document.querySelectorAll("input")).forEach(
+    Array.from(document.querySelectorAll("input[type=text")).forEach(
       (input) => (input.value = "")
     );
 

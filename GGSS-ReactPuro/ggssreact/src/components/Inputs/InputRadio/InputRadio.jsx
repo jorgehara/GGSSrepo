@@ -23,15 +23,18 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
 
 
   const valueInput = () => {
-    if (valor === "M") {
+    if (valor === "M" || valor == 1) {
       setValorRadioM(true);
       setValorRadioF(false);
     }
-    if (valor === "F") {
+    if (valor === "F" || valor == 2) {
       setValorRadioF(true);
       setValorRadioM(false);
     }
   };
+  console.log(valor)
+  console.log(valorRadioF)
+  console.log(asidePagos)
   return (
     classes && classes ? <div className={classes.classOne}>
         <div className={classes.classNine}>

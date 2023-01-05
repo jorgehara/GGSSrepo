@@ -13,6 +13,7 @@ import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 import { inputClassProvinciasDomicilios } from "../../classes/classes";
 import { useEffect } from "react";
+import { setRefetch } from "../../redux/actions/modalesActions";
 
 //#endregion
 const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, setFormDatosPersonales, domiciliosEmpleados, setRefectch, refetch}) => {
@@ -42,6 +43,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
     "Piso/Of/Dpto",
     "Provincia",
   ];
+  console.log(empleadoDomicilio)
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
   //#region ------------------------------------------------------------------------------REDUX
@@ -89,13 +91,14 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
 
   let idDomicilio = domiciliosEmpleados && domiciliosEmpleados[domiciliosEmpleados.length -1] ? ((domiciliosEmpleados[domiciliosEmpleados.length -1].idDomicilio)+1) : null;
   
-  
 
 
   const sendDataDomicilios= async ()=>{
     try{
     let predeterminadoExiste = empleadoDomicilio && empleadoDomicilio.filter((dom) => dom.predeterminado === true );
-    if(predeterminadoExiste && formDatosPersonales?.inputPredeterminado === true){
+    console.log(predeterminadoExiste)
+    console.log(predeterminadoExiste && (formDatosPersonales?.inputPredeterminado === true))
+    if(predeterminadoExiste.length > 0 && (formDatosPersonales?.inputPredeterminado === true)){
       return swal({
         title: "Error",
         text: "No puede tener más de un domicilio Predeterminado",
@@ -113,6 +116,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
             if(res.status === 200){ 
               dispatch(addNewDomicilio(res.data))  
               setRefectch(!refetch)
+              dispatch(setRefetch(!refetching))
               swal({
                 title: "Domicilio Agregado",
                 text: "Domicilio agregado con éxito",
@@ -177,7 +181,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
                     type="checkbox"
                     name="inputPredeterminado"
                     checked={!checked}
-                    value ={formDomicilios?.inputPredeterminado && formDomicilios?.inputPredeterminado  }
+                    value ={formDomicilios?.inputPredeterminado ? formDomicilios?.inputPredeterminado : false  }
                     id="inputPredeterminado"
                     onChange={(e)=>handleChangePredeterminado(e, "inputPredeterminado" )}
                   />

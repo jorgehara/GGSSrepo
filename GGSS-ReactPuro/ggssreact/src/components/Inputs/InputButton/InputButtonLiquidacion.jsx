@@ -2,7 +2,7 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import "./InputButton.css";
 
-const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, swal , clasess, array,propArrayOp, propIdOption, idInput, obligatorio, display, useButton}) => {
+const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, value, disabled, nameInput, id,onChange,funcionCuil,nroDocumento,genre, swal , clasess, array,propArrayOp, propIdOption, idInput, obligatorio, display, useButton, idSelected}) => {
 
 
     const [mostrarComponente, setMostrarComponente] = useState (false);
@@ -32,8 +32,10 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
         <option value="">Seleccionar</option>
         {
             array && array.map((valor,index)=>{
+              console.log(Number(idSelected))
                 return(
-                    <option key={index} value={valor[propIdOption]}>{valor[propArrayOp]}</option>
+                  Number(idSelected) === Number(valor[propIdOption]) ? <option selected key={index} value={valor[propIdOption]}>{valor[propArrayOp]}</option> : 
+                  <option key={index} value={valor[propIdOption]}>{valor[propArrayOp]}</option>
                 )
             })
         }

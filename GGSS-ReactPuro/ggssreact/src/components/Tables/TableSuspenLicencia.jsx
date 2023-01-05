@@ -8,9 +8,11 @@ const TableSuspenLicencia = ({ columns }) => {
   const detalleLicencia = useSelector(
     (state) => state.licenciasState.detalleLicencia
   );
-  const licenciaEmpleado = useSelector((state)=> state.licenciasState.idSelected);
+  const idSelected = useSelector((state)=> state.licenciasState.idSelected);
+  const detalesDeLicencias = useSelector((state)=> state.licenciasState.detalleLicencia);
 
-  console.log(detalleLicencia);
+
+  console.log(detalesDeLicencias);
 
   return (
     <>
@@ -26,10 +28,9 @@ const TableSuspenLicencia = ({ columns }) => {
         <tbody>
           {detalleLicencia &&
             detalleLicencia.map((valor) => {
-              console.log(licenciaEmpleado?.idLicenciaEmpleado)
               console.log(valor?.idLicenciaEmpleado)
-              return licenciaEmpleado ===
-                valor?.idLicenciaEmpleado ? (
+              return Number(idSelected) ===
+                Number(valor?.idLicenciaEmpleado) ? (
                 <tr>
                   <th scope="row">
                     {" "}

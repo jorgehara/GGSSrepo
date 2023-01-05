@@ -5,6 +5,7 @@ import {
   addDetalleLicencia,
   addOneLicencia,
   idSelect,
+  licenciaSelected,
 } from "../../redux/actions/licenciasActions";
 import "./TableBootstrap.css";
 
@@ -48,6 +49,7 @@ const TableLicencias = ({
                       onClick={() => {
                         setChecked(true);
                         dispatch(addOneLicencia(valor));
+                        dispatch(licenciaSelected(valor))
                         dispatch(idSelect(valor.idLicenciaEmpleado))
                       }}
                     />{" "}

@@ -47,9 +47,9 @@ const FieldSet = ({
   const columns2 = ["Seleccionar", "Desde", "Hasta", "Fecha Suspensión"];
 
   const empleadoUno = useSelector((state) => state.employeStates.employe);
-  const licenciaEmpleado = useSelector(
-    (state) => state.licenciasState.licenciaEmpleado
-  );
+
+
+  const licenciuaSelected = useSelector((state)=> state.licenciasState.licenciaSelected);
 
   const detalleSelected = useSelector(
     (state) => state.licenciasState.detalleSelect
@@ -65,9 +65,10 @@ const FieldSet = ({
   const detalleSeleccionado = useSelector(
     (state) => state.licenciasState.detalleSelect
   );
+  const idSelected = useSelector((state)=> state.licenciasState.idSelected);
 
   const urlCreateDetalleLicencia = `http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=0&IdLicenciaEmpleado=${
-    licenciaEmpleado && licenciaEmpleado.idLicenciaEmpleado
+    idSelected
   }&Desde=${formLicencias?.inputDesdeSolicitaLic}&Hasta=${
     formLicencias?.inputHastaSolicitaLic
   }`;
@@ -76,10 +77,9 @@ const FieldSet = ({
   const urlDeleteLicencia = "http://54.243.192.82/api/EliminarLicenciaPorId";
   const dispatch = useDispatch();
   const urlLicenciaEmpleados = "http://54.243.192.82/api/MostrarDatosLicencias";
-  const idSelected = useSelector((state)=> state.licenciasState.idSelected);
   const licenciasDelEmpleado = useSelector((state)=> state.licenciasState.licenciasEmpleado);
 
-  console.log(licenciasDelEmpleado)
+  
 
   const urlUpdateDetalle = `http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=${detalleSeleccionado.idDetalleLicenciaEmpleado}&FechaSuspension=${formLicencias?.inputDateSuspLic}`;
 
@@ -88,7 +88,7 @@ const FieldSet = ({
 
   let urlNueva = "http://54.243.192.82/api/DetalleLicenciasEmpleados?IdDetalleLicenciaEmpleado=0&IdLicenciaEmpleado=${}&Desde=2017-07-21T17%3A32%3A28Z&Hasta=2017-07-21T17%3A32%3A28Z&NewId=0"
 
-  console.log(detalleSeleccionado);
+ 
 
   let bodyLicencias = {
     idEmpleado: empleadoUno.iDempleado,
@@ -103,8 +103,8 @@ const FieldSet = ({
     nroResolucion: null,
   };
   let bodyLicenciasUpdateSolicita = {
-    idLicenciaEmpleado: licenciaEmpleado?.idLicenciaEmpleado,
-    idEmpleado: licenciaEmpleado?.idEmpleado,
+    idLicenciaEmpleado: licenciuaSelected?.idLicenciaEmpleado,
+    idEmpleado: licenciuaSelected?.idEmpleado,
     año: Number(
       formLicencias?.inputCboAñosLicencia && formLicencias?.inputCboAñosLicencia
     ),
@@ -116,13 +116,13 @@ const FieldSet = ({
     nroResolucion: null,
   };
   let bodyLicenciasUpdateProrroga = {
-    idLicenciaEmpleado: licenciaEmpleado?.idLicenciaEmpleado,
+    idLicenciaEmpleado: licenciuaSelected?.idLicenciaEmpleado,
     idEmpleado: empleadoUno?.iDempleado,
-    año: licenciaEmpleado?.año,
-    diasDisponiblesTotales: licenciaEmpleado?.diasDisponiblesTotales,
-    fechaVencimiento: licenciaEmpleado?.fechaVencimiento,
-    diasDisponibles: licenciaEmpleado?.diasDisponibles,
-    diasTomados: licenciaEmpleado?.diasTomados,
+    año: licenciuaSelected?.año,
+    diasDisponiblesTotales: licenciuaSelected?.diasDisponiblesTotales,
+    fechaVencimiento: licenciuaSelected?.fechaVencimiento,
+    diasDisponibles: licenciuaSelected?.diasDisponibles,
+    diasTomados: licenciuaSelected?.diasTomados,
     fechaProrroga: formLicencias?.inputNuevaFechaLic,
     nroResolucion: formLicencias?.inputNuevaResolucionLic,
   };
@@ -133,7 +133,7 @@ const FieldSet = ({
 
   const bodyDetalleLicencia = {
     IdDetalleLicenciaEmpleado: 0,
-    IdLicenciaEmpleado: licenciaEmpleado && licenciaEmpleado.idLicenciaEmpleado,
+    IdLicenciaEmpleado: licenciuaSelected && licenciuaSelected.idLicenciaEmpleado,
     Desde: formLicencias && formLicencias.inputDesdeSolicitaLic,
     Hasta: formLicencias && formLicencias.inputHastaSolicitaLic,
     FechaSuspencion: null,
@@ -145,11 +145,18 @@ const FieldSet = ({
     0,
     0
   );
+  console.log(licenciuaSelected?.fechaVencimiento?.substring(
+    0,
+    licenciuaSelected?.fechaVencimiento?.length - 9
+  ))
+
+
+
   let dateTwo = new Date(
-    licenciaEmpleado?.fechaVencimiento &&
-      licenciaEmpleado?.fechaVencimiento.substring(
+    licenciuaSelected?.fechaVencimiento &&
+    licenciuaSelected?.fechaVencimiento.substring(
         0,
-        licenciaEmpleado?.fechaVencimiento.length - 9
+        licenciuaSelected?.fechaVencimiento.length - 9
       )
   ).setHours(0, 0, 0, 0);
 
@@ -246,6 +253,7 @@ const FieldSet = ({
     });
   }
   async function updateData(url, bodyPetition, id) {
+    debugger;
     if (dateTwo.valueOf() > dateProrroga) {
       return swal({
         title: "Error",
@@ -319,7 +327,7 @@ const FieldSet = ({
           urlDeleteLicencia,
           bodyLicenciasUpdateSolicita,
           updateLicencia,
-          licenciaEmpleado.idEmpleado
+          licenciuaSelected.idEmpleado
         );
         break;
 
@@ -343,8 +351,7 @@ const FieldSet = ({
         updateData(
           urlLicencias,
           bodyLicenciasUpdateProrroga,
-          updateLicencia,
-          licenciaEmpleado.idLicenciaEmpleado
+          idSelected
         );
         break;
       case "4 - Suspende Licencia":
@@ -357,13 +364,14 @@ const FieldSet = ({
 
   async function solicitanuevaLic(bodyDetalleLicencia) {
     debugger;
-    if (licenciaEmpleado.fechaProrroga && licenciaEmpleado.fechaProrroga) {
-      let dateProrroga = new Date(licenciaEmpleado.fechaProrroga).setHours(
+    if (licenciuaSelected.fechaProrroga && licenciuaSelected.fechaProrroga) {
+      let dateProrroga = new Date(licenciuaSelected.fechaProrroga).setHours(
         0,
         0,
         0,
         0
       );
+      
       if (dateOne.valueOf() < dateProrroga.valueOf()) {
         await axios.post(urlCreateDetalleLicencia).then((res) => {
           console.log(res);

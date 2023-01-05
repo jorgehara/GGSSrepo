@@ -17,7 +17,7 @@ import "./Liquidacion.css"
 
 const Liquidacion = ({responses, setResponses, disable, setDisable}) => {
 
-    
+  const empleadoUno = useSelector((state)=> state.employeStates.employe);
     const [ formLiquidacion, setFormLiquidacion ] = useState(responses["formLiquidacion"]);
 
     const dispatch = useDispatch();
@@ -85,7 +85,7 @@ const empleadores = useSelector((state)=> state.generalState.empleadores);
     const inputCheckSumAdministrativo = useSelector((state)=> state.liquidacionState.formulario.inputCheckSumAdministrativo);
     const inputCheckLicSinGoce = useSelector((state)=> state.liquidacionState.formulario.inputCheckLicSinGoce);
 //#endregion
-
+console.log(empleadoUno)
 return (
     <div className="container-flex">
         <div className="container-flex border border-1">
@@ -117,6 +117,7 @@ return (
                         action={GET_INPUTS_VALUE}
                         obligatorio = {true}
                         disabled={disable}
+                        idSelected={empleadoUno?.iDempleador}
                         />
                     </div>        
                 </div>
@@ -134,6 +135,7 @@ return (
                             idInput="inputConvenio"
                             onChange={onChangeValues}
                             disabled={disable}
+                            idSelected={empleadoUno?.iDempleador}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -148,6 +150,7 @@ return (
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE}
                             disabled={disable}
+                            idSelected={empleadoUno?.iDcategoria}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -162,6 +165,7 @@ return (
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE}
                             disabled={disable}
+                            idSelected={empleadoUno?.idAgrupamiento}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -176,6 +180,7 @@ return (
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE}
                             disabled={disable}
+                            idSelected={empleadoUno?.iDcargo}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -190,6 +195,7 @@ return (
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE} 
                             disabled={disable}
+                            idSelected={empleadoUno?.iDtareaDesempeñada}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -204,6 +210,7 @@ return (
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE} 
                             disabled={disable}
+                            idSelected={empleadoUno?.iDmodoContratacion}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -218,6 +225,7 @@ return (
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE} 
                             disabled={disable}
+                            idSelected={empleadoUno?.iDmodoLiquidacion}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -232,6 +240,7 @@ return (
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE} 
                             disabled={disable}
+                            idSelected={empleadoUno?.idCentrodeCosto}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -246,6 +255,7 @@ return (
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE} 
                             disabled={disable}
+                            idSelected={empleadoUno?.iDsectorDpto}
                         />
                         <InputButtonLiquidacion
                             clasess={inputButtonClasess}
@@ -260,6 +270,7 @@ return (
                             onChange={onChangeValues}
                             action={GET_INPUTS_VALUE} 
                             disabled={disable}
+                            idSelected={empleadoUno?.iDobraSocial}
                         />
                     </div>
                     <div className="col-xl-6">

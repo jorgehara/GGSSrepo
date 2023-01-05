@@ -69,7 +69,7 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
         "generaLiquidacion": formDocumentacion?.inputCheckLiquidacion,
         "incluirCuotaAlimentaria": formDocumentacion?.inputIncluirCuotaAlim
     }
-    
+    console.log(documentaciones)
 
     function sendDataDoc(){
         if(empleadoUno.iDempleado && empleadoUno.iDempleado){
