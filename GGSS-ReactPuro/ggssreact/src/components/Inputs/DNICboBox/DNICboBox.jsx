@@ -17,7 +17,7 @@ const DNICboBox = ({  messageError, placeHolder, array, value , disabled, idInpu
         <label className="formulario-label-DNI mt-2 ml-4">{nameLabel}</label>
       </div>
       <div className="">
-        <select disabled={disabled} defaultValue="" className={obligatorio ? "formulario-input-DNI form-select ml-0 px-0 obligatorio" : "formulario-input-DNI form-select ml-0 px-0"} id={selectedId} name={selectedId} onChange={(e)=> onChange(e.target.value, selectedId)}>
+        <select disabled={disabled} defaultValue="" className={obligatorio ? "formulario-input-DNI  ml-0 px-0 obligatorio" : "formulario-input-DNI ml-0 px-0"} id={selectedId} name={selectedId} onChange={(e)=> onChange(e.target.value, selectedId)}>
           <option value="">Seleccionar</option>
           {array && array.map((op, i) => {
 
