@@ -13,7 +13,7 @@ const TableBasic1 = ({columns, value,documentaciones, setRefetch, refetch, disab
     })
     return document[0]
   }
-  console.log(documentaciones);
+  // console.log(documentaciones);
   return (
     <>
     <table class="table table-danger" disabled={disabled} >

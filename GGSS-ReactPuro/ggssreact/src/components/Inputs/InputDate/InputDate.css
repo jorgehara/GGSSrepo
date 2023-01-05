@@ -30,3 +30,11 @@
 .secondCheck{
 	width: 9rem;
 }
+
+.form-check-label{
+	width: 38%;
+	padding: 0;
+	box-sizing: border-box;
+	margin-left: 2%;
+	font-size: 15px;
+}

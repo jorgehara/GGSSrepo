@@ -3,6 +3,13 @@
     resize: none;
 	
 }
+
+.form__grupo__label__label{
+	margin: 0;
+    margin-left: 5px;
+    height: 100%;
+	font-size: 15px;
+}
 .txtArea{
     width: 280px;
     resize: none;
@@ -16,7 +23,7 @@
 
 }
 .count-container form .input-msg{
-	font-size: 13px;
+	font-size: 15px;
 	/* background-image: linear-gradient(to bottom, transparent, rgb(189, 103, 103, 0.3)); */
 	transition: .3s ease all;
 	/* border-bottom: 1px solid rgb(78, 6, 6); */
@@ -56,6 +63,7 @@
 	/* border-radius: 3px; */
 	transition: .3s ease all;
 	border-bottom: 0.5px solid;
+	font-size: 14px;
 }
 
 .formulario-input-TextArea:focus{

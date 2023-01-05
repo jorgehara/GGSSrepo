@@ -135,7 +135,7 @@ const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
                     </div>
                 </div>
                 <div className='row'>
-                      <div className='col-xl-12'>
+                      <div className='col-xl-12 fs-6 '>
                           <TextArea onChange={onChangeValues} idInput="inputTextExtras" value={formDatosExtras?.inputTextExtras && formDatosExtras?.inputTextExtras} inputName="Observaciones" action={GET_INPUT_VALUES_EXTRAS} disabled={disable} />
                           <ButtonCancelarAceptar cancelar="-" aceptar="+" idElimiar={datoExtraSelected.idEmpleadoDatoExtra} functionDelete={deleteDatoExtra} functionSend={sendData} disabled={disable} />
                           <TableExtras disabled={disable} datosExtraEmpleado={datosExtraEmpleado && datosExtraEmpleado} columns={columns} />

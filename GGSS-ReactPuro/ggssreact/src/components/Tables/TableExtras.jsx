@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { getDatoExtraSelected } from '../../redux/actions/extrasActions'
+import "./TableBootstrap.css";
 
 const TableExtras = ({columns, datosExtraEmpleado}) => {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const TableExtras = ({columns, datosExtraEmpleado}) => {
         <tbody>
             {
                 datosExtraEmpleado && datosExtraEmpleado.map((item, i)=>{
-                    console.log(item)
+                    // console.log(item)
                     return(
                             <tr>
                                 <th scope="row"> <input type="radio" name="selectExtra" id="selectExtra" onClick={()=> {dispatch(getDatoExtraSelected(item))}} /> </th>
