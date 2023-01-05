@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import InputEmpData from "../Inputs/InputEmpData/InputEmpData";
 import "./EmployeData.css";
 
-const EmployeData = ({disabled, image}) => {
+const EmployeData = ({disabled, image, responses}) => {
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
   const estadosCiviles = useSelector((state)=> state.generalState.estadosCiviles);
 
@@ -12,7 +12,7 @@ const EmployeData = ({disabled, image}) => {
   const estadoSEleccionado = estadosCiviles && estadosCiviles.find(est => est.idEstado === idEstadoSelec); 
 
   
-
+  console.log(empleadoUno.obsFechaIngreso)
     
   return (
         <div className="container-flex border border-3 p-2 text-start py-2">
@@ -21,7 +21,7 @@ const EmployeData = ({disabled, image}) => {
                 <img
                   className="border border-3 imgData"
                   id="imagen"
-                  src={`data:image/jpeg;base64,${image}`}
+                  src={empleadoUno?.obsFechaIngreso ? empleadoUno?.obsFechaIngreso : responses?.inputImage}
                   alt=""
                   // style={{ width: "90px;", height: "90px;" }}
                 />

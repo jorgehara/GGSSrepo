@@ -82,6 +82,7 @@ const Empleados = () => {
   const [datosExtraEmpleado, setDatosExtraEmpleado ] = useState([]);
   const [ inCancel, setInCancel ] = useState(false);
   const [ valueempl, setValueEmpl ] = useState(false);
+  const [saveEmpleado , setSaveEmpleado ] = useState(false);
 
 
   const refetching = useSelector((state)=> state.modalState.refetch);
@@ -222,7 +223,7 @@ const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
 const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
 const recharge = useSelector((state)=> state.domiciliosStates.recharge);
 
-
+console.log(responses)
 //#region useEffect handleFetch
 useEffect(()=>{
    handleFetch(urlEstados, addEstados);
@@ -385,7 +386,7 @@ useEffect(()=>{
       }
       dispatch(getEmployes(res.data.result));
     });
-  }, [valueInputLegajo, valueInputApellido]);
+  }, [valueInputLegajo, valueInputApellido, saveEmpleado]);
 
   const idsTrabajosAnterioresDelete = useSelector((state)=> state.trabajosAnteriores.ids);
   const documentacionDelte = useSelector((state)=> state.documentacionState.ids);
@@ -568,7 +569,7 @@ useEffect(()=>{
       "tieneSumarioAdministrativo": responses.formLiquidacion?.inputCheckSumAdministrativo ? responses.formLiquidacion?.inputCheckSumAdministrativo  : empleadoUno.tieneSumarioAdministrativo,
       "tieneLicenciaSinGoceHaberes": responses.formLiquidacion?.inputCheckLicSinGoce ? responses.formLiquidacion?.inputCheckLicSinGoce  : empleadoUno.tieneLicenciaSinGoceHaberes,
       "obsEstudios": responses.formDatosPersonales?.observacionesEstudios ? responses.formDatosPersonales?.observacionesEstudios  : empleadoUno.obsEstudios,
-      "obsFechaIngreso": "string",
+      "obsFechaIngreso": responses.formDatosPersonales?.inputImage ? responses.formDatosPersonales?.inputImage : empleadoUno.obsFechaIngreso,
       "idAgrupamiento": responses.formDatosPersonales?.inputAgrupamiento ?  responses.formDatosPersonales?.inputAgrupamiento : empleadoUno.idAgrupamiento,
       "idDireccion": responses.formLiquidacion?.inputDireccionLiquidacion ? responses.formLiquidacion?.inputDireccionLiquidacion  : empleadoUno.idDireccion,
       "idInstrumentoLegal": 2
@@ -1007,6 +1008,7 @@ useEffect(()=>{
               }})
              .then((res)=>{
               setRefectch(!refetch);
+              setSaveEmpleado(!saveEmpleado)
               console.log(res)
                swal({
                 title: "Ok",
@@ -1020,6 +1022,7 @@ useEffect(()=>{
             .then((res)=>{
               console.log(res);
               setRefectch(!refetch);
+              setSaveEmpleado(!saveEmpleado)
                swal({
                 title: "Ok",
                 text: "Empleado Modificado con éxito",

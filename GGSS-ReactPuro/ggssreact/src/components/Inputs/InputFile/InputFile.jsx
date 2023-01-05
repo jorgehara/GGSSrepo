@@ -11,12 +11,13 @@ function InputFile({ disabled, imagen,onChange, idInput,action }) {
   
   
   const changeImage = (e) => {
-    console.log(e.target.files);
+    console.log(e.target.files[0]);
     if (e.target.files[0] !== undefined) {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = (e) => {
         e.preventDefault();
+        onChange(e.target.result, idInput)
         dispatch({
           type : action,
           payload : {name : idInput, value : e.target.result}
@@ -64,9 +65,9 @@ function InputFile({ disabled, imagen,onChange, idInput,action }) {
               width="220px"
               height="100px"
               disabled={disabled}
-              onChange={(e) => {
+               onChange={(e) => {
                 changeImage(e);
-              }}
+              }} 
             ></input>
             <div className="imageSelect d-flex justify-content-center align-items-center center ml-1 mr-6 ">
               <img

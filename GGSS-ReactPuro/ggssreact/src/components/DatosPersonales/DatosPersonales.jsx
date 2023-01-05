@@ -137,7 +137,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
       //#region Menú Principal
 
     <>
-      <EmployeData image={image} /><div className="Lateral-Derecho">
+      <EmployeData responses={responses} image={image} /><div className="Lateral-Derecho">
         <div className="accordion" id="accordionExample">
           <div className="accordion-item">
             <h4 className="accordion-header" id="headingOne">
@@ -423,7 +423,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                           <InputFile
                             inputName="Arrastre su imagen"
                             disabled={disable}
-                            imagen={`data:image/jpeg;base64,${image}`}
+                            imagen={empleadoUno.obsFechaIngreso}
                             onChange={onChangeValues}
                             idInput="inputImage"
                             action={ADD_DATOS_PERSONALES} />
