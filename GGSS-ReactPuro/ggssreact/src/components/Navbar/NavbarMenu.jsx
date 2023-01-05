@@ -354,7 +354,7 @@ const Navbar = () => {
 									Empleados
 								</a>
 								<ul className=" dropdown-menu">
-									<li><Link className="dropdown-item" to="/home">Ficha Empleados</Link></li>
+									<li><Link className="dropdown-item" to="/ficha-empleados">Ficha Empleados</Link></li>
 									<li><Link className="dropdown-item" to="#">Busqueda de Datos</Link></li>
 								</ul>
 							</li>
