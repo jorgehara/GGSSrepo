@@ -27,12 +27,14 @@ return (
                 Observaciones
               </label>
               <div class="input-group">
-                <input
-                  placeholder="Ingrese Observaciones"
+                <textarea
+                  placeholder="Ingrese Observaciones "
                   maxLength={characterLimit}
-                  class="formulario-input-TextArea form-control-obs txtArea input-control count-chars"
+                  class="formulario-input-TextArea"
                   onChange={handleChange}
                   value={input}
+                  cols="51" 
+                  rows="6"
                 />
                {/* (caracteres_restantes < 10) ? "Contador de caracteres: " + caracteres_restantes : "" */}
                
