@@ -116,6 +116,7 @@
 .formulario__label_Extras{
 	width: 10%;
 	font-size: 15px;
+	font-weight: 400;
 }
 .fomulario__container__button_extras{
 	display: flex;
