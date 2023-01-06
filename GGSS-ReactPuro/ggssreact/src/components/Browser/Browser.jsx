@@ -67,6 +67,7 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
     (state) => state.licenciasState.detalleSelect
   );
   function onSelect(e, name, idEmpleado) {
+    
     //dispatch(deleteDetLic(detalleSeleccionado.idDetalleLicenciaEmpleado));
     //dispatch(clearLicSelect());
     dispatch(recharge(!recharged))
@@ -169,6 +170,8 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
               multiple
               aria-label="multiple select example"
               disabled={!disable}
+              onKeyDown={(e)=> onSelect(e,e.target.value.split(',')[0],Number(e.target.value.split(',')[1]))}
+              onKeyUp={(e)=> onSelect(e,e.target.value.split(',')[0],Number(e.target.value.split(',')[1]))}
             >
               {empleados &&
                 empleados.map((emp, i) => {
@@ -176,7 +179,9 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
                     <option
                       key={i}
                       onClick={(e) => onSelect(e, emp.apellido, emp.iDempleado)}
-                      value="1"
+                      value={`${emp.apellido},${emp.iDempleado}`}
+                      apellido={emp.apellido && emp.apellido}
+                      idEmpleado={emp.iDempleado && emp.iDempleado}
                     >{`${emp.apellido}, ${emp.nombres}`}</option>
                   );
                 })}
