@@ -25,7 +25,7 @@ import InputButtonCUIL from "../Inputs/InputButtonCUIL/InputButtonCUIL";
 
 const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstado, disable, empleados, valueempl, domiciliosEmpleados, setRefectch, refetch}) => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
-  const [imagenSended , setImagenSended] = useState("");
+
   const [ formDatosPersonales, setFormDatosPersonales ] = useState(responses["formDatosPersonales"]);
 
   const dispatch = useDispatch();
@@ -33,10 +33,8 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
 
   //#region ------------------------------------------------------REDUX
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
-  const datosPersonalesRedux = useSelector((state)=> state.datosPersonalesStates.formulario)
   const datosPersonalesState = useSelector((state)=> state.generalState);
   const numeradores = useSelector((state)=> state.generalState.numeradores);
-  const generalStateData = useSelector((state)=> state.generalState.tiposDocumento)
 
   //#endregion
   function onChangeValues(e, key){

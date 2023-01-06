@@ -8,7 +8,7 @@ import InputCbo from "../Inputs/InputCbo/InputCbo";
 import InputNumero from "../Inputs/InputNumero/InputNumero";
 import TablaDomicilios from "../Tables/TablaDomicilios";
 import './Domicilios.css';
-import { addNewDomicilio, addOneDomicilio, deleteOneDomicilioSelect, saveIdsDom, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
+import { addNewDomicilio, deleteOneDomicilioSelect, saveIdsDom, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
 import { inputClassCalleDomicilios, inputClassProvinciasDomicilios } from "../../classes/classes";
@@ -53,14 +53,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
 
   const dispatch = useDispatch();
 
-  
-  
-  
-  const domiciliosState = useSelector((state)=> state.domiciliosStates)
-  const domicilioDelEmpleado1 = useSelector((state)=> state.generalState.domicilios);
-  
-  
-  const predeterminado = domiciliosEmpleados && domiciliosEmpleados.map(m => {return(m.predeterminado)});
+
 
  
   const arrayDepartamentos = provinciaSelected && provinciaSelected.payload && generalStateData.departamentos !== undefined && generalStateData.departamentos !== "" ? generalStateData.departamentos.filter((departamento) => departamento.idProvincia === provinciaSelected.payload.idProvincia) : null;
@@ -71,27 +64,13 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
 
   const arrayBarrios = localidadSelected  && localidadSelected.payload &&  generalStateData.barrios !== undefined && generalStateData.barrios !== "" ? generalStateData.barrios.filter((barrio) => barrio.idLocalidad === localidadSelected.payload.idLocalidad) : null;
   const refetching = useSelector((state)=> state.modalState.refetch);
-  useEffect(()=>{
-    getDomicilioEmpleado()
-  },[empleadoUno])
+ 
 
   
-
-  function getDomicilioEmpleado(){
-    if(generalStateData.domicilios !== "" && empleadoUno){
-      let domicilioDelEmpleado = domiciliosEmpleados && domiciliosEmpleados.filter((domicilio)=> domicilio.idEmpleado === empleadoUno.iDempleado ) 
-
-
-      return dispatch(addOneDomicilio(domicilioDelEmpleado));     
-    }
-  }
-    const idDomiciliosArray = useSelector((state)=> state.domiciliosStates.idsDom);
 
  
 
-  let idDomicilio = domiciliosEmpleados && domiciliosEmpleados[domiciliosEmpleados.length -1] ? ((domiciliosEmpleados[domiciliosEmpleados.length -1].idDomicilio)+1) : null;
-  
-
+ 
 
   const sendDataDomicilios= async ()=>{
     try{
