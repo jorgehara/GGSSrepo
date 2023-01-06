@@ -21,3 +21,8 @@ table.table-fit tbody td, table.table-fit tfoot td {
 .btnAgregar{
     width: 10%;
 }
+.nameColums{
+    font-weight: 500;
+    width: 10rem;
+    
+}

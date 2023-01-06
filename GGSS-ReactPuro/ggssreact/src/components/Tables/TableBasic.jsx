@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewFamiliar } from "../../redux/actions/familiaActions";
+import "./TableBootstrap.css"
 
 const TableBasic = ({
   columns,
@@ -25,7 +26,7 @@ const TableBasic = ({
               {columns.map((col, i) => {
                 return (
                   <>
-                    <td key={i} scope="col-12" className="px-5">
+                    <td key={i} scope="col-12" className="pl-4 nameColums">
                       {col}
                     </td>
                   </>

@@ -325,7 +325,9 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
             </div>
           </div>
         </div>
+        <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable} functionSend={sendData} functionDelete={deleteFamiliar} idElimiar={idFamiliarSelected}/>
         <div className="d-flex flex-row align-items-center">
+          
           <TableBasic 
           onSelect={onSelect} 
           columns={columns} 
@@ -334,7 +336,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
           seleccionado={familiarSeleccionadoR} 
           
           />
-          <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable} functionSend={sendData} functionDelete={deleteFamiliar} idElimiar={idFamiliarSelected}/>
+         
         </div>
         <div className="d-flex justify-content-end">
         </div>

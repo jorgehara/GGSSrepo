@@ -19,6 +19,7 @@ import axios from "axios";
 import {  inputButtonClasessCUIL } from "../../classes/classes";
 import { disableFunctions } from "../../redux/actions/employeActions";
 import EmployeData from "../EmployeData/EmployeData";
+import InputButtonCUIL from "../Inputs/InputButtonCUIL/InputButtonCUIL";
 
 //#endregion
 
@@ -221,7 +222,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                             validateNumbersDNI={validateNumbersDNI}
                             obligatorio ={true}
                             />
-                          <InputButton
+                       {/*    <InputButton
                             value={valueempl ? formDatosPersonales?.inputCuil  : empleadoUno.cuil}
                             action={ADD_DATOS_PERSONALES}
                             id="inputCuil"
@@ -240,6 +241,25 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                             usaCuil={true}
                             swal={swal} 
                             obligatorio ={true}
+                            /> */}
+                            <InputButtonCUIL
+                             value={valueempl ? formDatosPersonales?.inputCuil  : empleadoUno.cuil}
+                             action={ADD_DATOS_PERSONALES}
+                             idInput="inputCuil"
+                             nameInput="inputCuil"
+                            nameLabel="C.U.I.L"
+                            nameButton="Generar"
+                            placeholder="##-########-#"
+                             disabled={disable}
+                             datosPersonalesValue={formDatosPersonales?.inputCuil && formDatosPersonales?.inputCuil}
+                             onChange={onChangeValues}
+                             validateLetters={validateTexts}
+                             nroDocumento={formDatosPersonales?.documentoInput && formDatosPersonales?.documentoInput}
+                            genre={formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo}
+                            usaCuil={true}
+                            swal={swal} 
+                             numbers={false} 
+                             obligatorio ={true}
                             />
                           <InputForm
                             value={valueempl ? formDatosPersonales?.telefonoInput  : empleadoUno.telFijo}
