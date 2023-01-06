@@ -37,7 +37,6 @@ export const extrasReducer =(state = initialState, action)=>{
         }
         case ADD_DATOSE_EMP : {
             console.log(payload)
-            debugger;
             return{
                 ...state,
                 datosExtrasEmp : payload
