@@ -9,7 +9,7 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
  
   const dataTable = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
 
-console.log(dataTable)
+
 
 const dispatch = useDispatch();
 
