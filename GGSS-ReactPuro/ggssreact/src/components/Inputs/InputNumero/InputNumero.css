@@ -40,3 +40,16 @@
 	margin: 2%;
 	margin-left: 16%;
 }
+.formulario-input-Legajo-Domicilios{
+	margin-bottom: 3px;
+	width: 105%;
+	margin-left: 0px;
+	margin-right: 0px;
+	border: none;
+	border-bottom-color: currentcolor;
+	border-bottom-style: none;
+	border-bottom-width: medium;
+	height: 42px;
+	transition: .3s ease all;
+	border-bottom: 1px solid rgb(78, 6, 6);
+}

@@ -16,6 +16,7 @@
     margin: 0;
     margin-left: 5px;
     height: 100%;
+    font-size: 15px;
 }
 .form__grupo__input{
     grid-area: input;

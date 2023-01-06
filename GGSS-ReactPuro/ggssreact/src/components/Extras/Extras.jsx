@@ -115,7 +115,8 @@ const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
             <div className="accordion-body">
                 <div className='row  mt-1'>
                     <div className='col-xl-12'>
-                        <InputButtonLiquidacion 
+                        <InputButtonLiquidacion
+                        class='fs-5' 
                         idInput="inputDatosExtrasCbo" 
                         nameButton="..." 
                         onChange={onChangeValues} 
