@@ -1,26 +1,33 @@
 .modal-dialog{
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .modal-dialog input{
     border: none;
-    border-bottom: solid 3px rgb(90, 7, 7);
+    border-bottom: 1px solid ;
 }
 
 .modal-dialog input:focus{
-    background-image: linear-gradient(to bottom, transparent, rgb(126, 25, 25, 0.3));
+    /* background-image: linear-gradient(to right, #c83d4b,#c83d4b); */
+    background-image: linear-gradient(to bottom, transparent, rgb(255, 255, 255));
     outline: none;
 }
 
 .modal-header{
-    background-image: linear-gradient(to right, rgb(148, 28, 28), rgb(99, 11, 11));
+    background-image: linear-gradient(to right, #c83d4b,#c83d4b);
+    /* background-image: linear-gradient(to right, rgb(148, 28, 28), rgb(99, 11, 11)); */
     color: whitesmoke;
 }
 
-
+.modal-content{
+    display: flex;
+    justify-content: center;
+    width: 72%;
+    align-items: stretch;
+}
 .modal-body{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: flex-start;
 }
 
