@@ -21,9 +21,17 @@
 }
 .secondCheck2{
 	margin-left: 2%;
+	width: 32%;
+
 }
 .secondCheck{
-	margin-left: 14.8%;
+	/* margin-left: 14.8%; */
+	width: 61%;
+	box-sizing: border-box;
+	margin-left: 15%;
+	padding: 0%;
+	font-size: 15px;
+
 }
 
 .secondCheckDocs{
