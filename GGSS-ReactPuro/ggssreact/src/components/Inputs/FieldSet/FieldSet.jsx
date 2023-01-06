@@ -55,7 +55,7 @@ const FieldSet = ({
     (state) => state.licenciasState.detalleSelect
   );
     const licenciaDelEmpleado = useSelector((state)=> state.licenciasState.licenciasEmpleado);
-  console.log(licenciaDelEmpleado)
+ 
   
 
   const url = `http://54.243.192.82/api/ActualizaDisponibles/0?idEmpleado=${empleadoUno.iDempleado}&anio=${formLicencias?.inputCboAñosLicencia}&diasDisponiblesTotales=${formLicencias?.inputCantDiasDispLicencia}&fechaVencimiento=${formLicencias?.inputVencimientoLicencias}&newId=0`
@@ -128,8 +128,7 @@ const FieldSet = ({
   };
   const arrayIds = useSelector((state)=> state.licenciasState.idsLic);
 
-  console.log(arrayIds);
-  console.log(idSelected)
+
 
   const bodyDetalleLicencia = {
     IdDetalleLicenciaEmpleado: 0,
@@ -145,10 +144,7 @@ const FieldSet = ({
     0,
     0
   );
-  console.log(licenciuaSelected?.fechaVencimiento?.substring(
-    0,
-    licenciuaSelected?.fechaVencimiento?.length - 9
-  ))
+  
 
 
 
@@ -264,7 +260,7 @@ const FieldSet = ({
     if (id) {
       try {
         await axios.put(url, bodyPetition).then((res) => {
-          console.log(res.data.result);
+        
           setRefectch(!refetch);
         });
       } catch (err) {
@@ -297,7 +293,7 @@ const FieldSet = ({
       .then((willDelete) => {
         if (willDelete) {
           axios.delete(`${urlDetalleLicenciaEmpleados}/${id}`).then((res) => {
-            console.log(res);
+        
             setRefectch(!refetch);
             return swal("Detalle eliminado con éxito", {
                     icon: "success",
@@ -311,7 +307,7 @@ const FieldSet = ({
       });
     
   }
-  console.log(idSelected)
+ 
 
   function deleteWithOptions() {
     switch (selectedOption) {
@@ -374,7 +370,7 @@ const FieldSet = ({
       
       if (dateOne.valueOf() < dateProrroga.valueOf()) {
         await axios.post(urlCreateDetalleLicencia).then((res) => {
-          console.log(res);
+    
           setRefectch(!refetch);
         });
       } else {
@@ -388,7 +384,7 @@ const FieldSet = ({
     }
     if (dateOne.valueOf() < dateTwo.valueOf()) {
       await axios.post(urlCreateDetalleLicencia).then((res) => {
-        console.log(res);
+    
         setRefectch(!refetch);
       });
     } else

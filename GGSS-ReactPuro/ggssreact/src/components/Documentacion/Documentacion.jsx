@@ -57,7 +57,7 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
 
     const documentacionDelEmpleado = useSelector((state)=> state.documentacionState.documentacionDelEmpleado);
 
-    console.log(documentacionDelEmpleado)
+ 
 
     let bodyPetition = {        
         "fecha": formDocumentacion?.inputDatePresentacion,
@@ -69,7 +69,7 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
         "generaLiquidacion": formDocumentacion?.inputCheckLiquidacion,
         "incluirCuotaAlimentaria": formDocumentacion?.inputIncluirCuotaAlim
     }
-    console.log(documentaciones)
+   
 
     function sendDataDoc(){
         if(empleadoUno.iDempleado && empleadoUno.iDempleado){

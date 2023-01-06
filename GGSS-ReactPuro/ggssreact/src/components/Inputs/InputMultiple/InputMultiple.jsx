@@ -51,7 +51,7 @@ const InputMultiple = ({
         setValorRadioM(false);
       } 
     }    
-  console.log(valueDNI && valueDNI.inputNroDni)
+
  
   return (
     // <div className="container-flex align-items-center">

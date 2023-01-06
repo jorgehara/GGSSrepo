@@ -12,7 +12,7 @@ const TableSuspenLicencia = ({ columns }) => {
   const detalesDeLicencias = useSelector((state)=> state.licenciasState.detalleLicencia);
 
 
-  console.log(detalesDeLicencias);
+
 
   return (
     <>
@@ -28,7 +28,7 @@ const TableSuspenLicencia = ({ columns }) => {
         <tbody>
           {detalleLicencia &&
             detalleLicencia.map((valor) => {
-              console.log(valor?.idLicenciaEmpleado)
+            
               return Number(idSelected) ===
                 Number(valor?.idLicenciaEmpleado) ? (
                 <tr>

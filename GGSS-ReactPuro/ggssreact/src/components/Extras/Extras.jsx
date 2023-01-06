@@ -29,9 +29,7 @@ const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
     //const datosExtraEmpleado = useSelector((state)=>state.generalState.datosExtrasPorEmpleadosSelect);
     const datosExtraEmpleado = useSelector((state)=> state.extrasState.datosExtrasEmp);
 
-    console.log(datosExtraEmpleado)
-
-  console.log(empleadoUno.iDempleado)
+    
     const urlPetition = `http://54.243.192.82/api/GuardarDatosExtras/0?Fecha=${formDatosExtras?.inputFechaExtras}&IdEmpleado=${empleadoUno.iDempleado}&IdDatoExtra=${formDatosExtras?.inputDatosExtrasCbo}&Obs=${formDatosExtras?.inputTextExtras}`
    
     const nueva = `http://54.243.192.82/api/GuardarDatosExtras/0?Fecha=${formDatosExtras?.inputFechaExtras}&IdEmpleado=${empleadoUno.iDempleado}&IdDatoExtra=${formDatosExtras?.inputDatosExtrasCbo}&Obs=${formDatosExtras?.inputTextExtras}`
@@ -41,7 +39,7 @@ const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
         try{
           await axios.post(urlPetition)
           .then((res)=>{
-            console.log(res)
+         
             setRefetch(!refetch)
           })
         }catch(err){
@@ -77,7 +75,7 @@ const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
           ...newResponse
         });
     };
-    console.log(instrumLegales);
+
   
   
     useEffect(() => {    

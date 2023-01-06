@@ -67,7 +67,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
   const familiaresPorEmplado = useSelector((state)=> state.familiaStates.familiarPorEmpleado);
 
 
-  console.log(familiaresPorEmplado)
+
   //#endregion
 
   const propsRadioButton = {
@@ -122,7 +122,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
          
   }
  
-  console.log(empleadoUno.iDempleado)
+
 
   let bodyPetition = {
     "iDfamiliares": ((familiaresValue && familiaresValue[familiaresValue.length -1]  && (familiaresValue[familiaresValue.length -1].iDfamiliares))+1),

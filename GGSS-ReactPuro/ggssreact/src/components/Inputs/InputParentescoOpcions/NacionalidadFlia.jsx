@@ -30,7 +30,7 @@ const NacionalidadFlia = ({
   useEffect(() => {
     setMostrarComponente(display);
   }, [display]);
-  console.log(femeninos)
+  
   useEffect(() => {
     setReturnBySexo(validateSexo(sexo, masculinos, femeninos, propArrayOpMasc, propArrayOpFem));
   }, [sexo]);
@@ -40,11 +40,11 @@ const NacionalidadFlia = ({
       return masculinos && masculinos.map((item)=> {return {...item, masculino : item[propMAsc] } });
     }
     if (sexo === "F") {
-      console.log(femeninos);
+    
       return femeninos && femeninos.map((item)=> {return {...item, femeino : item[propFem]}});
     }
   };
-  console.log(propArrayOpMasc)
+
 
   return (
     <div className="formulario__grupo mt-2">

@@ -99,7 +99,7 @@ const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch,disabl
         }
 
         const ids = useSelector((state)=> state.trabajosAnteriores.ids);
-        console.log(ids)
+
 
     
 
