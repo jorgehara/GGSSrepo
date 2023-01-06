@@ -31,7 +31,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
 
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
 
-  console.log(empleadoDomicilio)
+
   
   const listDomicilios = useSelector((state)=> state.generalState.domicilios); 
 
@@ -43,7 +43,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
     "Piso/Of/Dpto",
     "Provincia",
   ];
-  console.log(empleadoDomicilio)
+ 
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
   //#region ------------------------------------------------------------------------------REDUX
@@ -87,7 +87,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   }
     const idDomiciliosArray = useSelector((state)=> state.domiciliosStates.idsDom);
 
-  console.log(idDomiciliosArray)
+ 
 
   let idDomicilio = domiciliosEmpleados && domiciliosEmpleados[domiciliosEmpleados.length -1] ? ((domiciliosEmpleados[domiciliosEmpleados.length -1].idDomicilio)+1) : null;
   
@@ -96,8 +96,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   const sendDataDomicilios= async ()=>{
     try{
     let predeterminadoExiste = empleadoDomicilio && empleadoDomicilio.filter((dom) => dom.predeterminado === true );
-    console.log(predeterminadoExiste)
-    console.log(predeterminadoExiste && (formDatosPersonales?.inputPredeterminado === true))
+    
     if(predeterminadoExiste.length > 0 && (formDatosPersonales?.inputPredeterminado === true)){
       return swal({
         title: "Error",

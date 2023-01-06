@@ -12,7 +12,7 @@ const EmployeData = ({disabled, image, responses}) => {
   const estadoSEleccionado = estadosCiviles && estadosCiviles.find(est => est.idEstado === idEstadoSelec); 
 
   
-  console.log(empleadoUno.obsFechaIngreso)
+
     
   return (
         <div className="container-flex border border-3 p-2 text-start py-2">

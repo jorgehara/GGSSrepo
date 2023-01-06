@@ -223,7 +223,7 @@ const domiciliosEmpleados = useSelector((state)=> state.generalState.domicilios)
 const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
 const recharge = useSelector((state)=> state.domiciliosStates.recharge);
 
-console.log(responses)
+
 //#region useEffect handleFetch
 useEffect(()=>{
    handleFetch(urlEstados, addEstados);
@@ -242,7 +242,6 @@ useEffect(()=>{
         `http://54.243.192.82/api/MostrarDatosExtrasPorEmpleado/${empleadoUno?.iDempleado}`
       )
       .then((res) => {
-        console.log(res.data)
         dispatch(saveDatosExtrasEmpleados(res.data));
       });//
 },[empleadoUno, refetch])
@@ -321,7 +320,7 @@ useEffect(()=>{
       .then((res) => setEmpleados(res.data.result));
   }, [refetch]);
 
-  console.log(responses)
+
 
   useEffect(() => {
     axios
@@ -412,7 +411,7 @@ useEffect(()=>{
       
     }
 
-      console.log(responses?.browser?.inputApellidoNombreBrowser)
+  
 
   useEffect(() => {
     getEmpleados();
@@ -454,7 +453,7 @@ useEffect(()=>{
       arrayIdsDatoExtra
     ]
   }
-  console.log(arrayIdsDatoExtra)
+
 
 
   const { urls, arrays } = objectRequest;
@@ -1040,7 +1039,7 @@ useEffect(()=>{
              .then((res)=>{
               setRefectch(!refetch);
               setSaveEmpleado(!saveEmpleado)
-              console.log(res)
+             
                swal({
                 title: "Ok",
                 text: "Empleado Guardado con éxito",
@@ -1051,7 +1050,7 @@ useEffect(()=>{
           }else{
             await axios.put(urls.urlEmpleadoGuarda, bodyPetitionEmpleadoUpdate)
             .then((res)=>{
-              console.log(res);
+          
               setRefectch(!refetch);
               setSaveEmpleado(!saveEmpleado)
                swal({
@@ -1066,7 +1065,7 @@ useEffect(()=>{
                   id
                 ]
               }
-              console.log(array)
+             
               await axios.delete(`${urls.urlDOmicilioElimina}`, {data : array, headers : {'Content-Type': 'application/json;'}})
               .then((res) => setRefectch(!refetch))
            });
@@ -1076,7 +1075,7 @@ useEffect(()=>{
         case urls.urlTRabajoDelete : {
             arrays.idsTrabajosAnterioresDelete.map(async (id)=>{
               await axios.delete(`${urls.urlTRabajoDelete}${id}`)
-              .then((res) => console.log(res))
+              .then((res) => console.log())
             })
         }
         case urls.urlDocDelte : {
@@ -1091,22 +1090,22 @@ useEffect(()=>{
         case urls.urlLicDelete : {
            arrays.licenciasDelete.map(async (id)=>{
              await axios.delete(`${urls.urlLicDelete}${id}`)
-             .then((res) => console.log(res))
+             .then((res) => console.log())
           })}
         case urls.urlDOmicilioElimina : {
           arrays.idDomiciliosArray.map(async (id)=>{
             await axios.delete(`${urls.urlDOmicilioElimina}`)
-            .then((res) => console.log(res))
+            .then((res) => console.log())
           })}
           case urls.urlDeleteFAmiliar : {
             arrays.arraysFamiliares.map(async (id)=>{
               await axios.delete(`${urls.urlDeleteFAmiliar}${id}`)
-              .then((res) => console.log(res))
+              .then((res) => console.log())
             })}
             case urls.urlDatoExtraElimina : {
               arrays.arrayIdsDatoExtra.map(async (id)=>{
                 await axios.delete(`${urls.urlDatoExtraElimina}${id}`)
-                .then((res) => console.log(res))
+                .then((res) => console.log())
               })
       }
         default : {
@@ -1137,11 +1136,11 @@ useEffect(()=>{
                 id
               ]
             }
-            console.log(array)
+           
             try{
               await axios.delete(`${urls.urlLicDelete}0`, {data : array, headers : {'Content-Type': 'application/json;'}})
             .then((res) => {
-                  console.log(res.status)
+                  
                   if(res.status === 200){
                   return swal({
                     title: "Ok",
