@@ -11,7 +11,7 @@ import './Domicilios.css';
 import { addNewDomicilio, addOneDomicilio, deleteOneDomicilioSelect, saveIdsDom, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
-import { inputClassProvinciasDomicilios } from "../../classes/classes";
+import { inputClassCalleDomicilios, inputClassProvinciasDomicilios } from "../../classes/classes";
 import { useEffect } from "react";
 import { setRefetch } from "../../redux/actions/modalesActions";
 
@@ -194,6 +194,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
                 <div className="row">
                 <div className="col-xl-6">
                   <InputCbo
+                    clasess={inputClassCalleDomicilios}
                     value={formDomicilios?.inputCalleDomicilios ? formDomicilios?.inputCalleDomicilios : empleadoUno.calle}
                     action={ADD_DOMICILIOS}
                     sexo=""
@@ -257,7 +258,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
               <div className="col-xl-5 mx-4 gy-4 py-2">
                 
                   <InputCbo
-                  clasess={inputClassProvinciasDomicilios}
+                  
                   value={
                     formDomicilios?.inputProvinciaDomicilios ? formDomicilios?.inputProvinciaDomicilios : empleadoUno.provincia
                   }
