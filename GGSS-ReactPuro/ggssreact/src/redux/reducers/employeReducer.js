@@ -18,7 +18,7 @@ const employeReducer = (state = initialState, action) =>{
     
     switch(type) {
         case ADD_EMPLOYE : {
-            console.log(payload)
+           
             const newListEmployes = [...state.employes];
             let indexEmploye = newListEmployes.findIndex((i)=> i["iDempleado"] === payload["iDempleado"]);
             if(indexEmploye === -1){

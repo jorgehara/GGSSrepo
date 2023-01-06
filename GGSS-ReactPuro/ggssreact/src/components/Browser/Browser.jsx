@@ -72,7 +72,7 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
     //dispatch(clearLicSelect());
     dispatch(recharge(!recharged))
     getEmployeById(empleados, idEmpleado).then((res) => {
-      console.log(res[0].iDempleado);
+      
       dispatch(addOneEmploye(res[0]));
     });
   }

@@ -65,7 +65,7 @@ const trabajosAnterioresReducer = (state = initialState, action) =>{
             }
         }
         case SAVE_ID : {
-            console.log(payload)
+            
             return {
                 ...state,
                 ids : [...state.ids.push(payload)]
