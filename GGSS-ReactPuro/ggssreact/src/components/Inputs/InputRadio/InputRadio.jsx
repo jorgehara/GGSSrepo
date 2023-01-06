@@ -32,9 +32,7 @@ const InputRadio = ({  nameFirst, nameSecond, value,disabled, onChange,idInput,n
       setValorRadioM(false);
     }
   };
-  console.log(valor)
-  console.log(valorRadioF)
-  console.log(asidePagos)
+ 
   return (
     classes && classes ? <div className={classes.classOne}>
         <div className={classes.classNine}>

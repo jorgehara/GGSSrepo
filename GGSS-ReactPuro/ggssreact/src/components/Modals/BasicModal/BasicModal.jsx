@@ -150,9 +150,7 @@ const BasicModal = ({
     }
   }
 
-  useEffect(() => {
-    console.log("API actualizada con éxito!");
-  }, [refetch]);
+
 
   const opcionesApi = array;
 

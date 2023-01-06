@@ -11,7 +11,7 @@ import './Domicilios.css';
 import { addNewDomicilio, addOneDomicilio, deleteOneDomicilioSelect, saveIdsDom, selectedOption, selectedOptionBarrio, selectedOptionDpto } from "../../redux/actions/domiciliosActions";
 import swal from "sweetalert";
 import InputFormPiso from "../Inputs/InputForm/InputFormPiso";
-import { inputClassProvinciasDomicilios } from "../../classes/classes";
+import { inputClassCalleDomicilios, inputClassProvinciasDomicilios } from "../../classes/classes";
 import { useEffect } from "react";
 import { setRefetch } from "../../redux/actions/modalesActions";
 
@@ -31,7 +31,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
 
   const empleadoDomicilio = useSelector((state)=> state.domiciliosStates.domicilioEmpleado);
 
-  console.log(empleadoDomicilio)
+
   
   const listDomicilios = useSelector((state)=> state.generalState.domicilios); 
 
@@ -43,7 +43,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
     "Piso/Of/Dpto",
     "Provincia",
   ];
-  console.log(empleadoDomicilio)
+ 
   
   const paises = ["Argentina", "Uruguay", "Paraguay", "Bolivia", "Peru"];
   //#region ------------------------------------------------------------------------------REDUX
@@ -87,7 +87,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   }
     const idDomiciliosArray = useSelector((state)=> state.domiciliosStates.idsDom);
 
-  console.log(idDomiciliosArray)
+ 
 
   let idDomicilio = domiciliosEmpleados && domiciliosEmpleados[domiciliosEmpleados.length -1] ? ((domiciliosEmpleados[domiciliosEmpleados.length -1].idDomicilio)+1) : null;
   
@@ -96,8 +96,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
   const sendDataDomicilios= async ()=>{
     try{
     let predeterminadoExiste = empleadoDomicilio && empleadoDomicilio.filter((dom) => dom.predeterminado === true );
-    console.log(predeterminadoExiste)
-    console.log(predeterminadoExiste && (formDatosPersonales?.inputPredeterminado === true))
+    
     if(predeterminadoExiste.length > 0 && (formDatosPersonales?.inputPredeterminado === true)){
       return swal({
         title: "Error",
@@ -194,6 +193,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
                 <div className="row">
                 <div className="col-xl-6">
                   <InputCbo
+                    clasess={inputClassCalleDomicilios}
                     value={formDomicilios?.inputCalleDomicilios ? formDomicilios?.inputCalleDomicilios : empleadoUno.calle}
                     action={ADD_DOMICILIOS}
                     sexo=""
@@ -257,7 +257,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
               <div className="col-xl-5 mx-4 gy-4 py-2">
                 
                   <InputCbo
-                  clasess={inputClassProvinciasDomicilios}
+                  
                   value={
                     formDomicilios?.inputProvinciaDomicilios ? formDomicilios?.inputProvinciaDomicilios : empleadoUno.provincia
                   }

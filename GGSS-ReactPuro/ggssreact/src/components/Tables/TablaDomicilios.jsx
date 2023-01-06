@@ -26,7 +26,7 @@ const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, local
   const domiciliosTable = useSelector((state)=> state.domiciliosStates.domTable);
   
 
-  console.log(dataTable)
+
 
  
   const valor = valueInitial && valueInitial.map((item)=>{return(item.predeterminado)});
