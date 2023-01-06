@@ -35,7 +35,7 @@ const InputButtonCUIL = ({cancelar, idInput, nameLabel, placeHolder, obligatorio
           obligatorio ? 
           <input
           type="text"
-          className="legajo__limpia formulario-input-Legajo-cuil obligatorio"
+          className="legajo__limpia formulario-input-Legajo-cuil obligatorio mt-1"
           id={idInput}
           data-bs-toggle="tooltip" 
           autocomplete="off"

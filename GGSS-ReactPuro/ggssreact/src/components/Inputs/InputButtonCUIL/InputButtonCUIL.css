@@ -13,11 +13,11 @@
     justify-content: center; */
 }
 .form__grupo__icons{
-    margin-left: 2.1rem;
+    margin-left: 0.7rem;
 }
 .formulario-input-Legajo-cuil{
     width: 10rem;
-	height: 2rem;
+	height: 2.5rem;
 	border: none;
 	transition: .3s ease all;
 	border-radius: 0;

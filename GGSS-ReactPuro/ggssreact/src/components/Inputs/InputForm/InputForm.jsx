@@ -27,7 +27,7 @@ const InputForm = ({
           obligatorio ? 
           <input
           type="text"
-          className="legajo__limpia formulario-input-Legajo obligatorio"
+          className="legajo__limpia formulario-input-Legajo-Form-Button obligatorio"
           id={idInput}
           data-bs-toggle="tooltip" 
           autocomplete="off"
@@ -42,7 +42,7 @@ const InputForm = ({
         /> :
         <input
           type="text"
-          className="formulario-input-Legajo"
+          className="formulario-input-Legajo-Form-Button"
           id={idInput}
           autocomplete="off"
           placeholder={placeHolder}
