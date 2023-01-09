@@ -19,6 +19,7 @@ const Liquidacion = ({responses, setResponses, disable, setDisable}) => {
 
   const empleadoUno = useSelector((state)=> state.employeStates.employe);
     const [ formLiquidacion, setFormLiquidacion ] = useState(responses["formLiquidacion"]);
+    const [ windowsScreen, setWindowsScreen ] = useState(0);
 
     const dispatch = useDispatch();
     const deshabilitar = useSelector((state)=> state.employeStates.disable);
@@ -56,7 +57,12 @@ const Liquidacion = ({responses, setResponses, disable, setDisable}) => {
           })
     }
 
-    
+    function getWidthScreen(){
+      setWindowsScreen(window.screen.width)
+    }
+    useEffect(()=>{
+      getWidthScreen()
+    },[window.screen.width])
 //#region -----------------------------------------------------------------------------------------Constantes de Datos Redux
 const empleadores = useSelector((state)=> state.generalState.empleadores);
     const formularioValue = useSelector((state)=> state.liquidacionState.formulario);
@@ -85,11 +91,15 @@ const empleadores = useSelector((state)=> state.generalState.empleadores);
     const inputCheckSumAdministrativo = useSelector((state)=> state.liquidacionState.formulario.inputCheckSumAdministrativo);
     const inputCheckLicSinGoce = useSelector((state)=> state.liquidacionState.formulario.inputCheckLicSinGoce);
 //#endregion
-
+console.log(windowsScreen)
 return (
     <div className="container-flex">
         <div className="container-flex border border-1">
-          <EmployeData disabled={disable} />
+          {
+            windowsScreen <= 1366 ? null : <EmployeData disabled={disable} />
+            
+          }
+          
         </div>
         <div className="container-flex">
         <div className="accordion" id="accordionExample">

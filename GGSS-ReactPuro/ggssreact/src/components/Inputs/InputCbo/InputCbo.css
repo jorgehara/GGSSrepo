@@ -145,3 +145,12 @@
 /* .options:focus{
     background-color: #bb2929;
 } */
+
+@media screen and (max-width : 1366px){
+    .formulario-input-Estado{
+        width: 13rem;
+    }
+    .formulario-input-Estado-Calle{
+        width: 10.5rem;
+    }
+}

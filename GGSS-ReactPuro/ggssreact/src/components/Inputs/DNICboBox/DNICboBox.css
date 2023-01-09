@@ -103,3 +103,8 @@
     -webkit-box-shadow: none;
 
 } */
+@media screen and (max-width : 1366px){
+    .formulario-input-DNI{
+        width: 6.4rem;
+    }
+}

@@ -89,3 +89,11 @@
 .obligatorio{
     background-color: rgb(253, 237, 216);
 }
+@media screen and (max-width : 1366px){
+    .formulario-input-Legajo-Form-Button{
+        width: 13rem;
+    }
+    .form-input-Piso{
+        width: 10.4rem;
+    }
+}
