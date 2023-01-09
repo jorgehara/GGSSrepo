@@ -79,3 +79,11 @@
 .select option[selected]{
     background-color: #bb2929;
 }
+
+
+
+@media screen and (max-width : 1366px){
+    .colImagen{
+        margin-left: 2rem;
+    }
+}

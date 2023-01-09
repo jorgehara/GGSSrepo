@@ -91,7 +91,7 @@ const empleadores = useSelector((state)=> state.generalState.empleadores);
     const inputCheckSumAdministrativo = useSelector((state)=> state.liquidacionState.formulario.inputCheckSumAdministrativo);
     const inputCheckLicSinGoce = useSelector((state)=> state.liquidacionState.formulario.inputCheckLicSinGoce);
 //#endregion
-console.log(windowsScreen)
+
 return (
     <div className="container-flex">
         <div className="container-flex border border-1">

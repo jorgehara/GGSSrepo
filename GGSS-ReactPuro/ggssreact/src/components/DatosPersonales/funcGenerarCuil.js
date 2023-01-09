@@ -28,8 +28,8 @@ export default function generateCuil(document_number, gender, swal){
     }
 
     const HOMBRE = ["HOMBRE", "M", "MALE"],
-    MUJER = ["MUJER", "F", "FEMALE"],
-    SOCIEDAD = ["SOCIEDAD", "S", "SOCIETY"];
+          MUJER = ["MUJER", "F", "FEMALE"],
+          SOCIEDAD = ["SOCIEDAD", "S", "SOCIETY"];
     let AB, C;
 
     if (document_number.length !== 8 || isNaN(document_number)) {

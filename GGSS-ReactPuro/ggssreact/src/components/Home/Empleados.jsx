@@ -468,7 +468,7 @@ useEffect(()=>{
     ]
   }
 
-console.log(responses)
+
 
   const { urls, arrays } = objectRequest;
   

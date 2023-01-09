@@ -255,9 +255,12 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                              nroDocumento={formDatosPersonales?.documentoInput && formDatosPersonales?.documentoInput}
                             genre={formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo}
                             usaCuil={true}
+                            funcionCuil={generateCuil}
                             swal={swal} 
                              numbers={false} 
                              obligatorio ={true}
+                             formDatosPersonales ={formDatosPersonales}
+                             setFormDatosPersonales={setFormDatosPersonales}
                             />
                           <InputForm
                             value={valueempl ? formDatosPersonales?.telefonoInput  : empleadoUno.telFijo}
@@ -438,7 +441,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
 
 
 
-                        <div className="col-xl-3">
+                        <div className="col-xl-3 colImagen">
                           <InputFile
                             inputName="Arrastre su imagen"
                             disabled={disable}

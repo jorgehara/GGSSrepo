@@ -3,15 +3,12 @@ import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
 import "./InputButtonCUIL.css";
 
-const InputButtonCUIL = ({cancelar, idInput, nameLabel, placeHolder, obligatorio, inputId, value,disabled,onChange,funcionCuil, clasess,nroDocumento,genre, nameButton, datosPersonalesValue, action, id }) => {
+const InputButtonCUIL = ({cancelar, idInput, nameLabel, placeHolder, obligatorio, inputId, value,disabled,onChange,funcionCuil, clasess,nroDocumento,genre, nameButton, datosPersonalesValue, action, id, formDatosPersonales, setFormDatosPersonales }) => {
     const [valor, setValor] = useState();
     const dispatch = useDispatch();
   
     useEffect(()=>{
-        dispatch({
-        type : action,
-        payload : { name : id, value : valor }
-        })
+      setFormDatosPersonales({...formDatosPersonales,inputCuil : valor })
     },[valor])
 
     useEffect(()=>{
@@ -23,6 +20,10 @@ const InputButtonCUIL = ({cancelar, idInput, nameLabel, placeHolder, obligatorio
         setValor(value);
     },[value])
 
+    function updateValueCuil(e, value, idInput, valor){
+        onChange(e.target.value, idInput);
+        return valor
+    }
   return (
     <div className="formulario__grupo__inputs">
       <div className="formulario__grupo">
@@ -42,7 +43,7 @@ const InputButtonCUIL = ({cancelar, idInput, nameLabel, placeHolder, obligatorio
           data-bs-placement="top"
           data-bs-title="Campo obligario"
           placeholder={placeHolder}
-          value={ cancelar ? null : value  }
+          value={ value ? value : valor   }
           onChange={(e)=>onChange(e.target.value, idInput)}
           disabled={disabled}
           name={idInput}
@@ -53,7 +54,7 @@ const InputButtonCUIL = ({cancelar, idInput, nameLabel, placeHolder, obligatorio
           id={idInput}
           autocomplete="off"
           placeholder={placeHolder}
-          value={ cancelar ? null : value  }
+          value={ value ? value :valor  }
           onChange={(e)=>onChange(e.target.value, idInput)}
           disabled={disabled}
           name={idInput}
@@ -61,7 +62,7 @@ const InputButtonCUIL = ({cancelar, idInput, nameLabel, placeHolder, obligatorio
         }
       </div>
       <div className="form__grupo__icons">
-        <button type="button" onClick={()=>setValor(funcionCuil(nroDocumento,genre, swal))}
+        <button type="button" onClick={()=>{setValor(funcionCuil(nroDocumento,genre, swal)); }}
               className="btn btn-validacion btn-sm btn-outline-danger" 
               disabled={disabled}
               // disabled={mostrarAsidePagos}
