@@ -352,6 +352,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
                             onChange={onChangeValues}
                             datosPersonalesValue={formDatosPersonales?.inputSexo && formDatosPersonales?.inputSexo} 
                             obligatorio ={true}
+                            nameThird="Otro"
                             />
                           <InputDate
                             value={formDatosPersonales?.inputDateNac ? formDatosPersonales?.inputDateNac : empleadoUno?.fechaNacimiento?.substring(0, empleadoUno.fechaNacimiento.length -9)}
