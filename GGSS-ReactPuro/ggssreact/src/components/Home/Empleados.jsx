@@ -70,6 +70,7 @@ import { cleanEmploye, getEmployes } from "../../redux/actions/employeActions";
 import { cleanIdFam, getDAtosFamiliaresEmpleado } from "../../redux/actions/familiaActions";
 import { addOneDomicilio, cleanIdsDom } from "../../redux/actions/domiciliosActions";
 import { addDatosExtraPorEmpleado, cleanIdDe } from "../../redux/actions/extrasActions";
+import { setRefetch } from "../../redux/actions/modalesActions";
 
 const Empleados = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -232,9 +233,9 @@ useEffect(()=>{
    handleFetch(urlEstudios, addEstudios);
    handleFetch(urlTiposDNI, addTiposDocumento);
    handleFetch(urlDomicilios, addDomicilios);
-   handleFetch(urlParentescos, addParentescos);
+   
    handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
-},[refetching, empleadoUno])
+},[refetching, empleadoUno, refetch])
 
 useEffect(()=>{
   axios
@@ -247,6 +248,15 @@ useEffect(()=>{
 },[empleadoUno, refetch])
 
   useEffect(() => {
+    handleFetch(urlEstados, addEstados);
+   handleFetch(urlEstadosCiviles, addEstadosCiviles);
+   handleFetch(urlPaisesNac, addPaises);
+   handleFetch(urlEstudios, addEstudios);
+   handleFetch(urlTiposDNI, addTiposDocumento);
+   handleFetch(urlDomicilios, addDomicilios);
+   
+   handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
+
      handleFetch(urlEstados, addEstados);
      handleFetch(urlEstadosCiviles, addEstadosCiviles);
      handleFetch(urlPaisesNac, addPaises);
@@ -255,7 +265,7 @@ useEffect(()=>{
      handleFetch(urlTiposDNI, addTiposDocumento);
      handleFetch(urlFamiliares, addFamiliares);
      handleFetch(urlNumeradores, addNumeradores);
-
+     
      handleFetch(urlCalles, addCalles);
      handleFetch(urlDeptos, addDepartamentos);
      handleFetch(urlProvincias, addProvincias);
@@ -293,9 +303,13 @@ useEffect(()=>{
      handleFetchComun(urlInstrumLegal, addInstrumLegales); 
      handleFetchComun(urlDatosExtras, addDatosExtras);
      handleFetch(urlDomicilios, addDomicilios);
-  }, [disable]);
 
-  useEffect(() => {
+     handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);
+     handleFetch(urlDetalleLicenciasEmpleados, addDetalleLicencia);
+     handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
+  }, [disable, refetch,refetching]);
+
+ /*  useEffect(() => {
     
     
     handleFetchComun(urlDatosExtras, addDatosExtras);
@@ -303,7 +317,7 @@ useEffect(()=>{
      handleFetch(urlDetalleLicenciasEmpleados, addDetalleLicencia);
      handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
 
-  }, [refetch]);
+  }, [refetch]); */
 //#endregion
 
   useEffect(() => {
@@ -351,8 +365,8 @@ useEffect(()=>{
       })
       handleFetch(urlDomicilios, addDomicilios);
       handleFetch(urlDocumentacionEmpleados, addDocumentacionEmpleados);
-    handleFetch(urlFamiliares, addFamiliares);
-    
+      handleFetch(urlFamiliares, addFamiliares);
+      handleFetch(urlParentescos, addParentescos);
 
   }, [empleadoUno?.iDempleado, refetch]);
 
@@ -454,7 +468,7 @@ useEffect(()=>{
     ]
   }
 
-
+console.log(responses)
 
   const { urls, arrays } = objectRequest;
   
@@ -463,6 +477,7 @@ useEffect(()=>{
   function cleanIdsGeneral(){
     
     setRefectch(!refetch)
+    dispatch(setRefetch(!refetching))
     dispatch(cleanEmploye())
     Array.from(document.querySelectorAll("input[type=text")).forEach(
       (input) => (input.value = "")
@@ -1060,6 +1075,7 @@ useEffect(()=>{
             })
             })
             arrays[3].map(async (id)=>{
+              debugger;
               let array = {
                 "arrayList": [
                   id

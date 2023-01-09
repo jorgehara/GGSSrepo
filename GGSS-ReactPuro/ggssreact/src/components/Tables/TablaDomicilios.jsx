@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedIdDomicilio } from "../../redux/actions/domiciliosActions";
 
-const TablaDomicilios = ({ columns , value, empleadoSelect, departamentos, localidades, provincias, barrios, calles}) => {
+const TablaDomicilios = ({ columns , refetch, setRefectch, departamentos, localidades, provincias, barrios, calles}) => {
   
   //const [dataTable, setDataTable] = useState([]);
  

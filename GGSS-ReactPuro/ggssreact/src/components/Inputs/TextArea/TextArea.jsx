@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import './TextArea.css'
 
 
-const TextArea = ({ characterLimit = 255 }) => {
+const TextArea = ({ characterLimit = 255, onChange,idInput }) => {
     const [input, setInput] = useState('');
 
     function handleChange(event) {
         const newInput = event.target.value;
         setInput(newInput);
+        onChange(event.target.value,idInput )
       }
     
       const charactersLeft = characterLimit - input.length;
@@ -30,6 +31,8 @@ return (
                 <textarea
                   placeholder="Ingrese Observaciones "
                   maxLength={characterLimit}
+                  id={idInput}
+                  name={idInput}
                   class="formulario-input-TextArea"
                   onChange={handleChange}
                   value={input}

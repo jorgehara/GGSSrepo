@@ -80,6 +80,7 @@ const Documentacion = ({responses, setResponses, disable, setRefectch, refetch})
                     console.log(res.data)
                     dispatch(addNewDoc(res.data))
                     setRefectch(!refetch)
+
                 })
             }catch(err){
                 return swal({
@@ -132,7 +133,7 @@ return (
                 />
             </div>
             <div className='col-xl-12'>
-                <TextArea inputName="Observaciones " onChange={onChangeValues} idInput="textAreaDocumentacion" action={GET_INPUT_VALUE} value={formDocumentacion?.textAreaDocumentacion && formDocumentacion?.textAreaDocumentacion} disabled={disable} />
+                <TextArea inputName="Observaciones " onChange={onChangeValues} idInput="textAreaDocumentacion" value={formDocumentacion?.textAreaDocumentacion && formDocumentacion?.textAreaDocumentacion} disabled={disable} />
             </div>
             <div className='col-xl-12'>
                 <CheckLabel idInput="inputCheckLiquidacion" nameLabel="Se tiene en cuenta en la Liquidación (Sólo si se cumplen las condiciones necesarias)"  onChange={onChangeValues} action={GET_INPUT_VALUE} value={formDocumentacion?.inputCheckLiquidacion && formDocumentacion?.inputCheckLiquidacion} disabled={disable} />

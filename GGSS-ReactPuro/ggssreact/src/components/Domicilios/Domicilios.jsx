@@ -100,7 +100,8 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
                 text: "Domicilio agregado con éxito",
                 icon: "success",
               })          
-            };            
+            }; 
+            setRefectch(!refetch)           
           })
     }catch(err){
       return swal({
@@ -333,12 +334,13 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
                   obligatorio ={true}
                 />
               </div>
-              <ButtonCancelarAceptar idElimiar={domicilioDelEmpleado} cancelar="-" aceptar="+"disabled={disabled} functionSend={sendDataDomicilios} functionDelete={deleteDomicilio}/>
+              <ButtonCancelarAceptar idElimiar={domicilioDelEmpleado} refetch={refetch} setRefectch={setRefectch} cancelar="-" aceptar="+"disabled={disabled} functionSend={sendDataDomicilios} functionDelete={deleteDomicilio}/>
               <TablaDomicilios 
                 columns={columns} 
                 empleadoSelect={empleadoUno && empleadoUno} 
                 value={ empleadoDomicilio && empleadoDomicilio }
-               
+                  refetch={refetch}
+                  setRefectch={setRefectch}
               />
 
               

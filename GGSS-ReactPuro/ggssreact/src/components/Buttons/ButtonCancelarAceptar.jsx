@@ -1,5 +1,5 @@
 
-const ButtonCancelarAceptar = ({cancelar, aceptar, disabled,functionSend,functionDelete, idElimiar}) => {
+const ButtonCancelarAceptar = ({cancelar, aceptar, disabled,functionSend,functionDelete, idElimiar, refetch, setRefectch}) => {
 
   
   return (

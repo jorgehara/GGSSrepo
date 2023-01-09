@@ -190,6 +190,7 @@ const NavbarMenu = () => {
 								<ul className=" dropdown-menu">
 									
 									<li><Link className="dropdown-item" to="/ficha-empleados">Ficha Empleados</Link></li>
+									<li><Link className="dropdown-item" to="#">Busqueda de Datos</Link></li>
 								</ul>
 							</li>
 							{/* <li className="nav-item">
@@ -272,9 +273,9 @@ const NavbarMenu = () => {
 											</div>
 										</ul>
 									</li> 
-									<li className="nav-item ">
-										<a class="nav-link " href="/">Salir</a>
-									</li>
+									<li class="nav-item">
+								<a class="nav-link" href="/">Salir</a>
+							</li>
 								</ul>
 								<ul> 
 							{/* <li className="nav-item">
@@ -288,7 +289,7 @@ const NavbarMenu = () => {
 							</li> */}
 
 							{/* {/ MODALES TABLA PARA EMPLEADOS /} */}
-							<BasicModal
+							{/* <BasicModal
 								idModal="EstadoCivil"
 								nameModal="Estados Civiles"
 								placeholder={objectEstadosCiviles}
@@ -301,10 +302,6 @@ const NavbarMenu = () => {
 								firstOptionCompare={inputMascEstadosCiviles ? inputMascEstadosCiviles : estadoCivilSelected.masculino}
 								secondOptionCompare={inputFemEstadosCiviles ? inputFemEstadosCiviles : estadoCivilSelected.femenino}
 								urlApi={urls.urlEstados}
-								// dispatchAddAction={addNewEstadoCivil}
-								// dispatchDeleteAction={deleteEstadoCivil}
-								// dispatchPutAction={putEstadoCivil}
-								// dispatchGetID={getIdEstadoCivil}
 								bodyPet={bodyPetitionEC}
 								idApi={valueIdEstadoCivil}
 								resp={responses}
@@ -312,11 +309,6 @@ const NavbarMenu = () => {
 								refetch={refetch}
 								setRefetch={setRefetch}
 								modalDataInputs={modalDataInputs}
-							    //onSelect={onSelect} 
-							// functionModal={getEstadosCivilesModal} 
-							// functionSaveSelected={saveEstadoCivilSelected} 
-							// selectedOption={estadoCivilSelected} 
-							// arrayCompleto={saveEstadoCivil}
 							/>
 
 							<BasicModal
@@ -331,10 +323,6 @@ const NavbarMenu = () => {
 								firstOptionCompare={inputNivelEstudio ? inputNivelEstudio : estudioSelected.estudiosNivel}
 								secondOptionCompare={inputNivelEstudio ? inputNivelEstudio : estudioSelected.estudiosNivel}
 								urlApi={urls.urlEstados}
-								// dispatchAddAction={addNewEstudio}
-								// dispatchDeleteAction={deleteEstudio}
-								// dispatchPutAction={putEstudio}
-								// dispatchGetID={getIdEstudio}
 								bodyPet={bodyPetEstudio}
 								idApi={valueIdEstudio}
 								resp={responses}
@@ -354,10 +342,6 @@ const NavbarMenu = () => {
 								firstOptionCompare={inputTipoDocumento ? inputTipoDocumento : tipoDocumentoSelected.tipoDocumento}
 								secondOptionCompare={inputTipoDocumento ? inputTipoDocumento : tipoDocumentoSelected.tipoDocumento}
 								urlApi={urls.urlEstados}
-								// dispatchAddAction={addNewTipoDoc}
-								// dispatchDeleteAction={deleteTipoDoc}
-								// dispatchPutAction={putTipoDoc}
-								// dispatchGetID={getIdTipoDoc}
 								bodyPet={bodyPetTiposDoc}
 								idApi={valueIdTipoDoc}
 								resp={responses}
@@ -387,10 +371,6 @@ const NavbarMenu = () => {
 								valueCheckbox={inputAsignacionParent ? inputAsignacionParent : parentescoSelected.generaAsignacion }
 								valueCheckboxNum={inputGananciaParent ? inputGananciaParent : parentescoSelected.deduceGanancias}
 								valueNumCheck={inputImporteParent ? inputImporteParent : parentescoSelected.importeDeduce}
-								// dispatchAddAction={addNewParentesco}
-								// dispatchDeleteAction={deleteParentesco}
-								// dispatchPutAction={putParentesco}
-								// dispatchGetID={getIdParentesco}
 								bodyPet={bodyPetParentescos}
 								idApi={valueIdParentesco}
 								onChange={onChangeValues}
@@ -410,10 +390,6 @@ const NavbarMenu = () => {
 								inputIdCompare="nombreEstado"
 								firstOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
 								secondOptionCompare={inputEstado ? inputEstado : estadoSelected.nombreEstado}
-								// dispatchAddAction={addNewEstado}
-								// dispatchDeleteAction={deleteEstado}
-								// dispatchPutAction={putEstado}
-								// dispatchGetID={getIdEstado}
 								bodyPet={bodyPetEstados}
 								idApi={valueIdEstado}
 								onChange={onChangeValues}
@@ -436,10 +412,6 @@ const NavbarMenu = () => {
 								firstOptionCompare={inputFormaDePago ? inputFormaDePago : formaPagoSelected.nombreFormadePago}
 								secondOptionCompare={inputFormaDePago ? inputFormaDePago : formaPagoSelected.nombreFormadePago}
 								valueObs={textAreaFormaPago ? textAreaFormaPago : formaPagoSelected.obs}
-								// dispatchAddAction={addNewFormaPago}
-								// dispatchDeleteAction={deleteFormaPago}
-								// dispatchPutAction={putFormaPago}
-								// dispatchGetID={getIdFormaPago}
 								bodyPet={bodyPetFormasPago}
 								idApi={valueIdFormaPago}
 								onChange={onChangeValues}
@@ -457,8 +429,7 @@ const NavbarMenu = () => {
 							<ModalPDLB idModal="pdlb" nameModal="Provincias - Departamentos - Localidades - Barrios" />
 							<BasicModal idModal="calles" nameModal="Calles" placeholder={objectCalles} textArea={true}/>
 							<ModalEmpleadores idModal="empleadores" nameModal="Empleadores" />
-							<BasicModal idModal="alicuotas" nameModal="Alicuotas" placeholder={objectAlicuotas} inputNum={true} inputNumName="Alicuota" hasCheckbox={true} checkboxName="Pide N° CUIT" />
-							{/* {/ MODALES TABLA PARA LIQUIDACIÓN PARA PROXIMA VERSION /} */}
+							<BasicModal idModal="alicuotas" nameModal="Alicuotas" placeholder={objectAlicuotas} inputNum={true} inputNumName="Alicuota" hasCheckbox={true} checkboxName="Pide N° CUIT" />							
 							<BasicModal idModal="Bancos" nameModal="Bancos" placeholder={objectBancos} textArea={true} />
 							<BasicModal idModal="Telefonia" nameModal="Empresas de Telefonia" placeholder={objectEmpresasTelefonia} />
 							<BasicModal idModal="Sindicatos" nameModal="Sindicatos" placeholder={objectSindicatos} dropdown={true} />
@@ -475,9 +446,8 @@ const NavbarMenu = () => {
 							<ModalEscala idModal="Valores" nameModal="Valores Permanencia Categoría" inputNumData={inputNumDataValores} tableValores={true} column={tableValoresHeadings} flex={true} categorias={true} buttonNumTable={true} styleContainer={{ height: "430px", width: "auto" }} styleData={{ height: "350px" }} />
 							<ModalConvenios idModal="Convenios" nameModal="Convenios, Categorías, Básicos y Antigüedad" placeholder={objectConvenios} inputsNumConvenios={inputsNumConvenios} column={tableConvenios} placeholderCategorias={objectCategorias} inputsNumCategorias={inputsNumCategorias} />
 							<ModalTable idModal="Jerarquia" nameModal="Jerarquía de las Categorías" column={tableJerarquia} dropdown={true} jerarquia={true} />
-							<ModalTable idModal="Licencias" nameModal="Licencias por Antigüedad" licencias={true} column={tableLicencias} objectInputs={inputsNumLicencias} />
+							<ModalTable idModal="Licencias" nameModal="Licencias por Antigüedad" licencias={true} column={tableLicencias} objectInputs={inputsNumLicencias} /> */}
 							</ul>
-							
 							
 			
 			</div> 
