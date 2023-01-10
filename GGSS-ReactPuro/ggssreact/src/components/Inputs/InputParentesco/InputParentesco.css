@@ -57,7 +57,7 @@
 .obligatorio{
 	background-color: rgb(253, 237, 216);
 }
-@media screen and (max-width : 1366px){
+@media screen and (max-width : 1380px) and (min-width: 1000px){
 	.form-input-ParentsFlia{
 		margin-left: 6rem;
 		height: 35px;

@@ -151,7 +151,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
         aria-labelledby="headingTwo"
         data-bs-parent="#accordionExample"
       >
-        <div className="accordion-body">
+        {/* <div className="accordion-body"> */}
           <section className="">
             <div className="row">
               <div className="col-xl-6">
@@ -346,7 +346,7 @@ const Domicilios = ({ responses, disabled, onChangeValues, formDatosPersonales, 
               
             </div>
           </section>
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );

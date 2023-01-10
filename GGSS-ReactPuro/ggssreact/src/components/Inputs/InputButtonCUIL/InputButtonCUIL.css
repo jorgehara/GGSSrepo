@@ -24,7 +24,7 @@
 	border-bottom: 1px solid rgb(78, 6, 6);
 }
 
-@media screen and (max-width : 1366px){
+@media screen and (max-width : 1380px) and (min-width: 1000px){
     .formulario-input-Legajo-cuil{
         width: 7.6rem;
     }

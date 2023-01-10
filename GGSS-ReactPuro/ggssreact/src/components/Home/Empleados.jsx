@@ -621,7 +621,7 @@ useEffect(()=>{
       "idInstrumentoLegal": 2
     }
     try{
-    debugger;
+     
     if(tabIndex === 0 || tabIndex === 2){
       if(empleadoUno.iDempleado === 0 || empleadoUno.iDempleado === undefined){
         //#region Validation alerts
@@ -1076,7 +1076,7 @@ useEffect(()=>{
             })
             })
             arrays[3].map(async (id)=>{
-              debugger;
+               
               let array = {
                 "arrayList": [
                   id

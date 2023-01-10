@@ -59,7 +59,7 @@
 	transition: .3s ease all;
 	margin-left: 1.6rem;
 }
-@media screen and (max-width : 1366px){
+@media screen and (max-width : 1380px) and (min-width: 1000px){
     .formulario__grupo__inputs__radio_AsidePagos{
         flex-flow: row nowrap;
     }

@@ -249,7 +249,7 @@ const FieldSet = ({
     });
   }
   async function updateData(url, bodyPetition, id) {
-    debugger;
+     
     if (dateTwo.valueOf() > dateProrroga) {
       return swal({
         title: "Error",
@@ -359,7 +359,7 @@ const FieldSet = ({
   }
 
   async function solicitanuevaLic(bodyDetalleLicencia) {
-    debugger;
+     
     if (licenciuaSelected.fechaProrroga && licenciuaSelected.fechaProrroga) {
       let dateProrroga = new Date(licenciuaSelected.fechaProrroga).setHours(
         0,

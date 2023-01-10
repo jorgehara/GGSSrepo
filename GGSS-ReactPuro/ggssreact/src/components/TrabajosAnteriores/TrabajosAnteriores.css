@@ -21,7 +21,7 @@
 .cont-Desde{
     margin-left: 1rem;
 }
-@media screen and (max-width : 1366px){
+@media screen and (max-width : 1380px) and (min-width: 1000px){
     .cont-Desde{
         margin: 0;
         padding: 0;
