@@ -86,4 +86,16 @@
     .colImagen{
         margin-left: 2rem;
     }
+    .accordion{
+        font-size: small;
+    }
+    .accordion-button{
+        font-size: small;
+        padding: 0;
+        padding: 0.5rem 0 .5rem 0.2rem;
+    }
+    .accordion-body{
+        padding : 0 2rem 0 2rem;
+    }
+    
 }

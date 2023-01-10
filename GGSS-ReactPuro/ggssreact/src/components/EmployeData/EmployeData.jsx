@@ -15,7 +15,7 @@ const EmployeData = ({disabled, image, responses}) => {
 
     
   return (
-        <div className="container-flex border border-3 p-2 text-start py-2">
+        <div className="container-flex border border-3  text-start">
             <div className="row">
               <div className="col-2 d-flex align-items-center">
                 <img

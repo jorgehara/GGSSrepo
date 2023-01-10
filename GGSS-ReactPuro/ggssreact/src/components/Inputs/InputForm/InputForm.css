@@ -92,8 +92,12 @@
 @media screen and (max-width : 1366px){
     .formulario-input-Legajo-Form-Button{
         width: 13rem;
+        height: 35px;
     }
     .form-input-Piso{
         width: 10.4rem;
+    }
+    .form__grupo__label__label{
+        font-size: small;
     }
 }

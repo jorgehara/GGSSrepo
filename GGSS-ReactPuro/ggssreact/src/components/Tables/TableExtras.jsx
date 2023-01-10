@@ -6,7 +6,7 @@ import "./TableBootstrap.css";
 const TableExtras = ({columns, datosExtraEmpleado}) => {
     const dispatch = useDispatch();
   return (
-    <table class="table table-danger">
+    <table class="table table-danger contDocumentacion">
         <thead>
             <tr >
                 {

@@ -53,9 +53,9 @@ const InputDateDocs = ({
           disabled={disabled}
         />
       </div>
-      <div className="d-flex flex-row justify-content-start align-items-center">
+      <div className="d-flex flex-row justify-content-start align-items-center ">
         <input
-          className={mostrarComponente2 ? "form-check-input " : "none"}
+          className={mostrarComponente2 ? "form-check-input contenedorInputDoc" : "none"}
           type="checkbox"
           id="flexCheckChecked"
           checked={checked}
@@ -63,7 +63,7 @@ const InputDateDocs = ({
         />
         <input
           id={idInput}
-          className={mostrarComponente2 ? "secondCheck2" : "secondCheckDocs"}
+          className={mostrarComponente2 ? "secondCheck2 contenedorInputDoc" : "secondCheckDocs contenedorInputDoc"}
           name={idInput}
           type="date"
           value={value}

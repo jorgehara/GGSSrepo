@@ -9,6 +9,7 @@ import { OPTIONS_FORMULARIO } from '../../redux/types/LicenciasTypes';
 import EmployeData from '../EmployeData/EmployeData';
 import FieldSet from '../Inputs/FieldSet/FieldSet';
 import InputCbo from '../Inputs/InputCbo/InputCbo';
+import "./Licencias.css"
 
 const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaEmpladoDatos,setRefectch, refetch, disable}) => {
     
@@ -97,7 +98,7 @@ return (
             <div className='col-xl-12'>
                 <b>Total días disponibles : {licenciaEmpleado && licenciaEmpleado.diasDisponiblesTotales}</b>
             </div>
-            <div className='d-flex flex-row justify-content-center align-items-center col-xl-12'>
+            <div className='d-flex flex-row justify-content-center align-items-center col-xl-12 contenedorLicencias'>
                 <InputCbo 
                 clasess={inputSelectedoptionLicencias}
                 display={false} 

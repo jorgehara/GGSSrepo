@@ -106,5 +106,7 @@
 @media screen and (max-width : 1366px){
     .formulario-input-DNI{
         width: 6.4rem;
+        margin-left: 4.6rem;
     }
+    
 }

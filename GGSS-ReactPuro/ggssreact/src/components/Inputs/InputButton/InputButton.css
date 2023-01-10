@@ -151,3 +151,8 @@
 .obligatorio{
 	background-color: rgb(253, 237, 216);
 }
+@media screen and (max-width:1366px){
+	.formulario__label_Extras{
+		font-size: small;
+	}
+}

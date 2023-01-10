@@ -71,6 +71,7 @@ import { cleanIdFam, getDAtosFamiliaresEmpleado } from "../../redux/actions/fami
 import { addOneDomicilio, cleanIdsDom } from "../../redux/actions/domiciliosActions";
 import { addDatosExtraPorEmpleado, cleanIdDe } from "../../redux/actions/extrasActions";
 import { setRefetch } from "../../redux/actions/modalesActions";
+import "./Home.css"
 
 const Empleados = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -1306,10 +1307,10 @@ useEffect(()=>{
         </div>
       </div>
       <div className="d-flex flex-row-reverse  w-100 ">
-        <button className="btn btn-danger " onClick={()=> cleanIdsGeneral()}>
+        <button className="btn btn-danger  btnEmpl" onClick={()=> cleanIdsGeneral()}>
           Cancelar
         </button>
-        <button className="btn btn-success" onClick={()=> deleteItems( objectRequest)}>Aceptar</button>
+        <button className="btn btn-success btnEmpl" onClick={()=> deleteItems( objectRequest)}>Aceptar</button>
       </div>
       <Footer />
     </div>

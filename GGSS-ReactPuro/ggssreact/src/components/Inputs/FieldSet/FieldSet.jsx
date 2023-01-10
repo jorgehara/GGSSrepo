@@ -396,9 +396,9 @@ const FieldSet = ({
   }
   return (
     <>
-      <div>
+      <div className="contenedorFieldSet">
         <fieldset className="border p-2">
-          <legend className="float-none w-auto p-2">
+          <legend className="float-none w-auto p-2 contenedorFieldSet">
             {selectedOption &&
               selectedOption === "1 - Disponibles por Periodo" &&
               "Cargar disponibles por periodo"}

@@ -183,3 +183,8 @@ h6{
     border-bottom-left-radius : 0;
     border-bottom-right-radius : 0 ;
 }
+@media screen and (max-width : 1366px){
+    .nav-link{
+        font-size: small;
+    }
+}

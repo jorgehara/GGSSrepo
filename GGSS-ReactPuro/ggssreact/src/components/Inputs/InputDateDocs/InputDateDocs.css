@@ -37,4 +37,12 @@
 .secondCheckDocs{
 	margin-left: 6.5%;
 }
-
+@media screen and (max-width:1366px){
+	.contenedorInputDoc{
+		font-size: small;
+	}
+	.secondCheck2{
+		font-size: small;
+		width: 7rem;
+	}
+}

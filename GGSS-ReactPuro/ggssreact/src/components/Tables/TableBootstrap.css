@@ -26,3 +26,8 @@ table.table-fit tbody td, table.table-fit tfoot td {
     width: 10rem;
     
 }
+@media screen and (max-width : 1366px){
+    .contDocumentacion{
+        font-size: small;
+    }
+}

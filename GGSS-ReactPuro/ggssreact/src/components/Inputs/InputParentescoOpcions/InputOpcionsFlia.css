@@ -141,3 +141,12 @@
     border-bottom: 1px solid rgb(78, 6, 6);
 	/* margin-top: -5px; */
 }
+@media screen and (max-width:1366px){
+	.selectFormFlia{
+		height: 35px;
+		margin-left: 6.4rem;
+	}
+	.form-input-PaisDeOrigenFlia{
+		height: 35px;
+	}
+}

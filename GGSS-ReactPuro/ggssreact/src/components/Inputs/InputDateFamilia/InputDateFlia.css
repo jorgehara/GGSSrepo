@@ -50,3 +50,9 @@
 .formulario__grupo{
 	position: relative;
 }
+@media screen and (max-width: 1366px){
+	
+	.inputDate2{
+		margin-left: 3.5rem;
+	}
+}

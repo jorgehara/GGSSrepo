@@ -46,3 +46,8 @@
     color: #c22031;
     background-color: rgba(220, 53, 70, 0.24);
 }
+@media screen and (max-width: 1366px){
+    .tituloAcordeon{
+        font-size: small;
+    }
+}

@@ -15,4 +15,10 @@
     .selectMenu{
         height: 32rem;
     }
+    .form__grupo__input__browser{
+        font-size: small;
+    }
+    .form-select{
+        font-size: small;
+    }
 }

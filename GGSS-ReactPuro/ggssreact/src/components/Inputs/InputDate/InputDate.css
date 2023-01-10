@@ -48,3 +48,15 @@
     margin-left: 5%;
     padding: 0% ;
 } */
+@media screen and (max-width: 1366px){
+	.form-check-label{
+		font-size: small;
+		margin: 0;
+	}
+	.inputDate2{
+		margin-left: rem;
+	}
+	.secondCheckNac{
+		margin-left: 2.4rem;
+	}
+}

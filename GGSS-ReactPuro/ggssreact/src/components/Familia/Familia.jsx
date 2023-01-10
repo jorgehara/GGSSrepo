@@ -21,6 +21,7 @@ import swal from "sweetalert";
 import { addNewFamiliar, deleteOneFamiliar } from "../../redux/actions/fetchActions";
 import { disableFunctions } from "../../redux/actions/employeActions";
 import { addFamiliar, deleteFam, saveIdFam } from "../../redux/actions/familiaActions";
+import "./Familia.css"
 
 const Familia = ({responses, setResponses,disable, setRefetch, refetch}) => {
   
@@ -165,7 +166,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
 
   return (
     <div className="Lateral-Derecho">
-      <div className="container-fluid">
+      <div className="container-fluid contFamilia">
 
         <div className="row border border-1">
           <EmployeData disabled={disable} />

@@ -16,7 +16,7 @@ const TableBasic1 = ({columns, value,documentaciones, setRefetch, refetch, disab
   // console.log(documentaciones);
   return (
     <>
-    <table class="table table-danger" disabled={disabled} >
+    <table class="table table-danger contDocumentacion" disabled={disabled} >
       <thead>
         <tr>
           {

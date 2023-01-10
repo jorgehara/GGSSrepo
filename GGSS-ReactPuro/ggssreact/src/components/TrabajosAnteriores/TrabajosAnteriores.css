@@ -18,3 +18,13 @@
 .labelTrabajos{
     margin-left: 2%;
 }
+.cont-Desde{
+    margin-left: 1rem;
+}
+@media screen and (max-width : 1366px){
+    .cont-Desde{
+        margin: 0;
+        padding: 0;
+        margin-left: 0.5rem;
+    }
+}
