@@ -161,7 +161,7 @@ const DatosPersonales = ({ tabIndex ,handleTabChange, responses, setResponses, c
                     <div className="formulario__grupo"></div>
                     <form action="" className="form__datos__personales ">
                       <div className="row row-cols-12">
-                        <div className="segunda__columna col-xl-4">
+                        <div className="segunda__columna col-xl-4 col-lg-4 col-md-4">
                           {
                             //#endregion
                           }
@@ -321,7 +321,7 @@ const DatosPersonales = ({ tabIndex ,handleTabChange, responses, setResponses, c
                             obligatorio ={true}
                             />
                         </div>
-                        <div className="tercera_columna col-xl-4">
+                        <div className="tercera_columna col-xl-4 col-lg-4 col-md-4">
                           <InputCbo
                             value={empleadoUno !== undefined
                               ? empleadoUno.idEstado
@@ -441,7 +441,7 @@ const DatosPersonales = ({ tabIndex ,handleTabChange, responses, setResponses, c
 
 
 
-                        <div className="col-xl-3 colImagen">
+                        <div className="col-xl-3 col-lg-3 col-md-3 colImagen">
                           <InputFile
                             inputName="Arrastre su imagen"
                             disabled={disable}

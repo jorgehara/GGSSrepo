@@ -63,3 +63,8 @@
 		height: 35px;
 	}
 }
+@media screen and (max-width : 1280px){
+    .label_numeros{
+		margin-left: 2rem;
+	}
+}

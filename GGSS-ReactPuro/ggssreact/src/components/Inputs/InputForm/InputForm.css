@@ -131,3 +131,20 @@
         width: 29%;
     }
 }
+@media screen and (max-width: 1024px){
+    .formulario-input-Legajo-Form-Button{
+        width: 10rem;
+        height: 32px;
+    }
+    .form-input-Piso{
+        width: 6rem;
+        height: 35px;
+    }
+    .form__grupo__label__label{
+        font-size: small;
+    }
+    .form__grupo__label{
+        margin: 0;
+        width: 17%;
+    }
+}

@@ -1216,10 +1216,10 @@ useEffect(()=>{
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-xl-3">
+        <div className="col-xl-3 col-lg-3 col-md-3">
           <Browser setRefectch={setRefectch} refetch={refetch} disable={disable} setDisable={setDisable} setValueEmpl={setValueEmpl} responses={responses} setResponses={setResponses} />
         </div>
-        <div className="col-xl-9 ">
+        <div className="col-xl-9 col-lg-9 col-md-9 ">
           <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
           {(tabIndex === 0 || tabIndex === 8) && (
             <DatosPersonales

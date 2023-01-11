@@ -30,3 +30,8 @@
 .obligatorio{
 	background-color: rgb(253, 237, 216);
 }
+@media screen and (max-width : 1024px){
+	.form__labelFlia{
+		width: 8rem;
+	}
+}

@@ -23,12 +23,12 @@ const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,
   return (
     <div className="mt-3">
       <div className='row d-flex flex-row justify-content-start formularioDate align-items-center'>
-          <div className="col-xl-2 p-0">
-            <label className="" htmlFor="flexCheckDefault">
+          <div className="col-xl-2 col-lg-2 col-md-2 p-0">
+            <label className="labelBajaFlia" htmlFor="flexCheckDefault">
               {nameInput}
             </label>
           </div>
-          <div className="col-xl-1 form-input-DateFlia">              
+          <div className="col-xl-1 col-lg-2 col-md-2 form-input-DateFlia">              
               <input 
               className='inputDateBaja' 
               id={idInput} 
@@ -40,7 +40,7 @@ const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,
               />
           </div>
           <input 
-          className={mostrarComponente ? "col-xl-3 form-check-input-date datebajaFliaCheck" : "none"} type="checkbox" 
+          className={mostrarComponente ? "col-xl-3 col-lg-3 col-md-3 form-check-input-date datebajaFliaCheck" : "none"} type="checkbox" 
           disabled={disable}
           id="flexCheckChecked" 
           checked={checked}

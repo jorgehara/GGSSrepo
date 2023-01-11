@@ -174,7 +174,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
 
         <div className="container">
           <div className="row">
-            <div className="col-xl-6 p-2">
+            <div className="col-xl-6 col-lg-6 col-md-6 p-2">
               <InputChecked
                 value={formFamilia?.inputApellidoNombres ? formFamilia?.inputApellidoNombres : familiarSeleccionado.apellidoyNombres
                 }
@@ -265,7 +265,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
                   obligatorio ={true}
                 />
             </div>
-            <div className="col-xl-6 p-2">
+            <div className="col-xl-6 col-lg-6 col-md-6 p-2">
 
               <PaisOrigenFlia
                 nameLabel="Pais de Origen"

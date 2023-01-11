@@ -63,3 +63,10 @@
 		height: 35px;
 	}
 }
+@media screen and (max-width : 1024px){
+	.form-input-ParentsFlia{
+		margin-left: 4rem;
+		width: 9.4rem;
+		height: 35px;
+	}
+}

@@ -91,3 +91,9 @@
 		width: 60%;
 	}
 }
+@media screen and (max-width: 1024px){
+	.formulario-input-TextArea{
+		width: 50%;
+		resize: vertical;
+	}
+}

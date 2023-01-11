@@ -119,3 +119,11 @@
     }
     
 }
+@media screen and (max-width : 1024px){
+    .formulario-input-DNI{
+        width: 4.9rem;
+        margin-left: 4.5rem;
+        height: 35px;
+    }
+    
+}
