@@ -16,7 +16,7 @@
     margin-left: 0.7rem;
 }
 .formulario-input-Legajo-cuil{
-    width: 10rem;
+    width: 9.6rem;
 	height: 2.5rem;
 	border: none;
 	transition: .3s ease all;
@@ -27,5 +27,12 @@
 @media screen and (max-width : 1366px){
     .formulario-input-Legajo-cuil{
         width: 7.6rem;
+        height: 35px;
+    }
+}
+@media screen and (max-width : 1280px){
+    .formulario-input-Legajo-cuil{
+        width: 6.5rem;
+        height: 35px;
     }
 }

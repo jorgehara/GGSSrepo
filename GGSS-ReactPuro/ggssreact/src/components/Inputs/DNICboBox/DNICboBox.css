@@ -79,9 +79,9 @@
     /* outline: none !important; */
 }
 .formulario-input-DNI{
-	width: 89px;
+	width: 7.4rem;
 	text-align: start;
-	margin-left: 66px;
+	margin-left: 4.1rem;
     /* margin-right: 0px; */
 	background: #fff;
 	border: 3px solid transparent;
@@ -107,6 +107,15 @@
     .formulario-input-DNI{
         width: 6.4rem;
         margin-left: 4.6rem;
+        height: 35px;
+    }
+    
+}
+@media screen and (max-width : 1280px){
+    .formulario-input-DNI{
+        width: 5.9rem;
+        margin-left: 4.5rem;
+        height: 35px;
     }
     
 }

@@ -101,7 +101,7 @@ const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
               <EmployeData />
           </div>
       </div>
-      <div className='container-flex  border-top-0'>
+      <div className='container-flex  border-top-0 p-0'>
       <div className="accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
@@ -130,7 +130,19 @@ const Extras = ({responses, setResponses, disable, setRefetch, refetch}) => {
                 </div>
                 <div className='row'>
                     <div className='col-xl-6'>
-                        <InputDate valueCheck={true} value={formDatosExtras?.inputFechaExtras && formDatosExtras?.inputFechaExtras} onChange={onChangeValues} idInput="inputFechaExtras" nameInput="Fecha" action={GET_INPUT_VALUES_EXTRAS} disabled={disable} />
+                    <div className="formulario__grupo__inputs ">
+                      <div className="form-check p-0 mt-2">
+                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                          Fecha
+                        </label>
+                      </div>
+                      <div className="d-flex flex-row justify-content-start align-items-center">
+                          
+                          <input id="inputFechaExtras" className="secondCheckNacExtras" name="inputFechaExtras" type="date" value={formDatosExtras?.inputFechaExtras && formDatosExtras?.inputFechaExtras} disabled={disable} onChange={(e)=>onChangeValues(e.target.value, "inputFechaExtras")} />
+                          
+                      </div>
+                  </div>
+                       {/*  <InputDate valueCheck={true} value={formDatosExtras?.inputFechaExtras && formDatosExtras?.inputFechaExtras} onChange={onChangeValues} idInput="inputFechaExtras" nameInput="Fecha" action={GET_INPUT_VALUES_EXTRAS} disabled={disable} /> */}
                     </div>
                 </div>
                 <div className='row'>

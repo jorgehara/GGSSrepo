@@ -15,11 +15,11 @@ const EmployeData = ({disabled, image, responses}) => {
 
     
   return (
-        <div className="container-flex border border-3  text-start">
+        <div className="container-flex border border-3 p-1 text-start">
             <div className="row">
-              <div className="col-2 d-flex align-items-center">
+              <div className="col-2 d-flex align-items-center ">
                 <img
-                  className="border border-3 imgData"
+                  className="border border-1 imgData"
                   id="imagen"
                   src={empleadoUno?.obsFechaIngreso ? empleadoUno?.obsFechaIngreso : responses?.inputImage}
                   alt=""

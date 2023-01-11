@@ -103,6 +103,7 @@ const Empleados = () => {
     (state) => state.generalState.conceptosXesquemas
   );
 
+
   //#region URLs
 
   const urlEstados = "http://54.243.192.82/api/Estados";
@@ -182,7 +183,7 @@ const Empleados = () => {
     setDisable(true);
     
   }
- 
+  console.log(tabIndex)
   const handleFetch = async (url, action) => {
     dispatch({ type: SET_LOADING });
     await axios
@@ -296,8 +297,7 @@ useEffect(()=>{
      handleFetch(urlDocumentacion, getOneDocumento);
 
      
-
-   handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);  
+ 
    
 
    handleFetchComun(urlSectorDepto, addSectorDepto);
@@ -305,20 +305,16 @@ useEffect(()=>{
      handleFetchComun(urlDatosExtras, addDatosExtras);
      handleFetch(urlDomicilios, addDomicilios);
 
-     handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);
-     handleFetch(urlDetalleLicenciasEmpleados, addDetalleLicencia);
+     
      handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
   }, [disable, refetch,refetching]);
 
- /*  useEffect(() => {
+  useEffect(() => {
     
-    
-    handleFetchComun(urlDatosExtras, addDatosExtras);
-     handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);
+    handleFetch(urlLicenciaEmpleados, addLicenciaEmpleados);
      handleFetch(urlDetalleLicenciasEmpleados, addDetalleLicencia);
-     handleFetch(urlTrabajosAnteriores, getTrabajosAnteriores);
 
-  }, [refetch]); */
+  }, [refetch]);
 //#endregion
 
   useEffect(() => {
@@ -329,13 +325,7 @@ useEffect(()=>{
     setDisableEstado(false);
   }, [responses?.inputSexo]);
 
-  useEffect(() => {
-    axios
-      .get("http://54.243.192.82/api/Empleados?records=10")
-      .then((res) => setEmpleados(res.data.result));
-  }, [refetch]);
-
-
+  
 
   useEffect(() => {
     axios
@@ -352,10 +342,7 @@ useEffect(()=>{
       .then((res)=>{
         dispatch(getDAtosFamiliaresEmpleado(res.data))
       })        
-      axios.get(`http://54.243.192.82/api/sp_DomiciliosDatosxIdEmpleado?IdEmpleado=${empleadoUno?.iDempleado}`)
-      .then((res)=>{
-        dispatch(addOneDomicilio(res.data))
-      })
+      
       axios.get(`http://54.243.192.82/api/Documentacion/sp_DocumentacionDatosXIdEmpleado?IdEmpleado=${empleadoUno?.iDempleado}`)
       .then((res)=>{
         dispatch(documentacionDelEmpleado(res.data))
@@ -369,7 +356,19 @@ useEffect(()=>{
       handleFetch(urlFamiliares, addFamiliares);
       handleFetch(urlParentescos, addParentescos);
 
-  }, [empleadoUno?.iDempleado, refetch]);
+  }, [empleadoUno?.iDempleado, refetch, refetching]);
+
+
+    useEffect(()=>{
+      axios.get(`http://54.243.192.82/api/sp_DomiciliosDatosxIdEmpleado?IdEmpleado=${empleadoUno?.iDempleado}`)
+      .then((res)=>{
+        console.log(`http://54.243.192.82/api/sp_DomiciliosDatosxIdEmpleado?IdEmpleado=${empleadoUno?.iDempleado}`)
+        dispatch(addOneDomicilio(res.data))
+      })
+    },[empleadoUno?.iDempleado, refetch])
+
+
+
 
   useEffect(() => {
     dispatch(deleteDetLic(detalleSeleccionado.idDetalleLicenciaEmpleado));
@@ -382,10 +381,11 @@ useEffect(()=>{
     (state) => state.employeStates.formulario.inputApellidoNombreBrowser
   );
   const url = `http://54.243.192.82/api/Empleados?page=2000&ordered=true`;
-    const urlEmpleadoPorApellido = `http://54.243.192.82/api/Empleados?records=10000&filter=${responses?.browser?.inputApellidoNombreBrowser ? responses?.browser?.inputApellidoNombreBrowser : null}`;
-    const urlEmpleadoPorLegajo = `http://54.243.192.82/api/Empleados?records=10000&legajo=${responses?.browser?.inpurLegajoBrowser ? responses?.browser?.inpurLegajoBrowser : null}`;
-    const urlEmpleadoApYLegajo = `http://54.243.192.82/api/Empleados?records=10000&filter=${responses?.browser?.inputApellidoNombreBrowser ? responses?.browser.inputApellidoNombreBrowser : null}&legajo=${responses?.browser?.inpurLegajoBrowser ? responses?.browser?.inpurLegajoBrowser : null}`;
+    const urlEmpleadoPorApellido = `http://54.243.192.82/api/Empleados?records=10000&filter=${responses?.browser?.inputApellidoNombreBrowser ? responses?.browser?.inputApellidoNombreBrowser : null}&ordered=true`;
+    const urlEmpleadoPorLegajo = `http://54.243.192.82/api/Empleados?records=10000&legajo=${responses?.browser?.inpurLegajoBrowser ? responses?.browser?.inpurLegajoBrowser : null}&ordered=true`;
+    const urlEmpleadoApYLegajo = `http://54.243.192.82/api/Empleados?records=10000&filter=${responses?.browser?.inputApellidoNombreBrowser ? responses?.browser.inputApellidoNombreBrowser : null}&legajo=${responses?.browser?.inpurLegajoBrowser ? responses?.browser?.inpurLegajoBrowser : null}&ordered=true`;
     const urlApeLegOrdered = `http://54.243.192.82/api/Empleados?records=10000&filter=${responses?.browser?.inputApellidoNombreBrowser ? responses?.browser?.inputApellidoNombreBrowser : null}&legajo=${responses?.browser?.inpurLegajoBrowser ? responses?.browser?.inpurLegajoBrowser : null}&ordered=true`;
+
     async function getEmpleados(){
       if(responses.browser.inputApellidoNombreBrowser){
         await axios({method: 'get',
@@ -477,10 +477,9 @@ useEffect(()=>{
 
   function cleanIdsGeneral(){
     
-    setRefectch(!refetch)
-    dispatch(setRefetch(!refetching))
-    dispatch(cleanEmploye())
-    Array.from(document.querySelectorAll("input[type=text")).forEach(
+    
+    
+    Array.from(document.querySelectorAll("input[type=text]")).forEach(
       (input) => (input.value = "")
     );
 
@@ -494,7 +493,9 @@ useEffect(()=>{
     setResponses({
       ...responses,
       formDatosPersonales})
-
+      if(tabIndex !== 8){
+        dispatch(cleanEmploye())
+      }
     setDisable(true);
     dispatch(cleanIds())
     dispatch(cleanIdsDoc())
@@ -503,8 +504,9 @@ useEffect(()=>{
     dispatch(cleanIdFam())
     dispatch(cleanIdDe())
     setValueEmpl(false)
+    setRefectch(!refetch)
+    dispatch(setRefetch(!refetching))
   }
- 
   
   async function deleteItems(objectRequest){
     const { urls, arrays } = objectRequest;
@@ -1219,7 +1221,7 @@ useEffect(()=>{
         </div>
         <div className="col-xl-9 ">
           <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />
-          {tabIndex === 0 && (
+          {(tabIndex === 0 || tabIndex === 8) && (
             <DatosPersonales
               empleados={empleados}
               disableEstado={disableEstado}
@@ -1232,6 +1234,8 @@ useEffect(()=>{
               domiciliosEmpleados={domiciliosEmpleados}
               setRefectch={setRefectch}
               refetch={refetch}
+              handleTabChange={handleTabChange}
+              tabIndex={tabIndex}
             />
           )}
           {tabIndex === 1 && (

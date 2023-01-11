@@ -49,7 +49,7 @@ const InputButton = ({nameButton, placeholder, nameLabel, maxLeght, value, disab
     </div>
 </div>
         : 
-<div className="formulario__grupo__inputs-Button mt-2">      
+<div className="formulario__grupo__inputs-Button ">      
         <div className='fomulario__container__button'>
             <label className='formulario__label' htmlFor={nameInput}>{nameLabel}</label>
 

@@ -41,7 +41,7 @@
 	margin-left: 2.4rem; 
 }
 .inputDateBaja{
-	margin-left: 50%;
+	margin-left: 0.2rem;
 }
 .datebajaFliaCheck{
 	margin-top: 0px;
@@ -51,6 +51,12 @@
 	position: relative;
 }
 @media screen and (max-width: 1366px){
+	
+	.inputDate2{
+		margin-left: 3.5rem;
+	}
+}
+@media screen and (max-width: 1280px){
 	
 	.inputDate2{
 		margin-left: 3.5rem;

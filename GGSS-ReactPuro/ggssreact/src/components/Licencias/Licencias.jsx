@@ -70,7 +70,7 @@ const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaE
         try{
             axios.post(url)
         .then((res)=>{
-            console.log(res.data)
+           
             dispatch(action(res.data));
             setRefectch(!refetch)
         })
@@ -89,14 +89,14 @@ const Licencias = ({responses, setResponses, licenciaEmpleadoDatos, setLicenciaE
         // dispatch(saveId(id))
 
     }
-
+    
 
 return (
     <div className='container'>
         <div className='row'>
             <EmployeData />
             <div className='col-xl-12'>
-                <b>Total días disponibles : {licenciaEmpleado && licenciaEmpleado.diasDisponiblesTotales}</b>
+                <b>Total días disponibles : {licenciaEmpleado && licenciaEmpleado.diasDisponibles}</b>
             </div>
             <div className='d-flex flex-row justify-content-center align-items-center col-xl-12 contenedorLicencias'>
                 <InputCbo 

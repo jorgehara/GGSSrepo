@@ -77,7 +77,7 @@ const InputCbo = ({nameLabel, array, value, display, nameButton, idSelected, sex
     <div className="formulario__grupo__inputs__cbo">
         <div className="form__grupo__label__inp">
             <div className="primero">
-                <label className="formulario__label mt-2 mb-0" htmlFor="legajo">{nameLabel}</label>
+                <label className="formulario__label  mb-0" htmlFor="legajo">{nameLabel}</label>
             </div>
             <div className='segundo'>
                 <select className={obligatorio ? "formulario-input-Estado form-select ml-0 px-0 obligatorio" : "formulario-input-Estado form-select ml-0 px-0"} onChange={(e)=>onChange(e.target.value, idInput)} value={datosPersonalesValue} id={idInput} disabled={disabled} name={idInput}>

@@ -19,7 +19,12 @@
 	transition: .3s ease all;
     /* border-bottom: 1px solid rgb(78, 6, 6); */
 }
-
+.form-check{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
 .select-date-DatosPerson{
 	margin-left: 20%;
 }
@@ -55,6 +60,17 @@
 	}
 	.inputDate2{
 		margin-left: rem;
+	}
+	.secondCheckNac{
+		margin-left: 2.4rem;
+	}
+	.formulario__grupo__inputs {
+		height: 35px;
+	}
+}
+@media screen and (max-width: 1280px){
+	.formulario__grupo__inputs {
+		height: 35px;
 	}
 	.secondCheckNac{
 		margin-left: 2.4rem;

@@ -1,7 +1,7 @@
 .fomulario__container__button{
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
 }
@@ -154,5 +154,17 @@
 @media screen and (max-width:1366px){
 	.formulario__label_Extras{
 		font-size: small;
+	}
+	.formulario-input-InpButton{
+		margin-left: 1rem;
+		width: 70%;
+	}
+}
+@media screen and (max-width : 1280px){
+	.formulario-input-InpButton{
+		margin-left: 1rem;
+	}
+	.formulario-input-InpButton-Extras{
+		margin-left: 1rem;
 	}
 }

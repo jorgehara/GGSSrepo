@@ -23,7 +23,7 @@ import InputButtonCUIL from "../Inputs/InputButtonCUIL/InputButtonCUIL";
 
 //#endregion
 
-const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstado, disable, empleados, valueempl, domiciliosEmpleados, setRefectch, refetch}) => {
+const DatosPersonales = ({ tabIndex ,handleTabChange, responses, setResponses, cancelar, image, disableEstado, disable, empleados, valueempl, domiciliosEmpleados, setRefectch, refetch}) => {
   //#region ---------------------------------------------------------ONCHANGE-HANDLER
 
   const [ formDatosPersonales, setFormDatosPersonales ] = useState(responses["formDatosPersonales"]);
@@ -44,7 +44,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
         ...newResponse
       });
   };
-
+  
 
   useEffect(() => {  
       setResponses({
@@ -137,7 +137,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
 
     <>
       <EmployeData responses={responses} image={image} /><div className="Lateral-Derecho">
-        <div className="accordion" id="accordionExample">
+        <div className="accordion" id="accordionExample" onClick={handleTabChange(0)}>
           <div className="accordion-item">
             <h4 className="accordion-header" id="headingOne">
               <button
@@ -457,7 +457,7 @@ const DatosPersonales = ({responses, setResponses, cancelar, image, disableEstad
               </div>
             </div>
           </div>
-          <Domicilios setRefectch={setRefectch} refetch={refetch} domiciliosEmpleados={domiciliosEmpleados} onChangeValues={onChangeValues} formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={disable} responses={responses} setResponses={setResponses} />
+          <Domicilios tabIndex={tabIndex} handleTabChange={handleTabChange} setRefectch={setRefectch} refetch={refetch} domiciliosEmpleados={domiciliosEmpleados} onChangeValues={onChangeValues} formDatosPersonales={formDatosPersonales} setFormDatosPersonales={setFormDatosPersonales} disabled={disable} deshabilitar={disable} responses={responses} setResponses={setResponses} />
         </div>
         <div className="d-flex justify-content-end">
           

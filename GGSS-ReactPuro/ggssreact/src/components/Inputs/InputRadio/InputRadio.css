@@ -1,7 +1,7 @@
 .formulario__grupo__inputs__radio{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 .formulario-label-Sexo{
@@ -62,5 +62,17 @@
 @media screen and (max-width : 1366px){
     .formulario__grupo__inputs__radio_AsidePagos{
         flex-flow: row nowrap;
+		height: 35px;
     }
+	.formulario__grupo__inputs__radio{
+		height: 35px;
+	}
+}
+@media screen and (max-width : 1280px){
+	.formulario-input-SexoF{
+		margin: 0;
+	}
+	.formulario__grupo__inputs__radio{
+		height: 35px;
+	}
 }

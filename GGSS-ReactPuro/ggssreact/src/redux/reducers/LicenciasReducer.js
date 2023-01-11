@@ -34,7 +34,7 @@ export const licenciasReducer=(state = initialState, action)=>{
         case ADD_ONE_LICENCIA : {
             return{
                 ...state,
-                licenciasEmpleado : [payload]
+                licenciaEmpleado : payload
             }
         }
         case ADD_DETALLE_LICENCIA : {

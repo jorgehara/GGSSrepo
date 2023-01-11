@@ -139,7 +139,7 @@ const TrabajosAnteriores = ({responses, setResponses, setRefetch, refetch,disabl
 
 
   return (
-    <div className='container-flex'>
+    <div className='container-flex p-0'>
         <div className="container-flex m-0 p-0">
             <EmployeData />
         </div>

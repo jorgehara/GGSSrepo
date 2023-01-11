@@ -18,11 +18,11 @@ const InputForm = ({
   return (
     <div className="formulario__grupo__inputs">
       <div className="formulario__grupo">
-        <label className="formulario__label" htmlFor={inputId}>
+        <label className="formulario__label " htmlFor={inputId}>
           {nameLabel}
         </label>
       </div>
-      <div className="form__grupo-input">
+      <div className="form__grupo-input ">
         {
           obligatorio ? 
           <input

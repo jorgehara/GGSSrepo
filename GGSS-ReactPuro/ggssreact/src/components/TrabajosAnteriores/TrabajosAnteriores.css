@@ -1,5 +1,5 @@
 .dateTrabajos{
-    width: 38%;
+    width: 35.1%;
     padding: 0;
     box-sizing: border-box;
     margin-left: 4%;
@@ -26,5 +26,10 @@
         margin: 0;
         padding: 0;
         margin-left: 0.5rem;
+    }
+}
+@media screen and (max-width: 1280px){
+    .dateTrabajos2{
+        width: 50%;
     }
 }

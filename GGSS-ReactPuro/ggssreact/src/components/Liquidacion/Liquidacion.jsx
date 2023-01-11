@@ -93,15 +93,15 @@ const empleadores = useSelector((state)=> state.generalState.empleadores);
 //#endregion
 
 return (
-    <div className="container-flex">
-        <div className="container-flex border border-1">
+    <div className="container-flex p-0 m-0 ">
+        <div className="container-flex border border-1 ">
           {
             windowsScreen <= 1366 ? null : <EmployeData disabled={disable} />
             
           }
           
         </div>
-        <div className="container-flex">
+        <div className="container-flex p-0">
         <div className="accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">

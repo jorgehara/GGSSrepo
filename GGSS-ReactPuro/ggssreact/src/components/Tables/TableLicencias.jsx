@@ -47,7 +47,7 @@ const TableLicencias = ({
                       name="seleccionar"
                       id="seleccionar"
                       onClick={() => {
-                        setChecked(true);
+                        setChecked(true);                        
                         dispatch(addOneLicencia(valor));
                         dispatch(licenciaSelected(valor))
                         dispatch(idSelect(valor.idLicenciaEmpleado))
