@@ -120,10 +120,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
     
       dispatch(deleteFam(id));
       dispatch(saveIdFam(id))
-         
   }
- 
-
 
   let bodyPetition = {
     "iDfamiliares": ((familiaresValue && familiaresValue[familiaresValue.length -1]  && (familiaresValue[familiaresValue.length -1].iDfamiliares))+1),
@@ -160,24 +157,19 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
       setFormFamilia(inputsJson);
     }
     dispatch(disableFunctions(false));
-     
   }
   
-
   return (
     <div className="Lateral-Derecho">
       <div className="container-fluid contFamilia">
-
         <div className="row border border-1">
           <EmployeData disabled={disable} />
         </div>
-
         <div className="container">
           <div className="row">
             <div className="col-xl-6 col-lg-6 col-md-6 p-2">
               <InputChecked
-                value={formFamilia?.inputApellidoNombres ? formFamilia?.inputApellidoNombres : familiarSeleccionado.apellidoyNombres
-                }
+                value={formFamilia?.inputApellidoNombres ? formFamilia?.inputApellidoNombres : familiarSeleccionado.apellidoyNombres}
                 nameLabel="Apellido y Nombres"
                 nameCheck="Fijar"
                 placeHolder="Apellido y Nombres"

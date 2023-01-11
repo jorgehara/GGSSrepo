@@ -8,7 +8,7 @@ export const addDomiciliosForm = (payload) =>{
     };
 }
 export const addOneDomicilio=(payload)=>{
-    debugger;
+     
     return{
         type : ADD_ONEDOMICILIO,
         payload,

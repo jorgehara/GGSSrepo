@@ -50,7 +50,7 @@ const InputDate = ({ nameInput,display, value, disabled,idInput, onChange, actio
   return (
     <div className="formulario__grupo__inputs ">
         <div className="form-check p-0">
-          <label className="form-check-label" htmlFor="flexCheckDefault">
+          <label className="check-label" htmlFor="flexCheckDefault">
             {nameInput}
 
           </label>

@@ -384,7 +384,7 @@ export const fetchReducer = (state = initialState, action) =>{
         }
 
         case ADD_NEW_TIPODOC : {
-            debugger;
+             
 
             return {
                 ...state,

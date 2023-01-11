@@ -159,7 +159,7 @@ const modalesReducer = (state = initialState, action) => {
         }
         /// -------------- BTN CANCELAR
         case CANCEL_MODALS: {
-            debugger;
+             
             let newForm = { ...state.formulario }
             return {
                 ...state,
