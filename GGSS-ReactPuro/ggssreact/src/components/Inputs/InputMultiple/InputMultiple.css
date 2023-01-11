@@ -22,11 +22,11 @@
 
 }
 .divLabelMultiple{
-	width: 10rem;
+	width: 8rem;
 	
 }
 .divCboMultiple{
-	width: 7rem;
+	/* width: 7rem; */
 }
 
 .formulario-input-DNI-input{
@@ -107,7 +107,7 @@
 }
 @media screen and (max-width : 1024px){
 	.formulario-input-DNI-familia{
-		margin-left: 2.6rem;
+		/* margin-left: 2.6rem; */
 		width: 5rem;
 	}
 	.inputSexo{

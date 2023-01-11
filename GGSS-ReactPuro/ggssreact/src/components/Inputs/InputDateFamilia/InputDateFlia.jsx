@@ -18,7 +18,7 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, val
 
           <div className="formulario__grupo__inputs mt-2">
       <div className="formulario__grupo">
-            <label className="form-check-label" htmlFor="flexCheckDefault">
+            <label className="check-label" htmlFor="flexCheckDefault">
               {nameInput}
             </label>
         
