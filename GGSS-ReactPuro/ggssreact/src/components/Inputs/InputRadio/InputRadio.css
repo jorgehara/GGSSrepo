@@ -3,6 +3,8 @@
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
+	height: 42px;
+	margin-top: 0.1rem;
 }
 .formulario-label-Sexo{
 	font-style: normal;
@@ -13,6 +15,7 @@
     margin-left: 0px;
 	margin-bottom: 0px;
 	display: block;
+	
 }
 .formulario-input-Sexo{
 	width: 89px;
@@ -24,6 +27,7 @@
 	border-radius: 3px;
 	/* height: 36px; */
 	transition: .3s ease all;
+	
     /* border-bottom: 1px solid rgb(78, 6, 6); */
 }
 .formulario-input-SexoF{

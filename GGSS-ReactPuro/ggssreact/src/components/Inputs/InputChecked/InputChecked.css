@@ -30,7 +30,25 @@
 .obligatorio{
 	background-color: rgb(253, 237, 216);
 }
+@media screen and (max-width : 1366px){
+	.formulario-input-Familia{
+		width: 29rem;
+	}
+}
+@media screen and (max-width : 1280px){
+	.formulario-input-Familia{
+		width: 29rem;
+	}
+}
+@media screen and (max-width : 1200px){
+	.formulario-input-Familia{
+		width: 13rem;
+	}
+}
 @media screen and (max-width : 1024px){
+	.formulario-input-Familia{
+		width: 19rem;
+	}
 	.form__labelFlia{
 		width: 8rem;
 	}

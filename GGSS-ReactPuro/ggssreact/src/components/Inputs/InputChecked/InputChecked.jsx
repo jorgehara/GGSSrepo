@@ -36,7 +36,7 @@ const InputChecked = ({
             />
 
           <div className="d-flex align-items-center">
-            <input
+           {/*  <input
               className="form-check-input"
               type="checkbox"
               value=""
@@ -46,7 +46,7 @@ const InputChecked = ({
             />
             <label className="form-check-label" htmlFor="flexCheckChecked">
               {nameCheck}
-            </label>
+            </label> */}
           </div>
           </div>
 

@@ -394,7 +394,7 @@ const DatosPersonales = ({ tabIndex ,handleTabChange, responses, setResponses, c
                             action={ADD_DATOS_PERSONALES}
                             sexo=""
                             nameButton="..."
-                            nameLabel="País de Origen"
+                            nameLabel="País O"
                             array={datosPersonalesState.paises !== undefined && datosPersonalesState.paises !== "" ? datosPersonalesState.paises : []}
                             propArrayOp="nombrePais"
                             propArrayOpFem="nombrePais"
