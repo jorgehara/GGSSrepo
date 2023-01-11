@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
-import "./InputOpcionsFlia.css";
+// import "./InputOpcionsFlia.css";
 const NacionalidadFlia = ({
   nameInput,
   array,
@@ -47,15 +47,15 @@ const NacionalidadFlia = ({
 
 
   return (
-    <div className="formulario__grupo mt-2">
+    <div className=" mt-2">
       <div className="">
-        <label className="formulario-label-ParentescoFliaOpcions mt-3 ">
+        <label className=" mt-3 ">
           {nameInput}
         </label>
       </div>
-      <div className="SelectedFlia px-0">
+      <div className=" px-0">
         <select
-          className={obligatorio ? "form-select mt-1 form-input-PaisDeOrigenFlia obligatorio" : "form-select mt-1 "}
+          className={obligatorio ? "form-select mt-1 obligatorio" : "form-select mt-1 "}
           disabled={disable}
           id={idInput}
           name={idInput}
@@ -84,7 +84,7 @@ const NacionalidadFlia = ({
               })}
         </select>
       </div>
-      <div className="btn-modal-nacio">
+      <div className="">
       <div className="d-flex justify-content-center align-items-center mt-1">
         {/* <ButtonCallModal
           idModal={idModal}

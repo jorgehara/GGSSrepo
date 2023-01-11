@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
-import "./InputParentesco.css";
+// import "./InputParentesco.css";
 
 //se agregan nuevas props idInput (que nosotros le seteamos), el value(el valor actualizado), el Estado General, y el Set del Estado General por último el onChange para que actualice en Estado General y así cambia la vista
 const InputParentesco = ({
@@ -30,15 +30,16 @@ const InputParentesco = ({
   }, [display]);
 
   return (
-    <div className="formulario__grupo__inputs">
-      <div className="formulario__grupo row gy-2">
-          <label className="form-label-ParentsFlia ">
+    <>
+      <div className="row">
+      <div className="col">
+          <label className=" ">
             {nameInput}
           </label>
         </div>
-        <div className="col-xl-3">
+        <div className="col">
           <select
-            className={obligatorio ? "form-select px-0 form-input-ParentsFlia obligatorio" : "form-select px-0 form-input-ParentsFlia"}
+            className={obligatorio ? "form-select px-0 obligatorio" : "form-select px-0 "}
             disabled={disable}
             //name={idInput}
             //id={idInput}
@@ -77,9 +78,7 @@ const InputParentesco = ({
               })}
           </select>
         </div>
-
-
-        <div className="col d-flex justify-content-end align-items-center btn-modal-miau">
+        <div className="col">
           <ButtonCallModal
             idModal={idModal}
             className={
@@ -94,30 +93,26 @@ const InputParentesco = ({
             disabled={disable}
           />
         </div>
-        <div className="col form-inputs-radioFijar">
-        <div 
-          className={
-            mostrarComponente ? "d-flex align-items-center " : "none"
+        <div className="col ">
+        <div className={
+            mostrarComponente ? "" : "none"
           }
         >
           <input
-            className="form-check-input input-parentesco"
+            className="form-check-input "
             type="checkbox"
             value=""
             id="flexCheckChecked"
             checked={checked}
             disabled={disable}
           />
-          <label className="form-check-label label_FijarParents" htmlFor="flexCheckChecked">
+          <label className="form-check-label " htmlFor="flexCheckChecked">
             {nameCheck}
           </label>
         </div>
+        </div>
 </div>
-
-
-        
-      </div>
-    // </div>
+      </>
   );
 };
 

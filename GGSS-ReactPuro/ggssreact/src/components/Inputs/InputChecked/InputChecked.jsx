@@ -1,5 +1,5 @@
 import React from "react";
-import "./InputChecked.css";
+// import "./InputChecked.css";
 
 const InputChecked = ({
   nameLabel,
@@ -16,16 +16,18 @@ const InputChecked = ({
 }) => {
   return (
     <>
-    <div className="formulario__grupo__inputs">
-    <div className="formulario__grupo">
-            <label className="form__labelFlia mt-2" htmlFor={idInput}>
+          <div className="row">
+          <div className="col">
+
+            <label className=" mt-2" htmlFor={idInput}>
               {nameLabel}
             </label>
-        
-          <div className="d-flex align-items-center col-xl-4 px-0">
+            </div>
+            <div className="col">
+
             <input
               type="text"
-              className={obligatorio ? "formulario-input-Familia obligatorio" : "formulario-input-Familia"}
+              className={obligatorio ? "obligatorio" : ""}
               id={idInput}
               placeholder={placeHolder}
               value={value}
@@ -34,24 +36,22 @@ const InputChecked = ({
                 onChange(e.target.value,idInput)}
               disabled={disabled}
             />
+            </div>
+            <div className="col">
 
-          <div className="d-flex align-items-center">
             <input
-              className="form-check-input"
+              className=""
               type="checkbox"
               value=""
               id="flexCheckChecked"
               defaultChecked={checked}
               disabled={disabled}
             />
-            <label className="form-check-label" htmlFor="flexCheckChecked">
+            <label className="" htmlFor="flexCheckChecked">
               {nameCheck}
             </label>
           </div>
           </div>
-
-    </div>
-    </div>
     </>
   );
 };

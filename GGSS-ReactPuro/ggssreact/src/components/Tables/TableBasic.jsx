@@ -12,10 +12,6 @@ const TableBasic = ({
   const [inputCheck, setInputCheck] = useState({});
   const dispatch = useDispatch();
  
-
-
-
-
   return (
     <>
       <div className="overflow-scroll ">

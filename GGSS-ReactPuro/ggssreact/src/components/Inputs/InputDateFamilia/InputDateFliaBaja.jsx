@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import "./InputDateFlia.css";
+// import "./InputDateFlia.css";
 
 const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,valueGeneral, onChange,generalState, setGeneralState, familiarSeleccionado, action}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
@@ -22,15 +22,15 @@ const InputDateFliaBaja = ({nameInput,display, checked, value, idInput, disable,
 
   return (
     <div className="mt-3">
-      <div className='row d-flex flex-row justify-content-start formularioDate align-items-center'>
+      <div className='row d-flex flex-row justify-content-start  align-items-center'>
           <div className="col-xl-2 p-0">
             <label className="" htmlFor="flexCheckDefault">
               {nameInput}
             </label>
           </div>
-          <div className="col-xl-1 form-input-DateFlia">              
+          <div className="col-xl-1 ">              
               <input 
-              className='inputDateBaja' 
+              className='' 
               id={idInput} 
               name={idInput}
               onChange={(e)=> onChange(e.target.value, idInput)}

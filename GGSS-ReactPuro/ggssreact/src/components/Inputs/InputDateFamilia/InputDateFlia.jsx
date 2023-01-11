@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import "./InputDateFlia.css";
+// import "./InputDateFlia.css";
 
 const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, valueGeneral, onChange,generalState, setGeneralState, familiarSeleccionado,action}) => {
   const [mostrarComponente, setMostrarComponente] = useState(true);
@@ -11,20 +11,17 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, val
 
   const fecha = value !== undefined && value !== null ? value.substring(0, value.length -9) : null;
   return (
-    // <div className=" mt-2">
-    //   <div className='row d-flex flex-row justify-content-start formularioDate align-items-center'>
-    //       <div className="col-xl-3 p-0">
+    <>
+      <div className="row">
+      <div className="col">
 
-
-          <div className="formulario__grupo__inputs mt-2">
-      <div className="formulario__grupo">
-            <label className="form-check-label" htmlFor="flexCheckDefault">
+            <label className="" htmlFor="flexCheckDefault">
               {nameInput}
             </label>
-        
-          <div className="col form-input-DateFlia2">
+        </div>
+          <div className="col">
               <input 
-              className='inputDate2' 
+              className='' 
               id={idInput} 
               name={idInput}
               onChange={(e)=> onChange(e.target.value, idInput)}
@@ -32,18 +29,19 @@ const InputDateFlia = ({nameInput,display, checked, value, idInput, disable, val
               value={fecha} 
               disabled={disable}
               />
-          
+          </div>
+      <div className="col">
+
           <input 
-          className={mostrarComponente ? "col-xl-6 form-check-input-date dateFlia" : "none"} type="checkbox" 
+          className={mostrarComponente ? "col-xl-6 form-check-input-date" : "none"} type="checkbox" 
           disabled={disable}
           id="flexCheckChecked" 
           checked={checked}
           />
+          </div>
+
       </div>
-      </div>
-      </div>
-        
-    // </div>
+      </>
   )
 }
 export default InputDateFlia;

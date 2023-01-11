@@ -1,5 +1,4 @@
-// import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import InputEmpData from "../Inputs/InputEmpData/InputEmpData";
 import "./EmployeData.css";
@@ -39,7 +38,6 @@ const EmployeData = ({disabled, image, responses}) => {
                 />
             <InputEmpData
                 idInput="apellidoInfo"
-                // className="apellido"
                 inputValue={
                   empleadoUno && empleadoUno.apellido
                 }

@@ -1,4 +1,4 @@
-.none{
+/* .none{
     display: none;
 }
 
@@ -140,7 +140,7 @@
 	transition: .3s ease all;
     border-bottom: 1px solid rgb(78, 6, 6);
 	/* margin-top: -5px; */
-}
+/* }
 @media screen and (max-width:1366px){
 	.selectFormFlia{
 		height: 35px;
@@ -149,4 +149,4 @@
 	.form-input-PaisDeOrigenFlia{
 		height: 35px;
 	}
-}
+} */ 

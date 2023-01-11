@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Familia from "../../Familia/Familia";
-import "./InputMultiple.css";
+// import "./InputMultiple.css";
 
 const InputMultiple = ({
   valueDNI,
@@ -54,52 +53,45 @@ const InputMultiple = ({
 
  
   return (
-    // <div className="container-flex align-items-center">
-      <div className="formulario__grupo ">
-        <div className=" d-flex flex-row justify-content-start align-items-center">
-          <div className="col-xl-6 divLabelMultiple  d-flex justify-content-start align-items-center">
-            <label className="formulario-label-DNIFamilia mt-1 ">{nameInputDNI}</label>
-          </div>
-          <div>
+          <>
+          <div className="row">
+          <div className="col">
+
+            <label className=" ">{nameInputDNI}</label>
+            </div>
+          <div className="col">
             
-          </div>
-          <div className="col-xl-4 divCboMultiple  d-flex justify-content-start align-items-center">
-            <select className={obligatorio ? "formulario-input-DNI-familia form-select  px-0 obligatorio" : "formulario-input-DNI-familia form-select  px-0"} value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e.target.value,propsRadioButton.idCboDni)}>
+            <select className={obligatorio ? "  px-0 obligatorio" : ""} value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e.target.value,propsRadioButton.idCboDni)}>
               <option value="">Seleccionar</option>
               {optionsDNI && optionsDNI.map((op, i) => {
                 return propSelected === op[idSelected] ? <option key={i} selected value={op[idSelected]}>{op[namePropOp]}</option> :
                 <option key={i} value={op[idSelected]}>{op[namePropOp]}</option> 
               })}
             </select>
-          </div>
-          <div className="col-xl-2 d-flex justify-content-start align-items-center">
+            </div>
+
+          <div className="col">
+            
             <input
               type="text"
               maxLength="8"
               value={valueDNI}
-              className={obligatorio ? "formulario-input-DNI-input px-0 mt-0 mb-0 obligatorio" : "formulario-input-DNI-input px-0 mt-0 mb-0"}
+              className={obligatorio ? "px-0 mt-0 mb-0 obligatorio" : "px-0 mt-0 mb-0"}
               placeholder={placeholder}
               disabled={disable}
               id={propsRadioButton.idNroDni}
               name={propsRadioButton.idNroDni}
               onChange={(e)=>onChange(e.target.value, propsRadioButton.idNroDni)}
-            ></input>
-          </div>
-          <div className="form__grupo__icon">
-            <i className="fas fa-times-circle"></i>
-          </div>
-          <div className="form__grupo__error">
-          </div>
-          <div className="col-xl-4  form-inputs-radioFlia">
-            <div className="form__grupo__label">
-              <label className="form__grupo__label__label" htmlFor="legajo">
-                {nameInputRadio}
-              </label>
+            />
             </div>
-            <div className="d-flex flex-column justify-content-start align-items-center inputsSexo mt-2">
-              <div className="d-flex flex-row justify-content-start align-items-center inputSexo">
+            
+            <div className="col">
+             
+            
+            <div className="">
+              <div className="">
                 <input
-                  className={obligatorio ? "form-check-input obligatorio" : "form-check-input"}
+                  className={obligatorio ? " obligatorio" : ""}
                   type="radio"
                   id={propsRadioButton.idRadioBtn}
                   name={propsRadioButton.idRadioBtn}
@@ -109,13 +101,13 @@ const InputMultiple = ({
                   value="M"
                   disabled={disable}
                 />
-                <label className="form-check-label" htmlFor="inlineCheckbox1">
+                <label className="" htmlFor="inlineCheckbox1">
                   {nameFirst}
                 </label>
               </div>
-              <div className="d-flex flex-row justify-content-center align-items-center">
+              <div className="">
                 <input
-                  className={obligatorio ? "form-check-input obligatorio" : "form-check-input"}
+                  className={obligatorio ? "obligatorio" : ""}
                   type="radio"
                   id={propsRadioButton.idRadioBtn}
                   defaultChecked
@@ -125,18 +117,28 @@ const InputMultiple = ({
                   value="F"
                   disabled={disable}
                 />
-                <label className="form-check-label" htmlFor="inlineCheckbox2">
+                <label className="" htmlFor="inlineCheckbox2">
                   {nameSecond}
                 </label>
               </div>
               
             </div>
             
+
+              </div>
+
+
+
+
           </div>
-        </div>
+
+
+
+
+
+         
+          </>
         
-      </div>
-    // </div>
   );
 };
 

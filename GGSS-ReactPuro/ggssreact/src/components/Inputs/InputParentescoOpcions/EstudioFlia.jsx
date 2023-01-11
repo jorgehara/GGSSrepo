@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ButtonCallModal from "../../Buttons/ButtonCallModal";
-import "./InputOpcionsFlia.css";
+// import "./InputOpcionsFlia.css";
 const EstudioFlia = ({
   nameInput,
   array,
@@ -29,15 +29,18 @@ const EstudioFlia = ({
   }, [display]);
 
   return (
-    <div className="formulario__grupo__inputs mt-2">
-    <div className="formulario__grupo">
-          <label className="form-label-EstudiosFlia mt-2">
+    <>
+    <div className="row">
+    <div className="col">
+
+          <label className=" mt-2">
             {nameInput}
           </label>
+      </div>
         
         <div className="col">
           <select
-            className={obligatorio ? "form-select ml-4 mt-1 selectFormFlia obligatorio" : "form-select ml-4 mt-1 selectFormFlia"}
+            className={obligatorio ? "form-select ml-4 mt-1 obligatorio" : "form-select ml-4 mt-1"}
             disabled={disable}
             name={idInput}
             id={idInput}
@@ -64,7 +67,11 @@ const EstudioFlia = ({
             })}
           </select>
         </div>
-        <div className="col-xl-3 d-flex justify-content-end align-items-center btn-modal-estu">
+
+    <div className="col">
+
+
+        <div className="">
           {/* <ButtonCallModal
             idModal={idModal}
             className={
@@ -79,29 +86,31 @@ const EstudioFlia = ({
             disabled={disable}
           /> */}
         </div>
-        <div className="col-xl-2 radio-Fijar-estu mt-2">
-        <div
-          className={
+
+        </div>
+
+        <div className="col">
+        <div className={
             mostrarComponente
               ? "col-xl-2 d-flex align-items-center ml-3 pl-2"
               : "none"
           }
         >
           <input
-            className="form-check-input inputCheckEstudio"
+            className="form-check-input "
             type="checkbox"
             value=""
             id="flexCheckChecked"
             checked={checked}
             disabled={disable}
           />
-          <label className="form-check-label labelEstuFijar" htmlFor="flexCheckChecked">
+          <label className="form-check-label " htmlFor="flexCheckChecked">
             {nameCheck}
           </label>
         </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -19,10 +19,10 @@ return (
 
 <div class="count-container">
         <form>
-          <div class="input-group contTxtArea">
-            <div className="form__grupo__label pl-1 mt-3">
+          <div class="input-group ">
+            <div className=" pl-1 mt-3">
               <label
-                className="form__grupo__label__label m-0"
+                className=" m-0"
                 htmlFor="legajo"
               >
                 Observaciones

@@ -1,4 +1,3 @@
-// import axios from "axios";
 import ButtonCancelarAceptar from "../Buttons/ButtonCancelarAceptar";
 import EmployeData from "../EmployeData/EmployeData";
 import InputChecked from "../Inputs/InputChecked/InputChecked";
@@ -21,7 +20,7 @@ import swal from "sweetalert";
 import { addNewFamiliar, deleteOneFamiliar } from "../../redux/actions/fetchActions";
 import { disableFunctions } from "../../redux/actions/employeActions";
 import { addFamiliar, deleteFam, saveIdFam } from "../../redux/actions/familiaActions";
-import "./Familia.css"
+// import "./Familia.css"
 
 const Familia = ({responses, setResponses,disable, setRefetch, refetch}) => {
   
@@ -123,8 +122,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
          
   }
  
-
-
+//#region --
   let bodyPetition = {
     "iDfamiliares": ((familiaresValue && familiaresValue[familiaresValue.length -1]  && (familiaresValue[familiaresValue.length -1].iDfamiliares))+1),
     "iDempleado": empleadoUno.iDempleado,
@@ -145,7 +143,8 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
     "fechaAcargoDesde": null,
     "obs": responses.formFamilia?.textAreaObservacionesFamilia
   }
-  
+//#endregion --
+
   function cancelButton(){
     Array.from(document.querySelectorAll("input")).forEach(
       input => (input.value = "")
@@ -165,16 +164,15 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
   
 
   return (
-    <div className="Lateral-Derecho">
-      <div className="container-fluid contFamilia">
+    <div className="container-flex">
+      <div className="container-flex border border-1">
 
-        <div className="row border border-1">
           <EmployeData disabled={disable} />
         </div>
 
-        <div className="container">
+        <div className="container-flex">
           <div className="row">
-            <div className="col-xl-6 p-2">
+            <div className="col-md-6">
               <InputChecked
                 value={formFamilia?.inputApellidoNombres ? formFamilia?.inputApellidoNombres : familiarSeleccionado.apellidoyNombres
                 }
@@ -265,8 +263,9 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
                   obligatorio ={true}
                 />
             </div>
-            <div className="col-xl-6 p-2">
 
+
+            <div className="col-md-6">
               <PaisOrigenFlia
                 nameLabel="Pais de Origen"
                 array={paisesValue && paisesValue}
@@ -328,7 +327,6 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
         </div>
         <ButtonCancelarAceptar cancelar="-" aceptar="+" disabled={disable} functionSend={sendData} functionDelete={deleteFamiliar} idElimiar={idFamiliarSelected}/>
         <div className="d-flex flex-row align-items-center">
-          
           <TableBasic 
           onSelect={onSelect} 
           columns={columns} 
@@ -337,13 +335,11 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
           seleccionado={familiarSeleccionadoR} 
           
           />
-         
         </div>
         <div className="d-flex justify-content-end">
         </div>
 
       </div>
-    </div>
 
 
   );
