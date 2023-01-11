@@ -160,14 +160,14 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
   }
   
   return (
-    <div className="Lateral-Derecho">
+    <>
       <div className="container-fluid contFamilia">
         <div className="row border border-1">
           <EmployeData disabled={disable} />
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-xl-6 col-lg-6 col-md-6 p-2">
+            <div className="col-xl-7 col-lg-7 col-md-7 p-2">
               <InputChecked
                 value={formFamilia?.inputApellidoNombres ? formFamilia?.inputApellidoNombres : familiarSeleccionado.apellidoyNombres}
                 nameLabel="Apellido y Nombres"
@@ -257,7 +257,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
                   obligatorio ={true}
                 />
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 p-2">
+            <div className="col-xl-5 col-lg-5 col-md-5 ml-5">
 
               <PaisOrigenFlia
                 nameLabel="Pais de Origen"
@@ -329,15 +329,11 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
           seleccionado={familiarSeleccionadoR} 
           
           />
-         
         </div>
-        <div className="d-flex justify-content-end">
-        </div>
+        
 
       </div>
-    </div>
-
-
+    </>
   );
 };
 export default Familia;

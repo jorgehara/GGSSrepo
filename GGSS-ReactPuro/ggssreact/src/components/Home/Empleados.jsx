@@ -183,7 +183,7 @@ const Empleados = () => {
     setDisable(true);
     
   }
-  console.log(tabIndex)
+  // console.log(tabIndex)
   const handleFetch = async (url, action) => {
     dispatch({ type: SET_LOADING });
     await axios
