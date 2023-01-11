@@ -97,7 +97,6 @@ return (
         <div className="container-flex border border-1">
           {
             windowsScreen <= 1366 ? null : <EmployeData disabled={disable} />
-            
           }
           
         </div>

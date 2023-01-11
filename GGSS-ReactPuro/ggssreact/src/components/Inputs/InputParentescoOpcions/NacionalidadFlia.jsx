@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ButtonCallModal from "../../Buttons/ButtonCallModal";
+// import ButtonCallModal from "../../Buttons/ButtonCallModal";
 // import "./InputOpcionsFlia.css";
 const NacionalidadFlia = ({
   nameInput,
@@ -47,15 +47,16 @@ const NacionalidadFlia = ({
 
 
   return (
-    <div className=" mt-2">
-      <div className="">
-        <label className=" mt-3 ">
+    <>
+      <div className="row">
+      <div className="col">
+        <label className=" ">
           {nameInput}
         </label>
       </div>
-      <div className=" px-0">
+      <div className="col">
         <select
-          className={obligatorio ? "form-select mt-1 obligatorio" : "form-select mt-1 "}
+          className={obligatorio ? " obligatorio" : " "}
           disabled={disable}
           id={idInput}
           name={idInput}
@@ -84,8 +85,7 @@ const NacionalidadFlia = ({
               })}
         </select>
       </div>
-      <div className="">
-      <div className="d-flex justify-content-center align-items-center mt-1">
+      <div className="col">
         {/* <ButtonCallModal
           idModal={idModal}
           className={
@@ -100,18 +100,15 @@ const NacionalidadFlia = ({
           disabled={disable}
           /> */}
       </div>
-
-      </div>
-      
-      <div
-        className={
+      <div className="col">
+      <div className={
           mostrarComponente
-            ? "d-flex align-items-center col-xl-3 ml-3 pl-2"
+            ? ""
             : "none"
         }
       >
         <input
-          className="form-check-input "
+          className=" "
           type="checkbox"
           value=""
           id="flexCheckChecked"
@@ -122,7 +119,9 @@ const NacionalidadFlia = ({
           {nameCheck}
         </label>
       </div>
-    </div>
+      </div>
+      </div>
+    </>
   );
 };
 

@@ -26,18 +26,19 @@ const PaisOrigenFlia = ({
   }, [display]);
 
   return (
-    <div className=" ">
-      <div className="">
-        <label className=" mt-3">
+    <>
+      <div className="row">
+      <div className="col">
+        <label className=" ">
           {nameLabel}
         </label>
       </div>
-      <div className=" px-0">
+      <div className="col">
         <select
           className={
             obligatorio
-              ? "form-select ml-0 mt-1 obligatorio"
-              : "form-select ml-0 mt-1"
+              ? " obligatorio"
+              : ""
           }
           name={nameInput}
           disabled={disable}
@@ -58,7 +59,7 @@ const PaisOrigenFlia = ({
             })}
         </select>
       </div>
-      <div className="ml-0 d-flex justify-content-center align-items-center ">
+      <div className="col">
         {/* <ButtonCallModal
         idModal={idModal}
         className={
@@ -73,15 +74,15 @@ const PaisOrigenFlia = ({
         disabled={disable}
         /> */}
       </div>
-      <div
-        className={
+      <div className="col">
+      <div className={
           mostrarComponente
-            ? "d-flex align-items-center col-xl-3 ml-3 pl-2"
+            ? " "
             : "none"
         }
       >
         <input
-          className="form-check-input"
+          className=""
           type="checkbox"
           value=""
           id="flexCheckChecked"
@@ -92,7 +93,9 @@ const PaisOrigenFlia = ({
           {nameCheck}
         </label>
       </div>
-    </div>
+      </div>
+      </div>
+    </>
   );
 };
 

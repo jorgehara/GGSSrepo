@@ -37,9 +37,6 @@ const InputMultiple = ({
     setValor(datosFamiliaRadio);
   },[datosFamiliaRadio])
   
-  
-
-
   const valueInput = () => {    
       if(valor === "M"){
         setValorRadioM(true);
@@ -50,8 +47,6 @@ const InputMultiple = ({
         setValorRadioM(false);
       } 
     }    
-
- 
   return (
           <>
           <div className="row">
@@ -60,7 +55,6 @@ const InputMultiple = ({
             <label className=" ">{nameInputDNI}</label>
             </div>
           <div className="col">
-            
             <select className={obligatorio ? "  px-0 obligatorio" : ""} value={datosFamiliaValue1 !== undefined ? datosFamiliaValue1 : null}  disabled={disable} id={propsRadioButton.idCboDni} name={propsRadioButton.idCboDni} onChange={(e)=>onChange(e.target.value,propsRadioButton.idCboDni)}>
               <option value="">Seleccionar</option>
               {optionsDNI && optionsDNI.map((op, i) => {
@@ -69,9 +63,7 @@ const InputMultiple = ({
               })}
             </select>
             </div>
-
           <div className="col">
-            
             <input
               type="text"
               maxLength="8"
@@ -84,10 +76,7 @@ const InputMultiple = ({
               onChange={(e)=>onChange(e.target.value, propsRadioButton.idNroDni)}
             />
             </div>
-            
             <div className="col">
-             
-            
             <div className="">
               <div className="">
                 <input
@@ -121,24 +110,10 @@ const InputMultiple = ({
                   {nameSecond}
                 </label>
               </div>
-              
             </div>
-            
-
               </div>
-
-
-
-
           </div>
-
-
-
-
-
-         
           </>
-        
   );
 };
 

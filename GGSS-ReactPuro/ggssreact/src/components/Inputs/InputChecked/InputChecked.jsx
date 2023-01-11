@@ -17,13 +17,13 @@ const InputChecked = ({
   return (
     <>
           <div className="row">
-          <div className="col">
+          <div className="col-4">
 
             <label className=" mt-2" htmlFor={idInput}>
               {nameLabel}
             </label>
             </div>
-            <div className="col">
+            <div className="col-2">
 
             <input
               type="text"
@@ -37,7 +37,21 @@ const InputChecked = ({
               disabled={disabled}
             />
             </div>
-            <div className="col">
+            <div className="col-4">
+
+            {/* <input
+              className=""
+              type="checkbox"
+              value=""
+              id="flexCheckChecked"
+              defaultChecked={checked}
+              disabled={disabled}
+            />
+            <label className="" htmlFor="flexCheckChecked">
+              {nameCheck}
+            </label> */}
+          </div>
+          <div className="col-2">
 
             <input
               className=""

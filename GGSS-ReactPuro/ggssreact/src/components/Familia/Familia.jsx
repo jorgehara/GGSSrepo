@@ -169,8 +169,123 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
 
           <EmployeData disabled={disable} />
         </div>
+//#region ---
+        {/* <div className="row">
+    <div className="col-xl-4">
+     <label className="-1"/>NOmbre y Apellidos<label/>
+     <label className="col-1"/>Documento<label/>
+     <label className="col-1"/>Parentesco<label/>
+     <label className="col-1"/>NAcimiento<label/>
+     <label className="col-1"/>Estudios<label/>
+    </div>
+    <div className="col-xl-4">
+    <input type="text" placeholder="Nombre y Apellidos"
+              // className={obligatorio ? "obligatorio" : ""}
+              // id={idInput}
+              // placeholder={placeHolder}
+              // value={value}
+              // name={nameInput}
+              // onChange={(e) => 
+              //   onChange(e.target.value,idInput)}
+              // disabled={disabled}
+            />
+            <input type="text" placeholder="Documento"
+              // className={obligatorio ? "obligatorio" : ""}
+              // id={idInput}
+              // placeholder={placeHolder}
+              // value={value}
+              // name={nameInput}
+              // onChange={(e) => 
+              //   onChange(e.target.value,idInput)}
+              // disabled={disabled}
+            /><input type="text" placeholder="Parentesco"
+            // className={obligatorio ? "obligatorio" : ""}
+            // id={idInput}
+            // placeholder={placeHolder}
+            // value={value}
+            // name={nameInput}
+            // onChange={(e) => 
+            //   onChange(e.target.value,idInput)}
+            // disabled={disabled}
+          /><input type="text" placeholder="NAcimiento"
+          // className={obligatorio ? "obligatorio" : ""}
+          // id={idInput}
+          // placeholder={placeHolder}
+          // value={value}
+          // name={nameInput}
+          // onChange={(e) => 
+          //   onChange(e.target.value,idInput)}
+          // disabled={disabled}
+        /><input type="text" placeholder="Estudios"
+        // className={obligatorio ? "obligatorio" : ""}
+        // id={idInput}
+        // placeholder={placeHolder}
+        // value={value}
+        // name={nameInput}
+        // onChange={(e) => 
+        //   onChange(e.target.value,idInput)}
+        // disabled={disabled}
+      />
+    </div>
+    <div className="col-xl-4">
+    <input className=""
+              type="checkbox"
+              value=""
+              // id="flexCheckChecked"
+              // defaultChecked={checked}
+              // disabled={disabled}
+            />
+            <label className="" htmlFor="flexCheckChecked">
+             Fijar 1
+            </label>
+            <input className=""
+              type="checkbox"
+              value=""
+              // id="flexCheckChecked"
+              // defaultChecked={checked}
+              // disabled={disabled}
+            />
+            <label className="" htmlFor="flexCheckChecked">
+             Fijar 2
+            </label> <input className=""
+              type="checkbox"
+              value=""
+              // id="flexCheckChecked"
+              // defaultChecked={checked}
+              // disabled={disabled}
+            />
+            <label className="" htmlFor="flexCheckChecked">
+             Fijar 3
+            </label> <input className=""
+              type="checkbox"
+              value=""
+              // id="flexCheckChecked"
+              // defaultChecked={checked}
+              // disabled={disabled}
+            />
+            <label className="" htmlFor="flexCheckChecked">
+             Fijar 4
+            </label> <input className=""
+              type="checkbox"
+              value=""
+              // id="flexCheckChecked"
+              // defaultChecked={checked}
+              // disabled={disabled}
+            />
+            <label className="" htmlFor="flexCheckChecked">
+             Fijar 5
+            </label> 
+    </div>
+</div> */}
+ {/* <div className="row">
+    <TextArea />
+</div> */}
+{/* <div className="row">
+     <TextArea />
+// </div> */ }
+//#endregion ---
 
-        <div className="container-flex">
+<div className="container-flex">
           <div className="row">
             <div className="col-md-6">
               <InputChecked
@@ -336,8 +451,7 @@ const urlCreateFamiliar = "http://54.243.192.82/api/InsertarNuevoFamiliar"
           
           />
         </div>
-        <div className="d-flex justify-content-end">
-        </div>
+        
 
       </div>
 
