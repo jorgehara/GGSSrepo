@@ -15,7 +15,7 @@ const EmployeData = ({disabled, image, responses}) => {
 
     
   return (
-        <div className="container-flex border border-3 p-1 text-start">
+        <div className="container-flex border border-3 p-2 text-start">
             <div className="row">
               <div className="col-2 d-flex align-items-center ">
                 <img
@@ -23,7 +23,6 @@ const EmployeData = ({disabled, image, responses}) => {
                   id="imagen"
                   src={empleadoUno?.obsFechaIngreso ? empleadoUno?.obsFechaIngreso : responses?.inputImage}
                   alt=""
-                  // style={{ width: "90px;", height: "90px;" }}
                 />
             </div>
               <div className="col-5  d-flex-column align-items-center"> 
@@ -43,7 +42,7 @@ const EmployeData = ({disabled, image, responses}) => {
                 inputValue={
                   empleadoUno && empleadoUno.apellido
                 }
-                nameLabel="Apellido: "
+                nameLabel="Apellidos:"
                 disabled={disabled}
                 />
           
