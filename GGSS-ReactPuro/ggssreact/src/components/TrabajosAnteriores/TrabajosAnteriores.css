@@ -7,9 +7,9 @@
 
 }
 .dateTrabajos2{
-    width: 38%;
+    width: 36%;
     box-sizing: border-box;
-    margin-left: 5%;
+    margin-left: 4.5%;
     padding: 0% ;
 }
 .checkTrabajos{
@@ -30,6 +30,6 @@
 }
 @media screen and (max-width: 1280px){
     .dateTrabajos2{
-        width: 50%;
+        /* width: 50%; */
     }
 }
