@@ -97,7 +97,6 @@ return (
         <div className="container-flex border border-1 ">
           {
             windowsScreen <= 1366 ? null : <EmployeData disabled={disable} />
-            
           }
           
         </div>
@@ -124,7 +123,6 @@ return (
                         propIdOption="iDempleador"
                         idInput="inputEmpleadorLiquidacion"
                         onChange={onChangeValues}
-                        action={GET_INPUTS_VALUE}
                         obligatorio = {true}
                         disabled={disable}
                         idSelected={empleadoUno?.iDempleador}
@@ -158,7 +156,6 @@ return (
                             propIdOption="iDcategoria"
                             idInput="inputCategoria"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE}
                             disabled={disable}
                             idSelected={empleadoUno?.iDcategoria}
                         />
@@ -173,7 +170,6 @@ return (
                             propIdOption="idAgrupamiento"
                             idInput="inputAgrupamiento"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE}
                             disabled={disable}
                             idSelected={empleadoUno?.idAgrupamiento}
                         />
@@ -188,7 +184,6 @@ return (
                             propIdOption="iDcargo"
                             idInput="inputCargo"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE}
                             disabled={disable}
                             idSelected={empleadoUno?.iDcargo}
                         />
@@ -203,7 +198,6 @@ return (
                             propIdOption="idTareaDesempeñada"
                             idInput="inputTareaDesempeñada"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE} 
                             disabled={disable}
                             idSelected={empleadoUno?.iDtareaDesempeñada}
                         />
@@ -218,7 +212,6 @@ return (
                             propIdOption="iDmodoContratacion"
                             idInput="inputModoCOntratacion"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE} 
                             disabled={disable}
                             idSelected={empleadoUno?.iDmodoContratacion}
                         />
@@ -233,7 +226,6 @@ return (
                             propIdOption="iDmodoLiquidacion"
                             idInput="inputModoLiquidacion"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE} 
                             disabled={disable}
                             idSelected={empleadoUno?.iDmodoLiquidacion}
                         />
@@ -248,7 +240,6 @@ return (
                             propIdOption="idCentrodeCosto"
                             idInput="inputCentroCosto"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE} 
                             disabled={disable}
                             idSelected={empleadoUno?.idCentrodeCosto}
                         />
@@ -263,7 +254,6 @@ return (
                             propIdOption="iDsectorDpto"
                             idInput="inputSectorDepto"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE} 
                             disabled={disable}
                             idSelected={empleadoUno?.iDsectorDpto}
                         />
@@ -278,7 +268,6 @@ return (
                             propIdOption="iDobraSocial"
                             idInput="inputObraSocial"
                             onChange={onChangeValues}
-                            action={GET_INPUTS_VALUE} 
                             disabled={disable}
                             idSelected={empleadoUno?.iDobraSocial}
                         />

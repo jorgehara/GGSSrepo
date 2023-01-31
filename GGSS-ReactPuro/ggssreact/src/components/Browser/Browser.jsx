@@ -25,7 +25,7 @@ import {
 import { setRefetch } from "../../redux/actions/modalesActions";
 import { recharge } from "../../redux/actions/domiciliosActions";
 
-const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, setRefectch, refetch }) => {
+const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, setRefectch, refetch, deleteEmploye }) => {
   const [checked, setChecked] = useState(false);
   const [ browser, setBrowser ] = useState(responses["browser"]);
 
@@ -211,7 +211,7 @@ const Browser = ({ disable, setDisable, setValueEmpl, responses, setResponses, s
             <div className="col">
               <button
                 className={`btn btn-danger btn-sm d-flex justify-content-center m-1 align-items- newClass`}
-                onClick={(e) => habilitaUpdate(e)}
+                onClick={() => deleteEmploye(empleadoUno.iDempleado)}
               >
                 Eliminar
               </button>

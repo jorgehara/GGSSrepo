@@ -507,7 +507,36 @@ useEffect(()=>{
     setRefectch(!refetch)
     dispatch(setRefetch(!refetching))
   }
-  
+  async function deleteEmploye(id){
+    try{
+      await axios.delete(`http://54.243.192.82/api/Empleados/${id}`)
+      .then((res)=>{
+        console.log(res)
+        if(res.isSuccess == true || res.status === 200){
+          return swal({
+            title: "Ok",
+            text: "Empleado Eliminado con éxito",
+            icon: "success",
+          });
+          ;
+        }else{
+          return swal({
+            title: "Error",
+            text: "Error al eliminar el Empleado, debe eliminar sus relaciones",
+            icon: "error",
+          });
+        }
+        
+      })
+    }catch(err){
+      console.log(err)
+      return swal({
+        title: "Error",
+        text: "Error al eliminar el Empleado, debe eliminar sus relaciones",
+        icon: "error",
+      });
+    }
+  }
   async function deleteItems(objectRequest){
     const { urls, arrays } = objectRequest;
     let bodyPetitionEmpleadoGuarda = {
@@ -624,7 +653,7 @@ useEffect(()=>{
     }
     try{
      
-    if(tabIndex === 0 || tabIndex === 2){
+    if(tabIndex === 0 || tabIndex === 2 || tabIndex === 8){
       if(empleadoUno.iDempleado === 0 || empleadoUno.iDempleado === undefined){
         //#region Validation alerts
        
@@ -1086,7 +1115,7 @@ useEffect(()=>{
               }
              
               await axios.delete(`${urls.urlDOmicilioElimina}`, {data : array, headers : {'Content-Type': 'application/json;'}})
-              .then((res) => setRefectch(!refetch))
+              .then((res) => {console.log(res);setRefectch(!refetch)})
            });
           }
     }else{
@@ -1217,7 +1246,7 @@ useEffect(()=>{
     <div className="container-fluid">
       <div className="row">
         <div className="col-xl-3 col-lg-3 col-md-3">
-          <Browser setRefectch={setRefectch} refetch={refetch} disable={disable} setDisable={setDisable} setValueEmpl={setValueEmpl} responses={responses} setResponses={setResponses} />
+          <Browser deleteEmploye={deleteEmploye} setRefectch={setRefectch} refetch={refetch} disable={disable} setDisable={setDisable} setValueEmpl={setValueEmpl} responses={responses} setResponses={setResponses} />
         </div>
         <div className="col-xl-9 col-lg-9 col-md-9 ">
           <Navbar handleTabChange={handleTabChange} tabIndex={tabIndex} />

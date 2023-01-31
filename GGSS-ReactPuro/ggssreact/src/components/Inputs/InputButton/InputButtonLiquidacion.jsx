@@ -32,7 +32,6 @@ const InputButtonLiquidacion = ({nameButton, placeholder, nameLabel, maxLeght, v
         <option value="">Seleccionar</option>
         {
             array && array.map((valor,index)=>{
-             
                 return(
                   Number(idSelected) === Number(valor[propIdOption]) ? <option selected key={index} value={valor[propIdOption]}>{valor[propArrayOp]}</option> : 
                   <option key={index} value={valor[propIdOption]}>{valor[propArrayOp]}</option>
