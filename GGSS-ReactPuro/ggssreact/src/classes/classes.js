@@ -71,10 +71,10 @@ export const classesEstadosCiviles = {
     "classTwo" : 'formulario-label-Sexo',
     "classThree": "formulario-input-Sexo-AsidePagos",
     "classFour" :  "form-check-input",
-    "classFive" : "form-check-label",
+    "classFive" : "form-check-label-pagos",
     "classSix" : "formulario-input-Sexo-AsidePagos",
     "classSeven" : "form-check-input",
-    "classEigth" : "form-check-label",
+    "classEigth" : "form-check-label-pagos",
     "classNine" : "form__grupo__label",
   }
   export const inputClassProvinciasDomicilios = {

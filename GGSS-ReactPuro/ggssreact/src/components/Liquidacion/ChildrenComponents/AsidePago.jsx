@@ -85,10 +85,9 @@ const AsidePago = ({formasPAgo, lugaresDePago, bancos, onChange, formLiquidacion
               <InputRadio
                 classes={classesRadioLiquidacion}
                 nameFirst="Caja de Ahorro"
-                nameSecond="Cuenta Corriente"
+                nameSecond="Cta Corriente"
                 nameLabel="Tipo"
                 onChange={onChange}
-                action={GET_INPUTS_VALUE}
                 idInput="inputRadioAsidePagos"
                 asidePagos={true}
                 disabled={disabled}
